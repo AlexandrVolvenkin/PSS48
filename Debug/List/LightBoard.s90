@@ -1,0 +1,958 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:04
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EWD6AD.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp --cpu=m128a
+//        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\LightBoard.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME LightBoard
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B3_L09
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE3_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?S_EC_MUL_L02
+
+        PUBLIC ??CLightBoard
+        PUBWEAK ??GetActivityState
+        PUBLIC ??Init
+        PUBWEAK ??LedDriverEnable1On
+        PUBWEAK ??LedDriverEnable1SetPinOutput
+        PUBWEAK ??LedDriverEnable2On
+        PUBWEAK ??LedDriverEnable2SetPinOutput
+        PUBWEAK ??LedDriverEnable3On
+        PUBWEAK ??LedDriverEnable3SetPinOutput
+        PUBWEAK ??LedDriverEnable4On
+        PUBWEAK ??LedDriverEnable4SetPinOutput
+        PUBLIC ??Set
+        PUBWEAK ??__vtbl_2
+        PUBLIC ??m_auiLedMap
+        PUBLIC `??new CLightBoard`
+        PUBLIC `?~CLightBoard`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CLightBoard 17>` SYMBOL "CLightBoard"
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CLightBoard 17>`
+??m_auiLedMap       SYMBOL "m_auiLedMap", `?<Name CLightBoard 17>`
+
+        EXTERN ??CDM134
+        EXTERN ??Init_1
+        EXTERN ??Set_1
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDM134`
+
+// D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Sourse      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "LightBoard.h"
+//    9 #include "Platform.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CLightBoard::__vtbl[1]
+??__vtbl_2:
+        DC16 `?~CLightBoard`/2
+//   10 #include "Pss21.h"
+//   11 
+//   12 //-------------------------------------------------------------------------------------------------
+
+        RSEG NEAR_F:CODE:ROOT(0)
+//   13 __flash uint8_t CLightBoard::m_auiLedMap[] =
+??m_auiLedMap:
+        DC8 48, 60, 32, 45, 16, 28, 0, 13, 49, 61, 33, 44, 17, 29, 1, 12, 52
+        DC8 62, 36, 43, 20, 30, 4, 11, 53, 63, 37, 42, 21, 31, 5, 10, 54, 57
+        DC8 38, 41, 22, 25, 6, 9, 55, 56, 39, 40, 23, 24, 7, 8
+//   14 {
+//   15 //    // Матрица расположения на панели.
+//   16 //    // Левая часть.    // Правая часть.
+//   17     48, 60, 32, 45,    16, 28, 0, 13,
+//   18     49, 61, 33, 44,    17, 29, 1, 12,
+//   19     52, 62, 36, 43,    20, 30, 4, 11,
+//   20     53, 63, 37, 42,    21, 31, 5, 10,
+//   21     54, 57, 38, 41,    22, 25, 6,  9,
+//   22     55, 56, 39, 40,    23, 24, 7,  8,
+//   23 };
+//   24 
+//   25 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   26 CLightBoard::CLightBoard()
+??CLightBoard:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        LDI     R16, LOW(??__vtbl_2)
+        LDI     R17, (??__vtbl_2) >> 8
+        MOVW    R31:R30, R25:R24
+        SUBI    R30, 188
+        SBCI    R31, 255
+        ST      Z, R16
+        STD     Z+1, R17
+//   27 {
+        MOVW    R17:R16, R25:R24
+        CALL    ??CDM134
+//   28 //    Init();
+//   29 }
+        MOVW    R17:R16, R25:R24
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CLightBoard &CLightBoard::new CLightBoard()
+`??new CLightBoard`:
+        LDI     R16, 70
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CLightBoard_1`
+        RCALL   ??CLightBoard
+        RET
+`??new CLightBoard_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//   30 
+//   31 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   32 CLightBoard::~CLightBoard()
+`?~CLightBoard`:
+//   33 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CLightBoard_1`
+        LDI     R16, LOW(??__vtbl_2)
+        LDI     R17, (??__vtbl_2) >> 8
+        MOVW    R31:R30, R25:R24
+        SUBI    R30, 188
+        SBCI    R31, 255
+        ST      Z, R16
+        STD     Z+1, R17
+//   34 
+//   35 }
+        LDI     R18, 2
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        CALL    `?~CDM134`
+        BST     R26, 0
+        BRTC    `?~CLightBoard_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CLightBoard_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//   36 
+//   37 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   38 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
+??Init:
+//   39 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+//   40     m_pxAlarmWindowControl = pxAlarmWindowControl;
+        MOVW    R31:R30, R25:R24
+        SUBI    R30, 190
+        SBCI    R31, 255
+        ST      Z, R26
+        STD     Z+1, R27
+//   41     CPlatform::LedDriverEnable1On();
+        CALL    ??LedDriverEnable1On
+//   42     CPlatform::LedDriverEnable2On();
+        CALL    ??LedDriverEnable2On
+//   43     CPlatform::LedDriverEnable3On();
+        CALL    ??LedDriverEnable3On
+//   44     CPlatform::LedDriverEnable4On();
+        CALL    ??LedDriverEnable4On
+//   45     CPlatform::LedDriverEnable1SetPinOutput();
+        CALL    ??LedDriverEnable1SetPinOutput
+//   46     CPlatform::LedDriverEnable2SetPinOutput();
+        CALL    ??LedDriverEnable2SetPinOutput
+//   47     CPlatform::LedDriverEnable3SetPinOutput();
+        CALL    ??LedDriverEnable3SetPinOutput
+//   48     CPlatform::LedDriverEnable4SetPinOutput();
+        CALL    ??LedDriverEnable4SetPinOutput
+//   49 
+//   50     m_xLedDriver.Init();
+        MOVW    R17:R16, R25:R24
+        CALL    ??Init_1
+//   51 }
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//   52 
+//   53 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   54 void CLightBoard::Set(void)
+??Set:
+//   55 {
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
+//   56     for (uint8_t i = 0;
+        LDI     R26, 0
+//   57             i < ALARM_WINDOWS_NUMBER;
+??Set_2:
+        CPI     R26, 48
+        BRCC    ??Set_3
+//   58             i++)
+//   59     {
+//   60         if (m_pxAlarmWindowControl[i].GetActivityState())
+        MOVW    R31:R30, R25:R24
+        SUBI    R30, 190
+        SBCI    R31, 255
+        LD      R18, Z
+        LDD     R19, Z+1
+        MOV     R16, R26
+        LDI     R17, 0
+        LDI     R20, 6
+        LDI     R21, 0
+        CALL    ?S_EC_MUL_L02
+        ADD     R18, R16
+        ADC     R19, R17
+        MOVW    R17:R16, R19:R18
+        CALL    ??GetActivityState
+        TST     R16
+        BREQ    ??Set_4
+//   61         {
+//   62             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
+        MOV     R30, R26
+        LDI     R31, 0
+        SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
+        SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
+        LPM     R16, Z
+        LDI     R17, 0
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R16
+        ADC     R31, R17
+        LDI     R16, 1
+        STD     Z+2, R16
+        RJMP    ??Set_5
+//   63         }
+//   64         else
+//   65         {
+//   66             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
+??Set_4:
+        MOV     R30, R26
+        LDI     R31, 0
+        SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
+        SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
+        LPM     R16, Z
+        LDI     R17, 0
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R16
+        ADC     R31, R17
+        LDI     R16, 0
+        STD     Z+2, R16
+//   67         }
+//   68     };
+??Set_5:
+        INC     R26
+        RJMP    ??Set_2
+//   69 
+//   70     m_xLedDriver.Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+??Set_3:
+        LDI     R20, 64
+        MOVW    R19:R18, R25:R24
+        SUBI    R18, 254
+        SBCI    R19, 255
+        MOVW    R17:R16, R25:R24
+        CALL    ??Set_1
+//   71 }
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CAlarmWindow::GetActivityState()
+??GetActivityState:
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable1SetPinOutput()
+??LedDriverEnable1SetPinOutput:
+        LDS     R16, 97
+        ORI     R16, 0x01
+        STS     97, R16
+        RET
+        REQUIRE _A_DDRF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable1On()
+??LedDriverEnable1On:
+        LDS     R16, 98
+        ANDI    R16, 0xFE
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable2SetPinOutput()
+??LedDriverEnable2SetPinOutput:
+        LDS     R16, 97
+        ORI     R16, 0x20
+        STS     97, R16
+        RET
+        REQUIRE _A_DDRF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable2On()
+??LedDriverEnable2On:
+        LDS     R16, 98
+        ANDI    R16, 0xDF
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable3SetPinOutput()
+??LedDriverEnable3SetPinOutput:
+        SBI     0x02, 0x06
+        RET
+        REQUIRE _A_DDRE
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable3On()
+??LedDriverEnable3On:
+        CBI     0x03, 0x06
+        RET
+        REQUIRE _A_PORTE
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable4SetPinOutput()
+??LedDriverEnable4SetPinOutput:
+        SBI     0x02, 0x07
+        RET
+        REQUIRE _A_DDRE
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverEnable4On()
+??LedDriverEnable4On:
+        CBI     0x03, 0x07
+        RET
+        REQUIRE _A_PORTE
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+// 
+// 105 bytes in segment ABSOLUTE
+// 362 bytes in segment CODE
+//  86 bytes in segment NEAR_F
+// 
+// 376 bytes of CODE memory (+  72 bytes shared)
+//   0 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 2

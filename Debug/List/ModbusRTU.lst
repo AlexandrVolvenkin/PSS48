@@ -1,0 +1,2930 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  02:57:06
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
+#    Command line =  
+#        -f C:\Users\ghost\AppData\Local\Temp\EWDCB9.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp --cpu=m128a
+#        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+#        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+#        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\ModbusRTU.lst
+#    Object file  =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\ModbusRTU.r90
+#
+###############################################################################
+
+D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
+      1          //-----------------------------------------------------------------------------------------------------
+      2          //  Sourse      : FileName.cpp
+      3          //  Created     : 01.06.2022
+      4          //  Author      : Alexandr Volvenkin
+      5          //  email       : aav-36@mail.ru
+      6          //  GitHub      : https://github.com/AlexandrVolvenkin
+      7          //-----------------------------------------------------------------------------------------------------
+      8          #include "ModbusRTU.h"
+
+   \                                 In  segment ABSOLUTE, at 0x9d, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9b, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x99, root
+   \   union <unnamed> volatile __io _A_UBRR1L
+   \                     _A_UBRR1L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_UBRR1H
+   \                     _A_UBRR1H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x95, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_UBRR0H
+   \                     _A_UBRR0H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8b, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x7d, root
+   \   union <unnamed> volatile __io _A_ETIMSK
+   \                     _A_ETIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ETIFR
+   \                     _A_ETIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x73, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x72, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6d, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6c, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x68, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x65, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x64, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x63, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x62, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5c, root
+   \   union <unnamed> volatile __io _A_XDIV
+   \                     _A_XDIV:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x59, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x58, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x56, root
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUCSR
+   \                     _A_MCUCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x52, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCR0
+   \                     _A_OCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4f, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x48, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x45, root
+   \   union <unnamed> volatile __io _A_TCCR2
+   \                     _A_TCCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_OCR2
+   \                     _A_OCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x42, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_SFIOR
+   \                     _A_SFIOR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3b, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3a, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x39, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_UBRR0L
+   \                     _A_UBRR0L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CUart::ByteIsReceived()
+   \                     ??ByteIsReceived:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   A502               LDD     R16, Z+42
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CUart::FrameIsSended()
+   \                     ??FrameIsSended:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   A503               LDD     R16, Z+43
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CUart::GetFrameLength()
+   \                     ??GetFrameLength:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8D00               LDD     R16, Z+24
+   \   00000004   8D11               LDD     R17, Z+25
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPlatform::GetSystemTick()
+   \                     ??GetSystemTick:
+   \   00000000   ....               LDI     R30, LOW(??m_uiSystemTick)
+   \   00000002   ....               LDI     R31, (??m_uiSystemTick) >> 8
+   \   00000004   8100               LD      R16, Z
+   \   00000006   8111               LDD     R17, Z+1
+   \   00000008   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::TxLedOn()
+   \                     ??TxLedOn:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   7B0F               ANDI    R16, 0xBF
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::TxLedOff()
+   \                     ??TxLedOff:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6400               ORI     R16, 0x40
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CDfaLite::SetFsmState(uint8_t)
+   \                     ??SetFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8320               ST      Z, R18
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CDfaLite::GetFsmState()
+   \                     ??GetFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8100               LD      R16, Z
+   \   00000004   9508               RET
+
+  };
+   ^
+"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",184  Warning[Pe375]: 
+          declaration requires a typedef name
+
+  };
+   ^
+"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",216  Warning[Pe375]: 
+          declaration requires a typedef name
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CModbusRTU::HEADER_LENGTH()
+   \                     ??HEADER_LENGTH:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E001               LDI     R16, 1
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CModbusRTU::CRC_LENGTH()
+   \                     ??CRC_LENGTH:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E002               LDI     R16, 2
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   9508               RET
+      9          #include "Crc.h"
+     10          #include "DataBase.h"
+     11          
+     12          
+     13          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     14          CModbusRTU::CModbusRTU()
+   \                     ??CModbusRTU:
+     15          {
+   \   00000000   ........           CALL    ?PROLOGUE6_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   01D9               MOVW    R27:R26, R19:R18
+   \   00000008   2F0A               MOV     R16, R26
+   \   0000000A   2B0B               OR      R16, R27
+   \   0000000C   F411               BRNE    ??CModbusRTU_1
+   \   0000000E   E001               LDI     R16, 1
+   \   00000010   C001               RJMP    ??CModbusRTU_2
+   \                     ??CModbusRTU_1:
+   \   00000012   E000               LDI     R16, 0
+   \                     ??CModbusRTU_2:
+   \   00000014   2300               TST     R16
+   \   00000016   F079               BREQ    ??CModbusRTU_3
+   \   00000018   ....               LDI     R16, LOW(??__vtbltbl)
+   \   0000001A   2E40               MOV     R4, R16
+   \   0000001C   ....               LDI     R16, (??__vtbltbl) >> 8
+   \   0000001E   2E50               MOV     R5, R16
+   \   00000020   01DC               MOVW    R27:R26, R25:R24
+   \   00000022   961F               ADIW    R27:R26, 15
+   \   00000024   01FC               MOVW    R31:R30, R25:R24
+   \   00000026   87A5               STD     Z+13, R26
+   \   00000028   87B6               STD     Z+14, R27
+   \   0000002A   018C               MOVW    R17:R16, R25:R24
+   \   0000002C   5F01               SUBI    R16, 241
+   \   0000002E   4F1F               SBCI    R17, 255
+   \   00000030   ........           CALL    ??CModbus
+   \   00000034   C006               RJMP    ??CModbusRTU_4
+   \                     ??CModbusRTU_3:
+   \   00000036   01FC               MOVW    R31:R30, R25:R24
+   \   00000038   8443               LDD     R4, Z+11
+   \   0000003A   8454               LDD     R5, Z+12
+   \   0000003C   01FC               MOVW    R31:R30, R25:R24
+   \   0000003E   87A5               STD     Z+13, R26
+   \   00000040   87B6               STD     Z+14, R27
+   \                     ??CModbusRTU_4:
+   \   00000042   ....               LDI     R16, LOW(??__vtbl_1)
+   \   00000044   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   00000046   01FC               MOVW    R31:R30, R25:R24
+   \   00000048   8703               STD     Z+11, R16
+   \   0000004A   8714               STD     Z+12, R17
+   \   0000004C   01F2               MOVW    R31:R30, R5:R4
+   \   0000004E   9105               LPM     R16, Z+
+   \   00000050   9114               LPM     R17, Z
+   \   00000052   9731               SBIW    R31:R30, 1
+   \   00000054   01FD               MOVW    R31:R30, R27:R26
+   \   00000056   8301               STD     Z+1, R16
+   \   00000058   8312               STD     Z+2, R17
+     16          
+     17          }
+   \   0000005A   018C               MOVW    R17:R16, R25:R24
+   \   0000005C   E0E6               LDI     R30, 6
+   \   0000005E   ........           JMP     ?EPILOGUE_B6_L09
+     18          
+     19          ////-----------------------------------------------------------------------------------------------------
+     20          //CModbusRTU::CModbusRTU(CUart* pxDevice,
+     21          //                       uint32_t uiBaudRate,
+     22          //                       char cParity,
+     23          //                       uint8_t uiDataBit,
+     24          //                       uint8_t uiStopBit,
+     25          //                       uint8_t *puiRxBuffer,
+     26          //                       uint8_t *puiTxBuffer) :
+     27          //    pxDevice(pxDevice),
+     28          //    uiBaudRate(uiBaudRate),
+     29          //    cParity(cParity),
+     30          //    uiDataBit(uiDataBit),
+     31          //    uiStopBit(uiStopBit),
+     32          //    m_puiRxBuffer(puiRxBuffer),
+     33          //    m_puiTxBuffer(puiTxBuffer)
+     34          //{
+     35          //    SetFsmState(MODBUS_IDDLE);
+     36          //}
+     37          
+     38          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     39          CModbusRTU::~CModbusRTU()
+   \                     `?~CModbusRTU`:
+     40          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   01D9               MOVW    R27:R26, R19:R18
+   \   00000008   2F08               MOV     R16, R24
+   \   0000000A   2B09               OR      R16, R25
+   \   0000000C   F079               BREQ    `?~CModbusRTU_1`
+   \   0000000E   2F0A               MOV     R16, R26
+   \   00000010   2B0B               OR      R16, R27
+   \   00000012   F039               BREQ    `?~CModbusRTU_2`
+     41          
+     42          }
+   \   00000014   E020               LDI     R18, 0
+   \   00000016   E030               LDI     R19, 0
+   \   00000018   018C               MOVW    R17:R16, R25:R24
+   \   0000001A   5F01               SUBI    R16, 241
+   \   0000001C   4F1F               SBCI    R17, 255
+   \   0000001E   ........           CALL    `?~CModbus`
+   \                     `?~CModbusRTU_2`:
+   \   00000022   FBA0               BST     R26, 0
+   \   00000024   F41E               BRTC    `?~CModbusRTU_1`
+   \   00000026   018C               MOVW    R17:R16, R25:R24
+   \   00000028   ........           CALL    `??operator delete`
+   \                     `?~CModbusRTU_1`:
+   \   0000002C   E0E4               LDI     R30, 4
+   \   0000002E   ........           JMP     ?EPILOGUE_B4_L09
+     43          
+     44          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     45          void CModbusRTU::Init(CUart* pxDevice,
+   \                     ??Init:
+     46                                uint32_t uiBaudRate,
+     47                                char cParity,
+     48                                uint8_t uiDataBit,
+     49                                uint8_t uiStopBit,
+     50                                uint8_t *puiRxBuffer,
+     51                                uint8_t *puiTxBuffer,
+     52                                uint8_t *puiCoils,
+     53                                uint8_t *puiDiscreteInputs,
+     54                                uint16_t *pui16HoldingRegisters,
+     55                                uint16_t *pui16InputRegisters,
+     56                                uint16_t uiCoilsNumber,
+     57                                uint16_t uiDiscreteInputsNumber,
+     58                                uint16_t uiHoldingRegistersNumber,
+     59                                uint16_t uiInputRegistersNumber)
+     60          {
+   \   00000000   ........           CALL    ?PROLOGUE16_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R6_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R7_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R8_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R9_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R10_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R11_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R12_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R13_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R14_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R15_is_cg_reg
+   \   00000004   9722               SBIW    R29:R28, 2
+   \   00000006   8328               ST      Y, R18
+   \   00000008   8339               STD     Y+1, R19
+   \   0000000A   01D8               MOVW    R27:R26, R17:R16
+   \   0000000C   012A               MOVW    R5:R4, R21:R20
+   \   0000000E   013B               MOVW    R7:R6, R23:R22
+   \   00000010   888D               LDD     R8, Y+21
+   \   00000012   889E               LDD     R9, Y+22
+   \   00000014   898F               LDD     R24, Y+23
+   \   00000016   8D98               LDD     R25, Y+24
+   \   00000018   8CED               LDD     R14, Y+29
+   \   0000001A   8CFE               LDD     R15, Y+30
+   \   0000001C   8CCF               LDD     R12, Y+31
+   \   0000001E   A0D8               LDD     R13, Y+32
+   \   00000020   A0A9               LDD     R10, Y+33
+   \   00000022   A0BA               LDD     R11, Y+34
+     61              m_pxDevice = pxDevice;
+   \   00000024   8108               LD      R16, Y
+   \   00000026   8119               LDD     R17, Y+1
+   \   00000028   930D               ST      X+, R16
+   \   0000002A   931C               ST      X, R17
+   \   0000002C   9711               SBIW    R27:R26, 1
+     62              m_uiBaudRate = uiBaudRate;
+   \   0000002E   01FD               MOVW    R31:R30, R27:R26
+   \   00000030   8242               STD     Z+2, R4
+   \   00000032   8253               STD     Z+3, R5
+   \   00000034   8264               STD     Z+4, R6
+   \   00000036   8275               STD     Z+5, R7
+     63              m_cParity = cParity;
+   \   00000038   890A               LDD     R16, Y+18
+   \   0000003A   01FD               MOVW    R31:R30, R27:R26
+   \   0000003C   8700               STD     Z+8, R16
+     64              m_uiDataBit = uiDataBit;
+   \   0000003E   890B               LDD     R16, Y+19
+   \   00000040   01FD               MOVW    R31:R30, R27:R26
+   \   00000042   8306               STD     Z+6, R16
+     65              m_uiStopBit = uiStopBit;
+   \   00000044   890C               LDD     R16, Y+20
+   \   00000046   01FD               MOVW    R31:R30, R27:R26
+   \   00000048   8307               STD     Z+7, R16
+     66              m_puiRxBuffer = puiRxBuffer;
+   \   0000004A   01FD               MOVW    R31:R30, R27:R26
+   \   0000004C   8505               LDD     R16, Z+13
+   \   0000004E   8516               LDD     R17, Z+14
+   \   00000050   01F8               MOVW    R31:R30, R17:R16
+   \   00000052   8686               STD     Z+14, R8
+   \   00000054   8697               STD     Z+15, R9
+     67              m_puiTxBuffer = puiTxBuffer;
+   \   00000056   01FD               MOVW    R31:R30, R27:R26
+   \   00000058   8505               LDD     R16, Z+13
+   \   0000005A   8516               LDD     R17, Z+14
+   \   0000005C   01F8               MOVW    R31:R30, R17:R16
+   \   0000005E   8B80               STD     Z+16, R24
+   \   00000060   8B91               STD     Z+17, R25
+     68              m_puiCoils = puiCoils;
+   \   00000062   8D29               LDD     R18, Y+25
+   \   00000064   8D3A               LDD     R19, Y+26
+   \   00000066   01FD               MOVW    R31:R30, R27:R26
+   \   00000068   8505               LDD     R16, Z+13
+   \   0000006A   8516               LDD     R17, Z+14
+   \   0000006C   01F8               MOVW    R31:R30, R17:R16
+   \   0000006E   8B22               STD     Z+18, R18
+   \   00000070   8B33               STD     Z+19, R19
+     69              m_puiDiscreteInputs = puiDiscreteInputs;
+   \   00000072   8D2B               LDD     R18, Y+27
+   \   00000074   8D3C               LDD     R19, Y+28
+   \   00000076   01FD               MOVW    R31:R30, R27:R26
+   \   00000078   8505               LDD     R16, Z+13
+   \   0000007A   8516               LDD     R17, Z+14
+   \   0000007C   01F8               MOVW    R31:R30, R17:R16
+   \   0000007E   8B24               STD     Z+20, R18
+   \   00000080   8B35               STD     Z+21, R19
+     70              m_pui16HoldingRegisters = pui16HoldingRegisters;
+   \   00000082   01FD               MOVW    R31:R30, R27:R26
+   \   00000084   8505               LDD     R16, Z+13
+   \   00000086   8516               LDD     R17, Z+14
+   \   00000088   01F8               MOVW    R31:R30, R17:R16
+   \   0000008A   8AE6               STD     Z+22, R14
+   \   0000008C   8AF7               STD     Z+23, R15
+     71              m_pui16InputRegisters = pui16InputRegisters;
+   \   0000008E   01FD               MOVW    R31:R30, R27:R26
+   \   00000090   8505               LDD     R16, Z+13
+   \   00000092   8516               LDD     R17, Z+14
+   \   00000094   01F8               MOVW    R31:R30, R17:R16
+   \   00000096   8EC0               STD     Z+24, R12
+   \   00000098   8ED1               STD     Z+25, R13
+     72              m_uiCoilsNumber = uiCoilsNumber;
+   \   0000009A   01FD               MOVW    R31:R30, R27:R26
+   \   0000009C   8505               LDD     R16, Z+13
+   \   0000009E   8516               LDD     R17, Z+14
+   \   000000A0   01F8               MOVW    R31:R30, R17:R16
+   \   000000A2   8EA2               STD     Z+26, R10
+   \   000000A4   8EB3               STD     Z+27, R11
+     73              m_uiDiscreteInputsNumber = uiDiscreteInputsNumber;
+   \   000000A6   A12B               LDD     R18, Y+35
+   \   000000A8   A13C               LDD     R19, Y+36
+   \   000000AA   01FD               MOVW    R31:R30, R27:R26
+   \   000000AC   8505               LDD     R16, Z+13
+   \   000000AE   8516               LDD     R17, Z+14
+   \   000000B0   01F8               MOVW    R31:R30, R17:R16
+   \   000000B2   8F24               STD     Z+28, R18
+   \   000000B4   8F35               STD     Z+29, R19
+     74              m_uiHoldingRegistersNumber = uiHoldingRegistersNumber;
+   \   000000B6   A12D               LDD     R18, Y+37
+   \   000000B8   A13E               LDD     R19, Y+38
+   \   000000BA   01FD               MOVW    R31:R30, R27:R26
+   \   000000BC   8505               LDD     R16, Z+13
+   \   000000BE   8516               LDD     R17, Z+14
+   \   000000C0   01F8               MOVW    R31:R30, R17:R16
+   \   000000C2   8F26               STD     Z+30, R18
+   \   000000C4   8F37               STD     Z+31, R19
+     75              m_uiInputRegistersNumber = uiInputRegistersNumber;
+   \   000000C6   A12F               LDD     R18, Y+39
+   \   000000C8   A538               LDD     R19, Y+40
+   \   000000CA   01FD               MOVW    R31:R30, R27:R26
+   \   000000CC   8505               LDD     R16, Z+13
+   \   000000CE   8516               LDD     R17, Z+14
+   \   000000D0   01F8               MOVW    R31:R30, R17:R16
+   \   000000D2   A320               STD     Z+32, R18
+   \   000000D4   A331               STD     Z+33, R19
+     76          
+     77              m_uiGuardTimeout = ((((1000000UL / m_uiBaudRate) * 8UL * 4UL) / 1000UL) + 1);
+   \   000000D6   01FD               MOVW    R31:R30, R27:R26
+   \   000000D8   8142               LDD     R20, Z+2
+   \   000000DA   8153               LDD     R21, Z+3
+   \   000000DC   8164               LDD     R22, Z+4
+   \   000000DE   8175               LDD     R23, Z+5
+   \   000000E0   E400               LDI     R16, 64
+   \   000000E2   E412               LDI     R17, 66
+   \   000000E4   E02F               LDI     R18, 15
+   \   000000E6   E030               LDI     R19, 0
+   \   000000E8   ........           CALL    ?UL_DIVMOD_L03
+   \   000000EC   E240               LDI     R20, 32
+   \   000000EE   E050               LDI     R21, 0
+   \   000000F0   E060               LDI     R22, 0
+   \   000000F2   E070               LDI     R23, 0
+   \   000000F4   ........           CALL    ?L_EC_MUL_L03
+   \   000000F8   0108               MOVW    R1:R0, R17:R16
+   \   000000FA   0119               MOVW    R3:R2, R19:R18
+   \   000000FC   EE48               LDI     R20, 232
+   \   000000FE   E053               LDI     R21, 3
+   \   00000100   E060               LDI     R22, 0
+   \   00000102   E070               LDI     R23, 0
+   \   00000104   0180               MOVW    R17:R16, R1:R0
+   \   00000106   0191               MOVW    R19:R18, R3:R2
+   \   00000108   ........           CALL    ?UL_DIVMOD_L03
+   \   0000010C   5F0F               SUBI    R16, 255
+   \   0000010E   4F1F               SBCI    R17, 255
+   \   00000110   01FD               MOVW    R31:R30, R27:R26
+   \   00000112   8701               STD     Z+9, R16
+   \   00000114   8712               STD     Z+10, R17
+     78          
+     79              memset(m_puiCoils, 0, m_uiCoilsNumber * sizeof(uint8_t));
+   \   00000116   01FD               MOVW    R31:R30, R27:R26
+   \   00000118   8505               LDD     R16, Z+13
+   \   0000011A   8516               LDD     R17, Z+14
+   \   0000011C   01F8               MOVW    R31:R30, R17:R16
+   \   0000011E   8D42               LDD     R20, Z+26
+   \   00000120   8D53               LDD     R21, Z+27
+   \   00000122   E020               LDI     R18, 0
+   \   00000124   E030               LDI     R19, 0
+   \   00000126   01FD               MOVW    R31:R30, R27:R26
+   \   00000128   8505               LDD     R16, Z+13
+   \   0000012A   8516               LDD     R17, Z+14
+   \   0000012C   01F8               MOVW    R31:R30, R17:R16
+   \   0000012E   8902               LDD     R16, Z+18
+   \   00000130   8913               LDD     R17, Z+19
+   \   00000132   ........           CALL    memset
+     80              memset(m_puiDiscreteInputs, 0, m_uiDiscreteInputsNumber * sizeof(uint8_t));
+   \   00000136   01FD               MOVW    R31:R30, R27:R26
+   \   00000138   8505               LDD     R16, Z+13
+   \   0000013A   8516               LDD     R17, Z+14
+   \   0000013C   01F8               MOVW    R31:R30, R17:R16
+   \   0000013E   8D44               LDD     R20, Z+28
+   \   00000140   8D55               LDD     R21, Z+29
+   \   00000142   E020               LDI     R18, 0
+   \   00000144   E030               LDI     R19, 0
+   \   00000146   01FD               MOVW    R31:R30, R27:R26
+   \   00000148   8505               LDD     R16, Z+13
+   \   0000014A   8516               LDD     R17, Z+14
+   \   0000014C   01F8               MOVW    R31:R30, R17:R16
+   \   0000014E   8904               LDD     R16, Z+20
+   \   00000150   8915               LDD     R17, Z+21
+   \   00000152   ........           CALL    memset
+     81          //    memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));//debag//
+     82              memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
+   \   00000156   01FD               MOVW    R31:R30, R27:R26
+   \   00000158   8505               LDD     R16, Z+13
+   \   0000015A   8516               LDD     R17, Z+14
+   \   0000015C   01F8               MOVW    R31:R30, R17:R16
+   \   0000015E   A140               LDD     R20, Z+32
+   \   00000160   A151               LDD     R21, Z+33
+   \   00000162   0F44               LSL     R20
+   \   00000164   1F55               ROL     R21
+   \   00000166   E020               LDI     R18, 0
+   \   00000168   E030               LDI     R19, 0
+   \   0000016A   01FD               MOVW    R31:R30, R27:R26
+   \   0000016C   8505               LDD     R16, Z+13
+   \   0000016E   8516               LDD     R17, Z+14
+   \   00000170   01F8               MOVW    R31:R30, R17:R16
+   \   00000172   8D00               LDD     R16, Z+24
+   \   00000174   8D11               LDD     R17, Z+25
+   \   00000176   ........           CALL    memset
+     83          
+     84              m_pxDevice -> Init(m_uiBaudRate,
+     85                                 m_cParity,
+     86                                 m_uiDataBit,
+     87                                 m_uiStopBit,
+     88                                 puiRxBuffer,
+     89                                 puiTxBuffer);
+   \   0000017A   939A               ST      -Y, R25
+   \   0000017C   938A               ST      -Y, R24
+   \   0000017E   929A               ST      -Y, R9
+   \   00000180   928A               ST      -Y, R8
+   \   00000182   01FD               MOVW    R31:R30, R27:R26
+   \   00000184   8107               LDD     R16, Z+7
+   \   00000186   930A               ST      -Y, R16
+   \   00000188   01FD               MOVW    R31:R30, R27:R26
+   \   0000018A   8136               LDD     R19, Z+6
+   \   0000018C   01FD               MOVW    R31:R30, R27:R26
+   \   0000018E   8520               LDD     R18, Z+8
+   \   00000190   01FD               MOVW    R31:R30, R27:R26
+   \   00000192   8142               LDD     R20, Z+2
+   \   00000194   8153               LDD     R21, Z+3
+   \   00000196   8164               LDD     R22, Z+4
+   \   00000198   8175               LDD     R23, Z+5
+   \   0000019A   910D               LD      R16, X+
+   \   0000019C   911C               LD      R17, X
+   \   0000019E   9711               SBIW    R27:R26, 1
+   \   000001A0   ........           CALL    ??Init_1
+     90          }
+   \   000001A4   9622               ADIW    R29:R28, 2
+   \   000001A6   E2E7               LDI     R30, 39
+   \   000001A8   ........           JMP     ?EPILOGUE_B16_L09
+     91          
+     92          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     93          void CModbusRTU::Reset(void)
+   \                     ??Reset:
+     94          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+     95              m_pxDevice -> Reset();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??Reset_1
+     96          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+     97          
+     98          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     99          void CModbusRTU::Open(void)
+   \                     ??Open:
+    100          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    101              m_pxDevice -> Open();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??Open_1
+    102          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    103          
+    104          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    105          void CModbusRTU::Close(void)
+   \                     ??Close:
+    106          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    107              m_pxDevice -> Close();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??Close_1
+    108          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    109          
+    110          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    111          void CModbusRTU::ReceiveEnable(void)
+   \                     ??ReceiveEnable:
+    112          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    113              m_pxDevice -> Enable();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??Enable
+    114          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    115          
+    116          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    117          void CModbusRTU::ReceiveDisable(void)
+   \                     ??ReceiveDisable:
+    118          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    119              m_pxDevice -> Disable();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??Disable
+    120          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    121          
+    122          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    123          void CModbusRTU::TransmitEnable(void)
+   \                     ??TransmitEnable:
+    124          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    125              m_pxDevice -> TransmitEnable();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??TransmitEnable_1
+    126          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    127          
+    128          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    129          void CModbusRTU::TransmitDisable(void)
+   \                     ??TransmitDisable:
+    130          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    131              m_pxDevice -> TransmitDisable();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??TransmitDisable_1
+    132          }
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    133          
+    134          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    135          int16_t CModbusRTU::Tail(uint8_t *puiMessage, uint16_t uiLength)
+   \                     ??Tail:
+    136          {
+   \   00000000   ........           CALL    ?PROLOGUE6_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004   0128               MOVW    R5:R4, R17:R16
+   \   00000006   01D9               MOVW    R27:R26, R19:R18
+   \   00000008   01CA               MOVW    R25:R24, R21:R20
+    137              uint16_t uiCrc = usCrc16(puiMessage, uiLength);
+   \   0000000A   019C               MOVW    R19:R18, R25:R24
+   \   0000000C   018D               MOVW    R17:R16, R27:R26
+   \   0000000E   ........           CALL    ??usCrc16
+   \   00000012   0198               MOVW    R19:R18, R17:R16
+    138              puiMessage[uiLength++] = uiCrc & 0x00FF;
+   \   00000014   2F02               MOV     R16, R18
+   \   00000016   01FD               MOVW    R31:R30, R27:R26
+   \   00000018   0FE8               ADD     R30, R24
+   \   0000001A   1FF9               ADC     R31, R25
+   \   0000001C   8300               ST      Z, R16
+   \   0000001E   9601               ADIW    R25:R24, 1
+    139              puiMessage[uiLength++] = uiCrc >> 8;
+   \   00000020   0189               MOVW    R17:R16, R19:R18
+   \   00000022   2F01               MOV     R16, R17
+   \   00000024   E010               LDI     R17, 0
+   \   00000026   01FD               MOVW    R31:R30, R27:R26
+   \   00000028   0FE8               ADD     R30, R24
+   \   0000002A   1FF9               ADC     R31, R25
+   \   0000002C   8300               ST      Z, R16
+   \   0000002E   9601               ADIW    R25:R24, 1
+    140          
+    141              return uiLength;
+   \   00000030   018C               MOVW    R17:R16, R25:R24
+   \   00000032   E0E6               LDI     R30, 6
+   \   00000034   ........           JMP     ?EPILOGUE_B6_L09
+    142          }
+    143          
+    144          /* Builds a RTU request header */
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    145          int16_t CModbusRTU::RequestBasis(uint8_t uiSlave,
+   \                     ??RequestBasis:
+    146                                           uint8_t uiFunctionCode,
+    147                                           uint16_t uiAddress,
+    148                                           uint16_t uiBitNumber,
+    149                                           uint8_t *puiRequest)
+    150          {
+   \   00000000   011D               MOVW    R3:R2, R27:R26
+   \   00000002   0108               MOVW    R1:R0, R17:R16
+   \   00000004   81E8               LD      R30, Y
+   \   00000006   81F9               LDD     R31, Y+1
+    151              puiRequest[0] = uiSlave;
+   \   00000008   8320               ST      Z, R18
+    152              puiRequest[1] = uiFunctionCode;
+   \   0000000A   8331               STD     Z+1, R19
+    153              puiRequest[2] = (static_cast<uint8_t>(uiAddress >> 8));
+   \   0000000C   018A               MOVW    R17:R16, R21:R20
+   \   0000000E   2F01               MOV     R16, R17
+   \   00000010   E010               LDI     R17, 0
+   \   00000012   8302               STD     Z+2, R16
+    154              puiRequest[3] = (static_cast<uint8_t>(uiAddress & 0x00ff));
+   \   00000014   2F04               MOV     R16, R20
+   \   00000016   8303               STD     Z+3, R16
+    155              puiRequest[4] = (static_cast<uint8_t>(uiBitNumber >> 8));
+   \   00000018   018B               MOVW    R17:R16, R23:R22
+   \   0000001A   2F01               MOV     R16, R17
+   \   0000001C   E010               LDI     R17, 0
+   \   0000001E   8304               STD     Z+4, R16
+    156              puiRequest[5] = (static_cast<uint8_t>(uiBitNumber & 0x00ff));
+   \   00000020   2F06               MOV     R16, R22
+   \   00000022   8305               STD     Z+5, R16
+    157          
+    158              return _MODBUS_RTU_PRESET_REQ_LENGTH;
+   \   00000024   E006               LDI     R16, 6
+   \   00000026   E010               LDI     R17, 0
+   \   00000028   01D1               MOVW    R27:R26, R3:R2
+   \   0000002A   9622               ADIW    R29:R28, 2
+   \   0000002C   9508               RET
+    159          }
+    160          
+    161          /* Builds a RTU response header */
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    162          int16_t CModbusRTU::ResponseBasis(uint8_t uiSlave, uint8_t uiFunctionCode, uint8_t *puiResponse)
+   \                     ??ResponseBasis:
+    163          {
+   \   00000000   01B8               MOVW    R23:R22, R17:R16
+    164              /* In this case, the slave is certainly valid because a check is already
+    165               * done in _modbus_rtu_listen */
+    166              puiResponse[0] = uiSlave;
+   \   00000002   01FA               MOVW    R31:R30, R21:R20
+   \   00000004   8320               ST      Z, R18
+    167              puiResponse[1] = uiFunctionCode;
+   \   00000006   01FA               MOVW    R31:R30, R21:R20
+   \   00000008   8331               STD     Z+1, R19
+    168          
+    169              return _MODBUS_RTU_PRESET_RSP_LENGTH;
+   \   0000000A   E002               LDI     R16, 2
+   \   0000000C   E010               LDI     R17, 0
+   \   0000000E   9508               RET
+    170          }
+    171          
+    172          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    173          int16_t CModbusRTU::Send(uint8_t *puiMessage, uint16_t uiLength)
+   \                     ??Send:
+    174          {
+   \   00000000   ........           CALL    ?PROLOGUE6_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   0129               MOVW    R5:R4, R19:R18
+   \   00000008   01CA               MOVW    R25:R24, R21:R20
+    175              return m_pxDevice -> Write(puiMessage, uiLength);
+   \   0000000A   01AC               MOVW    R21:R20, R25:R24
+   \   0000000C   0192               MOVW    R19:R18, R5:R4
+   \   0000000E   910D               LD      R16, X+
+   \   00000010   911C               LD      R17, X
+   \   00000012   9711               SBIW    R27:R26, 1
+   \   00000014   ........           CALL    ??Write
+   \   00000018   E0E6               LDI     R30, 6
+   \   0000001A   ........           JMP     ?EPILOGUE_B6_L09
+    176          }
+    177          
+    178          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    179          uint8_t CModbusRTU::MessageIsSended(void)
+   \                     ??MessageIsSended:
+    180          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    181              return m_pxDevice -> FrameIsSended();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??FrameIsSended
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    182          }
+    183          
+    184          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    185          uint8_t CModbusRTU::Select(void)
+   \                     ??Select:
+    186          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    187              return m_pxDevice -> ByteIsReceived();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??ByteIsReceived
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    188          }
+    189          
+    190          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    191          int16_t CModbusRTU::Receive(uint8_t *puiDestination, uint16_t uiLength)
+   \                     ??Receive:
+    192          {
+   \   00000000   ........           CALL    ?PROLOGUE6_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   0129               MOVW    R5:R4, R19:R18
+   \   00000008   01CA               MOVW    R25:R24, R21:R20
+    193              return m_pxDevice -> Read(puiDestination, uiLength);
+   \   0000000A   01AC               MOVW    R21:R20, R25:R24
+   \   0000000C   0192               MOVW    R19:R18, R5:R4
+   \   0000000E   910D               LD      R16, X+
+   \   00000010   911C               LD      R17, X
+   \   00000012   9711               SBIW    R27:R26, 1
+   \   00000014   ........           CALL    ??Read
+   \   00000018   E0E6               LDI     R30, 6
+   \   0000001A   ........           JMP     ?EPILOGUE_B6_L09
+    194          }
+    195          
+    196          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    197          uint8_t CModbusRTU::FrameIsReceived(void)
+   \                     ??FrameIsReceived:
+    198          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    199              if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
+    200                      m_uiGuardTimeout)
+   \   00000006   ........           CALL    ??GetSystemTick
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8525               LDD     R18, Z+13
+   \   0000000E   8536               LDD     R19, Z+14
+   \   00000010   01F9               MOVW    R31:R30, R19:R18
+   \   00000012   8522               LDD     R18, Z+10
+   \   00000014   8533               LDD     R19, Z+11
+   \   00000016   1B02               SUB     R16, R18
+   \   00000018   0B13               SBC     R17, R19
+   \   0000001A   01FD               MOVW    R31:R30, R27:R26
+   \   0000001C   8521               LDD     R18, Z+9
+   \   0000001E   8532               LDD     R19, Z+10
+   \   00000020   1702               CP      R16, R18
+   \   00000022   0713               CPC     R17, R19
+   \   00000024   F010               BRCS    ??FrameIsReceived_1
+    201              {
+    202                  return 1;
+   \   00000026   E001               LDI     R16, 1
+   \   00000028   C001               RJMP    ??FrameIsReceived_2
+    203              }
+    204              else
+    205              {
+    206                  return 0;
+   \                     ??FrameIsReceived_1:
+   \   0000002A   E000               LDI     R16, 0
+   \                     ??FrameIsReceived_2:
+   \   0000002C   91A9               LD      R26, Y+
+   \   0000002E   91B9               LD      R27, Y+
+   \   00000030   9508               RET
+    207              }
+    208          };
+    209          
+    210          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    211          uint8_t CModbusRTU::ReceiveTimeIsOver(void)
+   \                     ??ReceiveTimeIsOver:
+    212          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    213              if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
+    214                      m_uiReceiveTimeout)
+   \   00000006   ........           CALL    ??GetSystemTick
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8525               LDD     R18, Z+13
+   \   0000000E   8536               LDD     R19, Z+14
+   \   00000010   01F9               MOVW    R31:R30, R19:R18
+   \   00000012   8522               LDD     R18, Z+10
+   \   00000014   8533               LDD     R19, Z+11
+   \   00000016   1B02               SUB     R16, R18
+   \   00000018   0B13               SBC     R17, R19
+   \   0000001A   3908               CPI     R16, 152
+   \   0000001C   E32A               LDI     R18, 58
+   \   0000001E   0712               CPC     R17, R18
+   \   00000020   F010               BRCS    ??ReceiveTimeIsOver_1
+    215              {
+    216                  return 1;
+   \   00000022   E001               LDI     R16, 1
+   \   00000024   C001               RJMP    ??ReceiveTimeIsOver_2
+    217              }
+    218              else
+    219              {
+    220                  return 0;
+   \                     ??ReceiveTimeIsOver_1:
+   \   00000026   E000               LDI     R16, 0
+   \                     ??ReceiveTimeIsOver_2:
+   \   00000028   91A9               LD      R26, Y+
+   \   0000002A   91B9               LD      R27, Y+
+   \   0000002C   9508               RET
+    221              }
+    222          };
+    223          
+    224          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    225          uint8_t CModbusRTU::ConfirmationReceiveTimeIsOver(void)
+   \                     ??ConfirmationReceiveTimeIsOver:
+    226          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    227              if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
+    228                      m_uiConfirmationTimeout)
+   \   00000006   ........           CALL    ??GetSystemTick
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8525               LDD     R18, Z+13
+   \   0000000E   8536               LDD     R19, Z+14
+   \   00000010   01F9               MOVW    R31:R30, R19:R18
+   \   00000012   8522               LDD     R18, Z+10
+   \   00000014   8533               LDD     R19, Z+11
+   \   00000016   1B02               SUB     R16, R18
+   \   00000018   0B13               SBC     R17, R19
+   \   0000001A   3E08               CPI     R16, 232
+   \   0000001C   E023               LDI     R18, 3
+   \   0000001E   0712               CPC     R17, R18
+   \   00000020   F010               BRCS    ??ConfirmationReceiveTimeIsOver_1
+    229              {
+    230                  return 1;
+   \   00000022   E001               LDI     R16, 1
+   \   00000024   C001               RJMP    ??ConfirmationReceiveTimeIsOver_2
+    231              }
+    232              else
+    233              {
+    234                  return 0;
+   \                     ??ConfirmationReceiveTimeIsOver_1:
+   \   00000026   E000               LDI     R16, 0
+   \                     ??ConfirmationReceiveTimeIsOver_2:
+   \   00000028   91A9               LD      R26, Y+
+   \   0000002A   91B9               LD      R27, Y+
+   \   0000002C   9508               RET
+    235              }
+    236          };
+    237          
+    238          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    239          uint8_t CModbusRTU::TransmitDelayTimeIsOver(void)
+   \                     ??TransmitDelayTimeIsOver:
+    240          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    241              if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
+    242                      m_uiTransmitDelayTimeout)
+   \   00000006   ........           CALL    ??GetSystemTick
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8525               LDD     R18, Z+13
+   \   0000000E   8536               LDD     R19, Z+14
+   \   00000010   01F9               MOVW    R31:R30, R19:R18
+   \   00000012   8522               LDD     R18, Z+10
+   \   00000014   8533               LDD     R19, Z+11
+   \   00000016   1B02               SUB     R16, R18
+   \   00000018   0B13               SBC     R17, R19
+   \   0000001A   3005               CPI     R16, 5
+   \   0000001C   4010               SBCI    R17, 0
+   \   0000001E   F010               BRCS    ??TransmitDelayTimeIsOver_1
+    243              {
+    244                  return 1;
+   \   00000020   E001               LDI     R16, 1
+   \   00000022   C001               RJMP    ??TransmitDelayTimeIsOver_2
+    245              }
+    246              else
+    247              {
+    248                  return 0;
+   \                     ??TransmitDelayTimeIsOver_1:
+   \   00000024   E000               LDI     R16, 0
+   \                     ??TransmitDelayTimeIsOver_2:
+   \   00000026   91A9               LD      R26, Y+
+   \   00000028   91B9               LD      R27, Y+
+   \   0000002A   9508               RET
+    249              }
+    250          };
+    251          
+    252          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    253          int8_t CModbusRTU::TimeIsOver(uint16_t uiTimeout)
+   \                     ??TimeIsOver:
+    254          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
+    255              if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
+    256                      uiTimeout)
+   \   00000008   ........           CALL    ??GetSystemTick
+   \   0000000C   01FD               MOVW    R31:R30, R27:R26
+   \   0000000E   8525               LDD     R18, Z+13
+   \   00000010   8536               LDD     R19, Z+14
+   \   00000012   01F9               MOVW    R31:R30, R19:R18
+   \   00000014   8522               LDD     R18, Z+10
+   \   00000016   8533               LDD     R19, Z+11
+   \   00000018   1B02               SUB     R16, R18
+   \   0000001A   0B13               SBC     R17, R19
+   \   0000001C   1708               CP      R16, R24
+   \   0000001E   0719               CPC     R17, R25
+   \   00000020   F010               BRCS    ??TimeIsOver_1
+    257              {
+    258                  return 1;
+   \   00000022   E001               LDI     R16, 1
+   \   00000024   C001               RJMP    ??TimeIsOver_2
+    259              }
+    260              else
+    261              {
+    262                  return 0;
+   \                     ??TimeIsOver_1:
+   \   00000026   E000               LDI     R16, 0
+   \                     ??TimeIsOver_2:
+   \   00000028   E0E4               LDI     R30, 4
+   \   0000002A   ........           JMP     ?EPILOGUE_B4_L09
+    263              }
+    264          };
+    265          
+    266          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    267          uint16_t CModbusRTU::GetFrameLength(void)
+   \                     ??GetFrameLength_1:
+    268          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    269              return m_pxDevice -> GetFrameLength();
+   \   00000006   910D               LD      R16, X+
+   \   00000008   911C               LD      R17, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   ........           CALL    ??GetFrameLength
+   \   00000010   91A9               LD      R26, Y+
+   \   00000012   91B9               LD      R27, Y+
+   \   00000014   9508               RET
+    270          }
+    271          
+    272          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    273          void CModbusRTU::GetSystemTime(void)
+   \                     ??GetSystemTime:
+    274          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    275              m_uiLastSystemTime = CPlatform::GetSystemTick();
+   \   00000006   ........           CALL    ??GetSystemTick
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8525               LDD     R18, Z+13
+   \   0000000E   8536               LDD     R19, Z+14
+   \   00000010   01F9               MOVW    R31:R30, R19:R18
+   \   00000012   8702               STD     Z+10, R16
+   \   00000014   8713               STD     Z+11, R17
+    276          }
+   \   00000016   91A9               LD      R26, Y+
+   \   00000018   91B9               LD      R27, Y+
+   \   0000001A   9508               RET
+    277          
+    278          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    279          int8_t CModbusRTU::FrameCheck(void)
+   \                     ??FrameCheck:
+    280          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    281              if (m_pxDevice -> m_nuiRxBuffByteCounter < _MIN_MESSAGE_LENGTH)
+   \   00000006   91ED               LD      R30, X+
+   \   00000008   91FC               LD      R31, X
+   \   0000000A   9711               SBIW    R27:R26, 1
+   \   0000000C   8D80               LDD     R24, Z+24
+   \   0000000E   8D91               LDD     R25, Z+25
+   \   00000010   9704               SBIW    R25:R24, 4
+   \   00000012   F410               BRCC    ??FrameCheck_2
+    282              {
+    283                  return 0;
+   \   00000014   E000               LDI     R16, 0
+   \   00000016   C03B               RJMP    ??FrameCheck_3
+    284              }
+    285          
+    286              uint16_t uiCrc = ((static_cast<uint16_t>(m_puiRxBuffer[m_pxDevice -> m_nuiRxBuffByteCounter - 1]) << 8) |
+    287                                (static_cast<uint16_t>(m_puiRxBuffer[m_pxDevice -> m_nuiRxBuffByteCounter - 2])));
+   \                     ??FrameCheck_2:
+   \   00000018   961D               ADIW    R27:R26, 13
+   \   0000001A   91ED               LD      R30, X+
+   \   0000001C   91FC               LD      R31, X
+   \   0000001E   971E               SBIW    R27:R26, 14
+   \   00000020   8506               LDD     R16, Z+14
+   \   00000022   8517               LDD     R17, Z+15
+   \   00000024   91ED               LD      R30, X+
+   \   00000026   91FC               LD      R31, X
+   \   00000028   9711               SBIW    R27:R26, 1
+   \   0000002A   8D20               LDD     R18, Z+24
+   \   0000002C   8D31               LDD     R19, Z+25
+   \   0000002E   0F02               ADD     R16, R18
+   \   00000030   1F13               ADC     R17, R19
+   \   00000032   5001               SUBI    R16, 1
+   \   00000034   4010               SBCI    R17, 0
+   \   00000036   01F8               MOVW    R31:R30, R17:R16
+   \   00000038   8190               LD      R25, Z
+   \   0000003A   E080               LDI     R24, 0
+   \   0000003C   01FD               MOVW    R31:R30, R27:R26
+   \   0000003E   8505               LDD     R16, Z+13
+   \   00000040   8516               LDD     R17, Z+14
+   \   00000042   01F8               MOVW    R31:R30, R17:R16
+   \   00000044   8506               LDD     R16, Z+14
+   \   00000046   8517               LDD     R17, Z+15
+   \   00000048   91ED               LD      R30, X+
+   \   0000004A   91FC               LD      R31, X
+   \   0000004C   9711               SBIW    R27:R26, 1
+   \   0000004E   8D20               LDD     R18, Z+24
+   \   00000050   8D31               LDD     R19, Z+25
+   \   00000052   0F02               ADD     R16, R18
+   \   00000054   1F13               ADC     R17, R19
+   \   00000056   5002               SUBI    R16, 2
+   \   00000058   4010               SBCI    R17, 0
+   \   0000005A   01F8               MOVW    R31:R30, R17:R16
+   \   0000005C   8100               LD      R16, Z
+   \   0000005E   E010               LDI     R17, 0
+   \   00000060   2B80               OR      R24, R16
+   \   00000062   2B91               OR      R25, R17
+    288          
+    289              if (usCrc16(m_puiRxBuffer,
+    290                          (m_pxDevice -> m_nuiRxBuffByteCounter - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+   \   00000064   91ED               LD      R30, X+
+   \   00000066   91FC               LD      R31, X
+   \   00000068   9711               SBIW    R27:R26, 1
+   \   0000006A   8D20               LDD     R18, Z+24
+   \   0000006C   8D31               LDD     R19, Z+25
+   \   0000006E   5022               SUBI    R18, 2
+   \   00000070   4030               SBCI    R19, 0
+   \   00000072   01FD               MOVW    R31:R30, R27:R26
+   \   00000074   8505               LDD     R16, Z+13
+   \   00000076   8516               LDD     R17, Z+14
+   \   00000078   01F8               MOVW    R31:R30, R17:R16
+   \   0000007A   8506               LDD     R16, Z+14
+   \   0000007C   8517               LDD     R17, Z+15
+   \   0000007E   ........           CALL    ??usCrc16
+   \   00000082   1708               CP      R16, R24
+   \   00000084   0719               CPC     R17, R25
+   \   00000086   F411               BRNE    ??FrameCheck_4
+    291              {
+    292                  return 1;
+   \   00000088   E001               LDI     R16, 1
+   \   0000008A   C001               RJMP    ??FrameCheck_3
+    293              }
+    294              else
+    295              {
+    296                  return 0;
+   \                     ??FrameCheck_4:
+   \   0000008C   E000               LDI     R16, 0
+   \                     ??FrameCheck_3:
+   \   0000008E   E0E4               LDI     R30, 4
+   \   00000090   ........           JMP     ?EPILOGUE_B4_L09
+    297              }
+    298          }
+    299          
+    300          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    301          int8_t CModbusRTU::FrameCheck(uint8_t *puiSourse, uint16_t uiLength)
+   \                     ??FrameCheck_1:
+    302          {
+   \   00000000   ........           CALL    ?PROLOGUE10_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R6_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R7_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R8_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R9_is_cg_reg
+   \   00000004   0148               MOVW    R9:R8, R17:R16
+   \   00000006   01D9               MOVW    R27:R26, R19:R18
+   \   00000008   01CA               MOVW    R25:R24, R21:R20
+    303              if (uiLength < _MIN_MESSAGE_LENGTH)
+   \   0000000A   3084               CPI     R24, 4
+   \   0000000C   E000               LDI     R16, 0
+   \   0000000E   0790               CPC     R25, R16
+   \   00000010   F410               BRCC    ??FrameCheck_5
+    304              {
+    305                  return 0;
+   \   00000012   E000               LDI     R16, 0
+   \   00000014   C021               RJMP    ??FrameCheck_6
+    306              }
+    307          
+    308              uint16_t uiCrc = ((static_cast<uint16_t>(puiSourse[uiLength - 1]) << 8) |
+    309                                (static_cast<uint16_t>(puiSourse[uiLength - 2])));
+   \                     ??FrameCheck_5:
+   \   00000016   01FD               MOVW    R31:R30, R27:R26
+   \   00000018   0FE8               ADD     R30, R24
+   \   0000001A   1FF9               ADC     R31, R25
+   \   0000001C   9731               SBIW    R31:R30, 1
+   \   0000001E   8050               LD      R5, Z
+   \   00000020   2444               CLR     R4
+   \   00000022   01FD               MOVW    R31:R30, R27:R26
+   \   00000024   0FE8               ADD     R30, R24
+   \   00000026   1FF9               ADC     R31, R25
+   \   00000028   9732               SBIW    R31:R30, 2
+   \   0000002A   8100               LD      R16, Z
+   \   0000002C   E010               LDI     R17, 0
+   \   0000002E   2A40               OR      R4, R16
+   \   00000030   2A51               OR      R5, R17
+    310              uint16_t uiCrcTemp = usCrc16(puiSourse,
+    311                                           (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH));
+   \   00000032   019C               MOVW    R19:R18, R25:R24
+   \   00000034   5022               SUBI    R18, 2
+   \   00000036   4030               SBCI    R19, 0
+   \   00000038   018D               MOVW    R17:R16, R27:R26
+   \   0000003A   ........           CALL    ??usCrc16
+   \   0000003E   0138               MOVW    R7:R6, R17:R16
+    312              if (usCrc16(puiSourse,
+    313                          (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+   \   00000040   019C               MOVW    R19:R18, R25:R24
+   \   00000042   5022               SUBI    R18, 2
+   \   00000044   4030               SBCI    R19, 0
+   \   00000046   018D               MOVW    R17:R16, R27:R26
+   \   00000048   ........           CALL    ??usCrc16
+   \   0000004C   1504               CP      R16, R4
+   \   0000004E   0515               CPC     R17, R5
+   \   00000050   F411               BRNE    ??FrameCheck_7
+    314              {
+    315                  return 1;
+   \   00000052   E001               LDI     R16, 1
+   \   00000054   C001               RJMP    ??FrameCheck_6
+    316              }
+    317              else
+    318              {
+    319                  return 0;
+   \                     ??FrameCheck_7:
+   \   00000056   E000               LDI     R16, 0
+   \                     ??FrameCheck_6:
+   \   00000058   E0EA               LDI     R30, 10
+   \   0000005A   ........           JMP     ?EPILOGUE_B10_L09
+    320              }
+    321          }
+    322          
+    323          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    324          void CModbusRTU::Fsm(void)
+   \                     ??Fsm:
+    325          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    326              int16_t iReceivedCounter;
+    327          
+    328              switch (GetFsmState())
+   \   00000006   01FD               MOVW    R31:R30, R27:R26
+   \   00000008   8505               LDD     R16, Z+13
+   \   0000000A   8516               LDD     R17, Z+14
+   \   0000000C   ........           CALL    ??GetFsmState
+   \   00000010   ....               LDI     R30, LOW(`?<Jumptable for Fsm>_0`)
+   \   00000012   ....               LDI     R31, (`?<Jumptable for Fsm>_0`) >> 16
+   \   00000014   BFFB               OUT     0x3B, R31
+   \   00000016   ....               LDI     R31, HIGH(`?<Jumptable for Fsm>_0`)
+   \   00000018   ........           JMP     ?CV_SWITCH_L06
+    329              {
+    330              case IDDLE:
+    331                  break;
+    332          
+    333              case START_REQUEST:
+    334                  GetSystemTime();
+   \                     ??Fsm_1:
+   \   0000001C   018D               MOVW    R17:R16, R27:R26
+   \   0000001E   ....               RCALL   ??GetSystemTime
+    335                  Reset();
+   \   00000020   018D               MOVW    R17:R16, R27:R26
+   \   00000022   ....               RCALL   ??Reset
+    336                  m_uiMessageLength = 0;
+   \   00000024   01FD               MOVW    R31:R30, R27:R26
+   \   00000026   8505               LDD     R16, Z+13
+   \   00000028   8516               LDD     R17, Z+14
+   \   0000002A   01F8               MOVW    R31:R30, R17:R16
+   \   0000002C   E000               LDI     R16, 0
+   \   0000002E   8704               STD     Z+12, R16
+   \   00000030   E000               LDI     R16, 0
+   \   00000032   8705               STD     Z+13, R16
+    337          //        Open();
+    338                  ReceiveEnable();
+   \   00000034   018D               MOVW    R17:R16, R27:R26
+   \   00000036   ....               RCALL   ??ReceiveEnable
+    339                  SetFsmState(WAITING_MESSAGE_REQUEST);
+   \   00000038   E023               LDI     R18, 3
+   \   0000003A   01FD               MOVW    R31:R30, R27:R26
+   \   0000003C   8505               LDD     R16, Z+13
+   \   0000003E   8516               LDD     R17, Z+14
+   \   00000040   ........           CALL    ??SetFsmState
+    340                  break;
+   \   00000044   C242               RJMP    ??Fsm_2
+    341          
+    342              case WAITING_MESSAGE_REQUEST:
+    343                  if (Select())
+   \                     ??Fsm_3:
+   \   00000046   018D               MOVW    R17:R16, R27:R26
+   \   00000048   ....               RCALL   ??Select
+   \   0000004A   2300               TST     R16
+   \   0000004C   F1E1               BREQ    ??Fsm_4
+    344                  {
+    345                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+   \   0000004E   E040               LDI     R20, 0
+   \   00000050   E051               LDI     R21, 1
+   \   00000052   01FD               MOVW    R31:R30, R27:R26
+   \   00000054   8505               LDD     R16, Z+13
+   \   00000056   8516               LDD     R17, Z+14
+   \   00000058   01F8               MOVW    R31:R30, R17:R16
+   \   0000005A   8504               LDD     R16, Z+12
+   \   0000005C   8515               LDD     R17, Z+13
+   \   0000005E   1B40               SUB     R20, R16
+   \   00000060   0B51               SBC     R21, R17
+   \   00000062   01FD               MOVW    R31:R30, R27:R26
+   \   00000064   8505               LDD     R16, Z+13
+   \   00000066   8516               LDD     R17, Z+14
+   \   00000068   01F8               MOVW    R31:R30, R17:R16
+   \   0000006A   8526               LDD     R18, Z+14
+   \   0000006C   8537               LDD     R19, Z+15
+   \   0000006E   01FD               MOVW    R31:R30, R27:R26
+   \   00000070   8505               LDD     R16, Z+13
+   \   00000072   8516               LDD     R17, Z+14
+   \   00000074   01F8               MOVW    R31:R30, R17:R16
+   \   00000076   8504               LDD     R16, Z+12
+   \   00000078   8515               LDD     R17, Z+13
+   \   0000007A   0F20               ADD     R18, R16
+   \   0000007C   1F31               ADC     R19, R17
+   \   0000007E   018D               MOVW    R17:R16, R27:R26
+   \   00000080   ....               RCALL   ??Receive
+   \   00000082   01C8               MOVW    R25:R24, R17:R16
+    346          
+    347                      if (iReceivedCounter > 0)
+   \   00000084   3081               CPI     R24, 1
+   \   00000086   E000               LDI     R16, 0
+   \   00000088   0790               CPC     R25, R16
+   \   0000008A   F09C               BRLT    ??Fsm_5
+    348                      {
+    349                          m_uiMessageLength += iReceivedCounter;
+   \   0000008C   01FD               MOVW    R31:R30, R27:R26
+   \   0000008E   8505               LDD     R16, Z+13
+   \   00000090   8516               LDD     R17, Z+14
+   \   00000092   01F8               MOVW    R31:R30, R17:R16
+   \   00000094   8504               LDD     R16, Z+12
+   \   00000096   8515               LDD     R17, Z+13
+   \   00000098   0F08               ADD     R16, R24
+   \   0000009A   1F19               ADC     R17, R25
+   \   0000009C   8704               STD     Z+12, R16
+   \   0000009E   8715               STD     Z+13, R17
+    350                          GetSystemTime();
+   \   000000A0   018D               MOVW    R17:R16, R27:R26
+   \   000000A2   ....               RCALL   ??GetSystemTime
+    351                          SetFsmState(RECEIVE_MESSAGE_REQUEST);
+   \   000000A4   E024               LDI     R18, 4
+   \   000000A6   01FD               MOVW    R31:R30, R27:R26
+   \   000000A8   8505               LDD     R16, Z+13
+   \   000000AA   8516               LDD     R17, Z+14
+   \   000000AC   ........           CALL    ??SetFsmState
+   \   000000B0   C00A               RJMP    ??Fsm_4
+    352                      }
+    353                      else if (iReceivedCounter == -1)
+   \                     ??Fsm_5:
+   \   000000B2   3F8F               CPI     R24, 255
+   \   000000B4   EF0F               LDI     R16, 255
+   \   000000B6   0790               CPC     R25, R16
+   \   000000B8   F431               BRNE    ??Fsm_4
+    354                      {
+    355                          SetFsmState(START_REQUEST);
+   \   000000BA   E022               LDI     R18, 2
+   \   000000BC   01FD               MOVW    R31:R30, R27:R26
+   \   000000BE   8505               LDD     R16, Z+13
+   \   000000C0   8516               LDD     R17, Z+14
+   \   000000C2   ........           CALL    ??SetFsmState
+    356                      }
+    357                  }
+    358          
+    359                  if (TimeIsOver(m_uiReceiveTimeout))
+   \                     ??Fsm_4:
+   \   000000C6   E928               LDI     R18, 152
+   \   000000C8   E33A               LDI     R19, 58
+   \   000000CA   018D               MOVW    R17:R16, R27:R26
+   \   000000CC   ....               RCALL   ??TimeIsOver
+   \   000000CE   2300               TST     R16
+   \   000000D0   F031               BREQ    ??Fsm_6
+    360                  {
+    361                      SetFsmState(START_REQUEST);
+   \   000000D2   E022               LDI     R18, 2
+   \   000000D4   01FD               MOVW    R31:R30, R27:R26
+   \   000000D6   8505               LDD     R16, Z+13
+   \   000000D8   8516               LDD     R17, Z+14
+   \   000000DA   ........           CALL    ??SetFsmState
+    362                  }
+    363          
+    364                  break;
+   \                     ??Fsm_6:
+   \   000000DE   C1F5               RJMP    ??Fsm_2
+    365          
+    366              case RECEIVE_MESSAGE_REQUEST:
+    367                  if (Select())
+   \                     ??Fsm_7:
+   \   000000E0   018D               MOVW    R17:R16, R27:R26
+   \   000000E2   ....               RCALL   ??Select
+   \   000000E4   2300               TST     R16
+   \   000000E6   F1B1               BREQ    ??Fsm_8
+    368                  {
+    369                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+   \   000000E8   E040               LDI     R20, 0
+   \   000000EA   E051               LDI     R21, 1
+   \   000000EC   01FD               MOVW    R31:R30, R27:R26
+   \   000000EE   8505               LDD     R16, Z+13
+   \   000000F0   8516               LDD     R17, Z+14
+   \   000000F2   01F8               MOVW    R31:R30, R17:R16
+   \   000000F4   8504               LDD     R16, Z+12
+   \   000000F6   8515               LDD     R17, Z+13
+   \   000000F8   1B40               SUB     R20, R16
+   \   000000FA   0B51               SBC     R21, R17
+   \   000000FC   01FD               MOVW    R31:R30, R27:R26
+   \   000000FE   8505               LDD     R16, Z+13
+   \   00000100   8516               LDD     R17, Z+14
+   \   00000102   01F8               MOVW    R31:R30, R17:R16
+   \   00000104   8526               LDD     R18, Z+14
+   \   00000106   8537               LDD     R19, Z+15
+   \   00000108   01FD               MOVW    R31:R30, R27:R26
+   \   0000010A   8505               LDD     R16, Z+13
+   \   0000010C   8516               LDD     R17, Z+14
+   \   0000010E   01F8               MOVW    R31:R30, R17:R16
+   \   00000110   8504               LDD     R16, Z+12
+   \   00000112   8515               LDD     R17, Z+13
+   \   00000114   0F20               ADD     R18, R16
+   \   00000116   1F31               ADC     R19, R17
+   \   00000118   018D               MOVW    R17:R16, R27:R26
+   \   0000011A   ....               RCALL   ??Receive
+   \   0000011C   01C8               MOVW    R25:R24, R17:R16
+    370          
+    371                      if (iReceivedCounter > 0)
+   \   0000011E   3081               CPI     R24, 1
+   \   00000120   E000               LDI     R16, 0
+   \   00000122   0790               CPC     R25, R16
+   \   00000124   F06C               BRLT    ??Fsm_9
+    372                      {
+    373                          m_uiMessageLength += iReceivedCounter;
+   \   00000126   01FD               MOVW    R31:R30, R27:R26
+   \   00000128   8505               LDD     R16, Z+13
+   \   0000012A   8516               LDD     R17, Z+14
+   \   0000012C   01F8               MOVW    R31:R30, R17:R16
+   \   0000012E   8504               LDD     R16, Z+12
+   \   00000130   8515               LDD     R17, Z+13
+   \   00000132   0F08               ADD     R16, R24
+   \   00000134   1F19               ADC     R17, R25
+   \   00000136   8704               STD     Z+12, R16
+   \   00000138   8715               STD     Z+13, R17
+    374                          GetSystemTime();
+   \   0000013A   018D               MOVW    R17:R16, R27:R26
+   \   0000013C   ....               RCALL   ??GetSystemTime
+   \   0000013E   C00A               RJMP    ??Fsm_8
+    375                      }
+    376                      else if (iReceivedCounter == -1)
+   \                     ??Fsm_9:
+   \   00000140   3F8F               CPI     R24, 255
+   \   00000142   EF0F               LDI     R16, 255
+   \   00000144   0790               CPC     R25, R16
+   \   00000146   F431               BRNE    ??Fsm_8
+    377                      {
+    378                          SetFsmState(START_REQUEST);
+   \   00000148   E022               LDI     R18, 2
+   \   0000014A   01FD               MOVW    R31:R30, R27:R26
+   \   0000014C   8505               LDD     R16, Z+13
+   \   0000014E   8516               LDD     R17, Z+14
+   \   00000150   ........           CALL    ??SetFsmState
+    379                      }
+    380                  }
+    381          
+    382                  if (TimeIsOver(m_uiGuardTimeout))
+   \                     ??Fsm_8:
+   \   00000154   01FD               MOVW    R31:R30, R27:R26
+   \   00000156   8521               LDD     R18, Z+9
+   \   00000158   8532               LDD     R19, Z+10
+   \   0000015A   018D               MOVW    R17:R16, R27:R26
+   \   0000015C   ....               RCALL   ??TimeIsOver
+   \   0000015E   2300               TST     R16
+   \   00000160   F0E9               BREQ    ??Fsm_10
+    383                  {
+    384                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
+   \   00000162   01FD               MOVW    R31:R30, R27:R26
+   \   00000164   8505               LDD     R16, Z+13
+   \   00000166   8516               LDD     R17, Z+14
+   \   00000168   01F8               MOVW    R31:R30, R17:R16
+   \   0000016A   8544               LDD     R20, Z+12
+   \   0000016C   8555               LDD     R21, Z+13
+   \   0000016E   01FD               MOVW    R31:R30, R27:R26
+   \   00000170   8505               LDD     R16, Z+13
+   \   00000172   8516               LDD     R17, Z+14
+   \   00000174   01F8               MOVW    R31:R30, R17:R16
+   \   00000176   8526               LDD     R18, Z+14
+   \   00000178   8537               LDD     R19, Z+15
+   \   0000017A   018D               MOVW    R17:R16, R27:R26
+   \   0000017C   ....               RCALL   ??FrameCheck_1
+   \   0000017E   2300               TST     R16
+   \   00000180   F039               BREQ    ??Fsm_11
+    385                      {
+    386                          SetFsmState(REPLY_REQUEST);
+   \   00000182   E025               LDI     R18, 5
+   \   00000184   01FD               MOVW    R31:R30, R27:R26
+   \   00000186   8505               LDD     R16, Z+13
+   \   00000188   8516               LDD     R17, Z+14
+   \   0000018A   ........           CALL    ??SetFsmState
+   \   0000018E   C19D               RJMP    ??Fsm_2
+    387                      }
+    388                      else
+    389                      {
+    390                          SetFsmState(START_REQUEST);
+   \                     ??Fsm_11:
+   \   00000190   E022               LDI     R18, 2
+   \   00000192   01FD               MOVW    R31:R30, R27:R26
+   \   00000194   8505               LDD     R16, Z+13
+   \   00000196   8516               LDD     R17, Z+14
+   \   00000198   ........           CALL    ??SetFsmState
+    391                      }
+    392                  }
+    393          
+    394                  break;
+   \                     ??Fsm_10:
+   \   0000019C   C196               RJMP    ??Fsm_2
+    395          
+    396              case REPLY_REQUEST:
+    397                  if (Reply(m_puiRxBuffer, m_puiTxBuffer, m_uiMessageLength))
+   \                     ??Fsm_12:
+   \   0000019E   01FD               MOVW    R31:R30, R27:R26
+   \   000001A0   8505               LDD     R16, Z+13
+   \   000001A2   8516               LDD     R17, Z+14
+   \   000001A4   01F8               MOVW    R31:R30, R17:R16
+   \   000001A6   8564               LDD     R22, Z+12
+   \   000001A8   8575               LDD     R23, Z+13
+   \   000001AA   01FD               MOVW    R31:R30, R27:R26
+   \   000001AC   8505               LDD     R16, Z+13
+   \   000001AE   8516               LDD     R17, Z+14
+   \   000001B0   01F8               MOVW    R31:R30, R17:R16
+   \   000001B2   8940               LDD     R20, Z+16
+   \   000001B4   8951               LDD     R21, Z+17
+   \   000001B6   01FD               MOVW    R31:R30, R27:R26
+   \   000001B8   8505               LDD     R16, Z+13
+   \   000001BA   8516               LDD     R17, Z+14
+   \   000001BC   01F8               MOVW    R31:R30, R17:R16
+   \   000001BE   8526               LDD     R18, Z+14
+   \   000001C0   8537               LDD     R19, Z+15
+   \   000001C2   01FD               MOVW    R31:R30, R27:R26
+   \   000001C4   8505               LDD     R16, Z+13
+   \   000001C6   8516               LDD     R17, Z+14
+   \   000001C8   ........           CALL    ??Reply
+   \   000001CC   2B01               OR      R16, R17
+   \   000001CE   F049               BREQ    ??Fsm_13
+    398                  {
+    399                      CPlatform::TxLedOn();
+   \   000001D0   ........           CALL    ??TxLedOn
+    400                      SetFsmState(FRAME_TRANSMIT_CONFIRMATION);
+   \   000001D4   E026               LDI     R18, 6
+   \   000001D6   01FD               MOVW    R31:R30, R27:R26
+   \   000001D8   8505               LDD     R16, Z+13
+   \   000001DA   8516               LDD     R17, Z+14
+   \   000001DC   ........           CALL    ??SetFsmState
+   \   000001E0   C174               RJMP    ??Fsm_2
+    401                  }
+    402                  else
+    403                  {
+    404                      CPlatform::TxLedOff();
+   \                     ??Fsm_13:
+   \   000001E2   ........           CALL    ??TxLedOff
+    405                      SetFsmState(START_REQUEST);
+   \   000001E6   E022               LDI     R18, 2
+   \   000001E8   01FD               MOVW    R31:R30, R27:R26
+   \   000001EA   8505               LDD     R16, Z+13
+   \   000001EC   8516               LDD     R17, Z+14
+   \   000001EE   ........           CALL    ??SetFsmState
+    406                  }
+    407                  break;
+   \   000001F2   C16B               RJMP    ??Fsm_2
+    408          
+    409              case FRAME_TRANSMIT_CONFIRMATION:
+    410                  GetSystemTime();
+   \                     ??Fsm_14:
+   \   000001F4   018D               MOVW    R17:R16, R27:R26
+   \   000001F6   ....               RCALL   ??GetSystemTime
+    411                  Reset();
+   \   000001F8   018D               MOVW    R17:R16, R27:R26
+   \   000001FA   ....               RCALL   ??Reset
+    412                  ReceiveDisable();
+   \   000001FC   018D               MOVW    R17:R16, R27:R26
+   \   000001FE   ....               RCALL   ??ReceiveDisable
+    413                  SetFsmState(WAITING_FRAME_TRANSMIT_CONFIRMATION);
+   \   00000200   E027               LDI     R18, 7
+   \   00000202   01FD               MOVW    R31:R30, R27:R26
+   \   00000204   8505               LDD     R16, Z+13
+   \   00000206   8516               LDD     R17, Z+14
+   \   00000208   ........           CALL    ??SetFsmState
+    414                  break;
+   \   0000020C   C15E               RJMP    ??Fsm_2
+    415          
+    416              case WAITING_FRAME_TRANSMIT_CONFIRMATION:
+    417                  if (TimeIsOver(m_uiTransmitDelayTimeout))
+   \                     ??Fsm_15:
+   \   0000020E   E025               LDI     R18, 5
+   \   00000210   E030               LDI     R19, 0
+   \   00000212   018D               MOVW    R17:R16, R27:R26
+   \   00000214   ....               RCALL   ??TimeIsOver
+   \   00000216   2300               TST     R16
+   \   00000218   F0C9               BREQ    ??Fsm_16
+    418                  {
+    419                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
+   \   0000021A   01FD               MOVW    R31:R30, R27:R26
+   \   0000021C   8505               LDD     R16, Z+13
+   \   0000021E   8516               LDD     R17, Z+14
+   \   00000220   01F8               MOVW    R31:R30, R17:R16
+   \   00000222   8544               LDD     R20, Z+12
+   \   00000224   8555               LDD     R21, Z+13
+   \   00000226   01FD               MOVW    R31:R30, R27:R26
+   \   00000228   8505               LDD     R16, Z+13
+   \   0000022A   8516               LDD     R17, Z+14
+   \   0000022C   01F8               MOVW    R31:R30, R17:R16
+   \   0000022E   8920               LDD     R18, Z+16
+   \   00000230   8931               LDD     R19, Z+17
+   \   00000232   01FD               MOVW    R31:R30, R27:R26
+   \   00000234   8505               LDD     R16, Z+13
+   \   00000236   8516               LDD     R17, Z+14
+   \   00000238   ........           CALL    ??SendMessage
+    420                      TransmitEnable();
+   \   0000023C   018D               MOVW    R17:R16, R27:R26
+   \   0000023E   ....               RCALL   ??TransmitEnable
+    421                      SetFsmState(END_WAITING_FRAME_TRANSMIT_CONFIRMATION);
+   \   00000240   E028               LDI     R18, 8
+   \   00000242   01FD               MOVW    R31:R30, R27:R26
+   \   00000244   8505               LDD     R16, Z+13
+   \   00000246   8516               LDD     R17, Z+14
+   \   00000248   ........           CALL    ??SetFsmState
+    422                  }
+    423                  break;
+   \                     ??Fsm_16:
+   \   0000024C   C13E               RJMP    ??Fsm_2
+    424          
+    425              case END_WAITING_FRAME_TRANSMIT_CONFIRMATION:
+    426                  if (MessageIsSended())
+   \                     ??Fsm_17:
+   \   0000024E   018D               MOVW    R17:R16, R27:R26
+   \   00000250   ....               RCALL   ??MessageIsSended
+   \   00000252   2300               TST     R16
+   \   00000254   F051               BREQ    ??Fsm_18
+    427                  {
+    428                      TransmitDisable();
+   \   00000256   018D               MOVW    R17:R16, R27:R26
+   \   00000258   ....               RCALL   ??TransmitDisable
+    429                      CPlatform::TxLedOff();
+   \   0000025A   ........           CALL    ??TxLedOff
+    430                      SetFsmState(START_REQUEST);
+   \   0000025E   E022               LDI     R18, 2
+   \   00000260   01FD               MOVW    R31:R30, R27:R26
+   \   00000262   8505               LDD     R16, Z+13
+   \   00000264   8516               LDD     R17, Z+14
+   \   00000266   ........           CALL    ??SetFsmState
+    431                  }
+    432          
+    433                  break;
+   \                     ??Fsm_18:
+   \   0000026A   C12F               RJMP    ??Fsm_2
+    434          
+    435              case STOP_REQUEST:
+    436                  ReceiveDisable();
+   \                     ??Fsm_19:
+   \   0000026C   018D               MOVW    R17:R16, R27:R26
+   \   0000026E   ....               RCALL   ??ReceiveDisable
+    437          //        Close();
+    438                  SetFsmState(IDDLE);
+   \   00000270   E020               LDI     R18, 0
+   \   00000272   01FD               MOVW    R31:R30, R27:R26
+   \   00000274   8505               LDD     R16, Z+13
+   \   00000276   8516               LDD     R17, Z+14
+   \   00000278   ........           CALL    ??SetFsmState
+    439                  break;
+   \   0000027C   C126               RJMP    ??Fsm_2
+    440          
+    441          //-----------------------------------------------------------------------------------------------------
+    442          // ModbusMaster
+    443              case START_CONFIRMATION:
+    444                  GetSystemTime();
+   \                     ??Fsm_20:
+   \   0000027E   018D               MOVW    R17:R16, R27:R26
+   \   00000280   ....               RCALL   ??GetSystemTime
+    445                  Reset();
+   \   00000282   018D               MOVW    R17:R16, R27:R26
+   \   00000284   ....               RCALL   ??Reset
+    446                  m_uiMessageLength = 0;
+   \   00000286   01FD               MOVW    R31:R30, R27:R26
+   \   00000288   8505               LDD     R16, Z+13
+   \   0000028A   8516               LDD     R17, Z+14
+   \   0000028C   01F8               MOVW    R31:R30, R17:R16
+   \   0000028E   E000               LDI     R16, 0
+   \   00000290   8704               STD     Z+12, R16
+   \   00000292   E000               LDI     R16, 0
+   \   00000294   8705               STD     Z+13, R16
+    447          //        Open();
+    448                  ReceiveEnable();
+   \   00000296   018D               MOVW    R17:R16, R27:R26
+   \   00000298   ....               RCALL   ??ReceiveEnable
+    449                  SetFsmState(WAITING_MESSAGE_CONFIRMATION);
+   \   0000029A   E02B               LDI     R18, 11
+   \   0000029C   01FD               MOVW    R31:R30, R27:R26
+   \   0000029E   8505               LDD     R16, Z+13
+   \   000002A0   8516               LDD     R17, Z+14
+   \   000002A2   ........           CALL    ??SetFsmState
+    450                  break;
+   \   000002A6   C111               RJMP    ??Fsm_2
+    451          
+    452              case WAITING_MESSAGE_CONFIRMATION:
+    453                  if (Select())
+   \                     ??Fsm_21:
+   \   000002A8   018D               MOVW    R17:R16, R27:R26
+   \   000002AA   ....               RCALL   ??Select
+   \   000002AC   2300               TST     R16
+   \   000002AE   F1E1               BREQ    ??Fsm_22
+    454                  {
+    455                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+   \   000002B0   E040               LDI     R20, 0
+   \   000002B2   E051               LDI     R21, 1
+   \   000002B4   01FD               MOVW    R31:R30, R27:R26
+   \   000002B6   8505               LDD     R16, Z+13
+   \   000002B8   8516               LDD     R17, Z+14
+   \   000002BA   01F8               MOVW    R31:R30, R17:R16
+   \   000002BC   8504               LDD     R16, Z+12
+   \   000002BE   8515               LDD     R17, Z+13
+   \   000002C0   1B40               SUB     R20, R16
+   \   000002C2   0B51               SBC     R21, R17
+   \   000002C4   01FD               MOVW    R31:R30, R27:R26
+   \   000002C6   8505               LDD     R16, Z+13
+   \   000002C8   8516               LDD     R17, Z+14
+   \   000002CA   01F8               MOVW    R31:R30, R17:R16
+   \   000002CC   8526               LDD     R18, Z+14
+   \   000002CE   8537               LDD     R19, Z+15
+   \   000002D0   01FD               MOVW    R31:R30, R27:R26
+   \   000002D2   8505               LDD     R16, Z+13
+   \   000002D4   8516               LDD     R17, Z+14
+   \   000002D6   01F8               MOVW    R31:R30, R17:R16
+   \   000002D8   8504               LDD     R16, Z+12
+   \   000002DA   8515               LDD     R17, Z+13
+   \   000002DC   0F20               ADD     R18, R16
+   \   000002DE   1F31               ADC     R19, R17
+   \   000002E0   018D               MOVW    R17:R16, R27:R26
+   \   000002E2   ....               RCALL   ??Receive
+   \   000002E4   01C8               MOVW    R25:R24, R17:R16
+    456          
+    457                      if (iReceivedCounter > 0)
+   \   000002E6   3081               CPI     R24, 1
+   \   000002E8   E000               LDI     R16, 0
+   \   000002EA   0790               CPC     R25, R16
+   \   000002EC   F09C               BRLT    ??Fsm_23
+    458                      {
+    459                          GetSystemTime();
+   \   000002EE   018D               MOVW    R17:R16, R27:R26
+   \   000002F0   ....               RCALL   ??GetSystemTime
+    460                          m_uiMessageLength += iReceivedCounter;
+   \   000002F2   01FD               MOVW    R31:R30, R27:R26
+   \   000002F4   8505               LDD     R16, Z+13
+   \   000002F6   8516               LDD     R17, Z+14
+   \   000002F8   01F8               MOVW    R31:R30, R17:R16
+   \   000002FA   8504               LDD     R16, Z+12
+   \   000002FC   8515               LDD     R17, Z+13
+   \   000002FE   0F08               ADD     R16, R24
+   \   00000300   1F19               ADC     R17, R25
+   \   00000302   8704               STD     Z+12, R16
+   \   00000304   8715               STD     Z+13, R17
+    461                          SetFsmState(RECEIVE_MESSAGE_CONFIRMATION);
+   \   00000306   E02C               LDI     R18, 12
+   \   00000308   01FD               MOVW    R31:R30, R27:R26
+   \   0000030A   8505               LDD     R16, Z+13
+   \   0000030C   8516               LDD     R17, Z+14
+   \   0000030E   ........           CALL    ??SetFsmState
+   \   00000312   C00A               RJMP    ??Fsm_22
+    462                      }
+    463                      else if (iReceivedCounter == -1)
+   \                     ??Fsm_23:
+   \   00000314   3F8F               CPI     R24, 255
+   \   00000316   EF0F               LDI     R16, 255
+   \   00000318   0790               CPC     R25, R16
+   \   0000031A   F431               BRNE    ??Fsm_22
+    464                      {
+    465                          SetFsmState(STOP_CONFIRMATION);
+   \   0000031C   E121               LDI     R18, 17
+   \   0000031E   01FD               MOVW    R31:R30, R27:R26
+   \   00000320   8505               LDD     R16, Z+13
+   \   00000322   8516               LDD     R17, Z+14
+   \   00000324   ........           CALL    ??SetFsmState
+    466                      }
+    467                  }
+    468          
+    469                  if (TimeIsOver(m_uiConfirmationTimeout))
+   \                     ??Fsm_22:
+   \   00000328   EE28               LDI     R18, 232
+   \   0000032A   E033               LDI     R19, 3
+   \   0000032C   018D               MOVW    R17:R16, R27:R26
+   \   0000032E   ....               RCALL   ??TimeIsOver
+   \   00000330   2300               TST     R16
+   \   00000332   F031               BREQ    ??Fsm_24
+    470                  {
+    471                      SetFsmState(STOP_CONFIRMATION);
+   \   00000334   E121               LDI     R18, 17
+   \   00000336   01FD               MOVW    R31:R30, R27:R26
+   \   00000338   8505               LDD     R16, Z+13
+   \   0000033A   8516               LDD     R17, Z+14
+   \   0000033C   ........           CALL    ??SetFsmState
+    472                  }
+    473          
+    474                  break;
+   \                     ??Fsm_24:
+   \   00000340   C0C4               RJMP    ??Fsm_2
+    475          
+    476              case RECEIVE_MESSAGE_CONFIRMATION:
+    477                  if (Select())
+   \                     ??Fsm_25:
+   \   00000342   018D               MOVW    R17:R16, R27:R26
+   \   00000344   ....               RCALL   ??Select
+   \   00000346   2300               TST     R16
+   \   00000348   F1B1               BREQ    ??Fsm_26
+    478                  {
+    479                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+   \   0000034A   E040               LDI     R20, 0
+   \   0000034C   E051               LDI     R21, 1
+   \   0000034E   01FD               MOVW    R31:R30, R27:R26
+   \   00000350   8505               LDD     R16, Z+13
+   \   00000352   8516               LDD     R17, Z+14
+   \   00000354   01F8               MOVW    R31:R30, R17:R16
+   \   00000356   8504               LDD     R16, Z+12
+   \   00000358   8515               LDD     R17, Z+13
+   \   0000035A   1B40               SUB     R20, R16
+   \   0000035C   0B51               SBC     R21, R17
+   \   0000035E   01FD               MOVW    R31:R30, R27:R26
+   \   00000360   8505               LDD     R16, Z+13
+   \   00000362   8516               LDD     R17, Z+14
+   \   00000364   01F8               MOVW    R31:R30, R17:R16
+   \   00000366   8526               LDD     R18, Z+14
+   \   00000368   8537               LDD     R19, Z+15
+   \   0000036A   01FD               MOVW    R31:R30, R27:R26
+   \   0000036C   8505               LDD     R16, Z+13
+   \   0000036E   8516               LDD     R17, Z+14
+   \   00000370   01F8               MOVW    R31:R30, R17:R16
+   \   00000372   8504               LDD     R16, Z+12
+   \   00000374   8515               LDD     R17, Z+13
+   \   00000376   0F20               ADD     R18, R16
+   \   00000378   1F31               ADC     R19, R17
+   \   0000037A   018D               MOVW    R17:R16, R27:R26
+   \   0000037C   ....               RCALL   ??Receive
+   \   0000037E   01C8               MOVW    R25:R24, R17:R16
+    480          
+    481                      if (iReceivedCounter > 0)
+   \   00000380   3081               CPI     R24, 1
+   \   00000382   E000               LDI     R16, 0
+   \   00000384   0790               CPC     R25, R16
+   \   00000386   F06C               BRLT    ??Fsm_27
+    482                      {
+    483                          GetSystemTime();
+   \   00000388   018D               MOVW    R17:R16, R27:R26
+   \   0000038A   ....               RCALL   ??GetSystemTime
+    484                          m_uiMessageLength += iReceivedCounter;
+   \   0000038C   01FD               MOVW    R31:R30, R27:R26
+   \   0000038E   8505               LDD     R16, Z+13
+   \   00000390   8516               LDD     R17, Z+14
+   \   00000392   01F8               MOVW    R31:R30, R17:R16
+   \   00000394   8504               LDD     R16, Z+12
+   \   00000396   8515               LDD     R17, Z+13
+   \   00000398   0F08               ADD     R16, R24
+   \   0000039A   1F19               ADC     R17, R25
+   \   0000039C   8704               STD     Z+12, R16
+   \   0000039E   8715               STD     Z+13, R17
+   \   000003A0   C00A               RJMP    ??Fsm_26
+    485                      }
+    486                      else if (iReceivedCounter == -1)
+   \                     ??Fsm_27:
+   \   000003A2   3F8F               CPI     R24, 255
+   \   000003A4   EF0F               LDI     R16, 255
+   \   000003A6   0790               CPC     R25, R16
+   \   000003A8   F431               BRNE    ??Fsm_26
+    487                      {
+    488                          SetFsmState(STOP_CONFIRMATION);
+   \   000003AA   E121               LDI     R18, 17
+   \   000003AC   01FD               MOVW    R31:R30, R27:R26
+   \   000003AE   8505               LDD     R16, Z+13
+   \   000003B0   8516               LDD     R17, Z+14
+   \   000003B2   ........           CALL    ??SetFsmState
+    489                      }
+    490                  }
+    491          
+    492                  if (TimeIsOver(m_uiGuardTimeout))
+   \                     ??Fsm_26:
+   \   000003B6   01FD               MOVW    R31:R30, R27:R26
+   \   000003B8   8521               LDD     R18, Z+9
+   \   000003BA   8532               LDD     R19, Z+10
+   \   000003BC   018D               MOVW    R17:R16, R27:R26
+   \   000003BE   ....               RCALL   ??TimeIsOver
+   \   000003C0   2300               TST     R16
+   \   000003C2   F0E9               BREQ    ??Fsm_28
+    493                  {
+    494                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
+   \   000003C4   01FD               MOVW    R31:R30, R27:R26
+   \   000003C6   8505               LDD     R16, Z+13
+   \   000003C8   8516               LDD     R17, Z+14
+   \   000003CA   01F8               MOVW    R31:R30, R17:R16
+   \   000003CC   8544               LDD     R20, Z+12
+   \   000003CE   8555               LDD     R21, Z+13
+   \   000003D0   01FD               MOVW    R31:R30, R27:R26
+   \   000003D2   8505               LDD     R16, Z+13
+   \   000003D4   8516               LDD     R17, Z+14
+   \   000003D6   01F8               MOVW    R31:R30, R17:R16
+   \   000003D8   8526               LDD     R18, Z+14
+   \   000003DA   8537               LDD     R19, Z+15
+   \   000003DC   018D               MOVW    R17:R16, R27:R26
+   \   000003DE   ....               RCALL   ??FrameCheck_1
+   \   000003E0   2300               TST     R16
+   \   000003E2   F039               BREQ    ??Fsm_29
+    495                      {
+    496                          SetFsmState(REPLY_CONFIRMATION);
+   \   000003E4   E02D               LDI     R18, 13
+   \   000003E6   01FD               MOVW    R31:R30, R27:R26
+   \   000003E8   8505               LDD     R16, Z+13
+   \   000003EA   8516               LDD     R17, Z+14
+   \   000003EC   ........           CALL    ??SetFsmState
+   \   000003F0   C06C               RJMP    ??Fsm_2
+    497                      }
+    498                      else
+    499                      {
+    500                          SetFsmState(STOP_CONFIRMATION);
+   \                     ??Fsm_29:
+   \   000003F2   E121               LDI     R18, 17
+   \   000003F4   01FD               MOVW    R31:R30, R27:R26
+   \   000003F6   8505               LDD     R16, Z+13
+   \   000003F8   8516               LDD     R17, Z+14
+   \   000003FA   ........           CALL    ??SetFsmState
+    501                      }
+    502                  }
+    503          
+    504                  break;
+   \                     ??Fsm_28:
+   \   000003FE   C065               RJMP    ??Fsm_2
+    505          
+    506              case REPLY_CONFIRMATION:
+    507                  if (ReceiveMessage(m_puiRxBuffer, m_uiMessageLength))
+   \                     ??Fsm_30:
+   \   00000400   01FD               MOVW    R31:R30, R27:R26
+   \   00000402   8505               LDD     R16, Z+13
+   \   00000404   8516               LDD     R17, Z+14
+   \   00000406   01F8               MOVW    R31:R30, R17:R16
+   \   00000408   8544               LDD     R20, Z+12
+   \   0000040A   8555               LDD     R21, Z+13
+   \   0000040C   01FD               MOVW    R31:R30, R27:R26
+   \   0000040E   8505               LDD     R16, Z+13
+   \   00000410   8516               LDD     R17, Z+14
+   \   00000412   01F8               MOVW    R31:R30, R17:R16
+   \   00000414   8526               LDD     R18, Z+14
+   \   00000416   8537               LDD     R19, Z+15
+   \   00000418   01FD               MOVW    R31:R30, R27:R26
+   \   0000041A   8505               LDD     R16, Z+13
+   \   0000041C   8516               LDD     R17, Z+14
+   \   0000041E   ........           CALL    ??ReceiveMessage
+   \   00000422   2B01               OR      R16, R17
+   \   00000424   F039               BREQ    ??Fsm_31
+    508                  {
+    509                      SetFsmState(STOP_CONFIRMATION);
+   \   00000426   E121               LDI     R18, 17
+   \   00000428   01FD               MOVW    R31:R30, R27:R26
+   \   0000042A   8505               LDD     R16, Z+13
+   \   0000042C   8516               LDD     R17, Z+14
+   \   0000042E   ........           CALL    ??SetFsmState
+   \   00000432   C04B               RJMP    ??Fsm_2
+    510                  }
+    511                  else
+    512                  {
+    513                      SetFsmState(STOP_CONFIRMATION);
+   \                     ??Fsm_31:
+   \   00000434   E121               LDI     R18, 17
+   \   00000436   01FD               MOVW    R31:R30, R27:R26
+   \   00000438   8505               LDD     R16, Z+13
+   \   0000043A   8516               LDD     R17, Z+14
+   \   0000043C   ........           CALL    ??SetFsmState
+    514                  }
+    515                  break;
+   \   00000440   C044               RJMP    ??Fsm_2
+    516          
+    517              case FRAME_TRANSMIT_REQUEST:
+    518                  GetSystemTime();
+   \                     ??Fsm_32:
+   \   00000442   018D               MOVW    R17:R16, R27:R26
+   \   00000444   ....               RCALL   ??GetSystemTime
+    519                  Reset();
+   \   00000446   018D               MOVW    R17:R16, R27:R26
+   \   00000448   ....               RCALL   ??Reset
+    520                  CPlatform::TxLedOn();
+   \   0000044A   ........           CALL    ??TxLedOn
+    521                  SetFsmState(WAITING_FRAME_TRANSMIT_REQUEST);
+   \   0000044E   E02F               LDI     R18, 15
+   \   00000450   01FD               MOVW    R31:R30, R27:R26
+   \   00000452   8505               LDD     R16, Z+13
+   \   00000454   8516               LDD     R17, Z+14
+   \   00000456   ........           CALL    ??SetFsmState
+    522                  break;
+   \   0000045A   C037               RJMP    ??Fsm_2
+    523          
+    524              case WAITING_FRAME_TRANSMIT_REQUEST:
+    525                  if (TimeIsOver(m_uiTransmitDelayTimeout))
+   \                     ??Fsm_33:
+   \   0000045C   E025               LDI     R18, 5
+   \   0000045E   E030               LDI     R19, 0
+   \   00000460   018D               MOVW    R17:R16, R27:R26
+   \   00000462   ....               RCALL   ??TimeIsOver
+   \   00000464   2300               TST     R16
+   \   00000466   F189               BREQ    ??Fsm_2
+    526                  {
+    527                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
+   \   00000468   01FD               MOVW    R31:R30, R27:R26
+   \   0000046A   8505               LDD     R16, Z+13
+   \   0000046C   8516               LDD     R17, Z+14
+   \   0000046E   01F8               MOVW    R31:R30, R17:R16
+   \   00000470   8544               LDD     R20, Z+12
+   \   00000472   8555               LDD     R21, Z+13
+   \   00000474   01FD               MOVW    R31:R30, R27:R26
+   \   00000476   8505               LDD     R16, Z+13
+   \   00000478   8516               LDD     R17, Z+14
+   \   0000047A   01F8               MOVW    R31:R30, R17:R16
+   \   0000047C   8920               LDD     R18, Z+16
+   \   0000047E   8931               LDD     R19, Z+17
+   \   00000480   01FD               MOVW    R31:R30, R27:R26
+   \   00000482   8505               LDD     R16, Z+13
+   \   00000484   8516               LDD     R17, Z+14
+   \   00000486   ........           CALL    ??SendMessage
+    528                      TransmitEnable();
+   \   0000048A   018D               MOVW    R17:R16, R27:R26
+   \   0000048C   ....               RCALL   ??TransmitEnable
+    529                      SetFsmState(END_WAITING_FRAME_TRANSMIT_REQUEST);
+   \   0000048E   E120               LDI     R18, 16
+   \   00000490   01FD               MOVW    R31:R30, R27:R26
+   \   00000492   8505               LDD     R16, Z+13
+   \   00000494   8516               LDD     R17, Z+14
+   \   00000496   ........           CALL    ??SetFsmState
+    530                  }
+    531                  break;
+   \   0000049A   C017               RJMP    ??Fsm_2
+    532          
+    533              case END_WAITING_FRAME_TRANSMIT_REQUEST:
+    534                  if (MessageIsSended())
+   \                     ??Fsm_34:
+   \   0000049C   018D               MOVW    R17:R16, R27:R26
+   \   0000049E   ....               RCALL   ??MessageIsSended
+   \   000004A0   2300               TST     R16
+   \   000004A2   F099               BREQ    ??Fsm_2
+    535                  {
+    536                      TransmitDisable();
+   \   000004A4   018D               MOVW    R17:R16, R27:R26
+   \   000004A6   ....               RCALL   ??TransmitDisable
+    537                      CPlatform::TxLedOff();
+   \   000004A8   ........           CALL    ??TxLedOff
+    538                      SetFsmState(START_CONFIRMATION);
+   \   000004AC   E02A               LDI     R18, 10
+   \   000004AE   01FD               MOVW    R31:R30, R27:R26
+   \   000004B0   8505               LDD     R16, Z+13
+   \   000004B2   8516               LDD     R17, Z+14
+   \   000004B4   ........           CALL    ??SetFsmState
+    539                  }
+    540          
+    541                  break;
+   \   000004B8   C008               RJMP    ??Fsm_2
+    542          
+    543              case STOP_CONFIRMATION:
+    544                  ReceiveDisable();
+   \                     ??Fsm_35:
+   \   000004BA   018D               MOVW    R17:R16, R27:R26
+   \   000004BC   ....               RCALL   ??ReceiveDisable
+    545          //        Close();
+    546                  SetFsmState(IDDLE);
+   \   000004BE   E020               LDI     R18, 0
+   \   000004C0   01FD               MOVW    R31:R30, R27:R26
+   \   000004C2   8505               LDD     R16, Z+13
+   \   000004C4   8516               LDD     R17, Z+14
+   \   000004C6   ........           CALL    ??SetFsmState
+    547                  break;
+    548          
+    549              default:
+    550                  break;
+    551              }
+    552          }
+   \                     ??Fsm_2:
+   \   000004CA   E0E4               LDI     R30, 4
+   \   000004CC   ........           JMP     ?EPILOGUE_B4_L09
+
+   \                                 In  segment SWITCH, align 2, keep-with-next
+   \                     `?<Jumptable for Fsm>_0`:
+   \   00000000   00                 DB      0
+   \   00000001   00                 DB      0
+   \   00000002   ....               DW      (??Fsm_2) /2
+   \   00000004   0012               DW      18
+   \   00000006   ....               DW      (??Fsm_2) /2
+   \   00000008   ....               DW      (??Fsm_2) /2
+   \   0000000A   ....               DW      (??Fsm_1) /2
+   \   0000000C   ....               DW      (??Fsm_3) /2
+   \   0000000E   ....               DW      (??Fsm_7) /2
+   \   00000010   ....               DW      (??Fsm_12) /2
+   \   00000012   ....               DW      (??Fsm_14) /2
+   \   00000014   ....               DW      (??Fsm_15) /2
+   \   00000016   ....               DW      (??Fsm_17) /2
+   \   00000018   ....               DW      (??Fsm_19) /2
+   \   0000001A   ....               DW      (??Fsm_20) /2
+   \   0000001C   ....               DW      (??Fsm_21) /2
+   \   0000001E   ....               DW      (??Fsm_25) /2
+   \   00000020   ....               DW      (??Fsm_30) /2
+   \   00000022   ....               DW      (??Fsm_32) /2
+   \   00000024   ....               DW      (??Fsm_33) /2
+   \   00000026   ....               DW      (??Fsm_34) /2
+   \   00000028   ....               DW      (??Fsm_35) /2
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CModbusRTU &CModbusRTU::new CModbusRTU()
+   \                     `??new CModbusRTU`:
+   \   00000000   E301               LDI     R16, 49
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   ........           CALL    `??operator new`
+   \   00000008   2F20               MOV     R18, R16
+   \   0000000A   2B21               OR      R18, R17
+   \   0000000C   F021               BREQ    `??new CModbusRTU_1`
+   \   0000000E   E020               LDI     R18, 0
+   \   00000010   E030               LDI     R19, 0
+   \   00000012   ....               RCALL   ??CModbusRTU
+   \   00000014   9508               RET
+   \                     `??new CModbusRTU_1`:
+   \   00000016   E000               LDI     R16, 0
+   \   00000018   E010               LDI     R17, 0
+   \   0000001A   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CModbusRTU::~CModbusRTU for CDfaLite/-15/()
+   \                     `?~CModbusRTU for CDfaLite/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ....               RJMP    `?~CModbusRTU`
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 int16_t CModbusRTU::Tail for CModbus/-15/(uint8_t *, uint16_t)
+   \                     `??Tail for CModbus/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ....               RJMP    ??Tail
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 int16_t CModbusRTU::RequestBasis for CModbus/-15/(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
+   \                     `??RequestBasis for CModbus/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ....               RJMP    ??RequestBasis
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 int16_t CModbusRTU::ResponseBasis for CModbus/-15/(uint8_t, uint8_t, uint8_t *)
+   \                     `??ResponseBasis for CModbus/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ....               RJMP    ??ResponseBasis
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 int16_t CModbusRTU::Send for CModbus/-15/(uint8_t *, uint16_t)
+   \                     `??Send for CModbus/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ....               RJMP    ??Send
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CModbusRTU::Fsm for CDfaLite/-15/()
+   \                     `??Fsm for CDfaLite/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ....               RJMP    ??Fsm
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CModbusRTU::HEADER_LENGTH for CModbus/-15/()
+   \                     `??HEADER_LENGTH for CModbus/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ........           JMP     ??HEADER_LENGTH
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CModbusRTU::CRC_LENGTH for CModbus/-15/()
+   \                     `??CRC_LENGTH for CModbus/-15/`:
+   \   00000000   500F               SUBI    R16, 15
+   \   00000002   4010               SBCI    R17, 0
+   \   00000004   ........           JMP     ??CRC_LENGTH
+    553          //-----------------------------------------------------------------------------------------------------
+    554          
+    555          
+    556          
+    557          
+    558          
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CDfaLite::GetFsmState()
+      0      2   CDfaLite::SetFsmState(uint8_t)
+      6      2   CModbusRTU::CModbusRTU()
+        6      2   -> CModbus::CModbus()
+      0      2   CModbusRTU::CRC_LENGTH for CModbus/-15/()
+        0      2   -> CModbusRTU::CRC_LENGTH()
+      0      2   CModbusRTU::CRC_LENGTH()
+      2      2   CModbusRTU::Close()
+        2      2   -> CUart::Close()
+      2      2   CModbusRTU::ConfirmationReceiveTimeIsOver()
+        2      2   -> CPlatform::GetSystemTick()
+      4      2   CModbusRTU::FrameCheck()
+        4      2   -> usCrc16(unsigned char const *, uint16_t)
+     10      2   CModbusRTU::FrameCheck(uint8_t *, uint16_t)
+       10      2   -> usCrc16(unsigned char const *, uint16_t)
+      2      2   CModbusRTU::FrameIsReceived()
+        2      2   -> CPlatform::GetSystemTick()
+      0      2   CModbusRTU::Fsm for CDfaLite/-15/()
+        0      2   -> CModbusRTU::Fsm()
+      4      2   CModbusRTU::Fsm()
+        4      2   -> CDfaLite::GetFsmState()
+        4      2   -> CDfaLite::SetFsmState(uint8_t)
+        4      2   -> CModbus::ReceiveMessage(uint8_t *, uint16_t)
+        4      2   -> CModbus::Reply(uint8_t *, uint8_t *, uint16_t)
+        4      2   -> CModbus::SendMessage(uint8_t *, uint16_t)
+        4      2   -> CModbusRTU::FrameCheck(uint8_t *, uint16_t)
+        4      2   -> CModbusRTU::GetSystemTime()
+        4      2   -> CModbusRTU::MessageIsSended()
+        4      2   -> CModbusRTU::Receive(uint8_t *, uint16_t)
+        4      2   -> CModbusRTU::ReceiveDisable()
+        4      2   -> CModbusRTU::ReceiveEnable()
+        4      2   -> CModbusRTU::Reset()
+        4      2   -> CModbusRTU::Select()
+        4      2   -> CModbusRTU::TimeIsOver(uint16_t)
+        4      2   -> CModbusRTU::TransmitDisable()
+        4      2   -> CModbusRTU::TransmitEnable()
+        4      2   -> CPlatform::TxLedOff()
+        4      2   -> CPlatform::TxLedOn()
+        4      2 ?CV_SWITCH_L06
+      2      2   CModbusRTU::GetFrameLength()
+        2      2   -> CUart::GetFrameLength()
+      2      2   CModbusRTU::GetSystemTime()
+        2      2   -> CPlatform::GetSystemTick()
+      0      2   CModbusRTU::HEADER_LENGTH for CModbus/-15/()
+        0      2   -> CModbusRTU::HEADER_LENGTH()
+      0      2   CModbusRTU::HEADER_LENGTH()
+     46      2   CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t)
+       41      2   -> CUart::Init(uint32_t, uint8_t, uint8_t, uint8_t, uint8_t *, uint8_t *)
+       41      2   -> memset
+       41      2 ?L_EC_MUL_L03
+       41      2 ?UL_DIVMOD_L03
+      2      2   CModbusRTU::MessageIsSended()
+        2      2   -> CUart::FrameIsSended()
+      2      2   CModbusRTU::Open()
+        2      2   -> CUart::Open()
+      6      2   CModbusRTU::Receive(uint8_t *, uint16_t)
+        6      2   -> CUart::Read(uint8_t *, uint16_t)
+      2      2   CModbusRTU::ReceiveDisable()
+        2      2   -> CUart::Disable()
+      2      2   CModbusRTU::ReceiveEnable()
+        2      2   -> CUart::Enable()
+      2      2   CModbusRTU::ReceiveTimeIsOver()
+        2      2   -> CPlatform::GetSystemTick()
+      2      2   CModbusRTU::RequestBasis for CModbus/-15/(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
+        2      2   -> CModbusRTU::RequestBasis(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
+      2      2   CModbusRTU::RequestBasis(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
+      2      2   CModbusRTU::Reset()
+        2      2   -> CUart::Reset()
+      0      2   CModbusRTU::ResponseBasis for CModbus/-15/(uint8_t, uint8_t, uint8_t *)
+        0      2   -> CModbusRTU::ResponseBasis(uint8_t, uint8_t, uint8_t *)
+      0      2   CModbusRTU::ResponseBasis(uint8_t, uint8_t, uint8_t *)
+      2      2   CModbusRTU::Select()
+        2      2   -> CUart::ByteIsReceived()
+      0      2   CModbusRTU::Send for CModbus/-15/(uint8_t *, uint16_t)
+        0      2   -> CModbusRTU::Send(uint8_t *, uint16_t)
+      6      2   CModbusRTU::Send(uint8_t *, uint16_t)
+        6      2   -> CUart::Write(uint8_t *, uint16_t)
+      0      2   CModbusRTU::Tail for CModbus/-15/(uint8_t *, uint16_t)
+        0      2   -> CModbusRTU::Tail(uint8_t *, uint16_t)
+      6      2   CModbusRTU::Tail(uint8_t *, uint16_t)
+        6      2   -> usCrc16(unsigned char const *, uint16_t)
+      4      2   CModbusRTU::TimeIsOver(uint16_t)
+        4      2   -> CPlatform::GetSystemTick()
+      2      2   CModbusRTU::TransmitDelayTimeIsOver()
+        2      2   -> CPlatform::GetSystemTick()
+      2      2   CModbusRTU::TransmitDisable()
+        2      2   -> CUart::TransmitDisable()
+      2      2   CModbusRTU::TransmitEnable()
+        2      2   -> CUart::TransmitEnable()
+      0      2   CModbusRTU::new CModbusRTU()
+        0      2   -> CModbusRTU::CModbusRTU()
+        0      2   -> operator new(unsigned int)
+      0      2   CModbusRTU::~CModbusRTU for CDfaLite/-15/()
+        0      2   -> CModbusRTU::~CModbusRTU()
+      4      2   CModbusRTU::~CModbusRTU()
+        4      2   -> CModbus::~CModbus()
+        4      2   -> operator delete(void *)
+      0      2   CPlatform::GetSystemTick()
+      0      2   CPlatform::TxLedOff()
+      0      2   CPlatform::TxLedOn()
+      0      2   CUart::ByteIsReceived()
+      0      2   CUart::FrameIsSended()
+      0      2   CUart::GetFrameLength()
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      42  ?<Jumptable for Fsm>_0
+       6  CDfaLite::GetFsmState()
+       6  CDfaLite::SetFsmState(uint8_t)
+      98  CModbusRTU::CModbusRTU()
+       8  CModbusRTU::CRC_LENGTH for CModbus/-15/()
+       8  CModbusRTU::CRC_LENGTH()
+      22  CModbusRTU::Close()
+      46  CModbusRTU::ConfirmationReceiveTimeIsOver()
+     148  CModbusRTU::FrameCheck()
+      94  CModbusRTU::FrameCheck(uint8_t *, uint16_t)
+      50  CModbusRTU::FrameIsReceived()
+       6  CModbusRTU::Fsm for CDfaLite/-15/()
+    1232  CModbusRTU::Fsm()
+      22  CModbusRTU::GetFrameLength()
+      28  CModbusRTU::GetSystemTime()
+       8  CModbusRTU::HEADER_LENGTH for CModbus/-15/()
+       8  CModbusRTU::HEADER_LENGTH()
+     428  CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t)
+      22  CModbusRTU::MessageIsSended()
+      22  CModbusRTU::Open()
+      30  CModbusRTU::Receive(uint8_t *, uint16_t)
+      22  CModbusRTU::ReceiveDisable()
+      22  CModbusRTU::ReceiveEnable()
+      46  CModbusRTU::ReceiveTimeIsOver()
+       6  CModbusRTU::RequestBasis for CModbus/-15/(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
+      46  CModbusRTU::RequestBasis(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
+      22  CModbusRTU::Reset()
+       6  CModbusRTU::ResponseBasis for CModbus/-15/(uint8_t, uint8_t, uint8_t *)
+      16  CModbusRTU::ResponseBasis(uint8_t, uint8_t, uint8_t *)
+      22  CModbusRTU::Select()
+       6  CModbusRTU::Send for CModbus/-15/(uint8_t *, uint16_t)
+      30  CModbusRTU::Send(uint8_t *, uint16_t)
+       6  CModbusRTU::Tail for CModbus/-15/(uint8_t *, uint16_t)
+      56  CModbusRTU::Tail(uint8_t *, uint16_t)
+      46  CModbusRTU::TimeIsOver(uint16_t)
+      44  CModbusRTU::TransmitDelayTimeIsOver()
+      22  CModbusRTU::TransmitDisable()
+      22  CModbusRTU::TransmitEnable()
+      28  CModbusRTU::new CModbusRTU()
+       6  CModbusRTU::~CModbusRTU for CDfaLite/-15/()
+      50  CModbusRTU::~CModbusRTU()
+      10  CPlatform::GetSystemTick()
+      12  CPlatform::TxLedOff()
+      12  CPlatform::TxLedOn()
+       6  CUart::ByteIsReceived()
+       6  CUart::FrameIsSended()
+       8  CUart::GetFrameLength()
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_ETIFR
+       1  _A_ETIMSK
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUCSR
+       1  _A_OCDR
+       1  _A_OCR0
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SFIOR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR
+       1  _A_TIMSK
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       1  _A_UBRR0H
+       1  _A_UBRR0L
+       1  _A_UBRR1H
+       1  _A_UBRR1L
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XDIV
+       1  _A_XMCRA
+       1  _A_XMCRB
+      68  -- Other
+
+ 
+   105 bytes in segment ABSOLUTE
+ 2 870 bytes in segment CODE
+    68 bytes in segment NEAR_F
+    42 bytes in segment SWITCH
+ 
+ 2 866 bytes of CODE memory (+ 114 bytes shared)
+     0 bytes of DATA memory (+ 105 bytes shared)
+
+Errors: none
+Warnings: 2

@@ -1,0 +1,3217 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:08
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EWE304.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp --cpu=m128a
+//        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Platform.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Platform
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B10_L09
+        EXTERN ?EPILOGUE_B16_L09
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?EPILOGUE_B6_L09
+        EXTERN ?EPILOGUE_B8_L09
+        EXTERN ?L_EC_MUL_L03
+        EXTERN ?PROLOGUE10_L09
+        EXTERN ?PROLOGUE16_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?PROLOGUE6_L09
+        EXTERN ?PROLOGUE8_L09
+        EXTERN ?Register_R10_is_cg_reg
+        EXTERN ?Register_R11_is_cg_reg
+        EXTERN ?Register_R12_is_cg_reg
+        EXTERN ?Register_R13_is_cg_reg
+        EXTERN ?Register_R14_is_cg_reg
+        EXTERN ?Register_R15_is_cg_reg
+        EXTERN ?Register_R4_is_cg_reg
+        EXTERN ?Register_R5_is_cg_reg
+        EXTERN ?Register_R6_is_cg_reg
+        EXTERN ?Register_R7_is_cg_reg
+        EXTERN ?Register_R8_is_cg_reg
+        EXTERN ?Register_R9_is_cg_reg
+        EXTERN ?S_SHL_L02
+        EXTERN ?UL_DIVMOD_L03
+        EXTERN ?UL_SHR_L03
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC ??BuzzerTimerFrequencySet
+        PUBLIC ??BuzzerTimerStop
+        PUBLIC ??CEeprom
+        PUBLIC ??CPlatform
+        PUBLIC ??CSpi
+        PUBLIC ??CUart
+        PUBLIC ??CUart_1
+        PUBLIC ??Close
+        PUBLIC ??Disable
+        PUBLIC ??Disable_1
+        PUBLIC ??EEPROM_EE_READY
+        PUBWEAK `??EEPROM_EE_READY::??INTVEC 88`
+        PUBLIC ??Enable
+        PUBLIC ??Enable_1
+        PUBLIC ??Exchange
+        PUBLIC ??Exchange_1
+        PUBWEAK ??ExternalKeySetPinInput
+        PUBWEAK ??GetAddress
+        PUBWEAK ??GetBufferByteCounter
+        PUBWEAK ??GetBufferPointer
+        PUBWEAK ??GetLength
+        PUBWEAK ??IncrementSystemTick
+        PUBLIC ??Init
+        PUBLIC ??Init_1
+        PUBLIC ??Init_2
+        PUBWEAK ??InterruptDisable
+        PUBWEAK ??InterruptEnable
+        PUBWEAK ??KeyOneSetPinInput
+        PUBWEAK ??KeyThreeSetPinInput
+        PUBWEAK ??KeyTwoSetPinInput
+        PUBLIC ??Open
+        PUBLIC ??Read
+        PUBLIC ??ReadByte
+        PUBLIC ??Read_1
+        PUBLIC ??Read_2
+        PUBWEAK ??ReadyInterruptDisaable
+        PUBLIC ??ReadyInterruptHandler
+        PUBLIC ??RecvInterruptHandler
+        PUBLIC ??Reset
+        PUBLIC ??Reset_1
+        PUBLIC ??Rs485RtsOff
+        PUBLIC ??Rs485RtsOn
+        PUBLIC ??SIG_UART1_DATA
+        PUBWEAK `??SIG_UART1_DATA::??INTVEC 124`
+        PUBLIC ??SIG_UART1_RECV
+        PUBWEAK `??SIG_UART1_RECV::??INTVEC 120`
+        PUBLIC ??SIG_UART1_TXC
+        PUBWEAK `??SIG_UART1_TXC::??INTVEC 128`
+        PUBWEAK ??SetAddress
+        PUBWEAK ??SetBufferByteCounter
+        PUBWEAK ??SetBufferIsWrited
+        PUBWEAK ??SetBufferPointer
+        PUBWEAK ??SetLength
+        PUBWEAK ??StatusLedSetPinOutput
+        PUBLIC ??SystemTickInit
+        PUBLIC ??SystemTickInterrupt
+        PUBWEAK `??SystemTickInterrupt::??INTVEC 36`
+        PUBLIC ??TransmitDisable
+        PUBLIC ??TransmitEnable
+        PUBWEAK ??TxLedOff
+        PUBWEAK ??TxLedSetPinOutput
+        PUBLIC ??TxcInterruptHandler
+        PUBLIC ??UdreInterruptHandler
+        PUBWEAK ??WatchdogReset
+        PUBLIC ??Write
+        PUBLIC ??WriteByte
+        PUBLIC ??WriteInterrupt
+        PUBLIC ??Write_1
+        PUBWEAK ??__vtbl
+        PUBWEAK ??__vtbl_2
+        PUBWEAK ??__vtbl_3
+        PUBWEAK ??__vtbl_5
+        PUBLIC ??delay_mins
+        PUBLIC ??delay_ms
+        PUBLIC ??delay_s
+        PUBLIC ??m_bBufferIsWrited
+        PUBLIC ??m_nuiBufferByteCounter
+        PUBLIC ??m_puiBuffer
+        PUBLIC ??m_pxUart1
+        PUBLIC ??m_uiAddress
+        PUBLIC ??m_uiLength
+        PUBLIC ??m_uiSystemTick
+        PUBLIC ??m_uiWatchDogStepID
+        PUBLIC `??new CEeprom`
+        PUBLIC `??new CPlatform`
+        PUBLIC `??new CSpi`
+        PUBLIC `??new CUart`
+        PUBLIC `??new CUart_1`
+        PUBLIC `?~CEeprom`
+        PUBLIC `?~CPlatform`
+        PUBLIC `?~CSpi`
+        PUBLIC `?~CUart`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CPss21 0>`  SYMBOL "CPss21"
+??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 0>`
+`?<Name CPlatform 6>` SYMBOL "CPlatform"
+`?<Name CEeprom 15>` SYMBOL "CEeprom"
+`?<Name CSpi 20>`   SYMBOL "CSpi"
+`?<Name CUart 23>`  SYMBOL "CUart"
+
+`??EEPROM_EE_READY::??INTVEC 88` SYMBOL "??INTVEC 88", ??EEPROM_EE_READY
+
+`??SIG_UART1_DATA::??INTVEC 124` SYMBOL "??INTVEC 124", ??SIG_UART1_DATA
+
+`??SIG_UART1_RECV::??INTVEC 120` SYMBOL "??INTVEC 120", ??SIG_UART1_RECV
+
+`??SIG_UART1_TXC::??INTVEC 128` SYMBOL "??INTVEC 128", ??SIG_UART1_TXC
+
+`??SystemTickInterrupt::??INTVEC 36` SYMBOL "??INTVEC 36", ??SystemTickInterrupt
+??__vtbl            SYMBOL "__vtbl", `?<Name CUart 23>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CEeprom 15>`
+??__vtbl_3          SYMBOL "__vtbl", `?<Name CPlatform 6>`
+??__vtbl_5          SYMBOL "__vtbl", `?<Name CSpi 20>`
+??m_bBufferIsWrited SYMBOL "m_bBufferIsWrited", `?<Name CEeprom 15>`
+??m_nuiBufferByteCounter SYMBOL "m_nuiBufferByteCounter", `?<Name CEeprom 15>`
+??m_puiBuffer       SYMBOL "m_puiBuffer", `?<Name CEeprom 15>`
+??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 6>`
+??m_uiAddress       SYMBOL "m_uiAddress", `?<Name CEeprom 15>`
+??m_uiLength        SYMBOL "m_uiLength", `?<Name CEeprom 15>`
+??m_uiSystemTick    SYMBOL "m_uiSystemTick", `?<Name CPlatform 6>`
+??m_uiWatchDogStepID SYMBOL "m_uiWatchDogStepID", `?<Name CPlatform 6>`
+
+        EXTERN ??m_xModbusSettings
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+
+// D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Sourse      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "Platform.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//    9 #include "Pss21.h"
+//   10 
+//   11 
+//   12 // ATMega128a
+//   13 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   14 CUart::CUart()
+??CUart:
+//   15 {
+        LDI     R18, LOW(??__vtbl)
+        LDI     R19, (??__vtbl) >> 8
+        MOVW    R31:R30, R17:R16
+        STD     Z+45, R18
+        STD     Z+46, R19
+//   16 
+//   17 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CUart &CUart::new CUart()
+`??new CUart`:
+        LDI     R16, 47
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CUart_2`
+        RCALL   ??CUart
+        RET
+`??new CUart_2`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//   18 
+//   19 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   20 CUart::CUart(volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
+??CUart_1:
+//   21              volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
+//   22              volatile uint8_t *ucsrc, volatile uint8_t *udr,
+//   23              volatile uint8_t *rs485ddr, volatile uint8_t rs485ddpin,
+//   24              volatile uint8_t *rs485port, volatile uint8_t rs485pin) :
+        CALL    ?PROLOGUE10_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        REQUIRE ?Register_R8_is_cg_reg
+        REQUIRE ?Register_R9_is_cg_reg
+        MOVW    R27:R26, R17:R16
+        MOVW    R9:R8, R19:R18
+        MOVW    R7:R6, R21:R20
+        MOVW    R5:R4, R23:R22
+        LDD     R24, Y+10
+        LDD     R25, Y+11
+        LDD     R2, Y+12
+        LDD     R3, Y+13
+        LDD     R0, Y+14
+        LDD     R1, Y+15
+        LDD     R22, Y+16
+        LDD     R23, Y+17
+        LDD     R18, Y+19
+        LDD     R19, Y+20
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+45, R16
+        STD     Z+46, R17
+//   25     m_UBRRH(ubrrh), m_UBRRL(ubrrl), m_UCSRA(ucsra),
+        MOVW    R31:R30, R27:R26
+        ST      Z, R8
+        STD     Z+1, R9
+        MOVW    R31:R30, R27:R26
+        STD     Z+2, R6
+        STD     Z+3, R7
+        MOVW    R31:R30, R27:R26
+        STD     Z+4, R4
+        STD     Z+5, R5
+//   26     m_UCSRB(ucsrb), m_UCSRC(ucsrc), m_UDR(udr),
+        MOVW    R31:R30, R27:R26
+        STD     Z+6, R24
+        STD     Z+7, R25
+        MOVW    R31:R30, R27:R26
+        STD     Z+8, R2
+        STD     Z+9, R3
+        MOVW    R31:R30, R27:R26
+        STD     Z+10, R0
+        STD     Z+11, R1
+//   27     m_rs485ddr(rs485ddr), m_rs485ddpin(rs485ddpin), m_rs485port(rs485port), m_rs485pin(rs485pin)
+        MOVW    R31:R30, R27:R26
+        STD     Z+12, R22
+        STD     Z+13, R23
+        LDD     R16, Y+18
+        MOVW    R31:R30, R27:R26
+        STD     Z+14, R16
+        MOVW    R31:R30, R27:R26
+        STD     Z+15, R18
+        STD     Z+16, R19
+        LDD     R16, Y+21
+        MOVW    R31:R30, R27:R26
+        STD     Z+17, R16
+//   28 {
+//   29     if (m_rs485ddr)
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+12
+        LDD     R17, Z+13
+        OR      R16, R17
+        BREQ    ??CUart_2
+//   30     {
+//   31         *m_rs485ddr |= _BV(m_rs485ddpin);
+        MOVW    R31:R30, R27:R26
+        LDD     R20, Z+14
+        LDI     R16, 1
+        LDI     R17, 0
+        CALL    ?S_SHL_L02
+        MOV     R20, R16
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+12
+        LDD     R17, Z+13
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        OR      R16, R20
+        ST      Z, R16
+//   32         *m_rs485port &= ~(_BV(m_rs485pin));
+        MOVW    R31:R30, R27:R26
+        LDD     R20, Z+17
+        LDI     R16, 1
+        LDI     R17, 0
+        CALL    ?S_SHL_L02
+        MOV     R20, R16
+        COM     R20
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+15
+        LDD     R17, Z+16
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        AND     R16, R20
+        ST      Z, R16
+//   33     }
+//   34 }
+??CUart_2:
+        MOVW    R17:R16, R27:R26
+        LDI     R30, 22
+        JMP     ?EPILOGUE_B10_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CUart &CUart::new CUart(uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t, uint8_t volatile *, uint8_t)
+`??new CUart_1`:
+        CALL    ?PROLOGUE16_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        REQUIRE ?Register_R8_is_cg_reg
+        REQUIRE ?Register_R9_is_cg_reg
+        REQUIRE ?Register_R10_is_cg_reg
+        REQUIRE ?Register_R11_is_cg_reg
+        REQUIRE ?Register_R12_is_cg_reg
+        REQUIRE ?Register_R13_is_cg_reg
+        REQUIRE ?Register_R14_is_cg_reg
+        REQUIRE ?Register_R15_is_cg_reg
+        MOVW    R11:R10, R17:R16
+        MOVW    R15:R14, R19:R18
+        MOVW    R13:R12, R21:R20
+        MOVW    R9:R8, R23:R22
+        LDD     R6, Y+16
+        LDD     R7, Y+17
+        LDD     R4, Y+18
+        LDD     R5, Y+19
+        LDD     R26, Y+20
+        LDD     R27, Y+21
+        LDD     R24, Y+23
+        LDD     R25, Y+24
+        LDI     R16, 47
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CUart_3`
+        LDD     R18, Y+25
+        ST      -Y, R18
+        ST      -Y, R25
+        ST      -Y, R24
+        LDD     R18, Y+25
+        ST      -Y, R18
+        ST      -Y, R27
+        ST      -Y, R26
+        ST      -Y, R5
+        ST      -Y, R4
+        ST      -Y, R7
+        ST      -Y, R6
+        ST      -Y, R9
+        ST      -Y, R8
+        MOVW    R23:R22, R13:R12
+        MOVW    R21:R20, R15:R14
+        MOVW    R19:R18, R11:R10
+        RCALL   ??CUart_1
+        RJMP    `??new CUart_4`
+`??new CUart_3`:
+        LDI     R16, 0
+        LDI     R17, 0
+`??new CUart_4`:
+        LDI     R30, 26
+        JMP     ?EPILOGUE_B16_L09
+//   35 
+//   36 //-----------------------------------------------------------------------------------------------------
+//   37 CUart::~CUart()
+//   38 {
+//   39 
+//   40 }
+//   41 
+//   42 //-----------------------------------------------------------------------------------------------------
+//   43 void CUart::Init(uint32_t ulBaudRate,
+//   44                  uint8_t ucParity,
+//   45                  uint8_t ucDataBits,
+//   46                  uint8_t ucStopBit,
+//   47                  uint8_t *puiRxBuffer,
+//   48                  uint8_t *puiTxBuffer)
+//   49 {
+//   50 //    m_puiRxBuffer = puiRxBuffer;
+//   51 //    m_puiTxBuffer = puiTxBuffer;
+//   52 
+//   53     /* Set the baud rate */
+//   54     uint16_t uiBaudRateTemp = static_cast<uint16_t>((F_CPU / (ulBaudRate * 16UL) - 1));
+//   55 //    uint16_t uiBaudRateTemp = static_cast<uint16_t>(CPss21::m_xModbusSettings.BaudRate);//(F_CPU / (ulBaudRate * 16UL) - 1);//
+//   56     *m_UBRRL = static_cast<uint8_t>(uiBaudRateTemp);
+//   57     *m_UBRRH = static_cast<uint8_t>(uiBaudRateTemp >> 8);
+//   58 
+//   59     *m_UCSRC = (CPss21::m_xModbusSettings.LinkParam &	// 2 стоп-бита, 8 бит данных
+//   60                 (BIT(UPM11)|BIT(UPM10)|BIT(USBS1))) |
+//   61                (BIT(UCSZ11)|BIT(UCSZ10));
+//   62 
+//   63 //    /* Set data bits (7, 8 bits) */
+//   64 //    switch (ucDataBits)
+//   65 //    {
+//   66 //    case 8:
+//   67 //        *m_UCSRC |= (1 << UCSZ00) | (1 << UCSZ01);
+//   68 //        break;
+//   69 //    case 7:
+//   70 //        *m_UCSRC |= (1 << UCSZ01);
+//   71 //        break;
+//   72 //    }
+//   73 //
+//   74 //    /* Set parity */
+//   75 //    if (ucParity == 'N')
+//   76 //    {
+//   77 //        /* None */
+//   78 //    }
+//   79 //    else if (ucParity == 'E')
+//   80 //    {
+//   81 //        /* Even */
+//   82 //        *m_UCSRC |= (1 << UPM01);
+//   83 //    }
+//   84 //    else
+//   85 //    {
+//   86 //        /* Odd */
+//   87 //        *m_UCSRC |= (1 << UPM01) | (1 << UPM00);
+//   88 //    }
+//   89 //
+//   90 //    /* Stop bit (1 or 2) */
+//   91 //    if (ucStopBit == 1)
+//   92 //    {
+//   93 //        *m_UCSRC &= ~(1 << USBS0);
+//   94 //    }
+//   95 //    else if (ucStopBit == 2) /* 2 */
+//   96 //    {
+//   97 //        *m_UCSRC |= (1 << USBS0);
+//   98 //    }
+//   99 }
+//  100 
+//  101 //-----------------------------------------------------------------------------------------------------
+//  102 void CUart::Reset(void)
+//  103 {
+//  104     m_nuiRxBuffByteCounter = 0;
+//  105     m_bfByteIsReceived = 0;
+//  106     m_bfFrameIsSended = 0;
+//  107     m_bfRxBuffOverflow = 0;
+//  108 }
+//  109 
+//  110 //-----------------------------------------------------------------------------------------------------
+//  111 void CUart::Open(void)
+//  112 {
+//  113     *m_UCSRA |= (1 << RXC0) | (1 << TXC0);
+//  114     *m_UCSRB |= (1 << RXEN0) | (1 << TXEN0);
+//  115 }
+//  116 
+//  117 //-----------------------------------------------------------------------------------------------------
+//  118 void CUart::Close(void)
+//  119 {
+//  120     *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
+//  121     *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0));
+//  122     *m_UCSRB &= ~((1 << UDRIE0));
+//  123 }
+//  124 
+//  125 //-----------------------------------------------------------------------------------------------------
+//  126 void CUart::Enable(void)
+//  127 {
+//  128     *m_UCSRA |= (1 << RXC0);
+//  129 //    *m_UCSRB |= (1 << RXCIE0);
+//  130     *m_UCSRB |= (1 << RXEN0) | (1 << RXCIE0);
+//  131 }
+//  132 
+//  133 //-----------------------------------------------------------------------------------------------------
+//  134 void CUart::Disable(void)
+//  135 {
+//  136 //    *m_UCSRB &= ~((1 << RXCIE0));
+//  137 //    *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0));
+//  138     *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
+//  139 }
+//  140 
+//  141 //-----------------------------------------------------------------------------------------------------
+//  142 void CUart::Rs485RtsOn(void)
+//  143 {
+//  144     *m_rs485port |= (1 << m_rs485pin);
+//  145 }
+//  146 
+//  147 //-----------------------------------------------------------------------------------------------------
+//  148 void CUart::Rs485RtsOff(void)
+//  149 {
+//  150     *m_rs485port &= ~(1 << m_rs485pin);
+//  151 }
+//  152 
+//  153 //-----------------------------------------------------------------------------------------------------
+//  154 void CUart::TransmitEnable(void)
+//  155 {
+//  156     if (m_rs485ddr)
+//  157     {
+//  158         Rs485RtsOn();
+//  159     }
+//  160 
+//  161     *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
+//  162 //    *m_UCSRB |= (1 << UDRIE0);
+//  163 ////    *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
+//  164     *m_UCSRB |= (1 << TXEN0) | (1 << UDRIE0);
+//  165 
+//  166 }
+//  167 
+//  168 //-----------------------------------------------------------------------------------------------------
+//  169 void CUart::TransmitDisable(void)
+//  170 {
+//  171 //    *m_UCSRB &= ~((1 << TXCIE0) | (1 << UDRIE0));
+//  172 ////    *m_UCSRA &= ~(1 << UDRE0);
+//  173     *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0) | (1 << UDRIE0));
+//  174 
+//  175     if (m_rs485ddr)
+//  176     {
+//  177         Rs485RtsOff();
+//  178     }
+//  179 }
+//  180 
+//  181 //-----------------------------------------------------------------------------------------------------
+//  182 int16_t CUart::Write(uint8_t *puiSourse, uint16_t uiLength)
+//  183 {
+//  184     m_puiTxBuffer = (uint8_t*)puiSourse;
+//  185     m_nuiTxBuffByteCounter = uiLength;
+//  186 
+//  187 //    *m_UCSRA &= ~(1 << RXC0);
+//  188 //    *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
+//  189 //
+//  190 //    if (m_rs485ddr)
+//  191 //    {
+//  192 //        Rs485RtsOn();
+//  193 //    }
+//  194 ////    UDR0 = *pucUsartTxBuff++;
+//  195 //    //    UCSR0B |= (1 << TXEN0) | (1 << TXCIE0);
+//  196 //    *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
+//  197 //    *m_UCSRB |= (1 << TXEN0) | (1 << UDRIE0);
+//  198 
+//  199     return 1;
+//  200 }
+//  201 
+//  202 //-----------------------------------------------------------------------------------------------------
+//  203 int16_t CUart::Read(uint8_t *puiDestination, uint16_t uiLength)
+//  204 {
+//  205     m_bfByteIsReceived = 0;
+//  206 
+//  207     if (m_bfRxBuffOverflow)
+//  208     {
+//  209         return -1;
+//  210     }
+//  211 
+//  212     if (uiLength <= m_nuiRxBuffByteCounter)
+//  213     {
+//  214         return -1;
+//  215     }
+//  216     else if (m_nuiRxBuffByteCounter)
+//  217     {
+//  218         CPlatform::InterruptDisable();
+//  219 //
+//  220         for (int16_t i = 0; i < m_nuiRxBuffByteCounter; i++)
+//  221         {
+//  222             puiDestination[i] = m_auiIntermediateBuff[i];
+//  223         }
+//  224 
+//  225         uint8_t uiCounter = m_nuiRxBuffByteCounter;
+//  226         m_nuiRxBuffByteCounter = 0;
+//  227 
+//  228         CPlatform::InterruptEnable();
+//  229 
+//  230         return uiCounter;
+//  231     }
+//  232     else if (0 == m_nuiRxBuffByteCounter)
+//  233     {
+//  234         return 0;
+//  235     }
+//  236     return 0;
+//  237 }
+//  238 
+//  239 //-----------------------------------------------------------------------------------------------------
+//  240 void CUart::UdreInterruptHandler(void)
+//  241 {
+//  242     if (m_nuiTxBuffByteCounter == 0)
+//  243     {
+//  244         *m_UCSRB &= ~((1 << UDRIE0));
+//  245         *m_UCSRA |= (1 << TXC0);
+//  246         *m_UCSRB |= (1 << TXCIE0);
+//  247         return;
+//  248     }
+//  249     *m_UDR = *m_puiTxBuffer++;
+//  250     m_nuiTxBuffByteCounter--;
+//  251 }
+//  252 
+//  253 //-----------------------------------------------------------------------------------------------------
+//  254 void CUart::TxcInterruptHandler(void)
+//  255 {
+//  256     *m_UCSRB &= ~((1 << TXCIE0));
+//  257 //    *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0));
+//  258 
+//  259 //    if (m_rs485ddr)//debag//
+//  260 //    {
+//  261 //        Rs485RtsOff();
+//  262 //    }
+//  263 //    *m_UCSRA |= (1 << RXC0);
+//  264 //    *m_UCSRB |= (1 << RXEN0) | (1 << RXCIE0);
+//  265     m_bfFrameIsSended = 1;
+//  266     return;
+//  267 }
+//  268 
+//  269 //-----------------------------------------------------------------------------------------------------
+//  270 void CUart::RecvInterruptHandler(void)
+//  271 {
+//  272     // промежуточный буфер приёма переполнен?
+//  273     if (m_nuiRxBuffByteCounter >=
+//  274             UART_INTERMEDIATE_BUFF_LENGTH)
+//  275     {
+//  276         m_bfRxBuffOverflow = 1;
+//  277         // не инкрементируем pucUsartRxBuff, чтобы не выйти за границы буфера.
+//  278         m_bfByteIsReceived = 1;
+//  279     }
+//  280     else
+//  281     {
+//  282 //        m_puiRxBuffer[m_nuiRxBuffByteCounter++] = *m_UDR;
+//  283 //        uint8_t uiTempUdr = *m_UDR;
+//  284 //        if (uiTempUdr != 0)
+//  285 //        {
+//  286 //            uiTempUdr = uiTempUdr;
+//  287 //        }
+//  288 //        m_auiIntermediateBuff[m_nuiRxBuffByteCounter++] = uiTempUdr;
+//  289         m_auiIntermediateBuff[m_nuiRxBuffByteCounter++] = *m_UDR;
+//  290         m_bfByteIsReceived = 1;
+//  291     }
+//  292 }
+//  293 
+//  294 ////-----------------------------------------------------------------------------------------------------
+//  295 //// Прерывание по пустому регистру данных UDR
+//  296 //#pragma vector = USART0_UDRE_vect
+//  297 //__interrupt void SIG_UART0_DATA(void)
+//  298 //{
+//  299 //    CPlatform::m_pxUart0 -> UdreInterruptHandler();
+//  300 //}
+//  301 //
+//  302 ////-----------------------------------------------------------------------------------------------------
+//  303 //// Прерывание по завершению передачи UART
+//  304 //#pragma vector = USART0_TX_vect
+//  305 //__interrupt void SIG_UART0_TXC(void)
+//  306 //{
+//  307 //    CPlatform::m_pxUart0 -> TxcInterruptHandler();
+//  308 //}
+//  309 //
+//  310 ////-----------------------------------------------------------------------------------------------------
+//  311 //// Прерывание по завершению приема UART
+//  312 //#pragma vector = USART0_RX_vect
+//  313 //__interrupt void SIG_UART0_RECV(void)
+//  314 //{
+//  315 //    CPlatform::m_pxUart0 -> RecvInterruptHandler();
+//  316 //}
+//  317 
+//  318 //-----------------------------------------------------------------------------------------------------
+//  319 // Прерывание по пустому регистру данных UDR
+//  320 #pragma vector = USART1_UDRE_vect
+//  321 __interrupt void SIG_UART1_DATA(void)
+//  322 {
+//  323     CPlatform::m_pxUart1 -> UdreInterruptHandler();
+//  324 }
+//  325 
+//  326 //-----------------------------------------------------------------------------------------------------
+//  327 // Прерывание по завершению передачи UART
+//  328 #pragma vector = USART1_TX_vect
+//  329 __interrupt void SIG_UART1_TXC(void)
+//  330 {
+//  331     CPlatform::m_pxUart1 -> TxcInterruptHandler();
+//  332 }
+//  333 
+//  334 //-----------------------------------------------------------------------------------------------------
+//  335 // Прерывание по завершению приема UART
+//  336 #pragma vector = USART1_RX_vect
+//  337 __interrupt void SIG_UART1_RECV(void)
+//  338 {
+//  339     CPlatform::m_pxUart1 -> RecvInterruptHandler();
+//  340 }
+//  341 
+//  342 //-----------------------------------------------------------------------------------------------------
+//  343 
+//  344 
+//  345 
+//  346 //----------------------------------------- EEPROM ----------------------------------------------------------------
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  347 uint8_t* CEeprom::m_puiBuffer;
+??m_puiBuffer:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  348 uint16_t CEeprom::m_uiAddress;
+??m_uiAddress:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  349 uint16_t CEeprom::m_nuiBufferByteCounter;
+??m_nuiBufferByteCounter:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  350 uint16_t CEeprom::m_uiLength;
+??m_uiLength:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  351 bool CEeprom::m_bBufferIsWrited;
+??m_bBufferIsWrited:
+        DS8 1
+//  352 
+//  353 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  354 CEeprom::CEeprom()
+??CEeprom:
+//  355 {
+        LDI     R18, LOW(??__vtbl_2)
+        LDI     R19, (??__vtbl_2) >> 8
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+//  356 
+//  357 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEeprom &CEeprom::new CEeprom()
+`??new CEeprom`:
+        LDI     R16, 2
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CEeprom_1`
+        RCALL   ??CEeprom
+        RET
+`??new CEeprom_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  358 
+//  359 //-----------------------------------------------------------------------------------------------------
+//  360 CEeprom::~CEeprom()
+//  361 {
+//  362 
+//  363 }
+//  364 
+//  365 //-----------------------------------------------------------------------------------------------------
+//  366 uint8_t CEeprom::Read(uint8_t *pucRamDestination, uint16_t uiEepromSourse, uint16_t nuiLength)
+//  367 {
+//  368     while (nuiLength != 0)
+//  369     {
+//  370         *pucRamDestination++ = ReadByte(uiEepromSourse++);
+//  371         nuiLength--;
+//  372     }
+//  373     return 1;
+//  374 }
+//  375 
+//  376 //-----------------------------------------------------------------------------------------------------
+//  377 uint8_t CEeprom::Write(uint16_t uiEepromDestination, uint8_t *pucRamSourse, uint16_t nuiLength)
+//  378 {
+//  379     while (nuiLength != 0)
+//  380     {
+//  381         WriteByte((uiEepromDestination++), (*pucRamSourse++));
+//  382         nuiLength--;
+//  383     }
+//  384     return 1;
+//  385 }
+//  386 
+//  387 //-----------------------------------------------------------------------------------------------------
+//  388 uint8_t CEeprom::ReadByte(uint16_t ui16EepromSourse)
+//  389 {
+//  390     __watchdog_reset();
+//  391     while (BitIsSet(EECR, EEWE))
+//  392     {
+//  393         __watchdog_reset();
+//  394     }
+//  395     __disable_interrupt();
+//  396     EEAR = ui16EepromSourse;
+//  397     SetBit(EECR, EERE);
+//  398     __enable_interrupt();
+//  399     return EEDR;
+//  400 }
+//  401 
+//  402 //-----------------------------------------------------------------------------------------------------
+//  403 void CEeprom::WriteByte(uint16_t ui16EepromDestination, uint8_t ucData)
+//  404 {
+//  405     if (ReadByte(ui16EepromDestination) != ucData)
+//  406     {
+//  407         __watchdog_reset();
+//  408         while (BitIsSet(EECR, EEWE))
+//  409         {
+//  410             __watchdog_reset();
+//  411         }
+//  412         __disable_interrupt();
+//  413         EEAR = ui16EepromDestination;
+//  414         EEDR = ucData;
+//  415         EECR |= (1<<EEMWE);
+//  416         EECR |= (1<<EEWE);
+//  417         __enable_interrupt();
+//  418     }
+//  419 }
+//  420 
+//  421 //-----------------------------------------------------------------------------------------------------
+//  422 void CEeprom::WriteInterrupt(uint16_t uiEepromDestination, uint8_t *pucRamSourse, uint16_t nuiLength)
+//  423 {
+//  424     SetAddress(uiEepromDestination);
+//  425     SetBufferPointer(pucRamSourse);
+//  426     SetLength(nuiLength);
+//  427     SetBufferByteCounter(0);
+//  428 }
+//  429 
+//  430 //-----------------------------------------------------------------------------------------------------
+//  431 // Прерывание по завершению записи.
+//  432 void CEeprom::ReadyInterruptHandler(void)
+//  433 {
+//  434     if (GetBufferByteCounter() < GetLength())
+//  435     {
+//  436         EEAR = GetAddress();
+//  437         SetAddress(GetAddress() + 1);
+//  438         EECR |= BIT(EERE);
+//  439 
+//  440         if (EEDR != GetBufferPointer()[GetBufferByteCounter()])
+//  441         {
+//  442             EEDR = GetBufferPointer()[GetBufferByteCounter()];
+//  443             EECR |= BIT(EEMWE);
+//  444             EECR |= BIT(EEWE);
+//  445         }
+//  446 
+//  447         SetBufferByteCounter(GetBufferByteCounter() + 1);
+//  448     }
+//  449     else
+//  450     {
+//  451         ReadyInterruptDisaable();
+//  452         EEAR   = 0x0000;			// Обнуляем для безопасности
+//  453         SetBufferIsWrited(true);
+//  454     }
+//  455 }
+//  456 
+//  457 //-----------------------------------------------------------------------------------------------------
+//  458 // Прерывание по завершению записи.
+//  459 #pragma vector = EE_READY_vect
+//  460 __interrupt void EEPROM_EE_READY(void)
+//  461 {
+//  462     CEeprom::ReadyInterruptHandler();
+//  463 }
+//  464 
+//  465 //-----------------------------------------------------------------------------------------------------
+//  466 
+//  467 
+//  468 
+//  469 
+//  470 
+//  471 
+//  472 
+//  473 //----------------------------------------- CSpi ----------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  474 CSpi::CSpi()
+??CSpi:
+//  475 {
+        LDI     R18, LOW(??__vtbl_5)
+        LDI     R19, (??__vtbl_5) >> 8
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+//  476 
+//  477 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CSpi &CSpi::new CSpi()
+`??new CSpi`:
+        LDI     R16, 2
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CSpi_1`
+        RCALL   ??CSpi
+        RET
+`??new CSpi_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  478 
+//  479 //-----------------------------------------------------------------------------------------------------
+//  480 CSpi::~CSpi()
+//  481 {
+//  482 
+//  483 }
+//  484 
+//  485 //-----------------------------------------------------------------------------------------------------
+//  486 void CSpi::Init(void)
+//  487 {
+//  488     // Master mode.
+//  489 //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
+//  490     SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
+//  491 
+//  492     DDRB |= (Bit(MOSI) | Bit(SCK));		// PB1 (SCK), PB2 (MOSI) - на выход
+//  493 //    PORTB |= (Bit(MOSI) | Bit(SCK));
+//  494 
+//  495     SPCR  |= BIT(SPE);			// Активируем интерфейс SPI
+//  496 };
+//  497 
+//  498 //-----------------------------------------------------------------------------------------------------
+//  499 void CSpi::Reset(void)
+//  500 {
+//  501 //    m_nuiBuffByteCounter = 0;
+//  502 //    m_uiReceivedByteCounter = 0;
+//  503 //    m_bfByteIsReceived = 0;
+//  504 //    m_bfByteIsTransmited = 0;
+//  505 //    m_bfDataExchangeInProgress = 0;
+//  506 //    m_bfDataExchangeIsOccur = 0;
+//  507 //    m_bfRxBuffOverflow = 0;
+//  508 //    m_uiExchangeByte = 0;
+//  509 }
+//  510 
+//  511 //-----------------------------------------------------------------------------------------------------
+//  512 void CSpi::Enable(void)
+//  513 {
+//  514     // разрешим SPI.
+//  515     SPCR  |= BIT(SPE);
+//  516 }
+//  517 
+//  518 //-----------------------------------------------------------------------------------------------------
+//  519 void CSpi::Disable(void)
+//  520 {
+//  521     SPCR &= ~BIT(SPE);
+//  522 }
+//  523 
+//  524 //-----------------------------------------------------------------------------------------------------
+//  525 uint8_t CSpi::Exchange(uint8_t uiData)
+//  526 {
+//  527     delay_us(30);
+//  528     SPDR = uiData;
+//  529 
+//  530     uint8_t uiGuardCounter = 0;
+//  531 
+//  532     while(!(SPSR & BIT(SPIF)))		// Ожидание конца передачи
+//  533     {
+//  534         CPlatform::WatchdogReset();
+//  535 
+//  536         if (uiGuardCounter < 100)
+//  537         {
+//  538             uiGuardCounter++;
+//  539         }
+//  540         else
+//  541         {
+//  542             return  SPDR;
+//  543         }
+//  544     };
+//  545 
+//  546     return  SPDR;
+//  547 }
+//  548 
+//  549 //-----------------------------------------------------------------------------------------------------
+//  550 uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t nuiLength)
+//  551 {
+//  552     if (nuiLength > BUFFER_LENGTH)
+//  553     {
+//  554         return 0;
+//  555     }
+//  556 
+//  557     for (uint16_t i = 0; i < nuiLength; i++)
+//  558     {
+//  559         puiDestination[i] = Exchange(pucSourse[i]);
+//  560     }
+//  561     return 1;
+//  562 }
+//  563 
+//  564 //-----------------------------------------------------------------------------------------------------
+//  565 uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t nuiLength)
+//  566 {
+//  567 
+//  568     return 1;
+//  569 }
+//  570 //-----------------------------------------------------------------------------------------------------
+//  571 
+//  572 
+//  573 
+//  574 
+//  575 
+//  576 
+//  577 
+//  578 //-----------------------------------------------------------------------------------------------------
+//  579 // delay
+//  580 void delay_ms(uint16_t millisecs)
+//  581 {
+//  582     while(millisecs--)
+//  583     {
+//  584         delay_us(1000);
+//  585     }
+//  586 }
+//  587 void delay_s(uint16_t secs)
+//  588 {
+//  589     while(secs--)
+//  590     {
+//  591         __delay_cycles(F_CPU);
+//  592     }
+//  593 }
+//  594 void delay_mins(uint16_t minutes)
+//  595 {
+//  596     while(minutes--)
+//  597     {
+//  598         __delay_cycles(60*F_CPU);
+//  599     }
+//  600 }
+//  601 
+//  602 //-----------------------------------------------------------------------------------------------------
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  603 uint16_t CPlatform::m_uiSystemTick;
+??m_uiSystemTick:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  604 uint8_t CPlatform::m_uiWatchDogStepID;
+??m_uiWatchDogStepID:
+        DS8 1
+//  605 //CUart* CPlatform::m_pxUart0;
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  606 CUart* CPlatform::m_pxUart1;
+??m_pxUart1:
+        DS8 2
+
+        RSEG CODE:CODE:NOROOT(1)
+??CPlatform:
+        LDI     R18, LOW(??__vtbl_3)
+        LDI     R19, (??__vtbl_3) >> 8
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CPlatform &CPlatform::new CPlatform()
+`??new CPlatform`:
+        LDI     R16, 2
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CPlatform_1`
+        RCALL   ??CPlatform
+        RET
+`??new CPlatform_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CUart`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CUart_1`
+        BST     R18, 0
+        BRTC    `?~CUart_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CUart_1`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Init:
+        CALL    ?PROLOGUE8_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        MOVW    R5:R4, R17:R16
+        MOVW    R25:R24, R21:R20
+        MOVW    R27:R26, R23:R22
+        MOV     R7, R18
+        MOV     R6, R19
+        MOVW    R17:R16, R25:R24
+        MOVW    R19:R18, R27:R26
+        LDI     R20, 16
+        LDI     R21, 0
+        LDI     R22, 0
+        LDI     R23, 0
+        CALL    ?L_EC_MUL_L03
+        MOVW    R21:R20, R17:R16
+        MOVW    R23:R22, R19:R18
+        LDI     R16, 0
+        LDI     R17, 128
+        LDI     R18, 112
+        LDI     R19, 0
+        CALL    ?UL_DIVMOD_L03
+        MOVW    R19:R18, R17:R16
+        SUBI    R18, 1
+        SBCI    R19, 0
+        MOV     R20, R18
+        MOVW    R31:R30, R5:R4
+        LDD     R16, Z+2
+        LDD     R17, Z+3
+        MOVW    R31:R30, R17:R16
+        ST      Z, R20
+        MOVW    R17:R16, R19:R18
+        MOV     R16, R17
+        LDI     R17, 0
+        MOV     R20, R16
+        MOVW    R31:R30, R5:R4
+        LD      R16, Z
+        LDD     R17, Z+1
+        MOVW    R31:R30, R17:R16
+        ST      Z, R20
+        LDS     R20, (??m_xModbusSettings + 2)
+        ANDI    R20, 0x38
+        ORI     R20, 0x06
+        MOVW    R31:R30, R5:R4
+        LDD     R16, Z+8
+        LDD     R17, Z+9
+        MOVW    R31:R30, R17:R16
+        ST      Z, R20
+        LDI     R30, 13
+        JMP     ?EPILOGUE_B8_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??Reset:
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 0
+        STD     Z+24, R18
+        LDI     R18, 0
+        STD     Z+25, R18
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 0
+        STD     Z+42, R18
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 0
+        STD     Z+43, R18
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 0
+        STD     Z+44, R18
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Open:
+        MOV     R19, R27
+        MOV     R20, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+4
+        LDD     R27, Z+5
+        LD      R18, X
+        ORI     R18, 0xC0
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ORI     R18, 0x18
+        ST      X, R18
+        MOV     R26, R20
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Close:
+        MOV     R19, R27
+        MOV     R20, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ANDI    R18, 0x6F
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ANDI    R18, 0xB7
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ANDI    R18, 0xDF
+        ST      X, R18
+        MOV     R26, R20
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Enable:
+        MOV     R19, R27
+        MOV     R20, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+4
+        LDD     R27, Z+5
+        LD      R18, X
+        ORI     R18, 0x80
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ORI     R18, 0x90
+        ST      X, R18
+        MOV     R26, R20
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Disable:
+        MOV     R19, R27
+        MOV     R20, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ANDI    R18, 0x6F
+        ST      X, R18
+        MOV     R26, R20
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Rs485RtsOn:
+        MOV     R19, R27
+        MOV     R22, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R20, Z+17
+        LDI     R16, 1
+        LDI     R17, 0
+        CALL    ?S_SHL_L02
+        LDD     R26, Z+15
+        LDD     R27, Z+16
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+        MOV     R26, R22
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Rs485RtsOff:
+        MOV     R19, R27
+        MOV     R22, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R20, Z+17
+        LDI     R16, 1
+        LDI     R17, 0
+        CALL    ?S_SHL_L02
+        COM     R16
+        LDD     R26, Z+15
+        LDD     R27, Z+16
+        LD      R17, X
+        AND     R17, R16
+        ST      X, R17
+        MOV     R26, R22
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??TransmitEnable:
+        MOV     R21, R27
+        MOV     R0, R26
+        MOVW    R27:R26, R17:R16
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+12
+        LDD     R17, Z+13
+        OR      R16, R17
+        BREQ    ??TransmitEnable_1
+        MOVW    R17:R16, R27:R26
+        RCALL   ??Rs485RtsOn
+??TransmitEnable_1:
+        ADIW    R27:R26, 4
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 5
+        LD      R16, Z
+        ORI     R16, 0x60
+        ST      Z, R16
+        ADIW    R27:R26, 6
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 7
+        LD      R16, Z
+        ORI     R16, 0x28
+        ST      Z, R16
+        MOV     R26, R0
+        MOV     R27, R21
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??TransmitDisable:
+        MOV     R21, R27
+        MOV     R0, R26
+        MOVW    R27:R26, R17:R16
+        ADIW    R27:R26, 6
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 7
+        LD      R16, Z
+        ANDI    R16, 0x97
+        ST      Z, R16
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+12
+        LDD     R17, Z+13
+        OR      R16, R17
+        BREQ    ??TransmitDisable_1
+        MOVW    R17:R16, R27:R26
+        RCALL   ??Rs485RtsOff
+??TransmitDisable_1:
+        MOV     R26, R0
+        MOV     R27, R21
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Write:
+        MOVW    R31:R30, R17:R16
+        STD     Z+18, R18
+        STD     Z+19, R19
+        STD     Z+20, R20
+        STD     Z+21, R21
+        LDI     R16, 1
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Read:
+        CALL    ?PROLOGUE8_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+        MOVW    R5:R4, R21:R20
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+42, R16
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+44
+        TST     R16
+        BREQ    ??Read_3
+        LDI     R16, 255
+        LDI     R17, 255
+        RJMP    ??Read_4
+??Read_3:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+24
+        LDD     R17, Z+25
+        CP      R16, R4
+        CPC     R17, R5
+        BRCS    ??Read_5
+        LDI     R16, 255
+        LDI     R17, 255
+        RJMP    ??Read_4
+??Read_5:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+24
+        LDD     R17, Z+25
+        OR      R16, R17
+        BREQ    ??Read_6
+        CALL    ??InterruptDisable
+        LDI     R16, 0
+        LDI     R17, 0
+??Read_7:
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+24
+        LDD     R19, Z+25
+        CP      R16, R18
+        CPC     R17, R19
+        BRCC    ??Read_8
+        MOVW    R31:R30, R27:R26
+        ADD     R30, R16
+        ADC     R31, R17
+        LDD     R18, Z+26
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R16
+        ADC     R31, R17
+        ST      Z, R18
+        SUBI    R16, 255
+        SBCI    R17, 255
+        RJMP    ??Read_7
+??Read_8:
+        MOVW    R31:R30, R27:R26
+        LDD     R6, Z+24
+        LDD     R7, Z+25
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+24, R16
+        LDI     R16, 0
+        STD     Z+25, R16
+        CALL    ??InterruptEnable
+        MOV     R16, R6
+        LDI     R17, 0
+        RJMP    ??Read_4
+??Read_6:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+24
+        LDD     R17, Z+25
+        OR      R16, R17
+        BRNE    ??Read_9
+        LDI     R16, 0
+        LDI     R17, 0
+        RJMP    ??Read_4
+??Read_9:
+        LDI     R16, 0
+        LDI     R17, 0
+??Read_4:
+        LDI     R30, 8
+        JMP     ?EPILOGUE_B8_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??UdreInterruptHandler:
+        MOVW    R21:R20, R27:R26
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+20
+        LDD     R19, Z+21
+        OR      R18, R19
+        BRNE    ??UdreInterruptHandler_1
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ANDI    R18, 0xDF
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+4
+        LDD     R27, Z+5
+        LD      R18, X
+        ORI     R18, 0x40
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ORI     R18, 0x40
+        ST      X, R18
+        RJMP    ??UdreInterruptHandler_2
+??UdreInterruptHandler_1:
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+18
+        LDD     R27, Z+19
+        MOVW    R19:R18, R27:R26
+        SUBI    R18, 255
+        SBCI    R19, 255
+        MOVW    R31:R30, R17:R16
+        STD     Z+18, R18
+        STD     Z+19, R19
+        LD      R18, X
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+10
+        LDD     R27, Z+11
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+20
+        LDD     R19, Z+21
+        SUBI    R18, 1
+        SBCI    R19, 0
+        STD     Z+20, R18
+        STD     Z+21, R19
+??UdreInterruptHandler_2:
+        MOVW    R27:R26, R21:R20
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??TxcInterruptHandler:
+        MOV     R19, R27
+        MOV     R20, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R18, X
+        ANDI    R18, 0xBF
+        ST      X, R18
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 1
+        STD     Z+43, R18
+        MOV     R26, R20
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??RecvInterruptHandler:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R31:R30, R17:R16
+        LDD     R24, Z+24
+        LDD     R25, Z+25
+        SBIW    R25:R24, 16
+        BRCS    ??RecvInterruptHandler_1
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 1
+        STD     Z+44, R18
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 1
+        STD     Z+42, R18
+        RJMP    ??RecvInterruptHandler_2
+??RecvInterruptHandler_1:
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+24
+        LDD     R19, Z+25
+        MOVW    R25:R24, R19:R18
+        ADIW    R25:R24, 1
+        MOVW    R31:R30, R17:R16
+        STD     Z+24, R24
+        STD     Z+25, R25
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+10
+        LDD     R27, Z+11
+        LD      R20, X
+        MOVW    R31:R30, R17:R16
+        ADD     R30, R18
+        ADC     R31, R19
+        STD     Z+26, R20
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 1
+        STD     Z+42, R18
+??RecvInterruptHandler_2:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SIG_UART1_DATA, "interrupt"
+??SIG_UART1_DATA:
+        ST      -Y, R31
+        ST      -Y, R30
+        ST      -Y, R23
+        ST      -Y, R22
+        ST      -Y, R21
+        ST      -Y, R20
+        ST      -Y, R19
+        ST      -Y, R18
+        ST      -Y, R17
+        ST      -Y, R16
+        IN      R22, 0x3F
+        IN      R23, 0x3B
+        LDS     R16, ??m_pxUart1
+        LDS     R17, (??m_pxUart1 + 1)
+        RCALL   ??UdreInterruptHandler
+        OUT     0x3B, R23
+        OUT     0x3F, R22
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        LD      R19, Y+
+        LD      R20, Y+
+        LD      R21, Y+
+        LD      R22, Y+
+        LD      R23, Y+
+        LD      R30, Y+
+        LD      R31, Y+
+        RETI
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SIG_UART1_TXC, "interrupt"
+??SIG_UART1_TXC:
+        ST      -Y, R31
+        ST      -Y, R30
+        ST      -Y, R22
+        ST      -Y, R21
+        ST      -Y, R20
+        ST      -Y, R19
+        ST      -Y, R18
+        ST      -Y, R17
+        ST      -Y, R16
+        IN      R21, 0x3F
+        IN      R22, 0x3B
+        LDS     R16, ??m_pxUart1
+        LDS     R17, (??m_pxUart1 + 1)
+        RCALL   ??TxcInterruptHandler
+        OUT     0x3B, R22
+        OUT     0x3F, R21
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        LD      R19, Y+
+        LD      R20, Y+
+        LD      R21, Y+
+        LD      R22, Y+
+        LD      R30, Y+
+        LD      R31, Y+
+        RETI
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SIG_UART1_RECV, "interrupt"
+??SIG_UART1_RECV:
+        ST      -Y, R31
+        ST      -Y, R30
+        ST      -Y, R0
+        ST      -Y, R22
+        ST      -Y, R21
+        ST      -Y, R20
+        ST      -Y, R19
+        ST      -Y, R18
+        ST      -Y, R17
+        ST      -Y, R16
+        IN      R21, 0x3F
+        IN      R22, 0x3B
+        LDS     R16, ??m_pxUart1
+        LDS     R17, (??m_pxUart1 + 1)
+        RCALL   ??RecvInterruptHandler
+        OUT     0x3B, R22
+        OUT     0x3F, R21
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        LD      R19, Y+
+        LD      R20, Y+
+        LD      R21, Y+
+        LD      R22, Y+
+        LD      R0, Y+
+        LD      R30, Y+
+        LD      R31, Y+
+        RETI
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CEeprom`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CEeprom_1`
+        BST     R18, 0
+        BRTC    `?~CEeprom_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CEeprom_1`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??ReadByte:
+        MOVW    R19:R18, R17:R16
+        WDR
+??ReadByte_1:
+        SBIS    0x1C, 0x01
+        RJMP    ??ReadByte_2
+        WDR
+        RJMP    ??ReadByte_1
+??ReadByte_2:
+        CLI
+        OUT     0x1F, R19
+        OUT     0x1E, R18
+        SBI     0x1C, 0x00
+        SEI
+        IN      R16, 0x1D
+        RET
+        REQUIRE _A_EECR
+        REQUIRE _A_EEAR
+        REQUIRE _A_EEDR
+
+        RSEG CODE:CODE:NOROOT(1)
+??Read_1:
+        MOV     R23, R25
+        MOV     R0, R24
+        MOVW    R31:R30, R17:R16
+        MOVW    R25:R24, R19:R18
+??Read_10:
+        MOV     R16, R20
+        OR      R16, R21
+        BREQ    ??Read_11
+        MOVW    R17:R16, R25:R24
+        RCALL   ??ReadByte
+        ADIW    R25:R24, 1
+        ST      Z, R16
+        ADIW    R31:R30, 1
+        SUBI    R20, 1
+        SBCI    R21, 0
+        RJMP    ??Read_10
+??Read_11:
+        LDI     R16, 1
+        MOV     R24, R0
+        MOV     R25, R23
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??WriteByte:
+        MOVW    R21:R20, R17:R16
+        MOV     R22, R18
+        MOVW    R17:R16, R21:R20
+        RCALL   ??ReadByte
+        CP      R16, R22
+        BREQ    ??WriteByte_1
+        WDR
+??WriteByte_2:
+        SBIS    0x1C, 0x01
+        RJMP    ??WriteByte_3
+        WDR
+        RJMP    ??WriteByte_2
+??WriteByte_3:
+        CLI
+        OUT     0x1F, R21
+        OUT     0x1E, R20
+        OUT     0x1D, R22
+        SBI     0x1C, 0x02
+        SBI     0x1C, 0x01
+        SEI
+??WriteByte_1:
+        RET
+        REQUIRE _A_EECR
+        REQUIRE _A_EEAR
+        REQUIRE _A_EEDR
+
+        RSEG CODE:CODE:NOROOT(1)
+??Write_1:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R1:R0, R17:R16
+        MOVW    R31:R30, R19:R18
+        MOVW    R25:R24, R21:R20
+??Write_2:
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    ??Write_3
+        MOVW    R27:R26, R31:R30
+        MOVW    R31:R30, R27:R26
+        ADIW    R31:R30, 1
+        LD      R18, X
+        MOVW    R17:R16, R1:R0
+        RCALL   ??WriteByte
+        LDI     R16, 1
+        ADD     R0, R16
+        LDI     R16, 0
+        ADC     R1, R16
+        SBIW    R25:R24, 1
+        RJMP    ??Write_2
+??Write_3:
+        LDI     R16, 1
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??WriteInterrupt:
+        CALL    ?PROLOGUE6_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        MOVW    R25:R24, R17:R16
+        MOVW    R5:R4, R19:R18
+        MOVW    R27:R26, R21:R20
+        MOVW    R17:R16, R25:R24
+        CALL    ??SetAddress
+        MOVW    R17:R16, R5:R4
+        CALL    ??SetBufferPointer
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetLength
+        LDI     R16, 0
+        LDI     R17, 0
+        CALL    ??SetBufferByteCounter
+        LDI     R30, 6
+        JMP     ?EPILOGUE_B6_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??ReadyInterruptHandler:
+        CALL    ?PROLOGUE4_L09
+        CALL    ??GetBufferByteCounter
+        MOVW    R25:R24, R17:R16
+        CALL    ??GetLength
+        CP      R24, R16
+        CPC     R25, R17
+        BRCC    ??ReadyInterruptHandler_1
+        CALL    ??GetAddress
+        OUT     0x1F, R17
+        OUT     0x1E, R16
+        CALL    ??GetAddress
+        SUBI    R16, 255
+        SBCI    R17, 255
+        CALL    ??SetAddress
+        SBI     0x1C, 0x00
+        IN      R24, 0x1D
+        CALL    ??GetBufferPointer
+        MOVW    R27:R26, R17:R16
+        CALL    ??GetBufferByteCounter
+        ADD     R26, R16
+        ADC     R27, R17
+        LD      R16, X
+        CP      R24, R16
+        BREQ    ??ReadyInterruptHandler_2
+        CALL    ??GetBufferPointer
+        MOVW    R27:R26, R17:R16
+        CALL    ??GetBufferByteCounter
+        ADD     R26, R16
+        ADC     R27, R17
+        LD      R16, X
+        OUT     0x1D, R16
+        SBI     0x1C, 0x02
+        SBI     0x1C, 0x01
+??ReadyInterruptHandler_2:
+        CALL    ??GetBufferByteCounter
+        SUBI    R16, 255
+        SBCI    R17, 255
+        CALL    ??SetBufferByteCounter
+        RJMP    ??ReadyInterruptHandler_3
+??ReadyInterruptHandler_1:
+        CALL    ??ReadyInterruptDisaable
+        LDI     R16, 0
+        LDI     R17, 0
+        OUT     0x1F, R17
+        OUT     0x1E, R16
+        LDI     R16, 1
+        CALL    ??SetBufferIsWrited
+??ReadyInterruptHandler_3:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+        REQUIRE _A_EEAR
+        REQUIRE _A_EECR
+        REQUIRE _A_EEDR
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??EEPROM_EE_READY, "interrupt"
+??EEPROM_EE_READY:
+        ST      -Y, R25
+        ST      -Y, R24
+        ST      -Y, R31
+        ST      -Y, R30
+        ST      -Y, R3
+        ST      -Y, R2
+        ST      -Y, R1
+        ST      -Y, R0
+        ST      -Y, R23
+        ST      -Y, R22
+        ST      -Y, R21
+        ST      -Y, R20
+        ST      -Y, R19
+        ST      -Y, R18
+        ST      -Y, R17
+        ST      -Y, R16
+        IN      R24, 0x3F
+        IN      R25, 0x3B
+        RCALL   ??ReadyInterruptHandler
+        OUT     0x3B, R25
+        OUT     0x3F, R24
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        LD      R19, Y+
+        LD      R20, Y+
+        LD      R21, Y+
+        LD      R22, Y+
+        LD      R23, Y+
+        LD      R0, Y+
+        LD      R1, Y+
+        LD      R2, Y+
+        LD      R3, Y+
+        LD      R30, Y+
+        LD      R31, Y+
+        LD      R24, Y+
+        LD      R25, Y+
+        RETI
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CSpi`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CSpi_1`
+        BST     R18, 0
+        BRTC    `?~CSpi_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CSpi_1`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Init_1:
+        LDI     R16, 19
+        OUT     0x0D, R16
+        IN      R16, 0x17
+        ORI     R16, 0x06
+        OUT     0x17, R16
+        SBI     0x0D, 0x06
+        RET
+        REQUIRE _A_SPCR
+        REQUIRE _A_DDRB
+
+        RSEG CODE:CODE:NOROOT(1)
+??Reset_1:
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??Enable_1:
+        SBI     0x0D, 0x06
+        RET
+        REQUIRE _A_SPCR
+
+        RSEG CODE:CODE:NOROOT(1)
+??Disable_1:
+        CBI     0x0D, 0x06
+        RET
+        REQUIRE _A_SPCR
+
+        RSEG CODE:CODE:NOROOT(1)
+??Exchange:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOV     R25, R16
+        LDI     R16, 70
+        DEC     R16
+        BRNE    $-2
+        OUT     0x0F, R25
+        LDI     R24, 0
+??Exchange_2:
+        SBIC    0x0E, 0x07
+        RJMP    ??Exchange_3
+        CALL    ??WatchdogReset
+        CPI     R24, 100
+        BRCC    ??Exchange_4
+        INC     R24
+        RJMP    ??Exchange_2
+??Exchange_4:
+        IN      R16, 0x0F
+        RJMP    ??Exchange_5
+??Exchange_3:
+        IN      R16, 0x0F
+??Exchange_5:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+        REQUIRE _A_SPDR
+        REQUIRE _A_SPSR
+
+        RSEG CODE:CODE:NOROOT(1)
+??Exchange_1:
+        CALL    ?PROLOGUE8_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        MOVW    R7:R6, R17:R16
+        MOVW    R5:R4, R19:R18
+        MOVW    R27:R26, R21:R20
+        CPI     R26, 65
+        LDI     R16, 0
+        CPC     R27, R16
+        BRCS    ??Exchange_6
+        LDI     R16, 0
+        RJMP    ??Exchange_7
+??Exchange_6:
+        LDI     R24, 0
+        LDI     R25, 0
+??Exchange_8:
+        CP      R24, R26
+        CPC     R25, R27
+        BRCC    ??Exchange_9
+        MOVW    R31:R30, R5:R4
+        ADD     R30, R24
+        ADC     R31, R25
+        LD      R16, Z
+        RCALL   ??Exchange
+        MOVW    R31:R30, R7:R6
+        ADD     R30, R24
+        ADC     R31, R25
+        ST      Z, R16
+        ADIW    R25:R24, 1
+        RJMP    ??Exchange_8
+??Exchange_9:
+        LDI     R16, 1
+??Exchange_7:
+        LDI     R30, 8
+        JMP     ?EPILOGUE_B8_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??Read_2:
+        MOVW    R21:R20, R17:R16
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??delay_ms:
+??delay_ms_1:
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R19:R18
+        SUBI    R16, 1
+        SBCI    R17, 0
+        OR      R18, R19
+        BREQ    ??delay_ms_2
+        LDI     R18, 213
+        LDI     R19, 6
+        SUBI    R18, 1
+        SBCI    R19, 0
+        BRNE    $-4
+        RJMP    $+2
+        NOP
+        RJMP    ??delay_ms_1
+??delay_ms_2:
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??delay_s:
+??delay_s_1:
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R19:R18
+        SUBI    R16, 1
+        SBCI    R17, 0
+        OR      R18, R19
+        BREQ    ??delay_s_2
+        LDI     R20, 255
+        LDI     R21, 127
+        LDI     R22, 22
+        SUBI    R20, 1
+        SBCI    R21, 0
+        SBCI    R22, 0
+        BRNE    $-6
+        RJMP    $+2
+        NOP
+        RJMP    ??delay_s_1
+??delay_s_2:
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??delay_mins:
+??delay_mins_1:
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R19:R18
+        SUBI    R16, 1
+        SBCI    R17, 0
+        OR      R18, R19
+        BREQ    ??delay_mins_2
+        LDI     R20, 255
+        LDI     R21, 255
+        LDI     R22, 100
+        LDI     R23, 4
+        SUBI    R20, 1
+        SBCI    R21, 0
+        SBCI    R22, 0
+        SBCI    R23, 0
+        BRNE    $-8
+        RJMP    $+2
+        NOP
+        RJMP    ??delay_mins_1
+??delay_mins_2:
+        RET
+//  607 
+//  608 //-----------------------------------------------------------------------------------------------------
+//  609 CPlatform::CPlatform()
+//  610 {
+//  611 
+//  612 }
+//  613 
+//  614 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  615 CPlatform::~CPlatform()
+`?~CPlatform`:
+//  616 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CPlatform_1`
+        BST     R18, 0
+        BRTC    `?~CPlatform_1`
+//  617 
+//  618 }
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CPlatform_1`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??SystemTickInit:
+        LDI     R16, 204
+        LDI     R17, 28
+        LDI     R18, 0
+        LDI     R19, 0
+        LDI     R20, 6
+        CALL    ?UL_SHR_L03
+        SUBI    R16, 1
+        SBCI    R17, 0
+        SBCI    R18, 0
+        SBCI    R19, 0
+        MOVW    R23:R22, R17:R16
+        OUT     0x23, R22
+        LDI     R21, 11
+        OUT     0x25, R21
+        IN      R20, 0x37
+        MOV     R21, R20
+        ORI     R21, 0x80
+        OUT     0x37, R21
+        RET
+        REQUIRE _A_OCR2
+        REQUIRE _A_TCCR2
+        REQUIRE _A_TIMSK
+//  619 
+//  620 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  621 void CPlatform::Init(void)
+??Init_2:
+//  622 {
+//  623     SystemTickInit();
+        RCALL   ??SystemTickInit
+//  624     StatusLedSetPinOutput();
+        CALL    ??StatusLedSetPinOutput
+//  625     TxLedSetPinOutput();
+        CALL    ??TxLedSetPinOutput
+//  626     TxLedOff();
+        CALL    ??TxLedOff
+//  627     KeyOneSetPinInput();
+        CALL    ??KeyOneSetPinInput
+//  628     KeyTwoSetPinInput();
+        CALL    ??KeyTwoSetPinInput
+//  629     KeyThreeSetPinInput();
+        CALL    ??KeyThreeSetPinInput
+//  630     ExternalKeySetPinInput();
+        CALL    ??ExternalKeySetPinInput
+//  631     CPlatform::InterruptEnable();
+        CALL    ??InterruptEnable
+//  632 }
+        RET
+//  633 
+//  634 // Сирена
+//  635 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  636 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+??BuzzerTimerFrequencySet:
+//  637 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+//  638     unsigned short usCompareMatch;
+//  639 
+//  640     // half-period time.
+//  641     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+        MOVW    R21:R20, R25:R24
+        LDI     R22, 0
+        LDI     R23, 0
+        LSL     R20
+        ROL     R21
+        ROL     R22
+        ROL     R23
+        LDI     R16, 0
+        LDI     R17, 128
+        LDI     R18, 112
+        LDI     R19, 0
+        CALL    ?UL_DIVMOD_L03
+        SUBI    R16, 1
+        SBCI    R17, 0
+        MOVW    R27:R26, R17:R16
+//  642     // Срабатывает по Top совпадению значения в ICR3.
+//  643     // Если Top по совпадению значения в OCR3A, то нельзя использовать COM3A вывод.
+//  644     ICR3 = usCompareMatch * 2;
+        MOVW    R17:R16, R27:R26
+        LSL     R16
+        ROL     R17
+        STS     (_A_ICR3 + 1), R17
+        STS     _A_ICR3, R16
+//  645     OCR3A = usCompareMatch;
+        STS     (_A_OCR3A + 1), R27
+        STS     _A_OCR3A, R26
+//  646     OCR3B = usCompareMatch;
+        STS     (_A_OCR3B + 1), R27
+        STS     _A_OCR3B, R26
+//  647 
+//  648     // Fast PWM Mode Top OCRn, prescaller - 1,
+//  649     // Clear OC3B on compare match (set output to low level).
+//  650     // Set OC3A on compare match (set output to high level).
+//  651     TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
+        LDI     R16, 226
+        STS     _A_TCCR3A, R16
+//  652     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+        LDI     R16, 25
+        STS     _A_TCCR3B, R16
+//  653 };
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+        REQUIRE _A_ICR3
+        REQUIRE _A_OCR3A
+        REQUIRE _A_OCR3B
+        REQUIRE _A_TCCR3A
+        REQUIRE _A_TCCR3B
+//  654 
+//  655 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  656 void CPlatform::BuzzerTimerStop(void)
+??BuzzerTimerStop:
+//  657 {
+//  658     // timer off.
+//  659     TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
+        LDS     R16, _A_TCCR3A
+        ANDI    R16, 0x1D
+        STS     _A_TCCR3A, R16
+//  660     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+        LDS     R16, _A_TCCR3B
+        ANDI    R16, 0xE6
+        STS     _A_TCCR3B, R16
+//  661 };
+        RET
+        REQUIRE _A_TCCR3A
+        REQUIRE _A_TCCR3B
+//  662 
+//  663 //-----------------------------------------------------------------------------------------------------
+//  664 void CPlatform::SystemTickInit(void)
+//  665 {
+//  666 #define MAIN_TIMER_TICK_RATE_HZ 1000
+//  667 
+//  668 //#define TIMER1_INTERRUPT
+//  669 #define TIMER2_INTERRUPT
+//  670 
+//  671 
+//  672 #ifdef TIMER2_INTERRUPT
+//  673     /* Hardware constants for timer 2. */
+//  674 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM21) )
+//  675 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS21) | _BV(CS20)) )
+//  676 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+//  677 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE2) )
+//  678 #endif //TIMER2_INTERRUPT
+//  679 
+//  680 #ifdef TIMER1_INTERRUPT
+//  681     /* Hardware constants for timer 1. */
+//  682 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM12) )
+//  683 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS11) | _BV(CS10)) )
+//  684 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+//  685 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE1A) )
+//  686 #endif //TIMER1_INTERRUPT
+//  687 
+//  688 #ifdef TIMER2_INTERRUPT
+//  689 
+//  690     /*
+//  691      * Setup timer 2 compare match A to generate a tick interrupt.
+//  692      */
+//  693 //  TMR2 mega128a
+//  694     unsigned long ulCompareMatch;
+//  695     unsigned char ucLowByte;
+//  696 
+//  697     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+//  698     selected for the configCPU_CLOCK_HZ clock. */
+//  699 
+//  700 //ulCompareMatch  = (configCPU_CLOCK_HZ / prescaller) / period
+//  701 
+//  702     ulCompareMatch = F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+//  703 
+//  704     /* We only have 16 bits so have to scale to get our required tick rate. */
+//  705     ulCompareMatch /= portCLOCK_PRESCALER;
+//  706 
+//  707     /* Adjust for correct value. */
+//  708     ulCompareMatch -= ( unsigned long ) 1;
+//  709 
+//  710     /* Setup compare match value for compare match A.  Interrupts are disabled
+//  711     before this is called so we need not worry here. */
+//  712     OCR2 = ulCompareMatch;
+//  713 
+//  714     /* Setup clock Sourse and compare match behaviour. */
+//  715     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+//  716     TCCR2 = ucLowByte;
+//  717 
+//  718     /* Enable the interrupt - this is okay as interrupt are currently globally
+//  719     disabled. */
+//  720     ucLowByte = TIMSK;
+//  721     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+//  722     TIMSK = ucLowByte;
+//  723 
+//  724 #endif //TIMER2_INTERRUPT
+//  725 
+//  726 #ifdef TIMER1_INTERRUPT
+//  727 
+//  728 // mega128a
+//  729     unsigned long ulCompareMatch;
+//  730     unsigned char ucLowByte;
+//  731 
+//  732     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+//  733     selected for the configCPU_CLOCK_HZ clock. */
+//  734 
+//  735     ulCompareMatch = CPlatform::F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+//  736 
+//  737     /* We only have 16 bits so have to scale to get our required tick rate. */
+//  738     ulCompareMatch /= portCLOCK_PRESCALER;
+//  739 
+//  740     /* Adjust for correct value. */
+//  741     ulCompareMatch -= ( unsigned long ) 1;
+//  742 
+//  743     /* Setup compare match value for compare match A.  Interrupts are disabled
+//  744     before this is called so we need not worry here. */
+//  745     OCR1A = ulCompareMatch;
+//  746 
+//  747     /* Setup clock Sourse and compare match behaviour. */
+//  748     TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
+//  749     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+//  750     TCCR1B = ucLowByte;
+//  751 
+//  752     /* Enable the interrupt - this is okay as interrupt are currently globally
+//  753     disabled. */
+//  754     ucLowByte = TIMSK;
+//  755     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+//  756     TIMSK = ucLowByte;
+//  757 
+//  758 #endif //TIMER1_INTERRUPT
+//  759 
+//  760 }
+//  761 
+//  762 //-----------------------------------------------------------------------------------------------------
+//  763 #ifdef TIMER1_INTERRUPT
+//  764 // Прерывание TIMER1_COMPA_vect
+//  765 __interrupt void SystemTickInterrupt(void)
+//  766 {
+//  767     CPlatform::IncrementSystemTick();
+//  768 }
+//  769 #endif //TIMER1_INTERRUPT
+//  770 //-----------------------------------------------------------------------------------------------------
+//  771 #ifdef TIMER2_INTERRUPT
+//  772 // Прерывание TIMER2_COMP_vect
+//  773 #pragma vector = TIMER2_COMP_vect	// Прерывание по совпадению TMR2 с OCR2
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SystemTickInterrupt, "interrupt"
+//  774 __interrupt void SystemTickInterrupt(void)
+??SystemTickInterrupt:
+//  775 {
+        ST      -Y, R25
+        ST      -Y, R24
+        ST      -Y, R31
+        ST      -Y, R30
+        ST      -Y, R3
+        ST      -Y, R2
+        ST      -Y, R1
+        ST      -Y, R0
+        ST      -Y, R23
+        ST      -Y, R22
+        ST      -Y, R21
+        ST      -Y, R20
+        ST      -Y, R19
+        ST      -Y, R18
+        ST      -Y, R17
+        ST      -Y, R16
+        IN      R24, 0x3F
+        IN      R25, 0x3B
+//  776     CPlatform::IncrementSystemTick();
+        CALL    ??IncrementSystemTick
+//  777 }
+        OUT     0x3B, R25
+        OUT     0x3F, R24
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        LD      R19, Y+
+        LD      R20, Y+
+        LD      R21, Y+
+        LD      R22, Y+
+        LD      R23, Y+
+        LD      R0, Y+
+        LD      R1, Y+
+        LD      R2, Y+
+        LD      R3, Y+
+        LD      R30, Y+
+        LD      R31, Y+
+        LD      R24, Y+
+        LD      R25, Y+
+        RETI
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CEeprom::ReadyInterruptDisaable()
+??ReadyInterruptDisaable:
+        CBI     0x1C, 0x03
+        RET
+        REQUIRE _A_EECR
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t *CEeprom::GetBufferPointer()
+??GetBufferPointer:
+        LDI     R30, LOW(??m_puiBuffer)
+        LDI     R31, (??m_puiBuffer) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CEeprom::SetBufferPointer(uint8_t *)
+??SetBufferPointer:
+        LDI     R30, LOW(??m_puiBuffer)
+        LDI     R31, (??m_puiBuffer) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CEeprom::SetAddress(uint16_t)
+??SetAddress:
+        LDI     R30, LOW(??m_uiAddress)
+        LDI     R31, (??m_uiAddress) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CEeprom::GetAddress()
+??GetAddress:
+        LDI     R30, LOW(??m_uiAddress)
+        LDI     R31, (??m_uiAddress) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CEeprom::SetBufferByteCounter(uint16_t)
+??SetBufferByteCounter:
+        LDI     R30, LOW(??m_nuiBufferByteCounter)
+        LDI     R31, (??m_nuiBufferByteCounter) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CEeprom::GetBufferByteCounter()
+??GetBufferByteCounter:
+        LDI     R30, LOW(??m_nuiBufferByteCounter)
+        LDI     R31, (??m_nuiBufferByteCounter) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CEeprom::SetLength(uint16_t)
+??SetLength:
+        LDI     R30, LOW(??m_uiLength)
+        LDI     R31, (??m_uiLength) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CEeprom::GetLength()
+??GetLength:
+        LDI     R30, LOW(??m_uiLength)
+        LDI     R31, (??m_uiLength) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CEeprom::SetBufferIsWrited(bool)
+??SetBufferIsWrited:
+        STS     ??m_bBufferIsWrited, R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::WatchdogReset()
+??WatchdogReset:
+        WDR
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::InterruptEnable()
+??InterruptEnable:
+        SEI
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::InterruptDisable()
+??InterruptDisable:
+        CLI
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::IncrementSystemTick()
+??IncrementSystemTick:
+        LDI     R30, LOW(??m_uiSystemTick)
+        LDI     R31, (??m_uiSystemTick) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        SUBI    R16, 255
+        SBCI    R17, 255
+        ST      Z, R16
+        STD     Z+1, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::StatusLedSetPinOutput()
+??StatusLedSetPinOutput:
+        LDS     R16, 97
+        ORI     R16, 0x80
+        STS     97, R16
+        RET
+        REQUIRE _A_DDRF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::TxLedSetPinOutput()
+??TxLedSetPinOutput:
+        LDS     R16, 97
+        ORI     R16, 0x40
+        STS     97, R16
+        RET
+        REQUIRE _A_DDRF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::TxLedOff()
+??TxLedOff:
+        LDS     R16, 98
+        ORI     R16, 0x40
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::KeyOneSetPinInput()
+??KeyOneSetPinInput:
+        CBI     0x14, 0x02
+        RET
+        REQUIRE _A_DDRC
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::KeyTwoSetPinInput()
+??KeyTwoSetPinInput:
+        CBI     0x14, 0x01
+        RET
+        REQUIRE _A_DDRC
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::KeyThreeSetPinInput()
+??KeyThreeSetPinInput:
+        CBI     0x14, 0x00
+        RET
+        REQUIRE _A_DDRC
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::ExternalKeySetPinInput()
+??ExternalKeySetPinInput:
+        LDS     R16, 100
+        ANDI    R16, 0xFE
+        STS     100, R16
+        RET
+        REQUIRE _A_DDRG
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 36
+`??SystemTickInterrupt::??INTVEC 36`:
+        JMP     ??SystemTickInterrupt
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 88
+`??EEPROM_EE_READY::??INTVEC 88`:
+        JMP     ??EEPROM_EE_READY
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 120
+`??SIG_UART1_RECV::??INTVEC 120`:
+        JMP     ??SIG_UART1_RECV
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 124
+`??SIG_UART1_DATA::??INTVEC 124`:
+        JMP     ??SIG_UART1_DATA
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 128
+`??SIG_UART1_TXC::??INTVEC 128`:
+        JMP     ??SIG_UART1_TXC
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DC16    SFE(NEAR_Z) - SFB(NEAR_Z)
+        DC16    SFB(NEAR_Z)
+        DP      0
+        REQUIRE ?need_segment_init
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CUart::__vtbl[1]
+??__vtbl:
+        DC16 `?~CUart`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CEeprom::__vtbl[1]
+??__vtbl_2:
+        DC16 `?~CEeprom`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CPlatform::__vtbl[1]
+??__vtbl_3:
+        DC16 `?~CPlatform`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CSpi::__vtbl[1]
+??__vtbl_5:
+        DC16 `?~CSpi`/2
+
+        END
+//  778 #endif //TIMER2_INTERRUPT
+//  779 
+//  780 
+//  781 
+// 
+//   105 bytes in segment ABSOLUTE
+// 2 568 bytes in segment CODE
+//     7 bytes in segment INITTAB
+//    20 bytes in segment INTVEC
+//    44 bytes in segment NEAR_F
+//    14 bytes in segment NEAR_Z
+// 
+// 2 424 bytes of CODE memory (+ 215 bytes shared)
+//    14 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 7

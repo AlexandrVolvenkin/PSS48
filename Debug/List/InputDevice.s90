@@ -1,0 +1,1166 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:04
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EWD610.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp --cpu=m128a
+//        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\InputDevice.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME InputDevice
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE4_L09
+
+        PUBLIC ??CInputDevice
+        PUBLIC ??CInputDevice_1
+        PUBLIC ??CMultiFunctionKey
+        PUBLIC ??CMultiFunctionKey_1
+        PUBLIC ??EventHappened
+        PUBLIC ??Fsm
+        PUBLIC ??Fsm_1
+        PUBWEAK ??GetFsmState
+        PUBWEAK ??KEY_PRESSED_CHECK_REPEAT_TIME
+        PUBWEAK ??KEY_PRESSED_HOLD_REPEAT_TIME
+        PUBWEAK ??KEY_PRESSED_TIME_CHECK
+        PUBWEAK ??KEY_PRESSED_TIME_CHECK_1
+        PUBWEAK ??KEY_PRESSED_TIME_HOLD
+        PUBWEAK ??KEY_PRESSED_TIME_PUSH
+        PUBWEAK ??KEY_PRESSED_TIME_RECEIPT
+        PUBWEAK ??KEY_PRESSED_TIME_RESET
+        PUBWEAK ??KEY_PRESSED_TIME_SET_DEFAULT
+        PUBLIC ??KeyEventHappened
+        PUBLIC ??SetCapabilities
+        PUBWEAK ??SetFsmState
+        PUBWEAK ??__vtbl
+        PUBWEAK ??__vtbl_1
+        PUBLIC `??new CInputDevice`
+        PUBLIC `??new CInputDevice_1`
+        PUBLIC `??new CMultiFunctionKey`
+        PUBLIC `??new CMultiFunctionKey_1`
+        PUBLIC `?~CInputDevice`
+        PUBLIC `?~CMultiFunctionKey`
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CInputDevice 30>` SYMBOL "CInputDevice"
+`?<Name CMultiFunctionKey 38>` SYMBOL "CMultiFunctionKey"
+??__vtbl            SYMBOL "__vtbl", `?<Name CInputDevice 30>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CMultiFunctionKey 38>`
+
+        EXTERN ??CDfa
+        EXTERN ??CTimer
+        EXTERN ??IsOverflow
+        EXTERN ??Set
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDfa`
+        EXTERN `?~CTimer`
+
+// D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Sourse      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "InputDevice.h"
+//    9 
+//   10 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   11 CInputDevice::CInputDevice()
+??CInputDevice:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//   12 {
+        MOVW    R17:R16, R27:R26
+        CALL    ??CDfa
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??CTimer
+//   13 
+//   14 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CInputDevice &CInputDevice::new CInputDevice()
+`??new CInputDevice`:
+        LDI     R16, 15
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CInputDevice_2`
+        RCALL   ??CInputDevice
+        RET
+`??new CInputDevice_2`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//   15 
+//   16 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   17 CInputDevice::CInputDevice(uint8_t (*fpuiEventSourse)(void)) :
+??CInputDevice_1:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+//   18     m_fpuiEventSourse(fpuiEventSourse)
+//   19 {
+        MOVW    R17:R16, R27:R26
+        CALL    ??CDfa
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        MOVW    R31:R30, R27:R26
+        STD     Z+5, R24
+        STD     Z+6, R25
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??CTimer
+//   20     m_uiEventCode = KEY_EVENT_UNPRESSED;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+7, R16
+//   21     SetFsmState(KEY_EVENT_UNPRESSED);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//   22 }
+        MOVW    R17:R16, R27:R26
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CInputDevice &CInputDevice::new CInputDevice(uint8_t (*)())
+`??new CInputDevice_1`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        LDI     R16, 15
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CInputDevice_3`
+        MOVW    R19:R18, R25:R24
+        RCALL   ??CInputDevice_1
+        RJMP    `??new CInputDevice_4`
+`??new CInputDevice_3`:
+        LDI     R16, 0
+        LDI     R17, 0
+`??new CInputDevice_4`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//   23 
+//   24 //-----------------------------------------------------------------------------------------------------
+//   25 CInputDevice::~CInputDevice()
+//   26 {
+//   27 
+//   28 }
+//   29 
+//   30 //-----------------------------------------------------------------------------------------------------
+//   31 void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+//   32 {
+//   33     m_fpuiEventSourse = fpuiEventSourse;
+//   34     m_uiEventCode = KEY_EVENT_UNPRESSED;
+//   35     SetFsmState(KEY_EVENT_UNPRESSED);
+//   36 }
+//   37 
+//   38 //-----------------------------------------------------------------------------------------------------
+//   39 uint8_t CInputDevice::EventHappened(void)
+//   40 {
+//   41     if (m_fpuiEventSourse())
+//   42     {
+//   43         return 1;
+//   44     }
+//   45     else
+//   46     {
+//   47         return 0;
+//   48     }
+//   49 
+//   50 }
+//   51 
+//   52 //-----------------------------------------------------------------------------------------------------
+//   53 uint8_t CInputDevice::KeyEventHappened(uint8_t uiCode)
+//   54 {
+//   55     Fsm();
+//   56 
+//   57     if (m_uiEventCode == uiCode)
+//   58     {
+//   59         m_uiEventCode = KEY_EVENT_UNPRESSED;
+//   60         m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+//   61         return 1;
+//   62     }
+//   63     else
+//   64     {
+//   65         return 0;
+//   66     }
+//   67 
+//   68 }
+//   69 
+//   70 //-----------------------------------------------------------------------------------------------------
+//   71 void CInputDevice::Fsm(void)
+//   72 {
+//   73     // какое событие обрабатываем?
+//   74     switch (GetFsmState())
+//   75     {
+//   76     case KEY_EVENT_UNPRESSED:
+//   77         SetFsmState(KEY_EVENT_WAITING_PRESSED);
+//   78         break;
+//   79 
+//   80     case KEY_EVENT_WAITING_PRESSED:
+//   81         // кнопка нажата?
+//   82         if (EventHappened())
+//   83         {
+//   84             m_xTimer.Set(KEY_PRESSED_TIME_PUSH());
+//   85             SetFsmState(KEY_EVENT_PRESSED_PUSH);
+//   86         }
+//   87         break;
+//   88     case KEY_EVENT_PRESSED_PUSH:
+//   89         // кнопка нажата?
+//   90         if (EventHappened())
+//   91         {
+//   92             if (m_xTimer.IsOverflow())
+//   93             {
+//   94                 m_xTimer.Set(KEY_PRESSED_TIME_HOLD());
+//   95                 m_uiEventCode = KEY_EVENT_PRESSED_PUSH;
+//   96                 SetFsmState(KEY_EVENT_PRESSED_HOLD);
+//   97 
+//   98             }
+//   99         }
+//  100         else
+//  101         {
+//  102             SetFsmState(KEY_EVENT_UNPRESSED);
+//  103         }
+//  104         break;
+//  105     case KEY_EVENT_PRESSED_HOLD:
+//  106         // кнопка нажата?
+//  107         if (EventHappened())
+//  108         {
+//  109             if (m_xTimer.IsOverflow())
+//  110             {
+//  111                 m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
+//  112                 m_uiEventCode = KEY_EVENT_PRESSED_HOLD;
+//  113                 SetFsmState(KEY_EVENT_PRESSED_REPEAT);
+//  114 
+//  115             }
+//  116         }
+//  117         else
+//  118         {
+//  119             SetFsmState(KEY_EVENT_UNPRESSED);
+//  120         }
+//  121         break;
+//  122 
+//  123     case KEY_EVENT_PRESSED_REPEAT:
+//  124         // кнопка нажата?
+//  125         if (EventHappened())
+//  126         {
+//  127             if (m_xTimer.IsOverflow())
+//  128             {
+//  129                 m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
+//  130                 m_uiEventCode = KEY_EVENT_PRESSED_REPEAT;
+//  131             }
+//  132         }
+//  133         else
+//  134         {
+//  135             SetFsmState(KEY_EVENT_UNPRESSED);
+//  136         }
+//  137         break;
+//  138     default:
+//  139         break;
+//  140     }
+//  141 }
+//  142 //-----------------------------------------------------------------------------------------------------
+//  143 
+//  144 
+//  145 
+//  146 
+//  147 
+//  148 
+//  149 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  150 CMultiFunctionKey::CMultiFunctionKey()
+??CMultiFunctionKey:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  151 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CInputDevice
+        LDI     R16, LOW(??__vtbl_1)
+        LDI     R17, (??__vtbl_1) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  152 
+//  153 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey()
+`??new CMultiFunctionKey`:
+        LDI     R16, 15
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CMultiFunctionKey_2`
+        RCALL   ??CMultiFunctionKey
+        RET
+`??new CMultiFunctionKey_2`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??CMultiFunctionKey_1:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CInputDevice
+        LDI     R16, LOW(??__vtbl_1)
+        LDI     R17, (??__vtbl_1) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        MOVW    R31:R30, R27:R26
+        STD     Z+5, R24
+        STD     Z+6, R25
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+8, R16
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+7, R16
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        MOVW    R17:R16, R27:R26
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
+`??new CMultiFunctionKey_1`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        LDI     R16, 15
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CMultiFunctionKey_3`
+        MOVW    R19:R18, R25:R24
+        RCALL   ??CMultiFunctionKey_1
+        RJMP    `??new CMultiFunctionKey_4`
+`??new CMultiFunctionKey_3`:
+        LDI     R16, 0
+        LDI     R17, 0
+`??new CMultiFunctionKey_4`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CInputDevice`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+        MOV     R16, R26
+        OR      R16, R27
+        BREQ    `?~CInputDevice_1`
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        LDI     R18, 2
+        LDI     R19, 0
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    `?~CTimer`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R27:R26
+        CALL    `?~CDfa`
+        BST     R24, 0
+        BRTC    `?~CInputDevice_1`
+        MOVW    R17:R16, R27:R26
+        CALL    `??operator delete`
+`?~CInputDevice_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??SetCapabilities:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+        MOVW    R31:R30, R27:R26
+        STD     Z+5, R24
+        STD     Z+6, R25
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+7, R16
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??EventHappened:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        ADIW    R27:R26, 5
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 6
+        ICALL
+        TST     R16
+        BREQ    ??EventHappened_1
+        LDI     R16, 1
+        RJMP    ??EventHappened_2
+??EventHappened_1:
+        LDI     R16, 0
+??EventHappened_2:
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??KeyEventHappened:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 2
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 3
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+7
+        CP      R16, R24
+        BRNE    ??KeyEventHappened_1
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+7, R16
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+8, R16
+        LDI     R16, 1
+        RJMP    ??KeyEventHappened_2
+??KeyEventHappened_1:
+        LDI     R16, 0
+??KeyEventHappened_2:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??Fsm:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetFsmState
+        SUBI    R16, 0
+        BREQ    ??Fsm_2
+        DEC     R16
+        BREQ    ??Fsm_3
+        DEC     R16
+        BREQ    ??Fsm_4
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_5
+        SUBI    R16, 3
+        BRNE    $+2+2
+        RJMP    ??Fsm_6
+        RJMP    ??Fsm_7
+??Fsm_2:
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_7
+??Fsm_3:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_8
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+        LDI     R18, 2
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_8:
+        RJMP    ??Fsm_7
+??Fsm_4:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_9
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_10
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 6
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 7
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 2
+        STD     Z+7, R16
+        LDI     R18, 3
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_7
+??Fsm_9:
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_10:
+        RJMP    ??Fsm_7
+??Fsm_5:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_11
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_12
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 10
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 11
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 3
+        STD     Z+7, R16
+        LDI     R18, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_7
+??Fsm_11:
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_12:
+        RJMP    ??Fsm_7
+??Fsm_6:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_13
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_7
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 10
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 11
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 6
+        STD     Z+7, R16
+        RJMP    ??Fsm_7
+??Fsm_13:
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_7:
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+//  154 
+//  155 //-----------------------------------------------------------------------------------------------------
+//  156 CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSourse)(void))
+//  157 {
+//  158     m_fpuiEventSourse = fpuiEventSourse;
+//  159     m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+//  160     m_uiEventCode = KEY_EVENT_UNPRESSED;
+//  161     SetFsmState(KEY_EVENT_UNPRESSED);
+//  162 }
+//  163 
+//  164 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  165 CMultiFunctionKey::~CMultiFunctionKey()
+`?~CMultiFunctionKey`:
+//  166 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CMultiFunctionKey_1`
+//  167 
+//  168 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CInputDevice`
+        BST     R26, 0
+        BRTC    `?~CMultiFunctionKey_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CMultiFunctionKey_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  169 
+//  170 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  171 void CMultiFunctionKey::Fsm(void)
+??Fsm_1:
+//  172 {
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  173     // какое событие обрабатываем?
+//  174     switch (GetFsmState())
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetFsmState
+        SUBI    R16, 0
+        BREQ    ??Fsm_14
+        DEC     R16
+        BREQ    ??Fsm_15
+        DEC     R16
+        BREQ    ??Fsm_16
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_17
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_18
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_19
+        SUBI    R16, 2
+        BRNE    $+2+2
+        RJMP    ??Fsm_20
+        RJMP    ??Fsm_21
+//  175     {
+//  176     case KEY_EVENT_UNPRESSED:
+//  177         m_uiEventCode = m_uiPreliminaryEventCode;
+??Fsm_14:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R16
+//  178         SetFsmState(KEY_EVENT_WAITING_PRESSED);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  179         break;
+        RJMP    ??Fsm_21
+//  180 
+//  181     case KEY_EVENT_WAITING_PRESSED:
+//  182         // кнопка нажата?
+//  183         if (EventHappened())
+??Fsm_15:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_22
+//  184         {
+//  185             m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
+        MOVW    R17:R16, R27:R26
+        CALL    ??KEY_PRESSED_TIME_RECEIPT
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+//  186             SetFsmState(KEY_EVENT_PRESSED_RECEIPT);
+        LDI     R18, 2
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  187         }
+//  188         break;
+??Fsm_22:
+        RJMP    ??Fsm_21
+//  189     case KEY_EVENT_PRESSED_RECEIPT:
+//  190         // кнопка нажата?
+//  191         if (EventHappened())
+??Fsm_16:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_23
+//  192         {
+//  193             if (m_xTimer.IsOverflow())
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_24
+//  194             {
+//  195                 m_xTimer.Set(KEY_PRESSED_TIME_RESET());
+        MOVW    R17:R16, R27:R26
+        CALL    ??KEY_PRESSED_TIME_RESET
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+//  196                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 2
+        STD     Z+8, R16
+//  197                 SetFsmState(KEY_EVENT_PRESSED_RESET);
+        LDI     R18, 3
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_21
+//  198             }
+//  199         }
+//  200         else
+//  201         {
+//  202             m_uiEventCode = m_uiPreliminaryEventCode;
+??Fsm_23:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R16
+//  203             SetFsmState(KEY_EVENT_UNPRESSED);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  204         }
+//  205         break;
+??Fsm_24:
+        RJMP    ??Fsm_21
+//  206     case KEY_EVENT_PRESSED_RESET:
+//  207         // кнопка нажата?
+//  208         if (EventHappened())
+??Fsm_17:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_25
+//  209         {
+//  210             if (m_xTimer.IsOverflow())
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_26
+//  211             {
+//  212                 m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 8
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 9
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+//  213                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 3
+        STD     Z+8, R16
+//  214                 SetFsmState(KEY_EVENT_PRESSED_CHECK);
+        LDI     R18, 4
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_21
+//  215 
+//  216             }
+//  217         }
+//  218         else
+//  219         {
+//  220             m_uiEventCode = m_uiPreliminaryEventCode;
+??Fsm_25:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R16
+//  221             SetFsmState(KEY_EVENT_UNPRESSED);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  222         }
+//  223         break;
+??Fsm_26:
+        RJMP    ??Fsm_21
+//  224 
+//  225     case KEY_EVENT_PRESSED_CHECK:
+//  226         // кнопка нажата?
+//  227         if (EventHappened())
+??Fsm_18:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_27
+//  228         {
+//  229             if (m_xTimer.IsOverflow())
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_28
+//  230             {
+//  231                 m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
+        MOVW    R17:R16, R27:R26
+        CALL    ??KEY_PRESSED_TIME_SET_DEFAULT
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+//  232                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 4
+        STD     Z+8, R16
+//  233                 SetFsmState(KEY_EVENT_PRESSED_SET_DEFAULT);
+        LDI     R18, 5
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_21
+//  234 
+//  235             }
+//  236         }
+//  237         else
+//  238         {
+//  239             m_uiEventCode = m_uiPreliminaryEventCode;
+??Fsm_27:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R16
+//  240             SetFsmState(KEY_EVENT_UNPRESSED);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  241         }
+//  242         break;
+??Fsm_28:
+        RJMP    ??Fsm_21
+//  243 
+//  244     case KEY_EVENT_PRESSED_SET_DEFAULT:
+//  245         // кнопка нажата?
+//  246         if (EventHappened())
+??Fsm_19:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BREQ    ??Fsm_29
+//  247         {
+//  248             if (m_xTimer.IsOverflow())
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_21
+//  249             {
+//  250                 m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
+        MOVW    R17:R16, R27:R26
+        CALL    ??KEY_PRESSED_CHECK_REPEAT_TIME
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+//  251                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_SET_DEFAULT;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 5
+        STD     Z+8, R16
+//  252                 m_uiEventCode = m_uiPreliminaryEventCode;
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R16
+//  253                 SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
+        LDI     R18, 7
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_21
+//  254 
+//  255             }
+//  256         }
+//  257         else
+//  258         {
+//  259 //            m_uiEventCode = m_uiPreliminaryEventCode;
+//  260             SetFsmState(KEY_EVENT_UNPRESSED);
+??Fsm_29:
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  261         }
+//  262         break;
+        RJMP    ??Fsm_21
+//  263 
+//  264     case KEY_EVENT_UNPRESSED_WAITING:
+//  265         // кнопка нажата?
+//  266         if (!(EventHappened()))
+??Fsm_20:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??EventHappened
+        TST     R16
+        BRNE    ??Fsm_21
+//  267         {
+//  268             SetFsmState(KEY_EVENT_UNPRESSED);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  269         }
+//  270         break;
+//  271 
+//  272 
+//  273     default:
+//  274         break;
+//  275     }
+//  276 }
+??Fsm_21:
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CDfaLite::SetFsmState(uint8_t)
+??SetFsmState:
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CDfaLite::GetFsmState()
+??GetFsmState:
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CInputDevice::KEY_PRESSED_TIME_PUSH()
+??KEY_PRESSED_TIME_PUSH:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 100
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CInputDevice::KEY_PRESSED_TIME_HOLD()
+??KEY_PRESSED_TIME_HOLD:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 220
+        LDI     R17, 5
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CInputDevice::KEY_PRESSED_TIME_CHECK()
+??KEY_PRESSED_TIME_CHECK:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 184
+        LDI     R17, 11
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CInputDevice::KEY_PRESSED_HOLD_REPEAT_TIME()
+??KEY_PRESSED_HOLD_REPEAT_TIME:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 50
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_RECEIPT()
+??KEY_PRESSED_TIME_RECEIPT:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 100
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_RESET()
+??KEY_PRESSED_TIME_RESET:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 220
+        LDI     R17, 5
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_CHECK()
+??KEY_PRESSED_TIME_CHECK_1:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 184
+        LDI     R17, 11
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_SET_DEFAULT()
+??KEY_PRESSED_TIME_SET_DEFAULT:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 136
+        LDI     R17, 19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_CHECK_REPEAT_TIME()
+??KEY_PRESSED_CHECK_REPEAT_TIME:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 50
+        LDI     R17, 0
+        RET
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CInputDevice::__vtbl[6]
+??__vtbl:
+        DC16 `?~CInputDevice`/2, ??Fsm/2, ??KEY_PRESSED_TIME_PUSH/2
+        DC16 ??KEY_PRESSED_TIME_HOLD/2, ??KEY_PRESSED_TIME_CHECK/2
+        DC16 ??KEY_PRESSED_HOLD_REPEAT_TIME/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CMultiFunctionKey::__vtbl[6]
+??__vtbl_1:
+        DC16 `?~CMultiFunctionKey`/2, ??Fsm_1/2, ??KEY_PRESSED_TIME_PUSH/2
+        DC16 ??KEY_PRESSED_TIME_HOLD/2, ??KEY_PRESSED_TIME_CHECK_1/2
+        DC16 ??KEY_PRESSED_HOLD_REPEAT_TIME/2
+
+        END
+// 
+// 1 400 bytes in segment CODE
+//    24 bytes in segment NEAR_F
+// 
+// 1 316 bytes of CODE memory (+ 108 bytes shared)
+//
+//Errors: none
+//Warnings: none

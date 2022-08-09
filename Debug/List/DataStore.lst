@@ -1,0 +1,2293 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  02:57:03
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
+#    Command line =  
+#        -f C:\Users\ghost\AppData\Local\Temp\EWD0FC.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp --cpu=m128a
+#        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+#        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+#        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DataStore.lst
+#    Object file  =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\DataStore.r90
+#
+###############################################################################
+
+D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
+      1          
+      2          //-----------------------------------------------------------------------------------------------------
+      3          //  Sourse      : FileName.cpp
+      4          //  Created     : 01.06.2022
+      5          //  Author      : Alexandr Volvenkin
+      6          //  email       : aav-36@mail.ru
+      7          //  GitHub      : https://github.com/AlexandrVolvenkin
+      8          //-----------------------------------------------------------------------------------------------------
+      9          #include "DataStore.h"
+
+   \                                 In  segment ABSOLUTE, at 0x9d, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9b, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x99, root
+   \   union <unnamed> volatile __io _A_UBRR1L
+   \                     _A_UBRR1L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_UBRR1H
+   \                     _A_UBRR1H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x95, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_UBRR0H
+   \                     _A_UBRR0H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8b, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x7d, root
+   \   union <unnamed> volatile __io _A_ETIMSK
+   \                     _A_ETIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ETIFR
+   \                     _A_ETIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x73, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x72, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6d, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6c, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x68, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x65, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x64, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x63, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x62, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5c, root
+   \   union <unnamed> volatile __io _A_XDIV
+   \                     _A_XDIV:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x59, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x58, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x56, root
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUCSR
+   \                     _A_MCUCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x52, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCR0
+   \                     _A_OCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4f, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x48, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x45, root
+   \   union <unnamed> volatile __io _A_TCCR2
+   \                     _A_TCCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_OCR2
+   \                     _A_OCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x42, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_SFIOR
+   \                     _A_SFIOR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3b, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3a, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x39, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_UBRR0L
+   \                     _A_UBRR0L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CEeprom::ReadyInterruptEnable()
+   \                     ??ReadyInterruptEnable:
+   \   00000000   9AE3               SBI     0x1C, 0x03
+   \   00000002   9508               RET
+   \   00000004                      REQUIRE _A_EECR
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 bool CEeprom::IsReadyToWrite()
+   \                     ??IsReadyToWrite:
+   \   00000000   9BE1               SBIS    0x1C, 0x01
+   \   00000002   C002               RJMP    ??IsReadyToWrite_1
+   \   00000004   E000               LDI     R16, 0
+   \   00000006   9508               RET
+   \                     ??IsReadyToWrite_1:
+   \   00000008   E001               LDI     R16, 1
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_EECR
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CEeprom::SetBufferIsWrited(bool)
+   \                     ??SetBufferIsWrited:
+   \   00000000   9300....           STS     ??m_bBufferIsWrited, R16
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 bool CEeprom::GetBufferIsWrited()
+   \                     ??GetBufferIsWrited:
+   \   00000000   9100....           LDS     R16, ??m_bBufferIsWrited
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CEeprom::StartWrite()
+   \                     ??StartWrite:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   ........           CALL    ??SetBufferIsWrited
+   \   00000006   ........           CALL    ??ReadyInterruptEnable
+   \   0000000A   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::WatchdogReset()
+   \                     ??WatchdogReset:
+   \   00000000   95A8               WDR
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CDfaLite::SetFsmState(uint8_t)
+   \                     ??SetFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8320               ST      Z, R18
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CDfaLite::GetFsmState()
+   \                     ??GetFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8100               LD      R16, Z
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CDfa::SetSavedFsmState(uint8_t)
+   \                     ??SetSavedFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8323               STD     Z+3, R18
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CDfa::SetFsmEvent(uint8_t)
+   \                     ??SetFsmEvent:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8324               STD     Z+4, R18
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CDfa::GetFsmEvent()
+   \                     ??GetFsmEvent:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8104               LDD     R16, Z+4
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CTimer *CDataStore::GetTimerPointer()
+   \                     ??GetTimerPointer:
+   \   00000000   570D               SUBI    R16, 125
+   \   00000002   4F1F               SBCI    R17, 255
+   \   00000004   9508               RET
+     10          #include "Platform.h"
+     11          #include "Pss21.h"
+
+  };
+   ^
+"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",184  Warning[Pe375]: 
+          declaration requires a typedef name
+
+  };
+   ^
+"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",216  Warning[Pe375]: 
+          declaration requires a typedef name
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPss21::SetErrorCode(uint8_t)
+   \                     ??SetErrorCode:
+   \   00000000   9300....           STS     ??m_uiErrorCode, R16
+   \   00000004   9508               RET
+     12          #include "Crc.h"
+     13          #include "HammingCodes.h"
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CHammingCodes::SetErrorCode(uint8_t)
+   \                     ??SetErrorCode_1:
+   \   00000000   9300....           STS     ??m_uiErrorCode_1, R16
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CHammingCodes::GetErrorCode()
+   \                     ??GetErrorCode:
+   \   00000000   9100....           LDS     R16, ??m_uiErrorCode_1
+   \   00000004   9508               RET
+     14          
+     15          
+     16          //CDataStore::TBlocksControlData CDataStore::m_xBlocksControlData;
+     17          //uint8_t* CDataStore::m_puiIntermediateBuff;
+     18          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     19          CDataStore::CDataStore()
+   \                     ??CDataStore:
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+     20          {
+   \   00000006   018D               MOVW    R17:R16, R27:R26
+   \   00000008   ........           CALL    ??CDfa
+   \   0000000C   ....               LDI     R16, LOW(??__vtbl_1)
+   \   0000000E   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   00000010   01FD               MOVW    R31:R30, R27:R26
+   \   00000012   8301               STD     Z+1, R16
+   \   00000014   8312               STD     Z+2, R17
+   \   00000016   018D               MOVW    R17:R16, R27:R26
+   \   00000018   570D               SUBI    R16, 125
+   \   0000001A   4F1F               SBCI    R17, 255
+   \   0000001C   ........           CALL    ??CTimer
+     21          //    m_pxStorageDevice = new CEeprom();
+     22              m_puiIntermediateBuff = CPss21::m_auiIntermediateBuff;
+   \   00000020   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   00000022   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   00000024   01FD               MOVW    R31:R30, R27:R26
+   \   00000026   57EF               SUBI    R30, 127
+   \   00000028   4FFF               SBCI    R31, 255
+   \   0000002A   8300               ST      Z, R16
+   \   0000002C   8311               STD     Z+1, R17
+     23              SetFsmState(IDDLE);
+   \   0000002E   E020               LDI     R18, 0
+   \   00000030   018D               MOVW    R17:R16, R27:R26
+   \   00000032   ........           CALL    ??SetFsmState
+     24              SetSavedFsmState(IDDLE);
+   \   00000036   E020               LDI     R18, 0
+   \   00000038   018D               MOVW    R17:R16, R27:R26
+   \   0000003A   ........           CALL    ??SetSavedFsmState
+     25          }
+   \   0000003E   018D               MOVW    R17:R16, R27:R26
+   \   00000040   91A9               LD      R26, Y+
+   \   00000042   91B9               LD      R27, Y+
+   \   00000044   9508               RET
+     26          
+     27          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     28          CDataStore::~CDataStore()
+   \                     `?~CDataStore`:
+     29          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
+   \   00000008   2F0A               MOV     R16, R26
+   \   0000000A   2B0B               OR      R16, R27
+   \   0000000C   F0B1               BREQ    `?~CDataStore_1`
+   \   0000000E   ....               LDI     R16, LOW(??__vtbl_1)
+   \   00000010   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   00000012   01FD               MOVW    R31:R30, R27:R26
+   \   00000014   8301               STD     Z+1, R16
+   \   00000016   8312               STD     Z+2, R17
+     30          //    delete m_pxStorageDevice;
+     31          }
+   \   00000018   E022               LDI     R18, 2
+   \   0000001A   E030               LDI     R19, 0
+   \   0000001C   018D               MOVW    R17:R16, R27:R26
+   \   0000001E   570D               SUBI    R16, 125
+   \   00000020   4F1F               SBCI    R17, 255
+   \   00000022   ........           CALL    `?~CTimer`
+   \   00000026   E020               LDI     R18, 0
+   \   00000028   E030               LDI     R19, 0
+   \   0000002A   018D               MOVW    R17:R16, R27:R26
+   \   0000002C   ........           CALL    `?~CDfa`
+   \   00000030   FB80               BST     R24, 0
+   \   00000032   F41E               BRTC    `?~CDataStore_1`
+   \   00000034   018D               MOVW    R17:R16, R27:R26
+   \   00000036   ........           CALL    `??operator delete`
+   \                     `?~CDataStore_1`:
+   \   0000003A   E0E4               LDI     R30, 4
+   \   0000003C   ........           JMP     ?EPILOGUE_B4_L09
+     32          
+     33          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     34          uint8_t CDataStore::Init(void)
+   \                     ??Init:
+     35          {
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+     36              // Очистим служебный контекст.
+     37              memset(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
+     38                     0,
+     39                     sizeof(m_xBlocksControlData));
+   \   00000006   E644               LDI     R20, 100
+   \   00000008   E050               LDI     R21, 0
+   \   0000000A   E020               LDI     R18, 0
+   \   0000000C   E030               LDI     R19, 0
+   \   0000000E   018D               MOVW    R17:R16, R27:R26
+   \   00000010   5F0B               SUBI    R16, 251
+   \   00000012   4F1F               SBCI    R17, 255
+   \   00000014   ........           CALL    memset
+     40          
+     41              // Установим смещение на закодированные данные.
+     42              m_xBlocksControlData.
+     43              axBlockPositionData[BLOCKS_CONTROL_DATA].uiOffset = BLOCKS_CONTROL_DATA_BEGIN;
+   \   00000018   01FD               MOVW    R31:R30, R27:R26
+   \   0000001A   E100               LDI     R16, 16
+   \   0000001C   E010               LDI     R17, 0
+   \   0000001E   8701               STD     Z+9, R16
+   \   00000020   8712               STD     Z+10, R17
+     44              // Установим размер первичных данных.
+     45              m_xBlocksControlData.
+     46              axBlockPositionData[BLOCKS_CONTROL_DATA].uiLength = sizeof(struct TBlocksControlData);
+   \   00000022   01FD               MOVW    R31:R30, R27:R26
+   \   00000024   E604               LDI     R16, 100
+   \   00000026   E010               LDI     R17, 0
+   \   00000028   8703               STD     Z+11, R16
+   \   0000002A   8714               STD     Z+12, R17
+     47              // Установим размер закодированных данных.
+     48              m_xBlocksControlData.
+     49              axBlockPositionData[BLOCKS_CONTROL_DATA].uiEncodedLength = BLOCKS_CONTROL_DATA_LENGTH;
+   \   0000002C   01FD               MOVW    R31:R30, R27:R26
+   \   0000002E   E909               LDI     R16, 153
+   \   00000030   E010               LDI     R17, 0
+   \   00000032   8705               STD     Z+13, R16
+   \   00000034   8716               STD     Z+14, R17
+     50              // Установим смещение для служебного контекста.
+     51              m_xBlocksControlData.uiFreeSpaceOffset = (BLOCKS_CONTROL_DATA_BEGIN + BLOCKS_CONTROL_DATA_LENGTH);
+   \   00000036   01FD               MOVW    R31:R30, R27:R26
+   \   00000038   EA09               LDI     R16, 169
+   \   0000003A   E010               LDI     R17, 0
+   \   0000003C   8307               STD     Z+7, R16
+   \   0000003E   8710               STD     Z+8, R17
+     52              // Установим признак - база данных не подтверждена пользователем.
+     53              m_xBlocksControlData.uiCrcOfBlocksCrc = 0;
+   \   00000040   01FD               MOVW    R31:R30, R27:R26
+   \   00000042   E000               LDI     R16, 0
+   \   00000044   8305               STD     Z+5, R16
+   \   00000046   E000               LDI     R16, 0
+   \   00000048   8306               STD     Z+6, R16
+     54          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "CDataStore::Init"
+   \   0000004A   91A9               LD      R26, Y+
+   \   0000004C   91B9               LD      R27, Y+
+   \   0000004E   9508               RET
+     55          
+     56          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     57          uint8_t CDataStore::Check(void)
+   \                     ??Check:
+     58          {
+   \   00000000   ........           CALL    ?PROLOGUE6_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+     59              CPss21::m_xDataStore.Init();
+   \   00000006   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000008   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   0000000A   ....               RCALL   ??Init
+     60          
+     61              // Служебный блок повреждён?
+     62              if (!(ReadBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData), BLOCKS_CONTROL_DATA)))
+   \   0000000C   E040               LDI     R20, 0
+   \   0000000E   019C               MOVW    R19:R18, R25:R24
+   \   00000010   5F2B               SUBI    R18, 251
+   \   00000012   4F3F               SBCI    R19, 255
+   \   00000014   018C               MOVW    R17:R16, R25:R24
+   \   00000016   ....               RCALL   ??ReadBlock
+   \   00000018   2B01               OR      R16, R17
+   \   0000001A   F411               BRNE    ??Check_1
+     63              {
+     64                  // Блок повреждён.
+     65                  return 0;
+   \   0000001C   E000               LDI     R16, 0
+   \   0000001E   C072               RJMP    ??Check_2
+     66              }
+     67          
+     68              enum
+     69              {
+     70                  IDDLE = 0,
+     71                  BLOCK_CHECK_START,
+     72                  BLOCK_WRITE_START,
+     73                  BLOCK_WRITE_END_WAITING,
+     74                  NEXT_BLOCK,
+     75                  BLOCK_ERROR,
+     76                  ALL_BLOCKS_CHECKED,
+     77              };
+     78          
+     79              uint8_t uiBlockCounter = 0;
+   \                     ??Check_1:
+   \   00000020   2455               CLR     R5
+     80              uint8_t uiFsmState = BLOCK_CHECK_START;
+   \   00000022   2444               CLR     R4
+   \   00000024   9443               INC     R4
+     81              uint16_t uiLength;
+     82          
+     83              CHammingCodes::SetErrorCode(CHammingCodes::NONE_ERROR);
+   \   00000026   E000               LDI     R16, 0
+   \   00000028   ........           CALL    ??SetErrorCode_1
+     84          
+     85              while (1)
+     86              {
+     87                  switch (uiFsmState)
+   \                     ??Check_3:
+   \   0000002C   2D04               MOV     R16, R4
+   \   0000002E   5001               SUBI    R16, 1
+   \   00000030   F079               BREQ    ??Check_4
+   \   00000032   950A               DEC     R16
+   \   00000034   F161               BREQ    ??Check_5
+   \   00000036   950A               DEC     R16
+   \   00000038   F409               BRNE    $+2+2
+   \   0000003A   C040               RJMP    ??Check_6
+   \   0000003C   950A               DEC     R16
+   \   0000003E   F409               BRNE    $+2+2
+   \   00000040   C04F               RJMP    ??Check_7
+   \   00000042   950A               DEC     R16
+   \   00000044   F409               BRNE    $+2+2
+   \   00000046   C052               RJMP    ??Check_8
+   \   00000048   950A               DEC     R16
+   \   0000004A   F409               BRNE    $+2+2
+   \   0000004C   C04D               RJMP    ??Check_9
+   \   0000004E   C050               RJMP    ??Check_10
+     88                  {
+     89                  case BLOCK_CHECK_START:
+     90                      // Проверены не все блоки?
+     91                      if (uiBlockCounter < MAX_BLOCKS_NUMBER)
+   \                     ??Check_4:
+   \   00000050   E00C               LDI     R16, 12
+   \   00000052   1650               CP      R5, R16
+   \   00000054   F4C8               BRCC    ??Check_11
+     92                      {
+     93                          uiLength = ReadBlock(m_puiIntermediateBuff, uiBlockCounter);
+   \   00000056   2D45               MOV     R20, R5
+   \   00000058   01FC               MOVW    R31:R30, R25:R24
+   \   0000005A   57EF               SUBI    R30, 127
+   \   0000005C   4FFF               SBCI    R31, 255
+   \   0000005E   8120               LD      R18, Z
+   \   00000060   8131               LDD     R19, Z+1
+   \   00000062   018C               MOVW    R17:R16, R25:R24
+   \   00000064   ....               RCALL   ??ReadBlock
+   \   00000066   01D8               MOVW    R27:R26, R17:R16
+     94                          // Блок не повреждён?
+     95                          if (uiLength)
+   \   00000068   2F0A               MOV     R16, R26
+   \   0000006A   2B0B               OR      R16, R27
+   \   0000006C   F051               BREQ    ??Check_12
+     96                          {
+     97                              // Блок восстановлен после обнаружения ошибки?
+     98                              if (CHammingCodes::GetErrorCode() != CHammingCodes::NONE_ERROR)
+   \   0000006E   ........           CALL    ??GetErrorCode
+   \   00000072   2300               TST     R16
+   \   00000074   F019               BREQ    ??Check_13
+     99                              {
+    100                                  // Обновим восстановленный блок в хранилище.
+    101                                  uiFsmState = BLOCK_WRITE_START;
+   \   00000076   E002               LDI     R16, 2
+   \   00000078   2E40               MOV     R4, R16
+   \   0000007A   C03A               RJMP    ??Check_10
+    102                              }
+    103                              else
+    104                              {
+    105                                  uiFsmState = NEXT_BLOCK;
+   \                     ??Check_13:
+   \   0000007C   E004               LDI     R16, 4
+   \   0000007E   2E40               MOV     R4, R16
+   \   00000080   C037               RJMP    ??Check_10
+    106                              }
+    107                          }
+    108                          else
+    109                          {
+    110                              uiFsmState = BLOCK_ERROR;
+   \                     ??Check_12:
+   \   00000082   E005               LDI     R16, 5
+   \   00000084   2E40               MOV     R4, R16
+   \   00000086   C034               RJMP    ??Check_10
+    111                          }
+    112                      }
+    113                      else
+    114                      {
+    115                          uiFsmState = ALL_BLOCKS_CHECKED;
+   \                     ??Check_11:
+   \   00000088   E006               LDI     R16, 6
+   \   0000008A   2E40               MOV     R4, R16
+    116                      }
+    117                      break;
+   \   0000008C   C031               RJMP    ??Check_10
+    118          
+    119                  case BLOCK_WRITE_START:
+    120                      // Поместим данные в хранилище.
+    121                      // Блок БД принят к записи?
+    122                      if (Write(m_puiIntermediateBuff, uiLength, uiBlockCounter))
+   \                     ??Check_5:
+   \   0000008E   2D65               MOV     R22, R5
+   \   00000090   01AD               MOVW    R21:R20, R27:R26
+   \   00000092   01FC               MOVW    R31:R30, R25:R24
+   \   00000094   57EF               SUBI    R30, 127
+   \   00000096   4FFF               SBCI    R31, 255
+   \   00000098   8120               LD      R18, Z
+   \   0000009A   8131               LDD     R19, Z+1
+   \   0000009C   018C               MOVW    R17:R16, R25:R24
+   \   0000009E   ....               RCALL   ??Write
+   \   000000A0   2300               TST     R16
+   \   000000A2   F019               BREQ    ??Check_14
+    123                      {
+    124                          uiFsmState = BLOCK_WRITE_END_WAITING;
+   \   000000A4   E003               LDI     R16, 3
+   \   000000A6   2E40               MOV     R4, R16
+   \   000000A8   C023               RJMP    ??Check_10
+    125                      }
+    126                      // При записи блока БД произошла ошибка?
+    127                      else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+   \                     ??Check_14:
+   \   000000AA   ....               LDI     R16, LOW(??m_xDataStore)
+   \   000000AC   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   000000AE   ........           CALL    ??GetFsmEvent
+   \   000000B2   3004               CPI     R16, 4
+   \   000000B4   F4E9               BRNE    ??Check_10
+    128                      {
+    129                          uiFsmState = BLOCK_ERROR;
+   \   000000B6   E005               LDI     R16, 5
+   \   000000B8   2E40               MOV     R4, R16
+    130                      }
+    131                      break;
+   \   000000BA   C01A               RJMP    ??Check_10
+    132          
+    133                  case BLOCK_WRITE_END_WAITING:
+    134                      // Блок записан успешно?
+    135                      if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+   \                     ??Check_6:
+   \   000000BC   ....               LDI     R16, LOW(??m_xDataStore)
+   \   000000BE   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   000000C0   ........           CALL    ??GetFsmEvent
+   \   000000C4   3003               CPI     R16, 3
+   \   000000C6   F419               BRNE    ??Check_15
+    136                      {
+    137                          uiFsmState = NEXT_BLOCK;
+   \   000000C8   E004               LDI     R16, 4
+   \   000000CA   2E40               MOV     R4, R16
+   \   000000CC   C011               RJMP    ??Check_10
+    138                      }
+    139                      // При записи блока БД произошла ошибка?
+    140                      else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+   \                     ??Check_15:
+   \   000000CE   ....               LDI     R16, LOW(??m_xDataStore)
+   \   000000D0   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   000000D2   ........           CALL    ??GetFsmEvent
+   \   000000D6   3004               CPI     R16, 4
+   \   000000D8   F459               BRNE    ??Check_10
+    141                      {
+    142                          uiFsmState = BLOCK_ERROR;
+   \   000000DA   E005               LDI     R16, 5
+   \   000000DC   2E40               MOV     R4, R16
+    143                      }
+    144                      break;
+   \   000000DE   C008               RJMP    ??Check_10
+    145          
+    146                  case NEXT_BLOCK:
+    147                      uiBlockCounter++;
+   \                     ??Check_7:
+   \   000000E0   9453               INC     R5
+    148                      uiFsmState = BLOCK_CHECK_START;
+   \   000000E2   2444               CLR     R4
+   \   000000E4   9443               INC     R4
+    149                      break;
+   \   000000E6   C004               RJMP    ??Check_10
+    150          
+    151                  case ALL_BLOCKS_CHECKED:
+    152                      return 1;
+   \                     ??Check_9:
+   \   000000E8   E001               LDI     R16, 1
+   \   000000EA   C00C               RJMP    ??Check_2
+    153                      break;
+    154          
+    155                  case BLOCK_ERROR:
+    156                      return 0;
+   \                     ??Check_8:
+   \   000000EC   E000               LDI     R16, 0
+   \   000000EE   C00A               RJMP    ??Check_2
+    157                      break;
+    158          
+    159                  default:
+    160                      break;
+    161                  }
+    162          
+    163                  CPss21::m_xDataStore.Fsm();
+   \                     ??Check_10:
+   \   000000F0   ....               LDI     R16, LOW(??m_xDataStore)
+   \   000000F2   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   000000F4   ....               RCALL   ??Fsm
+    164          
+    165                  delay_ms(10);
+   \   000000F6   E00A               LDI     R16, 10
+   \   000000F8   E010               LDI     R17, 0
+   \   000000FA   ........           CALL    ??delay_ms
+    166          
+    167                  CPlatform::WatchdogReset();
+   \   000000FE   ........           CALL    ??WatchdogReset
+   \   00000102   CF94               RJMP    ??Check_3
+    168              }
+   \                     ??Check_2:
+   \   00000104   E0E6               LDI     R30, 6
+   \   00000106   ........           JMP     ?EPILOGUE_B6_L09
+    169          
+    170              // данные не повреждены.
+    171              return 1;
+                     ^
+Warning[Pe111]: statement is unreachable
+    172          }
+    173          
+    174          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    175          uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+   \                     ??ReadBlock:
+    176          {
+   \   00000000   ........           CALL    ?PROLOGUE16_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R6_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R7_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R8_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R9_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R10_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R11_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R12_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R14_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R15_is_cg_reg
+   \   00000004   50D1               SUBI    R29, 1
+   \   00000006   0138               MOVW    R7:R6, R17:R16
+   \   00000008   0159               MOVW    R11:R10, R19:R18
+   \   0000000A   2EC4               MOV     R12, R20
+    177              // Произошёл выход за границы буфера?
+    178              if (uiBlock >= MAX_BLOCKS_NUMBER)
+   \   0000000C   E00C               LDI     R16, 12
+   \   0000000E   16C0               CP      R12, R16
+   \   00000010   F018               BRCS    ??ReadBlock_1
+    179              {
+    180          //        CPss21::SetErrorCode(DB_ERROR);
+    181          //        // Нет данных.
+    182                  return 0;
+   \   00000012   E000               LDI     R16, 0
+   \   00000014   E010               LDI     R17, 0
+   \   00000016   C09A               RJMP    ??ReadBlock_2
+    183              }
+    184          
+    185              uint16_t uiDecodedByteCounter;
+    186              uint16_t uiEncodedLength;
+    187              uint16_t uiSourseOffset;
+    188              uint8_t auiTempArray[256];
+    189          
+    190              // Блок существует?
+    191              if ((m_xBlocksControlData.
+    192                      axBlockPositionData[uiBlock].uiOffset != 0) &&
+    193                      (m_xBlocksControlData.
+    194                       axBlockPositionData[uiBlock].uiEncodedLength != 0))
+   \                     ??ReadBlock_1:
+   \   00000018   2D0C               MOV     R16, R12
+   \   0000001A   E010               LDI     R17, 0
+   \   0000001C   E048               LDI     R20, 8
+   \   0000001E   E050               LDI     R21, 0
+   \   00000020   ........           CALL    ?S_EC_MUL_L02
+   \   00000024   01F3               MOVW    R31:R30, R7:R6
+   \   00000026   0FE0               ADD     R30, R16
+   \   00000028   1FF1               ADC     R31, R17
+   \   0000002A   8501               LDD     R16, Z+9
+   \   0000002C   8512               LDD     R17, Z+10
+   \   0000002E   2B01               OR      R16, R17
+   \   00000030   F141               BREQ    ??ReadBlock_3
+   \   00000032   2D0C               MOV     R16, R12
+   \   00000034   E010               LDI     R17, 0
+   \   00000036   E048               LDI     R20, 8
+   \   00000038   E050               LDI     R21, 0
+   \   0000003A   ........           CALL    ?S_EC_MUL_L02
+   \   0000003E   01F3               MOVW    R31:R30, R7:R6
+   \   00000040   0FE0               ADD     R30, R16
+   \   00000042   1FF1               ADC     R31, R17
+   \   00000044   8505               LDD     R16, Z+13
+   \   00000046   8516               LDD     R17, Z+14
+   \   00000048   2B01               OR      R16, R17
+   \   0000004A   F0D9               BREQ    ??ReadBlock_3
+    195              {
+    196                  // Получим адрес блока в EEPROM.
+    197                  uiSourseOffset = m_xBlocksControlData.
+    198                                   axBlockPositionData[uiBlock].uiOffset;
+   \   0000004C   2D0C               MOV     R16, R12
+   \   0000004E   E010               LDI     R17, 0
+   \   00000050   E048               LDI     R20, 8
+   \   00000052   E050               LDI     R21, 0
+   \   00000054   ........           CALL    ?S_EC_MUL_L02
+   \   00000058   01F3               MOVW    R31:R30, R7:R6
+   \   0000005A   0FE0               ADD     R30, R16
+   \   0000005C   1FF1               ADC     R31, R17
+   \   0000005E   8501               LDD     R16, Z+9
+   \   00000060   8512               LDD     R17, Z+10
+   \   00000062   01D8               MOVW    R27:R26, R17:R16
+    199                  // Получим размер блока.
+    200                  uiEncodedLength = m_xBlocksControlData.
+    201                                    axBlockPositionData[uiBlock].uiEncodedLength;
+   \   00000064   2D0C               MOV     R16, R12
+   \   00000066   E010               LDI     R17, 0
+   \   00000068   E048               LDI     R20, 8
+   \   0000006A   E050               LDI     R21, 0
+   \   0000006C   ........           CALL    ?S_EC_MUL_L02
+   \   00000070   01F3               MOVW    R31:R30, R7:R6
+   \   00000072   0FE0               ADD     R30, R16
+   \   00000074   1FF1               ADC     R31, R17
+   \   00000076   8505               LDD     R16, Z+13
+   \   00000078   8516               LDD     R17, Z+14
+   \   0000007A   0178               MOVW    R15:R14, R17:R16
+    202              }
+    203              else
+    204              {
+    205          //        CPss21::SetErrorCode(DB_ERROR);
+    206          //        // Нет данных.
+    207                  return 0;
+    208              }
+    209          
+    210              // Прочитаем закодированные данные.
+    211              for (uint16_t i = 0; i < uiEncodedLength; i++)
+   \   0000007C   E080               LDI     R24, 0
+   \   0000007E   E090               LDI     R25, 0
+   \   00000080   C003               RJMP    ??ReadBlock_4
+   \                     ??ReadBlock_3:
+   \   00000082   E000               LDI     R16, 0
+   \   00000084   E010               LDI     R17, 0
+   \   00000086   C062               RJMP    ??ReadBlock_2
+   \                     ??ReadBlock_4:
+   \   00000088   158E               CP      R24, R14
+   \   0000008A   059F               CPC     R25, R15
+   \   0000008C   F458               BRCC    ??ReadBlock_5
+    212              {
+    213                  auiTempArray[i] = CEeprom::ReadByte(uiSourseOffset);
+   \   0000008E   018D               MOVW    R17:R16, R27:R26
+   \   00000090   ........           CALL    ??ReadByte
+   \   00000094   2F10               MOV     R17, R16
+   \   00000096   01FE               MOVW    R31:R30, R29:R28
+   \   00000098   0FE8               ADD     R30, R24
+   \   0000009A   1FF9               ADC     R31, R25
+   \   0000009C   8310               ST      Z, R17
+    214                  uiSourseOffset++;
+   \   0000009E   9611               ADIW    R27:R26, 1
+    215              }
+   \   000000A0   9601               ADIW    R25:R24, 1
+   \   000000A2   CFF2               RJMP    ??ReadBlock_4
+    216          
+    217              // Декодируем прочитанные данные.
+    218              uiDecodedByteCounter = CHammingCodes::HammingCodesToBytes(auiTempArray, auiTempArray, uiEncodedLength);
+   \                     ??ReadBlock_5:
+   \   000000A4   01A7               MOVW    R21:R20, R15:R14
+   \   000000A6   019E               MOVW    R19:R18, R29:R28
+   \   000000A8   018E               MOVW    R17:R16, R29:R28
+   \   000000AA   ........           CALL    ??HammingCodesToBytes
+   \   000000AE   0148               MOVW    R9:R8, R17:R16
+    219              // Слишком короткий блок?
+    220              // Минимум 3 байта 1 - данные и 2 - Crc.
+    221              if (uiDecodedByteCounter <= CRC_LENGTH)
+   \   000000B0   E003               LDI     R16, 3
+   \   000000B2   1680               CP      R8, R16
+   \   000000B4   E000               LDI     R16, 0
+   \   000000B6   0690               CPC     R9, R16
+   \   000000B8   F430               BRCC    ??ReadBlock_6
+    222              {
+    223                  CPss21::SetErrorCode(DB_ERROR);
+   \   000000BA   E004               LDI     R16, 4
+   \   000000BC   ........           CALL    ??SetErrorCode
+    224                  // Нет данных.
+    225                  return 0;
+   \   000000C0   E000               LDI     R16, 0
+   \   000000C2   E010               LDI     R17, 0
+   \   000000C4   C043               RJMP    ??ReadBlock_2
+    226              }
+    227          
+    228              // Получим длину блока.
+    229              uiDecodedByteCounter -= CRC_LENGTH;
+   \                     ??ReadBlock_6:
+   \   000000C6   EF0E               LDI     R16, 254
+   \   000000C8   0E80               ADD     R8, R16
+   \   000000CA   EF0F               LDI     R16, 255
+   \   000000CC   1E90               ADC     R9, R16
+    230              // Размер блока не совпадает?
+    231              if (uiDecodedByteCounter !=
+    232                      m_xBlocksControlData.
+    233                      axBlockPositionData[uiBlock].uiLength)
+   \   000000CE   2D0C               MOV     R16, R12
+   \   000000D0   E010               LDI     R17, 0
+   \   000000D2   E048               LDI     R20, 8
+   \   000000D4   E050               LDI     R21, 0
+   \   000000D6   ........           CALL    ?S_EC_MUL_L02
+   \   000000DA   01F3               MOVW    R31:R30, R7:R6
+   \   000000DC   0FE0               ADD     R30, R16
+   \   000000DE   1FF1               ADC     R31, R17
+   \   000000E0   8503               LDD     R16, Z+11
+   \   000000E2   8514               LDD     R17, Z+12
+   \   000000E4   1680               CP      R8, R16
+   \   000000E6   0691               CPC     R9, R17
+   \   000000E8   F031               BREQ    ??ReadBlock_7
+    234              {
+    235                  CPss21::SetErrorCode(DB_ERROR);
+   \   000000EA   E004               LDI     R16, 4
+   \   000000EC   ........           CALL    ??SetErrorCode
+    236                  // Нет данных.
+    237                  return 0;
+   \   000000F0   E000               LDI     R16, 0
+   \   000000F2   E010               LDI     R17, 0
+   \   000000F4   C02B               RJMP    ??ReadBlock_2
+    238              }
+    239          
+    240              // Получим контрольную сумму блока.
+    241              uint16_t uiCrc = static_cast<uint16_t>(auiTempArray[uiDecodedByteCounter]);
+   \                     ??ReadBlock_7:
+   \   000000F6   01FE               MOVW    R31:R30, R29:R28
+   \   000000F8   0DE8               ADD     R30, R8
+   \   000000FA   1DF9               ADC     R31, R9
+   \   000000FC   8180               LD      R24, Z
+   \   000000FE   E090               LDI     R25, 0
+    242              uiCrc |= (static_cast<uint16_t>(auiTempArray[uiDecodedByteCounter + 1]) << 8);
+   \   00000100   01FE               MOVW    R31:R30, R29:R28
+   \   00000102   0DE8               ADD     R30, R8
+   \   00000104   1DF9               ADC     R31, R9
+   \   00000106   8111               LDD     R17, Z+1
+   \   00000108   E000               LDI     R16, 0
+   \   0000010A   2B80               OR      R24, R16
+   \   0000010C   2B91               OR      R25, R17
+    243              // Вычислим контрольную сумму блока.
+    244              uint16_t uiCalculatedCrc = usCrc16(auiTempArray, uiDecodedByteCounter);
+   \   0000010E   0194               MOVW    R19:R18, R9:R8
+   \   00000110   018E               MOVW    R17:R16, R29:R28
+   \   00000112   ........           CALL    ??usCrc16
+   \   00000116   0128               MOVW    R5:R4, R17:R16
+    245          
+    246              // Блок не повреждён?
+    247              if (uiCrc == uiCalculatedCrc)
+   \   00000118   1584               CP      R24, R4
+   \   0000011A   0595               CPC     R25, R5
+   \   0000011C   F491               BRNE    ??ReadBlock_8
+    248              {
+    249                  m_auiCurrentBlocksCrc[uiBlock] = uiCrc;
+   \   0000011E   2D0C               MOV     R16, R12
+   \   00000120   E010               LDI     R17, 0
+   \   00000122   0F00               LSL     R16
+   \   00000124   1F11               ROL     R17
+   \   00000126   01F3               MOVW    R31:R30, R7:R6
+   \   00000128   0FE0               ADD     R30, R16
+   \   0000012A   1FF1               ADC     R31, R17
+   \   0000012C   59E7               SUBI    R30, 151
+   \   0000012E   4FFF               SBCI    R31, 255
+   \   00000130   8380               ST      Z, R24
+   \   00000132   8391               STD     Z+1, R25
+    250                  memcpy(puiDestination, auiTempArray, uiDecodedByteCounter);
+   \   00000134   01A4               MOVW    R21:R20, R9:R8
+   \   00000136   019E               MOVW    R19:R18, R29:R28
+   \   00000138   0185               MOVW    R17:R16, R11:R10
+   \   0000013A   ........           CALL    memcpy
+    251                  return uiDecodedByteCounter;
+   \   0000013E   0184               MOVW    R17:R16, R9:R8
+   \   00000140   C005               RJMP    ??ReadBlock_2
+    252              }
+    253              else
+    254              {
+    255                  CPss21::SetErrorCode(DB_ERROR);
+   \                     ??ReadBlock_8:
+   \   00000142   E004               LDI     R16, 4
+   \   00000144   ........           CALL    ??SetErrorCode
+    256                  // Нет данных.
+    257                  return 0;
+   \   00000148   E000               LDI     R16, 0
+   \   0000014A   E010               LDI     R17, 0
+   \                     ??ReadBlock_2:
+   \   0000014C   5FDF               SUBI    R29, 255
+   \   0000014E   E1E0               LDI     R30, 16
+   \   00000150   ........           JMP     ?EPILOGUE_B16_L09
+    258              }
+    259          }
+    260          
+    261          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    262          uint16_t CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+   \                     ??WriteBlock:
+    263          {
+   \   00000000   ........           CALL    ?PROLOGUE12_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R6_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R7_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R8_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R10_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R11_is_cg_reg
+   \   00000004   50D1               SUBI    R29, 1
+   \   00000006   01D8               MOVW    R27:R26, R17:R16
+   \   00000008   0139               MOVW    R7:R6, R19:R18
+   \   0000000A   01CA               MOVW    R25:R24, R21:R20
+   \   0000000C   2E86               MOV     R8, R22
+    264              // Произошёл выход за границы буфера?
+    265              if (uiBlock >= MAX_BLOCKS_NUMBER)
+   \   0000000E   E00C               LDI     R16, 12
+   \   00000010   1680               CP      R8, R16
+   \   00000012   F018               BRCS    ??WriteBlock_1
+    266              {
+    267                  // Нет данных.
+    268                  return 0;
+   \   00000014   E000               LDI     R16, 0
+   \   00000016   E010               LDI     R17, 0
+   \   00000018   C07B               RJMP    ??WriteBlock_2
+    269              }
+    270          
+    271              uint16_t uiEncodedByteCounter;
+    272              uint8_t auiTempArray[256];
+    273              uint16_t uiDestinationOffset;
+                              ^
+Warning[Pe177]: variable "uiDestinationOffset" was declared but never
+          referenced
+    274          
+    275              memcpy(auiTempArray, puiSourse, uiLength);
+   \                     ??WriteBlock_1:
+   \   0000001A   01AC               MOVW    R21:R20, R25:R24
+   \   0000001C   0193               MOVW    R19:R18, R7:R6
+   \   0000001E   018E               MOVW    R17:R16, R29:R28
+   \   00000020   ........           CALL    memcpy
+    276              // Вычислим контрольную сумму поступивших данных.
+    277              uint16_t uiCrc = usCrc16(puiSourse, uiLength);
+   \   00000024   019C               MOVW    R19:R18, R25:R24
+   \   00000026   0183               MOVW    R17:R16, R7:R6
+   \   00000028   ........           CALL    ??usCrc16
+   \   0000002C   0128               MOVW    R5:R4, R17:R16
+    278              auiTempArray[uiLength] = static_cast<uint8_t>(uiCrc);
+   \   0000002E   2D04               MOV     R16, R4
+   \   00000030   01FE               MOVW    R31:R30, R29:R28
+   \   00000032   0FE8               ADD     R30, R24
+   \   00000034   1FF9               ADC     R31, R25
+   \   00000036   8300               ST      Z, R16
+    279              auiTempArray[uiLength + 1] = static_cast<uint8_t>(uiCrc >> 8);
+   \   00000038   0182               MOVW    R17:R16, R5:R4
+   \   0000003A   2F01               MOV     R16, R17
+   \   0000003C   E010               LDI     R17, 0
+   \   0000003E   01FE               MOVW    R31:R30, R29:R28
+   \   00000040   0FE8               ADD     R30, R24
+   \   00000042   1FF9               ADC     R31, R25
+   \   00000044   8301               STD     Z+1, R16
+    280          
+    281              m_xBlocksControlData.
+    282              axBlockPositionData[uiBlock].uiCrc = uiCrc;
+   \   00000046   2D08               MOV     R16, R8
+   \   00000048   E010               LDI     R17, 0
+   \   0000004A   E048               LDI     R20, 8
+   \   0000004C   E050               LDI     R21, 0
+   \   0000004E   ........           CALL    ?S_EC_MUL_L02
+   \   00000052   01FD               MOVW    R31:R30, R27:R26
+   \   00000054   0FE0               ADD     R30, R16
+   \   00000056   1FF1               ADC     R31, R17
+   \   00000058   8647               STD     Z+15, R4
+   \   0000005A   8A50               STD     Z+16, R5
+    283          
+    284              uiEncodedByteCounter = CHammingCodes::BytesToHammingCodes(m_puiIntermediateBuff, auiTempArray, (uiLength + CRC_LENGTH));
+   \   0000005C   01AC               MOVW    R21:R20, R25:R24
+   \   0000005E   5F4E               SUBI    R20, 254
+   \   00000060   4F5F               SBCI    R21, 255
+   \   00000062   019E               MOVW    R19:R18, R29:R28
+   \   00000064   01FD               MOVW    R31:R30, R27:R26
+   \   00000066   57EF               SUBI    R30, 127
+   \   00000068   4FFF               SBCI    R31, 255
+   \   0000006A   8100               LD      R16, Z
+   \   0000006C   8111               LDD     R17, Z+1
+   \   0000006E   ........           CALL    ??BytesToHammingCodes
+   \   00000072   0158               MOVW    R11:R10, R17:R16
+    285          
+    286              // Данные текущего блока данных - uiBlock сохраняются впервые?
+    287              if (m_xBlocksControlData.
+    288                      axBlockPositionData[uiBlock].uiEncodedLength == 0)
+   \   00000074   2D08               MOV     R16, R8
+   \   00000076   E010               LDI     R17, 0
+   \   00000078   E048               LDI     R20, 8
+   \   0000007A   E050               LDI     R21, 0
+   \   0000007C   ........           CALL    ?S_EC_MUL_L02
+   \   00000080   01FD               MOVW    R31:R30, R27:R26
+   \   00000082   0FE0               ADD     R30, R16
+   \   00000084   1FF1               ADC     R31, R17
+   \   00000086   8505               LDD     R16, Z+13
+   \   00000088   8516               LDD     R17, Z+14
+   \   0000008A   2B01               OR      R16, R17
+   \   0000008C   F559               BRNE    ??WriteBlock_3
+    289              {
+    290                  // Добавили новый блок данных.
+    291                  // Сохраним смещение на блок.
+    292                  m_xBlocksControlData.
+    293                  axBlockPositionData[uiBlock].uiOffset = m_xBlocksControlData.uiFreeSpaceOffset;
+   \   0000008E   01FD               MOVW    R31:R30, R27:R26
+   \   00000090   8127               LDD     R18, Z+7
+   \   00000092   8530               LDD     R19, Z+8
+   \   00000094   2D08               MOV     R16, R8
+   \   00000096   E010               LDI     R17, 0
+   \   00000098   E048               LDI     R20, 8
+   \   0000009A   E050               LDI     R21, 0
+   \   0000009C   ........           CALL    ?S_EC_MUL_L02
+   \   000000A0   01FD               MOVW    R31:R30, R27:R26
+   \   000000A2   0FE0               ADD     R30, R16
+   \   000000A4   1FF1               ADC     R31, R17
+   \   000000A6   8721               STD     Z+9, R18
+   \   000000A8   8732               STD     Z+10, R19
+    294                  // Изменим смещение на свободное место.
+    295                  m_xBlocksControlData.uiFreeSpaceOffset += uiEncodedByteCounter;
+   \   000000AA   01FD               MOVW    R31:R30, R27:R26
+   \   000000AC   8107               LDD     R16, Z+7
+   \   000000AE   8510               LDD     R17, Z+8
+   \   000000B0   0D0A               ADD     R16, R10
+   \   000000B2   1D1B               ADC     R17, R11
+   \   000000B4   8307               STD     Z+7, R16
+   \   000000B6   8710               STD     Z+8, R17
+    296                  // Сохраним размер первичных данных.
+    297                  m_xBlocksControlData.
+    298                  axBlockPositionData[uiBlock].uiLength = uiLength;
+   \   000000B8   2D08               MOV     R16, R8
+   \   000000BA   E010               LDI     R17, 0
+   \   000000BC   E048               LDI     R20, 8
+   \   000000BE   E050               LDI     R21, 0
+   \   000000C0   ........           CALL    ?S_EC_MUL_L02
+   \   000000C4   01FD               MOVW    R31:R30, R27:R26
+   \   000000C6   0FE0               ADD     R30, R16
+   \   000000C8   1FF1               ADC     R31, R17
+   \   000000CA   8783               STD     Z+11, R24
+   \   000000CC   8794               STD     Z+12, R25
+    299                  // Сохраним размер закодированных данных.
+    300                  m_xBlocksControlData.
+    301                  axBlockPositionData[uiBlock].uiEncodedLength = uiEncodedByteCounter;
+   \   000000CE   2D08               MOV     R16, R8
+   \   000000D0   E010               LDI     R17, 0
+   \   000000D2   E048               LDI     R20, 8
+   \   000000D4   E050               LDI     R21, 0
+   \   000000D6   ........           CALL    ?S_EC_MUL_L02
+   \   000000DA   01FD               MOVW    R31:R30, R27:R26
+   \   000000DC   0FE0               ADD     R30, R16
+   \   000000DE   1FF1               ADC     R31, R17
+   \   000000E0   86A5               STD     Z+13, R10
+   \   000000E2   86B6               STD     Z+14, R11
+    302              }
+    303          
+    304          //    if (uiBlock != BLOCKS_CONTROL_DATA)
+    305          //    {
+    306          //        m_xBlocksControlData.
+    307          //        axBlockPositionData[uiBlock].uiCrc = uiCrc;
+    308          //    }
+    309          
+    310              CEeprom::WriteInterrupt(m_xBlocksControlData.
+    311                                      axBlockPositionData[uiBlock].uiOffset,
+    312                                      m_puiIntermediateBuff,
+    313                                      uiEncodedByteCounter);
+   \                     ??WriteBlock_3:
+   \   000000E4   01A5               MOVW    R21:R20, R11:R10
+   \   000000E6   01FD               MOVW    R31:R30, R27:R26
+   \   000000E8   57EF               SUBI    R30, 127
+   \   000000EA   4FFF               SBCI    R31, 255
+   \   000000EC   8120               LD      R18, Z
+   \   000000EE   8131               LDD     R19, Z+1
+   \   000000F0   01BA               MOVW    R23:R22, R21:R20
+   \   000000F2   2D08               MOV     R16, R8
+   \   000000F4   E010               LDI     R17, 0
+   \   000000F6   E048               LDI     R20, 8
+   \   000000F8   E050               LDI     R21, 0
+   \   000000FA   ........           CALL    ?S_EC_MUL_L02
+   \   000000FE   01FD               MOVW    R31:R30, R27:R26
+   \   00000100   0FE0               ADD     R30, R16
+   \   00000102   1FF1               ADC     R31, R17
+   \   00000104   8501               LDD     R16, Z+9
+   \   00000106   8512               LDD     R17, Z+10
+   \   00000108   01AB               MOVW    R21:R20, R23:R22
+   \   0000010A   ........           CALL    ??WriteInterrupt
+    314          
+    315              // Out length.
+    316              return uiEncodedByteCounter;
+   \   0000010E   0185               MOVW    R17:R16, R11:R10
+   \                     ??WriteBlock_2:
+   \   00000110   5FDF               SUBI    R29, 255
+   \   00000112   E0EC               LDI     R30, 12
+   \   00000114   ........           JMP     ?EPILOGUE_B12_L09
+    317          }
+    318          
+    319          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    320          bool CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+   \                     ??Write:
+    321          {
+   \   00000000   ........           CALL    ?PROLOGUE7_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R6_is_cg_reg
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   0129               MOVW    R5:R4, R19:R18
+   \   00000008   01DA               MOVW    R27:R26, R21:R20
+   \   0000000A   2E66               MOV     R6, R22
+    322              if (GetFsmState() == IDDLE)
+   \   0000000C   018C               MOVW    R17:R16, R25:R24
+   \   0000000E   ........           CALL    ??GetFsmState
+   \   00000012   2300               TST     R16
+   \   00000014   F4B9               BRNE    ??Write_1
+    323              {
+    324                  if (WriteBlock(puiSourse,
+    325                                 uiLength,
+    326                                 uiBlock))
+   \   00000016   2D66               MOV     R22, R6
+   \   00000018   01AD               MOVW    R21:R20, R27:R26
+   \   0000001A   0192               MOVW    R19:R18, R5:R4
+   \   0000001C   018C               MOVW    R17:R16, R25:R24
+   \   0000001E   ....               RCALL   ??WriteBlock
+   \   00000020   2B01               OR      R16, R17
+   \   00000022   F051               BREQ    ??Write_2
+    327                  {
+    328                      SetFsmEvent(WRITE_IN_PROGRESS_FSM_EVENT);
+   \   00000024   E021               LDI     R18, 1
+   \   00000026   018C               MOVW    R17:R16, R25:R24
+   \   00000028   ........           CALL    ??SetFsmEvent
+    329                      SetFsmState(START_WRITE);
+   \   0000002C   E021               LDI     R18, 1
+   \   0000002E   018C               MOVW    R17:R16, R25:R24
+   \   00000030   ........           CALL    ??SetFsmState
+    330                      return true;
+   \   00000034   E001               LDI     R16, 1
+   \   00000036   C00B               RJMP    ??Write_3
+    331                  }
+    332                  else
+    333                  {
+    334                      SetFsmEvent(WRITE_ERROR_FSM_EVENT);
+   \                     ??Write_2:
+   \   00000038   E024               LDI     R18, 4
+   \   0000003A   018C               MOVW    R17:R16, R25:R24
+   \   0000003C   ........           CALL    ??SetFsmEvent
+    335                      return false;
+   \   00000040   E000               LDI     R16, 0
+   \   00000042   C005               RJMP    ??Write_3
+    336                  }
+    337              }
+    338              else
+    339              {
+    340                  SetFsmEvent(STORAGE_DEVICE_BUSY_FSM_EVENT);
+   \                     ??Write_1:
+   \   00000044   E022               LDI     R18, 2
+   \   00000046   018C               MOVW    R17:R16, R25:R24
+   \   00000048   ........           CALL    ??SetFsmEvent
+    341                  return false;
+   \   0000004C   E000               LDI     R16, 0
+   \                     ??Write_3:
+   \   0000004E   E0E7               LDI     R30, 7
+   \   00000050   ........           JMP     ?EPILOGUE_B7_L09
+    342              }
+    343          }
+    344          
+    345          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    346          bool CDataStore::CompareCurrentWithStoredCrc(void)
+   \                     ??CompareCurrentWithStoredCrc:
+    347          {
+   \   00000000   011D               MOVW    R3:R2, R27:R26
+   \   00000002   0198               MOVW    R19:R18, R17:R16
+    348              // Проверим принадлежность всех блоков текущей базе данных.
+    349              // Сравним текущее Crc блока с его Crc сохранённом в служебном блоке в предыдущей сессии записи.
+    350              for (uint16_t i = BLOCKS_CONTROL_DATA_BLOCK_NUMBER;
+   \   00000004   E0E1               LDI     R30, 1
+   \   00000006   E0F0               LDI     R31, 0
+    351                      i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
+   \                     ??CompareCurrentWithStoredCrc_1:
+   \   00000008   30EB               CPI     R30, 11
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   07F0               CPC     R31, R16
+   \   0000000E   F4F0               BRCC    ??CompareCurrentWithStoredCrc_2
+    352                      i++)
+    353              {
+    354                  if (m_auiCurrentBlocksCrc[i] !=
+    355                          m_xBlocksControlData.axBlockPositionData[i].uiCrc)
+   \   00000010   018F               MOVW    R17:R16, R31:R30
+   \   00000012   0F00               LSL     R16
+   \   00000014   1F11               ROL     R17
+   \   00000016   01D9               MOVW    R27:R26, R19:R18
+   \   00000018   0FA0               ADD     R26, R16
+   \   0000001A   1FB1               ADC     R27, R17
+   \   0000001C   59A7               SUBI    R26, 151
+   \   0000001E   4FBF               SBCI    R27, 255
+   \   00000020   916D               LD      R22, X+
+   \   00000022   917C               LD      R23, X
+   \   00000024   9711               SBIW    R27:R26, 1
+   \   00000026   018F               MOVW    R17:R16, R31:R30
+   \   00000028   E048               LDI     R20, 8
+   \   0000002A   E050               LDI     R21, 0
+   \   0000002C   ........           CALL    ?S_EC_MUL_L02
+   \   00000030   01D9               MOVW    R27:R26, R19:R18
+   \   00000032   0FA0               ADD     R26, R16
+   \   00000034   1FB1               ADC     R27, R17
+   \   00000036   961F               ADIW    R27:R26, 15
+   \   00000038   910D               LD      R16, X+
+   \   0000003A   911C               LD      R17, X
+   \   0000003C   9750               SBIW    R27:R26, 16
+   \   0000003E   1760               CP      R22, R16
+   \   00000040   0771               CPC     R23, R17
+   \   00000042   F011               BREQ    ??CompareCurrentWithStoredCrc_3
+    356                  {
+    357                      return false;
+   \   00000044   E000               LDI     R16, 0
+   \   00000046   C003               RJMP    ??CompareCurrentWithStoredCrc_4
+    358                  }
+    359              }
+   \                     ??CompareCurrentWithStoredCrc_3:
+   \   00000048   9631               ADIW    R31:R30, 1
+   \   0000004A   CFDE               RJMP    ??CompareCurrentWithStoredCrc_1
+    360          
+    361              // Все блоки принадлежат текущей базе данных.
+    362              return true;
+   \                     ??CompareCurrentWithStoredCrc_2:
+   \   0000004C   E001               LDI     R16, 1
+   \                     ??CompareCurrentWithStoredCrc_4:
+   \   0000004E   01D1               MOVW    R27:R26, R3:R2
+   \   00000050   9508               RET
+    363          }
+    364          
+    365          //-----------------------------------------------------------------------------------------------------
+    366          // Вызывается только если база данных подтверждена пользователем.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    367          void CDataStore::CrcOfBlocksCrcCreate(void)
+   \                     ??CrcOfBlocksCrcCreate:
+    368          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   9766               SBIW    R29:R28, 22
+   \   00000006   01D8               MOVW    R27:R26, R17:R16
+    369              // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
+    370              // Сохраняется при первой и последующих записях любых блоков через программатор.
+    371              // Ноль или её не совпадение свидетельствует о том, что база данных создана по умоланию,
+    372              // и не подтверждена пользователем. В этом случае прибор переходит в режим сигнализации об ошибке,
+    373              // ожидая квитирования или записи базы данных.
+    374              uint16_t auiBlocksCrc[MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER];
+    375          
+    376              // Получим Crc всех блоков, не включая служебный.
+    377              for (uint16_t i = 0;
+   \   00000008   E080               LDI     R24, 0
+   \   0000000A   E090               LDI     R25, 0
+    378                      i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
+   \                     ??CrcOfBlocksCrcCreate_1:
+   \   0000000C   308B               CPI     R24, 11
+   \   0000000E   E000               LDI     R16, 0
+   \   00000010   0790               CPC     R25, R16
+   \   00000012   F4A0               BRCC    ??CrcOfBlocksCrcCreate_2
+    379                      i++)
+    380              {
+    381                  auiBlocksCrc[i] =
+    382                      m_xBlocksControlData.axBlockPositionData[i + BLOCKS_CONTROL_DATA_BLOCK_NUMBER].uiCrc;
+   \   00000014   018C               MOVW    R17:R16, R25:R24
+   \   00000016   E048               LDI     R20, 8
+   \   00000018   E050               LDI     R21, 0
+   \   0000001A   ........           CALL    ?S_EC_MUL_L02
+   \   0000001E   01FD               MOVW    R31:R30, R27:R26
+   \   00000020   0FE0               ADD     R30, R16
+   \   00000022   1FF1               ADC     R31, R17
+   \   00000024   8927               LDD     R18, Z+23
+   \   00000026   8D30               LDD     R19, Z+24
+   \   00000028   01FE               MOVW    R31:R30, R29:R28
+   \   0000002A   018C               MOVW    R17:R16, R25:R24
+   \   0000002C   0F00               LSL     R16
+   \   0000002E   1F11               ROL     R17
+   \   00000030   0FE0               ADD     R30, R16
+   \   00000032   1FF1               ADC     R31, R17
+   \   00000034   8320               ST      Z, R18
+   \   00000036   8331               STD     Z+1, R19
+    383              }
+   \   00000038   9601               ADIW    R25:R24, 1
+   \   0000003A   CFE8               RJMP    ??CrcOfBlocksCrcCreate_1
+    384          
+    385              // Сохраним Crc всех блоков, не включая служебный.
+    386              m_xBlocksControlData.uiCrcOfBlocksCrc =
+    387                  usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
+    388                          ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t)));
+   \                     ??CrcOfBlocksCrcCreate_2:
+   \   0000003C   E126               LDI     R18, 22
+   \   0000003E   E030               LDI     R19, 0
+   \   00000040   018E               MOVW    R17:R16, R29:R28
+   \   00000042   ........           CALL    ??usCrc16
+   \   00000046   01FD               MOVW    R31:R30, R27:R26
+   \   00000048   8305               STD     Z+5, R16
+   \   0000004A   8316               STD     Z+6, R17
+    389          }
+   \   0000004C   9666               ADIW    R29:R28, 22
+   \   0000004E   E0E4               LDI     R30, 4
+   \   00000050   ........           JMP     ?EPILOGUE_B4_L09
+    390          
+    391          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    392          bool CDataStore::CrcOfBlocksCrcCheck(void)
+   \                     ??CrcOfBlocksCrcCheck:
+    393          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   9766               SBIW    R29:R28, 22
+   \   00000006   01D8               MOVW    R27:R26, R17:R16
+    394              // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
+    395              // Сохраняется при первой и последующих записях любых блоков через программатор.
+    396              // Ноль или её не совпадение свидетельствует о том, что база данных создана по умоланию,
+    397              // и не подтверждена пользователем. В этом случае прибор переходит в режим сигнализации об ошибке,
+    398              // ожидая квитирования или записи базы данных.
+    399              uint16_t auiBlocksCrc[MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER];
+    400          
+    401              // Получим Crc всех блоков, не включая служебный.
+    402              for (uint16_t i = 0;
+   \   00000008   E080               LDI     R24, 0
+   \   0000000A   E090               LDI     R25, 0
+    403                      i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
+   \                     ??CrcOfBlocksCrcCheck_1:
+   \   0000000C   308B               CPI     R24, 11
+   \   0000000E   E000               LDI     R16, 0
+   \   00000010   0790               CPC     R25, R16
+   \   00000012   F4A0               BRCC    ??CrcOfBlocksCrcCheck_2
+    404                      i++)
+    405              {
+    406                  auiBlocksCrc[i] =
+    407                      m_xBlocksControlData.axBlockPositionData[i + BLOCKS_CONTROL_DATA_BLOCK_NUMBER].uiCrc;
+   \   00000014   018C               MOVW    R17:R16, R25:R24
+   \   00000016   E048               LDI     R20, 8
+   \   00000018   E050               LDI     R21, 0
+   \   0000001A   ........           CALL    ?S_EC_MUL_L02
+   \   0000001E   01FD               MOVW    R31:R30, R27:R26
+   \   00000020   0FE0               ADD     R30, R16
+   \   00000022   1FF1               ADC     R31, R17
+   \   00000024   8927               LDD     R18, Z+23
+   \   00000026   8D30               LDD     R19, Z+24
+   \   00000028   01FE               MOVW    R31:R30, R29:R28
+   \   0000002A   018C               MOVW    R17:R16, R25:R24
+   \   0000002C   0F00               LSL     R16
+   \   0000002E   1F11               ROL     R17
+   \   00000030   0FE0               ADD     R30, R16
+   \   00000032   1FF1               ADC     R31, R17
+   \   00000034   8320               ST      Z, R18
+   \   00000036   8331               STD     Z+1, R19
+    408              }
+   \   00000038   9601               ADIW    R25:R24, 1
+   \   0000003A   CFE8               RJMP    ??CrcOfBlocksCrcCheck_1
+    409          
+    410              // База данных подтверждена пользователем?
+    411              if (m_xBlocksControlData.uiCrcOfBlocksCrc ==
+    412                      usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
+    413                              ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t))))
+   \                     ??CrcOfBlocksCrcCheck_2:
+   \   0000003C   E126               LDI     R18, 22
+   \   0000003E   E030               LDI     R19, 0
+   \   00000040   018E               MOVW    R17:R16, R29:R28
+   \   00000042   ........           CALL    ??usCrc16
+   \   00000046   01FD               MOVW    R31:R30, R27:R26
+   \   00000048   8125               LDD     R18, Z+5
+   \   0000004A   8136               LDD     R19, Z+6
+   \   0000004C   1720               CP      R18, R16
+   \   0000004E   0731               CPC     R19, R17
+   \   00000050   F411               BRNE    ??CrcOfBlocksCrcCheck_3
+    414              {
+    415                  return true;
+   \   00000052   E001               LDI     R16, 1
+   \   00000054   C001               RJMP    ??CrcOfBlocksCrcCheck_4
+    416              }
+    417              else
+    418              {
+    419                  return false;
+   \                     ??CrcOfBlocksCrcCheck_3:
+   \   00000056   E000               LDI     R16, 0
+   \                     ??CrcOfBlocksCrcCheck_4:
+   \   00000058   9666               ADIW    R29:R28, 22
+   \   0000005A   E0E4               LDI     R30, 4
+   \   0000005C   ........           JMP     ?EPILOGUE_B4_L09
+    420              }
+    421          }
+    422          
+    423          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    424          void CDataStore::Fsm(void)
+   \                     ??Fsm:
+    425          {
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+    426              switch (GetFsmState())
+   \   00000006   018C               MOVW    R17:R16, R25:R24
+   \   00000008   ........           CALL    ??GetFsmState
+   \   0000000C   5000               SUBI    R16, 0
+   \   0000000E   F081               BREQ    ??Fsm_1
+   \   00000010   950A               DEC     R16
+   \   00000012   F079               BREQ    ??Fsm_2
+   \   00000014   950A               DEC     R16
+   \   00000016   F0C9               BREQ    ??Fsm_3
+   \   00000018   950A               DEC     R16
+   \   0000001A   F1C9               BREQ    ??Fsm_4
+   \   0000001C   950A               DEC     R16
+   \   0000001E   F409               BRNE    $+2+2
+   \   00000020   C04F               RJMP    ??Fsm_5
+   \   00000022   950A               DEC     R16
+   \   00000024   F409               BRNE    $+2+2
+   \   00000026   C06B               RJMP    ??Fsm_6
+   \   00000028   950A               DEC     R16
+   \   0000002A   F409               BRNE    $+2+2
+   \   0000002C   C08A               RJMP    ??Fsm_7
+   \   0000002E   C0A5               RJMP    ??Fsm_8
+    427              {
+    428              case IDDLE:
+    429                  break;
+   \                     ??Fsm_1:
+   \   00000030   C0A4               RJMP    ??Fsm_8
+    430          
+    431              case START_WRITE:
+    432                  // Установим время ожидания окончания записи.
+    433                  GetTimerPointer() -> Set(READY_TO_WRITE_WAITING_TIMEOUT);
+   \                     ??Fsm_2:
+   \   00000032   018C               MOVW    R17:R16, R25:R24
+   \   00000034   ........           CALL    ??GetTimerPointer
+   \   00000038   EC28               LDI     R18, 200
+   \   0000003A   E030               LDI     R19, 0
+   \   0000003C   ........           CALL    ??Set
+    434                  SetFsmState(READY_TO_WRITE_WAITING);
+   \   00000040   E022               LDI     R18, 2
+   \   00000042   018C               MOVW    R17:R16, R25:R24
+   \   00000044   ........           CALL    ??SetFsmState
+    435                  break;
+   \   00000048   C098               RJMP    ??Fsm_8
+    436          
+    437              case READY_TO_WRITE_WAITING:
+    438                  if (CEeprom::IsReadyToWrite())
+   \                     ??Fsm_3:
+   \   0000004A   ........           CALL    ??IsReadyToWrite
+   \   0000004E   2300               TST     R16
+   \   00000050   F071               BREQ    ??Fsm_9
+    439                  {
+    440                      // Установим время ожидания окончания записи.
+    441                      GetTimerPointer() -> Set(WRITE_END_WAITING_TIMEOUT);
+   \   00000052   018C               MOVW    R17:R16, R25:R24
+   \   00000054   ........           CALL    ??GetTimerPointer
+   \   00000058   E120               LDI     R18, 16
+   \   0000005A   E237               LDI     R19, 39
+   \   0000005C   ........           CALL    ??Set
+    442                      CEeprom::StartWrite();
+   \   00000060   ........           CALL    ??StartWrite
+    443                      SetFsmState(WRITE_END_WAITING);
+   \   00000064   E023               LDI     R18, 3
+   \   00000066   018C               MOVW    R17:R16, R25:R24
+   \   00000068   ........           CALL    ??SetFsmState
+   \   0000006C   C086               RJMP    ??Fsm_8
+    444                  }
+    445                  // Время ожидания окончания записи закончилось?
+    446                  else if (GetTimerPointer() -> IsOverflow())
+   \                     ??Fsm_9:
+   \   0000006E   018C               MOVW    R17:R16, R25:R24
+   \   00000070   ........           CALL    ??GetTimerPointer
+   \   00000074   ........           CALL    ??IsOverflow
+   \   00000078   2300               TST     R16
+   \   0000007A   F041               BREQ    ??Fsm_10
+    447                  {
+    448                      SetFsmEvent(WRITE_ERROR_FSM_EVENT);
+   \   0000007C   E024               LDI     R18, 4
+   \   0000007E   018C               MOVW    R17:R16, R25:R24
+   \   00000080   ........           CALL    ??SetFsmEvent
+    449                      SetFsmState(IDDLE);
+   \   00000084   E020               LDI     R18, 0
+   \   00000086   018C               MOVW    R17:R16, R25:R24
+   \   00000088   ........           CALL    ??SetFsmState
+    450                  }
+    451                  break;
+   \                     ??Fsm_10:
+   \   0000008C   C076               RJMP    ??Fsm_8
+    452          
+    453              case WRITE_END_WAITING:
+    454                  if (CEeprom::GetBufferIsWrited())
+   \                     ??Fsm_4:
+   \   0000008E   ........           CALL    ??GetBufferIsWrited
+   \   00000092   2300               TST     R16
+   \   00000094   F029               BREQ    ??Fsm_11
+    455                  {
+    456                      SetFsmState(START_WRITE_BLOCKS_CONTROL_DATA);
+   \   00000096   E024               LDI     R18, 4
+   \   00000098   018C               MOVW    R17:R16, R25:R24
+   \   0000009A   ........           CALL    ??SetFsmState
+   \   0000009E   C06D               RJMP    ??Fsm_8
+    457                  }
+    458                  // Время ожидания окончания записи закончилось?
+    459                  else if (GetTimerPointer() -> IsOverflow())
+   \                     ??Fsm_11:
+   \   000000A0   018C               MOVW    R17:R16, R25:R24
+   \   000000A2   ........           CALL    ??GetTimerPointer
+   \   000000A6   ........           CALL    ??IsOverflow
+   \   000000AA   2300               TST     R16
+   \   000000AC   F041               BREQ    ??Fsm_12
+    460                  {
+    461                      SetFsmEvent(WRITE_ERROR_FSM_EVENT);
+   \   000000AE   E024               LDI     R18, 4
+   \   000000B0   018C               MOVW    R17:R16, R25:R24
+   \   000000B2   ........           CALL    ??SetFsmEvent
+    462                      SetFsmState(IDDLE);
+   \   000000B6   E020               LDI     R18, 0
+   \   000000B8   018C               MOVW    R17:R16, R25:R24
+   \   000000BA   ........           CALL    ??SetFsmState
+    463                  }
+    464                  break;
+   \                     ??Fsm_12:
+   \   000000BE   C05D               RJMP    ??Fsm_8
+    465          
+    466          
+    467                  // Запись служеьного блока.
+    468              case START_WRITE_BLOCKS_CONTROL_DATA:
+    469                  // Данные обновлены.
+    470                  // Сохраним изменённый служебный контекст.
+    471                  if (WriteBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
+    472                                 sizeof(m_xBlocksControlData),
+    473                                 BLOCKS_CONTROL_DATA))
+   \                     ??Fsm_5:
+   \   000000C0   E060               LDI     R22, 0
+   \   000000C2   E644               LDI     R20, 100
+   \   000000C4   E050               LDI     R21, 0
+   \   000000C6   019C               MOVW    R19:R18, R25:R24
+   \   000000C8   5F2B               SUBI    R18, 251
+   \   000000CA   4F3F               SBCI    R19, 255
+   \   000000CC   018C               MOVW    R17:R16, R25:R24
+   \   000000CE   ....               RCALL   ??WriteBlock
+   \   000000D0   2B01               OR      R16, R17
+   \   000000D2   F061               BREQ    ??Fsm_13
+    474                  {
+    475                      // Установим время ожидания окончания записи.
+    476                      GetTimerPointer() -> Set(READY_TO_WRITE_WAITING_TIMEOUT);
+   \   000000D4   018C               MOVW    R17:R16, R25:R24
+   \   000000D6   ........           CALL    ??GetTimerPointer
+   \   000000DA   EC28               LDI     R18, 200
+   \   000000DC   E030               LDI     R19, 0
+   \   000000DE   ........           CALL    ??Set
+    477                      SetFsmState(READY_TO_WRITE_WAITING_BLOCKS_CONTROL_DATA);
+   \   000000E2   E025               LDI     R18, 5
+   \   000000E4   018C               MOVW    R17:R16, R25:R24
+   \   000000E6   ........           CALL    ??SetFsmState
+   \   000000EA   C047               RJMP    ??Fsm_8
+    478                  }
+    479                  else
+    480                  {
+    481                      SetFsmEvent(WRITE_ERROR_FSM_EVENT);
+   \                     ??Fsm_13:
+   \   000000EC   E024               LDI     R18, 4
+   \   000000EE   018C               MOVW    R17:R16, R25:R24
+   \   000000F0   ........           CALL    ??SetFsmEvent
+    482                      SetFsmState(IDDLE);
+   \   000000F4   E020               LDI     R18, 0
+   \   000000F6   018C               MOVW    R17:R16, R25:R24
+   \   000000F8   ........           CALL    ??SetFsmState
+    483                  }
+    484                  break;
+   \   000000FC   C03E               RJMP    ??Fsm_8
+    485          
+    486              case READY_TO_WRITE_WAITING_BLOCKS_CONTROL_DATA:
+    487                  if (CEeprom::IsReadyToWrite())
+   \                     ??Fsm_6:
+   \   000000FE   ........           CALL    ??IsReadyToWrite
+   \   00000102   2300               TST     R16
+   \   00000104   F071               BREQ    ??Fsm_14
+    488                  {
+    489                      // Установим время ожидания окончания записи.
+    490                      GetTimerPointer() -> Set(WRITE_END_WAITING_TIMEOUT);
+   \   00000106   018C               MOVW    R17:R16, R25:R24
+   \   00000108   ........           CALL    ??GetTimerPointer
+   \   0000010C   E120               LDI     R18, 16
+   \   0000010E   E237               LDI     R19, 39
+   \   00000110   ........           CALL    ??Set
+    491                      CEeprom::StartWrite();
+   \   00000114   ........           CALL    ??StartWrite
+    492                      SetFsmState(WRITE_END_WAITING_BLOCKS_CONTROL_DATA);
+   \   00000118   E026               LDI     R18, 6
+   \   0000011A   018C               MOVW    R17:R16, R25:R24
+   \   0000011C   ........           CALL    ??SetFsmState
+   \   00000120   C02C               RJMP    ??Fsm_8
+    493                  }
+    494                  // Время ожидания окончания записи закончилось?
+    495                  else if (GetTimerPointer() -> IsOverflow())
+   \                     ??Fsm_14:
+   \   00000122   018C               MOVW    R17:R16, R25:R24
+   \   00000124   ........           CALL    ??GetTimerPointer
+   \   00000128   ........           CALL    ??IsOverflow
+   \   0000012C   2300               TST     R16
+   \   0000012E   F129               BREQ    ??Fsm_8
+    496                  {
+    497                      SetFsmEvent(WRITE_ERROR_FSM_EVENT);
+   \   00000130   E024               LDI     R18, 4
+   \   00000132   018C               MOVW    R17:R16, R25:R24
+   \   00000134   ........           CALL    ??SetFsmEvent
+    498                      SetFsmState(IDDLE);
+   \   00000138   E020               LDI     R18, 0
+   \   0000013A   018C               MOVW    R17:R16, R25:R24
+   \   0000013C   ........           CALL    ??SetFsmState
+    499                  }
+    500                  break;
+   \   00000140   C01C               RJMP    ??Fsm_8
+    501          
+    502              case WRITE_END_WAITING_BLOCKS_CONTROL_DATA:
+    503                  if (CEeprom::GetBufferIsWrited())
+   \                     ??Fsm_7:
+   \   00000142   ........           CALL    ??GetBufferIsWrited
+   \   00000146   2300               TST     R16
+   \   00000148   F049               BREQ    ??Fsm_15
+    504                  {
+    505                      SetFsmEvent(WRITE_OK_FSM_EVENT);
+   \   0000014A   E023               LDI     R18, 3
+   \   0000014C   018C               MOVW    R17:R16, R25:R24
+   \   0000014E   ........           CALL    ??SetFsmEvent
+    506                      SetFsmState(IDDLE);
+   \   00000152   E020               LDI     R18, 0
+   \   00000154   018C               MOVW    R17:R16, R25:R24
+   \   00000156   ........           CALL    ??SetFsmState
+   \   0000015A   C00F               RJMP    ??Fsm_8
+    507                  }
+    508                  // Время ожидания окончания записи закончилось?
+    509                  else if (GetTimerPointer() -> IsOverflow())
+   \                     ??Fsm_15:
+   \   0000015C   018C               MOVW    R17:R16, R25:R24
+   \   0000015E   ........           CALL    ??GetTimerPointer
+   \   00000162   ........           CALL    ??IsOverflow
+   \   00000166   2300               TST     R16
+   \   00000168   F041               BREQ    ??Fsm_8
+    510                  {
+    511                      SetFsmEvent(WRITE_ERROR_FSM_EVENT);
+   \   0000016A   E024               LDI     R18, 4
+   \   0000016C   018C               MOVW    R17:R16, R25:R24
+   \   0000016E   ........           CALL    ??SetFsmEvent
+    512                      SetFsmState(IDDLE);
+   \   00000172   E020               LDI     R18, 0
+   \   00000174   018C               MOVW    R17:R16, R25:R24
+   \   00000176   ........           CALL    ??SetFsmState
+    513                  }
+    514                  break;
+    515          
+    516              default:
+    517                  break;
+    518              }
+    519          }
+   \                     ??Fsm_8:
+   \   0000017A   9189               LD      R24, Y+
+   \   0000017C   9199               LD      R25, Y+
+   \   0000017E   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CDataStore &CDataStore::new CDataStore()
+   \                     `??new CDataStore`:
+   \   00000000   E809               LDI     R16, 137
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   ........           CALL    `??operator new`
+   \   00000008   2F20               MOV     R18, R16
+   \   0000000A   2B21               OR      R18, R17
+   \   0000000C   F011               BREQ    `??new CDataStore_1`
+   \   0000000E   ....               RCALL   ??CDataStore
+   \   00000010   9508               RET
+   \                     `??new CDataStore_1`:
+   \   00000012   E000               LDI     R16, 0
+   \   00000014   E010               LDI     R17, 0
+   \   00000016   9508               RET
+    520          
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      2      2   CDataStore::CDataStore()
+        2      2   -> CDfa::CDfa()
+        2      2   -> CDfa::SetSavedFsmState(uint8_t)
+        2      2   -> CDfaLite::SetFsmState(uint8_t)
+        2      2   -> CTimer::CTimer()
+      6      2   CDataStore::Check()
+        6      2   -> CDataStore::Fsm()
+        6      2   -> CDataStore::Init()
+        6      2   -> CDataStore::ReadBlock(uint8_t *, uint8_t)
+        6      2   -> CDataStore::Write(uint8_t *, uint16_t, uint8_t)
+        6      2   -> CDfa::GetFsmEvent()
+        6      2   -> CHammingCodes::GetErrorCode()
+        6      2   -> CHammingCodes::SetErrorCode(uint8_t)
+        6      2   -> CPlatform::WatchdogReset()
+        6      2   -> delay_ms(uint16_t)
+      0      2   CDataStore::CompareCurrentWithStoredCrc()
+        0      2 ?S_EC_MUL_L02
+     26      2   CDataStore::CrcOfBlocksCrcCheck()
+       26      2   -> usCrc16(unsigned char const *, uint16_t)
+       26      2 ?S_EC_MUL_L02
+     26      2   CDataStore::CrcOfBlocksCrcCreate()
+       26      2   -> usCrc16(unsigned char const *, uint16_t)
+       26      2 ?S_EC_MUL_L02
+      2      2   CDataStore::Fsm()
+        2      2   -> CDataStore::GetTimerPointer()
+        2      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+        2      2   -> CDfa::SetFsmEvent(uint8_t)
+        2      2   -> CDfaLite::GetFsmState()
+        2      2   -> CDfaLite::SetFsmState(uint8_t)
+        2      2   -> CEeprom::GetBufferIsWrited()
+        2      2   -> CEeprom::IsReadyToWrite()
+        2      2   -> CEeprom::StartWrite()
+        2      2   -> CTimer::IsOverflow()
+        2      2   -> CTimer::Set(uint16_t)
+      0      2   CDataStore::GetTimerPointer()
+      2      2   CDataStore::Init()
+        2      2   -> memset
+    272      2   CDataStore::ReadBlock(uint8_t *, uint8_t)
+      272      2   -> CEeprom::ReadByte(uint16_t)
+      272      2   -> CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t)
+      272      2   -> CPss21::SetErrorCode(uint8_t)
+      272      2   -> memcpy
+      272      2   -> usCrc16(unsigned char const *, uint16_t)
+      272      2 ?S_EC_MUL_L02
+      7      2   CDataStore::Write(uint8_t *, uint16_t, uint8_t)
+        7      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+        7      2   -> CDfa::SetFsmEvent(uint8_t)
+        7      2   -> CDfaLite::GetFsmState()
+        7      2   -> CDfaLite::SetFsmState(uint8_t)
+    268      2   CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+      268      2   -> CEeprom::WriteInterrupt(uint16_t, uint8_t *, uint16_t)
+      268      2   -> CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t)
+      268      2   -> memcpy
+      268      2   -> usCrc16(unsigned char const *, uint16_t)
+      268      2 ?S_EC_MUL_L02
+      0      2   CDataStore::new CDataStore()
+        0      2   -> CDataStore::CDataStore()
+        0      2   -> operator new(unsigned int)
+      4      2   CDataStore::~CDataStore()
+        4      2   -> CDfa::~CDfa()
+        4      2   -> CTimer::~CTimer()
+        4      2   -> operator delete(void *)
+      0      2   CDfa::GetFsmEvent()
+      0      2   CDfa::SetFsmEvent(uint8_t)
+      0      2   CDfa::SetSavedFsmState(uint8_t)
+      0      2   CDfaLite::GetFsmState()
+      0      2   CDfaLite::SetFsmState(uint8_t)
+      0      2   CEeprom::GetBufferIsWrited()
+      0      2   CEeprom::IsReadyToWrite()
+      0      2   CEeprom::ReadyInterruptEnable()
+      0      2   CEeprom::SetBufferIsWrited(bool)
+      0      2   CEeprom::StartWrite()
+        0      2   -> CEeprom::ReadyInterruptEnable()
+        0      2   -> CEeprom::SetBufferIsWrited(bool)
+      0      2   CHammingCodes::GetErrorCode()
+      0      2   CHammingCodes::SetErrorCode(uint8_t)
+      0      2   CPlatform::WatchdogReset()
+      0      2   CPss21::SetErrorCode(uint8_t)
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      70  CDataStore::CDataStore()
+     266  CDataStore::Check()
+      82  CDataStore::CompareCurrentWithStoredCrc()
+      96  CDataStore::CrcOfBlocksCrcCheck()
+      84  CDataStore::CrcOfBlocksCrcCreate()
+     384  CDataStore::Fsm()
+       6  CDataStore::GetTimerPointer()
+      80  CDataStore::Init()
+     340  CDataStore::ReadBlock(uint8_t *, uint8_t)
+      84  CDataStore::Write(uint8_t *, uint16_t, uint8_t)
+     280  CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+      24  CDataStore::new CDataStore()
+      64  CDataStore::~CDataStore()
+       6  CDfa::GetFsmEvent()
+       6  CDfa::SetFsmEvent(uint8_t)
+       6  CDfa::SetSavedFsmState(uint8_t)
+       6  CDfaLite::GetFsmState()
+       6  CDfaLite::SetFsmState(uint8_t)
+       6  CEeprom::GetBufferIsWrited()
+      12  CEeprom::IsReadyToWrite()
+       4  CEeprom::ReadyInterruptEnable()
+       6  CEeprom::SetBufferIsWrited(bool)
+      12  CEeprom::StartWrite()
+       6  CHammingCodes::GetErrorCode()
+       6  CHammingCodes::SetErrorCode(uint8_t)
+       4  CPlatform::WatchdogReset()
+       6  CPss21::SetErrorCode(uint8_t)
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_ETIFR
+       1  _A_ETIMSK
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUCSR
+       1  _A_OCDR
+       1  _A_OCR0
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SFIOR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR
+       1  _A_TIMSK
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       1  _A_UBRR0H
+       1  _A_UBRR0L
+       1  _A_UBRR1H
+       1  _A_UBRR1L
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XDIV
+       1  _A_XMCRA
+       1  _A_XMCRB
+      40  -- Other
+
+ 
+   105 bytes in segment ABSOLUTE
+ 1 952 bytes in segment CODE
+    40 bytes in segment NEAR_F
+ 
+ 1 890 bytes of CODE memory (+ 102 bytes shared)
+     0 bytes of DATA memory (+ 105 bytes shared)
+
+Errors: none
+Warnings: 5

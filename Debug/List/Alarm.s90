@@ -1,0 +1,2175 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:01
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Alarm.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EWCAA0.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\Alarm.cpp --cpu=m128a -ms
+//        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Alarm.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Alarm
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?EPILOGUE_B5_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?PROLOGUE5_L09
+        EXTERN ?Register_R4_is_cg_reg
+
+        PUBWEAK ??ACTIVE_LEVEL
+        PUBWEAK ??ACTIVE_LEVEL_1
+        PUBWEAK ??ACTIVE_LEVEL_2
+        PUBWEAK ??ACTIVE_LEVEL_3
+        PUBWEAK ??ACTIVE_LEVEL_4
+        PUBWEAK ??ACTIVE_LEVEL_5
+        PUBWEAK ??ACTIVE_LEVEL_6
+        PUBWEAK ??ACTIVE_LEVEL_7
+        PUBWEAK ??ALARM_TYPE
+        PUBWEAK ??ALARM_TYPE_1
+        PUBWEAK ??ALARM_TYPE_2
+        PUBWEAK ??ALARM_TYPE_3
+        PUBWEAK ??ALARM_TYPE_4
+        PUBWEAK ??ALARM_TYPE_5
+        PUBWEAK ??ALARM_TYPE_6
+        PUBWEAK ??ALARM_TYPE_7
+        PUBLIC ??CAlarmDfa
+        PUBLIC ??CEmergencyAlarmHighLevelDfa
+        PUBLIC ??CEmergencyAlarmLowLevelDfa
+        PUBLIC ??CIndicationAlarmHighLevelDfa
+        PUBLIC ??CIndicationAlarmLowLevelDfa
+        PUBLIC ??CNormalAlarmDfa
+        PUBLIC ??CPreventiveAlarmHighLevelDfa
+        PUBLIC ??CPreventiveAlarmLowLevelDfa
+        PUBLIC ??Fsm
+        PUBLIC ??Fsm_1
+        PUBWEAK ??GetAlarmWindowIndex
+        PUBWEAK ??GetCommonAlarmType
+        PUBWEAK ??GetDiscreteSignalsReceipt
+        PUBWEAK ??GetDiscreteSignalsReset
+        PUBWEAK ??GetDiscreteStateIndex
+        PUBWEAK ??GetFsmState
+        PUBWEAK ??GetLinkedDiscreteOutputsPointer
+        PUBWEAK ??SetCommonAlarmType
+        PUBWEAK ??SetFsmState
+        PUBWEAK ??__vtbl_2
+        PUBWEAK ??__vtbl_3
+        PUBWEAK ??__vtbl_4
+        PUBWEAK ??__vtbl_5
+        PUBWEAK ??__vtbl_6
+        PUBWEAK ??__vtbl_7
+        PUBWEAK ??__vtbl_8
+        PUBWEAK ??__vtbl_9
+        PUBLIC `??new CAlarmDfa`
+        PUBLIC `??new CEmergencyAlarmHighLevelDfa`
+        PUBLIC `??new CEmergencyAlarmLowLevelDfa`
+        PUBLIC `??new CIndicationAlarmHighLevelDfa`
+        PUBLIC `??new CIndicationAlarmLowLevelDfa`
+        PUBLIC `??new CNormalAlarmDfa`
+        PUBLIC `??new CPreventiveAlarmHighLevelDfa`
+        PUBLIC `??new CPreventiveAlarmLowLevelDfa`
+        PUBLIC `?~CAlarmDfa`
+        PUBLIC `?~CEmergencyAlarmHighLevelDfa`
+        PUBLIC `?~CEmergencyAlarmLowLevelDfa`
+        PUBLIC `?~CIndicationAlarmHighLevelDfa`
+        PUBLIC `?~CIndicationAlarmLowLevelDfa`
+        PUBLIC `?~CNormalAlarmDfa`
+        PUBLIC `?~CPreventiveAlarmHighLevelDfa`
+        PUBLIC `?~CPreventiveAlarmLowLevelDfa`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CPss21 0>`  SYMBOL "CPss21"
+??m_uiCommonAlarmType SYMBOL "m_uiCommonAlarmType", `?<Name CPss21 0>`
+??m_uiDiscreteSignalsReceipt SYMBOL "m_uiDiscreteSignalsReceipt", `?<Name CPss21 0>`
+??m_uiDiscreteSignalsReset SYMBOL "m_uiDiscreteSignalsReset", `?<Name CPss21 0>`
+`?<Name CAlarmDfa 30>` SYMBOL "CAlarmDfa"
+`?<Name CNormalAlarmDfa 36>` SYMBOL "CNormalAlarmDfa"
+`?<Name CPreventiveAlarmLowL 39>` SYMBOL "CPreventiveAlarmLowLevelDfa"
+`?<Name CPreventiveAlarmHigh 42>` SYMBOL "CPreventiveAlarmHighLevelDfa"
+`?<Name CEmergencyAlarmLowLe 45>` SYMBOL "CEmergencyAlarmLowLevelDfa"
+`?<Name CEmergencyAlarmHighL 48>` SYMBOL "CEmergencyAlarmHighLevelDfa"
+`?<Name CIndicationAlarmLowL 51>` SYMBOL "CIndicationAlarmLowLevelDfa"
+`?<Name CIndicationAlarmHigh 54>` SYMBOL "CIndicationAlarmHighLevelDfa"
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CAlarmDfa 30>`
+??__vtbl_3          SYMBOL "__vtbl", `?<Name CNormalAlarmDfa 36>`
+??__vtbl_4          SYMBOL "__vtbl", `?<Name CPreventiveAlarmLowL 39>`
+??__vtbl_5          SYMBOL "__vtbl", `?<Name CPreventiveAlarmHigh 42>`
+??__vtbl_6          SYMBOL "__vtbl", `?<Name CEmergencyAlarmLowLe 45>`
+??__vtbl_7          SYMBOL "__vtbl", `?<Name CEmergencyAlarmHighL 48>`
+??__vtbl_8          SYMBOL "__vtbl", `?<Name CIndicationAlarmLowL 51>`
+??__vtbl_9          SYMBOL "__vtbl", `?<Name CIndicationAlarmHigh 54>`
+
+        EXTERN ??AlarmTypeChange
+        EXTERN ??AlarmTypeReceipt
+        EXTERN ??AlarmTypeReset
+        EXTERN ??CDfaLite
+        EXTERN ??DiscreteOutputsSet
+        EXTERN ??GetDiscreteInputState
+        EXTERN ??SetAlarmWindowType
+        EXTERN ??m_uiCommonAlarmType
+        EXTERN ??m_uiDiscreteSignalsReceipt
+        EXTERN ??m_uiDiscreteSignalsReset
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDfaLite`
+
+// D:\Projects\CautoProjects\PSS48\PSS48\src\Alarm.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Sourse      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "Dfa.h"
+//    9 #include "Platform.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//   10 #include "Pss21.h"
+//   11 
+//   12 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   13 CAlarmDfa::CAlarmDfa()
+??CAlarmDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//   14 {
+        MOVW    R17:R16, R27:R26
+        CALL    ??CDfaLite
+        LDI     R16, LOW(??__vtbl_2)
+        LDI     R17, (??__vtbl_2) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//   15     //ctor
+//   16 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CAlarmDfa &CAlarmDfa::new CAlarmDfa()
+`??new CAlarmDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CAlarmDfa_1`
+        RCALL   ??CAlarmDfa
+        RET
+`??new CAlarmDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//   17 
+//   18 //-----------------------------------------------------------------------------------------------------
+//   19 CAlarmDfa::~CAlarmDfa()
+//   20 {
+//   21     //dtor
+//   22 }
+//   23 
+//   24 //-----------------------------------------------------------------------------------------------------
+//   25 // Автомат обработки сигнализации дискретного сигнала.
+//   26 void CAlarmDfa::Fsm(void)
+//   27 {
+//   28     switch (GetFsmState())
+//   29     {
+//   30     case START:
+//   31         break;
+//   32 
+//   33     case ACTIVE_STATE_WAITING:
+//   34         // Дискретный сигнал активен?
+//   35         if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+//   36         {
+//   37             // Установим связанные дискретный выходы - новое нарушение.
+//   38             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+//   39             // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//   40             // чем тип общей сигнализации?
+//   41             if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+//   42                     (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+//   43             {
+//   44                 // Установим тип общей сигнализацию.
+//   45                 CPss21::SetCommonAlarmType(ALARM_TYPE());
+//   46                 // Изменим тип общей сигнализацию.
+//   47                 CPss21::AlarmTypeChange();
+//   48             }
+//   49             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//   50             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//   51 //            GetAlarmWindowPointer() -> SetAlarmType(ALARM_TYPE());
+//   52             SetFsmState(RECEIPT_OR_RESET_WAITING);
+//   53         }
+//   54         break;
+//   55 
+//   56     case RECEIPT_OR_RESET_WAITING:
+//   57         // Дискретный сигнал активен?
+//   58         if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+//   59         {
+//   60             // Установим связанные дискретный выходы - не новое нарушение.
+//   61             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//   62         }
+//   63 
+//   64         // Событие сброшено?
+//   65         if (CPss21::GetDiscreteSignalsReset())
+//   66         {
+//   67             // Переведём автоматы сигнализаций в состояние - квитировано.
+//   68             CPss21::AlarmTypeReceipt();
+//   69             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//   70             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//   71 //            GetAlarmWindowPointer() -> SetAlarmType(INDICATION);
+//   72             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//   73         }
+//   74         // Событие квитировано?
+//   75         else if (CPss21::GetDiscreteSignalsReceipt())
+//   76         {
+//   77             // Переведём автоматы сигнализаций в состояние - квитировано.
+//   78             CPss21::AlarmTypeReceipt();
+//   79             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//   80             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//   81 //            GetAlarmWindowPointer() -> SetAlarmType(INDICATION);
+//   82             SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
+//   83         }
+//   84         break;
+//   85 
+//   86     case RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING:
+//   87         // Событие сброшено?
+//   88         if (CPss21::GetDiscreteSignalsReset())
+//   89         {
+//   90             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//   91         }
+//   92         // Дискретный сигнал не активен?
+//   93         else if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+//   94         {
+//   95             SetFsmState(RECEIPTED_RESET_WAITING);
+//   96         }
+//   97         else
+//   98         {
+//   99             // Установим связанные дискретный выходы - не новое нарушение.
+//  100             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  101         }
+//  102         break;
+//  103 
+//  104     case RESETED_NOT_ACTIVE_STATE_WAITING:
+//  105         // Дискретный сигнал не активен?
+//  106         if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+//  107         {
+//  108             // Переведём автоматы сигнализаций в состояние - сброшено.
+//  109             CPss21::AlarmTypeReset();
+//  110             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  111             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  112 //            GetAlarmWindowPointer() -> SetAlarmType(NORMAL);
+//  113             SetFsmState(ACTIVE_STATE_WAITING);
+//  114         }
+//  115         else
+//  116         {
+//  117             // Установим связанные дискретный выходы - не новое нарушение.
+//  118             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  119         }
+//  120         break;
+//  121 
+//  122     case RECEIPTED_RESET_WAITING:
+//  123         // Дискретный сигнал активен?
+//  124         if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+//  125         {
+//  126             // Установим связанные дискретный выходы - не новое нарушение.
+//  127             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  128         }
+//  129 
+//  130         // Событие сброшено?
+//  131         if (CPss21::GetDiscreteSignalsReset())
+//  132         {
+//  133             // Переведём автоматы сигнализаций в состояние - сброшено.
+//  134             CPss21::AlarmTypeReset();
+//  135             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  136             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  137 //            GetAlarmWindowPointer() -> SetAlarmType(NORMAL);
+//  138             SetFsmState(ACTIVE_STATE_WAITING);
+//  139         }
+//  140         break;
+//  141 
+//  142     default:
+//  143         break;
+//  144     }
+//  145 }
+//  146 //-----------------------------------------------------------------------------------------------------
+//  147 
+//  148 
+//  149 
+//  150 
+//  151 
+//  152 
+//  153 
+//  154 
+//  155 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  156 CNormalAlarmDfa::CNormalAlarmDfa()
+??CNormalAlarmDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  157 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CAlarmDfa
+        LDI     R16, LOW(??__vtbl_3)
+        LDI     R17, (??__vtbl_3) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  158     SetFsmState(START);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  159 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CNormalAlarmDfa &CNormalAlarmDfa::new CNormalAlarmDfa()
+`??new CNormalAlarmDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CNormalAlarmDfa_1`
+        RCALL   ??CNormalAlarmDfa
+        RET
+`??new CNormalAlarmDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  160 
+//  161 //-----------------------------------------------------------------------------------------------------
+//  162 CNormalAlarmDfa::~CNormalAlarmDfa()
+//  163 {
+//  164     //dtor
+//  165 }
+//  166 //-----------------------------------------------------------------------------------------------------
+//  167 
+//  168 
+//  169 
+//  170 
+//  171 
+//  172 
+//  173 
+//  174 
+//  175 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  176 CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
+??CPreventiveAlarmLowLevelDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  177 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CAlarmDfa
+        LDI     R16, LOW(??__vtbl_4)
+        LDI     R17, (??__vtbl_4) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  178     SetFsmState(ACTIVE_STATE_WAITING);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  179 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CPreventiveAlarmLowLevelDfa &CPreventiveAlarmLowLevelDfa::new CPreventiveAlarmLowLevelDfa()
+`??new CPreventiveAlarmLowLevelDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CPreventiveAlarmLowLevelDfa_1`
+        RCALL   ??CPreventiveAlarmLowLevelDfa
+        RET
+`??new CPreventiveAlarmLowLevelDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  180 
+//  181 //-----------------------------------------------------------------------------------------------------
+//  182 CPreventiveAlarmLowLevelDfa::~CPreventiveAlarmLowLevelDfa()
+//  183 {
+//  184     //dtor
+//  185 }
+//  186 
+//  187 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  188 CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
+??CPreventiveAlarmHighLevelDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  189 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CAlarmDfa
+        LDI     R16, LOW(??__vtbl_5)
+        LDI     R17, (??__vtbl_5) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  190     SetFsmState(ACTIVE_STATE_WAITING);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  191 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CPreventiveAlarmHighLevelDfa &CPreventiveAlarmHighLevelDfa::new CPreventiveAlarmHighLevelDfa()
+`??new CPreventiveAlarmHighLevelDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CPreventiveAlarmHighLevelDfa_1`
+        RCALL   ??CPreventiveAlarmHighLevelDfa
+        RET
+`??new CPreventiveAlarmHighLevelDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  192 
+//  193 //-----------------------------------------------------------------------------------------------------
+//  194 CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
+//  195 {
+//  196     //dtor
+//  197 }
+//  198 //-----------------------------------------------------------------------------------------------------
+//  199 
+//  200 
+//  201 
+//  202 
+//  203 
+//  204 
+//  205 
+//  206 
+//  207 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  208 CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
+??CEmergencyAlarmLowLevelDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  209 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CAlarmDfa
+        LDI     R16, LOW(??__vtbl_6)
+        LDI     R17, (??__vtbl_6) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  210     SetFsmState(ACTIVE_STATE_WAITING);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  211 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEmergencyAlarmLowLevelDfa &CEmergencyAlarmLowLevelDfa::new CEmergencyAlarmLowLevelDfa()
+`??new CEmergencyAlarmLowLevelDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CEmergencyAlarmLowLevelDfa_1`
+        RCALL   ??CEmergencyAlarmLowLevelDfa
+        RET
+`??new CEmergencyAlarmLowLevelDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  212 
+//  213 //-----------------------------------------------------------------------------------------------------
+//  214 CEmergencyAlarmLowLevelDfa::~CEmergencyAlarmLowLevelDfa()
+//  215 {
+//  216     //dtor
+//  217 }
+//  218 
+//  219 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  220 CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
+??CEmergencyAlarmHighLevelDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  221 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CAlarmDfa
+        LDI     R16, LOW(??__vtbl_7)
+        LDI     R17, (??__vtbl_7) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  222     SetFsmState(ACTIVE_STATE_WAITING);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  223 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEmergencyAlarmHighLevelDfa &CEmergencyAlarmHighLevelDfa::new CEmergencyAlarmHighLevelDfa()
+`??new CEmergencyAlarmHighLevelDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CEmergencyAlarmHighLevelDfa_1`
+        RCALL   ??CEmergencyAlarmHighLevelDfa
+        RET
+`??new CEmergencyAlarmHighLevelDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  224 
+//  225 //-----------------------------------------------------------------------------------------------------
+//  226 CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
+//  227 {
+//  228     //dtor
+//  229 }
+//  230 //-----------------------------------------------------------------------------------------------------
+//  231 
+//  232 
+//  233 
+//  234 
+//  235 
+//  236 
+//  237 
+//  238 
+//  239 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  240 CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+??CIndicationAlarmLowLevelDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  241 {
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CAlarmDfa
+        LDI     R16, LOW(??__vtbl_8)
+        LDI     R17, (??__vtbl_8) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//  242     SetFsmState(ACTIVE_STATE_WAITING);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  243 }
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CIndicationAlarmLowLevelDfa &CIndicationAlarmLowLevelDfa::new CIndicationAlarmLowLevelDfa()
+`??new CIndicationAlarmLowLevelDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CIndicationAlarmLowLevelDfa_1`
+        RCALL   ??CIndicationAlarmLowLevelDfa
+        RET
+`??new CIndicationAlarmLowLevelDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??CIndicationAlarmHighLevelDfa:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CIndicationAlarmLowLevelDfa
+        LDI     R16, LOW(??__vtbl_9)
+        LDI     R17, (??__vtbl_9) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CIndicationAlarmHighLevelDfa &CIndicationAlarmHighLevelDfa::new CIndicationAlarmHighLevelDfa()
+`??new CIndicationAlarmHighLevelDfa`:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CIndicationAlarmHighLevelDfa_1`
+        RCALL   ??CIndicationAlarmHighLevelDfa
+        RET
+`??new CIndicationAlarmHighLevelDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CAlarmDfa`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CAlarmDfa_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        CALL    `?~CDfaLite`
+        BST     R26, 0
+        BRTC    `?~CAlarmDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CAlarmDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??Fsm:
+        CALL    ?PROLOGUE5_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        MOVW    R27:R26, R17:R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetFsmState
+        SUBI    R16, 0
+        BREQ    ??Fsm_2
+        DEC     R16
+        BREQ    ??Fsm_3
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_4
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_5
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_6
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_7
+        RJMP    ??Fsm_8
+??Fsm_2:
+        RJMP    ??Fsm_8
+??Fsm_3:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BREQ    ??Fsm_9
+        LDI     R16, 1
+        RJMP    ??Fsm_10
+??Fsm_9:
+        LDI     R16, 0
+??Fsm_10:
+        TST     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_8
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 1
+        CALL    ??DiscreteOutputsSet
+        CALL    ??GetCommonAlarmType
+        CPI     R16, 3
+        BREQ    ??Fsm_11
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 4
+        CALL    ??GetCommonAlarmType
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        CP      R4, R16
+        BRCS    ??Fsm_12
+        LDI     R16, 1
+        RJMP    ??Fsm_13
+??Fsm_12:
+        LDI     R16, 0
+??Fsm_13:
+        TST     R16
+        BRNE    ??Fsm_11
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        CALL    ??SetCommonAlarmType
+        CALL    ??AlarmTypeChange
+??Fsm_11:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R24, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R24
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 2
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_4:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BREQ    ??Fsm_14
+        LDI     R16, 1
+        RJMP    ??Fsm_15
+??Fsm_14:
+        LDI     R16, 0
+??Fsm_15:
+        TST     R16
+        BREQ    ??Fsm_16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+??Fsm_16:
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_17
+        CALL    ??AlarmTypeReceipt
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 1
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 4
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_17:
+        CALL    ??GetDiscreteSignalsReceipt
+        TST     R16
+        BREQ    ??Fsm_18
+        CALL    ??AlarmTypeReceipt
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 1
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 3
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_18:
+        RJMP    ??Fsm_8
+??Fsm_5:
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_19
+        LDI     R18, 4
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_19:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BRNE    ??Fsm_20
+        LDI     R16, 1
+        RJMP    ??Fsm_21
+??Fsm_20:
+        LDI     R16, 0
+??Fsm_21:
+        TST     R16
+        BREQ    ??Fsm_22
+        LDI     R18, 5
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_22:
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+        RJMP    ??Fsm_8
+??Fsm_6:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BRNE    ??Fsm_23
+        LDI     R16, 1
+        RJMP    ??Fsm_24
+??Fsm_23:
+        LDI     R16, 0
+??Fsm_24:
+        TST     R16
+        BREQ    ??Fsm_25
+        CALL    ??AlarmTypeReset
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 0
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_25:
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+        RJMP    ??Fsm_8
+??Fsm_7:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BREQ    ??Fsm_26
+        LDI     R16, 1
+        RJMP    ??Fsm_27
+??Fsm_26:
+        LDI     R16, 0
+??Fsm_27:
+        TST     R16
+        BREQ    ??Fsm_28
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+??Fsm_28:
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_8
+        CALL    ??AlarmTypeReset
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 0
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_8:
+        LDI     R30, 5
+        JMP     ?EPILOGUE_B5_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CNormalAlarmDfa`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CNormalAlarmDfa_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CAlarmDfa`
+        BST     R26, 0
+        BRTC    `?~CNormalAlarmDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CNormalAlarmDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CPreventiveAlarmLowLevelDfa`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CPreventiveAlarmLowLevelDfa_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CAlarmDfa`
+        BST     R26, 0
+        BRTC    `?~CPreventiveAlarmLowLevelDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CPreventiveAlarmLowLevelDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CPreventiveAlarmHighLevelDfa`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CPreventiveAlarmHighLevelDfa_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CAlarmDfa`
+        BST     R26, 0
+        BRTC    `?~CPreventiveAlarmHighLevelDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CPreventiveAlarmHighLevelDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CEmergencyAlarmLowLevelDfa`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CEmergencyAlarmLowLevelDfa_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CAlarmDfa`
+        BST     R26, 0
+        BRTC    `?~CEmergencyAlarmLowLevelDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CEmergencyAlarmLowLevelDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CEmergencyAlarmHighLevelDfa`:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CEmergencyAlarmHighLevelDfa_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CAlarmDfa`
+        BST     R26, 0
+        BRTC    `?~CEmergencyAlarmHighLevelDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CEmergencyAlarmHighLevelDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  244 
+//  245 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  246 CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
+`?~CIndicationAlarmLowLevelDfa`:
+//  247 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CIndicationAlarmLowLevelDfa_1`
+//  248     //dtor
+//  249 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CAlarmDfa`
+        BST     R26, 0
+        BRTC    `?~CIndicationAlarmLowLevelDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CIndicationAlarmLowLevelDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  250 
+//  251 //-----------------------------------------------------------------------------------------------------
+//  252 // Автомат обработки сигнализации дискретного сигнала.
+
+        RSEG CODE:CODE:NOROOT(1)
+//  253 void CIndicationAlarmLowLevelDfa::Fsm(void)
+??Fsm_1:
+//  254 {
+        CALL    ?PROLOGUE5_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        MOVW    R27:R26, R17:R16
+//  255     switch (GetFsmState())
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetFsmState
+        SUBI    R16, 0
+        BREQ    ??Fsm_29
+        DEC     R16
+        BREQ    ??Fsm_30
+        SUBI    R16, 5
+        BRNE    $+2+2
+        RJMP    ??Fsm_31
+        RJMP    ??Fsm_32
+//  256     {
+//  257     case START:
+//  258         break;
+??Fsm_29:
+        RJMP    ??Fsm_32
+//  259 
+//  260     case ACTIVE_STATE_WAITING:
+//  261         // Дискретный сигнал активен?
+//  262         if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+??Fsm_30:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BREQ    ??Fsm_33
+        LDI     R16, 1
+        RJMP    ??Fsm_34
+??Fsm_33:
+        LDI     R16, 0
+??Fsm_34:
+        TST     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_32
+//  263         {
+//  264             // Установим связанные дискретный выходы - новое нарушение.
+//  265             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 1
+        CALL    ??DiscreteOutputsSet
+//  266             // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//  267             // чем тип общей сигнализации?
+//  268             if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+//  269                     (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+        CALL    ??GetCommonAlarmType
+        CPI     R16, 3
+        BREQ    ??Fsm_35
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 4
+        CALL    ??GetCommonAlarmType
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        CP      R4, R16
+        BRCS    ??Fsm_36
+        LDI     R16, 1
+        RJMP    ??Fsm_37
+??Fsm_36:
+        LDI     R16, 0
+??Fsm_37:
+        TST     R16
+        BRNE    ??Fsm_35
+//  270             {
+//  271                 // Установим тип общей сигнализацию.
+//  272                 CPss21::SetCommonAlarmType(ALARM_TYPE());
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        CALL    ??SetCommonAlarmType
+//  273                 // Изменим тип общей сигнализацию.
+//  274                 CPss21::AlarmTypeChange();
+        CALL    ??AlarmTypeChange
+//  275             }
+//  276             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  277             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+??Fsm_35:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R24, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R24
+        CALL    ??SetAlarmWindowType
+//  278 //            GetAlarmWindowPointer() -> SetAlarmType(ALARM_TYPE());
+//  279             SetFsmState(NOT_ACTIVE_STATE_WAITING);
+        LDI     R18, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  280         }
+//  281         break;
+        RJMP    ??Fsm_32
+//  282 
+//  283     case NOT_ACTIVE_STATE_WAITING:
+//  284         // Дискретный сигнал не активен?
+//  285         if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+??Fsm_31:
+        MOVW    R31:R30, R27:R26
+        LDD     R24, Z+1
+        LDD     R25, Z+2
+        ADIW    R25:R24, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetDiscreteStateIndex
+        CALL    ??GetDiscreteInputState
+        MOV     R4, R16
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R25:R24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 1
+        MOVW    R31:R30, R19:R18
+        ICALL
+        EOR     R4, R16
+        TST     R4
+        BRNE    ??Fsm_38
+        LDI     R16, 1
+        RJMP    ??Fsm_39
+??Fsm_38:
+        LDI     R16, 0
+??Fsm_39:
+        TST     R16
+        BREQ    ??Fsm_40
+//  286         {
+//  287             // Переведём автоматы сигнализаций в состояние - сброшено.
+//  288             CPss21::AlarmTypeReset();
+        CALL    ??AlarmTypeReset
+//  289             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  290             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 0
+        CALL    ??SetAlarmWindowType
+//  291 //            GetAlarmWindowPointer() -> SetAlarmType(NORMAL);
+//  292             SetFsmState(ACTIVE_STATE_WAITING);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_32
+//  293         }
+//  294         else
+//  295         {
+//  296             // Установим связанные дискретный выходы - не новое нарушение.
+//  297             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+??Fsm_40:
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+//  298         }
+//  299         break;
+//  300 
+//  301     default:
+//  302         break;
+//  303     }
+//  304 }
+??Fsm_32:
+        LDI     R30, 5
+        JMP     ?EPILOGUE_B5_L09
+//  305 //-----------------------------------------------------------------------------------------------------
+//  306 
+//  307 
+//  308 
+//  309 
+//  310 
+//  311 
+//  312 
+//  313 
+//  314 //-----------------------------------------------------------------------------------------------------
+//  315 CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
+//  316 {
+//  317     SetFsmState(ACTIVE_STATE_WAITING);
+//  318 }
+//  319 
+//  320 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  321 CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
+`?~CIndicationAlarmHighLevelDfa`:
+//  322 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CIndicationAlarmHighLevelDfa_1`
+//  323     //dtor
+//  324 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CIndicationAlarmLowLevelDfa`
+        BST     R26, 0
+        BRTC    `?~CIndicationAlarmHighLevelDfa_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CIndicationAlarmHighLevelDfa_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CDfaLite::SetFsmState(uint8_t)
+??SetFsmState:
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CDfaLite::GetFsmState()
+??GetFsmState:
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CAlarmDfa::ALARM_TYPE()
+??ALARM_TYPE:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CAlarmDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CAlarmDfa::GetDiscreteStateIndex()
+??GetDiscreteStateIndex:
+        MOVW    R31:R30, R17:R16
+        LDD     R16, Z+5
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CAlarmDfa::GetAlarmWindowIndex()
+??GetAlarmWindowIndex:
+        MOVW    R31:R30, R17:R16
+        LDD     R16, Z+3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t *CAlarmDfa::GetLinkedDiscreteOutputsPointer()
+??GetLinkedDiscreteOutputsPointer:
+        SUBI    R16, 252
+        SBCI    R17, 255
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CNormalAlarmDfa::ALARM_TYPE()
+??ALARM_TYPE_1:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CNormalAlarmDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_1:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPreventiveAlarmLowLevelDfa::ALARM_TYPE()
+??ALARM_TYPE_2:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 2
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPreventiveAlarmLowLevelDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_2:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPreventiveAlarmHighLevelDfa::ALARM_TYPE()
+??ALARM_TYPE_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 2
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPreventiveAlarmHighLevelDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CEmergencyAlarmLowLevelDfa::ALARM_TYPE()
+??ALARM_TYPE_4:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CEmergencyAlarmLowLevelDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_4:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CEmergencyAlarmHighLevelDfa::ALARM_TYPE()
+??ALARM_TYPE_5:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CEmergencyAlarmHighLevelDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_5:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CIndicationAlarmLowLevelDfa::ALARM_TYPE()
+??ALARM_TYPE_6:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CIndicationAlarmLowLevelDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_6:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CIndicationAlarmHighLevelDfa::ALARM_TYPE()
+??ALARM_TYPE_7:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CIndicationAlarmHighLevelDfa::ACTIVE_LEVEL()
+??ACTIVE_LEVEL_7:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPss21::GetDiscreteSignalsReceipt()
+??GetDiscreteSignalsReceipt:
+        LDS     R16, ??m_uiDiscreteSignalsReceipt
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPss21::GetDiscreteSignalsReset()
+??GetDiscreteSignalsReset:
+        LDS     R16, ??m_uiDiscreteSignalsReset
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPss21::SetCommonAlarmType(uint8_t)
+??SetCommonAlarmType:
+        STS     ??m_uiCommonAlarmType, R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPss21::GetCommonAlarmType()
+??GetCommonAlarmType:
+        LDS     R16, ??m_uiCommonAlarmType
+        RET
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CAlarmDfa::__vtbl[4]
+??__vtbl_2:
+        DC16 `?~CAlarmDfa`/2, ??Fsm/2, ??ALARM_TYPE/2, ??ACTIVE_LEVEL/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CNormalAlarmDfa::__vtbl[4]
+??__vtbl_3:
+        DC16 `?~CNormalAlarmDfa`/2, ??Fsm/2, ??ALARM_TYPE_1/2
+        DC16 ??ACTIVE_LEVEL_1/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CPreventiveAlarmLowLevelDfa::__vtbl[4]
+??__vtbl_4:
+        DC16 `?~CPreventiveAlarmLowLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_2/2
+        DC16 ??ACTIVE_LEVEL_2/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CPreventiveAlarmHighLevelDfa::__vtbl[4]
+??__vtbl_5:
+        DC16 `?~CPreventiveAlarmHighLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_3/2
+        DC16 ??ACTIVE_LEVEL_3/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CEmergencyAlarmLowLevelDfa::__vtbl[4]
+??__vtbl_6:
+        DC16 `?~CEmergencyAlarmLowLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_4/2
+        DC16 ??ACTIVE_LEVEL_4/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CEmergencyAlarmHighLevelDfa::__vtbl[4]
+??__vtbl_7:
+        DC16 `?~CEmergencyAlarmHighLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_5/2
+        DC16 ??ACTIVE_LEVEL_5/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CIndicationAlarmLowLevelDfa::__vtbl[4]
+??__vtbl_8:
+        DC16 `?~CIndicationAlarmLowLevelDfa`/2, ??Fsm_1/2, ??ALARM_TYPE_6/2
+        DC16 ??ACTIVE_LEVEL_6/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CIndicationAlarmHighLevelDfa::__vtbl[4]
+??__vtbl_9:
+        DC16 `?~CIndicationAlarmHighLevelDfa`/2, ??Fsm_1/2, ??ALARM_TYPE_7/2
+        DC16 ??ACTIVE_LEVEL_7/2
+
+        END
+//  325 
+//  326 
+//  327 
+//  328 
+//  329 
+//  330 
+//  331 
+// 
+//   105 bytes in segment ABSOLUTE
+// 1 894 bytes in segment CODE
+//   100 bytes in segment NEAR_F
+// 
+// 1 780 bytes of CODE memory (+ 214 bytes shared)
+//     0 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 2

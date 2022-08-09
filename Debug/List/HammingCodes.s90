@@ -1,0 +1,982 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:04
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EWD592.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
+//        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
+//        -lC D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\HammingCodes.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME HammingCodes
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B15_L09
+        EXTERN ?EPILOGUE_B16_L09
+        EXTERN ?L_SHL_L03
+        EXTERN ?PROLOGUE15_L09
+        EXTERN ?PROLOGUE16_L09
+        EXTERN ?Register_R10_is_cg_reg
+        EXTERN ?Register_R11_is_cg_reg
+        EXTERN ?Register_R12_is_cg_reg
+        EXTERN ?Register_R13_is_cg_reg
+        EXTERN ?Register_R14_is_cg_reg
+        EXTERN ?Register_R15_is_cg_reg
+        EXTERN ?Register_R4_is_cg_reg
+        EXTERN ?Register_R5_is_cg_reg
+        EXTERN ?Register_R6_is_cg_reg
+        EXTERN ?Register_R7_is_cg_reg
+        EXTERN ?Register_R8_is_cg_reg
+        EXTERN ?Register_R9_is_cg_reg
+        EXTERN ?SS_SHR_L02
+        EXTERN ?S_SHL_L02
+        EXTERN ?UL_SHR_L03
+        EXTERN ?US_DIVMOD_L02
+        EXTERN ?US_SHR_L02
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC ??BytesToHammingCodes
+        PUBLIC ??CHammingCodes
+        PUBLIC ??HammingCodesToBytes
+        PUBLIC ??Recovery
+        PUBWEAK ??__vtbl
+        PUBLIC ??deHamming
+        PUBLIC ??enHamming
+        PUBLIC ??findHammingError
+        PUBLIC ??fixError
+        PUBLIC ??getEvenParityforRx
+        PUBLIC ??getEvenParityforTx
+        PUBLIC ??m_uiErrorCode
+        PUBLIC `??new CHammingCodes`
+        PUBLIC `?~CHammingCodes`
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CHammingCodes 4>` SYMBOL "CHammingCodes"
+??__vtbl            SYMBOL "__vtbl", `?<Name CHammingCodes 4>`
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CHammingCodes 4>`
+
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+
+// D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
+//    1 
+//    2 //-----------------------------------------------------------------------------------------------------
+//    3 //  Based on    : https://github.com/Minho-Cha/8bit-Hamming-Code
+//    4 //  Sourse      : FileName.cpp
+//    5 //  Created     : 01.06.2022
+//    6 //  Author      : Alexandr Volvenkin
+//    7 //  email       : aav-36@mail.ru
+//    8 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    9 //-----------------------------------------------------------------------------------------------------
+//   10 #include "HammingCodes.h"
+//   11 #include "Crc.h"
+//   12 
+//   13 //-----------------------------------------------------------------------------------------------------
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//   14 uint8_t CHammingCodes::m_uiErrorCode;
+??m_uiErrorCode:
+        DS8 1
+//   15 
+//   16 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   17 CHammingCodes::CHammingCodes()
+??CHammingCodes:
+//   18 {
+        LDI     R18, LOW(??__vtbl)
+        LDI     R19, (??__vtbl) >> 8
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+//   19     //ctor
+//   20 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CHammingCodes &CHammingCodes::new CHammingCodes()
+`??new CHammingCodes`:
+        LDI     R16, 2
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CHammingCodes_1`
+        RCALL   ??CHammingCodes
+        RET
+`??new CHammingCodes_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//   21 
+//   22 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   23 CHammingCodes::~CHammingCodes()
+`?~CHammingCodes`:
+//   24 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CHammingCodes_1`
+        BST     R18, 0
+        BRTC    `?~CHammingCodes_1`
+//   25     //dtor
+//   26 }
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CHammingCodes_1`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//   27 
+//   28 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   29 uint8_t CHammingCodes::getEvenParityforTx(uint8_t data) //?? ???
+??getEvenParityforTx:
+//   30 {
+        MOV     R18, R16
+//   31     uint8_t parity = 0;
+        LDI     R19, 0
+//   32     for (int i = 0; i < 8; i++)
+        LDI     R30, 0
+        LDI     R31, 0
+??getEvenParityforTx_1:
+        CPI     R30, 8
+        LDI     R16, 0
+        CPC     R31, R16
+        BRGE    ??getEvenParityforTx_2
+//   33     {
+//   34         parity ^= (data >> i) & 0x01;
+        MOV     R16, R18
+        LDI     R17, 0
+        MOV     R20, R30
+        CALL    ?SS_SHR_L02
+        ANDI    R16, 0x01
+        EOR     R19, R16
+//   35     }
+        ADIW    R31:R30, 1
+        RJMP    ??getEvenParityforTx_1
+//   36 
+//   37     return !parity;
+??getEvenParityforTx_2:
+        TST     R19
+        BRNE    ??getEvenParityforTx_3
+        LDI     R16, 1
+        RET
+??getEvenParityforTx_3:
+        LDI     R16, 0
+        RET
+//   38 }
+//   39 
+//   40 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   41 uint8_t CHammingCodes::getEvenParityforRx(uint16_t data) //?? ???
+??getEvenParityforRx:
+//   42 {
+        MOVW    R19:R18, R17:R16
+//   43     uint8_t parity = 0;
+        LDI     R21, 0
+//   44     for (int i = 0; i < 12; i++)
+        LDI     R30, 0
+        LDI     R31, 0
+??getEvenParityforRx_1:
+        CPI     R30, 12
+        LDI     R16, 0
+        CPC     R31, R16
+        BRGE    ??getEvenParityforRx_2
+//   45     {
+//   46         parity ^= (data >> i) & 0x01;
+        MOV     R20, R30
+        MOVW    R17:R16, R19:R18
+        CALL    ?US_SHR_L02
+        ANDI    R16, 0x01
+        EOR     R21, R16
+//   47     }
+        ADIW    R31:R30, 1
+        RJMP    ??getEvenParityforRx_1
+//   48 
+//   49     return !parity;
+??getEvenParityforRx_2:
+        TST     R21
+        BRNE    ??getEvenParityforRx_3
+        LDI     R16, 1
+        RET
+??getEvenParityforRx_3:
+        LDI     R16, 0
+        RET
+//   50 }
+//   51 
+//   52 //-----------------------------------------------------------------------------------------------------
+//   53 // Get Hamming code
+
+        RSEG CODE:CODE:NOROOT(1)
+//   54 uint16_t CHammingCodes::enHamming(uint8_t data)
+??enHamming:
+//   55 {
+        MOV     R21, R16
+//   56     uint16_t hamming = 0;
+        LDI     R22, 0
+        LDI     R23, 0
+//   57 
+//   58     // Set Data
+//   59     hamming = (data & BLOCK2) << BLOCK2_SHIFT;  //0b1111 0000 0000
+        LDI     R16, 16
+        MUL     R21, R16
+        LDI     R16, 0
+        AND     R0, R16
+        LDI     R16, 15
+        AND     R1, R16
+        MOVW    R23:R22, R1:R0
+//   60     hamming |= (data & BLOCK1) << BLOCK1_SHIFT;  //0b0000 0111 0000
+        LDI     R16, 8
+        MUL     R21, R16
+        LDI     R16, 112
+        AND     R0, R16
+        LDI     R16, 0
+        AND     R1, R16
+        OR      R22, R0
+        OR      R23, R1
+//   61     hamming |= (data & BLOCK0) << BLOCK0_SHIFT;  //0b0000 0000 0100
+        MOV     R16, R21
+        ANDI    R16, 0x01
+        LDI     R17, 4
+        MUL     R16, R17
+        OR      R22, R0
+        OR      R23, R1
+//   62 
+//   63     // Set Parity
+//   64     hamming |= getEvenParityforTx(data & P3_POSI_8) << P3_BIT; // 0b1111 0000
+        MOV     R16, R21
+        ANDI    R16, 0xF0
+        RCALL   ??getEvenParityforTx
+        LDI     R17, 128
+        MUL     R16, R17
+        OR      R22, R0
+        OR      R23, R1
+//   65     hamming |= getEvenParityforTx(data & P2_POSI_8) << P2_BIT; // 0b1000 1110
+        MOV     R16, R21
+        ANDI    R16, 0x8E
+        RCALL   ??getEvenParityforTx
+        LDI     R17, 8
+        MUL     R16, R17
+        OR      R22, R0
+        OR      R23, R1
+//   66     hamming |= getEvenParityforTx(data & P1_POSI_8) << P1_BIT; // 0b0110 1101
+        MOV     R16, R21
+        ANDI    R16, 0x6D
+        RCALL   ??getEvenParityforTx
+        LDI     R17, 2
+        MUL     R16, R17
+        OR      R22, R0
+        OR      R23, R1
+//   67     hamming |= getEvenParityforTx(data & P0_POSI_8) << P0_BIT; // 0b0101 1011
+        MOV     R16, R21
+        ANDI    R16, 0x5B
+        RCALL   ??getEvenParityforTx
+        LDI     R17, 0
+        OR      R22, R16
+        OR      R23, R17
+//   68 
+//   69     return hamming;
+        MOVW    R17:R16, R23:R22
+        RET
+//   70 }
+//   71 
+//   72 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   73 uint8_t CHammingCodes::findHammingError(uint16_t hamming)
+??findHammingError:
+//   74 {
+        MOVW    R1:R0, R17:R16
+//   75     uint8_t errCode = 0;
+        LDI     R22, 0
+//   76 
+//   77     errCode  = ((getEvenParityforRx(hamming & P3_POSI_12)) != ((hamming >> P3_BIT) & 0x0001)) << 3;
+        MOVW    R17:R16, R1:R0
+        ANDI    R16, 0x00
+        ANDI    R17, 0x0F
+        RCALL   ??getEvenParityforRx
+        MOV     R17, R0
+        BST     R17, 7
+        LDI     R17, 0
+        BLD     R17, 0
+        CP      R16, R17
+        BREQ    ??findHammingError_1
+        LDI     R22, 1
+        RJMP    ??findHammingError_2
+??findHammingError_1:
+        LDI     R22, 0
+??findHammingError_2:
+        LSL     R22
+        LSL     R22
+        LSL     R22
+//   78     errCode |= ((getEvenParityforRx(hamming & P2_POSI_12)) != ((hamming >> P2_BIT) & 0x0001)) << 2;
+        MOVW    R17:R16, R1:R0
+        ANDI    R16, 0x70
+        ANDI    R17, 0x08
+        RCALL   ??getEvenParityforRx
+        MOV     R17, R0
+        BST     R17, 3
+        LDI     R17, 0
+        BLD     R17, 0
+        CP      R16, R17
+        BREQ    ??findHammingError_3
+        LDI     R16, 1
+        RJMP    ??findHammingError_4
+??findHammingError_3:
+        LDI     R16, 0
+??findHammingError_4:
+        LSL     R16
+        LSL     R16
+        OR      R22, R16
+//   79     errCode |= ((getEvenParityforRx(hamming & P1_POSI_12)) != ((hamming >> P1_BIT) & 0x0001)) << 1;
+        MOVW    R17:R16, R1:R0
+        ANDI    R16, 0x64
+        ANDI    R17, 0x06
+        RCALL   ??getEvenParityforRx
+        MOV     R17, R0
+        BST     R17, 1
+        LDI     R17, 0
+        BLD     R17, 0
+        CP      R16, R17
+        BREQ    ??findHammingError_5
+        LDI     R16, 1
+        RJMP    ??findHammingError_6
+??findHammingError_5:
+        LDI     R16, 0
+??findHammingError_6:
+        LSL     R16
+        OR      R22, R16
+//   80     errCode |= ((getEvenParityforRx(hamming & P0_POSI_12)) != ((hamming >> P0_BIT) & 0x0001)) << 0;
+        MOVW    R17:R16, R1:R0
+        ANDI    R16, 0x54
+        ANDI    R17, 0x05
+        RCALL   ??getEvenParityforRx
+        MOV     R17, R0
+        ANDI    R17, 0x01
+        CP      R16, R17
+        BREQ    ??findHammingError_7
+        LDI     R16, 1
+        RJMP    ??findHammingError_8
+??findHammingError_7:
+        LDI     R16, 0
+??findHammingError_8:
+        OR      R22, R16
+//   81 
+//   82     return errCode;
+        MOV     R16, R22
+        RET
+//   83 }
+//   84 
+//   85 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   86 uint16_t CHammingCodes::fixError(uint16_t hammingData, uint8_t errorCode)
+??fixError:
+//   87 {
+        MOVW    R23:R22, R17:R16
+//   88     if (errorCode == NONE_ERROR)
+        TST     R18
+        BRNE    ??fixError_1
+//   89     {
+//   90         return hammingData;
+        MOVW    R17:R16, R23:R22
+        RET
+//   91     }
+//   92     else
+//   93     {
+//   94         m_uiErrorCode = errorCode;
+??fixError_1:
+        STS     ??m_uiErrorCode, R18
+//   95         return hammingData ^ (1 << (errorCode - 1));
+        DEC     R18
+        LDI     R16, 1
+        LDI     R17, 0
+        MOV     R20, R18
+        CALL    ?S_SHL_L02
+        EOR     R22, R16
+        EOR     R23, R17
+        MOVW    R17:R16, R23:R22
+        RET
+//   96     }
+//   97 
+//   98 }
+//   99 
+//  100 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  101 uint8_t CHammingCodes::deHamming(uint16_t hammingData)
+??deHamming:
+//  102 {
+        MOVW    R23:R22, R17:R16
+//  103     uint8_t data = 0;
+        LDI     R18, 0
+//  104 
+//  105     data = (hammingData >> BLOCK2_SHIFT) & BLOCK2;
+        LDI     R20, 4
+        MOVW    R17:R16, R23:R22
+        CALL    ?US_SHR_L02
+        ANDI    R16, 0xF0
+        MOV     R18, R16
+//  106     data |= (hammingData >> BLOCK1_SHIFT) & BLOCK1;
+        MOV     R16, R22
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ANDI    R16, 0x0E
+        OR      R18, R16
+//  107     data |= (hammingData >> BLOCK0_SHIFT) & BLOCK0;
+        MOV     R16, R22
+        BST     R16, 2
+        LDI     R16, 0
+        BLD     R16, 0
+        OR      R18, R16
+//  108 
+//  109     return data;
+        MOV     R16, R18
+        RET
+//  110 }
+//  111 
+//  112 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  113 uint8_t CHammingCodes::Recovery(uint16_t uiHammingData)
+??Recovery:
+//  114 {
+        MOVW    R3:R2, R17:R16
+//  115     return deHamming(fixError(uiHammingData, findHammingError(uiHammingData)));
+        MOVW    R17:R16, R3:R2
+        RCALL   ??findHammingError
+        MOV     R18, R16
+        MOVW    R17:R16, R3:R2
+        RCALL   ??fixError
+        RCALL   ??deHamming
+        RET
+//  116 }
+//  117 
+//  118 //-----------------------------------------------------------------------------------------------------
+//  119 // Кодирует буфер в код Хемминга.
+
+        RSEG CODE:CODE:NOROOT(1)
+//  120 uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiLength)
+??BytesToHammingCodes:
+//  121 {
+        CALL    ?PROLOGUE15_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        REQUIRE ?Register_R8_is_cg_reg
+        REQUIRE ?Register_R9_is_cg_reg
+        REQUIRE ?Register_R10_is_cg_reg
+        REQUIRE ?Register_R11_is_cg_reg
+        REQUIRE ?Register_R12_is_cg_reg
+        REQUIRE ?Register_R13_is_cg_reg
+        REQUIRE ?Register_R14_is_cg_reg
+        MOVW    R7:R6, R17:R16
+        MOVW    R11:R10, R19:R18
+        MOVW    R13:R12, R21:R20
+//  122     uint16_t uiEncodedByteCounter = 0;
+        CLR     R2
+        CLR     R3
+//  123     uint16_t uiSourseIndex = 0;
+        CLR     R4
+        CLR     R5
+//  124     bool bTailIsPresent = false;
+        CLR     R14
+//  125 
+//  126     // Количество байт данных нечётное?
+//  127     if (uiLength & 1)
+        BST     R12, 0
+        BRTC    ??BytesToHammingCodes_1
+//  128     {
+//  129         uiLength -= 1;
+        LDI     R16, 255
+        ADD     R12, R16
+        LDI     R16, 255
+        ADC     R13, R16
+//  130         bTailIsPresent = true;
+        CLR     R14
+        INC     R14
+//  131     }
+//  132 
+//  133     // Закодируем все данные.
+//  134     for (uint16_t i = 0; i < uiLength; i += 2)
+??BytesToHammingCodes_1:
+        CLR     R8
+        CLR     R9
+??BytesToHammingCodes_2:
+        CP      R8, R12
+        CPC     R9, R13
+        BRCS    $+2+2
+        RJMP    ??BytesToHammingCodes_3
+//  135     {
+//  136         uint32_t uiData;
+//  137         // Получим кодовое слово 12 бит.
+//  138         uiData = static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex]));
+        MOVW    R31:R30, R11:R10
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        RCALL   ??enHamming
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+//  139         // Следующий байт источника.
+//  140         uiSourseIndex++;
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+//  141         // Получим кодовое слово 12 бит.
+//  142         uiData |= (static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex])) << HAMMING_CODE_8_4_BIT_NUMBER);
+        MOVW    R31:R30, R11:R10
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        RCALL   ??enHamming
+        MOVW    R21:R20, R17:R16
+        LDI     R22, 0
+        LDI     R23, 0
+        LDI     R30, 12
+        MOVW    R17:R16, R21:R20
+        MOVW    R19:R18, R23:R22
+        MOV     R20, R30
+        CALL    ?L_SHL_L03
+        OR      R24, R16
+        OR      R25, R17
+        OR      R26, R18
+        OR      R27, R19
+//  143         // Следующий байт источника.
+//  144         uiSourseIndex++;
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+//  145 
+//  146         puiDestination[uiEncodedByteCounter] = static_cast<uint8_t>(uiData);
+        MOVW    R17:R16, R25:R24
+        MOVW    R31:R30, R7:R6
+        ADD     R30, R2
+        ADC     R31, R3
+        ST      Z, R16
+//  147         // Адрес следующего байта для сохранения.
+//  148         // Увеличим количество закодированных байт.
+//  149         uiEncodedByteCounter++;
+        LDI     R16, 1
+        ADD     R2, R16
+        LDI     R16, 0
+        ADC     R3, R16
+//  150         uiData >>= 8;
+        MOV     R24, R25
+        MOV     R25, R26
+        MOV     R26, R27
+        LDI     R27, 0
+//  151         puiDestination[uiEncodedByteCounter] = static_cast<uint8_t>(uiData);
+        MOVW    R17:R16, R25:R24
+        MOVW    R31:R30, R7:R6
+        ADD     R30, R2
+        ADC     R31, R3
+        ST      Z, R16
+//  152         // Адрес следующего байта для сохранения.
+//  153         // Увеличим количество закодированных байт.
+//  154         uiEncodedByteCounter++;
+        LDI     R16, 1
+        ADD     R2, R16
+        LDI     R16, 0
+        ADC     R3, R16
+//  155         uiData >>= 8;
+        MOV     R24, R25
+        MOV     R25, R26
+        MOV     R26, R27
+        LDI     R27, 0
+//  156         puiDestination[uiEncodedByteCounter] = static_cast<uint8_t>(uiData);
+        MOVW    R17:R16, R25:R24
+        MOVW    R31:R30, R7:R6
+        ADD     R30, R2
+        ADC     R31, R3
+        ST      Z, R16
+//  157         // Адрес следующего байта для сохранения.
+//  158         // Увеличим количество закодированных байт.
+//  159         uiEncodedByteCounter++;
+        LDI     R16, 1
+        ADD     R2, R16
+        LDI     R16, 0
+        ADC     R3, R16
+//  160     }
+        LDI     R16, 2
+        ADD     R8, R16
+        LDI     R16, 0
+        ADC     R9, R16
+        RJMP    ??BytesToHammingCodes_2
+//  161 
+//  162     if (bTailIsPresent)
+??BytesToHammingCodes_3:
+        TST     R14
+        BREQ    ??BytesToHammingCodes_4
+//  163     {
+//  164         uint16_t uiData;
+//  165         // Получим кодовое слово 12 бит.
+//  166         uiData = static_cast<uint16_t>(enHamming(puiSourse[uiSourseIndex]));
+        MOVW    R31:R30, R11:R10
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        RCALL   ??enHamming
+        MOVW    R25:R24, R17:R16
+//  167 
+//  168         puiDestination[uiEncodedByteCounter] = static_cast<uint8_t>(uiData);
+        MOV     R16, R24
+        MOVW    R31:R30, R7:R6
+        ADD     R30, R2
+        ADC     R31, R3
+        ST      Z, R16
+//  169         // Адрес следующего байта для сохранения.
+//  170         // Увеличим количество закодированных байт.
+//  171         uiEncodedByteCounter++;
+        LDI     R16, 1
+        ADD     R2, R16
+        LDI     R16, 0
+        ADC     R3, R16
+//  172         uiData >>= 8;
+        MOV     R24, R25
+        LDI     R25, 0
+//  173         puiDestination[uiEncodedByteCounter] = static_cast<uint8_t>(uiData);
+        MOV     R16, R24
+        MOVW    R31:R30, R7:R6
+        ADD     R30, R2
+        ADC     R31, R3
+        ST      Z, R16
+//  174         // Адрес следующего байта для сохранения.
+//  175         // Увеличим количество закодированных байт.
+//  176         uiEncodedByteCounter++;
+        LDI     R16, 1
+        ADD     R2, R16
+        LDI     R16, 0
+        ADC     R3, R16
+//  177     }
+//  178 
+//  179     return uiEncodedByteCounter;
+??BytesToHammingCodes_4:
+        MOVW    R17:R16, R3:R2
+        LDI     R30, 15
+        JMP     ?EPILOGUE_B15_L09
+//  180 }
+//  181 
+//  182 //-----------------------------------------------------------------------------------------------------
+//  183 // Декодирует буфер с кодом Хемминга.
+
+        RSEG CODE:CODE:NOROOT(1)
+//  184 uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiLength)
+??HammingCodesToBytes:
+//  185 {
+        CALL    ?PROLOGUE16_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        REQUIRE ?Register_R8_is_cg_reg
+        REQUIRE ?Register_R9_is_cg_reg
+        REQUIRE ?Register_R10_is_cg_reg
+        REQUIRE ?Register_R11_is_cg_reg
+        REQUIRE ?Register_R12_is_cg_reg
+        REQUIRE ?Register_R13_is_cg_reg
+        REQUIRE ?Register_R14_is_cg_reg
+        REQUIRE ?Register_R15_is_cg_reg
+        SBIW    R29:R28, 1
+        MOVW    R11:R10, R17:R16
+        MOVW    R9:R8, R19:R18
+        MOVW    R15:R14, R21:R20
+//  186     uint16_t uiDecodedByteCounter = 0;
+        CLR     R6
+        CLR     R7
+//  187     uint16_t uiSourseIndex = 0;
+        CLR     R4
+        CLR     R5
+//  188     bool bTailIsPresent = false;
+        LDI     R16, 0
+        ST      Y, R16
+//  189 
+//  190     if ((uiLength % 3) == 1)
+        LDI     R20, 3
+        LDI     R21, 0
+        MOVW    R17:R16, R15:R14
+        CALL    ?US_DIVMOD_L02
+        CPI     R20, 1
+        SBCI    R21, 0
+        BRNE    ??HammingCodesToBytes_1
+//  191     {
+//  192         // Ошибка - не достаточно данных для восстановления.
+//  193         return 0;
+        LDI     R16, 0
+        LDI     R17, 0
+        RJMP    ??HammingCodesToBytes_2
+//  194     }
+//  195 
+//  196     // Количество байт данных нечётное?
+//  197     if ((uiLength % 3) == 2)
+??HammingCodesToBytes_1:
+        LDI     R20, 3
+        LDI     R21, 0
+        MOVW    R17:R16, R15:R14
+        CALL    ?US_DIVMOD_L02
+        CPI     R20, 2
+        SBCI    R21, 0
+        BRNE    ??HammingCodesToBytes_3
+//  198     {
+//  199         uiLength -= 2;
+        LDI     R16, 254
+        ADD     R14, R16
+        LDI     R16, 255
+        ADC     R15, R16
+//  200         bTailIsPresent = true;
+        LDI     R16, 1
+        ST      Y, R16
+//  201     }
+//  202 
+//  203     // Декодируем все данные.
+//  204     for (uint16_t i = 0; i < uiLength; i += 3)
+??HammingCodesToBytes_3:
+        CLR     R12
+        CLR     R13
+??HammingCodesToBytes_4:
+        CP      R12, R14
+        CPC     R13, R15
+        BRCS    $+2+2
+        RJMP    ??HammingCodesToBytes_5
+//  205     {
+//  206         uint32_t uiData;
+//  207         uint16_t uiHammingData;
+//  208 
+//  209         uiData = (static_cast<uint32_t>(puiSourse[uiSourseIndex]));
+        MOVW    R31:R30, R9:R8
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        LDI     R17, 0
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+//  210         // Следующий байт источника.
+//  211         uiSourseIndex++;
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+//  212         uiData |= (static_cast<uint32_t>(puiSourse[uiSourseIndex]) << 8);
+        MOVW    R31:R30, R9:R8
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        LDI     R17, 0
+        LDI     R18, 0
+        LDI     R19, 0
+        MOV     R19, R18
+        MOV     R18, R17
+        MOV     R17, R16
+        LDI     R16, 0
+        OR      R24, R16
+        OR      R25, R17
+        OR      R26, R18
+        OR      R27, R19
+//  213         // Следующий байт источника.
+//  214         uiSourseIndex++;
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+//  215         uiData |= (static_cast<uint32_t>(puiSourse[uiSourseIndex]) << 16);
+        MOVW    R31:R30, R9:R8
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R18, Z
+        LDI     R19, 0
+        LDI     R16, 0
+        LDI     R17, 0
+        OR      R24, R16
+        OR      R25, R17
+        OR      R26, R18
+        OR      R27, R19
+//  216         // Следующий байт источника.
+//  217         uiSourseIndex++;
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+//  218 
+//  219         // Восстановим закодированный байт.
+//  220         puiDestination[uiDecodedByteCounter] = Recovery((static_cast<uint16_t>(uiData) & 0x0FFF));
+        MOVW    R17:R16, R25:R24
+        ANDI    R16, 0xFF
+        ANDI    R17, 0x0F
+        RCALL   ??Recovery
+        MOVW    R31:R30, R11:R10
+        ADD     R30, R6
+        ADC     R31, R7
+        ST      Z, R16
+//  221         // Увеличим количество декодированных байт.
+//  222         uiDecodedByteCounter++;
+        LDI     R16, 1
+        ADD     R6, R16
+        LDI     R16, 0
+        ADC     R7, R16
+//  223         // Восстановим закодированный байт.
+//  224         puiDestination[uiDecodedByteCounter] = Recovery((static_cast<uint16_t>(uiData >> HAMMING_CODE_8_4_BIT_NUMBER) & 0x0FFF));
+        LDI     R20, 12
+        MOVW    R17:R16, R25:R24
+        MOVW    R19:R18, R27:R26
+        CALL    ?UL_SHR_L03
+        ANDI    R16, 0xFF
+        ANDI    R17, 0x0F
+        RCALL   ??Recovery
+        MOVW    R31:R30, R11:R10
+        ADD     R30, R6
+        ADC     R31, R7
+        ST      Z, R16
+//  225         // Увеличим количество декодированных байт.
+//  226         uiDecodedByteCounter++;
+        LDI     R16, 1
+        ADD     R6, R16
+        LDI     R16, 0
+        ADC     R7, R16
+//  227     }
+        LDI     R16, 3
+        ADD     R12, R16
+        LDI     R16, 0
+        ADC     R13, R16
+        RJMP    ??HammingCodesToBytes_4
+//  228 
+//  229     if (bTailIsPresent)
+??HammingCodesToBytes_5:
+        LD      R16, Y
+        TST     R16
+        BREQ    ??HammingCodesToBytes_6
+//  230     {
+//  231         uint16_t uiData;
+//  232         uint16_t uiHammingData;
+//  233 
+//  234         uiData = (static_cast<uint16_t>(puiSourse[uiSourseIndex]));
+        MOVW    R31:R30, R9:R8
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        LDI     R17, 0
+        MOVW    R25:R24, R17:R16
+//  235         // Следующий байт источника.
+//  236         uiSourseIndex++;
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+//  237         uiData |= (static_cast<uint16_t>(puiSourse[uiSourseIndex]) << 8);
+        MOVW    R31:R30, R9:R8
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R17, Z
+        LDI     R16, 0
+        OR      R24, R16
+        OR      R25, R17
+//  238 
+//  239         // Восстановим закодированный байт.
+//  240         puiDestination[uiDecodedByteCounter] = Recovery(uiData & 0x0FFF);
+        MOVW    R17:R16, R25:R24
+        ANDI    R16, 0xFF
+        ANDI    R17, 0x0F
+        RCALL   ??Recovery
+        MOVW    R31:R30, R11:R10
+        ADD     R30, R6
+        ADC     R31, R7
+        ST      Z, R16
+//  241         // Увеличим количество декодированных байт.
+//  242         uiDecodedByteCounter++;
+        LDI     R16, 1
+        ADD     R6, R16
+        LDI     R16, 0
+        ADC     R7, R16
+//  243     }
+//  244 
+//  245     return uiDecodedByteCounter;
+??HammingCodesToBytes_6:
+        MOVW    R17:R16, R7:R6
+??HammingCodesToBytes_2:
+        ADIW    R29:R28, 1
+        LDI     R30, 16
+        JMP     ?EPILOGUE_B16_L09
+//  246 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DC16    SFE(NEAR_Z) - SFB(NEAR_Z)
+        DC16    SFB(NEAR_Z)
+        DP      0
+        REQUIRE ?need_segment_init
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CHammingCodes::__vtbl[1]
+??__vtbl:
+        DC16 `?~CHammingCodes`/2
+
+        END
+//  247 
+//  248 //-----------------------------------------------------------------------------------------------------
+// 
+// 1 060 bytes in segment CODE
+//     7 bytes in segment INITTAB
+//     2 bytes in segment NEAR_F
+//     1 byte  in segment NEAR_Z
+// 
+// 1 060 bytes of CODE memory (+ 9 bytes shared)
+//     1 byte  of DATA memory
+//
+//Errors: none
+//Warnings: 2
