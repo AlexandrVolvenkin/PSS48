@@ -22,12 +22,10 @@ public:
     enum
     {
         EEPROM_CONTEXT_BEGIN = 0,
-        PROGMEM_CONTEXT_BEGIN = 0,
         // Нулевой байт может быть стёрт при сбое питания.
         BLOCKS_CONTROL_DATA_BEGIN = 16,
         BLOCKS_CONTROL_DATA_BLOCK_NUMBER = 1,
         MAX_BLOCKS_NUMBER = (TDataBase::BLOCKS_QUANTITY + BLOCKS_CONTROL_DATA_BLOCK_NUMBER),
-        CHECKED_BLOCKS_NUMBER = (MAX_BLOCKS_NUMBER - 4),
         // Сохраняемый буфер должен быть на CRC_LENGTH больше.
         CRC_LENGTH = 2,
         // Контрольная сумма в коде Хемминга занимает 3 байта.
@@ -105,7 +103,7 @@ public:
 
     CDataStore();
     virtual ~CDataStore();
-    uint8_t Init(void);
+    void Init(void);
     uint8_t Check(void);
     uint16_t ReadBlock(uint8_t * , uint8_t );
     uint16_t WriteBlock(uint8_t * , uint16_t , uint8_t );
@@ -120,13 +118,12 @@ public:
         return &m_xTimer;
     };
 
-//    CStorageDevice* m_pxStorageDevice;
 protected:
 private:
     // Служебные данные системы хранения.
     TBlocksControlData m_xBlocksControlData;
     // Массив контрольных сумм блоков.
-    uint16_t m_auiCurrentBlocksCrc[MAX_BLOCKS_NUMBER];
+    uint16_t m_auiBlocksCurrentCrc[MAX_BLOCKS_NUMBER];
     uint8_t* m_puiIntermediateBuff;
     CTimer m_xTimer;
 };

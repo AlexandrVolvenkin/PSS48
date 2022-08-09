@@ -25,47 +25,6 @@
 
 //-----------------------------------------------------------------------------------------------------
 #define F_CPU 7372800UL
-//S1 - ÊÂÈÒÈÐÎÂÀÍÈÅ
-//
-//S2 - ÑÁÐÎÑ
-//
-//S3 _ ÊÎÍÒÐÎËÜ
-//
-//HL49 - ÑÒÀÒÓÑ
-//
-//HL50 – RS-485
-
-//-----------------------------------------------------------------------------------------------------
-// delay
-////  struct time.h
-//struct tm {
-//   int tm_sec;         /* seconds,  range 0 to 59          */
-//   int tm_min;         /* minutes, range 0 to 59           */
-//   int tm_hour;        /* hours, range 0 to 23             */
-//   int tm_mday;        /* day of the month, range 1 to 31  */
-//   int tm_mon;         /* month, range 0 to 11             */
-//   int tm_year;        /* The number of years since 1900   */
-//   int tm_wday;        /* day of the week, range 0 to 6    */
-//   int tm_yday;        /* day in the year, range 0 to 365  */
-//   int tm_isdst;       /* daylight saving time             */
-//};
-//typedef struct tm tm;
-
-/*
- * Structure returned by gettimeofday(2) system call,
- * and used in other calls.
- */
-struct timeval
-{
-    int16_t	tv_sec;		/* seconds */
-    int16_t	tv_usec;	/* and microseconds */
-};
-
-struct timezone
-{
-    int16_t tz_minuteswest;     /* minutes west of Greenwich */
-    int16_t tz_dsttime;         /* type of DST correction */
-};
 
 #define delay_us(usecs) __delay_cycles((F_CPU/1000000)  *(usecs))
 
@@ -76,22 +35,6 @@ struct timezone
 void delay_ms(uint16_t millisecs);
 void delay_s(uint16_t secs);
 void delay_mins(uint16_t minutes);
-int16_t gettimeofday(struct timeval *tv, struct timezone *tz);
-
-//-----------------------------------------------------------------------------------------------------
-/* Access macros for `fd_set'.  */
-#define        FD_SET(fd, fdsetp)        _NOP()
-#define        FD_CLR(fd, fdsetp)        _NOP()
-#define        FD_ISSET(fd, fdsetp)      _NOP()
-#define        FD_ZERO(fdsetp)           _NOP()
-
-typedef struct fd_set
-{
-    uint16_t  fd_count;
-//  SOCKET fd_array[FD_SETSIZE];
-} fd_set, FD_SET, *PFD_SET, *LPFD_SET;
-
-//int16_t select(int32_t n, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
 
 //-----------------------------------------------------------------------------------------------------
 // GPIO
@@ -127,54 +70,6 @@ typedef struct fd_set
 #define RTS_LED_PIN  PORTD1
 
 //---------------------------------------- UART -------------------------------------------------------------------------------
-//#define ttyO0 USART0
-//#define ttyO1 USART1
-//#define MODBUS_RTU_BAUD_RATE          9600
-//#define DEBUG_PORT_BAUD_RATE          9600
-#define UART_BAUD_CALC(MODBUS_RTU_BAUD_RATE,F_CPU) \
-    ( ( F_CPU ) / ( ( MODBUS_RTU_BAUD_RATE ) * 16UL ) - 1 )
-#define UART_BUFFER_LENGTH 260
-#define UART_INTERMEDIATE_BUFFER_LENGTH 16
-#define RTS_ENABLE
-
-////extern uint8_t *pucUsartTxBuff;
-////extern uint16_t nuiUsartTxBuffByteCounter;
-////extern uint8_t *pucUsartRxBuff;
-////extern uint16_t nuiUsartRxBuffByteCounter;
-////extern uint8_t aucUsartIntermediateBufff[];
-////extern bool bfModbusUartByteIsReceived;
-////extern bool bfTaskIsAwakened;
-////extern bool bfModbusUsartRxOverflow;
-////
-////int16_t iModbusUartInit(char *pucPORT,
-////                        uint32_t ulBaudRate,
-////                        uint8_t ucDataBits,
-////                        uint8_t ucParity,
-////                        uint8_t ucStopBit );
-////void vModbusUartEnable(void);
-////void vModbusUartDisable(void);
-////
-//////ssize_t write (int16_t fd, const void * buffer, size_t count);
-//////#define write(Socket, Sourse, Length) iModbusUsartSend(Socket, Sourse, Length)
-//////#define write CPlatform::m_pxUart0 -> Send
-//////#define write Send
-////
-////int16_t iModbusUsartSend(int16_t iSocket, const uint8_t *puiSourse, int16_t uiLength);
-//////ssize_t read (int16_t fd, void * buffer, size_t count);
-//////#define read(Socket, Destination, Length) iModbusUsartReceive(Socket, Destination, Length)
-//////#define read CPlatform::m_pxUart0 -> Receive
-//////#define read Receive
-////int16_t iModbusUsartReceive(int8_t iSocket, uint8_t *puiDestination, int16_t uiLength);
-//void vDebugUARTInit(void);
-////int16_t MyLowLevelPutchar(int16_t sendchar);
-//int16_t MyLowLevelPutchar(char sendchar);
-//char MyLowLevelGetchar(void);
-////int16_t PutString(char *pcSourse);
-//int16_t PutString(const char __farflash *pcSourse);
-////int16_t R_printf_P(const char __farflash* ccSourse, int iData);
-//const char* ccFlashToRamStringRead(const char __farflash* pccfSourse);
-
-//-----------------------------------------------------------------------------------------------------
 class CUart
 {
 public:
@@ -213,7 +108,6 @@ public:
     void Rs485RtsOff(void);
     int16_t Write(uint8_t * , uint16_t );
     int16_t Read(uint8_t * , uint16_t );
-//    int16_t Read(void);
     uint8_t ByteIsReceived(void)
     {
         return m_bfByteIsReceived;
@@ -228,17 +122,17 @@ public:
     };
 
 //-----------------------------------------------------------------------------------------------------
-//private:
+private:
     volatile uint8_t* m_UBRRH;
     volatile uint8_t* m_UBRRL;
     volatile uint8_t* m_UCSRA;
     volatile uint8_t* m_UCSRB;
     volatile uint8_t* m_UCSRC;
     volatile uint8_t* m_UDR;
-    volatile uint8_t* m_rs485ddr;
-    volatile uint8_t m_rs485ddpin;
-    volatile uint8_t* m_rs485port;
-    volatile uint8_t m_rs485pin;
+    volatile uint8_t* m_rs485DirectionPort;
+    volatile uint8_t m_rs485DirectionPin;
+    volatile uint8_t* m_rs485OutputPort;
+    volatile uint8_t m_rs485OutputPin;
 
     uint8_t* m_puiTxBuffer;
     uint16_t m_nuiTxBuffByteCounter;
@@ -426,79 +320,7 @@ private:
     static uint16_t m_uiLength;
     static bool m_bBufferIsWrited;
 };
-////-----------------------------------------------------------------------------------------------------
-//class CEeprom : public CStorageDevice
-//{
-//public:
-//    CEeprom();
-//    virtual ~CEeprom();
-//    uint8_t Read(uint8_t * , uint16_t , uint16_t );
-//    uint8_t Write(uint16_t , uint8_t * , uint16_t );
-//    uint8_t ReadByte(uint16_t );
-//    void WriteByte(uint16_t , uint8_t );
-//    void ReadyInterruptHandler(void);
-////// Ïðåðûâàíèå ïî çàâåðøåíèþ çàïèñè.
-////#pragma vector = EE_READY_vect
-////    static __interrupt void ReadyInterruptHandler(void);
-//
-//    void ReadyInterruptEnable(void)
-//    {
-//        EECR |= (1 << EERIE);
-//    };
-//    void ReadyInterruptDisaable(void)
-//    {
-//        EECR &= ~(1 << EERIE);
-//    };
-//
-////    uint8_t* GetBufferPointer(void)
-////    {
-////        return m_puiBuffer;
-////    };
-////    void SetBufferByteCounter(uint16_t nuiBufferByteCounter)
-////    {
-////        m_nuiBufferByteCounter = nuiBufferByteCounter;
-////    };
-////    uint16_t GetBufferByteCounter(void)
-////    {
-////        return m_nuiBufferByteCounter;
-////    };
-////
-////    void SetLength(uint16_t uiLength)
-////    {
-////        m_uiLength = uiLength;
-////    };
-////    uint16_t GetLength(void)
-////    {
-////        return m_uiLength;
-////    };
-////
-////    void SetBufferIsWrited(bool bBufferIsWrited)
-////    {
-////        m_bBufferIsWrited = bBufferIsWrited;
-////    };
-////    bool GetBufferIsWrited(void)
-////    {
-////        return m_bBufferIsWrited;
-////    };
-//
-//    bool IsReadyToWrite(void)
-//    {
-//        if (BitIsSet(EECR, EEWE))
-//        {
-//            return false;
-//        }
-//        else
-//        {
-//            return true;
-//        }
-//    };
-//
-//private:
-////    uint8_t* m_puiBuffer;
-////    uint16_t m_nuiBufferByteCounter;
-////    uint16_t m_uiLength;
-////    bool m_bBufferIsWrited;
-//};
+
 //-----------------------------------------------------------------------------------------------------
 
 
@@ -521,7 +343,6 @@ public:
     virtual ~CSpi();
 
     static void Init(void);
-    static void Reset(void);
     static void Enable(void);
     static void Disable(void);
     static uint8_t Exchange(uint8_t );
@@ -545,8 +366,6 @@ class CPlatform
 public:
     CPlatform();
     virtual ~CPlatform();
-
-//    static const uint32_t F_CPU = 7372800;
 
 //-----------------------------------------------------------------------------------------------------
     static void WatchdogReset(void)

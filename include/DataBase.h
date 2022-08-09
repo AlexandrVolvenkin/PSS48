@@ -11,22 +11,10 @@
 #include <stdint.h>
 #include "DataStore.h"
 
-
-//-----------------------------------------------------------------------------------------------------
-// Описатель структур хранения данных в EEPROM
-struct TDataStructure
-{
-    unsigned char  Field;			// Идентификатор поля данных
-    unsigned char  Size;			// Размер блока
-    unsigned short Offset;			// Смещение блока данных от начала
-};
-
 //-----------------------------------------------------------------------------------------------------
 class CDataBase
 {
 public:
-
-    static __flash TDataStructure  DSTR[];
 
     CDataBase();
     virtual ~CDataBase();
@@ -47,14 +35,14 @@ public:
     static uint8_t GetBlockLength(uint8_t uiBlock);
     static uint16_t GetBlockOffset(uint8_t uiBlock);
 
-//    CDataStore* m_pxDataStore;
 protected:
 private:
-    static uint8_t m_uiStatus;
-    static TDataBase __farflash *m_pxDBase;
-    static TDataStructure __farflash *m_pxDStruct;
 
-    friend class CModbus;
+    static __flash TDataBaseBlockPositionData  axDataBaseBlocksPositionData[];
+    static uint8_t m_uiStatus;
+    static TDataBase __farflash *m_pxDataBase;
+    static struct TDataBaseBlockPositionData __farflash *m_pxDataBaseBlocksPositionData;
+
 };
 
 //-----------------------------------------------------------------------------------------------------

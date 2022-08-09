@@ -73,7 +73,6 @@
 
 
 #define PACKET_SIZE 10
-//#define NONE_ERROR 0
 
 // Only a single bit error is possible
 #define NOISE_BIT 1

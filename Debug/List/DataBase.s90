@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:02
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  11:06:58
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWCF85.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW18F7.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DataBase.s90
@@ -35,9 +34,7 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B3_L09
         EXTERN ?EPILOGUE_B5_L09
-        EXTERN ?PROLOGUE3_L09
         EXTERN ?PROLOGUE5_L09
         EXTERN ?Register_R4_is_cg_reg
         EXTERN ?need_segment_init
@@ -45,24 +42,20 @@
         PUBWEAK `?<Segment init: NEAR_Z>`
         PUBLIC ??CDataBase
         PUBLIC ??Check
-        PUBLIC ??DSTR
         PUBLIC ??GetBlockLength
         PUBLIC ??GetBlockOffset
-        PUBWEAK ??GetFsmEvent
         PUBLIC ??IntegrityCheck
         PUBLIC ??Read
         PUBLIC ??RestoreDefault
-        PUBWEAK ??SetErrorCode
         PUBLIC ??UserConfirmationCheck
-        PUBWEAK ??WatchdogReset
         PUBLIC ??Write
         PUBWEAK ??__vtbl_1
-        PUBLIC ??m_pxDBase
-        PUBLIC ??m_pxDStruct
+        PUBLIC ??axDataBaseBlocksPositionData
+        PUBLIC ??m_pxDataBase
+        PUBLIC ??m_pxDataBaseBlocksPositionData
         PUBLIC ??m_uiStatus
         PUBLIC `??new CDataBase`
         PUBLIC `?~CDataBase`
-        PUBLIC DBMain
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -159,16 +152,17 @@
         PUBWEAK __?EEARL
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
+        PUBLIC axMainDataBase
 
 `?<Name CPss21 43>` SYMBOL "CPss21"
 ??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 43>`
 ??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 43>`
 ??m_xDataStore      SYMBOL "m_xDataStore", `?<Name CPss21 43>`
 `?<Name CDataBase 51>` SYMBOL "CDataBase"
-??DSTR              SYMBOL "DSTR", `?<Name CDataBase 51>`
 ??__vtbl_1          SYMBOL "__vtbl", `?<Name CDataBase 51>`
-??m_pxDBase         SYMBOL "m_pxDBase", `?<Name CDataBase 51>`
-??m_pxDStruct       SYMBOL "m_pxDStruct", `?<Name CDataBase 51>`
+??axDataBaseBlocksPositionData SYMBOL "axDataBaseBlocksPositionData", `?<Name CDataBase 51>`
+??m_pxDataBase      SYMBOL "m_pxDataBase", `?<Name CDataBase 51>`
+??m_pxDataBaseBlocksPositionData SYMBOL "m_pxDataBaseBlocksPositionData", `?<Name CDataBase 51>`
 ??m_uiStatus        SYMBOL "m_uiStatus", `?<Name CDataBase 51>`
 
         EXTERN ??Check_1
@@ -676,8 +670,8 @@ _A_PINF:
 //   16 //#pragma location = 0x0200
 
         RSEG NEAR_F:CODE:ROOT(0)
-//   17 TDataBase __flash DBMain =
-DBMain:
+//   17 TDataBase __flash axMainDataBase =
+axMainDataBase:
         DC8 2, 1, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         DC16 53099
         DC8 1, 47, 8, 115, 6, 0, 0
@@ -1052,10 +1046,8 @@ DBMain:
 //  255 };
 //  256 
 //  257 //-----------------------------------------------------------------------------------------------------
-
-        RSEG NEAR_F:CODE:ROOT(0)
-//  258 TDataStructure __flash CDataBase::DSTR[] =
-??DSTR:
+//  258 TDataBaseBlockPositionData __flash CDataBase::axDataBaseBlocksPositionData[] =
+??axDataBaseBlocksPositionData:
         DC8 0, 20
         DC16 0
         DC8 1, 7
@@ -1079,17 +1071,17 @@ DBMain:
         DC8 10, 8
         DC16 650
 //  259 {
-//  260     { 0, sizeof(DBMain.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
-//  261     { 1, sizeof(DBMain.MBSet),	  offsetof(TDataBase,MBSet)	 	},
-//  262     { 2, sizeof(DBMain.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
-//  263     { 3, sizeof(DBMain.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
-//  264     { 4, sizeof(DBMain.AlarmType), offsetof(TDataBase,AlarmType) 	},
-//  265     { 5, sizeof(DBMain.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
-//  266     { 6, sizeof(DBMain.Relay),	  offsetof(TDataBase,Relay)       	},
-//  267     { 7, sizeof(DBMain.InputList),	  offsetof(TDataBase,InputList)  	},
-//  268     { 8, sizeof(DBMain.ReceiptList), offsetof(TDataBase,ReceiptList)	},
-//  269     { 9, sizeof(DBMain.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-//  270     { 10, sizeof(DBMain.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+//  260     { 0, sizeof(axMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
+//  261     { 1, sizeof(axMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
+//  262     { 2, sizeof(axMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
+//  263     { 3, sizeof(axMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
+//  264     { 4, sizeof(axMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
+//  265     { 5, sizeof(axMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
+//  266     { 6, sizeof(axMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
+//  267     { 7, sizeof(axMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
+//  268     { 8, sizeof(axMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
+//  269     { 9, sizeof(axMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
+//  270     { 10, sizeof(axMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
 //  271 };
 //  272 
 //  273 //-----------------------------------------------------------------------------------------------------
@@ -1102,30 +1094,12 @@ DBMain:
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-//  275 TDataBase __farflash *CDataBase::m_pxDBase;
-??m_pxDBase:
+//  275 TDataBase __farflash *CDataBase::m_pxDataBase;
+??m_pxDataBase:
         DS8 3
-
-        RSEG NEAR_Z:DATA:ROOT(0)
-        REQUIRE `?<Segment init: NEAR_Z>`
-//  276 TDataStructure __farflash *CDataBase::m_pxDStruct;
-??m_pxDStruct:
+//  276 TDataBaseBlockPositionData __farflash *CDataBase::m_pxDataBaseBlocksPositionData;
+??m_pxDataBaseBlocksPositionData:
         DS8 3
-//  277 
-//  278 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
-//  279 CDataBase::CDataBase()
-??CDataBase:
-//  280 {
-        LDI     R18, LOW(??__vtbl_1)
-        LDI     R19, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R17:R16
-        ST      Z, R18
-        STD     Z+1, R19
-//  281 //    m_pxDataStore = new CDataStore();
-//  282 }
-        RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CDataBase &CDataBase::new CDataBase()
@@ -1136,12 +1110,36 @@ DBMain:
         MOV     R18, R16
         OR      R18, R17
         BREQ    `??new CDataBase_1`
-        RCALL   ??CDataBase
-        RET
+        RJMP    ?Subroutine2
 `??new CDataBase_1`:
         LDI     R16, 0
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
         LDI     R17, 0
         RET
+//  277 
+//  278 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  279 CDataBase::CDataBase()
+??CDataBase:
+        REQUIRE ?Subroutine2
+        ;               // Fall through to label ?Subroutine2
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+//  280 {
+        LDI     R18, LOW(??__vtbl_1)
+        LDI     R19, (??__vtbl_1) >> 8
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+        RET
+//  281 //    m_pxDataStore = new CDataStore();
+//  282 }
 //  283 
 //  284 //-----------------------------------------------------------------------------------------------------
 
@@ -1149,22 +1147,27 @@ DBMain:
 //  285 CDataBase::~CDataBase()
 `?~CDataBase`:
 //  286 {
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        MOV     R16, R24
-        OR      R16, R25
+        MOV     R20, R16
+        OR      R20, R17
         BREQ    `?~CDataBase_1`
         BST     R18, 0
         BRTC    `?~CDataBase_1`
 //  287 //    delete m_pxDataStore;
 //  288 }
-        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CDataBase_1`:
-        LD      R24, Y+
-        LD      R25, Y+
         RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??GetBlockOffset:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_0:
+        ADIW    R31:R30, 2
+        OUT     0x3B, R19
+        ELPM    R16, Z+
+        ELPM    R17, Z
+        REQUIRE ?Subroutine4
+        ;               // Fall through to label ?Subroutine4
 //  289 
 //  290 //-----------------------------------------------------------------------------------------------------
 //  291 uint8_t CDataBase::RestoreDefault(void)
@@ -1196,7 +1199,7 @@ DBMain:
 //  317             if (uiBlockCounter < TDataBase::BLOCKS_QUANTITY)
 //  318             {
 //  319                 // Получим указатель на блок БД во флеш.
-//  320                 puiDBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDBase)[GetBlockOffset(uiBlockCounter)];
+//  320                 puiDBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDataBase)[GetBlockOffset(uiBlockCounter)];
 //  321                 // Скопируем данные из флеш во временный буфер,
 //  322                 // чтобы передать их в функцию по обычному указателю, а не __farflash.
 //  323                 for (uint8_t i = 0; i < GetBlockLength(uiBlockCounter); i++)
@@ -1274,8 +1277,8 @@ DBMain:
 //  395 //-----------------------------------------------------------------------------------------------------
 //  396 uint8_t CDataBase::Check(void)
 //  397 {
-//  398     m_pxDBase = &DBMain;
-//  399     m_pxDStruct = DSTR;
+//  398     m_pxDataBase = &axMainDataBase;
+//  399     m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
 //  400 
 //  401     CPss21::SetErrorCode(NO_ERROR);
 //  402     // Блоки базы данных не повреждены?
@@ -1332,120 +1335,64 @@ DBMain:
 //  453 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  454 uint8_t CDataBase::GetBlockLength(uint8_t uiBlock)
-??GetBlockLength:
-//  455 {
-        MOV     R21, R27
-        MOV     R18, R26
-//  456     return m_pxDStruct[uiBlock].Size;
-        LDI     R17, 0
-        LSL     R16
-        ROL     R17
-        LSL     R16
-        ROL     R17
-        LDI     R26, LOW(??m_pxDStruct)
-        LDI     R27, (??m_pxDStruct) >> 8
-        LD      R30, X+
-        LD      R31, X+
-        LD      R19, X
-        SBIW    R27:R26, 2
-        ADD     R30, R16
-        ADC     R31, R17
-        ADIW    R31:R30, 1
-        OUT     0x3B, R19
-        ELPM    R16, Z
-        SBIW    R31:R30, 1
+?Subroutine4:
         MOV     R26, R18
         MOV     R27, R21
         RET
-//  457 }
 
         RSEG CODE:CODE:NOROOT(1)
-??GetBlockOffset:
+??GetBlockLength:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_1:
+        ADIW    R31:R30, 1
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        RJMP    ?Subroutine4
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
         MOV     R21, R27
         MOV     R18, R26
-        LDI     R17, 0
-        LSL     R16
-        ROL     R17
-        LSL     R16
-        ROL     R17
-        LDI     R26, LOW(??m_pxDStruct)
-        LDI     R27, (??m_pxDStruct) >> 8
+        LDI     R26, LOW((??m_pxDataBase + 3))
+        LDI     R27, HIGH((??m_pxDataBase + 3))
         LD      R30, X+
         LD      R31, X+
         LD      R19, X
-        SBIW    R27:R26, 2
-        ADD     R30, R16
-        ADC     R31, R17
-        ADIW    R31:R30, 2
-        OUT     0x3B, R19
-        ELPM    R16, Z+
-        ELPM    R17, Z
-        SBIW    R31:R30, 3
-        MOV     R26, R18
-        MOV     R27, R21
+        LDI     R17, 4
+        MUL     R16, R17
+        ADD     R30, R0
+        ADC     R31, R1
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 ??RestoreDefault:
         CALL    ?PROLOGUE5_L09
         REQUIRE ?Register_R4_is_cg_reg
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_4:
         CALL    ??Init
         CLR     R4
         LDI     R24, 1
-??RestoreDefault_1:
-        MOV     R16, R24
-        SUBI    R16, 1
-        BREQ    ??RestoreDefault_2
-        DEC     R16
-        BREQ    ??RestoreDefault_3
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??RestoreDefault_4
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??RestoreDefault_5
-        RJMP    ??RestoreDefault_6
+        RJMP    ??RestoreDefault_1
 ??RestoreDefault_2:
-        LDI     R16, 11
-        CP      R4, R16
-        BRCC    ??RestoreDefault_7
-        MOV     R16, R4
-        RCALL   ??GetBlockOffset
-        LDI     R30, LOW(??m_pxDBase)
-        LDI     R31, (??m_pxDBase) >> 8
-        LD      R20, Z
-        LDD     R21, Z+1
-        LDD     R22, Z+2
-        ADD     R20, R16
-        ADC     R21, R17
-        MOVW    R27:R26, R21:R20
-        MOV     R25, R22
-        LDI     R20, 0
-??RestoreDefault_8:
-        MOV     R16, R4
-        RCALL   ??GetBlockLength
-        CP      R20, R16
-        BRCC    ??RestoreDefault_9
         LDI     R21, 0
         MOVW    R31:R30, R27:R26
-        MOV     R19, R25
         ADD     R30, R20
         ADC     R31, R21
-        OUT     0x3B, R19
+        OUT     0x3B, R25
         ELPM    R16, Z
-        LDI     R21, 0
         MOVW    R31:R30, R21:R20
         SUBI    R30, LOW((-(??m_auiIntermediateBuff) & 0xFFFF))
         SBCI    R31, (-(??m_auiIntermediateBuff) & 0xFFFF) >> 8
         ST      Z, R16
         INC     R20
-        RJMP    ??RestoreDefault_8
-??RestoreDefault_9:
-        MOV     R16, R4
-        RCALL   ??GetBlockLength
+??RestoreDefault_3:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_3:
+        CP      R20, R16
+        BRCS    ??RestoreDefault_2
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_2:
         MOV     R20, R4
         MOV     R18, R16
         LDI     R19, 0
@@ -1453,171 +1400,163 @@ DBMain:
         LDI     R17, (??m_auiIntermediateBuff) >> 8
         RCALL   ??Write
         OR      R16, R17
-        BREQ    ??RestoreDefault_10
+        BREQ    ??RestoreDefault_4
         LDI     R24, 2
-        RJMP    ??RestoreDefault_6
-??RestoreDefault_10:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
-        CALL    ??GetFsmEvent
+        RJMP    ??RestoreDefault_5
+??RestoreDefault_4:
+        LDS     R16, (??m_xDataStore + 4)
         CPI     R16, 4
-        BRNE    ??RestoreDefault_6
-        LDI     R24, 3
+        BRNE    ??RestoreDefault_5
         RJMP    ??RestoreDefault_6
 ??RestoreDefault_7:
-        LDI     R24, 4
-        RJMP    ??RestoreDefault_6
-??RestoreDefault_3:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
-        CALL    ??GetFsmEvent
+        LDS     R16, (??m_xDataStore + 4)
         CPI     R16, 3
-        BRNE    ??RestoreDefault_11
+        BRNE    ??RestoreDefault_8
         INC     R4
         LDI     R24, 1
-        RJMP    ??RestoreDefault_6
-??RestoreDefault_11:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
-        CALL    ??GetFsmEvent
+        RJMP    ??RestoreDefault_5
+??RestoreDefault_8:
         CPI     R16, 4
-        BRNE    ??RestoreDefault_6
-        LDI     R24, 3
-        RJMP    ??RestoreDefault_6
-??RestoreDefault_5:
-        LDI     R16, 1
-        RJMP    ??RestoreDefault_12
-??RestoreDefault_4:
-        LDI     R16, 0
-        RJMP    ??RestoreDefault_12
+        BRNE    ??RestoreDefault_5
 ??RestoreDefault_6:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
+        LDI     R24, 3
+        RJMP    ??RestoreDefault_5
+??RestoreDefault_9:
+        LDI     R16, 1
+??RestoreDefault_10:
+        LDI     R30, 5
+        JMP     ?EPILOGUE_B5_L09
+??RestoreDefault_11:
+        LDI     R16, 0
+        RJMP    ??RestoreDefault_10
+??RestoreDefault_12:
+        LDI     R24, 4
+??RestoreDefault_5:
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_5:
         CALL    ??Fsm
         LDI     R16, 10
         LDI     R17, 0
         CALL    ??delay_ms
-        CALL    ??WatchdogReset
-        RJMP    ??RestoreDefault_1
-??RestoreDefault_12:
-        LDI     R30, 5
-        JMP     ?EPILOGUE_B5_L09
+        WDR
+        MOV     R16, R24
+        DEC     R16
+        BREQ    ??RestoreDefault_13
+        DEC     R16
+        BREQ    ??RestoreDefault_7
+        DEC     R16
+        BREQ    ??RestoreDefault_11
+        DEC     R16
+        BREQ    ??RestoreDefault_9
+        RJMP    ??RestoreDefault_5
+??RestoreDefault_13:
+        LDI     R16, 11
+        CP      R4, R16
+        BRCC    ??RestoreDefault_12
+??RestoreDefault_1:
+        MOV     R16, R4
+        RCALL   ??GetBlockOffset
+        LDI     R30, LOW(??m_pxDataBase)
+        LDI     R31, (??m_pxDataBase) >> 8
+        LD      R26, Z
+        LDD     R27, Z+1
+        LDD     R25, Z+2
+        ADD     R26, R16
+        ADC     R27, R17
+        LDI     R20, 0
+        RJMP    ??RestoreDefault_3
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
+        MOV     R16, R4
+        RJMP    ??GetBlockLength
 
         RSEG CODE:CODE:NOROOT(1)
 ??IntegrityCheck:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
-        CALL    ??CompareCurrentWithStoredCrc
-        RET
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_6:
+        JMP     ??CompareCurrentWithStoredCrc
 
         RSEG CODE:CODE:NOROOT(1)
 ??UserConfirmationCheck:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
-        CALL    ??CrcOfBlocksCrcCheck
-        RET
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_7:
+        JMP     ??CrcOfBlocksCrcCheck
 
         RSEG CODE:CODE:NOROOT(1)
 ??Check:
-        LDI     R16, LOW(DBMain)
-        LDI     R17, (DBMain) >> 8
+        LDI     R30, LOW(??m_pxDataBase)
+        LDI     R31, (??m_pxDataBase) >> 8
+        LDI     R16, LOW(axMainDataBase)
+        LDI     R17, (axMainDataBase) >> 8
         LDI     R18, 0
-        LDI     R30, LOW(??m_pxDBase)
-        LDI     R31, (??m_pxDBase) >> 8
         ST      Z, R16
         STD     Z+1, R17
         STD     Z+2, R18
-        LDI     R16, LOW(??DSTR)
-        LDI     R17, (??DSTR) >> 8
-        LDI     R18, 0
-        LDI     R30, LOW(??m_pxDStruct)
-        LDI     R31, (??m_pxDStruct) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
-        STD     Z+2, R18
-        LDI     R16, 0
-        CALL    ??SetErrorCode
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
+        LDI     R16, LOW((axMainDataBase + 660))
+        LDI     R17, HIGH((axMainDataBase + 660))
+        STD     Z+3, R16
+        STD     Z+4, R17
+        STD     Z+5, R18
+        STS     ??m_uiErrorCode, R18
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_8:
         CALL    ??Check_1
         TST     R16
         BREQ    ??Check_2
-        RCALL   ??IntegrityCheck
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_9:
+        CALL    ??CompareCurrentWithStoredCrc
+        TST     R16
+        BREQ    ??Check_2
+        RCALL   ??Subroutine6_0
+??CrossCallReturnLabel_10:
+        CALL    ??CrcOfBlocksCrcCheck
         TST     R16
         BREQ    ??Check_3
-        RCALL   ??UserConfirmationCheck
-        TST     R16
-        BREQ    ??Check_4
         LDI     R16, 1
-        RET
-??Check_4:
-        LDI     R16, 4
-        CALL    ??SetErrorCode
-        LDI     R16, 0
         RET
 ??Check_3:
         LDI     R16, 4
-        CALL    ??SetErrorCode
-        RCALL   ??RestoreDefault
-        LDI     R16, 0
-        RET
+        STS     ??m_uiErrorCode, R16
+        RJMP    ??Check_4
 ??Check_2:
         LDI     R16, 4
-        CALL    ??SetErrorCode
+        STS     ??m_uiErrorCode, R16
         RCALL   ??RestoreDefault
+??Check_4:
         LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        MOVW    R19:R18, R17:R16
+        REQUIRE ??Subroutine6_0
+        ;               // Fall through to label ??Subroutine6_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine6_0:
+        LDI     R16, LOW(??m_xDataStore)
+        LDI     R17, (??m_xDataStore) >> 8
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 ??Read:
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
-        MOV     R26, R18
-        MOV     R20, R26
-        INC     R20
-        MOVW    R19:R18, R25:R24
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
-        CALL    ??ReadBlock
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+        INC     R18
+        MOV     R20, R18
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_11:
+        JMP     ??ReadBlock
 
         RSEG CODE:CODE:NOROOT(1)
 ??Write:
-        CALL    ?PROLOGUE5_L09
-        REQUIRE ?Register_R4_is_cg_reg
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R4, R20
-        MOV     R22, R4
-        INC     R22
-        MOVW    R21:R20, R25:R24
-        MOVW    R19:R18, R27:R26
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
+        INC     R20
+        MOV     R22, R20
+        MOVW    R21:R20, R19:R18
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_12:
         CALL    ??Write_1
-        LDI     R17, 0
-        LDI     R30, 5
-        JMP     ?EPILOGUE_B5_L09
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::WatchdogReset()
-??WatchdogReset:
-        WDR
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDfa::GetFsmEvent()
-??GetFsmEvent:
-        MOVW    R31:R30, R17:R16
-        LDD     R16, Z+4
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPss21::SetErrorCode(uint8_t)
-??SetErrorCode:
-        STS     ??m_uiErrorCode, R16
-        RET
+        RJMP    ?Subroutine5
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -1639,23 +1578,27 @@ __?EEARH:
         REQUIRE ?need_segment_init
 
         END
+//  454 uint8_t CDataBase::GetBlockLength(uint8_t uiBlock)
+//  455 {
+//  456     return m_pxDataBaseBlocksPositionData[uiBlock].Size;
+//  457 }
 //  458 
 //  459 //-----------------------------------------------------------------------------------------------------
 //  460 uint16_t CDataBase::GetBlockOffset(uint8_t uiBlock)
 //  461 {
-//  462     return m_pxDStruct[uiBlock].Offset;
+//  462     return m_pxDataBaseBlocksPositionData[uiBlock].Offset;
 //  463 }
 //  464 
 //  465 //-----------------------------------------------------------------------------------------------------
 // 
 // 105 bytes in segment ABSOLUTE
-// 572 bytes in segment CODE
+// 408 bytes in segment CODE
 //   7 bytes in segment INITTAB
 // 742 bytes in segment NEAR_F
 //   7 bytes in segment NEAR_Z
 // 
-// 1 296 bytes of CODE memory (+  25 bytes shared)
+// 1 148 bytes of CODE memory (+   9 bytes shared)
 //     7 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
-//Warnings: 2
+//Warnings: none

@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:04
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  11:06:59
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWD6AD.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW204B.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\LightBoard.s90
@@ -42,16 +41,7 @@
         EXTERN ?S_EC_MUL_L02
 
         PUBLIC ??CLightBoard
-        PUBWEAK ??GetActivityState
         PUBLIC ??Init
-        PUBWEAK ??LedDriverEnable1On
-        PUBWEAK ??LedDriverEnable1SetPinOutput
-        PUBWEAK ??LedDriverEnable2On
-        PUBWEAK ??LedDriverEnable2SetPinOutput
-        PUBWEAK ??LedDriverEnable3On
-        PUBWEAK ??LedDriverEnable3SetPinOutput
-        PUBWEAK ??LedDriverEnable4On
-        PUBWEAK ??LedDriverEnable4SetPinOutput
         PUBLIC ??Set
         PUBWEAK ??__vtbl_2
         PUBLIC ??m_auiLedMap
@@ -676,14 +666,9 @@ _A_PINF:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-        LDI     R16, LOW(??__vtbl_2)
-        LDI     R17, (??__vtbl_2) >> 8
-        MOVW    R31:R30, R25:R24
-        SUBI    R30, 188
-        SBCI    R31, 255
-        ST      Z, R16
-        STD     Z+1, R17
+        RCALL   ?Subroutine0
 //   27 {
+??CrossCallReturnLabel_0:
         MOVW    R17:R16, R25:R24
         CALL    ??CDM134
 //   28 //    Init();
@@ -702,8 +687,7 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    `??new CLightBoard_1`
-        RCALL   ??CLightBoard
-        RET
+        RJMP    ??CLightBoard
 `??new CLightBoard_1`:
         LDI     R16, 0
         LDI     R17, 0
@@ -715,21 +699,15 @@ _A_PINF:
 //   32 CLightBoard::~CLightBoard()
 `?~CLightBoard`:
 //   33 {
-        CALL    ?PROLOGUE4_L09
+        CALL    ?PROLOGUE3_L09
         MOVW    R25:R24, R17:R16
-        MOVW    R27:R26, R19:R18
-        MOV     R16, R24
+        MOV     R26, R18
         OR      R16, R25
         BREQ    `?~CLightBoard_1`
-        LDI     R16, LOW(??__vtbl_2)
-        LDI     R17, (??__vtbl_2) >> 8
-        MOVW    R31:R30, R25:R24
-        SUBI    R30, 188
-        SBCI    R31, 255
-        ST      Z, R16
-        STD     Z+1, R17
+        RCALL   ?Subroutine0
 //   34 
 //   35 }
+??CrossCallReturnLabel_1:
         LDI     R18, 2
         LDI     R19, 0
         MOVW    R17:R16, R25:R24
@@ -739,8 +717,19 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CLightBoard_1`:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R16, LOW(??__vtbl_2)
+        LDI     R17, (??__vtbl_2) >> 8
+        MOVW    R31:R30, R25:R24
+        SUBI    R30, 188
+        SBCI    R31, 255
+        ST      Z, R16
+        STD     Z+1, R17
+        RET
 //   36 
 //   37 //-----------------------------------------------------------------------------------------------------
 
@@ -748,38 +737,44 @@ _A_PINF:
 //   38 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
 ??Init:
 //   39 {
-        CALL    ?PROLOGUE4_L09
-        MOVW    R25:R24, R17:R16
-        MOVW    R27:R26, R19:R18
 //   40     m_pxAlarmWindowControl = pxAlarmWindowControl;
-        MOVW    R31:R30, R25:R24
+        MOVW    R31:R30, R17:R16
         SUBI    R30, 190
         SBCI    R31, 255
-        ST      Z, R26
-        STD     Z+1, R27
+        ST      Z, R18
+        STD     Z+1, R19
 //   41     CPlatform::LedDriverEnable1On();
-        CALL    ??LedDriverEnable1On
+        LDS     R18, 98
+        ANDI    R18, 0xFE
+        STS     98, R18
 //   42     CPlatform::LedDriverEnable2On();
-        CALL    ??LedDriverEnable2On
+        LDS     R18, 98
+        ANDI    R18, 0xDF
+        STS     98, R18
 //   43     CPlatform::LedDriverEnable3On();
-        CALL    ??LedDriverEnable3On
+        CBI     0x03, 0x06
 //   44     CPlatform::LedDriverEnable4On();
-        CALL    ??LedDriverEnable4On
+        CBI     0x03, 0x07
 //   45     CPlatform::LedDriverEnable1SetPinOutput();
-        CALL    ??LedDriverEnable1SetPinOutput
+        LDS     R18, 97
+        ORI     R18, 0x01
+        STS     97, R18
 //   46     CPlatform::LedDriverEnable2SetPinOutput();
-        CALL    ??LedDriverEnable2SetPinOutput
+        LDS     R18, 97
+        ORI     R18, 0x20
+        STS     97, R18
 //   47     CPlatform::LedDriverEnable3SetPinOutput();
-        CALL    ??LedDriverEnable3SetPinOutput
+        SBI     0x02, 0x06
 //   48     CPlatform::LedDriverEnable4SetPinOutput();
-        CALL    ??LedDriverEnable4SetPinOutput
+        SBI     0x02, 0x07
 //   49 
 //   50     m_xLedDriver.Init();
-        MOVW    R17:R16, R25:R24
-        CALL    ??Init_1
+        JMP     ??Init_1
+        REQUIRE _A_DDRF
+        REQUIRE _A_PORTF
+        REQUIRE _A_DDRE
+        REQUIRE _A_PORTE
 //   51 }
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
 //   52 
 //   53 //-----------------------------------------------------------------------------------------------------
 
@@ -787,151 +782,68 @@ _A_PINF:
 //   54 void CLightBoard::Set(void)
 ??Set:
 //   55 {
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
+        CALL    ?PROLOGUE4_L09
+        MOVW    R23:R22, R17:R16
 //   56     for (uint8_t i = 0;
-        LDI     R26, 0
+        LDI     R24, 0
+        LDI     R25, 48
+        LDI     R20, 6
 //   57             i < ALARM_WINDOWS_NUMBER;
-??Set_2:
-        CPI     R26, 48
-        BRCC    ??Set_3
 //   58             i++)
 //   59     {
 //   60         if (m_pxAlarmWindowControl[i].GetActivityState())
-        MOVW    R31:R30, R25:R24
-        SUBI    R30, 190
-        SBCI    R31, 255
-        LD      R18, Z
-        LDD     R19, Z+1
-        MOV     R16, R26
-        LDI     R17, 0
-        LDI     R20, 6
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        ADD     R18, R16
-        ADC     R19, R17
-        MOVW    R17:R16, R19:R18
-        CALL    ??GetActivityState
-        TST     R16
-        BREQ    ??Set_4
-//   61         {
-//   62             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
-        MOV     R30, R26
+??Set_2:
+        MOV     R30, R24
         LDI     R31, 0
         SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
         SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
         LPM     R16, Z
         LDI     R17, 0
-        MOVW    R31:R30, R25:R24
+        MOVW    R19:R18, R23:R22
+        ADD     R18, R16
+        ADC     R19, R17
+        MOVW    R27:R26, R23:R22
+        SUBI    R26, 190
+        SBCI    R27, 255
+        LD      R30, X+
+        LD      R31, X
+        MOV     R16, R24
+        LDI     R21, 0
+        CALL    ?S_EC_MUL_L02
         ADD     R30, R16
         ADC     R31, R17
+        LD      R16, Z
+        TST     R16
+        MOVW    R31:R30, R19:R18
+        BREQ    ??Set_3
+//   61         {
+//   62             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
         LDI     R16, 1
         STD     Z+2, R16
-        RJMP    ??Set_5
+        RJMP    ??Set_4
 //   63         }
 //   64         else
 //   65         {
 //   66             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
-??Set_4:
-        MOV     R30, R26
-        LDI     R31, 0
-        SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
-        SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
-        LPM     R16, Z
-        LDI     R17, 0
-        MOVW    R31:R30, R25:R24
-        ADD     R30, R16
-        ADC     R31, R17
-        LDI     R16, 0
-        STD     Z+2, R16
+??Set_3:
+        STD     Z+2, R21
 //   67         }
 //   68     };
-??Set_5:
-        INC     R26
-        RJMP    ??Set_2
+??Set_4:
+        INC     R24
+        DEC     R25
+        BRNE    ??Set_2
 //   69 
 //   70     m_xLedDriver.Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
-??Set_3:
         LDI     R20, 64
-        MOVW    R19:R18, R25:R24
+        MOVW    R19:R18, R23:R22
         SUBI    R18, 254
         SBCI    R19, 255
-        MOVW    R17:R16, R25:R24
+        MOVW    R17:R16, R23:R22
         CALL    ??Set_1
 //   71 }
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CAlarmWindow::GetActivityState()
-??GetActivityState:
-        MOVW    R31:R30, R17:R16
-        LD      R16, Z
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable1SetPinOutput()
-??LedDriverEnable1SetPinOutput:
-        LDS     R16, 97
-        ORI     R16, 0x01
-        STS     97, R16
-        RET
-        REQUIRE _A_DDRF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable1On()
-??LedDriverEnable1On:
-        LDS     R16, 98
-        ANDI    R16, 0xFE
-        STS     98, R16
-        RET
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable2SetPinOutput()
-??LedDriverEnable2SetPinOutput:
-        LDS     R16, 97
-        ORI     R16, 0x20
-        STS     97, R16
-        RET
-        REQUIRE _A_DDRF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable2On()
-??LedDriverEnable2On:
-        LDS     R16, 98
-        ANDI    R16, 0xDF
-        STS     98, R16
-        RET
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable3SetPinOutput()
-??LedDriverEnable3SetPinOutput:
-        SBI     0x02, 0x06
-        RET
-        REQUIRE _A_DDRE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable3On()
-??LedDriverEnable3On:
-        CBI     0x03, 0x06
-        RET
-        REQUIRE _A_PORTE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable4SetPinOutput()
-??LedDriverEnable4SetPinOutput:
-        SBI     0x02, 0x07
-        RET
-        REQUIRE _A_DDRE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverEnable4On()
-??LedDriverEnable4On:
-        CBI     0x03, 0x07
-        RET
-        REQUIRE _A_PORTE
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -948,11 +860,11 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 362 bytes in segment CODE
+// 256 bytes in segment CODE
 //  86 bytes in segment NEAR_F
 // 
-// 376 bytes of CODE memory (+  72 bytes shared)
+// 340 bytes of CODE memory (+   2 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
-//Warnings: 2
+//Warnings: none

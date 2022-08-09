@@ -76,7 +76,6 @@ private:
     uint8_t (*m_fpuiEventSourse)(void);
     uint8_t m_uiEventCode;
     uint8_t m_uiPreliminaryEventCode;
-//    uint8_t m_uiFsmState;
     CTimer m_xTimer;
 
     friend class CMultiFunctionKey;

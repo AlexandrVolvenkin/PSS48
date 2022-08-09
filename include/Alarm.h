@@ -48,18 +48,6 @@ public:
     virtual ~CAlarmDfa();
     virtual void Fsm(void);
 
-//    virtual void SetDiscreteStateSourse(uint8_t *puiPointer)
-//    {
-//        m_puiDiscreteStateSourse = puiPointer;
-//    };
-//    virtual uint8_t* GetDiscreteStateSourse(void)
-//    {
-//        return m_puiDiscreteStateSourse;
-//    };
-//    virtual uint8_t GetDiscreteState(void)
-//    {
-//        return *m_puiDiscreteStateSourse;
-//    };
     void SetDiscreteStateIndex(uint8_t uiDiscreteStateIndex)
     {
         m_uiDiscreteStateIndex = uiDiscreteStateIndex;
@@ -68,15 +56,6 @@ public:
     {
         return m_uiDiscreteStateIndex;
     };
-
-//    void SetAlarmWindowPointer(CAlarmWindow *pxAlarmWindow)
-//    {
-//        m_pxAlarmWindow = pxAlarmWindow;
-//    };
-//    CAlarmWindow* GetAlarmWindowPointer(void)
-//    {
-//        return m_pxAlarmWindow;
-//    };
 
     void SetAlarmWindowIndex(uint8_t uiAlarmWindowIndex)
     {
@@ -91,26 +70,14 @@ public:
     {
         return m_auiLinkedDiscreteOutputs;
     };
-//    uint8_t GetLinkedDiscreteOutputs(void)
-//    {
-//        return m_uiLinkedDiscreteOutputs;
-//    };
-//    void SetLinkedDiscreteOutputs(uint8_t uiLinkedDiscreteOutputs)
-//    {
-//        m_uiLinkedDiscreteOutputs = uiLinkedDiscreteOutputs;
-//    };
 
 protected:
 private:
-//    // Указатель на окно извещателя - светового табло.
-//    CAlarmWindow *m_pxAlarmWindow;
     // Индекс окна извещателя - светового табло.
     uint8_t m_uiAlarmWindowIndex;
     // Выходы на МР.
-//    uint8_t m_uiLinkedDiscreteOutputs;
     uint8_t m_auiLinkedDiscreteOutputs[DISCRETE_OUTPUT_MODULE_MAX_NUMBER];
     // Источник дискретного сигнала.
-//    uint8_t *m_puiDiscreteStateSourse;
     uint8_t m_uiDiscreteStateIndex;
 };
 //-----------------------------------------------------------------------------------------------------
@@ -126,15 +93,6 @@ private:
 class CNormalAlarmDfa : public CAlarmDfa
 {
 public:
-//    enum
-//    {
-//        START = 0,
-//        ACTIVE_STATE_WAITING,
-//        RECEIPT_OR_RESET_WAITING,
-//        RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING,
-//        RESETED_NOT_ACTIVE_STATE_WAITING,
-//        RECEIPTED_RESET_WAITING,
-//    };
 
     uint8_t ALARM_TYPE(void)
     {
@@ -148,7 +106,6 @@ public:
 
     CNormalAlarmDfa();
     virtual ~CNormalAlarmDfa();
-//    virtual void Fsm(void);
 
 protected:
 private:
@@ -166,15 +123,6 @@ private:
 class CPreventiveAlarmLowLevelDfa : public CAlarmDfa
 {
 public:
-//    enum
-//    {
-//        START = 0,
-//        ACTIVE_STATE_WAITING,
-//        RECEIPT_OR_RESET_WAITING,
-//        RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING,
-//        RESETED_NOT_ACTIVE_STATE_WAITING,
-//        RECEIPTED_RESET_WAITING,
-//    };
 
     uint8_t ALARM_TYPE(void)
     {
@@ -205,15 +153,6 @@ private:
 class CPreventiveAlarmHighLevelDfa : public CAlarmDfa
 {
 public:
-//    enum
-//    {
-//        START = 0,
-//        ACTIVE_STATE_WAITING,
-//        RECEIPT_OR_RESET_WAITING,
-//        RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING,
-//        RESETED_NOT_ACTIVE_STATE_WAITING,
-//        RECEIPTED_RESET_WAITING,
-//    };
 
     uint8_t ALARM_TYPE(void)
     {
@@ -244,15 +183,6 @@ private:
 class CEmergencyAlarmLowLevelDfa : public CAlarmDfa
 {
 public:
-//    enum
-//    {
-//        START = 0,
-//        ACTIVE_STATE_WAITING,
-//        RECEIPT_OR_RESET_WAITING,
-//        RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING,
-//        RESETED_NOT_ACTIVE_STATE_WAITING,
-//        RECEIPTED_RESET_WAITING,
-//    };
 
     uint8_t ALARM_TYPE(void)
     {
@@ -283,15 +213,6 @@ private:
 class CEmergencyAlarmHighLevelDfa : public CAlarmDfa
 {
 public:
-//    enum
-//    {
-//        START = 0,
-//        ACTIVE_STATE_WAITING,
-//        RECEIPT_OR_RESET_WAITING,
-//        RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING,
-//        RESETED_NOT_ACTIVE_STATE_WAITING,
-//        RECEIPTED_RESET_WAITING,
-//    };
 
     uint8_t ALARM_TYPE(void)
     {
@@ -322,12 +243,6 @@ private:
 class CIndicationAlarmLowLevelDfa : public CAlarmDfa
 {
 public:
-//    enum
-//    {
-//        START = 0,
-//        ACTIVE_STATE_WAITING,
-//        NOT_ACTIVE_STATE_WAITING,
-//    };
 
     uint8_t ALARM_TYPE(void)
     {
@@ -359,12 +274,6 @@ private:
 class CIndicationAlarmHighLevelDfa : public CIndicationAlarmLowLevelDfa
 {
 public:
-    enum
-    {
-        START = 0,
-        ACTIVE_STATE_WAITING,
-        NOT_ACTIVE_STATE_WAITING,
-    };
 
     uint8_t ALARM_TYPE(void)
     {

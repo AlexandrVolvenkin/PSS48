@@ -278,16 +278,16 @@ void CModbusRTU::GetSystemTime(void)
 //-----------------------------------------------------------------------------------------------------
 int8_t CModbusRTU::FrameCheck(void)
 {
-    if (m_pxDevice -> m_nuiRxBuffByteCounter < _MIN_MESSAGE_LENGTH)
+    if (m_pxDevice -> GetFrameLength() < _MIN_MESSAGE_LENGTH)
     {
         return 0;
     }
 
-    uint16_t uiCrc = ((static_cast<uint16_t>(m_puiRxBuffer[m_pxDevice -> m_nuiRxBuffByteCounter - 1]) << 8) |
-                      (static_cast<uint16_t>(m_puiRxBuffer[m_pxDevice -> m_nuiRxBuffByteCounter - 2])));
+    uint16_t uiCrc = ((static_cast<uint16_t>(m_puiRxBuffer[m_pxDevice -> GetFrameLength() - 1]) << 8) |
+                      (static_cast<uint16_t>(m_puiRxBuffer[m_pxDevice -> GetFrameLength() - 2])));
 
     if (usCrc16(m_puiRxBuffer,
-                (m_pxDevice -> m_nuiRxBuffByteCounter - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+                (m_pxDevice -> GetFrameLength() - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
     {
         return 1;
     }

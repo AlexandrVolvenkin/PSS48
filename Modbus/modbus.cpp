@@ -256,9 +256,6 @@ int16_t CModbus::ReadHoldingRegisters(uint8_t *puiRequest, uint8_t *puiResponse,
         puiResponse[uiLength++] = (uiNumberB << 1);
         for (uint16_t i = 0; i < uiNumberB; i++)
         {
-            int8_t uiData = 0;
-            uiData = (static_cast<uint8_t>(m_pui16HoldingRegisters[uiAddress] >> 8));
-            uiData = (static_cast<uint8_t>(m_pui16HoldingRegisters[uiAddress] & 0x00FF));
             puiResponse[uiLength++] = (static_cast<uint8_t>(m_pui16HoldingRegisters[uiAddress] >> 8));
             puiResponse[uiLength++] = (static_cast<uint8_t>(m_pui16HoldingRegisters[uiAddress] & 0x00FF));
             uiAddress++;

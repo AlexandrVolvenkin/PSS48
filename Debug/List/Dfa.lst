@@ -1,23 +1,22 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  02:57:03
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  11:06:59
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWD2A2.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW1DAB.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp --cpu=m128a -ms -o
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --no_cse --no_inline
-#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        --initializers_in_flash --root_variables --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Dfa.lst
 #    Object file  =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\Dfa.r90
@@ -495,16 +494,6 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp
    \                     _A_PINF:
    \   00000000                      DS8 1
      10          #include "Pss21.h"
-
-  };
-   ^
-"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",184  Warning[Pe375]: 
-          declaration requires a typedef name
-
-  };
-   ^
-"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",216  Warning[Pe375]: 
-          declaration requires a typedef name
      11          
      12          //-----------------------------------------------------------------------------------------------------
 
@@ -518,34 +507,31 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp
    \   00000006   8321               STD     Z+1, R18
    \   00000008   8332               STD     Z+2, R19
      15              m_uiFsmState = 0;
-   \   0000000A   01F8               MOVW    R31:R30, R17:R16
-   \   0000000C   E020               LDI     R18, 0
-   \   0000000E   8320               ST      Z, R18
+   \   0000000A   E020               LDI     R18, 0
+   \   0000000C   8320               ST      Z, R18
      16          }
-   \   00000010   9508               RET
+   \   0000000E   9508               RET
      17          
      18          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
      19          CDfaLite::~CDfaLite()
    \                     `?~CDfaLite`:
+   \   00000000   ....               RJMP    ?Subroutine0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
      20          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2F08               MOV     R16, R24
-   \   00000008   2B09               OR      R16, R25
-   \   0000000A   F029               BREQ    `?~CDfaLite_1`
-   \   0000000C   FB20               BST     R18, 0
-   \   0000000E   F41E               BRTC    `?~CDfaLite_1`
+   \   00000000   2F40               MOV     R20, R16
+   \   00000002   2B41               OR      R20, R17
+   \   00000004   F021               BREQ    ??Subroutine0_0
+   \   00000006   FB20               BST     R18, 0
+   \   00000008   F416               BRTC    ??Subroutine0_0
      21              //dtor
      22          }
-   \   00000010   018C               MOVW    R17:R16, R25:R24
-   \   00000012   ........           CALL    `??operator delete`
-   \                     `?~CDfaLite_1`:
-   \   00000016   9189               LD      R24, Y+
-   \   00000018   9199               LD      R25, Y+
-   \   0000001A   9508               RET
+   \   0000000A   ........           CALL    `??operator delete`
+   \                     ??Subroutine0_0:
+   \   0000000E   9508               RET
      23          
      24          //-----------------------------------------------------------------------------------------------------
 
@@ -572,80 +558,69 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp
    \   00000000   01AD               MOVW    R21:R20, R27:R26
    \   00000002   01D8               MOVW    R27:R26, R17:R16
      39          {
-   \   00000004   018D               MOVW    R17:R16, R27:R26
-   \   00000006   ....               RCALL   ??CDfaLite
-   \   00000008   ....               LDI     R16, LOW(??__vtbl_1)
-   \   0000000A   ....               LDI     R17, (??__vtbl_1) >> 8
-   \   0000000C   01FD               MOVW    R31:R30, R27:R26
-   \   0000000E   8301               STD     Z+1, R16
-   \   00000010   8312               STD     Z+2, R17
+   \   00000004   ....               RCALL   ??CDfaLite
+   \   00000006   ....               LDI     R16, LOW(??__vtbl_1)
+   \   00000008   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8301               STD     Z+1, R16
+   \   0000000E   8312               STD     Z+2, R17
      40              m_uiSavedFsmState = 0;
-   \   00000012   01FD               MOVW    R31:R30, R27:R26
-   \   00000014   E000               LDI     R16, 0
-   \   00000016   8303               STD     Z+3, R16
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   8303               STD     Z+3, R16
      41              m_uiFsmEvent = 0;
-   \   00000018   01FD               MOVW    R31:R30, R27:R26
-   \   0000001A   E000               LDI     R16, 0
-   \   0000001C   8304               STD     Z+4, R16
+   \   00000014   8304               STD     Z+4, R16
      42          }
-   \   0000001E   018D               MOVW    R17:R16, R27:R26
-   \   00000020   01DA               MOVW    R27:R26, R21:R20
-   \   00000022   9508               RET
+   \   00000016   018D               MOVW    R17:R16, R27:R26
+   \   00000018   01DA               MOVW    R27:R26, R21:R20
+   \   0000001A   9508               RET
      43          
      44          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
      45          CDfa::~CDfa()
    \                     `?~CDfa`:
-     46          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2F08               MOV     R16, R24
-   \   00000008   2B09               OR      R16, R25
-   \   0000000A   F029               BREQ    `?~CDfa_1`
-   \   0000000C   FB20               BST     R18, 0
-   \   0000000E   F41E               BRTC    `?~CDfa_1`
-     47              //dtor
-     48          }
-   \   00000010   018C               MOVW    R17:R16, R25:R24
-   \   00000012   ........           CALL    `??operator delete`
-   \                     `?~CDfa_1`:
-   \   00000016   9189               LD      R24, Y+
-   \   00000018   9199               LD      R25, Y+
-   \   0000001A   9508               RET
+   \   00000000                      REQUIRE ?Subroutine0
+   \   00000000                      ;               // Fall through to label ?Subroutine0
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CDfaLite &CDfaLite::new CDfaLite()
    \                     `??new CDfaLite`:
    \   00000000   E003               LDI     R16, 3
-   \   00000002   E010               LDI     R17, 0
-   \   00000004   ........           CALL    `??operator new`
-   \   00000008   2F20               MOV     R18, R16
-   \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F011               BREQ    `??new CDfaLite_1`
-   \   0000000E   ....               RCALL   ??CDfaLite
-   \   00000010   9508               RET
+   \   00000002   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_0:
+   \   00000004   F009               BREQ    `??new CDfaLite_1`
+   \   00000006   ....               RJMP    ??CDfaLite
    \                     `??new CDfaLite_1`:
-   \   00000012   E000               LDI     R16, 0
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   9508               RET
+   \   00000008                      REQUIRE ?Subroutine2
+   \   00000008                      ;               // Fall through to label ?Subroutine2
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine2:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CDfa &CDfa::new CDfa()
    \                     `??new CDfa`:
    \   00000000   E005               LDI     R16, 5
-   \   00000002   E010               LDI     R17, 0
-   \   00000004   ........           CALL    `??operator new`
-   \   00000008   2F20               MOV     R18, R16
-   \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F011               BREQ    `??new CDfa_1`
-   \   0000000E   ....               RCALL   ??CDfa
-   \   00000010   9508               RET
+   \   00000002   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_1:
+   \   00000004   F009               BREQ    `??new CDfa_1`
+   \   00000006   ....               RJMP    ??CDfa
    \                     `??new CDfa_1`:
-   \   00000012   E000               LDI     R16, 0
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   9508               RET
+   \   00000008   ....               RJMP    ?Subroutine2
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   E010               LDI     R17, 0
+   \   00000002   ........           CALL    `??operator new`
+   \   00000006   2F20               MOV     R18, R16
+   \   00000008   2B21               OR      R18, R17
+   \   0000000A   9508               RET
+     46          {
+     47              //dtor
+     48          }
      49          
      50          //-----------------------------------------------------------------------------------------------------
      51          
@@ -657,35 +632,38 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp
 
    Maximum stack usage in bytes:
 
-   CSTACK RSTACK Function
-   ------ ------ --------
-      0      2   CDfa::CDfa()
-        0      2   -> CDfaLite::CDfaLite()
-      0      2   CDfa::new CDfa()
-        0      2   -> CDfa::CDfa()
-        0      2   -> operator new(unsigned int)
-      2      2   CDfa::~CDfa()
-        2      2   -> operator delete(void *)
-      0      2   CDfaLite::CDfaLite()
-      0      2   CDfaLite::Fsm()
-      0      2   CDfaLite::new CDfaLite()
-        0      2   -> CDfaLite::CDfaLite()
-        0      2   -> operator new(unsigned int)
-      2      2   CDfaLite::~CDfaLite()
-        2      2   -> operator delete(void *)
+   RSTACK Function
+   ------ --------
+      2   CDfa::CDfa()
+        2   -> CDfaLite::CDfaLite()
+      2   CDfa::new CDfa()
+        2   -> CDfa::CDfa()
+        4   -> operator new(unsigned int)
+      0   CDfa::~CDfa()
+        2   -> operator delete(void *)
+      2   CDfaLite::CDfaLite()
+      2   CDfaLite::Fsm()
+      2   CDfaLite::new CDfaLite()
+        2   -> CDfaLite::CDfaLite()
+        4   -> operator new(unsigned int)
+      2   CDfaLite::~CDfaLite()
+        2   -> operator delete(void *)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-      36  CDfa::CDfa()
-      24  CDfa::new CDfa()
-      28  CDfa::~CDfa()
-      18  CDfaLite::CDfaLite()
+      16  ?Subroutine0
+      12  ?Subroutine1
+       6  ?Subroutine2
+      28  CDfa::CDfa()
+      10  CDfa::new CDfa()
+       0  CDfa::~CDfa()
+      16  CDfaLite::CDfaLite()
        2  CDfaLite::Fsm()
-      24  CDfaLite::new CDfaLite()
-      28  CDfaLite::~CDfaLite()
+       8  CDfaLite::new CDfaLite()
+       2  CDfaLite::~CDfaLite()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -782,11 +760,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Dfa.cpp
 
  
  105 bytes in segment ABSOLUTE
- 160 bytes in segment CODE
+ 100 bytes in segment CODE
   44 bytes in segment NEAR_F
  
- 196 bytes of CODE memory (+   8 bytes shared)
+ 136 bytes of CODE memory (+   8 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
-Warnings: 2
+Warnings: none

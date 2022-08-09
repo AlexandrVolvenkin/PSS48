@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:08
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  10:49:29
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWE769.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW1740.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp --cpu=m128a -ms
 //        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Timer.s90
@@ -35,12 +34,8 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B4_L09
-        EXTERN ?PROLOGUE4_L09
-
         PUBLIC ??CTimer
         PUBLIC ??CTimer_1
-        PUBWEAK ??GetSystemTick
         PUBLIC ??IsOverflow
         PUBLIC ??Reset
         PUBLIC ??Set
@@ -644,14 +639,10 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CTimer &CTimer::new CTimer()
 `??new CTimer`:
-        LDI     R16, 6
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_0:
         BREQ    `??new CTimer_2`
-        RCALL   ??CTimer
-        RET
+        RJMP    ??CTimer
 `??new CTimer_2`:
         LDI     R16, 0
         LDI     R17, 0
@@ -663,27 +654,15 @@ _A_PINF:
 //   19 CTimer::CTimer(uint16_t uiTime)
 ??CTimer_1:
 //   20 {
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        LDI     R16, LOW(??__vtbl_1)
-        LDI     R17, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+4, R16
-        STD     Z+5, R17
+        LDI     R20, LOW(??__vtbl_1)
+        LDI     R21, (??__vtbl_1) >> 8
+        MOVW    R31:R30, R17:R16
+        STD     Z+4, R20
+        STD     Z+5, R21
 //   21     m_uiLastSystemTick = CPlatform::GetSystemTick();
-        CALL    ??GetSystemTick
-        MOVW    R31:R30, R27:R26
-        STD     Z+2, R16
-        STD     Z+3, R17
+        RJMP    ?Subroutine0
 //   22     m_uiTime = uiTime;
-        ST      X+, R24
-        ST      X, R25
-        SBIW    R27:R26, 1
 //   23 }
-        MOVW    R17:R16, R27:R26
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CTimer &CTimer::new CTimer(uint16_t)
@@ -691,11 +670,8 @@ _A_PINF:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-        LDI     R16, 6
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_1:
         BREQ    `??new CTimer_3`
         MOVW    R19:R18, R25:R24
         RCALL   ??CTimer_1
@@ -707,6 +683,15 @@ _A_PINF:
         LD      R24, Y+
         LD      R25, Y+
         RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        LDI     R16, 6
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        RET
 //   24 
 //   25 //-----------------------------------------------------------------------------------------------------
 
@@ -714,21 +699,15 @@ _A_PINF:
 //   26 CTimer::~CTimer()
 `?~CTimer`:
 //   27 {
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        MOV     R16, R24
-        OR      R16, R25
+        MOV     R20, R16
+        OR      R20, R17
         BREQ    `?~CTimer_1`
         BST     R18, 0
         BRTC    `?~CTimer_1`
 //   28 
 //   29 }
-        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CTimer_1`:
-        LD      R24, Y+
-        LD      R25, Y+
         RET
 //   30 
 //   31 //-----------------------------------------------------------------------------------------------------
@@ -737,21 +716,24 @@ _A_PINF:
 //   32 void CTimer::Set(uint16_t uiTime)
 ??Set:
 //   33 {
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
 //   34     m_uiLastSystemTick = CPlatform::GetSystemTick();
-        CALL    ??GetSystemTick
-        MOVW    R31:R30, R27:R26
-        STD     Z+2, R16
-        STD     Z+3, R17
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R30, LOW(??m_uiSystemTick)
+        LDI     R31, (??m_uiSystemTick) >> 8
+        LD      R20, Z
+        LDD     R21, Z+1
+        MOVW    R31:R30, R17:R16
+        STD     Z+2, R20
+        STD     Z+3, R21
 //   35     m_uiTime = uiTime;
-        ST      X+, R24
-        ST      X, R25
-        SBIW    R27:R26, 1
+        ST      Z, R18
+        STD     Z+1, R19
 //   36 }
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        RET
 //   37 
 //   38 //-----------------------------------------------------------------------------------------------------
 
@@ -759,17 +741,12 @@ _A_PINF:
 //   39 void CTimer::Reset(void)
 ??Reset:
 //   40 {
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
 //   41     m_uiLastSystemTick = CPlatform::GetSystemTick();
-        CALL    ??GetSystemTick
-        MOVW    R31:R30, R27:R26
-        STD     Z+2, R16
-        STD     Z+3, R17
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_2:
+        STD     Z+2, R18
+        STD     Z+3, R19
 //   42 }
-        LD      R26, Y+
-        LD      R27, Y+
         RET
 //   43 
 //   44 //-----------------------------------------------------------------------------------------------------
@@ -778,47 +755,40 @@ _A_PINF:
 //   45 int8_t CTimer::IsOverflow(void)
 ??IsOverflow:
 //   46 {
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
 //   47     if ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
 //   48             m_uiTime)
-        CALL    ??GetSystemTick
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+2
-        LDD     R19, Z+3
-        SUB     R16, R18
-        SBC     R17, R19
-        LD      R18, X+
-        LD      R19, X
-        SBIW    R27:R26, 1
-        CP      R16, R18
-        CPC     R17, R19
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_3:
+        LDD     R20, Z+2
+        LDD     R21, Z+3
+        SUB     R18, R20
+        SBC     R19, R21
+        LD      R16, Z
+        LDD     R17, Z+1
+        CP      R18, R16
+        CPC     R19, R17
         BRCS    ??IsOverflow_1
 //   49     {
 //   50         return true;
         LDI     R16, 1
-        RJMP    ??IsOverflow_2
+        RET
 //   51     }
 //   52     else
 //   53     {
 //   54         return false;
 ??IsOverflow_1:
         LDI     R16, 0
-??IsOverflow_2:
-        LD      R26, Y+
-        LD      R27, Y+
         RET
 //   55     }
 //   56 }
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint16_t CPlatform::GetSystemTick()
-??GetSystemTick:
+?Subroutine2:
         LDI     R30, LOW(??m_uiSystemTick)
         LDI     R31, (??m_uiSystemTick) >> 8
-        LD      R16, Z
-        LDD     R17, Z+1
+        LD      R18, Z
+        LDD     R19, Z+1
+        MOVW    R31:R30, R17:R16
         RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -848,10 +818,10 @@ __?EEARH:
 //   59 
 // 
 // 105 bytes in segment ABSOLUTE
-// 248 bytes in segment CODE
+// 160 bytes in segment CODE
 //  34 bytes in segment NEAR_F
 // 
-// 270 bytes of CODE memory (+  12 bytes shared)
+// 192 bytes of CODE memory (+   2 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

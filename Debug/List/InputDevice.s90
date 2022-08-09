@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:04
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  10:49:20
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWD610.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWF489.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\InputDevice.s90
@@ -35,7 +34,9 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
+        EXTERN ?EPILOGUE_B3_L09
         EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE3_L09
         EXTERN ?PROLOGUE4_L09
 
         PUBLIC ??CInputDevice
@@ -45,19 +46,13 @@
         PUBLIC ??EventHappened
         PUBLIC ??Fsm
         PUBLIC ??Fsm_1
-        PUBWEAK ??GetFsmState
-        PUBWEAK ??KEY_PRESSED_CHECK_REPEAT_TIME
         PUBWEAK ??KEY_PRESSED_HOLD_REPEAT_TIME
         PUBWEAK ??KEY_PRESSED_TIME_CHECK
         PUBWEAK ??KEY_PRESSED_TIME_CHECK_1
         PUBWEAK ??KEY_PRESSED_TIME_HOLD
         PUBWEAK ??KEY_PRESSED_TIME_PUSH
-        PUBWEAK ??KEY_PRESSED_TIME_RECEIPT
-        PUBWEAK ??KEY_PRESSED_TIME_RESET
-        PUBWEAK ??KEY_PRESSED_TIME_SET_DEFAULT
         PUBLIC ??KeyEventHappened
         PUBLIC ??SetCapabilities
-        PUBWEAK ??SetFsmState
         PUBWEAK ??__vtbl
         PUBWEAK ??__vtbl_1
         PUBLIC `??new CInputDevice`
@@ -100,102 +95,112 @@
         RSEG CODE:CODE:NOROOT(1)
 //   11 CInputDevice::CInputDevice()
 ??CInputDevice:
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
+        RCALL   ?Subroutine9
 //   12 {
-        MOVW    R17:R16, R27:R26
+??CrossCallReturnLabel_5:
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_57:
+        RCALL   ?Subroutine6
+//   13 
+//   14 }
+??CrossCallReturnLabel_3:
+        RJMP    ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
         CALL    ??CDfa
+        REQUIRE ?Subroutine24
+        REQUIRE ??Subroutine30_0
+        ;               // Fall through to label ??Subroutine30_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine30_0:
         LDI     R16, LOW(??__vtbl)
         LDI     R17, (??__vtbl) >> 8
+        REQUIRE ?Subroutine24
+        ;               // Fall through to label ?Subroutine24
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine24:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??CTimer
-//   13 
-//   14 }
-        MOVW    R17:R16, R27:R26
-        LD      R26, Y+
-        LD      R27, Y+
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CInputDevice &CInputDevice::new CInputDevice()
 `??new CInputDevice`:
-        LDI     R16, 15
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ??Subroutine31_0
+??CrossCallReturnLabel_62:
         BREQ    `??new CInputDevice_2`
-        RCALL   ??CInputDevice
-        RET
+        RJMP    ??CInputDevice
 `??new CInputDevice_2`:
-        LDI     R16, 0
-        LDI     R17, 0
-        RET
+        RJMP    ?Subroutine12
 //   15 
 //   16 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
 //   17 CInputDevice::CInputDevice(uint8_t (*fpuiEventSourse)(void)) :
 ??CInputDevice_1:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
+        RCALL   ?Subroutine13
 //   18     m_fpuiEventSourse(fpuiEventSourse)
 //   19 {
-        MOVW    R17:R16, R27:R26
-        CALL    ??CDfa
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
-        MOVW    R31:R30, R27:R26
+??CrossCallReturnLabel_9:
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_58:
         STD     Z+5, R24
         STD     Z+6, R25
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??CTimer
+        RCALL   ?Subroutine6
 //   20     m_uiEventCode = KEY_EVENT_UNPRESSED;
+??CrossCallReturnLabel_2:
         MOVW    R31:R30, R27:R26
         LDI     R16, 0
-        STD     Z+7, R16
+        RJMP    ?Subroutine28
 //   21     SetFsmState(KEY_EVENT_UNPRESSED);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
 //   22 }
-        MOVW    R17:R16, R27:R26
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_19:
+        JMP     ??CTimer
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CInputDevice &CInputDevice::new CInputDevice(uint8_t (*)())
 `??new CInputDevice_1`:
+        RCALL   ?Subroutine10
+??CrossCallReturnLabel_60:
+        BREQ    `??new CInputDevice_3`
+        MOVW    R19:R18, R25:R24
+        RCALL   ??CInputDevice_1
+        RJMP    ??CrossCallReturnLabel_7
+`??new CInputDevice_3`:
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_7:
+        REQUIRE ?Subroutine25
+        ;               // Fall through to label ?Subroutine25
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine25:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine10:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
+        REQUIRE ??Subroutine31_0
+        ;               // Fall through to label ??Subroutine31_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine31_0:
         LDI     R16, 15
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
         OR      R18, R17
-        BREQ    `??new CInputDevice_3`
-        MOVW    R19:R18, R25:R24
-        RCALL   ??CInputDevice_1
-        RJMP    `??new CInputDevice_4`
-`??new CInputDevice_3`:
-        LDI     R16, 0
-        LDI     R17, 0
-`??new CInputDevice_4`:
-        LD      R24, Y+
-        LD      R25, Y+
         RET
 //   23 
 //   24 //-----------------------------------------------------------------------------------------------------
@@ -328,109 +333,112 @@
         RSEG CODE:CODE:NOROOT(1)
 //  150 CMultiFunctionKey::CMultiFunctionKey()
 ??CMultiFunctionKey:
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
+        RCALL   ?Subroutine9
 //  151 {
-        MOVW    R17:R16, R27:R26
-        RCALL   ??CInputDevice
-        LDI     R16, LOW(??__vtbl_1)
-        LDI     R17, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
+??CrossCallReturnLabel_6:
+        RCALL   ?Subroutine15
 //  152 
 //  153 }
+??CrossCallReturnLabel_55:
+        REQUIRE ?Subroutine11
+        ;               // Fall through to label ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine11:
         MOVW    R17:R16, R27:R26
+        REQUIRE ??Subroutine32_0
+        ;               // Fall through to label ??Subroutine32_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine32_0:
         LD      R26, Y+
         LD      R27, Y+
         RET
 
         RSEG CODE:CODE:NOROOT(1)
+?Subroutine9:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
 // __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey()
 `??new CMultiFunctionKey`:
-        LDI     R16, 15
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ??Subroutine31_0
+??CrossCallReturnLabel_63:
         BREQ    `??new CMultiFunctionKey_2`
-        RCALL   ??CMultiFunctionKey
-        RET
+        RJMP    ??CMultiFunctionKey
 `??new CMultiFunctionKey_2`:
+        REQUIRE ?Subroutine12
+        ;               // Fall through to label ?Subroutine12
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine12:
         LDI     R16, 0
         LDI     R17, 0
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 ??CMultiFunctionKey_1:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
+        RCALL   ?Subroutine13
+??CrossCallReturnLabel_10:
+        RCALL   ?Subroutine15
+??CrossCallReturnLabel_56:
+        STD     Z+5, R24
+        STD     Z+6, R25
+        LDI     R16, 0
+        STD     Z+8, R16
+        RJMP    ?Subroutine28
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine16:
+        STD     Z+7, R16
+        ST      X, R16
         MOVW    R17:R16, R27:R26
+        LDI     R30, 4
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine15:
         RCALL   ??CInputDevice
         LDI     R16, LOW(??__vtbl_1)
         LDI     R17, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
-        MOVW    R31:R30, R27:R26
-        STD     Z+5, R24
-        STD     Z+6, R25
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 0
-        STD     Z+8, R16
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 0
-        STD     Z+7, R16
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        MOVW    R17:R16, R27:R26
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        RJMP    ?Subroutine24
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine13:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+        RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
 `??new CMultiFunctionKey_1`:
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        LDI     R16, 15
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ?Subroutine10
+??CrossCallReturnLabel_61:
         BREQ    `??new CMultiFunctionKey_3`
         MOVW    R19:R18, R25:R24
         RCALL   ??CMultiFunctionKey_1
-        RJMP    `??new CMultiFunctionKey_4`
+        RJMP    ??CrossCallReturnLabel_8
 `??new CMultiFunctionKey_3`:
-        LDI     R16, 0
-        LDI     R17, 0
-`??new CMultiFunctionKey_4`:
-        LD      R24, Y+
-        LD      R25, Y+
-        RET
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_8:
+        RJMP    ?Subroutine25
 
         RSEG CODE:CODE:NOROOT(1)
 `?~CInputDevice`:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R16, R26
+        RCALL   ?Subroutine14
+??CrossCallReturnLabel_11:
         OR      R16, R27
         BREQ    `?~CInputDevice_1`
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
+        RCALL   ??Subroutine30_0
+??CrossCallReturnLabel_59:
         LDI     R18, 2
         LDI     R19, 0
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_17:
         CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
@@ -441,35 +449,42 @@
         MOVW    R17:R16, R27:R26
         CALL    `??operator delete`
 `?~CInputDevice_1`:
+        REQUIRE ?Subroutine29
+        ;               // Fall through to label ?Subroutine29
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine29:
         LDI     R30, 4
+        RJMP    ??Subroutine33_0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine28:
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_54:
+        REQUIRE ??Subroutine33_0
+        ;               // Fall through to label ??Subroutine33_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine33_0:
         JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
 ??SetCapabilities:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOVW    R31:R30, R27:R26
-        STD     Z+5, R24
-        STD     Z+6, R25
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 0
-        STD     Z+7, R16
+        MOVW    R31:R30, R17:R16
+        STD     Z+5, R18
+        STD     Z+6, R19
         LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        STD     Z+7, R18
+        ST      Z, R18
+        RET
 
         RSEG CODE:CODE:NOROOT(1)
 ??EventHappened:
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_4:
         ADIW    R27:R26, 5
         LD      R30, X+
         LD      R31, X
-        SBIW    R27:R26, 6
         ICALL
         TST     R16
         BREQ    ??EventHappened_1
@@ -478,214 +493,123 @@
 ??EventHappened_1:
         LDI     R16, 0
 ??EventHappened_2:
-        LD      R26, Y+
-        LD      R27, Y+
-        RET
+        RJMP    ??Subroutine32_0
 
         RSEG CODE:CODE:NOROOT(1)
 ??KeyEventHappened:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOV     R24, R18
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
+        RCALL   ?Subroutine14
+??CrossCallReturnLabel_12:
+        MOVW    R31:R30, R17:R16
         LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
+        LDD     R31, Z+2
+        MOV     R30, R18
         ADIW    R31:R30, 2
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 3
-        MOVW    R31:R30, R19:R18
-        ICALL
+        RCALL   ?Subroutine23
+??CrossCallReturnLabel_30:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+7
         CP      R16, R24
+        LDI     R16, 0
         BRNE    ??KeyEventHappened_1
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 0
         STD     Z+7, R16
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 0
         STD     Z+8, R16
         LDI     R16, 1
-        RJMP    ??KeyEventHappened_2
 ??KeyEventHappened_1:
-        LDI     R16, 0
-??KeyEventHappened_2:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        RJMP    ?Subroutine29
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine14:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+        RET
 
         RSEG CODE:CODE:NOROOT(1)
 ??Fsm:
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetFsmState
-        SUBI    R16, 0
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_38:
         BREQ    ??Fsm_2
         DEC     R16
         BREQ    ??Fsm_3
         DEC     R16
         BREQ    ??Fsm_4
         DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_5
+        BREQ    ??Fsm_5
         SUBI    R16, 3
-        BRNE    $+2+2
-        RJMP    ??Fsm_6
+        BREQ    ??Fsm_6
         RJMP    ??Fsm_7
 ??Fsm_2:
-        LDI     R18, 1
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_7
+        LDI     R16, 1
+        RJMP    ??Fsm_8
 ??Fsm_3:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_8
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_40:
+        BREQ    ??Fsm_7
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_21:
         ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
-        LDI     R18, 2
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_8:
-        RJMP    ??Fsm_7
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_28:
+        RCALL   ?Subroutine7
+??CrossCallReturnLabel_52:
+        RJMP    ??Fsm_8
 ??Fsm_4:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_41:
         BREQ    ??Fsm_9
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_10
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_31:
+        BREQ    ??Fsm_7
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_22:
         ADIW    R31:R30, 6
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 7
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 2
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_27:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_50:
         STD     Z+7, R16
-        LDI     R18, 3
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_7
-??Fsm_9:
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_10:
-        RJMP    ??Fsm_7
+        LDI     R16, 3
+        RJMP    ??Fsm_8
 ??Fsm_5:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_11
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_12
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
-        ADIW    R31:R30, 10
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 11
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
-        MOVW    R31:R30, R27:R26
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_42:
+        BREQ    ??Fsm_9
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_32:
+        BREQ    ??Fsm_7
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_0:
         LDI     R16, 3
         STD     Z+7, R16
-        LDI     R18, 6
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_7
-??Fsm_11:
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_12:
-        RJMP    ??Fsm_7
+        LDI     R16, 6
+        RJMP    ??Fsm_8
 ??Fsm_6:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_13
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_43:
+        BREQ    ??Fsm_9
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_33:
         BREQ    ??Fsm_7
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
-        ADIW    R31:R30, 10
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 11
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
-        MOVW    R31:R30, R27:R26
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_1:
         LDI     R16, 6
         STD     Z+7, R16
         RJMP    ??Fsm_7
-??Fsm_13:
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+??Fsm_9:
+        LDI     R16, 0
+??Fsm_8:
+        ST      X, R16
 ??Fsm_7:
-        LD      R26, Y+
-        LD      R27, Y+
-        RET
+        RJMP    ??Subroutine32_0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_24:
+        ADIW    R31:R30, 10
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_25:
+        RJMP    ?Subroutine19
 //  154 
 //  155 //-----------------------------------------------------------------------------------------------------
 //  156 CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSourse)(void))
@@ -702,25 +626,24 @@
 //  165 CMultiFunctionKey::~CMultiFunctionKey()
 `?~CMultiFunctionKey`:
 //  166 {
-        CALL    ?PROLOGUE4_L09
+        CALL    ?PROLOGUE3_L09
         MOVW    R25:R24, R17:R16
-        MOVW    R27:R26, R19:R18
-        MOV     R16, R24
-        OR      R16, R25
+        MOV     R26, R18
+        OR      R16, R17
         BREQ    `?~CMultiFunctionKey_1`
 //  167 
 //  168 }
         LDI     R18, 0
         LDI     R19, 0
-        MOVW    R17:R16, R25:R24
+        MOV     R16, R24
         RCALL   `?~CInputDevice`
         BST     R26, 0
         BRTC    `?~CMultiFunctionKey_1`
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CMultiFunctionKey_1`:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
 //  169 
 //  170 //-----------------------------------------------------------------------------------------------------
 
@@ -728,280 +651,186 @@
 //  171 void CMultiFunctionKey::Fsm(void)
 ??Fsm_1:
 //  172 {
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
+        RCALL   ?Subroutine8
 //  173     // какое событие обрабатываем?
 //  174     switch (GetFsmState())
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetFsmState
-        SUBI    R16, 0
+??CrossCallReturnLabel_39:
+        BREQ    ??Fsm_10
+        DEC     R16
+        BREQ    ??Fsm_11
+        DEC     R16
+        BREQ    ??Fsm_12
+        DEC     R16
+        BREQ    ??Fsm_13
+        DEC     R16
         BREQ    ??Fsm_14
         DEC     R16
         BREQ    ??Fsm_15
-        DEC     R16
-        BREQ    ??Fsm_16
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_17
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_18
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_19
         SUBI    R16, 2
-        BRNE    $+2+2
-        RJMP    ??Fsm_20
-        RJMP    ??Fsm_21
+        BREQ    ??Fsm_16
+        RJMP    ??Fsm_17
 //  175     {
 //  176     case KEY_EVENT_UNPRESSED:
 //  177         m_uiEventCode = m_uiPreliminaryEventCode;
-??Fsm_14:
+??Fsm_10:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+8
-        MOVW    R31:R30, R27:R26
         STD     Z+7, R16
 //  178         SetFsmState(KEY_EVENT_WAITING_PRESSED);
-        LDI     R18, 1
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+        LDI     R16, 1
+        RJMP    ??Fsm_18
 //  179         break;
-        RJMP    ??Fsm_21
 //  180 
 //  181     case KEY_EVENT_WAITING_PRESSED:
 //  182         // кнопка нажата?
 //  183         if (EventHappened())
-??Fsm_15:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_22
+??Fsm_11:
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_44:
+        BREQ    ??Fsm_17
 //  184         {
 //  185             m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
-        MOVW    R17:R16, R27:R26
-        CALL    ??KEY_PRESSED_TIME_RECEIPT
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
+        LDI     R18, 100
+        LDI     R19, 0
+        RCALL   ?Subroutine7
+??CrossCallReturnLabel_53:
+        RJMP    ??Fsm_18
 //  186             SetFsmState(KEY_EVENT_PRESSED_RECEIPT);
-        LDI     R18, 2
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
 //  187         }
 //  188         break;
-??Fsm_22:
-        RJMP    ??Fsm_21
 //  189     case KEY_EVENT_PRESSED_RECEIPT:
 //  190         // кнопка нажата?
 //  191         if (EventHappened())
-??Fsm_16:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_23
+??Fsm_12:
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_45:
+        BREQ    ??Fsm_19
 //  192         {
 //  193             if (m_xTimer.IsOverflow())
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_24
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_34:
+        BREQ    ??Fsm_17
 //  194             {
 //  195                 m_xTimer.Set(KEY_PRESSED_TIME_RESET());
-        MOVW    R17:R16, R27:R26
-        CALL    ??KEY_PRESSED_TIME_RESET
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
+        LDI     R18, 220
+        LDI     R19, 5
+        RCALL   ?Subroutine4
 //  196                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
-        MOVW    R31:R30, R27:R26
-        LDI     R16, 2
+??CrossCallReturnLabel_51:
         STD     Z+8, R16
 //  197                 SetFsmState(KEY_EVENT_PRESSED_RESET);
-        LDI     R18, 3
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_21
+        LDI     R16, 3
+        RJMP    ??Fsm_18
 //  198             }
 //  199         }
 //  200         else
 //  201         {
 //  202             m_uiEventCode = m_uiPreliminaryEventCode;
-??Fsm_23:
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+8
-        MOVW    R31:R30, R27:R26
-        STD     Z+7, R16
 //  203             SetFsmState(KEY_EVENT_UNPRESSED);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
 //  204         }
 //  205         break;
-??Fsm_24:
-        RJMP    ??Fsm_21
 //  206     case KEY_EVENT_PRESSED_RESET:
 //  207         // кнопка нажата?
 //  208         if (EventHappened())
-??Fsm_17:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_25
+??Fsm_13:
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_46:
+        BREQ    ??Fsm_19
 //  209         {
 //  210             if (m_xTimer.IsOverflow())
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_26
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_35:
+        BREQ    ??Fsm_17
 //  211             {
 //  212                 m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_23:
         ADIW    R31:R30, 8
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 9
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_26:
+        RCALL   ?Subroutine19
 //  213                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
-        MOVW    R31:R30, R27:R26
+??CrossCallReturnLabel_15:
         LDI     R16, 3
         STD     Z+8, R16
 //  214                 SetFsmState(KEY_EVENT_PRESSED_CHECK);
-        LDI     R18, 4
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_21
+        LDI     R16, 4
+        RJMP    ??Fsm_18
 //  215 
 //  216             }
 //  217         }
 //  218         else
 //  219         {
 //  220             m_uiEventCode = m_uiPreliminaryEventCode;
-??Fsm_25:
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+8
-        MOVW    R31:R30, R27:R26
-        STD     Z+7, R16
 //  221             SetFsmState(KEY_EVENT_UNPRESSED);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
 //  222         }
 //  223         break;
-??Fsm_26:
-        RJMP    ??Fsm_21
 //  224 
 //  225     case KEY_EVENT_PRESSED_CHECK:
 //  226         // кнопка нажата?
 //  227         if (EventHappened())
-??Fsm_18:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_27
+??Fsm_14:
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_47:
+        BREQ    ??Fsm_19
 //  228         {
 //  229             if (m_xTimer.IsOverflow())
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_28
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_36:
+        BREQ    ??Fsm_17
 //  230             {
 //  231                 m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
-        MOVW    R17:R16, R27:R26
-        CALL    ??KEY_PRESSED_TIME_SET_DEFAULT
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
+        LDI     R18, 136
+        LDI     R19, 19
+        RCALL   ?Subroutine19
 //  232                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
-        MOVW    R31:R30, R27:R26
+??CrossCallReturnLabel_14:
         LDI     R16, 4
         STD     Z+8, R16
 //  233                 SetFsmState(KEY_EVENT_PRESSED_SET_DEFAULT);
-        LDI     R18, 5
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_21
+        LDI     R16, 5
+        RJMP    ??Fsm_18
 //  234 
 //  235             }
 //  236         }
 //  237         else
 //  238         {
 //  239             m_uiEventCode = m_uiPreliminaryEventCode;
-??Fsm_27:
+??Fsm_19:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+8
-        MOVW    R31:R30, R27:R26
         STD     Z+7, R16
 //  240             SetFsmState(KEY_EVENT_UNPRESSED);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+        RJMP    ??Fsm_20
 //  241         }
 //  242         break;
-??Fsm_28:
-        RJMP    ??Fsm_21
 //  243 
 //  244     case KEY_EVENT_PRESSED_SET_DEFAULT:
 //  245         // кнопка нажата?
 //  246         if (EventHappened())
-??Fsm_19:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BREQ    ??Fsm_29
+??Fsm_15:
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_48:
+        BREQ    ??Fsm_20
 //  247         {
 //  248             if (m_xTimer.IsOverflow())
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_21
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_37:
+        BREQ    ??Fsm_17
 //  249             {
 //  250                 m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
-        MOVW    R17:R16, R27:R26
-        CALL    ??KEY_PRESSED_CHECK_REPEAT_TIME
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 247
-        SBCI    R17, 255
-        CALL    ??Set
+        LDI     R18, 50
+        LDI     R19, 0
+        RCALL   ?Subroutine19
 //  251                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_SET_DEFAULT;
-        MOVW    R31:R30, R27:R26
+??CrossCallReturnLabel_13:
         LDI     R16, 5
         STD     Z+8, R16
 //  252                 m_uiEventCode = m_uiPreliminaryEventCode;
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+8
-        MOVW    R31:R30, R27:R26
         STD     Z+7, R16
 //  253                 SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
-        LDI     R18, 7
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_21
+        LDI     R16, 7
+        RJMP    ??Fsm_18
 //  254 
 //  255             }
 //  256         }
@@ -1009,27 +838,22 @@
 //  258         {
 //  259 //            m_uiEventCode = m_uiPreliminaryEventCode;
 //  260             SetFsmState(KEY_EVENT_UNPRESSED);
-??Fsm_29:
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
 //  261         }
 //  262         break;
-        RJMP    ??Fsm_21
 //  263 
 //  264     case KEY_EVENT_UNPRESSED_WAITING:
 //  265         // кнопка нажата?
 //  266         if (!(EventHappened()))
-??Fsm_20:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??EventHappened
-        TST     R16
-        BRNE    ??Fsm_21
+??Fsm_16:
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_49:
+        BRNE    ??Fsm_17
 //  267         {
 //  268             SetFsmState(KEY_EVENT_UNPRESSED);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+??Fsm_20:
+        LDI     R16, 0
+??Fsm_18:
+        ST      X, R16
 //  269         }
 //  270         break;
 //  271 
@@ -1038,29 +862,97 @@
 //  274         break;
 //  275     }
 //  276 }
-??Fsm_21:
-        LD      R26, Y+
-        LD      R27, Y+
+??Fsm_17:
+        RJMP    ??Subroutine32_0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine22:
+        RCALL   ?Subroutine23
+??CrossCallReturnLabel_29:
+        MOVW    R19:R18, R17:R16
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CDfaLite::SetFsmState(uint8_t)
-??SetFsmState:
-        MOVW    R31:R30, R17:R16
-        ST      Z, R18
+?Subroutine23:
+        LPM     R18, Z+
+        LPM     R31, Z
+        MOV     R30, R18
+        IJMP
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine17:
+        MOV     R16, R26
+        RCALL   ??EventHappened
+        REQUIRE ?Subroutine26
+        ;               // Fall through to label ?Subroutine26
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine26:
+        TST     R16
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDfaLite::GetFsmState()
-??GetFsmState:
-        MOVW    R31:R30, R17:R16
-        LD      R16, Z
+?Subroutine8:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        LD      R16, X
+        RJMP    ?Subroutine26
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_20:
+        CALL    ??Set
+        REQUIRE ?Subroutine27
+        ;               // Fall through to label ?Subroutine27
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine27:
+        LDI     R16, 2
         RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine20:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine19:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        CALL    ??Set
+        MOVW    R31:R30, R27:R26
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        RCALL   ?Subroutine19
+??CrossCallReturnLabel_16:
+        RJMP    ?Subroutine27
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine21:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_18:
+        CALL    ??IsOverflow
+        RJMP    ?Subroutine26
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CInputDevice::KEY_PRESSED_TIME_PUSH()
 ??KEY_PRESSED_TIME_PUSH:
-        MOVW    R19:R18, R17:R16
         LDI     R16, 100
         LDI     R17, 0
         RET
@@ -1068,7 +960,6 @@
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CInputDevice::KEY_PRESSED_TIME_HOLD()
 ??KEY_PRESSED_TIME_HOLD:
-        MOVW    R19:R18, R17:R16
         LDI     R16, 220
         LDI     R17, 5
         RET
@@ -1076,7 +967,6 @@
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CInputDevice::KEY_PRESSED_TIME_CHECK()
 ??KEY_PRESSED_TIME_CHECK:
-        MOVW    R19:R18, R17:R16
         LDI     R16, 184
         LDI     R17, 11
         RET
@@ -1084,49 +974,15 @@
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CInputDevice::KEY_PRESSED_HOLD_REPEAT_TIME()
 ??KEY_PRESSED_HOLD_REPEAT_TIME:
-        MOVW    R19:R18, R17:R16
         LDI     R16, 50
         LDI     R17, 0
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_RECEIPT()
-??KEY_PRESSED_TIME_RECEIPT:
-        MOVW    R19:R18, R17:R16
-        LDI     R16, 100
-        LDI     R17, 0
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_RESET()
-??KEY_PRESSED_TIME_RESET:
-        MOVW    R19:R18, R17:R16
-        LDI     R16, 220
-        LDI     R17, 5
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_CHECK()
 ??KEY_PRESSED_TIME_CHECK_1:
-        MOVW    R19:R18, R17:R16
         LDI     R16, 184
         LDI     R17, 11
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_SET_DEFAULT()
-??KEY_PRESSED_TIME_SET_DEFAULT:
-        MOVW    R19:R18, R17:R16
-        LDI     R16, 136
-        LDI     R17, 19
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_CHECK_REPEAT_TIME()
-??KEY_PRESSED_CHECK_REPEAT_TIME:
-        MOVW    R19:R18, R17:R16
-        LDI     R16, 50
-        LDI     R17, 0
         RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -1157,10 +1013,10 @@ __?EEARH:
 
         END
 // 
-// 1 400 bytes in segment CODE
-//    24 bytes in segment NEAR_F
+// 730 bytes in segment CODE
+//  24 bytes in segment NEAR_F
 // 
-// 1 316 bytes of CODE memory (+ 108 bytes shared)
+// 700 bytes of CODE memory (+ 54 bytes shared)
 //
 //Errors: none
 //Warnings: none

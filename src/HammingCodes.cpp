@@ -204,7 +204,6 @@ uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* pu
     for (uint16_t i = 0; i < uiLength; i += 3)
     {
         uint32_t uiData;
-        uint16_t uiHammingData;
 
         uiData = (static_cast<uint32_t>(puiSourse[uiSourseIndex]));
         // Следующий байт источника.
@@ -229,7 +228,6 @@ uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* pu
     if (bTailIsPresent)
     {
         uint16_t uiData;
-        uint16_t uiHammingData;
 
         uiData = (static_cast<uint16_t>(puiSourse[uiSourseIndex]));
         // Следующий байт источника.

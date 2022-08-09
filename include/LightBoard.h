@@ -34,7 +34,6 @@ public:
 protected:
 private:
     CLedDriver m_xLedDriver;
-//    CBoardLamp m_axBoardLampsControl[m_uiBoardLedNumber];
     uint8_t m_auiBoardLampsControl[m_uiBoardLedNumber];
     CAlarmWindow* m_pxAlarmWindowControl;
     static __flash uint8_t m_auiLedMap[];

@@ -137,37 +137,10 @@ typedef int16_t ssize_t;
 #define _MODBUS_TCP_PI_NODE_LENGTH    1025
 #define _MODBUS_TCP_PI_SERVICE_LENGTH   32
 
-/* 3 steps are used to parse the query */
-typedef enum
-{
-    _STEP_FUNCTION,
-    _STEP_META,
-    _STEP_DATA
-}
-_step_t;
 
-/*
-    ---------- Request     Indication ----------
-    | Client | ---------------------->| Server |
-    ---------- Confirmation  Response ----------
-*/
-
-typedef enum
-{
-    /* Request message on the server side */
-    MSG_INDICATION,
-    /* Request message on the client side */
-    MSG_CONFIRMATION
-} msg_type_t;
-
-typedef enum
-{
-    _MODBUS_BACKEND_TYPE_RTU=1,
-    _MODBUS_BACKEND_TYPE_TCP
-} modbus_bakend_type_t;
 
 /* Protocol exceptions */
-typedef enum
+enum
 {
     MODBUS_EXCEPTION_ILLEGAL_FUNCTION = 0x01,
     MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS,
@@ -183,12 +156,12 @@ typedef enum
     MODBUS_EXCEPTION_MAX
 };
 
-typedef enum
+enum
 {
     MODBUS_ERROR_RECOVERY_NONE          = 0,
     MODBUS_ERROR_RECOVERY_LINK          = (1<<1),
     MODBUS_ERROR_RECOVERY_PROTOCOL      = (1<<2),
-} modbus_error_recovery_mode;
+};
 
 #define EMBXILFUN  (MODBUS_ENOBASE + MODBUS_EXCEPTION_ILLEGAL_FUNCTION)
 #define EMBXILADD  (MODBUS_ENOBASE + MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS)
@@ -208,7 +181,7 @@ typedef enum
 #define EMBUNKEXC  (EMBXGTAR + 4)
 #define EMBMDATA   (EMBXGTAR + 5)
 
-typedef enum
+enum
 {
     TCP,
     TCP_PI,
@@ -224,7 +197,7 @@ typedef enum
 
 
 //-----------------------------------------------------------------------------------------------------
-class CModbus : public CDfa//virtual public CTask
+class CModbus : public CDfa
 {
 public:
     typedef enum
@@ -334,10 +307,6 @@ public:
     {
         return 2;
     };
-//    #define HEADER_LENGTH HEADER_LENGTH()
-//    #define CRC_LENGTH CRC_LENGTH()
-//    static const uint8_t HEADER_LENGTH = 1;
-//    static const uint8_t CRC_LENGTH = 2;
 
 protected:
 private:
@@ -345,8 +314,6 @@ private:
     uint8_t m_uiSlaveAddress;
     uint8_t m_uiFunctionCode;
     uint16_t m_uiQuantity;
-//    uint8_t m_uiFsmState;
-//    CSocket* pxSocket;
     uint16_t m_uiLastSystemTime;
     uint16_t m_uiMessageLength;
     uint8_t *m_puiRxBuffer;
@@ -361,24 +328,7 @@ private:
     uint16_t m_uiInputRegistersNumber;
 
     friend class CModbusRTU;
-    friend class CModbusMasterRTU;
 };
-
-////-----------------------------------------------------------------------------------------------------
-//class CModbusMaster
-//{
-//public:
-//    CModbusMaster();
-//    virtual ~CModbusMaster();
-//    int16_t ReadCoils(uint16_t uiAddress, uint16_t uiBitNumber, uint8_t *puiDestination);
-//
-//    static const uint8_t HEADER_LENGTH = 1;
-//
-//protected:
-//private:
-//
-//    friend class CModbusRTU;
-//};
 
 //-----------------------------------------------------------------------------------------------------
 #endif // CMODBUS_H

@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  02:57:05
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  11:07:00
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWD95D.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW23A7.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp --cpu=m128a -ms -o
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\main.s90
 //
@@ -34,7 +33,6 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        PUBWEAK ??SetFsmState
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -613,12 +611,6 @@ _A_PINF:
 //   11 #include "ModbusRTU.h"
 //   12 #include "InputDevice.h"
 //   13 #include "Pss21.h"
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPss21::SetFsmState(uint8_t)
-??SetFsmState:
-        STS     ??m_uiFsmState, R16
-        RET
 //   14 #include "Mvsn21.h"
 //   15 #include "Buzzer.h"
 //   16 #include "DataStore.h"
@@ -626,217 +618,37 @@ _A_PINF:
 //   18 #include "HammingCodes.h"
 //   19 #include "NotifyerControl.h"
 //   20 
-//   21 
-//   22 //-----------------------------------------------------------------------------------------------------
-//   23 
-//   24 
-//   25 enum
-//   26 {
-//   27     MAIN_START,
-//   28     MAIN_FIRST_STEP,
-//   29     MAIN_SECOND_STEP,
-//   30     MAIN_THIRD_STEP,
-//   31     MAIN_FORTH_STEP,
-//   32     MAIN_THIRD_REBOOT,
-//   33     MAIN_STOP
-//   34 };
-//   35 
-//   36 //-----------------------------------------------------------------------------------------------------
+//   21 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   37 int main()
+//   22 int main()
 main:
-//   38 {
-        ST      -Y, R24
-//   39 //  test
-//   40 //  uint8_t uiData;
-//   41 //            uiData = i;
-//   42 //            uiData = m_axDiscreteSignals[i].GetAlarmType();
-//   43 //            uiData = m_axDiscreteSignals[i].GetAlarmState();
-//   44 //            uiData = m_axDiscreteSignals[i].GetAlarmWindowIndex();
-//   45 ////            m_aucRtuHoldingRegistersArray[5] = m_axAlarmWindowControl[i].GetAlarmType();
-//   46 //            uiData = m_axAlarmWindowControl[m_axDiscreteSignals[i].GetAlarmWindowIndex()].GetAlarmType();//m_axDiscreteSignals[i].GetAlarmWindowIndex();
-//   47 //
-//   48 ////            m_aucRtuHoldingRegistersArray[1] = i;
-//   49 ////            m_aucRtuHoldingRegistersArray[2] = m_axDiscreteSignals[i].GetAlarmType();
-//   50 ////            m_aucRtuHoldingRegistersArray[3] = m_axDiscreteSignals[i].GetAlarmState();
-//   51 ////            m_aucRtuHoldingRegistersArray[4] = m_axDiscreteSignals[i].GetAlarmWindowIndex();
-//   52 //            m_aucRtuHoldingRegistersArray[5] = m_axDiscreteSignals[i].GetAlarmState();
-//   53 //            m_aucRtuHoldingRegistersArray[6] = m_axAlarmWindowControl[m_axDiscreteSignals[i].GetAlarmWindowIndex()].GetAlarmType();//m_axDiscreteSignals[i].GetAlarmWindowIndex();
-//   54 //
-//   55 //            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-//   56 //            // чем тип общей сигнализации?
-//   57 //            if (m_uiCommonAlarmType != EMERGENCY)
-//   58 //            {
-//   59 //                // Установим тип общей сигнализацию.
-//   60 //                m_uiCommonAlarmType = m_axDiscreteSignals[i].GetAlarmState();
-//   61 //            }
-//   62 ////            CPss21::m_aucRtuHoldingRegistersArray[8 + i] = ((static_cast<uint16_t>(m_axAlarmWindowControl[i].GetActivityState()) << 8) | m_axAlarmWindowControl[i].GetAlarmType());
-//   63 //        CPss21::m_aucRtuHoldingRegistersArray[8 + i] = (i | (static_cast<uint16_t>(m_axDiscreteSignals[i].GetAlarmWindowIndex()) << 8));
-//   64 //        CPss21::m_aucRtuHoldingRegistersArray[8 + i] = ((static_cast<uint16_t>(i) << 8) | (static_cast<uint16_t>(m_axDiscreteSignals[i].GetAlarmWindowIndex()) & 0x00FF));
-//   65 
-//   66 //    uint8_t auiTestHamming[16] =
-//   67 //    {
-//   68 //        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
-//   69 //    };
-//   70 //
-//   71 //    if (CDataStore::WriteAndCheck(auiTestHamming, (sizeof(auiTestHamming) - CDataStore::CRC_LENGTH), CDataStore::TEST_CONTEXT))
-//   72 //    {
-//   73 //        CDataStore::Read(auiTestHamming, CDataStore::TEST_CONTEXT);
-//   74 //    }
-//   75 //    else
-//   76 //    {
-//   77 //        CDataStore::Read(auiTestHamming, CDataStore::TEST_CONTEXT);
-//   78 //    }
-//   79 
-//   80 //    for (uint8_t i = 0;
-//   81 //            i < ALARM_WINDOWS_NUMBER;
-//   82 //            i++)
-//   83 //    {
-//   84 //        CPss21::m_aucRtuHoldingRegistersArray[8 + i] = ((static_cast<uint16_t>(m_axAlarmWindowControl[i].GetAlarmType()) << 8) | m_axAlarmWindowControl[i].GetActivityState());
-//   85 //    };
-//   86 
-//   87 
-//   88 //    struct TBlockPositionData
-//   89 //    {
-//   90 //        uint16_t uiOffset;
-//   91 //        uint16_t uiLength;
-//   92 //        uint16_t uiCrc;
-//   93 //    };
-//   94 //
-//   95 //    struct TBlocksControlData
-//   96 //    {
-//   97 //        uint16_t uiFileNumber;
-//   98 //        uint16_t uiCrc;
-//   99 //        TBlockPositionData axBlockPositionData[8];
-//  100 //    };
-//  101 //
-//  102 //    CDataStore xDataStore;
-//  103 
-//  104 //    for (uint16_t i = 0; i < 256; i++)
-//  105 //    {
-//  106 //        CEeprom::WriteByte(i, 0x00);
-//  107 //    }
-//  108 
-//  109 //        // Восстановим БД по умолчанию.
-//  110 //        for (uint8_t i = 0; i < 4; i++)
-//  111 //        {
-//  112 //            CPlatform::TxLedOn();//debag//
-//  113 //            delay_ms(200);
-//  114 //            CPlatform::TxLedOff();
-//  115 //            delay_ms(200);
-//  116 //        }
-//  117 //            delay_ms(2000);
-//  118 
-//  119 
-//  120     uint8_t uiNumber = 0;
-        LDI     R24, 0
-//  121     uiNumber = sizeof(struct CDevice);
-        LDI     R24, 4
-//  122     uiNumber = sizeof(struct CAlarmDfa);
-        LDI     R24, 6
-//  123     uiNumber = sizeof(struct CPss21);
-        LDI     R24, 1
-//  124     uiNumber = sizeof(struct CDataStore::TBlocksControlData);
-        LDI     R24, 100
-//  125     uiNumber = CDataStore::BLOCKS_CONTROL_DATA_LENGTH;
-        LDI     R24, 153
-//  126 
-//  127 
-//  128     extern TDataBase __flash DBMain;
-//  129     uiNumber = sizeof(DBMain.ReceiptList);
-        LDI     R24, 81
-//  130     uiNumber = sizeof(DBMain.DeviceState);
-        LDI     R24, 8
-//  131 
-//  132 
-//  133 //    uint8_t auiTempArray[9];
-//  134 //    uint8_t auiCompareArray[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-//  135 //    uint8_t auiCompareArray2[9] = {0, 1, 2, 3, 4, 5, 7, 7, 8};
-//  136 //
-//  137 //    uint16_t uiLength = CHammingCodes::BytesToHammingCodes(CPss21::m_auiIntermediateBuff, auiCompareArray, 8);
-//  138 //    CHammingCodes::HammingCodesToBytes(auiTempArray, CPss21::m_auiIntermediateBuff, uiLength);
-//  139 //
-//  140 //    if (memcmp(auiTempArray, auiCompareArray, 8))
-//  141 //    {
-//  142 //        uiNumber = 0;
-//  143 //    }
-//  144 //    else
-//  145 //    {
-//  146 //        uiNumber = 1;
-//  147 //    }
-//  148 //
-//  149 //    if (memcmp(auiTempArray, auiCompareArray2, 8))
-//  150 //    {
-//  151 //        uiNumber = 0;
-//  152 //    }
-//  153 //    else
-//  154 //    {
-//  155 //        uiNumber = 1;
-//  156 //    }
-//  157 
-//  158 ////-----------------------------------------------------------------------------------------------------
-//  159 //
-//  160 //    uint16_t uiSize;
-//  161 //    uiSize = sizeof(struct TDataBase);
-//  162 //    uiSize = sizeof(struct TDevConfig);
-//  163 //    uiSize = sizeof(struct TMBusSetting);
-//  164 //    uiSize = sizeof(struct TOutputData);
-//  165 //    uiSize = sizeof(struct TMBMRequestList);
-//  166 
-//  167 //    CPss21::m_aucRtuCoilsArray[0] = 7;
-//  168 //    CPss21::m_aucRtuCoilsArray[1] = 0;
-//  169 //    CPss21::m_aucRtuCoilsArray[2] = 5;
-//  170 //    CPss21::m_aucRtuCoilsArray[3] = 0;
-//  171 //
-//  172 //    CPss21::m_aucRtuDiscreteInputsArray[0] = 7;
-//  173 //    CPss21::m_aucRtuDiscreteInputsArray[1] = 0;
-//  174 //
-//  175 //    CPss21::m_aucRtuHoldingRegistersArray[0] = 17;
-//  176 //    CPss21::m_aucRtuHoldingRegistersArray[1] = 0;
-//  177 //    CPss21::m_aucRtuHoldingRegistersArray[2] = 321;
-//  178 //    CPss21::m_aucRtuHoldingRegistersArray[3] = 48;
-//  179 //
-//  180 //    CPss21::m_aucRtuInputRegistersArray[0] = 0;
-//  181 //    CPss21::m_aucRtuInputRegistersArray[1] = 17;
-//  182 //    CPss21::m_aucRtuInputRegistersArray[2] = 256;
-//  183 //    CPss21::m_aucRtuInputRegistersArray[3] = 987;
-//  184 
-//  185 //    CUart xUart0(&UBRR0H, &UBRR0L, &UCSR0A, &UCSR0B, &UCSR0C, &UDR0, &DDRC, DDC7, &PORTC, PC7);
-//  186 //    CPlatform::m_pxUart0 = &xUart0;
-//  187 
-//  188 //-----------------------------------------------------------------------------------------------------
-//  189 
-//  190 ////    CPlatform::WatchdogEnable();
-//  191 //    CPlatform::Init();
-//  192 //    CBuzzer::Init();
-//  193 //    CDataBase::Init();
-//  194 //    CPss21::ConfigurationInit();
-//  195 //    CPss21::Init();
-//  196 //    CPlatform::InterruptEnable();
-//  197 ////    CTimer m_xMainCycleTimer(MAIN_CYCLE_PERIOD_TIME);
-//  198 ////    CTimer m_xPeripheryTimer(PERIPHERY_SCAN_TIME);
-//  199 //    CSpi::Init();
-//  200 //    CPss21::AddressBusInit();
-//  201 //    CPss21::SearchModules();
-//  202 //    CPss21::CreateDevices();
-//  203 //
-//  204 //    CPlatform::m_uiWatchDogStepID = 0;
-//  205 
-//  206     CPss21::SetFsmState(CPss21::START);
+//   23 {
+//   24     enum
+//   25     {
+//   26         MAIN_START,
+//   27         MAIN_FIRST_STEP,
+//   28         MAIN_SECOND_STEP,
+//   29         MAIN_THIRD_STEP,
+//   30         MAIN_FORTH_STEP,
+//   31         MAIN_THIRD_REBOOT,
+//   32         MAIN_STOP
+//   33     };
+//   34 
+//   35     CPss21::SetFsmState(CPss21::START);
         LDI     R16, 0
-        CALL    ??SetFsmState
-//  207 
-//  208     while(1)
-//  209     {
-//  210         CPss21::MainFsm();
+        STS     ??m_uiFsmState, R16
+//   36 
+//   37     while(1)
+//   38     {
+//   39         CPss21::MainFsm();
 ??main_0:
         CALL    ??MainFsm
         RJMP    ??main_0
-//  211     }
-//  212 
-//  213     return 0;
-//  214 }
+//   40     }
+//   41 
+//   42     return 0;
+//   43 }
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -860,11 +672,11 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-//  36 bytes in segment CODE
+//  12 bytes in segment CODE
 //  36 bytes in segment NEAR_F
 // 
-// 66 bytes of CODE memory (+   6 bytes shared)
+// 48 bytes of CODE memory
 //  0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
-//Warnings: 4
+//Warnings: 1

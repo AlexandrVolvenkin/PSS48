@@ -11,26 +11,6 @@
 #include "Crc.h"
 
 //-----------------------------------------------------------------------------------------------------
-CModuleMrXX::CModuleMrXX()
-{
-    //ctor
-}
-
-//-----------------------------------------------------------------------------------------------------
-CModuleMrXX::~CModuleMrXX()
-{
-    //dtor
-}
-//-----------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-//-----------------------------------------------------------------------------------------------------
 CModuleMrXXDriver::CModuleMrXXDriver()
 {
 
@@ -48,12 +28,6 @@ CModuleMrXXDriver::~CModuleMrXXDriver()
 {
 
 }
-
-////-----------------------------------------------------------------------------------------------------
-//void CModuleMrXXDriver::Init(void)
-//{
-//
-//}
 
 //-----------------------------------------------------------------------------------------------------
 void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
@@ -330,20 +304,23 @@ uint8_t CModuleMrXXDriver::Exchange(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CModuleMrXXDriver::DataExchange(void)
 {
+    uint8_t uiResult;
     switch (GetFsmState())
     {
         // при старте база данных записывается из прибора в модуль реле.
     case MRXX_FSM_STATE_WRITE_DATABASE:
-        WriteDataBase();
+        uiResult = WriteDataBase();
         // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
         SetFsmState(MRXX_FSM_STATE_TRANSFER);
         break;
 
     case MRXX_FSM_STATE_TRANSFER:
-        Exchange();
+        uiResult = Exchange();
         break;
 
     default:
         break;
     };
+
+    return uiResult;
 }

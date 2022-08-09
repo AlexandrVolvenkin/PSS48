@@ -1,23 +1,22 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  02:57:02
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  10:49:17
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWCE2C.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EWE92B.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp --cpu=m128a -ms
 #        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --no_cse --no_inline
-#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        --initializers_in_flash --root_variables --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Buzzer.lst
@@ -495,63 +494,26 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
    \   union <unnamed> volatile __io _A_PINF
    \                     _A_PINF:
    \   00000000                      DS8 1
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::BuzzerClockASetPinOutput()
-   \                     ??BuzzerClockASetPinOutput:
-   \   00000000   9A13               SBI     0x02, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::BuzzerClockAOn()
-   \                     ??BuzzerClockAOn:
-   \   00000000   9A1B               SBI     0x03, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::BuzzerClockAOff()
-   \                     ??BuzzerClockAOff:
-   \   00000000   981B               CBI     0x03, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::BuzzerClockBSetPinOutput()
-   \                     ??BuzzerClockBSetPinOutput:
-   \   00000000   9A14               SBI     0x02, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::BuzzerClockBOn()
-   \                     ??BuzzerClockBOn:
-   \   00000000   9A1C               SBI     0x03, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::BuzzerClockBOff()
-   \                     ??BuzzerClockBOff:
-   \   00000000   981C               CBI     0x03, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTE
      10          
      11          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
      12          CBuzzer::CBuzzer()
    \                     ??CBuzzer:
+   \   00000000                      REQUIRE ?Subroutine0
+   \   00000000                      ;               // Fall through to label ?Subroutine0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
      13          {
    \   00000000   ....               LDI     R18, LOW(??__vtbl_1)
    \   00000002   ....               LDI     R19, (??__vtbl_1) >> 8
    \   00000004   01F8               MOVW    R31:R30, R17:R16
    \   00000006   8320               ST      Z, R18
    \   00000008   8331               STD     Z+1, R19
+   \   0000000A   9508               RET
      14          
      15          }
-   \   0000000A   9508               RET
      16          
      17          //-----------------------------------------------------------------------------------------------------
 
@@ -559,22 +521,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
      18          CBuzzer::~CBuzzer()
    \                     `?~CBuzzer`:
      19          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2F08               MOV     R16, R24
-   \   00000008   2B09               OR      R16, R25
-   \   0000000A   F029               BREQ    `?~CBuzzer_1`
-   \   0000000C   FB20               BST     R18, 0
-   \   0000000E   F41E               BRTC    `?~CBuzzer_1`
+   \   00000000   2F40               MOV     R20, R16
+   \   00000002   2B41               OR      R20, R17
+   \   00000004   F021               BREQ    `?~CBuzzer_1`
+   \   00000006   FB20               BST     R18, 0
+   \   00000008   F416               BRTC    `?~CBuzzer_1`
      20          
      21          }
-   \   00000010   018C               MOVW    R17:R16, R25:R24
-   \   00000012   ........           CALL    `??operator delete`
+   \   0000000A   ........           CALL    `??operator delete`
    \                     `?~CBuzzer_1`:
-   \   00000016   9189               LD      R24, Y+
-   \   00000018   9199               LD      R25, Y+
-   \   0000001A   9508               RET
+   \   0000000E   9508               RET
      22          
      23          //-----------------------------------------------------------------------------------------------------
 
@@ -583,15 +539,17 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
    \                     ??Init:
      25          {
      26              CPlatform::BuzzerClockAOff();
-   \   00000000   ........           CALL    ??BuzzerClockAOff
+   \   00000000   981B               CBI     0x03, 0x03
      27              CPlatform::BuzzerClockASetPinOutput();
-   \   00000004   ........           CALL    ??BuzzerClockASetPinOutput
+   \   00000002   9A13               SBI     0x02, 0x03
      28              CPlatform::BuzzerClockBOff();
-   \   00000008   ........           CALL    ??BuzzerClockBOff
+   \   00000004   981C               CBI     0x03, 0x04
      29              CPlatform::BuzzerClockBSetPinOutput();
-   \   0000000C   ........           CALL    ??BuzzerClockBSetPinOutput
+   \   00000006   9A14               SBI     0x02, 0x04
      30          }
-   \   00000010   9508               RET
+   \   00000008   9508               RET
+   \   0000000A                      REQUIRE _A_DDRE
+   \   0000000A                      REQUIRE _A_PORTE
      31          
      32          //-----------------------------------------------------------------------------------------------------
 
@@ -603,13 +561,18 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
      36              CPlatform::BuzzerTimerFrequencySet(760);
    \   00000000   EF08               LDI     R16, 248
    \   00000002   E012               LDI     R17, 2
-   \   00000004   ........           CALL    ??BuzzerTimerFrequencySet
+   \   00000004   ....               RJMP    ?Subroutine1
+   \   00000006                      REQUIRE _A_PORTE
      37              CPlatform::BuzzerClockAOn();
-   \   00000008   ........           CALL    ??BuzzerClockAOn
      38              CPlatform::BuzzerClockBOn();
-   \   0000000C   ........           CALL    ??BuzzerClockBOn
      39          }
-   \   00000010   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   ........           CALL    ??BuzzerTimerFrequencySet
+   \   00000004   9A1B               SBI     0x03, 0x03
+   \   00000006   9A1C               SBI     0x03, 0x04
+   \   00000008   9508               RET
      40          
      41          //-----------------------------------------------------------------------------------------------------
 
@@ -621,13 +584,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
      45              CPlatform::BuzzerTimerFrequencySet(3210);
    \   00000000   E80A               LDI     R16, 138
    \   00000002   E01C               LDI     R17, 12
-   \   00000004   ........           CALL    ??BuzzerTimerFrequencySet
+   \   00000004                      REQUIRE ?Subroutine1
+   \   00000004                      REQUIRE _A_PORTE
+   \   00000004                      ;               // Fall through to label ?Subroutine1
      46              CPlatform::BuzzerClockAOn();
-   \   00000008   ........           CALL    ??BuzzerClockAOn
      47              CPlatform::BuzzerClockBOn();
-   \   0000000C   ........           CALL    ??BuzzerClockBOn
      48          }
-   \   00000010   9508               RET
      49          
      50          //-----------------------------------------------------------------------------------------------------
 
@@ -636,13 +598,13 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
    \                     ??Off:
      52          {
      53              CPlatform::BuzzerClockAOff();
-   \   00000000   ........           CALL    ??BuzzerClockAOff
+   \   00000000   981B               CBI     0x03, 0x03
      54              CPlatform::BuzzerClockBOff();
-   \   00000004   ........           CALL    ??BuzzerClockBOff
+   \   00000002   981C               CBI     0x03, 0x04
      55              CPlatform::BuzzerTimerStop();
-   \   00000008   ........           CALL    ??BuzzerTimerStop
+   \   00000004   ........           JMP     ??BuzzerTimerStop
+   \   00000008                      REQUIRE _A_PORTE
      56          }
-   \   0000000C   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CBuzzer &CBuzzer::new CBuzzer()
@@ -652,67 +614,45 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
    \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F011               BREQ    `??new CBuzzer_1`
-   \   0000000E   ....               RCALL   ??CBuzzer
-   \   00000010   9508               RET
+   \   0000000C   F009               BREQ    `??new CBuzzer_1`
+   \   0000000E   ....               RJMP    ?Subroutine0
    \                     `??new CBuzzer_1`:
-   \   00000012   E000               LDI     R16, 0
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   9508               RET
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   E010               LDI     R17, 0
+   \   00000014   9508               RET
      57          
 
    Maximum stack usage in bytes:
 
-   CSTACK RSTACK Function
-   ------ ------ --------
-      0      2   CBuzzer::CBuzzer()
-      0      2   CBuzzer::HighOn()
-        0      2   -> CPlatform::BuzzerClockAOn()
-        0      2   -> CPlatform::BuzzerClockBOn()
-        0      2   -> CPlatform::BuzzerTimerFrequencySet(uint16_t)
-      0      2   CBuzzer::Init()
-        0      2   -> CPlatform::BuzzerClockAOff()
-        0      2   -> CPlatform::BuzzerClockASetPinOutput()
-        0      2   -> CPlatform::BuzzerClockBOff()
-        0      2   -> CPlatform::BuzzerClockBSetPinOutput()
-      0      2   CBuzzer::LowOn()
-        0      2   -> CPlatform::BuzzerClockAOn()
-        0      2   -> CPlatform::BuzzerClockBOn()
-        0      2   -> CPlatform::BuzzerTimerFrequencySet(uint16_t)
-      0      2   CBuzzer::Off()
-        0      2   -> CPlatform::BuzzerClockAOff()
-        0      2   -> CPlatform::BuzzerClockBOff()
-        0      2   -> CPlatform::BuzzerTimerStop()
-      0      2   CBuzzer::new CBuzzer()
-        0      2   -> CBuzzer::CBuzzer()
-        0      2   -> operator new(unsigned int)
-      2      2   CBuzzer::~CBuzzer()
-        2      2   -> operator delete(void *)
-      0      2   CPlatform::BuzzerClockAOff()
-      0      2   CPlatform::BuzzerClockAOn()
-      0      2   CPlatform::BuzzerClockASetPinOutput()
-      0      2   CPlatform::BuzzerClockBOff()
-      0      2   CPlatform::BuzzerClockBOn()
-      0      2   CPlatform::BuzzerClockBSetPinOutput()
+   RSTACK Function
+   ------ --------
+      0   CBuzzer::CBuzzer()
+      2   CBuzzer::HighOn()
+        2   -> CPlatform::BuzzerTimerFrequencySet(uint16_t)
+      2   CBuzzer::Init()
+      2   CBuzzer::LowOn()
+        2   -> CPlatform::BuzzerTimerFrequencySet(uint16_t)
+      2   CBuzzer::Off()
+        2   -> CPlatform::BuzzerTimerStop()
+      2   CBuzzer::new CBuzzer()
+        2   -> operator new(unsigned int)
+      2   CBuzzer::~CBuzzer()
+        2   -> operator delete(void *)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-      12  CBuzzer::CBuzzer()
-      18  CBuzzer::HighOn()
-      18  CBuzzer::Init()
-      18  CBuzzer::LowOn()
-      14  CBuzzer::Off()
-      24  CBuzzer::new CBuzzer()
-      28  CBuzzer::~CBuzzer()
-       4  CPlatform::BuzzerClockAOff()
-       4  CPlatform::BuzzerClockAOn()
-       4  CPlatform::BuzzerClockASetPinOutput()
-       4  CPlatform::BuzzerClockBOff()
-       4  CPlatform::BuzzerClockBOn()
-       4  CPlatform::BuzzerClockBSetPinOutput()
+      12  ?Subroutine0
+      10  ?Subroutine1
+       0  CBuzzer::CBuzzer()
+       4  CBuzzer::HighOn()
+      10  CBuzzer::Init()
+       6  CBuzzer::LowOn()
+       8  CBuzzer::Off()
+      22  CBuzzer::new CBuzzer()
+      16  CBuzzer::~CBuzzer()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -809,10 +749,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
 
  
  105 bytes in segment ABSOLUTE
- 156 bytes in segment CODE
+  88 bytes in segment CODE
   34 bytes in segment NEAR_F
  
- 164 bytes of CODE memory (+  26 bytes shared)
+ 120 bytes of CODE memory (+   2 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

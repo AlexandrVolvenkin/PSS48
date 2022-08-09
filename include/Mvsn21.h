@@ -14,21 +14,6 @@
 #include "DataTypes.h"
 
 //-----------------------------------------------------------------------------------------------------
-class CMvsn21 : virtual public CDevice
-{
-public:
-    CMvsn21(void);
-    CMvsn21(uint8_t uiType, CDriver* pxDriver);
-    virtual ~CMvsn21();
-    uint16_t ReportType(uint8_t * , uint16_t );
-
-protected:
-private:
-    uint8_t m_uiAddress;
-
-};
-
-//-----------------------------------------------------------------------------------------------------
 // Обмен данными модуля ввода дискретных сигналов МВДС9 с МЦП
 // * Запрос на циклический обмен:$42
 // Ответ:$42-данные готовы(ЭХО), $24-данные не готовы, конец связи
@@ -50,15 +35,9 @@ private:
 class CMvsn21Driver : public CDriver
 {
 public:
-//    enum
-//    {
-//        MVSN21_DISCRETE_INPUTS_NUMBER = 16,
-//    };
-//    static const uint8_t MVSN21_DISCRETE_INPUTS_NUMBER = 16;
 
     enum
     {
-//        DISCRETE_INPUTS_NUMBER = 24,
         DATA_EXCHANGE_COMMAND = 0x42,
         DATA_READY = 0x42,
         DATA_EXCHANGE_OK	= 0x7E,				// Нормальное завершение обмена
@@ -79,9 +58,7 @@ public:
 
     CMvsn21Driver(uint8_t uiType);
     virtual ~CMvsn21Driver();
-//    void Init(void);
     void Allocate(TMemoryAllocationConext &xMemoryAllocationConext);
-//    uint16_t ReportType(uint8_t * , uint16_t );
     uint8_t DataExchange(void);
 
 protected:

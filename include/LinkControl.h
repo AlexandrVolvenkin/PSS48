@@ -21,9 +21,14 @@ public:
     CLinkControl();
     virtual ~CLinkControl();
 
-    CTimer m_xTimer;
+    CTimer* GetTimerPointer(void)
+    {
+        return &m_xTimer;
+    };
+
 protected:
 private:
+    CTimer m_xTimer;
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -50,7 +55,6 @@ public:
         LINK_CONTROL_IN_PROGRESS_ON_WAITING,
         NEXT_LINK_SESSION_WAITING,
         RECEIPT_OR_NEXT_LINK_SESSION_WAITING,
-//        LINK_CONTROL_IN_PROGRESS_CHECK,
     };
 
     CModbusRtuLinkControl();

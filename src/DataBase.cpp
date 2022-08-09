@@ -14,7 +14,7 @@
 //-----------------------------------------------------------------------------------------------------
 // Основной блок БД прибора
 //#pragma location = 0x0200
-TDataBase __flash DBMain =
+TDataBase __flash axMainDataBase =
 {
     {
         2,1,48,false,false,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
@@ -255,25 +255,25 @@ TDataBase __flash DBMain =
 };
 
 //-----------------------------------------------------------------------------------------------------
-TDataStructure __flash CDataBase::DSTR[] =
+TDataBaseBlockPositionData __flash CDataBase::axDataBaseBlocksPositionData[] =
 {
-    { 0, sizeof(DBMain.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
-    { 1, sizeof(DBMain.MBSet),	  offsetof(TDataBase,MBSet)	 	},
-    { 2, sizeof(DBMain.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
-    { 3, sizeof(DBMain.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
-    { 4, sizeof(DBMain.AlarmType), offsetof(TDataBase,AlarmType) 	},
-    { 5, sizeof(DBMain.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
-    { 6, sizeof(DBMain.Relay),	  offsetof(TDataBase,Relay)       	},
-    { 7, sizeof(DBMain.InputList),	  offsetof(TDataBase,InputList)  	},
-    { 8, sizeof(DBMain.ReceiptList), offsetof(TDataBase,ReceiptList)	},
-    { 9, sizeof(DBMain.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-    { 10, sizeof(DBMain.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+    { 0, sizeof(axMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
+    { 1, sizeof(axMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
+    { 2, sizeof(axMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
+    { 3, sizeof(axMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
+    { 4, sizeof(axMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
+    { 5, sizeof(axMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
+    { 6, sizeof(axMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
+    { 7, sizeof(axMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
+    { 8, sizeof(axMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
+    { 9, sizeof(axMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
+    { 10, sizeof(axMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
 };
 
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataBase::m_uiStatus;
-TDataBase __farflash *CDataBase::m_pxDBase;
-TDataStructure __farflash *CDataBase::m_pxDStruct;
+TDataBase __farflash *CDataBase::m_pxDataBase;
+TDataBaseBlockPositionData __farflash *CDataBase::m_pxDataBaseBlocksPositionData;
 
 //-----------------------------------------------------------------------------------------------------
 CDataBase::CDataBase()
@@ -317,7 +317,7 @@ uint8_t CDataBase::RestoreDefault(void)
             if (uiBlockCounter < TDataBase::BLOCKS_QUANTITY)
             {
                 // Получим указатель на блок БД во флеш.
-                puiDBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDBase)[GetBlockOffset(uiBlockCounter)];
+                puiDBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDataBase)[GetBlockOffset(uiBlockCounter)];
                 // Скопируем данные из флеш во временный буфер,
                 // чтобы передать их в функцию по обычному указателю, а не __farflash.
                 for (uint8_t i = 0; i < GetBlockLength(uiBlockCounter); i++)
@@ -395,8 +395,8 @@ bool CDataBase::UserConfirmationCheck(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataBase::Check(void)
 {
-    m_pxDBase = &DBMain;
-    m_pxDStruct = DSTR;
+    m_pxDataBase = &axMainDataBase;
+    m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
 
     CPss21::SetErrorCode(NO_ERROR);
     // Блоки базы данных не повреждены?
@@ -453,13 +453,13 @@ uint16_t CDataBase::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataBase::GetBlockLength(uint8_t uiBlock)
 {
-    return m_pxDStruct[uiBlock].Size;
+    return m_pxDataBaseBlocksPositionData[uiBlock].Size;
 }
 
 //-----------------------------------------------------------------------------------------------------
 uint16_t CDataBase::GetBlockOffset(uint8_t uiBlock)
 {
-    return m_pxDStruct[uiBlock].Offset;
+    return m_pxDataBaseBlocksPositionData[uiBlock].Offset;
 }
 
 //-----------------------------------------------------------------------------------------------------

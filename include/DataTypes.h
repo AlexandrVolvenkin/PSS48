@@ -146,16 +146,6 @@ struct TDiscreteOutputControl
     uint8_t uiRelayActivationRequest;
 };
 
-//struct TAlarmWindowControl
-//{
-//    // Признак квитирования.
-//    uint8_t uiIsReceipted: 1;
-//    // Признак сброса.
-//    uint8_t uiIsReseted: 1;
-//    // Тип сигнализации.
-//    uint8_t uiAlarmType: 3;
-////};
-
 struct TAlarmDfaInit
 {
     // Уровень дискретного сигнала интерпретируемый как активный.
@@ -172,6 +162,15 @@ struct TDeviceState
     uint8_t 	  : 7;
 
     uint8_t uiReserved[7];
+};
+
+//-----------------------------------------------------------------------------------------------------
+// Описатель структур хранения данных в EEPROM
+struct TDataBaseBlockPositionData
+{
+    unsigned char  Field;			// Идентификатор поля данных
+    unsigned char  Size;			// Размер блока
+    unsigned short Offset;			// Смещение блока данных от начала
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -228,105 +227,6 @@ struct TDataBase
         BLOCKS_QUANTITY = 11
     };
 };
-
-////-----------------------------------------------------------------------------------------------------
-//// БД настроек прибора
-//struct TDataBase
-//{
-//    // Конфигурация устройства.
-//    TDevConfig	DevConfig;
-//    unsigned short CRC0;
-//    // Параметры интерфейса ModBus.
-//    TMBusSetting   MBSet;
-//    unsigned short CRC1;
-//    // Уровень дискретного сигнала интерпретируемый как активный.
-//    unsigned char  ActivityLevel[8];
-//    unsigned short CRC2;
-//    // Индекс окна сигнализации которое привязано к текущему дискретному сигналу.
-//    unsigned char  AlarmWindowIndex[64];
-//    unsigned short CRC3;
-//    // Тип сигнализации привязанный к окну.
-//    unsigned char  AlarmType[32];
-//    unsigned short CRC4;
-//    // БД модулей вывода.
-//    TOutputData    OutConfig;
-//    unsigned short CRC5;
-//    // Выходные реле, сопоставленные физическим входам.
-//    unsigned char  Relay[64];
-//    unsigned short CRC6;
-//    // Список запросов сбора данных.
-//    TMBMRequestList InputList;
-//    unsigned short  CRC7;
-//    // Список запросов квитирования.
-//    TMBMRequestList ReceiptList;
-//    unsigned short  CRC8;
-//    // Список запросов сброса.
-//    TMBMRequestList UnsetList;
-//    unsigned short  CRC9;
-//
-//    enum DB_FIELDS
-//    {
-//        DEV_CONFIG	= 0,			// Конфигурация устройства
-//        MODBUS_SET	= 1,			// Параметры интерфейса ModBus
-//        ACTIVITY_LEVEL	= 2,			// Тип входа
-//        ALARM_WINDOW_INDEX	= 3,			// Переадресация
-//        ALARM_TYPE	= 4,			// Типы сигнализации по окнам
-//        OUT_BASE	= 5,			// БД модулей вывода
-//        RELAY		= 6,			// Выходные реле, сопоставленные физическим входам
-//        INPUT_LIST	= 7,			// Запросы сбора данных
-//        RECEIPT_LIST	= 8,			// Запросы квитирования
-//        UNSET_LIST	= 9			// Запросы сброса
-//    };
-//};
-
-// изменить версию!
-//// БД настроек прибора - Максимум 64 ОКНА
-//struct TDataBaseNEW
-//{
-//    TDevConfig	DevConfig;		// Конфигурация устройства
-//    unsigned short CRC0;
-//
-//    TMBusSetting   MBSet;			// Параметры интерфейса ModBus
-//    unsigned short CRC1;
-//
-//    unsigned char  InputType[2*8];		// Тип входа (2 * 64 бит / 8 = 16 байт)
-//    unsigned short CRC2;
-//
-//    unsigned char  CrossBar[2*64];		// Переадресация
-//    unsigned short CRC3;
-//
-//    unsigned char  ChannelType[2*32];	// Типы сигнализации по окнам
-//    unsigned short CRC4;
-//
-//    TOutputData    OutConfig;		// БД модулей вывода
-//    unsigned short CRC5;
-//
-//    unsigned char  Relay[2*64];		// Выходные реле, сопоставленные физическим входам
-//    unsigned short CRC6;
-//
-//    TMBMRequestList InputList;		// Список запросов сбора данных
-//    unsigned short  CRC7;
-//
-//    TMBMRequestList ReceiptList;		// Список запросов квитирования
-//    unsigned short  CRC8;
-//
-//    TMBMRequestList UnsetList;		// Список запросов сброса
-//    unsigned short  CRC9;
-//
-//    enum DB_FIELDS
-//    {
-//        DEV_CONFIG	= 0,			// Конфигурация устройства
-//        MODBUS_SET	= 1,			// Параметры интерфейса ModBus
-//        INPUT_TYPE	= 2,			// Тип входа
-//        CROSS_BAR	= 3,			// Переадресация
-//        CHANNEL_TYPE	= 4,			// Типы сигнализации по окнам
-//        OUT_BASE	= 5,			// БД модулей вывода
-//        RELAY		= 6,			// Выходные реле, сопоставленные физическим входам
-//        INPUT_LIST	= 7,			// Запросы сбора данных
-//        RECEIPT_LIST	= 8,			// Запросы квитирования
-//        UNSET_LIST	= 9			// Запросы сброса
-//    };
-//};
 
 //-----------------------------------------------------------------------------------------------------
 #pragma pack(push)

@@ -15,9 +15,7 @@
 class CDriver
 {
 public:
-//    virtual void Init(void) = 0;
     virtual void Allocate(TMemoryAllocationConext &xMemoryAllocationConext) = 0;
-//    virtual uint16_t ReportType(uint8_t * , uint16_t ) = 0;
     virtual uint8_t DataExchange(void) = 0;
 
     void SetReceipt(uint8_t uiData)
@@ -57,7 +55,6 @@ public:
 protected:
 private:
     uint8_t m_uiType;
-//    uint8_t m_uiFsmState;
     uint8_t m_uiReceipt;
     uint8_t m_uiReset;
     uint8_t m_uiModbusReceipt;
@@ -66,7 +63,6 @@ private:
 
     friend class CMvsn21Driver;
     friend class CModuleMrXXDriver;
-    friend class CPss21;
 };
 
 //-----------------------------------------------------------------------------------------------------

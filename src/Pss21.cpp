@@ -372,20 +372,8 @@ void CPss21::DestroyDevices(uint8_t uiLength)
     for (uint16_t i = 0; i < uiLength; i++)
     {
 //        delete m_apxDevices[i];
-        delete m_apxDrivers[i];
+//        delete m_apxDrivers[i];
     }
-};
-
-//-----------------------------------------------------------------------------------------------------
-uint8_t CPss21::CreateConfiguration(uint8_t *puiTypes)
-{
-    ReportType(0, 0);
-};
-
-//-----------------------------------------------------------------------------------------------------
-uint8_t CPss21::InitDevices(uint8_t *puiTypes)
-{
-
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -405,6 +393,8 @@ uint16_t CPss21::ReportType(uint8_t *puiDestination, uint16_t uiLength)
                    m_auiSpiTxBuffer,
                    uiLengthLocal);
     DisconnectDevice();
+
+    return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -412,7 +402,6 @@ void CPss21::SetBytesFromBits(uint8_t *uiDestination,
                               uint8_t *uiSourse,
                               uint16_t uiLength)
 {
-    int8_t uiData = 0;
     int16_t shift = 0;
 
     for (int16_t i = 0; i < uiLength; i++)
@@ -875,52 +864,6 @@ void CPss21::DiscreteOutputControlClear(void)
         }
     }
 }
-
-////-----------------------------------------------------------------------------------------------------
-//void CPss21::DiscreteOutputsSet(uint8_t uiLinkedDiscreteOutputs, uint8_t uiNewViolation)
-//{
-//    // Дискретный сигнал был активен на предыдущем шаге?
-//    if (!uiNewViolation)
-//    {
-//        // Не новое нарушение.
-//        // установим флаги - требования включения, для запрограммированных реле,
-//        // в буфере выходов требований включения реле - блокировка.
-//        // цикл выбора реле.
-//        for (int k = 0;
-//                k < MR_DISCRETE_OUTPUT_NUMBER;
-//                k++)
-//        {
-//            // Текущий - (j, k) дискретный выход(реле) привязан?
-//            if (uiLinkedDiscreteOutputs & (0x01 << k))
-//            {
-//                // установим флаг - требование включения реле.
-//                m_axDiscreteOutputControl[k].uiRelayActivationRequest = 1;
-//            }
-//        }
-//    }
-//    else
-//    {
-//        // новое нарушение.
-//        // установим флаги - новое нарушение, для запрограммированных реле
-//        // в буфере выходов управления реле - новое нарушение.
-//        // установим флаги - требования включения, для запрограммированных реле,
-//        // в буфере выходов требований включения реле - блокировка.
-//        // цикл выбора реле.
-//        for (int k = 0;
-//                k < MR_DISCRETE_OUTPUT_NUMBER;
-//                k++)
-//        {
-//            // Текущий - (j, k) дискретный выход(реле) привязан?
-//            if (uiLinkedDiscreteOutputs & (0x01 << k))
-//            {
-//                // установим флаг - новое нарушение.
-//                m_axDiscreteOutputControl[k].uiNewActivation = 1;
-//                // установим флаг - требование включения реле.
-//                m_axDiscreteOutputControl[k].uiRelayActivationRequest = 1;
-//            }
-//        }
-//    }
-//}
 
 //-----------------------------------------------------------------------------------------------------
 void CPss21::DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNewViolation)

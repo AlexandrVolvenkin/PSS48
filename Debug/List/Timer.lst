@@ -1,23 +1,22 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  02:57:08
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  10:49:29
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWE769.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW1740.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp --cpu=m128a -ms -o
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --no_cse --no_inline
-#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        --initializers_in_flash --root_variables --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Timer.lst
 #    Object file  =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\Timer.r90
@@ -494,15 +493,6 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \   union <unnamed> volatile __io _A_PINF
    \                     _A_PINF:
    \   00000000                      DS8 1
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 uint16_t CPlatform::GetSystemTick()
-   \                     ??GetSystemTick:
-   \   00000000   ....               LDI     R30, LOW(??m_uiSystemTick)
-   \   00000002   ....               LDI     R31, (??m_uiSystemTick) >> 8
-   \   00000004   8100               LD      R16, Z
-   \   00000006   8111               LDD     R17, Z+1
-   \   00000008   9508               RET
      10          #include "Timer.h"
      11          
      12          //-----------------------------------------------------------------------------------------------------
@@ -526,27 +516,28 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      19          CTimer::CTimer(uint16_t uiTime)
    \                     ??CTimer_1:
      20          {
-   \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   01C9               MOVW    R25:R24, R19:R18
-   \   00000008   ....               LDI     R16, LOW(??__vtbl_1)
-   \   0000000A   ....               LDI     R17, (??__vtbl_1) >> 8
-   \   0000000C   01FD               MOVW    R31:R30, R27:R26
-   \   0000000E   8304               STD     Z+4, R16
-   \   00000010   8315               STD     Z+5, R17
+   \   00000000   ....               LDI     R20, LOW(??__vtbl_1)
+   \   00000002   ....               LDI     R21, (??__vtbl_1) >> 8
+   \   00000004   01F8               MOVW    R31:R30, R17:R16
+   \   00000006   8344               STD     Z+4, R20
+   \   00000008   8355               STD     Z+5, R21
      21              m_uiLastSystemTick = CPlatform::GetSystemTick();
-   \   00000012   ........           CALL    ??GetSystemTick
-   \   00000016   01FD               MOVW    R31:R30, R27:R26
-   \   00000018   8302               STD     Z+2, R16
-   \   0000001A   8313               STD     Z+3, R17
+   \   0000000A   ....               RJMP    ?Subroutine0
      22              m_uiTime = uiTime;
-   \   0000001C   938D               ST      X+, R24
-   \   0000001E   939C               ST      X, R25
-   \   00000020   9711               SBIW    R27:R26, 1
      23          }
-   \   00000022   018D               MOVW    R17:R16, R27:R26
-   \   00000024   E0E4               LDI     R30, 4
-   \   00000026   ........           JMP     ?EPILOGUE_B4_L09
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   ....               LDI     R30, LOW(??m_uiSystemTick)
+   \   00000002   ....               LDI     R31, (??m_uiSystemTick) >> 8
+   \   00000004   8140               LD      R20, Z
+   \   00000006   8151               LDD     R21, Z+1
+   \   00000008   01F8               MOVW    R31:R30, R17:R16
+   \   0000000A   8342               STD     Z+2, R20
+   \   0000000C   8353               STD     Z+3, R21
+   \   0000000E   8320               ST      Z, R18
+   \   00000010   8331               STD     Z+1, R19
+   \   00000012   9508               RET
      24          
      25          //-----------------------------------------------------------------------------------------------------
 
@@ -554,22 +545,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      26          CTimer::~CTimer()
    \                     `?~CTimer`:
      27          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2F08               MOV     R16, R24
-   \   00000008   2B09               OR      R16, R25
-   \   0000000A   F029               BREQ    `?~CTimer_1`
-   \   0000000C   FB20               BST     R18, 0
-   \   0000000E   F41E               BRTC    `?~CTimer_1`
+   \   00000000   2F40               MOV     R20, R16
+   \   00000002   2B41               OR      R20, R17
+   \   00000004   F021               BREQ    `?~CTimer_1`
+   \   00000006   FB20               BST     R18, 0
+   \   00000008   F416               BRTC    `?~CTimer_1`
      28          
      29          }
-   \   00000010   018C               MOVW    R17:R16, R25:R24
-   \   00000012   ........           CALL    `??operator delete`
+   \   0000000A   ........           CALL    `??operator delete`
    \                     `?~CTimer_1`:
-   \   00000016   9189               LD      R24, Y+
-   \   00000018   9199               LD      R25, Y+
-   \   0000001A   9508               RET
+   \   0000000E   9508               RET
      30          
      31          //-----------------------------------------------------------------------------------------------------
 
@@ -577,21 +562,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      32          void CTimer::Set(uint16_t uiTime)
    \                     ??Set:
      33          {
-   \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   01C9               MOVW    R25:R24, R19:R18
      34              m_uiLastSystemTick = CPlatform::GetSystemTick();
-   \   00000008   ........           CALL    ??GetSystemTick
-   \   0000000C   01FD               MOVW    R31:R30, R27:R26
-   \   0000000E   8302               STD     Z+2, R16
-   \   00000010   8313               STD     Z+3, R17
+   \   00000000                      REQUIRE ?Subroutine0
+   \   00000000                      ;               // Fall through to label ?Subroutine0
      35              m_uiTime = uiTime;
-   \   00000012   938D               ST      X+, R24
-   \   00000014   939C               ST      X, R25
-   \   00000016   9711               SBIW    R27:R26, 1
      36          }
-   \   00000018   E0E4               LDI     R30, 4
-   \   0000001A   ........           JMP     ?EPILOGUE_B4_L09
      37          
      38          //-----------------------------------------------------------------------------------------------------
 
@@ -599,18 +574,22 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      39          void CTimer::Reset(void)
    \                     ??Reset:
      40          {
-   \   00000000   93BA               ST      -Y, R27
-   \   00000002   93AA               ST      -Y, R26
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
      41              m_uiLastSystemTick = CPlatform::GetSystemTick();
-   \   00000006   ........           CALL    ??GetSystemTick
-   \   0000000A   01FD               MOVW    R31:R30, R27:R26
-   \   0000000C   8302               STD     Z+2, R16
-   \   0000000E   8313               STD     Z+3, R17
+   \   00000000   ....               RCALL   ?Subroutine2
+   \                     ??CrossCallReturnLabel_2:
+   \   00000002   8322               STD     Z+2, R18
+   \   00000004   8333               STD     Z+3, R19
      42          }
-   \   00000010   91A9               LD      R26, Y+
-   \   00000012   91B9               LD      R27, Y+
-   \   00000014   9508               RET
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine2:
+   \   00000000   ....               LDI     R30, LOW(??m_uiSystemTick)
+   \   00000002   ....               LDI     R31, (??m_uiSystemTick) >> 8
+   \   00000004   8120               LD      R18, Z
+   \   00000006   8131               LDD     R19, Z+1
+   \   00000008   01F8               MOVW    R31:R30, R17:R16
+   \   0000000A   9508               RET
      43          
      44          //-----------------------------------------------------------------------------------------------------
 
@@ -618,55 +597,44 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      45          int8_t CTimer::IsOverflow(void)
    \                     ??IsOverflow:
      46          {
-   \   00000000   93BA               ST      -Y, R27
-   \   00000002   93AA               ST      -Y, R26
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
      47              if ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
      48                      m_uiTime)
-   \   00000006   ........           CALL    ??GetSystemTick
-   \   0000000A   01FD               MOVW    R31:R30, R27:R26
-   \   0000000C   8122               LDD     R18, Z+2
-   \   0000000E   8133               LDD     R19, Z+3
-   \   00000010   1B02               SUB     R16, R18
-   \   00000012   0B13               SBC     R17, R19
-   \   00000014   912D               LD      R18, X+
-   \   00000016   913C               LD      R19, X
-   \   00000018   9711               SBIW    R27:R26, 1
-   \   0000001A   1702               CP      R16, R18
-   \   0000001C   0713               CPC     R17, R19
-   \   0000001E   F010               BRCS    ??IsOverflow_1
+   \   00000000   ....               RCALL   ?Subroutine2
+   \                     ??CrossCallReturnLabel_3:
+   \   00000002   8142               LDD     R20, Z+2
+   \   00000004   8153               LDD     R21, Z+3
+   \   00000006   1B24               SUB     R18, R20
+   \   00000008   0B35               SBC     R19, R21
+   \   0000000A   8100               LD      R16, Z
+   \   0000000C   8111               LDD     R17, Z+1
+   \   0000000E   1720               CP      R18, R16
+   \   00000010   0731               CPC     R19, R17
+   \   00000012   F010               BRCS    ??IsOverflow_1
      49              {
      50                  return true;
-   \   00000020   E001               LDI     R16, 1
-   \   00000022   C001               RJMP    ??IsOverflow_2
+   \   00000014   E001               LDI     R16, 1
+   \   00000016   9508               RET
      51              }
      52              else
      53              {
      54                  return false;
    \                     ??IsOverflow_1:
-   \   00000024   E000               LDI     R16, 0
-   \                     ??IsOverflow_2:
-   \   00000026   91A9               LD      R26, Y+
-   \   00000028   91B9               LD      R27, Y+
-   \   0000002A   9508               RET
+   \   00000018   E000               LDI     R16, 0
+   \   0000001A   9508               RET
      55              }
      56          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CTimer &CTimer::new CTimer()
    \                     `??new CTimer`:
-   \   00000000   E006               LDI     R16, 6
-   \   00000002   E010               LDI     R17, 0
-   \   00000004   ........           CALL    `??operator new`
-   \   00000008   2F20               MOV     R18, R16
-   \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F011               BREQ    `??new CTimer_2`
-   \   0000000E   ....               RCALL   ??CTimer
-   \   00000010   9508               RET
+   \   00000000   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_0:
+   \   00000002   F009               BREQ    `??new CTimer_2`
+   \   00000004   ....               RJMP    ??CTimer
    \                     `??new CTimer_2`:
-   \   00000012   E000               LDI     R16, 0
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   9508               RET
+   \   00000006   E000               LDI     R16, 0
+   \   00000008   E010               LDI     R17, 0
+   \   0000000A   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CTimer &CTimer::new CTimer(uint16_t)
@@ -674,22 +642,28 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   E006               LDI     R16, 6
-   \   00000008   E010               LDI     R17, 0
-   \   0000000A   ........           CALL    `??operator new`
-   \   0000000E   2F20               MOV     R18, R16
-   \   00000010   2B21               OR      R18, R17
-   \   00000012   F019               BREQ    `??new CTimer_3`
-   \   00000014   019C               MOVW    R19:R18, R25:R24
-   \   00000016   ....               RCALL   ??CTimer_1
-   \   00000018   C002               RJMP    `??new CTimer_4`
+   \   00000006   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_1:
+   \   00000008   F019               BREQ    `??new CTimer_3`
+   \   0000000A   019C               MOVW    R19:R18, R25:R24
+   \   0000000C   ....               RCALL   ??CTimer_1
+   \   0000000E   C002               RJMP    `??new CTimer_4`
    \                     `??new CTimer_3`:
-   \   0000001A   E000               LDI     R16, 0
-   \   0000001C   E010               LDI     R17, 0
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   E010               LDI     R17, 0
    \                     `??new CTimer_4`:
-   \   0000001E   9189               LD      R24, Y+
-   \   00000020   9199               LD      R25, Y+
-   \   00000022   9508               RET
+   \   00000014   9189               LD      R24, Y+
+   \   00000016   9199               LD      R25, Y+
+   \   00000018   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   E006               LDI     R16, 6
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   ........           CALL    `??operator new`
+   \   00000008   2F20               MOV     R18, R16
+   \   0000000A   2B21               OR      R18, R17
+   \   0000000C   9508               RET
      57          
      58          //-----------------------------------------------------------------------------------------------------
      59          
@@ -698,39 +672,36 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 
    CSTACK RSTACK Function
    ------ ------ --------
-      0      2   CPlatform::GetSystemTick()
       0      2   CTimer::CTimer()
-      4      2   CTimer::CTimer(uint16_t)
-        4      2   -> CPlatform::GetSystemTick()
-      2      2   CTimer::IsOverflow()
-        2      2   -> CPlatform::GetSystemTick()
-      2      2   CTimer::Reset()
-        2      2   -> CPlatform::GetSystemTick()
-      4      2   CTimer::Set(uint16_t)
-        4      2   -> CPlatform::GetSystemTick()
+      0      2   CTimer::CTimer(uint16_t)
+      0      2   CTimer::IsOverflow()
+      0      2   CTimer::Reset()
+      0      0   CTimer::Set(uint16_t)
       0      2   CTimer::new CTimer()
         0      2   -> CTimer::CTimer()
-        0      2   -> operator new(unsigned int)
+        0      4   -> operator new(unsigned int)
       2      2   CTimer::new CTimer(uint16_t)
         2      2   -> CTimer::CTimer(uint16_t)
-        2      2   -> operator new(unsigned int)
-      2      2   CTimer::~CTimer()
-        2      2   -> operator delete(void *)
+        2      4   -> operator new(unsigned int)
+      0      2   CTimer::~CTimer()
+        0      2   -> operator delete(void *)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-      10  CPlatform::GetSystemTick()
+      20  ?Subroutine0
+      14  ?Subroutine1
+      12  ?Subroutine2
       12  CTimer::CTimer()
-      42  CTimer::CTimer(uint16_t)
-      44  CTimer::IsOverflow()
-      22  CTimer::Reset()
-      30  CTimer::Set(uint16_t)
-      24  CTimer::new CTimer()
-      36  CTimer::new CTimer(uint16_t)
-      28  CTimer::~CTimer()
+      12  CTimer::CTimer(uint16_t)
+      28  CTimer::IsOverflow()
+       8  CTimer::Reset()
+       0  CTimer::Set(uint16_t)
+      12  CTimer::new CTimer()
+      26  CTimer::new CTimer(uint16_t)
+      16  CTimer::~CTimer()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -827,10 +798,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 
  
  105 bytes in segment ABSOLUTE
- 248 bytes in segment CODE
+ 160 bytes in segment CODE
   34 bytes in segment NEAR_F
  
- 270 bytes of CODE memory (+  12 bytes shared)
+ 192 bytes of CODE memory (+   2 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

@@ -77,18 +77,6 @@ enum
     BUTTON_KVIT_MASK = 0x20,
 };
 
-
-//-----------------------------------------------------------------------------------------------------
-class CModuleMrXX : public CDevice, public CDfa
-{
-public:
-    CModuleMrXX();
-    virtual ~CModuleMrXX();
-
-protected:
-private:
-    uint8_t m_uiAddress;
-};
 //-----------------------------------------------------------------------------------------------------
 
 
@@ -128,9 +116,7 @@ public:
     CModuleMrXXDriver(uint8_t uiType);
     CModuleMrXXDriver();
     virtual ~CModuleMrXXDriver();
-//    void Init(void);
     void Allocate(TMemoryAllocationConext &xMemoryAllocationConext);
-//    uint16_t ReportType(uint8_t * , uint16_t );
     uint8_t WriteDataBase(void);
     uint8_t DataExchange(void);
     uint8_t Exchange(void);

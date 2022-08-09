@@ -1,23 +1,22 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  02:57:04
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  11:06:59
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWD6AD.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW204B.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --no_cse --no_inline
-#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        --initializers_in_flash --root_variables --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\LightBoard.lst
@@ -35,13 +34,6 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
       6          //  GitHub      : https://github.com/AlexandrVolvenkin
       7          //-----------------------------------------------------------------------------------------------------
       8          #include "LightBoard.h"
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 uint8_t CAlarmWindow::GetActivityState()
-   \                     ??GetActivityState:
-   \   00000000   01F8               MOVW    R31:R30, R17:R16
-   \   00000002   8100               LD      R16, Z
-   \   00000004   9508               RET
       9          #include "Platform.h"
 
    \                                 In  segment ABSOLUTE, at 0x9d, root
@@ -503,81 +495,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
    \   union <unnamed> volatile __io _A_PINF
    \                     _A_PINF:
    \   00000000                      DS8 1
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable1SetPinOutput()
-   \                     ??LedDriverEnable1SetPinOutput:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6001               ORI     R16, 0x01
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable1On()
-   \                     ??LedDriverEnable1On:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7F0E               ANDI    R16, 0xFE
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable2SetPinOutput()
-   \                     ??LedDriverEnable2SetPinOutput:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6200               ORI     R16, 0x20
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable2On()
-   \                     ??LedDriverEnable2On:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7D0F               ANDI    R16, 0xDF
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable3SetPinOutput()
-   \                     ??LedDriverEnable3SetPinOutput:
-   \   00000000   9A16               SBI     0x02, 0x06
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable3On()
-   \                     ??LedDriverEnable3On:
-   \   00000000   981E               CBI     0x03, 0x06
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable4SetPinOutput()
-   \                     ??LedDriverEnable4SetPinOutput:
-   \   00000000   9A17               SBI     0x02, 0x07
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRE
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::LedDriverEnable4On()
-   \                     ??LedDriverEnable4On:
-   \   00000000   981F               CBI     0x03, 0x07
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTE
      10          #include "Pss21.h"
-
-  };
-   ^
-"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",184  Warning[Pe375]: 
-          declaration requires a typedef name
-
-  };
-   ^
-"D:\Projects\CautoProjects\PSS48\PSS48\Modbus\Modbus.h",216  Warning[Pe375]: 
-          declaration requires a typedef name
      11          
      12          //-------------------------------------------------------------------------------------------------
 
@@ -612,22 +530,28 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   ....               LDI     R16, LOW(??__vtbl_2)
-   \   00000008   ....               LDI     R17, (??__vtbl_2) >> 8
-   \   0000000A   01FC               MOVW    R31:R30, R25:R24
-   \   0000000C   5BEC               SUBI    R30, 188
-   \   0000000E   4FFF               SBCI    R31, 255
-   \   00000010   8300               ST      Z, R16
-   \   00000012   8311               STD     Z+1, R17
+   \   00000006   ....               RCALL   ?Subroutine0
      27          {
-   \   00000014   018C               MOVW    R17:R16, R25:R24
-   \   00000016   ........           CALL    ??CDM134
+   \                     ??CrossCallReturnLabel_0:
+   \   00000008   018C               MOVW    R17:R16, R25:R24
+   \   0000000A   ........           CALL    ??CDM134
      28          //    Init();
      29          }
-   \   0000001A   018C               MOVW    R17:R16, R25:R24
-   \   0000001C   9189               LD      R24, Y+
-   \   0000001E   9199               LD      R25, Y+
-   \   00000020   9508               RET
+   \   0000000E   018C               MOVW    R17:R16, R25:R24
+   \   00000010   9189               LD      R24, Y+
+   \   00000012   9199               LD      R25, Y+
+   \   00000014   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   ....               LDI     R16, LOW(??__vtbl_2)
+   \   00000002   ....               LDI     R17, (??__vtbl_2) >> 8
+   \   00000004   01FC               MOVW    R31:R30, R25:R24
+   \   00000006   5BEC               SUBI    R30, 188
+   \   00000008   4FFF               SBCI    R31, 255
+   \   0000000A   8300               ST      Z, R16
+   \   0000000C   8311               STD     Z+1, R17
+   \   0000000E   9508               RET
      30          
      31          //-----------------------------------------------------------------------------------------------------
 
@@ -635,32 +559,26 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
      32          CLightBoard::~CLightBoard()
    \                     `?~CLightBoard`:
      33          {
-   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000000   ........           CALL    ?PROLOGUE3_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   01D9               MOVW    R27:R26, R19:R18
-   \   00000008   2F08               MOV     R16, R24
-   \   0000000A   2B09               OR      R16, R25
-   \   0000000C   F089               BREQ    `?~CLightBoard_1`
-   \   0000000E   ....               LDI     R16, LOW(??__vtbl_2)
-   \   00000010   ....               LDI     R17, (??__vtbl_2) >> 8
-   \   00000012   01FC               MOVW    R31:R30, R25:R24
-   \   00000014   5BEC               SUBI    R30, 188
-   \   00000016   4FFF               SBCI    R31, 255
-   \   00000018   8300               ST      Z, R16
-   \   0000001A   8311               STD     Z+1, R17
+   \   00000006   2FA2               MOV     R26, R18
+   \   00000008   2B09               OR      R16, R25
+   \   0000000A   F059               BREQ    `?~CLightBoard_1`
+   \   0000000C   ....               RCALL   ?Subroutine0
      34          
      35          }
-   \   0000001C   E022               LDI     R18, 2
-   \   0000001E   E030               LDI     R19, 0
-   \   00000020   018C               MOVW    R17:R16, R25:R24
-   \   00000022   ........           CALL    `?~CDM134`
-   \   00000026   FBA0               BST     R26, 0
-   \   00000028   F41E               BRTC    `?~CLightBoard_1`
-   \   0000002A   018C               MOVW    R17:R16, R25:R24
-   \   0000002C   ........           CALL    `??operator delete`
+   \                     ??CrossCallReturnLabel_1:
+   \   0000000E   E022               LDI     R18, 2
+   \   00000010   E030               LDI     R19, 0
+   \   00000012   018C               MOVW    R17:R16, R25:R24
+   \   00000014   ........           CALL    `?~CDM134`
+   \   00000018   FBA0               BST     R26, 0
+   \   0000001A   F41E               BRTC    `?~CLightBoard_1`
+   \   0000001C   018C               MOVW    R17:R16, R25:R24
+   \   0000001E   ........           CALL    `??operator delete`
    \                     `?~CLightBoard_1`:
-   \   00000030   E0E4               LDI     R30, 4
-   \   00000032   ........           JMP     ?EPILOGUE_B4_L09
+   \   00000022   E0E3               LDI     R30, 3
+   \   00000024   ........           JMP     ?EPILOGUE_B3_L09
      36          
      37          //-----------------------------------------------------------------------------------------------------
 
@@ -668,38 +586,44 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
      38          void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
    \                     ??Init:
      39          {
-   \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   01D9               MOVW    R27:R26, R19:R18
      40              m_pxAlarmWindowControl = pxAlarmWindowControl;
-   \   00000008   01FC               MOVW    R31:R30, R25:R24
-   \   0000000A   5BEE               SUBI    R30, 190
-   \   0000000C   4FFF               SBCI    R31, 255
-   \   0000000E   83A0               ST      Z, R26
-   \   00000010   83B1               STD     Z+1, R27
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   5BEE               SUBI    R30, 190
+   \   00000004   4FFF               SBCI    R31, 255
+   \   00000006   8320               ST      Z, R18
+   \   00000008   8331               STD     Z+1, R19
      41              CPlatform::LedDriverEnable1On();
-   \   00000012   ........           CALL    ??LedDriverEnable1On
+   \   0000000A   91200062           LDS     R18, 98
+   \   0000000E   7F2E               ANDI    R18, 0xFE
+   \   00000010   93200062           STS     98, R18
      42              CPlatform::LedDriverEnable2On();
-   \   00000016   ........           CALL    ??LedDriverEnable2On
+   \   00000014   91200062           LDS     R18, 98
+   \   00000018   7D2F               ANDI    R18, 0xDF
+   \   0000001A   93200062           STS     98, R18
      43              CPlatform::LedDriverEnable3On();
-   \   0000001A   ........           CALL    ??LedDriverEnable3On
+   \   0000001E   981E               CBI     0x03, 0x06
      44              CPlatform::LedDriverEnable4On();
-   \   0000001E   ........           CALL    ??LedDriverEnable4On
+   \   00000020   981F               CBI     0x03, 0x07
      45              CPlatform::LedDriverEnable1SetPinOutput();
-   \   00000022   ........           CALL    ??LedDriverEnable1SetPinOutput
+   \   00000022   91200061           LDS     R18, 97
+   \   00000026   6021               ORI     R18, 0x01
+   \   00000028   93200061           STS     97, R18
      46              CPlatform::LedDriverEnable2SetPinOutput();
-   \   00000026   ........           CALL    ??LedDriverEnable2SetPinOutput
+   \   0000002C   91200061           LDS     R18, 97
+   \   00000030   6220               ORI     R18, 0x20
+   \   00000032   93200061           STS     97, R18
      47              CPlatform::LedDriverEnable3SetPinOutput();
-   \   0000002A   ........           CALL    ??LedDriverEnable3SetPinOutput
+   \   00000036   9A16               SBI     0x02, 0x06
      48              CPlatform::LedDriverEnable4SetPinOutput();
-   \   0000002E   ........           CALL    ??LedDriverEnable4SetPinOutput
+   \   00000038   9A17               SBI     0x02, 0x07
      49          
      50              m_xLedDriver.Init();
-   \   00000032   018C               MOVW    R17:R16, R25:R24
-   \   00000034   ........           CALL    ??Init_1
+   \   0000003A   ........           JMP     ??Init_1
+   \   0000003E                      REQUIRE _A_DDRF
+   \   0000003E                      REQUIRE _A_PORTF
+   \   0000003E                      REQUIRE _A_DDRE
+   \   0000003E                      REQUIRE _A_PORTE
      51          }
-   \   00000038   E0E4               LDI     R30, 4
-   \   0000003A   ........           JMP     ?EPILOGUE_B4_L09
      52          
      53          //-----------------------------------------------------------------------------------------------------
 
@@ -707,80 +631,68 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
      54          void CLightBoard::Set(void)
    \                     ??Set:
      55          {
-   \   00000000   ........           CALL    ?PROLOGUE3_L09
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01B8               MOVW    R23:R22, R17:R16
      56              for (uint8_t i = 0;
-   \   00000006   E0A0               LDI     R26, 0
+   \   00000006   E080               LDI     R24, 0
+   \   00000008   E390               LDI     R25, 48
+   \   0000000A   E046               LDI     R20, 6
      57                      i < ALARM_WINDOWS_NUMBER;
-   \                     ??Set_2:
-   \   00000008   33A0               CPI     R26, 48
-   \   0000000A   F558               BRCC    ??Set_3
      58                      i++)
      59              {
      60                  if (m_pxAlarmWindowControl[i].GetActivityState())
-   \   0000000C   01FC               MOVW    R31:R30, R25:R24
-   \   0000000E   5BEE               SUBI    R30, 190
-   \   00000010   4FFF               SBCI    R31, 255
-   \   00000012   8120               LD      R18, Z
-   \   00000014   8131               LDD     R19, Z+1
-   \   00000016   2F0A               MOV     R16, R26
-   \   00000018   E010               LDI     R17, 0
-   \   0000001A   E046               LDI     R20, 6
-   \   0000001C   E050               LDI     R21, 0
-   \   0000001E   ........           CALL    ?S_EC_MUL_L02
-   \   00000022   0F20               ADD     R18, R16
-   \   00000024   1F31               ADC     R19, R17
-   \   00000026   0189               MOVW    R17:R16, R19:R18
-   \   00000028   ........           CALL    ??GetActivityState
-   \   0000002C   2300               TST     R16
-   \   0000002E   F061               BREQ    ??Set_4
+   \                     ??Set_2:
+   \   0000000C   2FE8               MOV     R30, R24
+   \   0000000E   E0F0               LDI     R31, 0
+   \   00000010   ....               SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
+   \   00000012   ....               SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
+   \   00000014   9104               LPM     R16, Z
+   \   00000016   E010               LDI     R17, 0
+   \   00000018   019B               MOVW    R19:R18, R23:R22
+   \   0000001A   0F20               ADD     R18, R16
+   \   0000001C   1F31               ADC     R19, R17
+   \   0000001E   01DB               MOVW    R27:R26, R23:R22
+   \   00000020   5BAE               SUBI    R26, 190
+   \   00000022   4FBF               SBCI    R27, 255
+   \   00000024   91ED               LD      R30, X+
+   \   00000026   91FC               LD      R31, X
+   \   00000028   2F08               MOV     R16, R24
+   \   0000002A   E050               LDI     R21, 0
+   \   0000002C   ........           CALL    ?S_EC_MUL_L02
+   \   00000030   0FE0               ADD     R30, R16
+   \   00000032   1FF1               ADC     R31, R17
+   \   00000034   8100               LD      R16, Z
+   \   00000036   2300               TST     R16
+   \   00000038   01F9               MOVW    R31:R30, R19:R18
+   \   0000003A   F019               BREQ    ??Set_3
      61                  {
      62                      m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
-   \   00000030   2FEA               MOV     R30, R26
-   \   00000032   E0F0               LDI     R31, 0
-   \   00000034   ....               SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
-   \   00000036   ....               SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
-   \   00000038   9104               LPM     R16, Z
-   \   0000003A   E010               LDI     R17, 0
-   \   0000003C   01FC               MOVW    R31:R30, R25:R24
-   \   0000003E   0FE0               ADD     R30, R16
-   \   00000040   1FF1               ADC     R31, R17
-   \   00000042   E001               LDI     R16, 1
-   \   00000044   8302               STD     Z+2, R16
-   \   00000046   C00B               RJMP    ??Set_5
+   \   0000003C   E001               LDI     R16, 1
+   \   0000003E   8302               STD     Z+2, R16
+   \   00000040   C001               RJMP    ??Set_4
      63                  }
      64                  else
      65                  {
      66                      m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
-   \                     ??Set_4:
-   \   00000048   2FEA               MOV     R30, R26
-   \   0000004A   E0F0               LDI     R31, 0
-   \   0000004C   ....               SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
-   \   0000004E   ....               SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
-   \   00000050   9104               LPM     R16, Z
-   \   00000052   E010               LDI     R17, 0
-   \   00000054   01FC               MOVW    R31:R30, R25:R24
-   \   00000056   0FE0               ADD     R30, R16
-   \   00000058   1FF1               ADC     R31, R17
-   \   0000005A   E000               LDI     R16, 0
-   \   0000005C   8302               STD     Z+2, R16
+   \                     ??Set_3:
+   \   00000042   8352               STD     Z+2, R21
      67                  }
      68              };
-   \                     ??Set_5:
-   \   0000005E   95A3               INC     R26
-   \   00000060   CFD3               RJMP    ??Set_2
+   \                     ??Set_4:
+   \   00000044   9583               INC     R24
+   \   00000046   959A               DEC     R25
+   \   00000048   F709               BRNE    ??Set_2
      69          
      70              m_xLedDriver.Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
-   \                     ??Set_3:
-   \   00000062   E440               LDI     R20, 64
-   \   00000064   019C               MOVW    R19:R18, R25:R24
-   \   00000066   5F2E               SUBI    R18, 254
-   \   00000068   4F3F               SBCI    R19, 255
-   \   0000006A   018C               MOVW    R17:R16, R25:R24
-   \   0000006C   ........           CALL    ??Set_1
+   \   0000004A   E440               LDI     R20, 64
+   \   0000004C   019B               MOVW    R19:R18, R23:R22
+   \   0000004E   5F2E               SUBI    R18, 254
+   \   00000050   4F3F               SBCI    R19, 255
+   \   00000052   018B               MOVW    R17:R16, R23:R22
+   \   00000054   ........           CALL    ??Set_1
      71          }
-   \   00000070   E0E3               LDI     R30, 3
-   \   00000072   ........           JMP     ?EPILOGUE_B3_L09
+   \   00000058   E0E4               LDI     R30, 4
+   \   0000005A   ........           JMP     ?EPILOGUE_B4_L09
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CLightBoard &CLightBoard::new CLightBoard()
@@ -790,70 +702,43 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
    \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F011               BREQ    `??new CLightBoard_1`
-   \   0000000E   ....               RCALL   ??CLightBoard
-   \   00000010   9508               RET
+   \   0000000C   F009               BREQ    `??new CLightBoard_1`
+   \   0000000E   ....               RJMP    ??CLightBoard
    \                     `??new CLightBoard_1`:
-   \   00000012   E000               LDI     R16, 0
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   9508               RET
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   E010               LDI     R17, 0
+   \   00000014   9508               RET
 
    Maximum stack usage in bytes:
 
    CSTACK RSTACK Function
    ------ ------ --------
-      0      2   CAlarmWindow::GetActivityState()
       2      2   CLightBoard::CLightBoard()
         2      2   -> CDM134::CDM134()
-      4      2   CLightBoard::Init(CAlarmWindow *)
-        4      2   -> CDM134::Init()
-        4      2   -> CPlatform::LedDriverEnable1On()
-        4      2   -> CPlatform::LedDriverEnable1SetPinOutput()
-        4      2   -> CPlatform::LedDriverEnable2On()
-        4      2   -> CPlatform::LedDriverEnable2SetPinOutput()
-        4      2   -> CPlatform::LedDriverEnable3On()
-        4      2   -> CPlatform::LedDriverEnable3SetPinOutput()
-        4      2   -> CPlatform::LedDriverEnable4On()
-        4      2   -> CPlatform::LedDriverEnable4SetPinOutput()
-      3      2   CLightBoard::Set()
-        3      2   -> CAlarmWindow::GetActivityState()
-        3      2   -> CDM134::Set(uint8_t *, uint8_t)
-        3      2 ?S_EC_MUL_L02
+      0      2   CLightBoard::Init(CAlarmWindow *)
+        0      2   -> CDM134::Init()
+      4      2   CLightBoard::Set()
+        4      2   -> CDM134::Set(uint8_t *, uint8_t)
+        4      2 ?S_EC_MUL_L02
       0      2   CLightBoard::new CLightBoard()
         0      2   -> CLightBoard::CLightBoard()
         0      2   -> operator new(unsigned int)
-      4      2   CLightBoard::~CLightBoard()
-        4      2   -> CDM134::~CDM134()
-        4      2   -> operator delete(void *)
-      0      2   CPlatform::LedDriverEnable1On()
-      0      2   CPlatform::LedDriverEnable1SetPinOutput()
-      0      2   CPlatform::LedDriverEnable2On()
-      0      2   CPlatform::LedDriverEnable2SetPinOutput()
-      0      2   CPlatform::LedDriverEnable3On()
-      0      2   CPlatform::LedDriverEnable3SetPinOutput()
-      0      2   CPlatform::LedDriverEnable4On()
-      0      2   CPlatform::LedDriverEnable4SetPinOutput()
+      3      2   CLightBoard::~CLightBoard()
+        3      2   -> CDM134::~CDM134()
+        3      2   -> operator delete(void *)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-       6  CAlarmWindow::GetActivityState()
-      34  CLightBoard::CLightBoard()
+      16  ?Subroutine0
+      22  CLightBoard::CLightBoard()
       62  CLightBoard::Init(CAlarmWindow *)
-     118  CLightBoard::Set()
+      94  CLightBoard::Set()
       48  CLightBoard::m_auiLedMap
-      24  CLightBoard::new CLightBoard()
-      54  CLightBoard::~CLightBoard()
-      12  CPlatform::LedDriverEnable1On()
-      12  CPlatform::LedDriverEnable1SetPinOutput()
-      12  CPlatform::LedDriverEnable2On()
-      12  CPlatform::LedDriverEnable2SetPinOutput()
-       4  CPlatform::LedDriverEnable3On()
-       4  CPlatform::LedDriverEnable3SetPinOutput()
-       4  CPlatform::LedDriverEnable4On()
-       4  CPlatform::LedDriverEnable4SetPinOutput()
+      22  CLightBoard::new CLightBoard()
+      40  CLightBoard::~CLightBoard()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -950,11 +835,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 
  
  105 bytes in segment ABSOLUTE
- 362 bytes in segment CODE
+ 256 bytes in segment CODE
   86 bytes in segment NEAR_F
  
- 376 bytes of CODE memory (+  72 bytes shared)
+ 340 bytes of CODE memory (+   2 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
-Warnings: 2
+Warnings: none

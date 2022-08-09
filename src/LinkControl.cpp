@@ -56,7 +56,7 @@ void CModbusRtuLinkControl::Fsm(void)
             if (CPss21::ModbusRtuLinkControlInProgress())
             {
                 // Установим время ожидания следующего сеанса связи.
-                m_xTimer.Set(CPss21::GetTimeoutModbusRtuLinkControl());
+                GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
                 SetFsmState(NEXT_LINK_SESSION_WAITING);
             }
             else
@@ -78,7 +78,7 @@ void CModbusRtuLinkControl::Fsm(void)
             // Запустим рабоий процесс режима контроля связи.
             CPss21::SetModeModbusRtuLinkControlInProgress(true);
             // Установим время ожидания следующего сеанса связи.
-            m_xTimer.Set(CPss21::GetTimeoutModbusRtuLinkControl());
+            GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
             SetFsmState(NEXT_LINK_SESSION_WAITING);
         }
         break;
@@ -89,12 +89,12 @@ void CModbusRtuLinkControl::Fsm(void)
         {
             SetFsmEvent(NO_EVENT_FSM_EVENT);
             // Установим время ожидания следующего сеанса связи.
-            m_xTimer.Set(CPss21::GetTimeoutModbusRtuLinkControl());
+            GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
         }
         else
         {
             // Время ожидания следующего сеанса связи закончилось?
-            if (m_xTimer.IsOverflow())
+            if (GetTimerPointer() -> IsOverflow())
             {
                 CPss21::SetErrorCode(MBS_ERROR);
                 SetFsmState(RECEIPT_OR_NEXT_LINK_SESSION_WAITING);
@@ -110,7 +110,7 @@ void CModbusRtuLinkControl::Fsm(void)
             SetFsmEvent(NO_EVENT_FSM_EVENT);
             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
             // Установим время ожидания следующего сеанса связи.
-            m_xTimer.Set(CPss21::GetTimeoutModbusRtuLinkControl());
+            GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
             SetFsmState(NEXT_LINK_SESSION_WAITING);
             break;
 

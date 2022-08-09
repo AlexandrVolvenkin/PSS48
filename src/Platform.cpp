@@ -20,16 +20,18 @@ CUart::CUart()
 CUart::CUart(volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
              volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
              volatile uint8_t *ucsrc, volatile uint8_t *udr,
-             volatile uint8_t *rs485ddr, volatile uint8_t rs485ddpin,
-             volatile uint8_t *rs485port, volatile uint8_t rs485pin) :
+             volatile uint8_t *rs485DirectionPort, volatile uint8_t rs485DirectionPin,
+             volatile uint8_t *rs485OutputPort, volatile uint8_t rs485OutputPin) :
     m_UBRRH(ubrrh), m_UBRRL(ubrrl), m_UCSRA(ucsra),
     m_UCSRB(ucsrb), m_UCSRC(ucsrc), m_UDR(udr),
-    m_rs485ddr(rs485ddr), m_rs485ddpin(rs485ddpin), m_rs485port(rs485port), m_rs485pin(rs485pin)
+    m_rs485DirectionPort(rs485DirectionPort), m_rs485DirectionPin(rs485DirectionPin), m_rs485OutputPort(rs485OutputPort), m_rs485OutputPin(rs485OutputPin)
 {
-    if (m_rs485ddr)
+    if (m_rs485DirectionPort)
     {
-        *m_rs485ddr |= _BV(m_rs485ddpin);
-        *m_rs485port &= ~(_BV(m_rs485pin));
+        uint8_t uiData = m_rs485DirectionPin;
+        *m_rs485DirectionPort |= _BV(uiData);
+        uiData = m_rs485OutputPin;
+        *m_rs485OutputPort &= ~(_BV(uiData));
     }
 }
 
@@ -126,41 +128,38 @@ void CUart::Close(void)
 void CUart::Enable(void)
 {
     *m_UCSRA |= (1 << RXC0);
-//    *m_UCSRB |= (1 << RXCIE0);
     *m_UCSRB |= (1 << RXEN0) | (1 << RXCIE0);
 }
 
 //-----------------------------------------------------------------------------------------------------
 void CUart::Disable(void)
 {
-//    *m_UCSRB &= ~((1 << RXCIE0));
-//    *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0));
     *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
 }
 
 //-----------------------------------------------------------------------------------------------------
 void CUart::Rs485RtsOn(void)
 {
-    *m_rs485port |= (1 << m_rs485pin);
+    uint8_t uiData = m_rs485OutputPin;
+    *m_rs485OutputPort |= (1 << uiData);
 }
 
 //-----------------------------------------------------------------------------------------------------
 void CUart::Rs485RtsOff(void)
 {
-    *m_rs485port &= ~(1 << m_rs485pin);
+    uint8_t uiData = m_rs485OutputPin;
+    *m_rs485OutputPort &= ~(1 << uiData);
 }
 
 //-----------------------------------------------------------------------------------------------------
 void CUart::TransmitEnable(void)
 {
-    if (m_rs485ddr)
+    if (m_rs485DirectionPort)
     {
         Rs485RtsOn();
     }
 
     *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
-//    *m_UCSRB |= (1 << UDRIE0);
-////    *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
     *m_UCSRB |= (1 << TXEN0) | (1 << UDRIE0);
 
 }
@@ -168,11 +167,9 @@ void CUart::TransmitEnable(void)
 //-----------------------------------------------------------------------------------------------------
 void CUart::TransmitDisable(void)
 {
-//    *m_UCSRB &= ~((1 << TXCIE0) | (1 << UDRIE0));
-////    *m_UCSRA &= ~(1 << UDRE0);
     *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0) | (1 << UDRIE0));
 
-    if (m_rs485ddr)
+    if (m_rs485DirectionPort)
     {
         Rs485RtsOff();
     }
@@ -183,18 +180,6 @@ int16_t CUart::Write(uint8_t *puiSourse, uint16_t uiLength)
 {
     m_puiTxBuffer = (uint8_t*)puiSourse;
     m_nuiTxBuffByteCounter = uiLength;
-
-//    *m_UCSRA &= ~(1 << RXC0);
-//    *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
-//
-//    if (m_rs485ddr)
-//    {
-//        Rs485RtsOn();
-//    }
-////    UDR0 = *pucUsartTxBuff++;
-//    //    UCSR0B |= (1 << TXEN0) | (1 << TXCIE0);
-//    *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
-//    *m_UCSRB |= (1 << TXEN0) | (1 << UDRIE0);
 
     return 1;
 }
@@ -216,7 +201,7 @@ int16_t CUart::Read(uint8_t *puiDestination, uint16_t uiLength)
     else if (m_nuiRxBuffByteCounter)
     {
         CPlatform::InterruptDisable();
-//
+
         for (int16_t i = 0; i < m_nuiRxBuffByteCounter; i++)
         {
             puiDestination[i] = m_auiIntermediateBuff[i];
@@ -254,14 +239,6 @@ void CUart::UdreInterruptHandler(void)
 void CUart::TxcInterruptHandler(void)
 {
     *m_UCSRB &= ~((1 << TXCIE0));
-//    *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0));
-
-//    if (m_rs485ddr)//debag//
-//    {
-//        Rs485RtsOff();
-//    }
-//    *m_UCSRA |= (1 << RXC0);
-//    *m_UCSRB |= (1 << RXEN0) | (1 << RXCIE0);
     m_bfFrameIsSended = 1;
     return;
 }
@@ -274,18 +251,10 @@ void CUart::RecvInterruptHandler(void)
             UART_INTERMEDIATE_BUFF_LENGTH)
     {
         m_bfRxBuffOverflow = 1;
-        // не инкрементируем pucUsartRxBuff, чтобы не выйти за границы буфера.
         m_bfByteIsReceived = 1;
     }
     else
     {
-//        m_puiRxBuffer[m_nuiRxBuffByteCounter++] = *m_UDR;
-//        uint8_t uiTempUdr = *m_UDR;
-//        if (uiTempUdr != 0)
-//        {
-//            uiTempUdr = uiTempUdr;
-//        }
-//        m_auiIntermediateBuff[m_nuiRxBuffByteCounter++] = uiTempUdr;
         m_auiIntermediateBuff[m_nuiRxBuffByteCounter++] = *m_UDR;
         m_bfByteIsReceived = 1;
     }
@@ -489,24 +458,10 @@ void CSpi::Init(void)
 //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
     SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
 
-    DDRB |= (Bit(MOSI) | Bit(SCK));		// PB1 (SCK), PB2 (MOSI) - на выход
-//    PORTB |= (Bit(MOSI) | Bit(SCK));
+    DDRB |= (Bit(MOSI) | Bit(SCK));
 
-    SPCR  |= BIT(SPE);			// Активируем интерфейс SPI
+    SPCR  |= BIT(SPE);
 };
-
-//-----------------------------------------------------------------------------------------------------
-void CSpi::Reset(void)
-{
-//    m_nuiBuffByteCounter = 0;
-//    m_uiReceivedByteCounter = 0;
-//    m_bfByteIsReceived = 0;
-//    m_bfByteIsTransmited = 0;
-//    m_bfDataExchangeInProgress = 0;
-//    m_bfDataExchangeIsOccur = 0;
-//    m_bfRxBuffOverflow = 0;
-//    m_uiExchangeByte = 0;
-}
 
 //-----------------------------------------------------------------------------------------------------
 void CSpi::Enable(void)

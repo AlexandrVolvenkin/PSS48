@@ -12,33 +12,6 @@
 #include "Crc.h"
 
 //-----------------------------------------------------------------------------------------------------
-CMvsn21::CMvsn21(void)
-{
-    m_uiType = MODULE_TYPE_MVDS9;
-    CMvsn21Driver xMvsn21Driver(m_uiType);
-    m_pxDriver = &xMvsn21Driver;
-}
-
-//-----------------------------------------------------------------------------------------------------
-CMvsn21::~CMvsn21()
-{
-
-}
-
-//-----------------------------------------------------------------------------------------------------
-uint16_t CMvsn21::ReportType(uint8_t *puiDestination, uint16_t uiLength)
-{
-
-}
-//-----------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-//-----------------------------------------------------------------------------------------------------
 CMvsn21Driver::CMvsn21Driver(uint8_t uiType)
 {
     m_uiType = uiType;
@@ -49,12 +22,6 @@ CMvsn21Driver::~CMvsn21Driver()
 {
 
 }
-
-////-----------------------------------------------------------------------------------------------------
-//void CMvsn21Driver::Init(void)
-//{
-//
-//}
 
 //-----------------------------------------------------------------------------------------------------
 void CMvsn21Driver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
@@ -74,24 +41,6 @@ void CMvsn21Driver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
 
     m_uiBadAnswerCounter = 0;
 }
-
-////-----------------------------------------------------------------------------------------------------
-//uint16_t CMvsn21Driver::ReportType(uint8_t *puiDestination, uint16_t uiLength)
-//{
-//    memset(m_puiTxBuffer, 0, 4);
-//    uint8_t uiLengthLocal = 0;
-//
-//    m_puiTxBuffer[uiLengthLocal++] = GET_MODULE_TYPE_COMMAND;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-////    m_puiTxBuffer[uiLengthLocal++] = 0;
-//
-//    CPss21::ConnectDevice(m_uiAddress);
-//    delay_us(500);
-//    CSpi::Exchange(m_puiRxBuffer, m_puiTxBuffer, uiLengthLocal);
-//    CPss21::DisconnectDevice();
-//}
 
 //-----------------------------------------------------------------------------------------------------
 uint8_t CMvsn21Driver::DataExchange(void)

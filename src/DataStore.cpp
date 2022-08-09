@@ -31,7 +31,7 @@ CDataStore::~CDataStore()
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CDataStore::Init(void)
+void CDataStore::Init(void)
 {
     // Очистим служебный контекст.
     memset(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
@@ -149,6 +149,7 @@ uint8_t CDataStore::Check(void)
             break;
 
         case ALL_BLOCKS_CHECKED:
+            // данные не повреждены.
             return 1;
             break;
 
@@ -166,9 +167,6 @@ uint8_t CDataStore::Check(void)
 
         CPlatform::WatchdogReset();
     }
-
-    // данные не повреждены.
-    return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -246,7 +244,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     // Блок не повреждён?
     if (uiCrc == uiCalculatedCrc)
     {
-        m_auiCurrentBlocksCrc[uiBlock] = uiCrc;
+        m_auiBlocksCurrentCrc[uiBlock] = uiCrc;
         memcpy(puiDestination, auiTempArray, uiDecodedByteCounter);
         return uiDecodedByteCounter;
     }
@@ -270,7 +268,6 @@ uint16_t CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t u
 
     uint16_t uiEncodedByteCounter;
     uint8_t auiTempArray[256];
-    uint16_t uiDestinationOffset;
 
     memcpy(auiTempArray, puiSourse, uiLength);
     // Вычислим контрольную сумму поступивших данных.
@@ -351,7 +348,7 @@ bool CDataStore::CompareCurrentWithStoredCrc(void)
             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
             i++)
     {
-        if (m_auiCurrentBlocksCrc[i] !=
+        if (m_auiBlocksCurrentCrc[i] !=
                 m_xBlocksControlData.axBlockPositionData[i].uiCrc)
         {
             return false;
