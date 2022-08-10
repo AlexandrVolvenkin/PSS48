@@ -1,22 +1,23 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  11:06:58
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Aug/2022  12:48:01
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW18F7.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EWF2B8.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp --cpu=m128a -ms
 #        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --debug
+#        --initializers_in_flash --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DataBase.lst
@@ -494,1027 +495,480 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
    \   union <unnamed> volatile __io _A_PINF
    \                     _A_PINF:
    \   00000000                      DS8 1
-      9          #include "Platform.h"
-     10          #include "Pss21.h"
-     11          #include "DataStore.h"
-     12          #include <cstddef>
-     13          
-     14          //-----------------------------------------------------------------------------------------------------
-     15          // Основной блок БД прибора
-     16          //#pragma location = 0x0200
 
-   \                                 In  segment NEAR_F, align 1, keep-with-next, root
-     17          TDataBase __flash axMainDataBase =
-   \                     axMainDataBase:
-   \   00000000   010200300000       DC8 2, 1, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              000000000000
-   \              0000        
-   \   00000014   CF6B               DC16 53099
-   \   00000016   2F0173080006       DC8 1, 47, 8, 115, 6, 0, 0
-   \              00          
-   \   0000001D   1B17               DC16 6935
-   \   0000001F   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              00000000    
-   \   0000002F   0B40               DC16 2880
-   \   00000031   010003020504       DC8 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
-   \              070609080B0A
-   \              0D0C0F0E1110
-   \              12          
-   \   00000044   141316151817       DC8 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
-   \              1A191C1B1E1D
-   \              201F222123  
-   \   00000055   252427262928       DC8 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 255, 255, 255, 255
-   \              2B2A2D2C2F2E
-   \              FFFFFFFF    
-   \   00000065   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFFFFFFFF
-   \              FF          
-   \   00000072   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFFFFFFFF
-   \              FF          
-   \   0000007F   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFFFFFFFF
-   \              FF          
-   \   0000008C   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFFFFFFFF
-   \              FF          
-   \   00000099   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFFFFFFFF
-   \              FF          
-   \   000000A6   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFFFFFF  
-   \   000000B1   9EC2               DC16 40642
-   \   000000B3   030303030303       DC8 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
-   \              030303030303
-   \              030303030303
-   \              0303030303  
-   \   000000CA   020302020202       DC8 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
-   \              020202020202
-   \              020202020202
-   \              0202020202  
-   \   000000E1   020202020202       DC8 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
-   \              020202020202
-   \              020202020202
-   \   000000F3   F746               DC16 63302
-   \   000000F5   3E3E3E3E3C3C       DC8 62, 62, 62, 62, 60, 60, 60, 60, 255, 255, 255, 255, 255, 255, 255
-   \              3C3CFFFFFFFF
-   \              FFFFFF      
-   \   00000104   FFFFFFFFFFFF       DC8 255, 255, 255, 255, 255, 255, 255, 255, 255
-   \              FFFFFF      
-   \   0000010D   6F4B               DC16 28491
-   \   0000010F   020108042010       DC8 1, 2, 4, 8, 16, 32, 64, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              804000000000
-   \              000000000000
-   \              000000      
-   \   00000124   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              000000000000
-   \              0000000000  
-   \   0000013B   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              000000000000
-   \              0000000000  
-   \   00000152   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              000000000000
-   \              0000000000  
-   \   00000169   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              000000000000
-   \              0000000000  
-   \   00000180   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-   \              000000000000
-   \              000000      
-   \   0000018F   69C6               DC16 27078
-   \   00000191   010102             DC8 1, 1, 2
-   \   00000194   0010               DC16 16
-   \   00000196   002000             DC8 32, 0, 0
-   \   00000199   0000               DC16 0
-   \   0000019B   000000             DC8 0, 0, 0
-   \   0000019E   0000               DC16 0
-   \   000001A0   000000             DC8 0, 0, 0
-   \   000001A3   0000               DC16 0
-   \   000001A5   000000             DC8 0, 0, 0
-   \   000001A8   0000               DC16 0
-   \   000001AA   000000             DC8 0, 0, 0
-   \   000001AD   0000               DC16 0
-   \   000001AF   000000             DC8 0, 0, 0
-   \   000001B2   0000               DC16 0
-   \   000001B4   000000             DC8 0, 0, 0
-   \   000001B7   0000               DC16 0
-   \   000001B9   000000             DC8 0, 0, 0
-   \   000001BC   0000               DC16 0
-   \   000001BE   000000             DC8 0, 0, 0
-   \   000001C1   0000               DC16 0
-   \   000001C3   000000             DC8 0, 0, 0
-   \   000001C6   0000               DC16 0
-   \   000001C8   000000             DC8 0, 0, 0
-   \   000001CB   0000               DC16 0
-   \   000001CD   000000             DC8 0, 0, 0
-   \   000001D0   0000               DC16 0
-   \   000001D2   000000             DC8 0, 0, 0
-   \   000001D5   0000               DC16 0
-   \   000001D7   000000             DC8 0, 0, 0
-   \   000001DA   0000               DC16 0
-   \   000001DC   000000             DC8 0, 0, 0
-   \   000001DF   0000               DC16 0
-   \   000001E1   00                 DC8 0
-   \   000001E2   0000               DC16 0
-   \   000001E4   010105             DC8 1, 1, 5
-   \   000001E7   0000               DC16 0
-   \   000001E9   00FF00             DC8 255, 0, 0
-   \   000001EC   0000               DC16 0
-   \   000001EE   000000             DC8 0, 0, 0
-   \   000001F1   0000               DC16 0
-   \   000001F3   000000             DC8 0, 0, 0
-   \   000001F6   0000               DC16 0
-   \   000001F8   000000             DC8 0, 0, 0
-   \   000001FB   0000               DC16 0
-   \   000001FD   000000             DC8 0, 0, 0
-   \   00000200   0000               DC16 0
-   \   00000202   000000             DC8 0, 0, 0
-   \   00000205   0000               DC16 0
-   \   00000207   000000             DC8 0, 0, 0
-   \   0000020A   0000               DC16 0
-   \   0000020C   000000             DC8 0, 0, 0
-   \   0000020F   0000               DC16 0
-   \   00000211   000000             DC8 0, 0, 0
-   \   00000214   0000               DC16 0
-   \   00000216   000000             DC8 0, 0, 0
-   \   00000219   0000               DC16 0
-   \   0000021B   000000             DC8 0, 0, 0
-   \   0000021E   0000               DC16 0
-   \   00000220   000000             DC8 0, 0, 0
-   \   00000223   0000               DC16 0
-   \   00000225   000000             DC8 0, 0, 0
-   \   00000228   0000               DC16 0
-   \   0000022A   000000             DC8 0, 0, 0
-   \   0000022D   0000               DC16 0
-   \   0000022F   000000             DC8 0, 0, 0
-   \   00000232   0000               DC16 0
-   \   00000234   00                 DC8 0
-   \   00000235   0000               DC16 0
-   \   00000237   010105             DC8 1, 1, 5
-   \   0000023A   0001               DC16 1
-   \   0000023C   00FF00             DC8 255, 0, 0
-   \   0000023F   0000               DC16 0
-   \   00000241   000000             DC8 0, 0, 0
-   \   00000244   0000               DC16 0
-   \   00000246   000000             DC8 0, 0, 0
-   \   00000249   0000               DC16 0
-   \   0000024B   000000             DC8 0, 0, 0
-   \   0000024E   0000               DC16 0
-   \   00000250   000000             DC8 0, 0, 0
-   \   00000253   0000               DC16 0
-   \   00000255   000000             DC8 0, 0, 0
-   \   00000258   0000               DC16 0
-   \   0000025A   000000             DC8 0, 0, 0
-   \   0000025D   0000               DC16 0
-   \   0000025F   000000             DC8 0, 0, 0
-   \   00000262   0000               DC16 0
-   \   00000264   000000             DC8 0, 0, 0
-   \   00000267   0000               DC16 0
-   \   00000269   000000             DC8 0, 0, 0
-   \   0000026C   0000               DC16 0
-   \   0000026E   000000             DC8 0, 0, 0
-   \   00000271   0000               DC16 0
-   \   00000273   000000             DC8 0, 0, 0
-   \   00000276   0000               DC16 0
-   \   00000278   000000             DC8 0, 0, 0
-   \   0000027B   0000               DC16 0
-   \   0000027D   000000             DC8 0, 0, 0
-   \   00000280   0000               DC16 0
-   \   00000282   000000             DC8 0, 0, 0
-   \   00000285   0000               DC16 0
-   \   00000287   00                 DC8 0
-   \   00000288   0000               DC16 0
-   \   0000028A   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0
-   \              0000        
-   \   00000292   0000               DC16 0
-     18          {
-     19              {
-     20                  2,1,48,false,false,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
-     21              },0xCF6B,
-     22          
-     23              {
-     24                  1,47,BIT(USBS1),0x73,BIT(CS02)|BIT(CS01),0x00,0x00
-     25              },0x1B17,
-     26          
-     27              {
-     28                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     29                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-     30              },0x0B40,
-     31          
-     32              {
-     33                  0, 1, 2, 3, 4, 5, 6, 7,
-     34                  8, 9, 10, 11, 12, 13, 14, 15,
-     35                  16, 17, 18, 19, 20, 21, 22, 23,
-     36                  24, 25, 26, 27, 28, 29, 30, 31,
-     37                  32, 33, 34, 35, 36, 37, 38, 39,
-     38                  40, 41, 42, 43, 44, 45, 46, 47,
-     39                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     40                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     41                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     42                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     43                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     44                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     45                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     46                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     47                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-     48                  0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
-     49              },0x9EC2,
-     50          
-     51              {
-     52                  0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
-     53                  0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
-     54                  0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
-     55                  0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-     56                  0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-     57                  0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-     58                  0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-     59                  0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02
-     60              },0xF746,
-     61          
-     62              {
-     63                  { 0x3E,0x3E,0x3E,0x3E,0x3C,0x3C,0x3C,0x3C },
-     64                  { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF },
-     65                  { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF }
-     66              },0x6F4B,
-     67          
-     68              {
-     69                  0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,
-     70                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     71                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     72                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     73                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     74                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     75                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     76                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     77                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     78                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     79                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     80                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     81                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     82                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     83                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     84                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-     85              },0x69C6,
-     86          
-     87              {
-     88                  1,
-     89                  {
-     90                      {
-     91                          1,0x02,0x0010,0x20
-     92                      },
-     93                      {
-     94                          0,0,0,0
-     95                      },
-     96                      {
-     97                          0,0,0,0
-     98                      },
-     99                      {
-    100                          0,0,0,0
-    101                      },
-    102                      {
-    103                          0,0,0,0
-    104                      },
-    105                      {
-    106                          0,0,0,0
-    107                      },
-    108                      {
-    109                          0,0,0,0
-    110                      },
-    111                      {
-    112                          0,0,0,0
-    113                      },
-    114                      {
-    115                          0,0,0,0
-    116                      },
-    117                      {
-    118                          0,0,0,0
-    119                      },
-    120                      {
-    121                          0,0,0,0
-    122                      },
-    123                      {
-    124                          0,0,0,0
-    125                      },
-    126                      {
-    127                          0,0,0,0
-    128                      },
-    129                      {
-    130                          0,0,0,0
-    131                      },
-    132                      {
-    133                          0,0,0,0
-    134                      },
-    135                      {
-    136                          0,0,0,0
-    137                      }
-    138                  }
-    139              },0x0000,
-    140          
-    141              {
-    142                  1,
-    143                  {
-    144                      {
-    145                          1,0x05,0x0000,0xFF
-    146                      },
-    147                      {
-    148                          0,0,0,0
-    149                      },
-    150                      {
-    151                          0,0,0,0
-    152                      },
-    153                      {
-    154                          0,0,0,0
-    155                      },
-    156                      {
-    157                          0,0,0,0
-    158                      },
-    159                      {
-    160                          0,0,0,0
-    161                      },
-    162                      {
-    163                          0,0,0,0
-    164                      },
-    165                      {
-    166                          0,0,0,0
-    167                      },
-    168                      {
-    169                          0,0,0,0
-    170                      },
-    171                      {
-    172                          0,0,0,0
-    173                      },
-    174                      {
-    175                          0,0,0,0
-    176                      },
-    177                      {
-    178                          0,0,0,0
-    179                      },
-    180                      {
-    181                          0,0,0,0
-    182                      },
-    183                      {
-    184                          0,0,0,0
-    185                      },
-    186                      {
-    187                          0,0,0,0
-    188                      },
-    189                      {
-    190                          0,0,0,0
-    191                      }
-    192                  }
-    193              },0x0000,
-    194          
-    195              {
-    196                  1,
-    197                  {
-    198                      {
-    199                          1,0x05,0x0001,0xFF
-    200                      },
-    201                      {
-    202                          0,0,0,0
-    203                      },
-    204                      {
-    205                          0,0,0,0
-    206                      },
-    207                      {
-    208                          0,0,0,0
-    209                      },
-    210                      {
-    211                          0,0,0,0
-    212                      },
-    213                      {
-    214                          0,0,0,0
-    215                      },
-    216                      {
-    217                          0,0,0,0
-    218                      },
-    219                      {
-    220                          0,0,0,0
-    221                      },
-    222                      {
-    223                          0,0,0,0
-    224                      },
-    225                      {
-    226                          0,0,0,0
-    227                      },
-    228                      {
-    229                          0,0,0,0
-    230                      },
-    231                      {
-    232                          0,0,0,0
-    233                      },
-    234                      {
-    235                          0,0,0,0
-    236                      },
-    237                      {
-    238                          0,0,0,0
-    239                      },
-    240                      {
-    241                          0,0,0,0
-    242                      },
-    243                      {
-    244                          0,0,0,0
-    245                      }
-    246                  }
-    247              },0x0000,
-    248          
-    249          //    { 1, { 1,0x02,0x0010,0x20 }},0xE223,
-    250          //    { 1, { 1,0x05,0x0000,0xFF }},0x9C7B,
-    251          //    { 1, { 1,0x05,0x0001,0xFF }},0x6CFB,
-    252          
-    253          
-    254              false, {0,0,0,0,0,0,0},0x0000,
-    255          };
-    256          
-    257          //-----------------------------------------------------------------------------------------------------
-    258          TDataBaseBlockPositionData __flash CDataBase::axDataBaseBlocksPositionData[] =
-   \                     ??axDataBaseBlocksPositionData:
-   \   00000294   1400               DC8 0, 20
-   \   00000296   0000               DC16 0
-   \   00000298   0701               DC8 1, 7
-   \   0000029A   0016               DC16 22
-   \   0000029C   1002               DC8 2, 16
-   \   0000029E   001F               DC16 31
-   \   000002A0   8003               DC8 3, 128
-   \   000002A2   0031               DC16 49
-   \   000002A4   4004               DC8 4, 64
-   \   000002A6   00B3               DC16 179
-   \   000002A8   1805               DC8 5, 24
-   \   000002AA   00F5               DC16 245
-   \   000002AC   8006               DC8 6, 128
-   \   000002AE   010F               DC16 271
-   \   000002B0   5107               DC8 7, 81
-   \   000002B2   0191               DC16 401
-   \   000002B4   5108               DC8 8, 81
-   \   000002B6   01E4               DC16 484
-   \   000002B8   5109               DC8 9, 81
-   \   000002BA   0237               DC16 567
-   \   000002BC   080A               DC8 10, 8
-   \   000002BE   028A               DC16 650
-    259          {
-    260              { 0, sizeof(axMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
-    261              { 1, sizeof(axMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
-    262              { 2, sizeof(axMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
-    263              { 3, sizeof(axMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
-    264              { 4, sizeof(axMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
-    265              { 5, sizeof(axMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
-    266              { 6, sizeof(axMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
-    267              { 7, sizeof(axMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
-    268              { 8, sizeof(axMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
-    269              { 9, sizeof(axMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-    270              { 10, sizeof(axMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
-    271          };
-    272          
-    273          //-----------------------------------------------------------------------------------------------------
+      static __flash TDataBase CFlash::xMainDataBase;
+                               ^
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",359  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
 
-   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
-   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
-    274          uint8_t CDataBase::m_uiStatus;
-   \                     ??m_uiStatus:
-   \   00000000                      DS8 1
-
-   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
-   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
-    275          TDataBase __farflash *CDataBase::m_pxDataBase;
-   \                     ??m_pxDataBase:
-   \   00000000                      DS8 3
-    276          TDataBaseBlockPositionData __farflash *CDataBase::m_pxDataBaseBlocksPositionData;
-   \                     ??m_pxDataBaseBlocksPositionData:
-   \   00000003                      DS8 3
-    277          
-    278          //-----------------------------------------------------------------------------------------------------
+      static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
+                                                ^
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",360  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
-    279          CDataBase::CDataBase()
-   \                     ??CDataBase:
-   \   00000000                      REQUIRE ?Subroutine2
-   \   00000000                      ;               // Fall through to label ?Subroutine2
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine2:
-    280          {
-   \   00000000   ....               LDI     R18, LOW(??__vtbl_1)
-   \   00000002   ....               LDI     R19, (??__vtbl_1) >> 8
-   \   00000004   01F8               MOVW    R31:R30, R17:R16
-   \   00000006   8320               ST      Z, R18
-   \   00000008   8331               STD     Z+1, R19
-   \   0000000A   9508               RET
-    281          //    m_pxDataStore = new CDataStore();
-    282          }
-    283          
-    284          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-    285          CDataBase::~CDataBase()
-   \                     `?~CDataBase`:
-    286          {
-   \   00000000   2F40               MOV     R20, R16
-   \   00000002   2B41               OR      R20, R17
-   \   00000004   F021               BREQ    `?~CDataBase_1`
-   \   00000006   FB20               BST     R18, 0
-   \   00000008   F416               BRTC    `?~CDataBase_1`
-    287          //    delete m_pxDataStore;
-    288          }
-   \   0000000A   ........           CALL    `??operator delete`
-   \                     `?~CDataBase_1`:
-   \   0000000E   9508               RET
-    289          
-    290          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-    291          uint8_t CDataBase::RestoreDefault(void)
-   \                     ??RestoreDefault:
-    292          {
-   \   00000000   ........           CALL    ?PROLOGUE5_L09
-   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
-    293              // Восстановим БД по умолчанию.
-    294              uint8_t __farflash *puiDBase;
-    295          
-    296          //    CPss21::SetErrorCode(NO_ERROR);
-    297              CPss21::m_xDataStore.Init();
-   \   00000004   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_4:
-   \   00000006   ........           CALL    ??Init
-    298          
-    299              enum
-    300              {
-    301                  IDDLE = 0,
-    302                  BLOCK_WRITE_START,
-    303                  BLOCK_WRITE_END_WAITING,
-    304                  BLOCK_ERROR,
-    305                  ALL_BLOCKS_WRITED,
-    306              };
-    307          
-    308              uint8_t uiBlockCounter = 0;
-   \   0000000A   2444               CLR     R4
-    309              uint8_t uiFsmState = BLOCK_WRITE_START;
-   \   0000000C   E081               LDI     R24, 1
-   \   0000000E   C045               RJMP    ??RestoreDefault_1
-    310          
-    311              while (1)
-    312              {
-    313                  switch (uiFsmState)
-    314                  {
-    315                  case BLOCK_WRITE_START:
-    316                      // Записаны не все блоки?
-    317                      if (uiBlockCounter < TDataBase::BLOCKS_QUANTITY)
-    318                      {
-    319                          // Получим указатель на блок БД во флеш.
-    320                          puiDBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDataBase)[GetBlockOffset(uiBlockCounter)];
-    321                          // Скопируем данные из флеш во временный буфер,
-    322                          // чтобы передать их в функцию по обычному указателю, а не __farflash.
-    323                          for (uint8_t i = 0; i < GetBlockLength(uiBlockCounter); i++)
-    324                          {
-    325                              CPss21::m_auiIntermediateBuff[i] = puiDBase[i];
-   \                     ??RestoreDefault_2:
-   \   00000010   E050               LDI     R21, 0
-   \   00000012   01FD               MOVW    R31:R30, R27:R26
-   \   00000014   0FE4               ADD     R30, R20
-   \   00000016   1FF5               ADC     R31, R21
-   \   00000018   BF9B               OUT     0x3B, R25
-   \   0000001A   9106               ELPM    R16, Z
-   \   0000001C   01FA               MOVW    R31:R30, R21:R20
-   \   0000001E   ....               SUBI    R30, LOW((-(??m_auiIntermediateBuff) & 0xFFFF))
-   \   00000020   ....               SBCI    R31, (-(??m_auiIntermediateBuff) & 0xFFFF) >> 8
-   \   00000022   8300               ST      Z, R16
-    326                          }
-   \   00000024   9543               INC     R20
-   \                     ??RestoreDefault_3:
-   \   00000026   ....               RCALL   ?Subroutine3
-   \                     ??CrossCallReturnLabel_3:
-   \   00000028   1740               CP      R20, R16
-   \   0000002A   F390               BRCS    ??RestoreDefault_2
-    327          
-    328                          // Поместим данные в хранилище.
-    329                          // Блок БД принят к записи?
-    330                          if (Write(CPss21::m_auiIntermediateBuff, GetBlockLength(uiBlockCounter), uiBlockCounter))
-   \   0000002C   ....               RCALL   ?Subroutine3
-   \                     ??CrossCallReturnLabel_2:
-   \   0000002E   2D44               MOV     R20, R4
-   \   00000030   2F20               MOV     R18, R16
-   \   00000032   E030               LDI     R19, 0
-   \   00000034   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
-   \   00000036   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
-   \   00000038   ....               RCALL   ??Write
-   \   0000003A   2B01               OR      R16, R17
-   \   0000003C   F011               BREQ    ??RestoreDefault_4
-    331                          {
-    332                              uiFsmState = BLOCK_WRITE_END_WAITING;
-   \   0000003E   E082               LDI     R24, 2
-   \   00000040   C017               RJMP    ??RestoreDefault_5
-    333                          }
-    334                          // При записи блока БД произошла ошибка?
-    335                          else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-   \                     ??RestoreDefault_4:
-   \   00000042   9100....           LDS     R16, (??m_xDataStore + 4)
-   \   00000046   3004               CPI     R16, 4
-   \   00000048   F499               BRNE    ??RestoreDefault_5
-   \   0000004A   C009               RJMP    ??RestoreDefault_6
-    336                          {
-    337                              uiFsmState = BLOCK_ERROR;
-    338                          }
-    339                      }
-    340                      else
-    341                      {
-    342                          uiFsmState = ALL_BLOCKS_WRITED;
-    343                      }
-    344          
-    345                      break;
-    346          
-    347                  case BLOCK_WRITE_END_WAITING:
-    348                      // Блок записан успешно?
-    349                      if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
-   \                     ??RestoreDefault_7:
-   \   0000004C   9100....           LDS     R16, (??m_xDataStore + 4)
-   \   00000050   3003               CPI     R16, 3
-   \   00000052   F419               BRNE    ??RestoreDefault_8
-    350                      {
-    351                          uiBlockCounter++;
-   \   00000054   9443               INC     R4
-    352                          uiFsmState = BLOCK_WRITE_START;
-   \   00000056   E081               LDI     R24, 1
-   \   00000058   C00B               RJMP    ??RestoreDefault_5
-    353                      }
-    354                      // При записи блока БД произошла ошибка?
-    355                      else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-   \                     ??RestoreDefault_8:
-   \   0000005A   3004               CPI     R16, 4
-   \   0000005C   F449               BRNE    ??RestoreDefault_5
-    356                      {
-    357                          uiFsmState = BLOCK_ERROR;
-   \                     ??RestoreDefault_6:
-   \   0000005E   E083               LDI     R24, 3
-   \   00000060   C007               RJMP    ??RestoreDefault_5
-    358                      }
-    359                      break;
-    360          
-    361                  case ALL_BLOCKS_WRITED:
-    362                      return 1;
-   \                     ??RestoreDefault_9:
-   \   00000062   E001               LDI     R16, 1
-   \                     ??RestoreDefault_10:
-   \   00000064   E0E5               LDI     R30, 5
-   \   00000066   ........           JMP     ?EPILOGUE_B5_L09
-    363                      break;
-    364          
-    365                  case BLOCK_ERROR:
-    366                      return 0;
-   \                     ??RestoreDefault_11:
-   \   0000006A   E000               LDI     R16, 0
-   \   0000006C   CFFB               RJMP    ??RestoreDefault_10
-   \                     ??RestoreDefault_12:
-   \   0000006E   E084               LDI     R24, 4
-    367                      break;
-    368          
-    369                  default:
-    370                      break;
-    371                  }
-    372          
-    373                  CPss21::m_xDataStore.Fsm();
-   \                     ??RestoreDefault_5:
-   \   00000070   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_5:
-   \   00000072   ........           CALL    ??Fsm
-    374          
-    375                  delay_ms(10);
-   \   00000076   E00A               LDI     R16, 10
-   \   00000078   E010               LDI     R17, 0
-   \   0000007A   ........           CALL    ??delay_ms
-    376          
-    377                  CPlatform::WatchdogReset();
-   \   0000007E   95A8               WDR
-   \   00000080   2F08               MOV     R16, R24
-   \   00000082   950A               DEC     R16
-   \   00000084   F039               BREQ    ??RestoreDefault_13
-   \   00000086   950A               DEC     R16
-   \   00000088   F309               BREQ    ??RestoreDefault_7
-   \   0000008A   950A               DEC     R16
-   \   0000008C   F371               BREQ    ??RestoreDefault_11
-   \   0000008E   950A               DEC     R16
-   \   00000090   F341               BREQ    ??RestoreDefault_9
-   \   00000092   CFEE               RJMP    ??RestoreDefault_5
-   \                     ??RestoreDefault_13:
-   \   00000094   E00B               LDI     R16, 11
-   \   00000096   1640               CP      R4, R16
-   \   00000098   F750               BRCC    ??RestoreDefault_12
-   \                     ??RestoreDefault_1:
-   \   0000009A   2D04               MOV     R16, R4
-   \   0000009C   ....               RCALL   ??GetBlockOffset
-   \   0000009E   ....               LDI     R30, LOW(??m_pxDataBase)
-   \   000000A0   ....               LDI     R31, (??m_pxDataBase) >> 8
-   \   000000A2   81A0               LD      R26, Z
-   \   000000A4   81B1               LDD     R27, Z+1
-   \   000000A6   8192               LDD     R25, Z+2
-   \   000000A8   0FA0               ADD     R26, R16
-   \   000000AA   1FB1               ADC     R27, R17
-   \   000000AC   E040               LDI     R20, 0
-   \   000000AE   CFBB               RJMP    ??RestoreDefault_3
-    378              }
-    379          }
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine3:
-   \   00000000   2D04               MOV     R16, R4
-   \   00000002   ....               RJMP    ??GetBlockLength
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ??Subroutine6_0:
-   \   00000000   ....               LDI     R16, LOW(??m_xDataStore)
-   \   00000002   ....               LDI     R17, (??m_xDataStore) >> 8
-   \   00000004   9508               RET
-    380          
-    381          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-    382          bool CDataBase::IntegrityCheck(void)
-   \                     ??IntegrityCheck:
-    383          {
-    384              // Все блоки принадлежат текущей базе данных?
-    385              return CPss21::m_xDataStore.CompareCurrentWithStoredCrc();
-   \   00000000   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_6:
-   \   00000002   ........           JMP     ??CompareCurrentWithStoredCrc
-    386          }
-    387          
-    388          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-    389          bool CDataBase::UserConfirmationCheck(void)
-   \                     ??UserConfirmationCheck:
-    390          {
-    391              // База данных подтверждена пользователем?
-    392              return CPss21::m_xDataStore.CrcOfBlocksCrcCheck();
-   \   00000000   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_7:
-   \   00000002   ........           JMP     ??CrcOfBlocksCrcCheck
-    393          }
-    394          
-    395          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-    396          uint8_t CDataBase::Check(void)
-   \                     ??Check:
-    397          {
-    398              m_pxDataBase = &axMainDataBase;
-   \   00000000   ....               LDI     R30, LOW(??m_pxDataBase)
-   \   00000002   ....               LDI     R31, (??m_pxDataBase) >> 8
-   \   00000004   ....               LDI     R16, LOW(axMainDataBase)
-   \   00000006   ....               LDI     R17, (axMainDataBase) >> 8
-   \   00000008   E020               LDI     R18, 0
-   \   0000000A   8300               ST      Z, R16
-   \   0000000C   8311               STD     Z+1, R17
-   \   0000000E   8322               STD     Z+2, R18
-    399              m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
-   \   00000010   ....               LDI     R16, LOW((axMainDataBase + 660))
-   \   00000012   ....               LDI     R17, HIGH((axMainDataBase + 660))
-   \   00000014   8303               STD     Z+3, R16
-   \   00000016   8314               STD     Z+4, R17
-   \   00000018   8325               STD     Z+5, R18
-    400          
-    401              CPss21::SetErrorCode(NO_ERROR);
-   \   0000001A   9320....           STS     ??m_uiErrorCode, R18
-    402              // Блоки базы данных не повреждены?
-    403              if (CPss21::m_xDataStore.Check())
-   \   0000001E   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_8:
-   \   00000020   ........           CALL    ??Check_1
-   \   00000024   2300               TST     R16
-   \   00000026   F081               BREQ    ??Check_2
-    404              {
-    405                  // Все блоки принадлежат текущей базе данных?
-    406                  if (IntegrityCheck())
-   \   00000028   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_9:
-   \   0000002A   ........           CALL    ??CompareCurrentWithStoredCrc
-   \   0000002E   2300               TST     R16
-   \   00000030   F059               BREQ    ??Check_2
-    407                  {
-    408                      // База данных подтверждена пользователем?
-    409                      if (UserConfirmationCheck())
-   \   00000032   ....               RCALL   ??Subroutine6_0
-   \                     ??CrossCallReturnLabel_10:
-   \   00000034   ........           CALL    ??CrcOfBlocksCrcCheck
-   \   00000038   2300               TST     R16
-   \   0000003A   F011               BREQ    ??Check_3
-    410                      {
-    411                          return 1;
-   \   0000003C   E001               LDI     R16, 1
-   \   0000003E   9508               RET
-    412                      }
-    413                      else
-    414                      {
-    415                          CPss21::SetErrorCode(DB_ERROR);
-   \                     ??Check_3:
-   \   00000040   E004               LDI     R16, 4
-   \   00000042   9300....           STS     ??m_uiErrorCode, R16
-    416                          return 0;
-   \   00000046   C004               RJMP    ??Check_4
-    417                      }
-    418                  }
-    419                  else
-    420                  {
-    421                      CPss21::SetErrorCode(DB_ERROR);
-    422                      // Восстановим БД по умолчанию.
-    423                      // БД по умолчанию восстановлена успешно?
-    424                      RestoreDefault();
-    425                      return 0;
-    426                  }
-    427              }
-    428              else
-    429              {
-    430                  CPss21::SetErrorCode(DB_ERROR);
-   \                     ??Check_2:
-   \   00000048   E004               LDI     R16, 4
-   \   0000004A   9300....           STS     ??m_uiErrorCode, R16
-    431                  // Восстановим БД по умолчанию.
-    432                  // БД по умолчанию восстановлена успешно?
-    433                  RestoreDefault();
-   \   0000004E   ....               RCALL   ??RestoreDefault
-    434                  return 0;
-   \                     ??Check_4:
-   \   00000050   E000               LDI     R16, 0
-   \   00000052   9508               RET
-    435              }
-    436          }
-    437          
-    438          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine1:
-   \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002                      REQUIRE ??Subroutine6_0
-   \   00000002                      ;               // Fall through to label ??Subroutine6_0
-
-   \                                 In  segment CODE, align 2, keep-with-next
-    439          uint16_t CDataBase::Read(uint8_t *puiDestination, uint8_t uiBlock)
-   \                     ??Read:
-    440          {
-    441              return CPss21::m_xDataStore.ReadBlock(puiDestination,
-    442                                                    uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
-   \   00000000   9523               INC     R18
-   \   00000002   2F42               MOV     R20, R18
-   \   00000004   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_11:
-   \   00000006   ........           JMP     ??ReadBlock
-    443          }
-    444          
-    445          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine5:
-   \   00000000   E010               LDI     R17, 0
+   \   __version_3 void CPlatform::WatchdogReset()
+   \                     ??WatchdogReset:
+   \   00000000   95A8               WDR
    \   00000002   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-    446          uint16_t CDataBase::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
-   \                     ??Write:
-    447          {
-    448              return CPss21::m_xDataStore.Write(puiSourse,
-    449                                                uiLength,
-    450                                                uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
-   \   00000000   9543               INC     R20
-   \   00000002   2F64               MOV     R22, R20
-   \   00000004   01A9               MOVW    R21:R20, R19:R18
-   \   00000006   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_12:
-   \   00000008   ........           CALL    ??Write_1
-   \   0000000C   ....               RJMP    ?Subroutine5
-    451          }
-    452          
-    453          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine4:
-   \   00000000   2FA2               MOV     R26, R18
-   \   00000002   2FB5               MOV     R27, R21
+   \   __version_3 uint8_t CDfa::GetFsmEvent()
+   \                     ??GetFsmEvent:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8104               LDD     R16, Z+4
    \   00000004   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-    454          uint8_t CDataBase::GetBlockLength(uint8_t uiBlock)
+   \   __version_3 uint8_t CDataStore::GetBlockLength(uint8_t)
    \                     ??GetBlockLength:
-    455          {
-   \   00000000   ....               RCALL   ?Subroutine0
-    456              return m_pxDataBaseBlocksPositionData[uiBlock].Size;
-   \                     ??CrossCallReturnLabel_1:
-   \   00000002   9631               ADIW    R31:R30, 1
-   \   00000004   BF3B               OUT     0x3B, R19
-   \   00000006   9106               ELPM    R16, Z
-   \   00000008   ....               RJMP    ?Subroutine4
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine0:
-   \   00000000   2F5B               MOV     R21, R27
-   \   00000002   2F2A               MOV     R18, R26
-   \   00000004   ....               LDI     R26, LOW((??m_pxDataBase + 3))
-   \   00000006   ....               LDI     R27, HIGH((??m_pxDataBase + 3))
-   \   00000008   91ED               LD      R30, X+
-   \   0000000A   91FD               LD      R31, X+
-   \   0000000C   913C               LD      R19, X
-   \   0000000E   E014               LDI     R17, 4
-   \   00000010   9F01               MUL     R16, R17
-   \   00000012   0DE0               ADD     R30, R0
-   \   00000014   1DF1               ADC     R31, R1
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   2F02               MOV     R16, R18
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   E048               LDI     R20, 8
+   \   00000008   E050               LDI     R21, 0
+   \   0000000A   ........           CALL    ?S_EC_MUL_L02
+   \   0000000E   0FE0               ADD     R30, R16
+   \   00000010   1FF1               ADC     R31, R17
+   \   00000012   8503               LDD     R16, Z+11
+   \   00000014   8514               LDD     R17, Z+12
    \   00000016   9508               RET
-    457          }
-    458          
-    459          //-----------------------------------------------------------------------------------------------------
+      9          #include "Platform.h"
+     10          #include "Pss21.h"
 
    \                                 In  segment CODE, align 2, keep-with-next
-    460          uint16_t CDataBase::GetBlockOffset(uint8_t uiBlock)
-   \                     ??GetBlockOffset:
-    461          {
-   \   00000000   ....               RCALL   ?Subroutine0
-    462              return m_pxDataBaseBlocksPositionData[uiBlock].Offset;
-   \                     ??CrossCallReturnLabel_0:
-   \   00000002   9632               ADIW    R31:R30, 2
-   \   00000004   BF3B               OUT     0x3B, R19
-   \   00000006   9107               ELPM    R16, Z+
-   \   00000008   9116               ELPM    R17, Z
-   \   0000000A                      REQUIRE ?Subroutine4
-   \   0000000A                      ;               // Fall through to label ?Subroutine4
+   \   __version_3 void CPss21::SetErrorCode(uint8_t)
+   \                     ??SetErrorCode:
+   \   00000000   9300....           STS     ??m_uiErrorCode, R16
+   \   00000004   9508               RET
+     11          #include "DataStore.h"
+     12          #include <cstddef>
+     13          
+     14          
+     15          ////-----------------------------------------------------------------------------------------------------
+     16          //CDataBase::CDataBase()
+     17          //{
+     18          ////    m_pxDataStore = new CDataStore();
+     19          //}
+     20          //
+     21          ////-----------------------------------------------------------------------------------------------------
+     22          //CDataBase::~CDataBase()
+     23          //{
+     24          ////    delete m_pxDataStore;
+     25          //}
+     26          
+     27          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 CDataBase &CDataBase::new CDataBase()
-   \                     `??new CDataBase`:
-   \   00000000   E002               LDI     R16, 2
-   \   00000002   E010               LDI     R17, 0
-   \   00000004   ........           CALL    `??operator new`
-   \   00000008   2F20               MOV     R18, R16
-   \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F009               BREQ    `??new CDataBase_1`
-   \   0000000E   ....               RJMP    ?Subroutine2
-   \                     `??new CDataBase_1`:
-   \   00000010   E000               LDI     R16, 0
-   \   00000012                      REQUIRE ?Subroutine5
-   \   00000012                      ;               // Fall through to label ?Subroutine5
-    463          }
-    464          
-    465          //-----------------------------------------------------------------------------------------------------
+     28          uint8_t CDataBase::RestoreDefault(void)
+   \                     ??RestoreDefault:
+     29          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+     30              // Восстановим БД по умолчанию.
+     31              uint8_t __farflash *puiDataBase;
+                                         ^
+Warning[Pe177]: variable "puiDataBase" was declared but never referenced
+     32          
+     33              CPss21::m_xDataStore.Init();
+   \   00000004   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000006   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000008   ........           CALL    ??Init
+     34          
+     35              enum
+     36              {
+     37                  IDDLE = 0,
+     38                  BLOCK_WRITE_START,
+     39                  BLOCK_WRITE_END_WAITING,
+     40                  BLOCK_ERROR,
+     41                  ALL_BLOCKS_WRITED,
+     42              };
+     43          
+     44              uint8_t uiBlockCounter = 0;
+   \   0000000C   E0B0               LDI     R27, 0
+     45              uint8_t uiFsmState = BLOCK_WRITE_START;
+   \   0000000E   E0A1               LDI     R26, 1
+     46          
+     47              while (1)
+     48              {
+     49                  switch (uiFsmState)
+   \                     ??RestoreDefault_1:
+   \   00000010   2F0A               MOV     R16, R26
+   \   00000012   5001               SUBI    R16, 1
+   \   00000014   F039               BREQ    ??RestoreDefault_2
+   \   00000016   950A               DEC     R16
+   \   00000018   F111               BREQ    ??RestoreDefault_3
+   \   0000001A   950A               DEC     R16
+   \   0000001C   F199               BREQ    ??RestoreDefault_4
+   \   0000001E   950A               DEC     R16
+   \   00000020   F179               BREQ    ??RestoreDefault_5
+   \   00000022   C032               RJMP    ??RestoreDefault_6
+     50                  {
+     51                  case BLOCK_WRITE_START:
+     52                      // Записаны не все блоки?
+     53                      if (uiBlockCounter < TDataBase::BLOCKS_QUANTITY)
+   \                     ??RestoreDefault_2:
+   \   00000024   30BB               CPI     R27, 11
+   \   00000026   F4C8               BRCC    ??RestoreDefault_7
+     54                      {
+     55                          // Скопируем данные из флеш во временный буфер,
+     56                          uint16_t uiLength = CPss21::m_xDataStore.ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
+   \   00000028   2F4B               MOV     R20, R27
+   \   0000002A   ....               LDI     R18, LOW(??m_auiIntermediateBuff)
+   \   0000002C   ....               LDI     R19, (??m_auiIntermediateBuff) >> 8
+   \   0000002E   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000030   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000032   ........           CALL    ??ReadBlockFlash
+   \   00000036   01C8               MOVW    R25:R24, R17:R16
+     57          
+     58                          // Поместим данные в хранилище.
+     59                          // Блок БД принят к записи?
+     60                          if (Write(CPss21::m_auiIntermediateBuff, uiLength, uiBlockCounter))
+   \   00000038   2F4B               MOV     R20, R27
+   \   0000003A   019C               MOVW    R19:R18, R25:R24
+   \   0000003C   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   0000003E   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   00000040   ....               RCALL   ??Write
+   \   00000042   2B01               OR      R16, R17
+   \   00000044   F011               BREQ    ??RestoreDefault_8
+     61                          {
+     62                              uiFsmState = BLOCK_WRITE_END_WAITING;
+   \   00000046   E0A2               LDI     R26, 2
+   \   00000048   C01F               RJMP    ??RestoreDefault_6
+     63                          }
+     64                          // При записи блока БД произошла ошибка?
+     65                          else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+   \                     ??RestoreDefault_8:
+   \   0000004A   ....               LDI     R16, LOW(??m_xDataStore)
+   \   0000004C   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   0000004E   ........           CALL    ??GetFsmEvent
+   \   00000052   3004               CPI     R16, 4
+   \   00000054   F4C9               BRNE    ??RestoreDefault_6
+     66                          {
+     67                              uiFsmState = BLOCK_ERROR;
+   \   00000056   E0A3               LDI     R26, 3
+   \   00000058   C017               RJMP    ??RestoreDefault_6
+     68                          }
+     69                      }
+     70                      else
+     71                      {
+     72                          uiFsmState = ALL_BLOCKS_WRITED;
+   \                     ??RestoreDefault_7:
+   \   0000005A   E0A4               LDI     R26, 4
+     73                      }
+     74          
+     75                      break;
+   \   0000005C   C015               RJMP    ??RestoreDefault_6
+     76          
+     77                  case BLOCK_WRITE_END_WAITING:
+     78                      // Блок записан успешно?
+     79                      if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+   \                     ??RestoreDefault_3:
+   \   0000005E   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000060   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000062   ........           CALL    ??GetFsmEvent
+   \   00000066   3003               CPI     R16, 3
+   \   00000068   F419               BRNE    ??RestoreDefault_9
+     80                      {
+     81                          uiBlockCounter++;
+   \   0000006A   95B3               INC     R27
+     82                          uiFsmState = BLOCK_WRITE_START;
+   \   0000006C   E0A1               LDI     R26, 1
+   \   0000006E   C00C               RJMP    ??RestoreDefault_6
+     83                      }
+     84                      // При записи блока БД произошла ошибка?
+     85                      else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+   \                     ??RestoreDefault_9:
+   \   00000070   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000072   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000074   ........           CALL    ??GetFsmEvent
+   \   00000078   3004               CPI     R16, 4
+   \   0000007A   F431               BRNE    ??RestoreDefault_6
+     86                      {
+     87                          uiFsmState = BLOCK_ERROR;
+   \   0000007C   E0A3               LDI     R26, 3
+     88                      }
+     89                      break;
+   \   0000007E   C004               RJMP    ??RestoreDefault_6
+     90          
+     91                  case ALL_BLOCKS_WRITED:
+     92                      return 1;
+   \                     ??RestoreDefault_5:
+   \   00000080   E001               LDI     R16, 1
+   \   00000082   C00D               RJMP    ??RestoreDefault_10
+     93                      break;
+     94          
+     95                  case BLOCK_ERROR:
+     96                      return 0;
+   \                     ??RestoreDefault_4:
+   \   00000084   E000               LDI     R16, 0
+   \   00000086   C00B               RJMP    ??RestoreDefault_10
+     97                      break;
+     98          
+     99                  default:
+    100                      break;
+    101                  }
+    102          
+    103                  CPss21::m_xDataStore.Fsm();
+   \                     ??RestoreDefault_6:
+   \   00000088   ....               LDI     R16, LOW(??m_xDataStore)
+   \   0000008A   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   0000008C   ........           CALL    ??Fsm
+    104          
+    105                  delay_ms(10);
+   \   00000090   E00A               LDI     R16, 10
+   \   00000092   E010               LDI     R17, 0
+   \   00000094   ........           CALL    ??delay_ms
+    106          
+    107                  CPlatform::WatchdogReset();
+   \   00000098   ........           CALL    ??WatchdogReset
+   \   0000009C   CFB9               RJMP    ??RestoreDefault_1
+    108              }
+   \                     ??RestoreDefault_10:
+   \   0000009E   E0E4               LDI     R30, 4
+   \   000000A0   ........           JMP     ?EPILOGUE_B4_L09
+    109          }
+    110          
+    111          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    112          bool CDataBase::IntegrityCheck(void)
+   \                     ??IntegrityCheck:
+    113          {
+    114              // Все блоки принадлежат текущей базе данных?
+    115              return CPss21::m_xDataStore.CompareCurrentWithStoredCrc();
+   \   00000000   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000002   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000004   ........           CALL    ??CompareCurrentWithStoredCrc
+   \   00000008   9508               RET
+    116          }
+    117          
+    118          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    119          void CDataBase::SignatureCreate(void)
+   \                     ??SignatureCreate:
+    120          {
+    121              // Создадим Crc из Crc всех блоков.
+    122              CPss21::m_xDataStore.CrcOfBlocksCrcCreate();
+   \   00000000   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000002   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000004   ........           CALL    ??CrcOfBlocksCrcCreate
+    123          }
+   \   00000008   9508               RET
+    124          
+    125          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    126          bool CDataBase::SignatureCheck(void)
+   \                     ??SignatureCheck:
+    127          {
+    128              // Crc из Crc всех блоков совпадает?
+    129              return CPss21::m_xDataStore.CrcOfBlocksCrcCheck();
+   \   00000000   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000002   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000004   ........           CALL    ??CrcOfBlocksCrcCheck
+   \   00000008   9508               RET
+    130          }
+    131          
+    132          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    133          uint8_t CDataBase::Check(void)
+   \                     ??Check:
+    134          {
+    135          //    m_pxDataBase = &xMainDataBase;
+    136          //    m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
+    137          
+    138              CPss21::SetErrorCode(NO_ERROR);
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   ........           CALL    ??SetErrorCode
+    139              // Блоки базы данных не повреждены?
+    140              if (CPss21::m_xDataStore.Check())
+   \   00000006   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000008   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   0000000A   ........           CALL    ??Check_1
+   \   0000000E   2300               TST     R16
+   \   00000010   F099               BREQ    ??Check_2
+    141              {
+    142                  // Все блоки принадлежат текущей базе данных?
+    143                  if (IntegrityCheck())
+   \   00000012   ....               RCALL   ??IntegrityCheck
+   \   00000014   2300               TST     R16
+   \   00000016   F051               BREQ    ??Check_3
+    144                  {
+    145                      // База данных подтверждена пользователем?
+    146                      if (SignatureCheck())
+   \   00000018   ....               RCALL   ??SignatureCheck
+   \   0000001A   2300               TST     R16
+   \   0000001C   F011               BREQ    ??Check_4
+    147                      {
+    148                          return 1;
+   \   0000001E   E001               LDI     R16, 1
+   \   00000020   9508               RET
+    149                      }
+    150                      else
+    151                      {
+    152                          CPss21::SetErrorCode(DB_ERROR);
+   \                     ??Check_4:
+   \   00000022   E004               LDI     R16, 4
+   \   00000024   ........           CALL    ??SetErrorCode
+    153                          return 0;
+   \   00000028   E000               LDI     R16, 0
+   \   0000002A   9508               RET
+    154                      }
+    155                  }
+    156                  else
+    157                  {
+    158                      CPss21::SetErrorCode(DB_ERROR);
+   \                     ??Check_3:
+   \   0000002C   E004               LDI     R16, 4
+   \   0000002E   ........           CALL    ??SetErrorCode
+    159                      // Восстановим БД по умолчанию.
+    160                      // БД по умолчанию восстановлена успешно?
+    161                      RestoreDefault();
+   \   00000032   ....               RCALL   ??RestoreDefault
+    162                      return 0;
+   \   00000034   E000               LDI     R16, 0
+   \   00000036   9508               RET
+    163                  }
+    164              }
+    165              else
+    166              {
+    167                  CPss21::SetErrorCode(DB_ERROR);
+   \                     ??Check_2:
+   \   00000038   E004               LDI     R16, 4
+   \   0000003A   ........           CALL    ??SetErrorCode
+    168                  // Восстановим БД по умолчанию.
+    169                  // БД по умолчанию восстановлена успешно?
+    170                  RestoreDefault();
+   \   0000003E   ....               RCALL   ??RestoreDefault
+    171                  return 0;
+   \   00000040   E000               LDI     R16, 0
+   \   00000042   9508               RET
+    172              }
+    173          }
+    174          
+    175          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    176          uint16_t CDataBase::Read(uint8_t *puiDestination, uint8_t uiBlock)
+   \                     ??Read:
+    177          {
+   \   00000000   ........           CALL    ?PROLOGUE3_L09
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   2FA2               MOV     R26, R18
+    178              return CPss21::m_xDataStore.ReadBlock(puiDestination,
+    179                                                    uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
+   \   00000008   2F4A               MOV     R20, R26
+   \   0000000A   9543               INC     R20
+   \   0000000C   019C               MOVW    R19:R18, R25:R24
+   \   0000000E   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000010   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000012   ........           CALL    ??ReadBlock
+   \   00000016   E0E3               LDI     R30, 3
+   \   00000018   ........           JMP     ?EPILOGUE_B3_L09
+    180          }
+    181          
+    182          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    183          uint16_t CDataBase::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+   \                     ??Write:
+    184          {
+   \   00000000   ........           CALL    ?PROLOGUE5_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
+   \   00000008   2E44               MOV     R4, R20
+    185              return CPss21::m_xDataStore.Write(puiSourse,
+    186                                                uiLength,
+    187                                                uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
+   \   0000000A   2D64               MOV     R22, R4
+   \   0000000C   9563               INC     R22
+   \   0000000E   01AC               MOVW    R21:R20, R25:R24
+   \   00000010   019D               MOVW    R19:R18, R27:R26
+   \   00000012   ....               LDI     R16, LOW(??m_xDataStore)
+   \   00000014   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   00000016   ........           CALL    ??Write_1
+   \   0000001A   E010               LDI     R17, 0
+   \   0000001C   E0E5               LDI     R30, 5
+   \   0000001E   ........           JMP     ?EPILOGUE_B5_L09
+    188          }
+    189          
+    190          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    191          uint16_t CDataBase::GetBlockLength(uint8_t uiBlock)
+   \                     ??GetBlockLength_1:
+    192          {
+   \   00000000   938A               ST      -Y, R24
+   \   00000002   2F80               MOV     R24, R16
+    193              return CPss21::m_xDataStore.GetBlockLength(uiBlock + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
+   \   00000004   2F28               MOV     R18, R24
+   \   00000006   9523               INC     R18
+   \   00000008   ....               LDI     R16, LOW(??m_xDataStore)
+   \   0000000A   ....               LDI     R17, (??m_xDataStore) >> 8
+   \   0000000C   ........           CALL    ??GetBlockLength
+   \   00000010   E010               LDI     R17, 0
+   \   00000012   9189               LD      R24, Y+
+   \   00000014   9508               RET
+    194          }
+    195          
+    196          //-----------------------------------------------------------------------------------------------------
 
    Maximum stack usage in bytes:
 
    CSTACK RSTACK Function
    ------ ------ --------
-      0      0   CDataBase::CDataBase()
       0      2   CDataBase::Check()
+        0      2   -> CDataBase::IntegrityCheck()
         0      2   -> CDataBase::RestoreDefault()
+        0      2   -> CDataBase::SignatureCheck()
         0      2   -> CDataStore::Check()
-        0      2   -> CDataStore::CompareCurrentWithStoredCrc()
-        0      2   -> CDataStore::CrcOfBlocksCrcCheck()
-      0      2   CDataBase::GetBlockLength(uint8_t)
-      0      2   CDataBase::GetBlockOffset(uint8_t)
+        0      2   -> CPss21::SetErrorCode(uint8_t)
+      1      2   CDataBase::GetBlockLength(uint8_t)
+        1      2   -> CDataStore::GetBlockLength(uint8_t)
       0      2   CDataBase::IntegrityCheck()
         0      2   -> CDataStore::CompareCurrentWithStoredCrc()
-      0      2   CDataBase::Read(uint8_t *, uint8_t)
-        0      2   -> CDataStore::ReadBlock(uint8_t *, uint8_t)
-      5      2   CDataBase::RestoreDefault()
-        5      2   -> CDataBase::GetBlockLength(uint8_t)
-        5      2   -> CDataBase::GetBlockOffset(uint8_t)
-        5      2   -> CDataBase::Write(uint8_t *, uint16_t, uint8_t)
-        5      2   -> CDataStore::Fsm()
-        5      2   -> CDataStore::Init()
-        5      2   -> delay_ms(uint16_t)
-      0      2   CDataBase::UserConfirmationCheck()
+      3      2   CDataBase::Read(uint8_t *, uint8_t)
+        3      2   -> CDataStore::ReadBlock(uint8_t *, uint8_t)
+      4      2   CDataBase::RestoreDefault()
+        4      2   -> CDataBase::Write(uint8_t *, uint16_t, uint8_t)
+        4      2   -> CDataStore::Fsm()
+        4      2   -> CDataStore::Init()
+        4      2   -> CDataStore::ReadBlockFlash(uint8_t *, uint8_t)
+        4      2   -> CDfa::GetFsmEvent()
+        4      2   -> CPlatform::WatchdogReset()
+        4      2   -> delay_ms(uint16_t)
+      0      2   CDataBase::SignatureCheck()
         0      2   -> CDataStore::CrcOfBlocksCrcCheck()
-      0      2   CDataBase::Write(uint8_t *, uint16_t, uint8_t)
-        0      2   -> CDataStore::Write(uint8_t *, uint16_t, uint8_t)
-      0      2   CDataBase::new CDataBase()
-        0      2   -> operator new(unsigned int)
-      0      2   CDataBase::~CDataBase()
-        0      2   -> operator delete(void *)
+      0      2   CDataBase::SignatureCreate()
+        0      2   -> CDataStore::CrcOfBlocksCrcCreate()
+      5      2   CDataBase::Write(uint8_t *, uint16_t, uint8_t)
+        5      2   -> CDataStore::Write(uint8_t *, uint16_t, uint8_t)
+      0      2   CDataStore::GetBlockLength(uint8_t)
+        0      2 ?S_EC_MUL_L02
+      0      2   CDfa::GetFsmEvent()
+      0      2   CPlatform::WatchdogReset()
+      0      2   CPss21::SetErrorCode(uint8_t)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-       6  ??Subroutine6_0
-      24  ?Subroutine0
-       2  ?Subroutine1
-      12  ?Subroutine2
-       4  ?Subroutine3
-       6  ?Subroutine4
-       4  ?Subroutine5
-       0  CDataBase::CDataBase()
-      84  CDataBase::Check()
-      10  CDataBase::GetBlockLength(uint8_t)
-      10  CDataBase::GetBlockOffset(uint8_t)
-       6  CDataBase::IntegrityCheck()
-      10  CDataBase::Read(uint8_t *, uint8_t)
-     176  CDataBase::RestoreDefault()
-       6  CDataBase::UserConfirmationCheck()
-      14  CDataBase::Write(uint8_t *, uint16_t, uint8_t)
-       6  CDataBase::m_pxDataBase
-          CDataBase::m_pxDataBaseBlocksPositionData
-       1  CDataBase::m_uiStatus
-      18  CDataBase::new CDataBase()
-      16  CDataBase::~CDataBase()
+      68  CDataBase::Check()
+      22  CDataBase::GetBlockLength(uint8_t)
+      10  CDataBase::IntegrityCheck()
+      28  CDataBase::Read(uint8_t *, uint8_t)
+     164  CDataBase::RestoreDefault()
+      10  CDataBase::SignatureCheck()
+      10  CDataBase::SignatureCreate()
+      34  CDataBase::Write(uint8_t *, uint16_t, uint8_t)
+      24  CDataStore::GetBlockLength(uint8_t)
+       6  CDfa::GetFsmEvent()
+       4  CPlatform::WatchdogReset()
+       6  CPss21::SetErrorCode(uint8_t)
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -1607,19 +1061,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-     704  axMainDataBase
-          CDataBase::axDataBaseBlocksPositionData
-      45  -- Other
+      36  -- Other
 
  
  105 bytes in segment ABSOLUTE
- 408 bytes in segment CODE
-   7 bytes in segment INITTAB
- 742 bytes in segment NEAR_F
-   7 bytes in segment NEAR_Z
+ 386 bytes in segment CODE
+  36 bytes in segment NEAR_F
  
- 1 148 bytes of CODE memory (+   9 bytes shared)
-     7 bytes of DATA memory (+ 105 bytes shared)
+ 382 bytes of CODE memory (+  40 bytes shared)
+   0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
-Warnings: none
+Warnings: 3

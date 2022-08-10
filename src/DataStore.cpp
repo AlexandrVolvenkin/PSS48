@@ -206,11 +206,12 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     }
 
     // Прочитаем закодированные данные.
-    for (uint16_t i = 0; i < uiEncodedLength; i++)
-    {
-        auiTempArray[i] = CEeprom::ReadByte(uiSourseOffset);
-        uiSourseOffset++;
-    }
+//    for (uint16_t i = 0; i < uiEncodedLength; i++)
+//    {
+//        auiTempArray[i] = CEeprom::ReadByte(uiSourseOffset);
+//        uiSourseOffset++;
+//    }
+    CEeprom::Read(auiTempArray, uiSourseOffset, uiEncodedLength);
 
     // Декодируем прочитанные данные.
     uiDecodedByteCounter = CHammingCodes::HammingCodesToBytes(auiTempArray, auiTempArray, uiEncodedLength);
@@ -515,3 +516,17 @@ void CDataStore::Fsm(void)
     }
 }
 
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+uint16_t CDataStore::ReadBlockFlash(uint8_t *puiDestination, uint8_t uiBlock)
+{
+    return CFlash::ReadBlock(puiDestination, uiBlock);
+}

@@ -113,6 +113,14 @@ public:
     bool CrcOfBlocksCrcCheck(void);
     void Fsm(void);
 
+    uint16_t ReadBlockFlash(uint8_t *puiDestination, uint8_t uiBlock);
+
+    uint8_t GetBlockLength(uint8_t uiBlock)
+    {
+        return m_xBlocksControlData.
+               axBlockPositionData[uiBlock].uiLength;
+    };
+
     CTimer* GetTimerPointer(void)
     {
         return &m_xTimer;

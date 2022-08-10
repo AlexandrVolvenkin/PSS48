@@ -171,17 +171,18 @@ uint8_t usCrcSummOneByteCalculation(
 int iCrcSummOneByteCompare(unsigned char *puiSourse,
                            unsigned int nuiNbyte)
 {
-    unsigned char uiData;
+    unsigned char ucData;
+    unsigned char ucData2;
 
-    uiData = 0;
+    ucData = 0;
     do
     {
-        uiData += *puiSourse++;
+        ucData += *puiSourse++;
         nuiNbyte--;
     }
     while ((nuiNbyte) != 0);
 
-    if (uiData == *puiSourse)
+    if (ucData == *puiSourse)
     {
         return 1;
     }

@@ -13,6 +13,7 @@
 CAlarmWindow::CAlarmWindow()
 {
     m_uiActivityState = 0;
+    m_uiSavedActivityState = 0;
     m_uiAlarmType = NORMAL;
     m_uiSavedAlarmType = NORMAL;
 }

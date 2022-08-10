@@ -23,6 +23,8 @@
 #include <assert.h>
 #include <yfuns.h>
 
+#include "DataTypes.h"
+
 //-----------------------------------------------------------------------------------------------------
 #define F_CPU 7372800UL
 
@@ -319,6 +321,43 @@ private:
     static uint16_t m_nuiBufferByteCounter;
     static uint16_t m_uiLength;
     static bool m_bBufferIsWrited;
+};
+
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CFlash
+{
+public:
+//    CFlash();
+//    virtual ~CFlash();
+    static uint8_t Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength);
+    static uint16_t ReadBlock(uint8_t *puiDestination, uint8_t uiBlock);
+
+    static uint16_t GetBlockLength(uint8_t uiBlock)
+    {
+        return axDataBaseBlocksPositionData[uiBlock].Size;
+    };
+
+    static uint16_t GetBlockOffset(uint8_t uiBlock)
+    {
+        return axDataBaseBlocksPositionData[uiBlock].Offset;
+    };
+
+    // Получим указатель на блок БД во флеш.
+    static uint8_t __farflash* GetBlockPointer(uint8_t uiBlock)
+    {
+        return &(reinterpret_cast<__farflash uint8_t*>(&xMainDataBase)[GetBlockOffset(uiBlock)]);
+    };
+
+private:
+    static __flash TDataBase CFlash::xMainDataBase;
+    static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
 };
 
 //-----------------------------------------------------------------------------------------------------

@@ -5,6 +5,8 @@
 //  email       : aav-36@mail.ru
 //  GitHub      : https://github.com/AlexandrVolvenkin
 //-----------------------------------------------------------------------------------------------------
+#include <cstddef>
+
 #include "Platform.h"
 #include "Pss21.h"
 
@@ -44,7 +46,7 @@ CUart::~CUart()
 //-----------------------------------------------------------------------------------------------------
 void CUart::Init(uint32_t ulBaudRate,
                  uint8_t ucParity,
-                 uint8_t ucDataBits,
+                 uint8_t uiDataBits,
                  uint8_t ucStopBit,
                  uint8_t *puiRxBuffer,
                  uint8_t *puiTxBuffer)
@@ -63,7 +65,7 @@ void CUart::Init(uint32_t ulBaudRate,
                (BIT(UCSZ11)|BIT(UCSZ10));
 
 //    /* Set data bits (7, 8 bits) */
-//    switch (ucDataBits)
+//    switch (uiDataBits)
 //    {
 //    case 8:
 //        *m_UCSRC |= (1 << UCSZ00) | (1 << UCSZ01);
@@ -332,29 +334,29 @@ CEeprom::~CEeprom()
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CEeprom::Read(uint8_t *pucRamDestination, uint16_t uiEepromSourse, uint16_t nuiLength)
+uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSourse, uint16_t uiLength)
 {
-    while (nuiLength != 0)
+    while (uiLength != 0)
     {
-        *pucRamDestination++ = ReadByte(uiEepromSourse++);
-        nuiLength--;
+        *puiDestination++ = ReadByte(uiSourse++);
+        uiLength--;
     }
     return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CEeprom::Write(uint16_t uiEepromDestination, uint8_t *pucRamSourse, uint16_t nuiLength)
+uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
 {
-    while (nuiLength != 0)
+    while (uiLength != 0)
     {
-        WriteByte((uiEepromDestination++), (*pucRamSourse++));
-        nuiLength--;
+        WriteByte((uiDestination++), (*puiSourse++));
+        uiLength--;
     }
     return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CEeprom::ReadByte(uint16_t ui16EepromSourse)
+uint8_t CEeprom::ReadByte(uint16_t uiSourse)
 {
     __watchdog_reset();
     while (BitIsSet(EECR, EEWE))
@@ -362,16 +364,16 @@ uint8_t CEeprom::ReadByte(uint16_t ui16EepromSourse)
         __watchdog_reset();
     }
     __disable_interrupt();
-    EEAR = ui16EepromSourse;
+    EEAR = uiSourse;
     SetBit(EECR, EERE);
     __enable_interrupt();
     return EEDR;
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CEeprom::WriteByte(uint16_t ui16EepromDestination, uint8_t ucData)
+void CEeprom::WriteByte(uint16_t uiDestination, uint8_t uiData)
 {
-    if (ReadByte(ui16EepromDestination) != ucData)
+    if (ReadByte(uiDestination) != uiData)
     {
         __watchdog_reset();
         while (BitIsSet(EECR, EEWE))
@@ -379,8 +381,8 @@ void CEeprom::WriteByte(uint16_t ui16EepromDestination, uint8_t ucData)
             __watchdog_reset();
         }
         __disable_interrupt();
-        EEAR = ui16EepromDestination;
-        EEDR = ucData;
+        EEAR = uiDestination;
+        EEDR = uiData;
         EECR |= (1<<EEMWE);
         EECR |= (1<<EEWE);
         __enable_interrupt();
@@ -388,11 +390,11 @@ void CEeprom::WriteByte(uint16_t ui16EepromDestination, uint8_t ucData)
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CEeprom::WriteInterrupt(uint16_t uiEepromDestination, uint8_t *pucRamSourse, uint16_t nuiLength)
+void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
 {
-    SetAddress(uiEepromDestination);
-    SetBufferPointer(pucRamSourse);
-    SetLength(nuiLength);
+    SetAddress(uiDestination);
+    SetBufferPointer(puiSourse);
+    SetLength(uiLength);
     SetBufferByteCounter(0);
 }
 
@@ -439,6 +441,310 @@ __interrupt void EEPROM_EE_READY(void)
 
 
 
+
+//-----------------------------------------------------------------------------------------------------
+// Основной блок БД прибора
+TDataBase __flash CFlash::xMainDataBase =
+{
+    {
+        2,1,48,false,false,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+    },0xCF6B,
+
+    {
+        1,47,BIT(USBS1),0x73,BIT(CS02)|BIT(CS01),0x00,0x00
+    },0x1B17,
+
+    {
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+    },0x0B40,
+
+    {
+        0, 1, 2, 3, 4, 5, 6, 7,
+        8, 9, 10, 11, 12, 13, 14, 15,
+        16, 17, 18, 19, 20, 21, 22, 23,
+        24, 25, 26, 27, 28, 29, 30, 31,
+        32, 33, 34, 35, 36, 37, 38, 39,
+        40, 41, 42, 43, 44, 45, 46, 47,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
+    },0x9EC2,
+
+    {
+        0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
+        0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
+        0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
+        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02
+    },0xF746,
+
+    {
+        { 0x3E,0x3E,0x3E,0x3E,0x3C,0x3C,0x3C,0x3C },
+        { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF },
+        { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF }
+    },0x6F4B,
+
+    {
+        0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+    },0x69C6,
+
+    {
+        1,
+        {
+            {
+                1,0x02,0x0010,0x20
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            }
+        }
+    },0x0000,
+
+    {
+        1,
+        {
+            {
+                1,0x05,0x0000,0xFF
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            }
+        }
+    },0x0000,
+
+    {
+        1,
+        {
+            {
+                1,0x05,0x0001,0xFF
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            },
+            {
+                0,0,0,0
+            }
+        }
+    },0x0000,
+
+//    { 1, { 1,0x02,0x0010,0x20 }},0xE223,
+//    { 1, { 1,0x05,0x0000,0xFF }},0x9C7B,
+//    { 1, { 1,0x05,0x0001,0xFF }},0x6CFB,
+
+
+    false, {0,0,0,0,0,0,0},0x0000,
+};
+
+//-----------------------------------------------------------------------------------------------------
+TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
+{
+    { 0, sizeof(xMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
+    { 1, sizeof(xMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
+    { 2, sizeof(xMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
+    { 3, sizeof(xMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
+    { 4, sizeof(xMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
+    { 5, sizeof(xMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
+    { 6, sizeof(xMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
+    { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
+    { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
+    { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
+    { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+};
+
+////-----------------------------------------------------------------------------------------------------
+//TDataBase __farflash *CDataBase::m_pxDataBase;
+//TDataBaseBlockPositionData __farflash *CDataBase::m_pxDataBaseBlocksPositionData;
+
+//----------------------------------------- Flash ----------------------------------------------------------------
+//CFlash::CFlash()
+//{
+//
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CFlash::~CFlash()
+//{
+//
+//}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength)
+{
+    // Скопируем данные из флеш в буфер Ram.
+    for (uint16_t i = 0; i < uiLength; i++)
+    {
+        puiDestination[i] = uiSourse[i];
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+{
+    Read(puiDestination,
+         GetBlockPointer(uiBlock),
+         GetBlockLength(uiBlock));
+
+    return GetBlockLength(uiBlock);
+}
+
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 //----------------------------------------- CSpi ----------------------------------------------------------------
 CSpi::CSpi()
 {
@@ -459,8 +765,7 @@ void CSpi::Init(void)
     SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
 
     DDRB |= (Bit(MOSI) | Bit(SCK));
-
-    SPCR  |= BIT(SPE);
+    PORTB |= (Bit(MOSI) | Bit(SCK));
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -479,7 +784,6 @@ void CSpi::Disable(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CSpi::Exchange(uint8_t uiData)
 {
-    delay_us(30);
     SPDR = uiData;
 
     uint8_t uiGuardCounter = 0;
@@ -498,18 +802,20 @@ uint8_t CSpi::Exchange(uint8_t uiData)
         }
     };
 
+    delay_us(50);
+
     return  SPDR;
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t nuiLength)
+uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t uiLength)
 {
-    if (nuiLength > BUFFER_LENGTH)
+    if (uiLength > BUFFER_LENGTH)
     {
         return 0;
     }
 
-    for (uint16_t i = 0; i < nuiLength; i++)
+    for (uint16_t i = 0; i < uiLength; i++)
     {
         puiDestination[i] = Exchange(pucSourse[i]);
     }
@@ -517,7 +823,7 @@ uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t nui
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t nuiLength)
+uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t uiLength)
 {
 
     return 1;

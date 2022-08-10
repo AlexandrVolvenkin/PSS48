@@ -287,18 +287,18 @@ uint8_t CModuleMrXXDriver::Exchange(void)
     };
 
     // модуль признан неисправным?
-    if (m_uiBadAnswerCounter >= BAD_MODULE_CYCLE_COUNT_DEFAULT)
+    if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+    {
+        // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+        m_uiBadAnswerCounter++;
+        return 0;
+    }
+    else
     {
         // модуль признан неисправным.
         *m_puiErrorCode = OMD_ERROR;
         return 0;
     }
-    else
-    {
-        // уменьшим значение счётчика - "количество сеансов связи с модулем без ответа".
-        m_uiBadAnswerCounter++;
-    }
-    return 0;
 }
 
 //-----------------------------------------------------------------------------------------------------

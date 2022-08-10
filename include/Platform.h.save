@@ -23,6 +23,8 @@
 #include <assert.h>
 #include <yfuns.h>
 
+#include "DataTypes.h"
+
 //-----------------------------------------------------------------------------------------------------
 #define F_CPU 7372800UL
 
@@ -131,7 +133,7 @@ private:
     volatile uint8_t* m_UDR;
     volatile uint8_t* m_rs485DirectionPort;
     volatile uint8_t m_rs485DirectionPin;
-    volatile uint8_t* m_rs485port;
+    volatile uint8_t* m_rs485OutputPort;
     volatile uint8_t m_rs485OutputPin;
 
     uint8_t* m_puiTxBuffer;
@@ -327,6 +329,45 @@ private:
 
 
 
+
+//-----------------------------------------------------------------------------------------------------
+class CFlash
+{
+public:
+//    CFlash();
+//    virtual ~CFlash();
+    static uint8_t Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength);
+    static uint16_t ReadBlock(uint8_t *puiDestination, uint8_t uiBlock);
+
+    static uint16_t GetBlockLength(uint8_t uiBlock)
+    {
+        return axDataBaseBlocksPositionData[uiBlock].Size;
+    };
+
+    static uint16_t GetBlockOffset(uint8_t uiBlock)
+    {
+        return axDataBaseBlocksPositionData[uiBlock].Offset;
+    };
+
+//                // Получим указатель на блок БД во флеш.
+    static uint8_t __farflash* GetBlockPointer(uint8_t uiBlock)
+    {
+        return &(reinterpret_cast<__farflash uint8_t*>(&xMainDataBase)[GetBlockOffset(uiBlock)]);
+    };
+
+private:
+    static __flash TDataBase CFlash::xMainDataBase;
+    static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
+//    static __flash TDataBaseBlockPositionData  axDataBaseBlocksPositionData[];
+//    static TDataBase __farflash *m_pxDataBase;
+};
+
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
 //-----------------------------------------------------------------------------------------------------
 enum
 {
@@ -343,7 +384,6 @@ public:
     virtual ~CSpi();
 
     static void Init(void);
-    static void Reset(void);
     static void Enable(void);
     static void Disable(void);
     static uint8_t Exchange(uint8_t );

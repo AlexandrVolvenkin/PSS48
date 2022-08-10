@@ -11,289 +11,25 @@
 #include "DataStore.h"
 #include <cstddef>
 
-//-----------------------------------------------------------------------------------------------------
-// Основной блок БД прибора
-//#pragma location = 0x0200
-TDataBase __flash axMainDataBase =
-{
-    {
-        2,1,48,false,false,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
-    },0xCF6B,
 
-    {
-        1,47,BIT(USBS1),0x73,BIT(CS02)|BIT(CS01),0x00,0x00
-    },0x1B17,
-
-    {
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-    },0x0B40,
-
-    {
-        0, 1, 2, 3, 4, 5, 6, 7,
-        8, 9, 10, 11, 12, 13, 14, 15,
-        16, 17, 18, 19, 20, 21, 22, 23,
-        24, 25, 26, 27, 28, 29, 30, 31,
-        32, 33, 34, 35, 36, 37, 38, 39,
-        40, 41, 42, 43, 44, 45, 46, 47,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
-    },0x9EC2,
-
-    {
-        0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
-        0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
-        0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
-        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
-        0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02
-    },0xF746,
-
-    {
-        { 0x3E,0x3E,0x3E,0x3E,0x3C,0x3C,0x3C,0x3C },
-        { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF },
-        { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF }
-    },0x6F4B,
-
-    {
-        0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-    },0x69C6,
-
-    {
-        1,
-        {
-            {
-                1,0x02,0x0010,0x20
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            }
-        }
-    },0x0000,
-
-    {
-        1,
-        {
-            {
-                1,0x05,0x0000,0xFF
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            }
-        }
-    },0x0000,
-
-    {
-        1,
-        {
-            {
-                1,0x05,0x0001,0xFF
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            },
-            {
-                0,0,0,0
-            }
-        }
-    },0x0000,
-
-//    { 1, { 1,0x02,0x0010,0x20 }},0xE223,
-//    { 1, { 1,0x05,0x0000,0xFF }},0x9C7B,
-//    { 1, { 1,0x05,0x0001,0xFF }},0x6CFB,
-
-
-    false, {0,0,0,0,0,0,0},0x0000,
-};
-
-//-----------------------------------------------------------------------------------------------------
-TDataBaseBlockPositionData __flash CDataBase::axDataBaseBlocksPositionData[] =
-{
-    { 0, sizeof(axMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
-    { 1, sizeof(axMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
-    { 2, sizeof(axMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
-    { 3, sizeof(axMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
-    { 4, sizeof(axMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
-    { 5, sizeof(axMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
-    { 6, sizeof(axMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
-    { 7, sizeof(axMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
-    { 8, sizeof(axMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
-    { 9, sizeof(axMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-    { 10, sizeof(axMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
-};
-
-//-----------------------------------------------------------------------------------------------------
-uint8_t CDataBase::m_uiStatus;
-TDataBase __farflash *CDataBase::m_pxDataBase;
-TDataBaseBlockPositionData __farflash *CDataBase::m_pxDataBaseBlocksPositionData;
-
-//-----------------------------------------------------------------------------------------------------
-CDataBase::CDataBase()
-{
-//    m_pxDataStore = new CDataStore();
-}
-
-//-----------------------------------------------------------------------------------------------------
-CDataBase::~CDataBase()
-{
-//    delete m_pxDataStore;
-}
+////-----------------------------------------------------------------------------------------------------
+//CDataBase::CDataBase()
+//{
+////    m_pxDataStore = new CDataStore();
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CDataBase::~CDataBase()
+//{
+////    delete m_pxDataStore;
+//}
 
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataBase::RestoreDefault(void)
 {
     // Восстановим БД по умолчанию.
-    uint8_t __farflash *puiDBase;
+    uint8_t __farflash *puiDataBase;
 
-//    CPss21::SetErrorCode(NO_ERROR);
     CPss21::m_xDataStore.Init();
 
     enum
@@ -316,18 +52,12 @@ uint8_t CDataBase::RestoreDefault(void)
             // Записаны не все блоки?
             if (uiBlockCounter < TDataBase::BLOCKS_QUANTITY)
             {
-                // Получим указатель на блок БД во флеш.
-                puiDBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDataBase)[GetBlockOffset(uiBlockCounter)];
                 // Скопируем данные из флеш во временный буфер,
-                // чтобы передать их в функцию по обычному указателю, а не __farflash.
-                for (uint8_t i = 0; i < GetBlockLength(uiBlockCounter); i++)
-                {
-                    CPss21::m_auiIntermediateBuff[i] = puiDBase[i];
-                }
+                uint16_t uiLength = CPss21::m_xDataStore.ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
 
                 // Поместим данные в хранилище.
                 // Блок БД принят к записи?
-                if (Write(CPss21::m_auiIntermediateBuff, GetBlockLength(uiBlockCounter), uiBlockCounter))
+                if (Write(CPss21::m_auiIntermediateBuff, uiLength, uiBlockCounter))
                 {
                     uiFsmState = BLOCK_WRITE_END_WAITING;
                 }
@@ -386,17 +116,24 @@ bool CDataBase::IntegrityCheck(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
-bool CDataBase::UserConfirmationCheck(void)
+void CDataBase::SignatureCreate(void)
 {
-    // База данных подтверждена пользователем?
+    // Создадим Crc из Crc всех блоков.
+    CPss21::m_xDataStore.CrcOfBlocksCrcCreate();
+}
+
+//-----------------------------------------------------------------------------------------------------
+bool CDataBase::SignatureCheck(void)
+{
+    // Crc из Crc всех блоков совпадает?
     return CPss21::m_xDataStore.CrcOfBlocksCrcCheck();
 }
 
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataBase::Check(void)
 {
-    m_pxDataBase = &axMainDataBase;
-    m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
+//    m_pxDataBase = &xMainDataBase;
+//    m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
 
     CPss21::SetErrorCode(NO_ERROR);
     // Блоки базы данных не повреждены?
@@ -406,7 +143,7 @@ uint8_t CDataBase::Check(void)
         if (IntegrityCheck())
         {
             // База данных подтверждена пользователем?
-            if (UserConfirmationCheck())
+            if (SignatureCheck())
             {
                 return 1;
             }
@@ -451,15 +188,9 @@ uint16_t CDataBase::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CDataBase::GetBlockLength(uint8_t uiBlock)
+uint16_t CDataBase::GetBlockLength(uint8_t uiBlock)
 {
-    return m_pxDataBaseBlocksPositionData[uiBlock].Size;
-}
-
-//-----------------------------------------------------------------------------------------------------
-uint16_t CDataBase::GetBlockOffset(uint8_t uiBlock)
-{
-    return m_pxDataBaseBlocksPositionData[uiBlock].Offset;
+    return CPss21::m_xDataStore.GetBlockLength(uiBlock + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
 }
 
 //-----------------------------------------------------------------------------------------------------

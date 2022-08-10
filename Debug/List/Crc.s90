@@ -1,22 +1,23 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  10:49:17
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Aug/2022  01:18:43
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Crc.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWEA35.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWD9FF.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Crc.cpp --cpu=m128a -ms -o
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --debug
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Crc.s90
 //
@@ -32,6 +33,9 @@
 //      accessible from assembler code. Assembling this file will
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE4_L09
 
         PUBLIC ??iCrcSummOneByteCompare
         PUBLIC ??iCrcSummTwoByteCompare
@@ -121,10 +125,13 @@ usCRCTable:
 //   42 uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength)
 ??usCrc16:
 //   43 {
+        MOV     R23, R27
+        MOV     R2, R26
+        MOVW    R27:R26, R17:R16
 //   44     unsigned char ucTemp;
 //   45     uint16_t usCrc = 0xFFFF;
-        LDI     R22, 255
-        LDI     R23, 255
+        LDI     R16, 255
+        LDI     R17, 255
 //   46 
 //   47 //    while (uiLength--)
 //   48 //    {
@@ -135,43 +142,42 @@ usCRCTable:
 //   53 
 //   54     for (uint8_t i = 0; i < uiLength; i++)
         LDI     R20, 0
-        RJMP    ??usCrc16_1
-//   55     {
-//   56         ucTemp = *puiSourse++ ^ usCrc;
-??usCrc16_2:
-        MOVW    R31:R30, R17:R16
-        LD      R21, Z+
-        MOVW    R17:R16, R31:R30
-        EOR     R21, R22
-//   57         usCrc >>= 8;
-//   58         usCrc  ^= usCRCTable[ucTemp];
-        LDI     R30, 2
-        MUL     R21, R30
-        MOVW    R31:R30, R1:R0
-        SUBI    R30, LOW((-(usCRCTable) & 0xFFFF))
-        SBCI    R31, (-(usCRCTable) & 0xFFFF) >> 8
-        LPM     R0, Z+
-        LPM     R1, Z
-        EOR     R23, R0
-        MOV     R22, R23
-        MOV     R23, R1
-//   59     }
-        INC     R20
 ??usCrc16_1:
         LDI     R21, 0
         CP      R20, R18
         CPC     R21, R19
-        BRCS    ??usCrc16_2
+        BRCC    ??usCrc16_2
+//   55     {
+//   56         ucTemp = *puiSourse++ ^ usCrc;
+        LD      R22, X
+        MOV     R21, R16
+        EOR     R22, R21
+        ADIW    R27:R26, 1
+//   57         usCrc >>= 8;
+        MOV     R16, R17
+        LDI     R17, 0
+//   58         usCrc  ^= usCRCTable[ucTemp];
+        MOV     R30, R22
+        LDI     R31, 0
+        LSL     R30
+        ROL     R31
+        SUBI    R30, LOW((-(usCRCTable) & 0xFFFF))
+        SBCI    R31, (-(usCRCTable) & 0xFFFF) >> 8
+        LPM     R0, Z+
+        LPM     R1, Z
+        SBIW    R31:R30, 1
+        EOR     R16, R0
+        EOR     R17, R1
+//   59     }
+        INC     R20
+        RJMP    ??usCrc16_1
 //   60 
 //   61     return usCrc;
-        REQUIRE ?Subroutine1
-        ;               // Fall through to label ?Subroutine1
-//   62 }
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine1:
-        MOVW    R17:R16, R23:R22
+??usCrc16_2:
+        MOV     R26, R2
+        MOV     R27, R23
         RET
+//   62 }
 //   63 
 //   64 
 //   65 ////--------------------------------------------------------------------
@@ -226,20 +232,32 @@ usCRCTable:
 //  111     unsigned char *puiSourse,
 //  112     unsigned int nuiNbyte)
 //  113 {
+        MOVW    R31:R30, R17:R16
 //  114     unsigned short usData;
 //  115 
 //  116     usData = 0;
-        RCALL   ?Subroutine0
+        LDI     R16, 0
+        LDI     R17, 0
 //  117     do
 //  118     {
 //  119         usData += (unsigned short)*puiSourse++;
+??usCrcSummTwoByteCalculation_1:
+        LD      R20, Z
+        LDI     R21, 0
+        ADD     R16, R20
+        ADC     R17, R21
+        ADIW    R31:R30, 1
 //  120         nuiNbyte--;
+        SUBI    R18, 1
+        SBCI    R19, 0
 //  121     }
 //  122     while (nuiNbyte);
+        MOV     R20, R18
+        OR      R20, R19
+        BRNE    ??usCrcSummTwoByteCalculation_1
 //  123 
 //  124     return usData;
-??CrossCallReturnLabel_0:
-        RJMP    ?Subroutine1
+        RET
 //  125 }
 //  126 
 //  127 //-----------------------------------------------------------------------------------------------------
@@ -250,62 +268,63 @@ usCRCTable:
 ??iCrcSummTwoByteCompare:
 //  130                            unsigned int nuiNbyte)
 //  131 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R31:R30, R17:R16
+        MOVW    R25:R24, R19:R18
 //  132     unsigned short usData;
 //  133 
 //  134     usData = 0;
-        RCALL   ?Subroutine0
+        LDI     R18, 0
+        LDI     R19, 0
 //  135     do
 //  136     {
 //  137         usData += (unsigned short)*puiSourse++;
+??iCrcSummTwoByteCompare_1:
+        LD      R16, Z
+        LDI     R17, 0
+        ADD     R18, R16
+        ADC     R19, R17
+        ADIW    R31:R30, 1
 //  138         nuiNbyte--;
+        SBIW    R25:R24, 1
 //  139     }
 //  140     while (nuiNbyte);
+        MOV     R16, R24
+        OR      R16, R25
+        BRNE    ??iCrcSummTwoByteCompare_1
 //  141 
 //  142     if ((unsigned char)usData  == *puiSourse++)
-??CrossCallReturnLabel_1:
-        LD      R19, Z
-        CP      R22, R19
-        BRNE    ??iCrcSummTwoByteCompare_1
+        MOVW    R27:R26, R31:R30
+        MOVW    R31:R30, R27:R26
+        ADIW    R31:R30, 1
+        MOV     R16, R18
+        LD      R17, X
+        CP      R16, R17
+        BRNE    ??iCrcSummTwoByteCompare_2
 //  143     {
 //  144 
 //  145         if ((unsigned char)(usData >> 8)  == *puiSourse)
-        LDD     R16, Z+1
-        CP      R23, R16
-        BRNE    ??iCrcSummTwoByteCompare_1
+        MOVW    R17:R16, R19:R18
+        MOV     R16, R17
+        LDI     R17, 0
+        LD      R17, Z
+        CP      R16, R17
+        BRNE    ??iCrcSummTwoByteCompare_2
 //  146         {
 //  147             return 1;
         LDI     R16, 1
-        RJMP    ??iCrcSummTwoByteCompare_2
+        LDI     R17, 0
+        RJMP    ??iCrcSummTwoByteCompare_3
 //  148         }
 //  149     }
 //  150     return 0;
-??iCrcSummTwoByteCompare_1:
-        LDI     R16, 0
 ??iCrcSummTwoByteCompare_2:
-        REQUIRE ?Subroutine2
-        ;               // Fall through to label ?Subroutine2
-//  151 }
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine2:
+        LDI     R16, 0
         LDI     R17, 0
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine0:
-        LDI     R22, 0
-        LDI     R23, 0
-        LDI     R21, 0
-??Subroutine0_0:
-        MOVW    R31:R30, R17:R16
-        LD      R20, Z+
-        MOVW    R17:R16, R31:R30
-        ADD     R22, R20
-        ADC     R23, R21
-        SUBI    R18, 1
-        SBCI    R19, 0
-        BRNE    ??Subroutine0_0
-        RET
+??iCrcSummTwoByteCompare_3:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  151 }
 //  152 
 //  153 //-----------------------------------------------------------------------------------------------------
 //  154 // вычисл€ет однобайтовую контрольную сумму.
@@ -316,35 +335,35 @@ usCRCTable:
 //  156     uint8_t *puiSourse,
 //  157     uint16_t nuiNbyte)
 //  158 {
+        MOVW    R23:R22, R17:R16
 //  159     uint8_t uiData = 0;
-        LDI     R22, 0
+        LDI     R16, 0
 //  160 
 //  161     for (int8_t i = 0; i < nuiNbyte; i++)
         LDI     R20, 0
-        RJMP    ??usCrcSummOneByteCalculation_1
-//  162     {
-//  163         uiData += puiSourse[i];
-??usCrcSummOneByteCalculation_2:
-        MOV     R21, R20
-        LSL     R21
-        SBC     R21, R21
-        MOVW    R31:R30, R17:R16
-        ADD     R30, R20
-        ADC     R31, R21
-        LD      R21, Z
-        ADD     R22, R21
-//  164     }
-        INC     R20
 ??usCrcSummOneByteCalculation_1:
         MOV     R21, R20
         LSL     R21
         SBC     R21, R21
         CP      R20, R18
         CPC     R21, R19
-        BRCS    ??usCrcSummOneByteCalculation_2
+        BRCC    ??usCrcSummOneByteCalculation_2
+//  162     {
+//  163         uiData += puiSourse[i];
+        MOV     R21, R20
+        LSL     R21
+        SBC     R21, R21
+        MOVW    R31:R30, R23:R22
+        ADD     R30, R20
+        ADC     R31, R21
+        LD      R17, Z
+        ADD     R16, R17
+//  164     }
+        INC     R20
+        RJMP    ??usCrcSummOneByteCalculation_1
 //  165 
 //  166     return uiData;
-        MOV     R16, R22
+??usCrcSummOneByteCalculation_2:
         RET
 //  167 }
 //  168 
@@ -356,42 +375,45 @@ usCRCTable:
 ??iCrcSummOneByteCompare:
 //  172                            unsigned int nuiNbyte)
 //  173 {
-//  174     unsigned char ucData;
+        MOVW    R31:R30, R17:R16
+//  174     unsigned char uiData;
 //  175 
-//  176     ucData = 0;
+//  176     uiData = 0;
         LDI     R20, 0
 //  177     do
 //  178     {
-//  179         ucData += *puiSourse++;
+//  179         uiData += *puiSourse++;
 ??iCrcSummOneByteCompare_1:
-        MOVW    R31:R30, R17:R16
-        LD      R21, Z+
-        MOVW    R17:R16, R31:R30
-        ADD     R20, R21
+        LD      R16, Z
+        ADD     R20, R16
+        ADIW    R31:R30, 1
 //  180         nuiNbyte--;
-//  181     }
-//  182     while ((nuiNbyte) != 0);
         SUBI    R18, 1
         SBCI    R19, 0
+//  181     }
+//  182     while ((nuiNbyte) != 0);
+        MOV     R16, R18
+        OR      R16, R19
         BRNE    ??iCrcSummOneByteCompare_1
 //  183 
-//  184     if (ucData == *puiSourse)
+//  184     if (uiData == *puiSourse)
         LD      R16, Z
         CP      R20, R16
         BRNE    ??iCrcSummOneByteCompare_2
 //  185     {
 //  186         return 1;
         LDI     R16, 1
-        RJMP    ??iCrcSummOneByteCompare_3
+        LDI     R17, 0
+        RET
 //  187     }
 //  188     else
 //  189     {
 //  190         return 0;
 ??iCrcSummOneByteCompare_2:
         LDI     R16, 0
+        LDI     R17, 0
+        RET
 //  191     }
-??iCrcSummOneByteCompare_3:
-        RJMP    ?Subroutine2
 //  192 }
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -409,10 +431,10 @@ __?EEARH:
         END
 //  193 
 // 
-// 172 bytes in segment CODE
+// 242 bytes in segment CODE
 // 512 bytes in segment NEAR_F
 // 
-// 684 bytes of CODE memory
+// 754 bytes of CODE memory
 //
 //Errors: none
 //Warnings: none

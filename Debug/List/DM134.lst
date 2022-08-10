@@ -1,22 +1,23 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           09/Aug/2022  11:06:59
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Aug/2022  12:40:24
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW1EF3.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EWF798.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp --cpu=m128a -ms -o
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --debug
+#        --initializers_in_flash --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DM134.lst
 #    Object file  =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\DM134.r90
@@ -493,6 +494,111 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
    \   union <unnamed> volatile __io _A_PINF
    \                     _A_PINF:
    \   00000000                      DS8 1
+
+      static __flash TDataBase CFlash::xMainDataBase;
+                               ^
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",359  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+
+      static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
+                                                ^
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",360  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverClockSetPinOutput()
+   \                     ??LedDriverClockSetPinOutput:
+   \   00000000   91000061           LDS     R16, 97
+   \   00000004   6004               ORI     R16, 0x04
+   \   00000006   93000061           STS     97, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_DDRF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverClockOn()
+   \                     ??LedDriverClockOn:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6004               ORI     R16, 0x04
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverClockOff()
+   \                     ??LedDriverClockOff:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   7F0B               ANDI    R16, 0xFB
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverSerialInSetPinOutput()
+   \                     ??LedDriverSerialInSetPinOutput:
+   \   00000000   91000061           LDS     R16, 97
+   \   00000004   6100               ORI     R16, 0x10
+   \   00000006   93000061           STS     97, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_DDRF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverSerialInOn()
+   \                     ??LedDriverSerialInOn:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6100               ORI     R16, 0x10
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverSerialInOff()
+   \                     ??LedDriverSerialInOff:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   7E0F               ANDI    R16, 0xEF
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverLatchSetPinOutput()
+   \                     ??LedDriverLatchSetPinOutput:
+   \   00000000   91000061           LDS     R16, 97
+   \   00000004   6002               ORI     R16, 0x02
+   \   00000006   93000061           STS     97, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_DDRF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverLatchOn()
+   \                     ??LedDriverLatchOn:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   7F0D               ANDI    R16, 0xFD
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverLatchOff()
+   \                     ??LedDriverLatchOff:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6002               ORI     R16, 0x02
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverDelay1uS()
+   \                     ??LedDriverDelay1uS:
+   \   00000000   0000               NOP
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::LedDriverDelay5uS()
+   \                     ??LedDriverDelay5uS:
+   \   00000000   C000               RJMP    $+2
+   \   00000002   C000               RJMP    $+2
+   \   00000004   0000               NOP
+   \   00000006   9508               RET
      10          #include "Pss21.h"
      11          #include "LightBoard.h"
      12          
@@ -502,17 +608,22 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
      14          CDM134::CDM134()
    \                     ??CDM134:
      15          {
-   \   00000000   01F8               MOVW    R31:R30, R17:R16
-   \   00000002   ....               LDI     R16, LOW(??__vtbl_2)
-   \   00000004   ....               LDI     R17, (??__vtbl_2) >> 8
-   \   00000006   8300               ST      Z, R16
-   \   00000008   8311               STD     Z+1, R17
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   ....               LDI     R16, LOW(??__vtbl_2)
+   \   00000008   ....               LDI     R17, (??__vtbl_2) >> 8
+   \   0000000A   930D               ST      X+, R16
+   \   0000000C   931C               ST      X, R17
+   \   0000000E   9711               SBIW    R27:R26, 1
      16              Init();
-   \   0000000A   018F               MOVW    R17:R16, R31:R30
-   \   0000000C   ....               RCALL   ??Init
+   \   00000010   018D               MOVW    R17:R16, R27:R26
+   \   00000012   ....               RCALL   ??Init
      17          }
-   \   0000000E   018F               MOVW    R17:R16, R31:R30
-   \   00000010   9508               RET
+   \   00000014   018D               MOVW    R17:R16, R27:R26
+   \   00000016   91A9               LD      R26, Y+
+   \   00000018   91B9               LD      R27, Y+
+   \   0000001A   9508               RET
      18          
      19          //-----------------------------------------------------------------------------------------------------
 
@@ -520,16 +631,22 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
      20          CDM134::~CDM134()
    \                     `?~CDM134`:
      21          {
-   \   00000000   2F40               MOV     R20, R16
-   \   00000002   2B41               OR      R20, R17
-   \   00000004   F021               BREQ    `?~CDM134_1`
-   \   00000006   FB20               BST     R18, 0
-   \   00000008   F416               BRTC    `?~CDM134_1`
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   2F08               MOV     R16, R24
+   \   00000008   2B09               OR      R16, R25
+   \   0000000A   F029               BREQ    `?~CDM134_1`
+   \   0000000C   FB20               BST     R18, 0
+   \   0000000E   F41E               BRTC    `?~CDM134_1`
      22          
      23          }
-   \   0000000A   ........           CALL    `??operator delete`
+   \   00000010   018C               MOVW    R17:R16, R25:R24
+   \   00000012   ........           CALL    `??operator delete`
    \                     `?~CDM134_1`:
-   \   0000000E   9508               RET
+   \   00000016   9189               LD      R24, Y+
+   \   00000018   9199               LD      R25, Y+
+   \   0000001A   9508               RET
      24          
      25          //-----------------------------------------------------------------------------------------------------
 
@@ -537,43 +654,25 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
      26          void CDM134::Init(void)
    \                     ??Init:
      27          {
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
      28              CPlatform::LedDriverClockOff();
-   \   00000000   ....               RCALL   ?Subroutine2
-   \                     ??CrossCallReturnLabel_2:
-   \   00000002   7F0B               ANDI    R16, 0xFB
-   \   00000004   ....               RCALL   ?Subroutine3
+   \   00000006   ........           CALL    ??LedDriverClockOff
      29              CPlatform::LedDriverSerialInOff();
-   \                     ??CrossCallReturnLabel_6:
-   \   00000006   ....               RCALL   ?Subroutine2
-   \                     ??CrossCallReturnLabel_3:
-   \   00000008   7E0F               ANDI    R16, 0xEF
-   \   0000000A   ....               RCALL   ?Subroutine3
+   \   0000000A   ........           CALL    ??LedDriverSerialInOff
      30              CPlatform::LedDriverLatchOff();
-   \                     ??CrossCallReturnLabel_7:
-   \   0000000C   ....               RCALL   ?Subroutine0
+   \   0000000E   ........           CALL    ??LedDriverLatchOff
      31              CPlatform::LedDriverClockSetPinOutput();
-   \                     ??CrossCallReturnLabel_8:
-   \   0000000E   91000061           LDS     R16, 97
-   \   00000012   6004               ORI     R16, 0x04
-   \   00000014   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_0:
-   \   00000016   6100               ORI     R16, 0x10
-   \   00000018   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_1:
-   \   0000001A   6002               ORI     R16, 0x02
-   \   0000001C   93000061           STS     97, R16
+   \   00000012   ........           CALL    ??LedDriverClockSetPinOutput
      32              CPlatform::LedDriverSerialInSetPinOutput();
+   \   00000016   ........           CALL    ??LedDriverSerialInSetPinOutput
      33              CPlatform::LedDriverLatchSetPinOutput();
+   \   0000001A   ........           CALL    ??LedDriverLatchSetPinOutput
      34          }
-   \   00000020   9508               RET
-   \   00000022                      REQUIRE _A_DDRF
-   \   00000022                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine1:
-   \   00000000   93000061           STS     97, R16
-   \   00000004   91000061           LDS     R16, 97
-   \   00000008   9508               RET
+   \   0000001E   9189               LD      R24, Y+
+   \   00000020   9199               LD      R25, Y+
+   \   00000022   9508               RET
      35          
      36          //-----------------------------------------------------------------------------------------------------
 
@@ -581,65 +680,61 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
      37          void CDM134::Set(uint8_t* puiBoardLampsControl, uint8_t uiLampNumber)
    \                     ??Set:
      38          {
+   \   00000000   ........           CALL    ?PROLOGUE7_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R5_is_cg_reg
+   \   00000004                      REQUIRE ?Register_R6_is_cg_reg
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
+   \   00000008   2E64               MOV     R6, R20
      39              for(uint8_t i = 0; i < uiLampNumber; i++)
-   \   00000000   E000               LDI     R16, 0
-   \   00000002   C00F               RJMP    ??Set_1
+   \   0000000A   2444               CLR     R4
+   \                     ??Set_1:
+   \   0000000C   1446               CP      R4, R6
+   \   0000000E   F4A0               BRCC    ??Set_2
      40              {
      41                  if(puiBoardLampsControl[i])
+   \   00000010   2455               CLR     R5
+   \   00000012   01FC               MOVW    R31:R30, R25:R24
+   \   00000014   0DE4               ADD     R30, R4
+   \   00000016   1DF5               ADC     R31, R5
+   \   00000018   8100               LD      R16, Z
+   \   0000001A   2300               TST     R16
+   \   0000001C   F019               BREQ    ??Set_3
      42                  {
      43                      CPlatform::LedDriverSerialInOn();
+   \   0000001E   ........           CALL    ??LedDriverSerialInOn
+   \   00000022   C002               RJMP    ??Set_4
      44                  }
      45                  else
      46                  {
      47                      CPlatform::LedDriverSerialInOff();
-   \                     ??Set_2:
-   \   00000004   7E1F               ANDI    R17, 0xEF
    \                     ??Set_3:
-   \   00000006   93100062           STS     98, R17
+   \   00000024   ........           CALL    ??LedDriverSerialInOff
      48                  }
      49          
      50          
      51                  CPlatform::LedDriverClockOn();
-   \   0000000A   91100062           LDS     R17, 98
-   \   0000000E   6014               ORI     R17, 0x04
-   \   00000010   93100062           STS     98, R17
+   \                     ??Set_4:
+   \   00000028   ........           CALL    ??LedDriverClockOn
      52                  CPlatform::LedDriverDelay1uS();
-   \   00000014   0000               NOP
+   \   0000002C   ........           CALL    ??LedDriverDelay1uS
      53                  CPlatform::LedDriverClockOff();
-   \   00000016   91100062           LDS     R17, 98
-   \   0000001A   7F1B               ANDI    R17, 0xFB
-   \   0000001C   93100062           STS     98, R17
-   \   00000020   9503               INC     R16
-   \                     ??Set_1:
-   \   00000022   1704               CP      R16, R20
-   \   00000024   F458               BRCC    ??Set_4
-   \   00000026   E010               LDI     R17, 0
-   \   00000028   01F9               MOVW    R31:R30, R19:R18
-   \   0000002A   0FE0               ADD     R30, R16
-   \   0000002C   1FF1               ADC     R31, R17
-   \   0000002E   8110               LD      R17, Z
-   \   00000030   2311               TST     R17
-   \   00000032   91100062           LDS     R17, 98
-   \   00000036   F331               BREQ    ??Set_2
-   \   00000038   6110               ORI     R17, 0x10
-   \   0000003A   CFE5               RJMP    ??Set_3
+   \   00000030   ........           CALL    ??LedDriverClockOff
      54              }
+   \   00000034   9443               INC     R4
+   \   00000036   CFEA               RJMP    ??Set_1
      55          
      56              CPlatform::LedDriverLatchOff();
-   \                     ??Set_4:
-   \   0000003C   ....               RCALL   ?Subroutine0
+   \                     ??Set_2:
+   \   00000038   ........           CALL    ??LedDriverLatchOff
      57              CPlatform::LedDriverDelay5uS();
-   \                     ??CrossCallReturnLabel_9:
-   \   0000003E   C000               RJMP    $+2
-   \   00000040   C000               RJMP    $+2
-   \   00000042   0000               NOP
+   \   0000003C   ........           CALL    ??LedDriverDelay5uS
      58              CPlatform::LedDriverLatchOn();
-   \   00000044   ....               RCALL   ?Subroutine2
-   \                     ??CrossCallReturnLabel_4:
-   \   00000046   7F0D               ANDI    R16, 0xFD
-   \   00000048   ....               RJMP    ?Subroutine3
-   \   0000004A                      REQUIRE _A_PORTF
+   \   00000040   ........           CALL    ??LedDriverLatchOn
      59          }
+   \   00000044   E0E7               LDI     R30, 7
+   \   00000046   ........           JMP     ?EPILOGUE_B7_L09
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CDM134 &CDM134::new CDM134()
@@ -649,59 +744,74 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
    \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F009               BREQ    `??new CDM134_1`
-   \   0000000E   ....               RJMP    ??CDM134
+   \   0000000C   F011               BREQ    `??new CDM134_1`
+   \   0000000E   ....               RCALL   ??CDM134
+   \   00000010   9508               RET
    \                     `??new CDM134_1`:
-   \   00000010   E000               LDI     R16, 0
-   \   00000012   E010               LDI     R17, 0
-   \   00000014   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine2:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine0:
-   \   00000000   ....               RCALL   ?Subroutine2
-   \                     ??CrossCallReturnLabel_5:
-   \   00000002   6002               ORI     R16, 0x02
-   \   00000004                      REQUIRE ?Subroutine3
-   \   00000004                      ;               // Fall through to label ?Subroutine3
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine3:
-   \   00000000   93000062           STS     98, R16
-   \   00000004   9508               RET
+   \   00000012   E000               LDI     R16, 0
+   \   00000014   E010               LDI     R17, 0
+   \   00000016   9508               RET
 
    Maximum stack usage in bytes:
 
-   RSTACK Function
-   ------ --------
-      2   CDM134::CDM134()
-        2   -> CDM134::Init()
-      2   CDM134::Init()
-      2   CDM134::Set(uint8_t *, uint8_t)
-      2   CDM134::new CDM134()
-        2   -> CDM134::CDM134()
-        2   -> operator new(unsigned int)
-      2   CDM134::~CDM134()
-        2   -> operator delete(void *)
+   CSTACK RSTACK Function
+   ------ ------ --------
+      2      2   CDM134::CDM134()
+        2      2   -> CDM134::Init()
+      2      2   CDM134::Init()
+        2      2   -> CPlatform::LedDriverClockOff()
+        2      2   -> CPlatform::LedDriverClockSetPinOutput()
+        2      2   -> CPlatform::LedDriverLatchOff()
+        2      2   -> CPlatform::LedDriverLatchSetPinOutput()
+        2      2   -> CPlatform::LedDriverSerialInOff()
+        2      2   -> CPlatform::LedDriverSerialInSetPinOutput()
+      7      2   CDM134::Set(uint8_t *, uint8_t)
+        7      2   -> CPlatform::LedDriverClockOff()
+        7      2   -> CPlatform::LedDriverClockOn()
+        7      2   -> CPlatform::LedDriverDelay1uS()
+        7      2   -> CPlatform::LedDriverDelay5uS()
+        7      2   -> CPlatform::LedDriverLatchOff()
+        7      2   -> CPlatform::LedDriverLatchOn()
+        7      2   -> CPlatform::LedDriverSerialInOff()
+        7      2   -> CPlatform::LedDriverSerialInOn()
+      0      2   CDM134::new CDM134()
+        0      2   -> CDM134::CDM134()
+        0      2   -> operator new(unsigned int)
+      2      2   CDM134::~CDM134()
+        2      2   -> operator delete(void *)
+      0      2   CPlatform::LedDriverClockOff()
+      0      2   CPlatform::LedDriverClockOn()
+      0      2   CPlatform::LedDriverClockSetPinOutput()
+      0      2   CPlatform::LedDriverDelay1uS()
+      0      2   CPlatform::LedDriverDelay5uS()
+      0      2   CPlatform::LedDriverLatchOff()
+      0      2   CPlatform::LedDriverLatchOn()
+      0      2   CPlatform::LedDriverLatchSetPinOutput()
+      0      2   CPlatform::LedDriverSerialInOff()
+      0      2   CPlatform::LedDriverSerialInOn()
+      0      2   CPlatform::LedDriverSerialInSetPinOutput()
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-       4  ?Subroutine0
-      10  ?Subroutine1
-       6  ?Subroutine2
-       6  ?Subroutine3
-      18  CDM134::CDM134()
-      34  CDM134::Init()
+      28  CDM134::CDM134()
+      36  CDM134::Init()
       74  CDM134::Set(uint8_t *, uint8_t)
-      22  CDM134::new CDM134()
-      16  CDM134::~CDM134()
+      24  CDM134::new CDM134()
+      28  CDM134::~CDM134()
+      12  CPlatform::LedDriverClockOff()
+      12  CPlatform::LedDriverClockOn()
+      12  CPlatform::LedDriverClockSetPinOutput()
+       4  CPlatform::LedDriverDelay1uS()
+       8  CPlatform::LedDriverDelay5uS()
+      12  CPlatform::LedDriverLatchOff()
+      12  CPlatform::LedDriverLatchOn()
+      12  CPlatform::LedDriverLatchSetPinOutput()
+      12  CPlatform::LedDriverSerialInOff()
+      12  CPlatform::LedDriverSerialInOn()
+      12  CPlatform::LedDriverSerialInSetPinOutput()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -798,11 +908,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
 
  
  105 bytes in segment ABSOLUTE
- 190 bytes in segment CODE
+ 310 bytes in segment CODE
   38 bytes in segment NEAR_F
  
- 226 bytes of CODE memory (+   2 bytes shared)
+ 226 bytes of CODE memory (+ 122 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
-Warnings: none
+Warnings: 2

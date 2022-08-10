@@ -270,6 +270,7 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
             }
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//            GetAlarmWindowPointer() -> SetAlarmType(ALARM_TYPE());
             SetFsmState(NOT_ACTIVE_STATE_WAITING);
         }
         break;
@@ -282,6 +283,7 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
             CPss21::AlarmTypeReset();
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//            GetAlarmWindowPointer() -> SetAlarmType(NORMAL);
             SetFsmState(ACTIVE_STATE_WAITING);
         }
         else

@@ -56,14 +56,21 @@ uint8_t CMvsn21Driver::DataExchange(void)
                     ONE_BYTE_CRC_LENGTH));
     CPss21::DisconnectDevice();
 
+        COMMAND_BYTE_OFFSET = 1,
+        COMMAND_BYTE_LENGTH = 1,
     // что ответил модуль?
     switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
     {
     case DATA_READY:
-        // данные не повреждены?
+//        // данные не повреждены?
+//        //debag//if ((iCrcSummOneByteCompare(&m_puiRxBuffer[DATA_BYTE_OFFSET],
+//                                    (DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
+//                                     ONE_BYTE_CRC_LENGTH)) > 0) &&
+//                ((m_puiRxBuffer[DATA_BYTE_OFFSET +
+//                                DATA_EXCHANGE_COMMAND_ANSWER_LENGTH]) != 0))
         if ((iCrcSummOneByteCompare(&m_puiRxBuffer[COMMAND_BYTE_OFFSET],
-                                    (COMMAND_BYTE_LENGTH +
-                                     DATA_EXCHANGE_COMMAND_ANSWER_LENGTH)) > 0))
+                                     ONE_BYTE_CRC_LENGTH +
+                                    DATA_EXCHANGE_COMMAND_ANSWER_LENGTH) > 0))
         {
             m_uiBadAnswerCounter = 0;
             // отправим полученные от модуля данные в рабочий массив прибора.
@@ -80,7 +87,7 @@ uint8_t CMvsn21Driver::DataExchange(void)
                     if (j & 0x01)
                     {
                         //                            // бит достоверен? 0 - достоверно, 1 - недостоверно.
-//                            *puiDestination2++ = ((uiData & (1 << j)) ? 1 : 0);
+//                            *puiDestination2++ = ((ucData & (1 << j)) ? 1 : 0);
                     }
                     else
                     {
