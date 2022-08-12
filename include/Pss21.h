@@ -91,6 +91,7 @@ public:
     static void DiscreteOutputControlClear(void);
     static void ConfigurationInit(void);
     static void AlarmTypeChange(void);
+    static void AlarmTypeErrorChange(void);
     static void AlarmTypeReceipt(void);
     static uint8_t GetDiscreteInputState(uint8_t uiIndex);
     static void SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData);
@@ -108,7 +109,7 @@ public:
     static void ActiveAlarmWindowOn(uint8_t uiAlarmType);
     static void ActiveAlarmWindowOff(uint8_t uiAlarmType);
     static void AllAlarmWindowOn(uint8_t uiAlarmType);
-    static void ErrorWindowOn(uint8_t uiErrorType);
+    static void ErrorWindowOn(uint8_t uiIndex);
     static void AllAlarmWindowOff(void);
     static void TestMainCycle(void);
     static void ErrorMainCycle(void);
@@ -199,6 +200,15 @@ public:
     static uint8_t GetCommonAlarmType(void)
     {
         return m_uiCommonAlarmType;
+    };
+
+    static void SetCommonAlarmTypePrevious(uint8_t uiData)
+    {
+        m_uiCommonAlarmTypePrevious = uiData;
+    };
+    static uint8_t GetCommonAlarmTypePrevious(void)
+    {
+        return m_uiCommonAlarmTypePrevious;
     };
 
     static void SetErrorCode(uint8_t uiData)

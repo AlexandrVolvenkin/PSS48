@@ -61,14 +61,17 @@ void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConex
     uiUsedDiscreteOutputDataBase +=
         MR_DISCRETE_OUTPUT_NUMBER;
 
-    // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+//    // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+//    m_puiErrorAlarmDataArray =
+//        &xMemoryAllocationConext.
+//        puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
+//    // Увеличим общий объём выделенной памяти.
+//    xMemoryAllocationConext.
+//    uiUsedErrorAlarmDataArray +=
+//        ERROR_TYPE_LENGTH;
     m_puiErrorAlarmDataArray =
         &xMemoryAllocationConext.
-        puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
-    // Увеличим общий объём выделенной памяти.
-    xMemoryAllocationConext.
-    uiUsedErrorAlarmDataArray +=
-        ERROR_TYPE_LENGTH;
+        puiErrorAlarmDataArray[DISCRETE_OUTPUT_MODULE_FAILURE];
 
     m_uiBadAnswerCounter = 0;
 }

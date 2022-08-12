@@ -321,11 +321,11 @@ void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationCon
     xMemoryAllocationConext.uiUsedDiscreteOutputDataBase = 0;
     // Подключим буфер с базой данных модулей дискретных выходов.
     xMemoryAllocationConext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
-    
+
     // Обнулим общий объём выделенной памяти.
     xMemoryAllocationConext.uiUsedErrorAlarmDataArray = 0;
     // Подключим буфер для хранения состояний ошибок.
-    xMemoryAllocationConext.puiErrorAlarmDataArray = &m_xDiscreteOutputDataBase;
+    xMemoryAllocationConext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -692,9 +692,6 @@ void CPss21::ConfigurationInit(void)
     for (uint8_t i = 0;
             i < DISCRETE_INPUTS_NUMBER;
         )
-//    for (uint8_t i = 0;
-//            i < DISCRETE_SIGNALS_NUMBER;
-//        )
     {
         uint8_t uiData = *puiTempBuffer;
         for (uint8_t j = 0;
@@ -1069,6 +1066,20 @@ void CPss21::AlarmTypeChange(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::AlarmTypeErrorChange(void)
+{
+    if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+    {
+        m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+
+        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+        m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
 void CPss21::AlarmTypeReceipt(void)
 {
     m_uiCommonAlarmType = INDICATION;
@@ -1146,6 +1157,15 @@ void CPss21::DiscreteSignalsProcessing(void)
     ErrorAlarmsProcessing();
     SetDiscreteSignalsReceipt(0);
     SetDiscreteSignalsReset(0);
+
+//debag//
+    for (uint8_t i = 0;
+            i < ALARM_WINDOWS_NUMBER;
+            i++)
+    {
+        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(m_axAlarmWindowControl[i].GetActivityState()) << 8) | i);
+
+    };
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1208,19 +1228,25 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CPss21::ErrorWindowOn(uint8_t uiErrorType)
+void CPss21::ErrorWindowOn(uint8_t uiIndex)
 {
     // Актмвируем окна сигнализации - ошибка.
     for (uint8_t i = 0;
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-        m_axAlarmWindowControl[i].SetActivityState(m_auiErrorLedOn[i]);
+        if (m_auiErrorLedOn[i])
+        {
+            // Актмвизируем окно сигнализации, для отображения извещателем.
+            m_axAlarmWindowControl[i].SetAlarmType(INDICATION);
+            m_axAlarmWindowControl[i].SetActivityState(1);
+        }
     };
 
     if ((uiErrorType != 0) ||
             (uiErrorType < ALARM_WINDOWS_NUMBER))
     {
+        m_axAlarmWindowControl[uiErrorType - 1].SetAlarmType(INDICATION);
         m_axAlarmWindowControl[uiErrorType - 1].SetActivityState(0);
     }
 

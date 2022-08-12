@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  08:23:27
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  10:44:24
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW87C4.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW943C.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -740,84 +740,80 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000098   5F08               SUBI    R16, 248
    \   0000009A   8B02               STD     Z+18, R16
      63          
-     64              // Получим указатель на место в массиве состояний ошибок для текущего модуля.
-     65              m_puiErrorAlarmDataArray =
-     66                  &xMemoryAllocationConext.
-     67                  puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
+     64          //    // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+     65          //    m_puiErrorAlarmDataArray =
+     66          //        &xMemoryAllocationConext.
+     67          //        puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
+     68          //    // Увеличим общий объём выделенной памяти.
+     69          //    xMemoryAllocationConext.
+     70          //    uiUsedErrorAlarmDataArray +=
+     71          //        ERROR_TYPE_LENGTH;
+     72              m_puiErrorAlarmDataArray =
+     73                  &xMemoryAllocationConext.
+     74                  puiErrorAlarmDataArray[DISCRETE_OUTPUT_MODULE_FAILURE];
    \   0000009C   01F9               MOVW    R31:R30, R19:R18
-   \   0000009E   8943               LDD     R20, Z+19
-   \   000000A0   8954               LDD     R21, Z+20
-   \   000000A2   01F9               MOVW    R31:R30, R19:R18
-   \   000000A4   8905               LDD     R16, Z+21
-   \   000000A6   E010               LDI     R17, 0
-   \   000000A8   0F40               ADD     R20, R16
-   \   000000AA   1F51               ADC     R21, R17
-   \   000000AC   01FD               MOVW    R31:R30, R27:R26
-   \   000000AE   8347               STD     Z+7, R20
-   \   000000B0   8750               STD     Z+8, R21
-     68              // Увеличим общий объём выделенной памяти.
-     69              xMemoryAllocationConext.
-     70              uiUsedErrorAlarmDataArray +=
-     71                  ERROR_TYPE_LENGTH;
-   \   000000B2   01F9               MOVW    R31:R30, R19:R18
-   \   000000B4   8905               LDD     R16, Z+21
-   \   000000B6   9503               INC     R16
-   \   000000B8   8B05               STD     Z+21, R16
-     72          
-     73              m_uiBadAnswerCounter = 0;
-   \   000000BA   01FD               MOVW    R31:R30, R27:R26
-   \   000000BC   E000               LDI     R16, 0
-   \   000000BE   8F05               STD     Z+29, R16
-     74          }
-   \   000000C0   01D1               MOVW    R27:R26, R3:R2
-   \   000000C2   9508               RET
+   \   0000009E   8903               LDD     R16, Z+19
+   \   000000A0   8914               LDD     R17, Z+20
+   \   000000A2   5F0F               SUBI    R16, 255
+   \   000000A4   4F1F               SBCI    R17, 255
+   \   000000A6   01FD               MOVW    R31:R30, R27:R26
+   \   000000A8   8307               STD     Z+7, R16
+   \   000000AA   8710               STD     Z+8, R17
      75          
-     76          ////-----------------------------------------------------------------------------------------------------
-     77          //uint16_t CModuleMrXXDriver::ReportType(uint8_t *puiDestination, uint16_t uiLength)
-     78          //{
-     79          //    memset(m_puiTxBuffer, 0, 4);
-     80          //    uint8_t uiLengthLocal = 0;
-     81          //    m_puiTxBuffer[uiLengthLocal++] = GET_MODULE_TYPE_COMMAND;
-     82          //    m_puiTxBuffer[uiLengthLocal++] = 0;
-     83          //    m_puiTxBuffer[uiLengthLocal++] = 0;
-     84          //    m_puiTxBuffer[uiLengthLocal++] = 0;
+     76              m_uiBadAnswerCounter = 0;
+   \   000000AC   01FD               MOVW    R31:R30, R27:R26
+   \   000000AE   E000               LDI     R16, 0
+   \   000000B0   8F05               STD     Z+29, R16
+     77          }
+   \   000000B2   01D1               MOVW    R27:R26, R3:R2
+   \   000000B4   9508               RET
+     78          
+     79          ////-----------------------------------------------------------------------------------------------------
+     80          //uint16_t CModuleMrXXDriver::ReportType(uint8_t *puiDestination, uint16_t uiLength)
+     81          //{
+     82          //    memset(m_puiTxBuffer, 0, 4);
+     83          //    uint8_t uiLengthLocal = 0;
+     84          //    m_puiTxBuffer[uiLengthLocal++] = GET_MODULE_TYPE_COMMAND;
      85          //    m_puiTxBuffer[uiLengthLocal++] = 0;
-     86          //    CPss21::ConnectDevice(m_uiAddress);
-     87          //    delay_us(500);
-     88          //    CSpi::Exchange(m_puiRxBuffer, m_puiTxBuffer, uiLengthLocal);
-     89          //    CPss21::DisconnectDevice();
-     90          //}
-     91          
-     92          //-----------------------------------------------------------------------------------------------------
+     86          //    m_puiTxBuffer[uiLengthLocal++] = 0;
+     87          //    m_puiTxBuffer[uiLengthLocal++] = 0;
+     88          //    m_puiTxBuffer[uiLengthLocal++] = 0;
+     89          //    CPss21::ConnectDevice(m_uiAddress);
+     90          //    delay_us(500);
+     91          //    CSpi::Exchange(m_puiRxBuffer, m_puiTxBuffer, uiLengthLocal);
+     92          //    CPss21::DisconnectDevice();
+     93          //}
+     94          
+     95          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-     93          uint8_t CModuleMrXXDriver::WriteDataBase(void)
+     96          uint8_t CModuleMrXXDriver::WriteDataBase(void)
    \                     ??WriteDataBase:
-     94          {
+     97          {
    \   00000000   ........           CALL    ?PROLOGUE6_L09
    \   00000004                      REQUIRE ?Register_R4_is_cg_reg
    \   00000004                      REQUIRE ?Register_R5_is_cg_reg
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-     95              uint16_t usData;
-     96              uint8_t *puiDestination;
-     97          
-     98              puiDestination = &m_puiTxBuffer[DATA_BYTE_OFFSET];
+     98              uint16_t usData;
+     99              uint8_t *puiDestination;
+    100          
+    101              puiDestination = &m_puiTxBuffer[DATA_BYTE_OFFSET];
    \   00000006   01FD               MOVW    R31:R30, R27:R26
    \   00000008   8903               LDD     R16, Z+19
    \   0000000A   8914               LDD     R17, Z+20
    \   0000000C   5F0E               SUBI    R16, 254
    \   0000000E   4F1F               SBCI    R17, 255
    \   00000010   01C8               MOVW    R25:R24, R17:R16
-     99          
-    100              // При загрузке БД в МР передается только байт 0 описателя каждого выхода.
-    101              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
+    102          
+    103              // При загрузке БД в МР передается только байт 0 описателя каждого выхода.
+    104              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
    \   00000012   E000               LDI     R16, 0
    \                     ??WriteDataBase_1:
    \   00000014   3008               CPI     R16, 8
    \   00000016   F478               BRCC    ??WriteDataBase_2
-    102              {
-    103                  puiDestination[i] =
-    104                      m_pxDiscreteOutputDataBase -> DiscreteOutputModuleDataBase[i];
+    105              {
+    106                  puiDestination[i] =
+    107                      m_pxDiscreteOutputDataBase -> DiscreteOutputModuleDataBase[i];
    \   00000018   01FD               MOVW    R31:R30, R27:R26
    \   0000001A   8D23               LDD     R18, Z+27
    \   0000001C   8D34               LDD     R19, Z+28
@@ -831,51 +827,51 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000002C   0FE0               ADD     R30, R16
    \   0000002E   1FF1               ADC     R31, R17
    \   00000030   8320               ST      Z, R18
-    105              }
+    108              }
    \   00000032   9503               INC     R16
    \   00000034   CFEF               RJMP    ??WriteDataBase_1
-    106          
-    107              usData = usCrcSummTwoByteCalculation(puiDestination,
-    108                                                   MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH);
+    109          
+    110              usData = usCrcSummTwoByteCalculation(puiDestination,
+    111                                                   MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH);
    \                     ??WriteDataBase_2:
    \   00000036   E028               LDI     R18, 8
    \   00000038   E030               LDI     R19, 0
    \   0000003A   018C               MOVW    R17:R16, R25:R24
    \   0000003C   ........           CALL    ??usCrcSummTwoByteCalculation
    \   00000040   0128               MOVW    R5:R4, R17:R16
-    109              puiDestination = &m_puiTxBuffer[DATA_BYTE_OFFSET +
-    110                                              MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH];
+    112              puiDestination = &m_puiTxBuffer[DATA_BYTE_OFFSET +
+    113                                              MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH];
    \   00000042   01FD               MOVW    R31:R30, R27:R26
    \   00000044   8903               LDD     R16, Z+19
    \   00000046   8914               LDD     R17, Z+20
    \   00000048   5F06               SUBI    R16, 246
    \   0000004A   4F1F               SBCI    R17, 255
    \   0000004C   01C8               MOVW    R25:R24, R17:R16
-    111              *puiDestination++ = (uint8_t)usData;
+    114              *puiDestination++ = (uint8_t)usData;
    \   0000004E   2D04               MOV     R16, R4
    \   00000050   01FC               MOVW    R31:R30, R25:R24
    \   00000052   8300               ST      Z, R16
    \   00000054   9601               ADIW    R25:R24, 1
-    112              *puiDestination = (uint8_t)(usData >> 8);
+    115              *puiDestination = (uint8_t)(usData >> 8);
    \   00000056   0182               MOVW    R17:R16, R5:R4
    \   00000058   2F01               MOV     R16, R17
    \   0000005A   E010               LDI     R17, 0
    \   0000005C   01FC               MOVW    R31:R30, R25:R24
    \   0000005E   8300               ST      Z, R16
-    113          
-    114              m_puiTxBuffer[0] = MRXX_SET_DATA_BASE_COMMAND;
+    116          
+    117              m_puiTxBuffer[0] = MRXX_SET_DATA_BASE_COMMAND;
    \   00000060   01FD               MOVW    R31:R30, R27:R26
    \   00000062   8903               LDD     R16, Z+19
    \   00000064   8914               LDD     R17, Z+20
    \   00000066   01F8               MOVW    R31:R30, R17:R16
    \   00000068   E801               LDI     R16, 129
    \   0000006A   8300               ST      Z, R16
-    115          
-    116              CPss21::ConnectDevice(m_uiAddress);
+    118          
+    119              CPss21::ConnectDevice(m_uiAddress);
    \   0000006C   01FD               MOVW    R31:R30, R27:R26
    \   0000006E   8900               LDD     R16, Z+16
    \   00000070   ........           CALL    ??ConnectDevice
-    117              delay_us(500);
+    120              delay_us(500);
    \   00000074   E60A               LDI     R16, 106
    \   00000076   E013               LDI     R17, 3
    \   00000078   5001               SUBI    R16, 1
@@ -883,12 +879,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000007C   F7E9               BRNE    $-4
    \   0000007E   C000               RJMP    $+2
    \   00000080   0000               NOP
-    118              CSpi::Exchange(m_puiRxBuffer,
-    119                             m_puiTxBuffer,
-    120                             (PRIAMBLE_LENGTH +
-    121                              MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH +
-    122                              TWO_BYTE_CRC_LENGTH +
-    123                              DATA_EXCHANGE_OK_LENGTH));
+    121              CSpi::Exchange(m_puiRxBuffer,
+    122                             m_puiTxBuffer,
+    123                             (PRIAMBLE_LENGTH +
+    124                              MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH +
+    125                              TWO_BYTE_CRC_LENGTH +
+    126                              DATA_EXCHANGE_OK_LENGTH));
    \   00000082   E04D               LDI     R20, 13
    \   00000084   E050               LDI     R21, 0
    \   00000086   01FD               MOVW    R31:R30, R27:R26
@@ -898,11 +894,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000008E   8901               LDD     R16, Z+17
    \   00000090   8912               LDD     R17, Z+18
    \   00000092   ........           CALL    ??Exchange_1
-    124              CPss21::DisconnectDevice();
+    127              CPss21::DisconnectDevice();
    \   00000096   ........           CALL    ??DisconnectDevice
-    125          
-    126              // модуль исправен?
-    127              if (m_puiRxBuffer[COMMAND_BYTE_OFFSET] == MRXX_SET_DATA_BASE_COMMAND)
+    128          
+    129              // модуль исправен?
+    130              if (m_puiRxBuffer[COMMAND_BYTE_OFFSET] == MRXX_SET_DATA_BASE_COMMAND)
    \   0000009A   01FD               MOVW    R31:R30, R27:R26
    \   0000009C   8901               LDD     R16, Z+17
    \   0000009E   8912               LDD     R17, Z+18
@@ -910,11 +906,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000000A2   8101               LDD     R16, Z+1
    \   000000A4   3801               CPI     R16, 129
    \   000000A6   F449               BRNE    ??WriteDataBase_3
-    128              {
-    129                  // есть подтверждение записи базы данных в EEPROM модуля?
-    130                  if (m_puiRxBuffer[DATA_BYTE_OFFSET +
-    131                                    MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH +
-    132                                    TWO_BYTE_CRC_LENGTH] == DATA_EXCHANGE_OK)
+    131              {
+    132                  // есть подтверждение записи базы данных в EEPROM модуля?
+    133                  if (m_puiRxBuffer[DATA_BYTE_OFFSET +
+    134                                    MRXX_SET_DATA_BASE_COMMAND_ANSWER_LENGTH +
+    135                                    TWO_BYTE_CRC_LENGTH] == DATA_EXCHANGE_OK)
    \   000000A8   01FD               MOVW    R31:R30, R27:R26
    \   000000AA   8901               LDD     R16, Z+17
    \   000000AC   8912               LDD     R17, Z+18
@@ -922,28 +918,28 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000000B0   8504               LDD     R16, Z+12
    \   000000B2   370E               CPI     R16, 126
    \   000000B4   F411               BRNE    ??WriteDataBase_3
-    133                  {
-    134                      // есть подтверждение записи базы данных в EEPROM модуля.
-    135                      return 1;
+    136                  {
+    137                      // есть подтверждение записи базы данных в EEPROM модуля.
+    138                      return 1;
    \   000000B6   E001               LDI     R16, 1
    \   000000B8   C001               RJMP    ??WriteDataBase_4
-    136                  }
-    137              }
-    138          
-    139              return 0;
+    139                  }
+    140              }
+    141          
+    142              return 0;
    \                     ??WriteDataBase_3:
    \   000000BA   E000               LDI     R16, 0
    \                     ??WriteDataBase_4:
    \   000000BC   E0E6               LDI     R30, 6
    \   000000BE   ........           JMP     ?EPILOGUE_B6_L09
-    140          }
-    141          
-    142          //-----------------------------------------------------------------------------------------------------
+    143          }
+    144          
+    145          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    143          uint8_t CModuleMrXXDriver::Exchange(void)
+    146          uint8_t CModuleMrXXDriver::Exchange(void)
    \                     ??Exchange:
-    144          {
+    147          {
    \   00000000   ........           CALL    ?PROLOGUE10_L09
    \   00000004                      REQUIRE ?Register_R4_is_cg_reg
    \   00000004                      REQUIRE ?Register_R5_is_cg_reg
@@ -952,17 +948,17 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000004                      REQUIRE ?Register_R8_is_cg_reg
    \   00000004                      REQUIRE ?Register_R9_is_cg_reg
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    145              uint8_t uiExternalReceipt = 0;
+    148              uint8_t uiExternalReceipt = 0;
    \   00000006   2499               CLR     R9
-    146              // цикл проверяет наличие внешнего квитирования.
-    147              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
+    149              // цикл проверяет наличие внешнего квитирования.
+    150              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
    \   00000008   E020               LDI     R18, 0
    \                     ??Exchange_2:
    \   0000000A   3028               CPI     R18, 8
    \   0000000C   F520               BRCC    ??Exchange_3
-    148              {
-    149                  // для текущего входа внешнее квитирование запрограммировано?
-    150                  if (m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i] != 0xFF)
+    151              {
+    152                  // для текущего входа внешнее квитирование запрограммировано?
+    153                  if (m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i] != 0xFF)
    \   0000000E   01FD               MOVW    R31:R30, R27:R26
    \   00000010   8D03               LDD     R16, Z+27
    \   00000012   8D14               LDD     R17, Z+28
@@ -973,9 +969,9 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000001C   8500               LDD     R16, Z+8
    \   0000001E   3F0F               CPI     R16, 255
    \   00000020   F0C1               BREQ    ??Exchange_4
-    151                  {
-    152                      // для текущего входа есть внешнее квитирование?
-    153                      if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i]])
+    154                  {
+    155                      // для текущего входа есть внешнее квитирование?
+    156                      if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i]])
    \   00000022   01FD               MOVW    R31:R30, R27:R26
    \   00000024   8905               LDD     R16, Z+21
    \   00000026   8916               LDD     R17, Z+22
@@ -994,33 +990,33 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000040   8100               LD      R16, Z
    \   00000042   2300               TST     R16
    \   00000044   F031               BREQ    ??Exchange_4
-    154                      {
-    155                          // установим квитирование для текущего входа.
-    156                          uiExternalReceipt |= (1 << i);
+    157                      {
+    158                          // установим квитирование для текущего входа.
+    159                          uiExternalReceipt |= (1 << i);
    \   00000046   E001               LDI     R16, 1
    \   00000048   E010               LDI     R17, 0
    \   0000004A   2F42               MOV     R20, R18
    \   0000004C   ........           CALL    ?S_SHL_L02
    \   00000050   2A90               OR      R9, R16
-    157                      }
-    158                  }
-    159              }
+    160                      }
+    161                  }
+    162              }
    \                     ??Exchange_4:
    \   00000052   9523               INC     R18
    \   00000054   CFDA               RJMP    ??Exchange_2
-    160          
-    161              uint8_t uiExternalReset = 0;
+    163          
+    164              uint8_t uiExternalReset = 0;
    \                     ??Exchange_3:
    \   00000056   2488               CLR     R8
-    162              // цикл проверяет наличие внешнего сброса.
-    163              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
+    165              // цикл проверяет наличие внешнего сброса.
+    166              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
    \   00000058   E020               LDI     R18, 0
    \                     ??Exchange_5:
    \   0000005A   3028               CPI     R18, 8
    \   0000005C   F520               BRCC    ??Exchange_6
-    164              {
-    165                  // для текущего входа внешний сброс запрограммирован?
-    166                  if (m_pxDiscreteOutputDataBase -> ExternalResetAddress[i] != 0xFF)
+    167              {
+    168                  // для текущего входа внешний сброс запрограммирован?
+    169                  if (m_pxDiscreteOutputDataBase -> ExternalResetAddress[i] != 0xFF)
    \   0000005E   01FD               MOVW    R31:R30, R27:R26
    \   00000060   8D03               LDD     R16, Z+27
    \   00000062   8D14               LDD     R17, Z+28
@@ -1031,9 +1027,9 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000006C   8900               LDD     R16, Z+16
    \   0000006E   3F0F               CPI     R16, 255
    \   00000070   F0C1               BREQ    ??Exchange_7
-    167                  {
-    168                      // для текущего входа есть внешний сброс?
-    169                      if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalResetAddress[i]])
+    170                  {
+    171                      // для текущего входа есть внешний сброс?
+    172                      if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalResetAddress[i]])
    \   00000072   01FD               MOVW    R31:R30, R27:R26
    \   00000074   8905               LDD     R16, Z+21
    \   00000076   8916               LDD     R17, Z+22
@@ -1052,97 +1048,97 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000090   8100               LD      R16, Z
    \   00000092   2300               TST     R16
    \   00000094   F031               BREQ    ??Exchange_7
-    170                      {
-    171                          // установим сброс для текущего входа.
-    172                          uiExternalReset |= (1 << i);
+    173                      {
+    174                          // установим сброс для текущего входа.
+    175                          uiExternalReset |= (1 << i);
    \   00000096   E001               LDI     R16, 1
    \   00000098   E010               LDI     R17, 0
    \   0000009A   2F42               MOV     R20, R18
    \   0000009C   ........           CALL    ?S_SHL_L02
    \   000000A0   2A80               OR      R8, R16
-    173                      }
-    174                  }
-    175              }
+    176                      }
+    177                  }
+    178              }
    \                     ??Exchange_7:
    \   000000A2   9523               INC     R18
    \   000000A4   CFDA               RJMP    ??Exchange_5
-    176          
-    177              uint8_t uiLocalBou = 0;
+    179          
+    180              uint8_t uiLocalBou = 0;
    \                     ??Exchange_6:
    \   000000A6   2455               CLR     R5
-    178              // есть квитирование Modbus?
-    179              if (m_uiModbusReceipt)
+    181              // есть квитирование Modbus?
+    182              if (m_uiModbusReceipt)
    \   000000A8   01FD               MOVW    R31:R30, R27:R26
    \   000000AA   8103               LDD     R16, Z+3
    \   000000AC   2300               TST     R16
    \   000000AE   F029               BREQ    ??Exchange_8
-    180              {
-    181                  // сбросим флаг поступившей команды.
-    182                  m_uiModbusReceipt = 0;
+    183              {
+    184                  // сбросим флаг поступившей команды.
+    185                  m_uiModbusReceipt = 0;
    \   000000B0   01FD               MOVW    R31:R30, R27:R26
    \   000000B2   E000               LDI     R16, 0
    \   000000B4   8303               STD     Z+3, R16
-    183                  // установим флаг управления - квитирование Modbus.
-    184                  uiLocalBou |= (1 << GLOBAL_KVIT_PC_BIT);
+    186                  // установим флаг управления - квитирование Modbus.
+    187                  uiLocalBou |= (1 << GLOBAL_KVIT_PC_BIT);
    \   000000B6   9468               SET
    \   000000B8   F850               BLD     R5, 0
-    185              }
-    186              // есть сброс Modbus?
-    187              if (m_uiModbusReset)
+    188              }
+    189              // есть сброс Modbus?
+    190              if (m_uiModbusReset)
    \                     ??Exchange_8:
    \   000000BA   01FD               MOVW    R31:R30, R27:R26
    \   000000BC   8104               LDD     R16, Z+4
    \   000000BE   2300               TST     R16
    \   000000C0   F029               BREQ    ??Exchange_9
-    188              {
-    189                  // сбросим флаг поступившей команды.
-    190                  m_uiModbusReset = 0;
+    191              {
+    192                  // сбросим флаг поступившей команды.
+    193                  m_uiModbusReset = 0;
    \   000000C2   01FD               MOVW    R31:R30, R27:R26
    \   000000C4   E000               LDI     R16, 0
    \   000000C6   8304               STD     Z+4, R16
-    191                  // установим флаг управления - сброс Modbus.
-    192                  uiLocalBou |= (1 << GLOBAL_RESET_PC_BIT);
+    194                  // установим флаг управления - сброс Modbus.
+    195                  uiLocalBou |= (1 << GLOBAL_RESET_PC_BIT);
    \   000000C8   9468               SET
    \   000000CA   F851               BLD     R5, 1
-    193              }
-    194              // есть квитирование с кнопки центральной панели?
-    195              if (m_uiReceipt)
+    196              }
+    197              // есть квитирование с кнопки центральной панели?
+    198              if (m_uiReceipt)
    \                     ??Exchange_9:
    \   000000CC   01FD               MOVW    R31:R30, R27:R26
    \   000000CE   8101               LDD     R16, Z+1
    \   000000D0   2300               TST     R16
    \   000000D2   F029               BREQ    ??Exchange_10
-    196              {
-    197                  // сбросим флаг поступившей команды.
-    198                  m_uiReceipt = 0;
+    199              {
+    200                  // сбросим флаг поступившей команды.
+    201                  m_uiReceipt = 0;
    \   000000D4   01FD               MOVW    R31:R30, R27:R26
    \   000000D6   E000               LDI     R16, 0
    \   000000D8   8301               STD     Z+1, R16
-    199                  // установим флаг управления - квитирование с центральной кнопки.
-    200                  uiLocalBou |= (1 << GLOBAL_KVIT_BUTTON_BIT);
+    202                  // установим флаг управления - квитирование с центральной кнопки.
+    203                  uiLocalBou |= (1 << GLOBAL_KVIT_BUTTON_BIT);
    \   000000DA   9468               SET
    \   000000DC   F852               BLD     R5, 2
-    201              }
-    202              // есть сброс с кнопки центральной панели?
-    203              if (m_uiReset)
+    204              }
+    205              // есть сброс с кнопки центральной панели?
+    206              if (m_uiReset)
    \                     ??Exchange_10:
    \   000000DE   01FD               MOVW    R31:R30, R27:R26
    \   000000E0   8102               LDD     R16, Z+2
    \   000000E2   2300               TST     R16
    \   000000E4   F029               BREQ    ??Exchange_11
-    204              {
-    205                  // сбросим флаг поступившей команды.
-    206                  m_uiReset = 0;
+    207              {
+    208                  // сбросим флаг поступившей команды.
+    209                  m_uiReset = 0;
    \   000000E6   01FD               MOVW    R31:R30, R27:R26
    \   000000E8   E000               LDI     R16, 0
    \   000000EA   8302               STD     Z+2, R16
-    207                  // установим флаг управления - сброс с центральной кнопки.
-    208                  uiLocalBou |= (1 << GLOBAL_RESET_BUTTON_BIT);
+    210                  // установим флаг управления - сброс с центральной кнопки.
+    211                  uiLocalBou |= (1 << GLOBAL_RESET_BUTTON_BIT);
    \   000000EC   9468               SET
    \   000000EE   F853               BLD     R5, 3
-    209              }
-    210          
-    211              m_puiTxBuffer[0] = DATA_EXCHANGE_COMMAND;
+    212              }
+    213          
+    214              m_puiTxBuffer[0] = DATA_EXCHANGE_COMMAND;
    \                     ??Exchange_11:
    \   000000F0   01FD               MOVW    R31:R30, R27:R26
    \   000000F2   8903               LDD     R16, Z+19
@@ -1150,24 +1146,24 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000000F6   01F8               MOVW    R31:R30, R17:R16
    \   000000F8   E402               LDI     R16, 66
    \   000000FA   8300               ST      Z, R16
-    212              uint8_t *puiDestination;
-    213              puiDestination = &m_puiTxBuffer[DATA_BYTE_OFFSET];
+    215              uint8_t *puiDestination;
+    216              puiDestination = &m_puiTxBuffer[DATA_BYTE_OFFSET];
    \   000000FC   01FD               MOVW    R31:R30, R27:R26
    \   000000FE   8903               LDD     R16, Z+19
    \   00000100   8914               LDD     R17, Z+20
    \   00000102   5F0E               SUBI    R16, 254
    \   00000104   4F1F               SBCI    R17, 255
    \   00000106   01C8               MOVW    R25:R24, R17:R16
-    214              uint8_t uiData = 0;
+    217              uint8_t uiData = 0;
    \   00000108   2444               CLR     R4
-    215              // заполним требования включения для каждого реле.
-    216              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
+    218              // заполним требования включения для каждого реле.
+    219              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
    \   0000010A   E020               LDI     R18, 0
    \                     ??Exchange_12:
    \   0000010C   3028               CPI     R18, 8
    \   0000010E   F4A8               BRCC    ??Exchange_13
-    217              {
-    218                  if (m_pxDiscreteOutputControl[i].uiRelayActivationRequest)
+    220              {
+    221                  if (m_pxDiscreteOutputControl[i].uiRelayActivationRequest)
    \   00000110   01FD               MOVW    R31:R30, R27:R26
    \   00000112   8D01               LDD     R16, Z+25
    \   00000114   8D12               LDD     R17, Z+26
@@ -1181,34 +1177,34 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000124   8101               LDD     R16, Z+1
    \   00000126   2300               TST     R16
    \   00000128   F031               BREQ    ??Exchange_14
-    219                  {
-    220                      uiData |= (1 << i);
+    222                  {
+    223                      uiData |= (1 << i);
    \   0000012A   E001               LDI     R16, 1
    \   0000012C   E010               LDI     R17, 0
    \   0000012E   2F42               MOV     R20, R18
    \   00000130   ........           CALL    ?S_SHL_L02
    \   00000134   2A40               OR      R4, R16
-    221                  }
-    222              }
+    224                  }
+    225              }
    \                     ??Exchange_14:
    \   00000136   9523               INC     R18
    \   00000138   CFE9               RJMP    ??Exchange_12
-    223              *puiDestination++ = uiData;
+    226              *puiDestination++ = uiData;
    \                     ??Exchange_13:
    \   0000013A   01FC               MOVW    R31:R30, R25:R24
    \   0000013C   8240               ST      Z, R4
    \   0000013E   9601               ADIW    R25:R24, 1
-    224          
-    225              uiData = 0;
+    227          
+    228              uiData = 0;
    \   00000140   2444               CLR     R4
-    226              // заполним новые нарушения для каждого реле.
-    227              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
+    229              // заполним новые нарушения для каждого реле.
+    230              for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
    \   00000142   E020               LDI     R18, 0
    \                     ??Exchange_15:
    \   00000144   3028               CPI     R18, 8
    \   00000146   F4A8               BRCC    ??Exchange_16
-    228              {
-    229                  if (m_pxDiscreteOutputControl[i].uiNewActivation)
+    231              {
+    232                  if (m_pxDiscreteOutputControl[i].uiNewActivation)
    \   00000148   01FD               MOVW    R31:R30, R27:R26
    \   0000014A   8D01               LDD     R16, Z+25
    \   0000014C   8D12               LDD     R17, Z+26
@@ -1222,38 +1218,38 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000015C   8100               LD      R16, Z
    \   0000015E   2300               TST     R16
    \   00000160   F031               BREQ    ??Exchange_17
-    230                  {
-    231                      uiData |= (1 << i);
+    233                  {
+    234                      uiData |= (1 << i);
    \   00000162   E001               LDI     R16, 1
    \   00000164   E010               LDI     R17, 0
    \   00000166   2F42               MOV     R20, R18
    \   00000168   ........           CALL    ?S_SHL_L02
    \   0000016C   2A40               OR      R4, R16
-    232                  }
-    233              }
+    235                  }
+    236              }
    \                     ??Exchange_17:
    \   0000016E   9523               INC     R18
    \   00000170   CFE9               RJMP    ??Exchange_15
-    234              *puiDestination++ = uiData;
+    237              *puiDestination++ = uiData;
    \                     ??Exchange_16:
    \   00000172   01FC               MOVW    R31:R30, R25:R24
    \   00000174   8240               ST      Z, R4
    \   00000176   9601               ADIW    R25:R24, 1
-    235          
-    236              *puiDestination++ = uiExternalReceipt;
+    238          
+    239              *puiDestination++ = uiExternalReceipt;
    \   00000178   01FC               MOVW    R31:R30, R25:R24
    \   0000017A   8290               ST      Z, R9
    \   0000017C   9601               ADIW    R25:R24, 1
-    237              *puiDestination++ = uiExternalReset;
+    240              *puiDestination++ = uiExternalReset;
    \   0000017E   01FC               MOVW    R31:R30, R25:R24
    \   00000180   8280               ST      Z, R8
    \   00000182   9601               ADIW    R25:R24, 1
-    238              *puiDestination++ = uiLocalBou;
+    241              *puiDestination++ = uiLocalBou;
    \   00000184   01FC               MOVW    R31:R30, R25:R24
    \   00000186   8250               ST      Z, R5
    \   00000188   9601               ADIW    R25:R24, 1
-    239              uint16_t usData = usCrcSummTwoByteCalculation(&m_puiTxBuffer[DATA_BYTE_OFFSET],
-    240                                DATA_EXCHANGE_COMMAND_ANSWER_LENGTH);
+    242              uint16_t usData = usCrcSummTwoByteCalculation(&m_puiTxBuffer[DATA_BYTE_OFFSET],
+    243                                DATA_EXCHANGE_COMMAND_ANSWER_LENGTH);
    \   0000018A   E025               LDI     R18, 5
    \   0000018C   E030               LDI     R19, 0
    \   0000018E   01FD               MOVW    R31:R30, R27:R26
@@ -1263,29 +1259,29 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000196   4F1F               SBCI    R17, 255
    \   00000198   ........           CALL    ??usCrcSummTwoByteCalculation
    \   0000019C   0138               MOVW    R7:R6, R17:R16
-    241              *puiDestination++ = (uint8_t)usData;
+    244              *puiDestination++ = (uint8_t)usData;
    \   0000019E   2D06               MOV     R16, R6
    \   000001A0   01FC               MOVW    R31:R30, R25:R24
    \   000001A2   8300               ST      Z, R16
    \   000001A4   9601               ADIW    R25:R24, 1
-    242              *puiDestination++ = (uint8_t)(usData >> 8);
+    245              *puiDestination++ = (uint8_t)(usData >> 8);
    \   000001A6   0183               MOVW    R17:R16, R7:R6
    \   000001A8   2F01               MOV     R16, R17
    \   000001AA   E010               LDI     R17, 0
    \   000001AC   01FC               MOVW    R31:R30, R25:R24
    \   000001AE   8300               ST      Z, R16
    \   000001B0   9601               ADIW    R25:R24, 1
-    243              *puiDestination++ = DATA_EXCHANGE_OK;
+    246              *puiDestination++ = DATA_EXCHANGE_OK;
    \   000001B2   01FC               MOVW    R31:R30, R25:R24
    \   000001B4   E70E               LDI     R16, 126
    \   000001B6   8300               ST      Z, R16
    \   000001B8   9601               ADIW    R25:R24, 1
-    244          
-    245              CPss21::ConnectDevice(m_uiAddress);
+    247          
+    248              CPss21::ConnectDevice(m_uiAddress);
    \   000001BA   01FD               MOVW    R31:R30, R27:R26
    \   000001BC   8900               LDD     R16, Z+16
    \   000001BE   ........           CALL    ??ConnectDevice
-    246              delay_us(500);
+    249              delay_us(500);
    \   000001C2   E60A               LDI     R16, 106
    \   000001C4   E013               LDI     R17, 3
    \   000001C6   5001               SUBI    R16, 1
@@ -1293,12 +1289,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000001CA   F7E9               BRNE    $-4
    \   000001CC   C000               RJMP    $+2
    \   000001CE   0000               NOP
-    247              CSpi::Exchange(m_puiRxBuffer,
-    248                             m_puiTxBuffer,
-    249                             (PRIAMBLE_LENGTH +
-    250                              DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
-    251                              TWO_BYTE_CRC_LENGTH +
-    252                              DATA_EXCHANGE_OK_LENGTH));
+    250              CSpi::Exchange(m_puiRxBuffer,
+    251                             m_puiTxBuffer,
+    252                             (PRIAMBLE_LENGTH +
+    253                              DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
+    254                              TWO_BYTE_CRC_LENGTH +
+    255                              DATA_EXCHANGE_OK_LENGTH));
    \   000001D0   E04A               LDI     R20, 10
    \   000001D2   E050               LDI     R21, 0
    \   000001D4   01FD               MOVW    R31:R30, R27:R26
@@ -1308,11 +1304,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000001DC   8901               LDD     R16, Z+17
    \   000001DE   8912               LDD     R17, Z+18
    \   000001E0   ........           CALL    ??Exchange_1
-    253              CPss21::DisconnectDevice();
+    256              CPss21::DisconnectDevice();
    \   000001E4   ........           CALL    ??DisconnectDevice
-    254          
-    255              // что ответил модуль?
-    256              switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
+    257          
+    258              // что ответил модуль?
+    259              switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
    \   000001E8   01FD               MOVW    R31:R30, R27:R26
    \   000001EA   8901               LDD     R16, Z+17
    \   000001EC   8912               LDD     R17, Z+18
@@ -1324,11 +1320,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000001F8   510E               SUBI    R16, 30
    \   000001FA   F009               BREQ    $+2+2
    \   000001FC   C045               RJMP    ??Exchange_19
-    257              {
-    258              case DATA_READY:
-    259                  // данные не повреждены?
-    260                  if (iCrcSummTwoByteCompare(&m_puiRxBuffer[DATA_BYTE_OFFSET],
-    261                                             DATA_EXCHANGE_COMMAND_ANSWER_LENGTH) > 0)
+    260              {
+    261              case DATA_READY:
+    262                  // данные не повреждены?
+    263                  if (iCrcSummTwoByteCompare(&m_puiRxBuffer[DATA_BYTE_OFFSET],
+    264                                             DATA_EXCHANGE_COMMAND_ANSWER_LENGTH) > 0)
    \   000001FE   E025               LDI     R18, 5
    \   00000200   E030               LDI     R19, 0
    \   00000202   01FD               MOVW    R31:R30, R27:R26
@@ -1340,11 +1336,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000210   3001               CPI     R16, 1
    \   00000212   4010               SBCI    R17, 0
    \   00000214   F1CC               BRLT    ??Exchange_19
-    262                  {
-    263                      // есть подтверждение?
-    264                      if (m_puiRxBuffer[DATA_BYTE_OFFSET +
-    265                                        DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
-    266                                        TWO_BYTE_CRC_LENGTH] == DATA_EXCHANGE_OK)
+    265                  {
+    266                      // есть подтверждение?
+    267                      if (m_puiRxBuffer[DATA_BYTE_OFFSET +
+    268                                        DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
+    269                                        TWO_BYTE_CRC_LENGTH] == DATA_EXCHANGE_OK)
    \   00000216   01FD               MOVW    R31:R30, R27:R26
    \   00000218   8901               LDD     R16, Z+17
    \   0000021A   8912               LDD     R17, Z+18
@@ -1352,32 +1348,32 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000021E   8501               LDD     R16, Z+9
    \   00000220   370E               CPI     R16, 126
    \   00000222   F591               BRNE    ??Exchange_19
-    267                      {
-    268                          // есть подтверждение.
-    269                          m_uiBadAnswerCounter = 0;
+    270                      {
+    271                          // есть подтверждение.
+    272                          m_uiBadAnswerCounter = 0;
    \   00000224   01FD               MOVW    R31:R30, R27:R26
    \   00000226   E000               LDI     R16, 0
    \   00000228   8F05               STD     Z+29, R16
-    270                          SetErrorAlarmData(0);
+    273                          SetErrorAlarmData(0);
    \   0000022A   E020               LDI     R18, 0
    \   0000022C   018D               MOVW    R17:R16, R27:R26
    \   0000022E   ........           CALL    ??SetErrorAlarmData
-    271          
-    272                          uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET]);
+    274          
+    275                          uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET]);
    \   00000232   01FD               MOVW    R31:R30, R27:R26
    \   00000234   8901               LDD     R16, Z+17
    \   00000236   8912               LDD     R17, Z+18
    \   00000238   01F8               MOVW    R31:R30, R17:R16
    \   0000023A   8102               LDD     R16, Z+2
    \   0000023C   2E40               MOV     R4, R16
-    273                          // отправим данные - состояние выходов модулей реле МР №1 – MP №8.
-    274                          for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
+    276                          // отправим данные - состояние выходов модулей реле МР №1 – MP №8.
+    277                          for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
    \   0000023E   E020               LDI     R18, 0
    \                     ??Exchange_20:
    \   00000240   3028               CPI     R18, 8
    \   00000242   F4F0               BRCC    ??Exchange_21
-    275                          {
-    276                              if (uiData & (1 << i))
+    278                          {
+    279                              if (uiData & (1 << i))
    \   00000244   E001               LDI     R16, 1
    \   00000246   E010               LDI     R17, 0
    \   00000248   2F42               MOV     R20, R18
@@ -1386,8 +1382,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000250   2310               AND     R17, R16
    \   00000252   2311               TST     R17
    \   00000254   F051               BREQ    ??Exchange_22
-    277                              {
-    278                                  m_puiDiscreteOutputState[i] = 1;
+    280                              {
+    281                                  m_puiDiscreteOutputState[i] = 1;
    \   00000256   01FD               MOVW    R31:R30, R27:R26
    \   00000258   8907               LDD     R16, Z+23
    \   0000025A   8D10               LDD     R17, Z+24
@@ -1398,10 +1394,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000264   E001               LDI     R16, 1
    \   00000266   8300               ST      Z, R16
    \   00000268   C009               RJMP    ??Exchange_23
-    279                              }
-    280                              else
-    281                              {
-    282                                  m_puiDiscreteOutputState[i] = 0;
+    282                              }
+    283                              else
+    284                              {
+    285                                  m_puiDiscreteOutputState[i] = 0;
    \                     ??Exchange_22:
    \   0000026A   01FD               MOVW    R31:R30, R27:R26
    \   0000026C   8907               LDD     R16, Z+23
@@ -1412,53 +1408,53 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000276   01F8               MOVW    R31:R30, R17:R16
    \   00000278   E000               LDI     R16, 0
    \   0000027A   8300               ST      Z, R16
-    283                              }
-    284                          }
+    286                              }
+    287                          }
    \                     ??Exchange_23:
    \   0000027C   9523               INC     R18
    \   0000027E   CFE0               RJMP    ??Exchange_20
-    285          
-    286                          return 1;
+    288          
+    289                          return 1;
    \                     ??Exchange_21:
    \   00000280   E001               LDI     R16, 1
    \   00000282   C017               RJMP    ??Exchange_24
-    287                      }
-    288                  }
-    289                  break;
-    290          
-    291              case DBASE_ERR:
-    292                  return 0;
+    290                      }
+    291                  }
+    292                  break;
+    293          
+    294              case DBASE_ERR:
+    295                  return 0;
    \                     ??Exchange_18:
    \   00000284   E000               LDI     R16, 0
    \   00000286   C015               RJMP    ??Exchange_24
-    293                  break;
-    294          
-    295              default:
     296                  break;
-    297              };
-    298          
-    299              // модуль признан неисправным?
-    300              if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+    297          
+    298              default:
+    299                  break;
+    300              };
+    301          
+    302              // модуль признан неисправным?
+    303              if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
    \                     ??Exchange_19:
    \   00000288   01FD               MOVW    R31:R30, R27:R26
    \   0000028A   8D05               LDD     R16, Z+29
    \   0000028C   300A               CPI     R16, 10
    \   0000028E   F430               BRCC    ??Exchange_25
-    301              {
-    302                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
-    303                  m_uiBadAnswerCounter++;
+    304              {
+    305                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+    306                  m_uiBadAnswerCounter++;
    \   00000290   01FD               MOVW    R31:R30, R27:R26
    \   00000292   8D05               LDD     R16, Z+29
    \   00000294   9503               INC     R16
    \   00000296   8F05               STD     Z+29, R16
-    304                  return 0;
+    307                  return 0;
    \   00000298   E000               LDI     R16, 0
    \   0000029A   C00B               RJMP    ??Exchange_24
-    305              }
-    306              else
-    307              {
-    308                  // модуль признан неисправным.
-    309                  *m_puiErrorCode = OMD_ERROR;
+    308              }
+    309              else
+    310              {
+    311                  // модуль признан неисправным.
+    312                  *m_puiErrorCode = OMD_ERROR;
    \                     ??Exchange_25:
    \   0000029C   01FD               MOVW    R31:R30, R27:R26
    \   0000029E   8105               LDD     R16, Z+5
@@ -1466,28 +1462,28 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000002A2   01F8               MOVW    R31:R30, R17:R16
    \   000002A4   E002               LDI     R16, 2
    \   000002A6   8300               ST      Z, R16
-    310                  SetErrorAlarmData(1);
+    313                  SetErrorAlarmData(1);
    \   000002A8   E021               LDI     R18, 1
    \   000002AA   018D               MOVW    R17:R16, R27:R26
    \   000002AC   ........           CALL    ??SetErrorAlarmData
-    311                  return 0;
+    314                  return 0;
    \   000002B0   E000               LDI     R16, 0
    \                     ??Exchange_24:
    \   000002B2   E0EA               LDI     R30, 10
    \   000002B4   ........           JMP     ?EPILOGUE_B10_L09
-    312              }
-    313          }
-    314          
-    315          //-----------------------------------------------------------------------------------------------------
+    315              }
+    316          }
+    317          
+    318          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    316          uint8_t CModuleMrXXDriver::DataExchange(void)
+    319          uint8_t CModuleMrXXDriver::DataExchange(void)
    \                     ??DataExchange:
-    317          {
+    320          {
    \   00000000   ........           CALL    ?PROLOGUE3_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    318              uint8_t uiResult;
-    319              switch (GetFsmState())
+    321              uint8_t uiResult;
+    322              switch (GetFsmState())
    \   00000006   018C               MOVW    R17:R16, R25:R24
    \   00000008   5F05               SUBI    R16, 245
    \   0000000A   4F1F               SBCI    R17, 255
@@ -1497,42 +1493,42 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000014   950A               DEC     R16
    \   00000016   F059               BREQ    ??DataExchange_2
    \   00000018   C00D               RJMP    ??DataExchange_3
-    320              {
-    321                  // при старте база данных записывается из прибора в модуль реле.
-    322              case MRXX_FSM_STATE_WRITE_DATABASE:
-    323                  uiResult = WriteDataBase();
+    323              {
+    324                  // при старте база данных записывается из прибора в модуль реле.
+    325              case MRXX_FSM_STATE_WRITE_DATABASE:
+    326                  uiResult = WriteDataBase();
    \                     ??DataExchange_1:
    \   0000001A   018C               MOVW    R17:R16, R25:R24
    \   0000001C   ....               RCALL   ??WriteDataBase
    \   0000001E   2FA0               MOV     R26, R16
-    324                  // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
-    325                  SetFsmState(MRXX_FSM_STATE_TRANSFER);
+    327                  // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
+    328                  SetFsmState(MRXX_FSM_STATE_TRANSFER);
    \   00000020   E021               LDI     R18, 1
    \   00000022   018C               MOVW    R17:R16, R25:R24
    \   00000024   5F05               SUBI    R16, 245
    \   00000026   4F1F               SBCI    R17, 255
    \   00000028   ........           CALL    ??SetFsmState
-    326                  break;
+    329                  break;
    \   0000002C   C003               RJMP    ??DataExchange_3
-    327          
-    328              case MRXX_FSM_STATE_TRANSFER:
-    329                  uiResult = Exchange();
+    330          
+    331              case MRXX_FSM_STATE_TRANSFER:
+    332                  uiResult = Exchange();
    \                     ??DataExchange_2:
    \   0000002E   018C               MOVW    R17:R16, R25:R24
    \   00000030   ....               RCALL   ??Exchange
    \   00000032   2FA0               MOV     R26, R16
-    330                  break;
-    331          
-    332              default:
     333                  break;
-    334              };
-    335          
-    336              return uiResult;
+    334          
+    335              default:
+    336                  break;
+    337              };
+    338          
+    339              return uiResult;
    \                     ??DataExchange_3:
    \   00000034   2F0A               MOV     R16, R26
    \   00000036   E0E3               LDI     R30, 3
    \   00000038   ........           JMP     ?EPILOGUE_B3_L09
-    337          }
+    340          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CModuleMrXXDriver &CModuleMrXXDriver::new CModuleMrXXDriver(uint8_t)
@@ -1630,7 +1626,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
        6  CDfaLite::GetFsmState()
        6  CDfaLite::SetFsmState(uint8_t)
       14  CDriver::SetErrorAlarmData(uint8_t)
-     196  CModuleMrXXDriver::Allocate(TMemoryAllocationConext &)
+     182  CModuleMrXXDriver::Allocate(TMemoryAllocationConext &)
       44  CModuleMrXXDriver::CModuleMrXXDriver()
       60  CModuleMrXXDriver::CModuleMrXXDriver(uint8_t)
       60  CModuleMrXXDriver::DataExchange()
@@ -1736,10 +1732,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 
  
    105 bytes in segment ABSOLUTE
- 1 382 bytes in segment CODE
+ 1 368 bytes in segment CODE
     46 bytes in segment NEAR_F
  
- 1 396 bytes of CODE memory (+  32 bytes shared)
+ 1 382 bytes of CODE memory (+  32 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

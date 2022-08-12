@@ -1066,6 +1066,20 @@ void CPss21::AlarmTypeChange(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::AlarmTypeErrorChange(void)
+{
+    if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+    {
+        m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+
+        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+        m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
 void CPss21::AlarmTypeReceipt(void)
 {
     m_uiCommonAlarmType = INDICATION;
@@ -1088,6 +1102,14 @@ void CPss21::NotifyersControlProcessing(void)
     m_xEmergencyAlarmWindowNotifyerControl.Fsm();
     m_xStatusLedNotifyerControl.Fsm();
     m_xBuzzerNotifyerControl.Fsm();
+//debag//
+//    for (uint8_t i = 0;
+//            i < ALARM_WINDOWS_NUMBER;
+//            i++)
+//    {
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(m_axAlarmWindowControl[i].GetActivityState()) << 8) | i);
+//
+//    };
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1205,20 +1227,25 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CPss21::ErrorWindowOn(uint8_t uiErrorType)
+void CPss21::ErrorWindowOn(uint8_t uiIndex)
 {
     // Актмвируем окна сигнализации - ошибка.
     for (uint8_t i = 0;
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-        m_axAlarmWindowControl[i].SetActivityState(m_auiErrorLedOn[i]);
+        if (m_auiErrorLedOn[i])
+        {
+            // Актмвизируем окно сигнализации, для отображения извещателем.
+            m_axAlarmWindowControl[i].SetAlarmType(INDICATION);
+            m_axAlarmWindowControl[i].SetActivityState(1);
+        }
     };
 
-    if ((uiErrorType != 0) ||
-            (uiErrorType < ALARM_WINDOWS_NUMBER))
+    if (uiIndex < ALARM_WINDOWS_NUMBER)
     {
-        m_axAlarmWindowControl[uiErrorType - 1].SetActivityState(0);
+        m_axAlarmWindowControl[uiIndex].SetAlarmType(NORMAL);
+        m_axAlarmWindowControl[uiIndex].SetActivityState(0);
     }
 
     CLightBoard::Set();
@@ -1419,7 +1446,7 @@ void CPss21::MainFsm(void)
     case ERROR_START:
         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
         ModbusDefaultInit();
-        ErrorWindowOn(GetErrorCode());
+        ErrorWindowOn(GetErrorCode() - 1);
         SetErrorCode(0);
 
         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
@@ -1439,7 +1466,7 @@ void CPss21::MainFsm(void)
 //-----------------------------------------------------------------------------------------------------
     case LINK_CONTROL_ERROR_START:
         SaveContextNotifyerControl();
-        ErrorWindowOn(GetErrorCode());
+        ErrorWindowOn(GetErrorCode() - 1);
         SetErrorCode(0);
 
         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);

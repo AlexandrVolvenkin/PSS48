@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  08:23:27
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  10:44:24
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW861E.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW92A5.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -917,14 +917,13 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
    \   0000014E   8904               LDD     R16, Z+20
    \   00000150   8915               LDD     R17, Z+21
    \   00000152   ........           CALL    memset
-     81          //    memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));//debag//
-     82              memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
+     81              memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
    \   00000156   01FD               MOVW    R31:R30, R27:R26
    \   00000158   8505               LDD     R16, Z+13
    \   0000015A   8516               LDD     R17, Z+14
    \   0000015C   01F8               MOVW    R31:R30, R17:R16
-   \   0000015E   A140               LDD     R20, Z+32
-   \   00000160   A151               LDD     R21, Z+33
+   \   0000015E   8D46               LDD     R20, Z+30
+   \   00000160   8D57               LDD     R21, Z+31
    \   00000162   0F44               LSL     R20
    \   00000164   1F55               ROL     R21
    \   00000166   E020               LDI     R18, 0
@@ -933,9 +932,27 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
    \   0000016C   8505               LDD     R16, Z+13
    \   0000016E   8516               LDD     R17, Z+14
    \   00000170   01F8               MOVW    R31:R30, R17:R16
-   \   00000172   8D00               LDD     R16, Z+24
-   \   00000174   8D11               LDD     R17, Z+25
+   \   00000172   8906               LDD     R16, Z+22
+   \   00000174   8917               LDD     R17, Z+23
    \   00000176   ........           CALL    memset
+     82              memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
+   \   0000017A   01FD               MOVW    R31:R30, R27:R26
+   \   0000017C   8505               LDD     R16, Z+13
+   \   0000017E   8516               LDD     R17, Z+14
+   \   00000180   01F8               MOVW    R31:R30, R17:R16
+   \   00000182   A140               LDD     R20, Z+32
+   \   00000184   A151               LDD     R21, Z+33
+   \   00000186   0F44               LSL     R20
+   \   00000188   1F55               ROL     R21
+   \   0000018A   E020               LDI     R18, 0
+   \   0000018C   E030               LDI     R19, 0
+   \   0000018E   01FD               MOVW    R31:R30, R27:R26
+   \   00000190   8505               LDD     R16, Z+13
+   \   00000192   8516               LDD     R17, Z+14
+   \   00000194   01F8               MOVW    R31:R30, R17:R16
+   \   00000196   8D00               LDD     R16, Z+24
+   \   00000198   8D11               LDD     R17, Z+25
+   \   0000019A   ........           CALL    memset
      83          
      84              m_pxDevice -> Init(m_uiBaudRate,
      85                                 m_cParity,
@@ -943,30 +960,30 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
      87                                 m_uiStopBit,
      88                                 puiRxBuffer,
      89                                 puiTxBuffer);
-   \   0000017A   939A               ST      -Y, R25
-   \   0000017C   938A               ST      -Y, R24
-   \   0000017E   929A               ST      -Y, R9
-   \   00000180   928A               ST      -Y, R8
-   \   00000182   01FD               MOVW    R31:R30, R27:R26
-   \   00000184   8107               LDD     R16, Z+7
-   \   00000186   930A               ST      -Y, R16
-   \   00000188   01FD               MOVW    R31:R30, R27:R26
-   \   0000018A   8136               LDD     R19, Z+6
-   \   0000018C   01FD               MOVW    R31:R30, R27:R26
-   \   0000018E   8520               LDD     R18, Z+8
-   \   00000190   01FD               MOVW    R31:R30, R27:R26
-   \   00000192   8142               LDD     R20, Z+2
-   \   00000194   8153               LDD     R21, Z+3
-   \   00000196   8164               LDD     R22, Z+4
-   \   00000198   8175               LDD     R23, Z+5
-   \   0000019A   910D               LD      R16, X+
-   \   0000019C   911C               LD      R17, X
-   \   0000019E   9711               SBIW    R27:R26, 1
-   \   000001A0   ........           CALL    ??Init_1
+   \   0000019E   939A               ST      -Y, R25
+   \   000001A0   938A               ST      -Y, R24
+   \   000001A2   929A               ST      -Y, R9
+   \   000001A4   928A               ST      -Y, R8
+   \   000001A6   01FD               MOVW    R31:R30, R27:R26
+   \   000001A8   8107               LDD     R16, Z+7
+   \   000001AA   930A               ST      -Y, R16
+   \   000001AC   01FD               MOVW    R31:R30, R27:R26
+   \   000001AE   8136               LDD     R19, Z+6
+   \   000001B0   01FD               MOVW    R31:R30, R27:R26
+   \   000001B2   8520               LDD     R18, Z+8
+   \   000001B4   01FD               MOVW    R31:R30, R27:R26
+   \   000001B6   8142               LDD     R20, Z+2
+   \   000001B8   8153               LDD     R21, Z+3
+   \   000001BA   8164               LDD     R22, Z+4
+   \   000001BC   8175               LDD     R23, Z+5
+   \   000001BE   910D               LD      R16, X+
+   \   000001C0   911C               LD      R17, X
+   \   000001C2   9711               SBIW    R27:R26, 1
+   \   000001C4   ........           CALL    ??Init_1
      90          }
-   \   000001A4   9622               ADIW    R29:R28, 2
-   \   000001A6   E2E7               LDI     R30, 39
-   \   000001A8   ........           JMP     ?EPILOGUE_B16_L09
+   \   000001C8   9622               ADIW    R29:R28, 2
+   \   000001CA   E2E7               LDI     R30, 39
+   \   000001CC   ........           JMP     ?EPILOGUE_B16_L09
      91          
      92          //-----------------------------------------------------------------------------------------------------
 
@@ -2794,7 +2811,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
       28  CModbusRTU::GetSystemTime()
        8  CModbusRTU::HEADER_LENGTH for CModbus/-15/()
        8  CModbusRTU::HEADER_LENGTH()
-     428  CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t)
+     464  CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t)
       22  CModbusRTU::MessageIsSended()
       22  CModbusRTU::Open()
       30  CModbusRTU::Receive(uint8_t *, uint16_t)
@@ -2920,11 +2937,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
 
  
    105 bytes in segment ABSOLUTE
- 2 878 bytes in segment CODE
+ 2 914 bytes in segment CODE
     68 bytes in segment NEAR_F
     42 bytes in segment SWITCH
  
- 2 874 bytes of CODE memory (+ 114 bytes shared)
+ 2 910 bytes of CODE memory (+ 114 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

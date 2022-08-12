@@ -736,7 +736,6 @@ uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
     // Вычислим контрольную сумму блока.
     // Блок не повреждён?
-    uint16_t uiCrcTemp = usCrc16(puiDestination, GetBlockLength(uiBlock));
     if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
     {
         return GetBlockLength(uiBlock);
