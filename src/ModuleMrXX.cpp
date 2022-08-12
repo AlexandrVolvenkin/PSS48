@@ -61,6 +61,15 @@ void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConex
     uiUsedDiscreteOutputDataBase +=
         MR_DISCRETE_OUTPUT_NUMBER;
 
+    // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+    m_puiErrorAlarmDataArray =
+        &xMemoryAllocationConext.
+        puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
+    // Увеличим общий объём выделенной памяти.
+    xMemoryAllocationConext.
+    uiUsedErrorAlarmDataArray +=
+        ERROR_TYPE_LENGTH;
+
     m_uiBadAnswerCounter = 0;
 }
 
@@ -258,6 +267,7 @@ uint8_t CModuleMrXXDriver::Exchange(void)
             {
                 // есть подтверждение.
                 m_uiBadAnswerCounter = 0;
+                SetErrorAlarmData(0);
 
                 uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET]);
                 // отправим данные - состояние выходов модулей реле МР №1 – MP №8.
@@ -297,6 +307,7 @@ uint8_t CModuleMrXXDriver::Exchange(void)
     {
         // модуль признан неисправным.
         *m_puiErrorCode = OMD_ERROR;
+        SetErrorAlarmData(1);
         return 0;
     }
 }

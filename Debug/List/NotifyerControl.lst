@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Aug/2022  12:40:27
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  08:23:28
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW49B.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW8A84.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -680,12 +680,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",359  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",360  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -748,35 +748,24 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \                     `?~CNotifyerControl`:
      21          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   01C9               MOVW    R25:R24, R19:R18
-   \   00000008   2F0A               MOV     R16, R26
-   \   0000000A   2B0B               OR      R16, R27
-   \   0000000C   F0B1               BREQ    `?~CNotifyerControl_1`
-   \   0000000E   ....               LDI     R16, LOW(??__vtbl)
-   \   00000010   ....               LDI     R17, (??__vtbl) >> 8
-   \   00000012   01FD               MOVW    R31:R30, R27:R26
-   \   00000014   8301               STD     Z+1, R16
-   \   00000016   8312               STD     Z+2, R17
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   01D9               MOVW    R27:R26, R19:R18
+   \   00000008   2F08               MOV     R16, R24
+   \   0000000A   2B09               OR      R16, R25
+   \   0000000C   F051               BREQ    `?~CNotifyerControl_1`
      22          
      23          }
-   \   00000018   E022               LDI     R18, 2
-   \   0000001A   E030               LDI     R19, 0
-   \   0000001C   018D               MOVW    R17:R16, R27:R26
-   \   0000001E   5F0A               SUBI    R16, 250
-   \   00000020   4F1F               SBCI    R17, 255
-   \   00000022   ........           CALL    `?~CTimer`
-   \   00000026   E020               LDI     R18, 0
-   \   00000028   E030               LDI     R19, 0
-   \   0000002A   018D               MOVW    R17:R16, R27:R26
-   \   0000002C   ........           CALL    `?~CDfa`
-   \   00000030   FB80               BST     R24, 0
-   \   00000032   F41E               BRTC    `?~CNotifyerControl_1`
-   \   00000034   018D               MOVW    R17:R16, R27:R26
-   \   00000036   ........           CALL    `??operator delete`
+   \   0000000E   E020               LDI     R18, 0
+   \   00000010   E030               LDI     R19, 0
+   \   00000012   018C               MOVW    R17:R16, R25:R24
+   \   00000014   ........           CALL    `?~CDfa`
+   \   00000018   FBA0               BST     R26, 0
+   \   0000001A   F41E               BRTC    `?~CNotifyerControl_1`
+   \   0000001C   018C               MOVW    R17:R16, R25:R24
+   \   0000001E   ........           CALL    `??operator delete`
    \                     `?~CNotifyerControl_1`:
-   \   0000003A   E0E4               LDI     R30, 4
-   \   0000003C   ........           JMP     ?EPILOGUE_B4_L09
+   \   00000022   E0E4               LDI     R30, 4
+   \   00000024   ........           JMP     ?EPILOGUE_B4_L09
      24          
      25          ////-----------------------------------------------------------------------------------------------------
      26          //void CNotifyerControl::Init(CAlarmWindow* pxAlarmWindowControl)
@@ -2291,14 +2280,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     532              CPlatform::StatusLedOff();
    \   00000006   ........           CALL    ??StatusLedOff
-    533              CPss21::m_xLightBoard.Set();
-   \   0000000A   ....               LDI     R16, LOW(??m_xLightBoard)
-   \   0000000C   ....               LDI     R17, (??m_xLightBoard) >> 8
-   \   0000000E   ........           CALL    ??Set_1
+    533              CLightBoard::Set();
+   \   0000000A   ........           CALL    ??Set_1
     534          }
-   \   00000012   9189               LD      R24, Y+
-   \   00000014   9199               LD      R25, Y+
-   \   00000016   9508               RET
+   \   0000000E   9189               LD      R24, Y+
+   \   00000010   9199               LD      R25, Y+
+   \   00000012   9508               RET
     535          //-----------------------------------------------------------------------------------------------------
     536          
     537          
@@ -2644,7 +2631,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CNotifyerControl &CNotifyerControl::new CNotifyerControl()
    \                     `??new CNotifyerControl`:
-   \   00000000   E00C               LDI     R16, 12
+   \   00000000   E00A               LDI     R16, 10
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -2660,7 +2647,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CPreventiveAlarmWindowNotifyerControl &CPreventiveAlarmWindowNotifyerControl::new CPreventiveAlarmWindowNotifyerControl()
    \                     `??new CPreventiveAlarmWindowNotifyerControl`:
-   \   00000000   E00C               LDI     R16, 12
+   \   00000000   E00A               LDI     R16, 10
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -2676,7 +2663,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CEmergencyAlarmWindowNotifyerControl &CEmergencyAlarmWindowNotifyerControl::new CEmergencyAlarmWindowNotifyerControl()
    \                     `??new CEmergencyAlarmWindowNotifyerControl`:
-   \   00000000   E00C               LDI     R16, 12
+   \   00000000   E00A               LDI     R16, 10
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -2692,7 +2679,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CStatusLedNotifyerControl &CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
    \                     `??new CStatusLedNotifyerControl`:
-   \   00000000   E00C               LDI     R16, 12
+   \   00000000   E00A               LDI     R16, 10
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -2708,7 +2695,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CBuzzerNotifyerControl &CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
    \                     `??new CBuzzerNotifyerControl`:
-   \   00000000   E00C               LDI     R16, 12
+   \   00000000   E00A               LDI     R16, 10
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -2813,7 +2800,6 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
         0      2   -> operator new(unsigned int)
       4      2   CNotifyerControl::~CNotifyerControl()
         4      2   -> CDfa::~CDfa()
-        4      2   -> CTimer::~CTimer()
         4      2   -> operator delete(void *)
       0      2   CPlatform::StatusLedOff()
       0      2   CPlatform::StatusLedOn()
@@ -2922,7 +2908,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        8  CNotifyerControl::WARNING_SIGNAL_OFF_TIME()
        8  CNotifyerControl::WARNING_SIGNAL_ON_TIME()
       24  CNotifyerControl::new CNotifyerControl()
-      64  CNotifyerControl::~CNotifyerControl()
+      40  CNotifyerControl::~CNotifyerControl()
       12  CPlatform::StatusLedOff()
       12  CPlatform::StatusLedOn()
        8  CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
@@ -2945,7 +2931,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
       16  CStatusLedNotifyerControl::NotifyerEmergencyOn()
        2  CStatusLedNotifyerControl::NotifyerIndicationOn()
       16  CStatusLedNotifyerControl::NotifyerNormalOn()
-      24  CStatusLedNotifyerControl::NotifyerOff()
+      20  CStatusLedNotifyerControl::NotifyerOff()
       16  CStatusLedNotifyerControl::NotifyerPreventiveOn()
       24  CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
       46  CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
@@ -3045,11 +3031,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 
  
    105 bytes in segment ABSOLUTE
- 2 694 bytes in segment CODE
+ 2 666 bytes in segment CODE
    186 bytes in segment NEAR_F
    150 bytes in segment SWITCH
  
- 2 680 bytes of CODE memory (+ 350 bytes shared)
+ 2 652 bytes of CODE memory (+ 350 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

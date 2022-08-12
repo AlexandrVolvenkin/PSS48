@@ -137,6 +137,7 @@ public:
     CPreventiveAlarmLowLevelDfa();
     virtual ~CPreventiveAlarmLowLevelDfa();
 
+
 protected:
 private:
 };
@@ -292,6 +293,126 @@ protected:
 private:
 };
 
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 //-----------------------------------------------------------------------------------------------------
+class CErrorAlarmDfa : public CDfaLite
+{
+public:
+    enum
+    {
+        START = 0,
+        ACTIVE_STATE_WAITING,
+        RECEIPT_WAITING,
+        RECEIPTED_NOT_ACTIVE_STATE_WAITING,
+    };
+
+    virtual uint8_t ALARM_TYPE(void)
+    {
+        return ERROR;
+    };
+
+    virtual uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    CErrorAlarmDfa();
+    virtual ~CErrorAlarmDfa();
+    virtual void Fsm(void);
+
+    void SetDiscreteStateIndex(uint8_t uiDiscreteStateIndex)
+    {
+        m_uiDiscreteStateIndex = uiDiscreteStateIndex;
+    };
+    uint8_t GetDiscreteStateIndex(void)
+    {
+        return m_uiDiscreteStateIndex;
+    };
+
+    void SetAlarmWindowIndex(uint8_t uiAlarmWindowIndex)
+    {
+        m_uiAlarmWindowIndex = uiAlarmWindowIndex;
+    };
+    uint8_t GetAlarmWindowIndex(void)
+    {
+        return m_uiAlarmWindowIndex;
+    };
+
+protected:
+private:
+    // Индекс окна извещателя - светового табло.
+    uint8_t m_uiAlarmWindowIndex;
+    // Источник дискретного сигнала.
+    uint8_t m_uiDiscreteStateIndex;
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+////-----------------------------------------------------------------------------------------------------
+//class CInputModuleErrorAlarmDfa : public CErrorAlarmDfa
+//{
+//public:
+//
+//    uint8_t ALARM_TYPE(void)
+//    {
+//        return ERROR;
+//    };
+//
+//    uint8_t ACTIVE_LEVEL(void)
+//    {
+//        return 1;
+//    };
+//
+//    CInputModuleErrorAlarmDfa();
+//    virtual ~CInputModuleErrorAlarmDfa();
+//
+//protected:
+//private:
+//};
+////-----------------------------------------------------------------------------------------------------
+//
+//
+//
+//
+//
+//
+//
+//
+////-----------------------------------------------------------------------------------------------------
+//class COutpuModuleErrorAlarmDfa : public CErrorAlarmDfa
+//{
+//public:
+//
+//    uint8_t ALARM_TYPE(void)
+//    {
+//        return EMERGENCY;
+//    };
+//
+//    uint8_t ACTIVE_LEVEL(void)
+//    {
+//        return 1;
+//    };
+//
+//    COutpuModuleErrorAlarmDfa();
+//    virtual ~COutpuModuleErrorAlarmDfa();
+//
+//protected:
+//private:
+//};
+////-----------------------------------------------------------------------------------------------------
+
 #endif // CALARM_H

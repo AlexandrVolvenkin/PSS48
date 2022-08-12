@@ -17,10 +17,10 @@
 class CDM134
 {
 public:
-    CDM134();
-    virtual ~CDM134();
-    void Init(void);
-    void Set(uint8_t* puiBoardLampsControl, uint8_t uiLampNumber);
+//    CDM134();
+//    virtual ~CDM134();
+    static void Init(void);
+    static void Set(uint8_t* puiBoardLampsControl, uint8_t uiLampNumber);
 
 protected:
 private:

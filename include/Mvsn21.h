@@ -9,9 +9,9 @@
 #define CMVDS9_H
 
 #include <stdint.h>
-#include "Device.h"
 #include "Driver.h"
 #include "DataTypes.h"
+#include "Dfa.h"
 
 //-----------------------------------------------------------------------------------------------------
 // Обмен данными модуля ввода дискретных сигналов МВДС9 с МЦП
@@ -32,7 +32,7 @@
 //  четные биты (D0,D2,D4,D6) =0 - разомкнуто (OFF), =1 - замкнуто (ON)
 //  нечетные биты (D1,D3,D5,D7) =0 - достоверно, =1 - недостоверно
 
-class CMvsn21Driver : public CDriver
+class CMvsn21Driver : public CDriver, public CDfa
 {
 public:
 
@@ -64,9 +64,9 @@ public:
 protected:
 private:
     uint8_t m_uiAddress;
-    uint8_t *m_puiRxBuffer;
-    uint8_t *m_puiTxBuffer;
-    uint8_t *m_puiDiscreteInputs;
+    uint8_t* m_puiRxBuffer;
+    uint8_t* m_puiTxBuffer;
+    uint8_t* m_puiDiscreteInputs;
     uint8_t m_uiBadAnswerCounter;
 };
 

@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  20:55:53
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          11/Aug/2022  08:13:22
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW373F.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWDE6A.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
 //        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
@@ -62,10 +62,8 @@
 
         PUBWEAK `?<Segment init: NEAR_Z>`
         PUBLIC ??BytesToHammingCodes
-        PUBLIC ??CHammingCodes
         PUBLIC ??HammingCodesToBytes
         PUBLIC ??Recovery
-        PUBWEAK ??__vtbl
         PUBLIC ??deHamming
         PUBLIC ??enHamming
         PUBLIC ??findHammingError
@@ -73,19 +71,13 @@
         PUBLIC ??getEvenParityforRx
         PUBLIC ??getEvenParityforTx
         PUBLIC ??m_uiErrorCode
-        PUBLIC `??new CHammingCodes`
-        PUBLIC `?~CHammingCodes`
         PUBWEAK __?EEARH
         PUBWEAK __?EEARL
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CHammingCodes 4>` SYMBOL "CHammingCodes"
-??__vtbl            SYMBOL "__vtbl", `?<Name CHammingCodes 4>`
-??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CHammingCodes 4>`
-
-        EXTERN `??operator delete`
-        EXTERN `??operator new`
+`?<Name CHammingCodes 0>` SYMBOL "CHammingCodes"
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CHammingCodes 0>`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
 //    1 
@@ -108,59 +100,17 @@
 ??m_uiErrorCode:
         DS8 1
 //   15 
-//   16 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
-//   17 CHammingCodes::CHammingCodes()
-??CHammingCodes:
-//   18 {
-        LDI     R18, LOW(??__vtbl)
-        LDI     R19, (??__vtbl) >> 8
-        MOVW    R31:R30, R17:R16
-        ST      Z, R18
-        STD     Z+1, R19
-//   19     //ctor
-//   20 }
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 CHammingCodes &CHammingCodes::new CHammingCodes()
-`??new CHammingCodes`:
-        LDI     R16, 2
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    `??new CHammingCodes_1`
-        RCALL   ??CHammingCodes
-        RET
-`??new CHammingCodes_1`:
-        LDI     R16, 0
-        LDI     R17, 0
-        RET
-//   21 
-//   22 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
-//   23 CHammingCodes::~CHammingCodes()
-`?~CHammingCodes`:
-//   24 {
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        MOV     R16, R24
-        OR      R16, R25
-        BREQ    `?~CHammingCodes_1`
-        BST     R18, 0
-        BRTC    `?~CHammingCodes_1`
-//   25     //dtor
-//   26 }
-        MOVW    R17:R16, R25:R24
-        CALL    `??operator delete`
-`?~CHammingCodes_1`:
-        LD      R24, Y+
-        LD      R25, Y+
-        RET
+//   16 ////-----------------------------------------------------------------------------------------------------
+//   17 //CHammingCodes::CHammingCodes()
+//   18 //{
+//   19 //    //ctor
+//   20 //}
+//   21 //
+//   22 ////-----------------------------------------------------------------------------------------------------
+//   23 //CHammingCodes::~CHammingCodes()
+//   24 //{
+//   25 //    //dtor
+//   26 //}
 //   27 
 //   28 //-----------------------------------------------------------------------------------------------------
 
@@ -959,22 +909,16 @@ __?EEARH:
         DP      0
         REQUIRE ?need_segment_init
 
-        RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CHammingCodes::__vtbl[1]
-??__vtbl:
-        DC16 `?~CHammingCodes`/2
-
         END
 //  245 
 //  246 //-----------------------------------------------------------------------------------------------------
 // 
-// 1 060 bytes in segment CODE
-//     7 bytes in segment INITTAB
-//     2 bytes in segment NEAR_F
-//     1 byte  in segment NEAR_Z
+// 996 bytes in segment CODE
+//   7 bytes in segment INITTAB
+//   1 byte  in segment NEAR_Z
 // 
-// 1 060 bytes of CODE memory (+ 9 bytes shared)
-//     1 byte  of DATA memory
+// 996 bytes of CODE memory (+ 7 bytes shared)
+//   1 byte  of DATA memory
 //
 //Errors: none
 //Warnings: none

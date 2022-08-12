@@ -1,0 +1,74 @@
+//-----------------------------------------------------------------------------------------------------
+//  Sourse      : FileName.cpp
+//  Created     : 01.06.2022
+//  Author      : Alexandr Volvenkin
+//  email       : aav-36@mail.ru
+//  GitHub      : https://github.com/AlexandrVolvenkin
+//-----------------------------------------------------------------------------------------------------
+#include "LightBoard.h"
+#include "Platform.h"
+#include "Pss21.h"
+
+//-------------------------------------------------------------------------------------------------
+//CDM134 CLightBoard::m_xLedDriver;
+uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
+CAlarmWindow* CLightBoard::m_pxAlarmWindowControl;
+__flash uint8_t CLightBoard::m_auiLedMap[] =
+{
+//    // Матрица расположения на панели.
+//    // Левая часть.    // Правая часть.
+    48, 60, 32, 45,    16, 28, 0, 13,
+    49, 61, 33, 44,    17, 29, 1, 12,
+    52, 62, 36, 43,    20, 30, 4, 11,
+    53, 63, 37, 42,    21, 31, 5, 10,
+    54, 57, 38, 41,    22, 25, 6,  9,
+    55, 56, 39, 40,    23, 24, 7,  8,
+};
+
+////-----------------------------------------------------------------------------------------------------
+//CLightBoard::CLightBoard()
+//{
+////    Init();
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CLightBoard::~CLightBoard()
+//{
+//
+//}
+
+//-----------------------------------------------------------------------------------------------------
+void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
+{
+    m_pxAlarmWindowControl = pxAlarmWindowControl;
+    CPlatform::LedDriverEnable1On();
+    CPlatform::LedDriverEnable2On();
+    CPlatform::LedDriverEnable3On();
+    CPlatform::LedDriverEnable4On();
+    CPlatform::LedDriverEnable1SetPinOutput();
+    CPlatform::LedDriverEnable2SetPinOutput();
+    CPlatform::LedDriverEnable3SetPinOutput();
+    CPlatform::LedDriverEnable4SetPinOutput();
+
+    m_xLedDriver.Init();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CLightBoard::Set(void)
+{
+    for (uint8_t i = 0;
+            i < ALARM_WINDOWS_NUMBER;
+            i++)
+    {
+        if (m_pxAlarmWindowControl[i].GetActivityState())
+        {
+            m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
+        }
+        else
+        {
+            m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
+        }
+    };
+
+    m_xLedDriver.Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+}

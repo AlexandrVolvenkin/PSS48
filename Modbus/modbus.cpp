@@ -562,7 +562,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
             // Чтение блока БД.
             uiBlockNumber = puiRequest[uiOffset + BLOCK_NUMBER];
             // Блок не существует?
-            if (uiBlockNumber > TDataBase::BLOCKS_QUANTITY)
+            if (uiBlockNumber > CDataBase::GetBlocksNumber())
             {
                 uiLength = ResponseException(uiSlave,
                                              uiFunctionCode,
@@ -574,7 +574,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
                 if (uiBlockNumber == TDataBase::DEV_CONFIG)
                 {
                     // Прочитаем блок БД.
-                    uint16_t uiLengthLocal = CDataBase::Read(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
+                    uint16_t uiLengthLocal = CDataBase::ReadBlock(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
                     // Отправим фактическую конфигурацию. Количество модулей ввода, вывода и количество окон сигнализации.
                     puiResponse[(uiOffset + DATA_BEGIN)] = CPss21::m_xDeviceConfigSearch.uiDiscreteInputQuantity;
                     puiResponse[(uiOffset + DATA_BEGIN) + 1] = CPss21::m_xDeviceConfigSearch.uiDiscreteOutputQuantity;
@@ -589,7 +589,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
                 else
                 {
                     // Прочитаем блок БД.
-                    uint16_t uiLengthLocal = CDataBase::Read(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
+                    uint16_t uiLengthLocal = CDataBase::ReadBlock(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
                     puiResponse[uiLength++] = 0;
                     puiResponse[uiLength++] = uiLengthLocal;
                     puiResponse[uiLength++] = puiRequest[uiOffset + REQUEST_COMMAND];
@@ -603,7 +603,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
             // Запись блока БД.
             uiBlockNumber = puiRequest[uiOffset + BLOCK_NUMBER];
             // Блок не существует?
-            if (uiBlockNumber > TDataBase::BLOCKS_QUANTITY)
+            if (uiBlockNumber > CDataBase::GetBlocksNumber())
             {
                 uiLength = ResponseException(uiSlave,
                                              uiFunctionCode,
@@ -622,8 +622,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
             {
                 // Сохраним блок БД.
                 // Успешно?
-//                if (1)
-                if (CDataBase::Write(&puiRequest[uiOffset + DATA_BEGIN], CDataBase::GetBlockLength(uiBlockNumber), uiBlockNumber))
+                if (CDataBase::WriteBlock(&puiRequest[uiOffset + DATA_BEGIN], uiBlockNumber))
                 {
                     // База данных подтверждена пользователем при записи блока через программатор.
                     // Поставим подтверждающую подпись.
@@ -648,11 +647,11 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
             break;
 
         case 0x03:
-            if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+            if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
             {
                 uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
             }
-            else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
+            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
             {
                 uiLength = ResponseException(uiSlave,
                                              uiFunctionCode,
@@ -688,11 +687,11 @@ int16_t CModbus::PollProgramming(uint8_t *puiRequest, uint8_t *puiResponse, uint
     int8_t uiSlave = puiRequest[uiOffset - 1];
     int8_t uiFunctionCode = puiRequest[uiOffset];
 
-    if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+    if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
     {
         uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
     }
-    else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
+    else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
     {
         uiLength = ResponseException(uiSlave,
                                      uiFunctionCode,

@@ -23,14 +23,16 @@ public:
     static bool IntegrityCheck(void);
     static void SignatureCreate(void);
     static bool SignatureCheck(void);
-    static uint16_t Read(uint8_t * , uint8_t );
-    static uint16_t Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock);
+    static uint16_t ReadBlock(uint8_t * , uint8_t );
+    static uint16_t WriteBlock(uint8_t *puiSourse, uint8_t uiBlock);
     static uint16_t GetBlockLength(uint8_t uiBlock);
+    static uint8_t GetBlocksNumber(void)
+    {
+        return TDataBase::BLOCKS_QUANTITY;
+    };
 
 protected:
 private:
-
-    static struct TDataBaseBlockPositionData __farflash *m_pxDataBaseBlocksPositionData;
 
 };
 

@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Aug/2022  12:40:25
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  08:23:27
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\Modbus\modbus.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWFD76.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW841A.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\modbus.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -75,6 +75,7 @@
         PUBLIC ??ByteToBitPack
         PUBLIC ??CModbus
         PUBWEAK ??CRC_LENGTH
+        PUBWEAK ??GetBlocksNumber
         PUBLIC ??GetByteFromBits
         PUBLIC ??GetFloat
         PUBWEAK ??GetFsmEvent
@@ -208,22 +209,23 @@
         PUBWEAK __?EEDR
 
 `?<Name CPss21 17>` SYMBOL "CPss21"
+`?<Name CDataStore 27>` SYMBOL "CDataStore"
+??m_uiFsmEvent      SYMBOL "m_uiFsmEvent", `?<Name CDataStore 27>`
 ??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 17>`
-??m_xDataStore      SYMBOL "m_xDataStore", `?<Name CPss21 17>`
 ??m_xDeviceConfigSearch SYMBOL "m_xDeviceConfigSearch", `?<Name CPss21 17>`
-`?<Name CModbus 38>` SYMBOL "CModbus"
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CModbus 38>`
+`?<Name CModbus 39>` SYMBOL "CModbus"
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CModbus 39>`
 
         EXTERN ??CDfa
         EXTERN ??Fsm
         EXTERN ??GetBlockLength
         EXTERN ??ModbusDeviceControl
         EXTERN ??ModbusDeviceControl_1
-        EXTERN ??Read
+        EXTERN ??ReadBlock
         EXTERN ??SignatureCreate
-        EXTERN ??Write
+        EXTERN ??WriteBlock
+        EXTERN ??m_uiFsmEvent
         EXTERN ??m_uiFsmState
-        EXTERN ??m_xDataStore
         EXTERN ??m_xDeviceConfigSearch
         EXTERN `??operator delete`
         EXTERN `??operator new`
@@ -2897,10 +2899,10 @@ _A_PINF:
         LDD     R16, Z+4
         MOV     R12, R16
 //  564             // Блок не существует?
-//  565             if (uiBlockNumber > TDataBase::BLOCKS_QUANTITY)
-        LDI     R16, 12
-        CP      R12, R16
-        BRCS    ??Programming_8
+//  565             if (uiBlockNumber > CDataBase::GetBlocksNumber())
+        CALL    ??GetBlocksNumber
+        CP      R16, R12
+        BRCC    ??Programming_8
 //  566             {
 //  567                 uiLength = ResponseException(uiSlave,
 //  568                                              uiFunctionCode,
@@ -2923,14 +2925,14 @@ _A_PINF:
         BRNE    ??Programming_9
 //  575                 {
 //  576                     // Прочитаем блок БД.
-//  577                     uint16_t uiLengthLocal = CDataBase::Read(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
+//  577                     uint16_t uiLengthLocal = CDataBase::ReadBlock(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
         MOV     R18, R12
         MOVW    R17:R16, R27:R26
         ADD     R16, R4
         ADC     R17, R5
         SUBI    R16, 251
         SBCI    R17, 255
-        CALL    ??Read
+        CALL    ??ReadBlock
 //  578                     // Отправим фактическую конфигурацию. Количество модулей ввода, вывода и количество окон сигнализации.
 //  579                     puiResponse[(uiOffset + DATA_BEGIN)] = CPss21::m_xDeviceConfigSearch.uiDiscreteInputQuantity;
         LDS     R18, (??m_xDeviceConfigSearch + 8)
@@ -2989,7 +2991,7 @@ _A_PINF:
 //  589                 else
 //  590                 {
 //  591                     // Прочитаем блок БД.
-//  592                     uint16_t uiLengthLocal = CDataBase::Read(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
+//  592                     uint16_t uiLengthLocal = CDataBase::ReadBlock(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
 ??Programming_9:
         MOV     R18, R12
         MOVW    R17:R16, R27:R26
@@ -2997,7 +2999,7 @@ _A_PINF:
         ADC     R17, R5
         SUBI    R16, 251
         SBCI    R17, 255
-        CALL    ??Read
+        CALL    ??ReadBlock
         MOVW    R19:R18, R17:R16
 //  593                     puiResponse[uiLength++] = 0;
         MOVW    R31:R30, R27:R26
@@ -3047,10 +3049,10 @@ _A_PINF:
         LDD     R16, Z+4
         MOV     R12, R16
 //  605             // Блок не существует?
-//  606             if (uiBlockNumber > TDataBase::BLOCKS_QUANTITY)
-        LDI     R16, 12
-        CP      R12, R16
-        BRCS    ??Programming_10
+//  606             if (uiBlockNumber > CDataBase::GetBlocksNumber())
+        CALL    ??GetBlocksNumber
+        CP      R16, R12
+        BRCC    ??Programming_10
 //  607             {
 //  608                 uiLength = ResponseException(uiSlave,
 //  609                                              uiFunctionCode,
@@ -3099,36 +3101,32 @@ _A_PINF:
 //  622             {
 //  623                 // Сохраним блок БД.
 //  624                 // Успешно?
-//  625 //                if (1)
-//  626                 if (CDataBase::Write(&puiRequest[uiOffset + DATA_BEGIN], CDataBase::GetBlockLength(uiBlockNumber), uiBlockNumber))
+//  625                 if (CDataBase::WriteBlock(&puiRequest[uiOffset + DATA_BEGIN], uiBlockNumber))
 ??Programming_11:
-        MOV     R16, R12
-        CALL    ??GetBlockLength
-        MOVW    R19:R18, R17:R16
-        MOV     R20, R12
+        MOV     R18, R12
         MOVW    R17:R16, R9:R8
         ADD     R16, R4
         ADC     R17, R5
         SUBI    R16, 251
         SBCI    R17, 255
-        CALL    ??Write
+        CALL    ??WriteBlock
         OR      R16, R17
         BREQ    ??Programming_12
-//  627                 {
-//  628                     // База данных подтверждена пользователем при записи блока через программатор.
-//  629                     // Поставим подтверждающую подпись.
-//  630                     CDataBase::SignatureCreate();
+//  626                 {
+//  627                     // База данных подтверждена пользователем при записи блока через программатор.
+//  628                     // Поставим подтверждающую подпись.
+//  629                     CDataBase::SignatureCreate();
         CALL    ??SignatureCreate
-//  631                     // После приёма последнего блока базы данных произойдёт перезагрузка
-//  632                     // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
-//  633                     CPss21::SetFsmState(CPss21::PROGRAMMING_START);
+//  630                     // После приёма последнего блока базы данных произойдёт перезагрузка
+//  631                     // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
+//  632                     CPss21::SetFsmState(CPss21::PROGRAMMING_START);
         LDI     R16, 13
         CALL    ??SetFsmState_1
-//  634 
-//  635                     uiLength = ResponseException(uiSlave,
-//  636                                                  uiFunctionCode,
-//  637                                                  MODBUS_EXCEPTION_ACKNOWLEDGE,
-//  638                                                  puiResponse);
+//  633 
+//  634                     uiLength = ResponseException(uiSlave,
+//  635                                                  uiFunctionCode,
+//  636                                                  MODBUS_EXCEPTION_ACKNOWLEDGE,
+//  637                                                  puiResponse);
         MOVW    R23:R22, R27:R26
         LDI     R20, 5
         MOV     R19, R10
@@ -3137,13 +3135,13 @@ _A_PINF:
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
         RJMP    ??Programming_2
-//  639                 }
-//  640                 else
-//  641                 {
-//  642                     uiLength = ResponseException(uiSlave,
-//  643                                                  uiFunctionCode,
-//  644                                                  MODBUS_EXCEPTION_NEGATIVE_ACKNOWLEDGE,
-//  645                                                  puiResponse);
+//  638                 }
+//  639                 else
+//  640                 {
+//  641                     uiLength = ResponseException(uiSlave,
+//  642                                                  uiFunctionCode,
+//  643                                                  MODBUS_EXCEPTION_NEGATIVE_ACKNOWLEDGE,
+//  644                                                  puiResponse);
 ??Programming_12:
         MOVW    R23:R22, R27:R26
         LDI     R20, 7
@@ -3152,21 +3150,19 @@ _A_PINF:
         MOVW    R17:R16, R7:R6
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
-//  646                 }
-//  647             }
-//  648             break;
+//  645                 }
+//  646             }
+//  647             break;
         RJMP    ??Programming_2
-//  649 
-//  650         case 0x03:
-//  651             if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+//  648 
+//  649         case 0x03:
+//  650             if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
 ??Programming_6:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
         CALL    ??GetFsmEvent
         CPI     R16, 3
         BRNE    ??Programming_13
-//  652             {
-//  653                 uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
+//  651             {
+//  652                 uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
         MOVW    R21:R20, R27:R26
         MOV     R19, R10
         MOV     R18, R11
@@ -3183,19 +3179,17 @@ _A_PINF:
         ICALL
         MOVW    R25:R24, R17:R16
         RJMP    ??Programming_2
-//  654             }
-//  655             else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
+//  653             }
+//  654             else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
 ??Programming_13:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
         CALL    ??GetFsmEvent
         CPI     R16, 1
         BRNE    ??Programming_14
-//  656             {
-//  657                 uiLength = ResponseException(uiSlave,
-//  658                                              uiFunctionCode,
-//  659                                              MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY,
-//  660                                              puiResponse);
+//  655             {
+//  656                 uiLength = ResponseException(uiSlave,
+//  657                                              uiFunctionCode,
+//  658                                              MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY,
+//  659                                              puiResponse);
         MOVW    R23:R22, R27:R26
         LDI     R20, 6
         MOV     R19, R10
@@ -3204,13 +3198,13 @@ _A_PINF:
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
         RJMP    ??Programming_2
-//  661             }
-//  662             else
-//  663             {
-//  664                 uiLength = ResponseException(uiSlave,
-//  665                                              uiFunctionCode,
-//  666                                              MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
-//  667                                              puiResponse);
+//  660             }
+//  661             else
+//  662             {
+//  663                 uiLength = ResponseException(uiSlave,
+//  664                                              uiFunctionCode,
+//  665                                              MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
+//  666                                              puiResponse);
 ??Programming_14:
         MOVW    R23:R22, R27:R26
         LDI     R20, 1
@@ -3219,15 +3213,15 @@ _A_PINF:
         MOVW    R17:R16, R7:R6
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
-//  668             }
-//  669             break;
+//  667             }
+//  668             break;
         RJMP    ??Programming_2
-//  670 
-//  671         default:
-//  672             uiLength = ResponseException(uiSlave,
-//  673                                          uiFunctionCode,
-//  674                                          MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
-//  675                                          puiResponse);
+//  669 
+//  670         default:
+//  671             uiLength = ResponseException(uiSlave,
+//  672                                          uiFunctionCode,
+//  673                                          MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
+//  674                                          puiResponse);
 ??Programming_7:
         MOVW    R23:R22, R27:R26
         LDI     R20, 1
@@ -3236,24 +3230,24 @@ _A_PINF:
         MOVW    R17:R16, R7:R6
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
-//  676             break;
-//  677         };
-//  678     }
-//  679 
-//  680     return uiLength;
+//  675             break;
+//  676         };
+//  677     }
+//  678 
+//  679     return uiLength;
 ??Programming_2:
         MOVW    R17:R16, R25:R24
         LDI     R30, 16
         JMP     ?EPILOGUE_B16_L09
-//  681 }
-//  682 
-//  683 //-----------------------------------------------------------------------------------------------------
+//  680 }
+//  681 
+//  682 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  684 int16_t CModbus::PollProgramming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiLength)
+//  683 int16_t CModbus::PollProgramming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiLength)
 ??PollProgramming:
-//  685 
-//  686 {
+//  684 
+//  685 {
         CALL    ?PROLOGUE12_L09
         REQUIRE ?Register_R4_is_cg_reg
         REQUIRE ?Register_R5_is_cg_reg
@@ -3267,7 +3261,7 @@ _A_PINF:
         MOVW    R9:R8, R19:R18
         MOVW    R5:R4, R21:R20
         MOVW    R25:R24, R23:R22
-//  687     uint16_t uiOffset = HEADER_LENGTH();
+//  686     uint16_t uiOffset = HEADER_LENGTH();
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -3280,26 +3274,24 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R7:R6, R17:R16
-//  688     int8_t uiSlave = puiRequest[uiOffset - 1];
+//  687     int8_t uiSlave = puiRequest[uiOffset - 1];
         MOVW    R31:R30, R9:R8
         ADD     R30, R6
         ADC     R31, R7
         SBIW    R31:R30, 1
         LD      R11, Z
-//  689     int8_t uiFunctionCode = puiRequest[uiOffset];
+//  688     int8_t uiFunctionCode = puiRequest[uiOffset];
         MOVW    R31:R30, R9:R8
         ADD     R30, R6
         ADC     R31, R7
         LD      R10, Z
-//  690 
-//  691     if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
+//  689 
+//  690     if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
         CALL    ??GetFsmEvent
         CPI     R16, 3
         BRNE    ??PollProgramming_1
-//  692     {
-//  693         uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
+//  691     {
+//  692         uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
         MOVW    R21:R20, R5:R4
         MOV     R19, R10
         MOV     R18, R11
@@ -3316,19 +3308,17 @@ _A_PINF:
         ICALL
         MOVW    R25:R24, R17:R16
         RJMP    ??PollProgramming_2
-//  694     }
-//  695     else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
+//  693     }
+//  694     else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_IN_PROGRESS_FSM_EVENT)
 ??PollProgramming_1:
-        LDI     R16, LOW(??m_xDataStore)
-        LDI     R17, (??m_xDataStore) >> 8
         CALL    ??GetFsmEvent
         CPI     R16, 1
         BRNE    ??PollProgramming_3
-//  696     {
-//  697         uiLength = ResponseException(uiSlave,
-//  698                                      uiFunctionCode,
-//  699                                      MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY,
-//  700                                      puiResponse);
+//  695     {
+//  696         uiLength = ResponseException(uiSlave,
+//  697                                      uiFunctionCode,
+//  698                                      MODBUS_EXCEPTION_SLAVE_OR_SERVER_BUSY,
+//  699                                      puiResponse);
         MOVW    R23:R22, R5:R4
         LDI     R20, 6
         MOV     R19, R10
@@ -3337,13 +3327,13 @@ _A_PINF:
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
         RJMP    ??PollProgramming_2
-//  701     }
-//  702     else
-//  703     {
-//  704         uiLength = ResponseException(uiSlave,
-//  705                                      uiFunctionCode,
-//  706                                      MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
-//  707                                      puiResponse);
+//  700     }
+//  701     else
+//  702     {
+//  703         uiLength = ResponseException(uiSlave,
+//  704                                      uiFunctionCode,
+//  705                                      MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
+//  706                                      puiResponse);
 ??PollProgramming_3:
         MOVW    R23:R22, R5:R4
         LDI     R20, 1
@@ -3352,21 +3342,21 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
-//  708     }
-//  709 
-//  710     return uiLength;
+//  707     }
+//  708 
+//  709     return uiLength;
 ??PollProgramming_2:
         MOVW    R17:R16, R25:R24
         LDI     R30, 12
         JMP     ?EPILOGUE_B12_L09
-//  711 }
-//  712 
-//  713 //-----------------------------------------------------------------------------------------------------
+//  710 }
+//  711 
+//  712 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  714 int16_t CModbus::Reply(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiFrameLength)
+//  713 int16_t CModbus::Reply(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiFrameLength)
 ??Reply:
-//  715 {
+//  714 {
         CALL    ?PROLOGUE15_L09
         REQUIRE ?Register_R4_is_cg_reg
         REQUIRE ?Register_R5_is_cg_reg
@@ -3383,7 +3373,7 @@ _A_PINF:
         MOVW    R5:R4, R19:R18
         MOVW    R7:R6, R21:R20
         MOVW    R11:R10, R23:R22
-//  716     uint16_t uiOffset = HEADER_LENGTH();
+//  715     uint16_t uiOffset = HEADER_LENGTH();
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -3396,22 +3386,22 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R9:R8, R17:R16
-//  717     int8_t uiSlave = puiRequest[uiOffset - 1];
+//  716     int8_t uiSlave = puiRequest[uiOffset - 1];
         MOVW    R31:R30, R5:R4
         ADD     R30, R8
         ADC     R31, R9
         SBIW    R31:R30, 1
         LD      R12, Z
-//  718     int8_t uiFunctionCode = puiRequest[uiOffset];
+//  717     int8_t uiFunctionCode = puiRequest[uiOffset];
         MOVW    R31:R30, R5:R4
         ADD     R30, R8
         ADC     R31, R9
         LD      R14, Z
-//  719     uint16_t uiLength = uiFrameLength;
+//  718     uint16_t uiLength = uiFrameLength;
         MOVW    R25:R24, R11:R10
-//  720 
-//  721     /* Filter on the Modbus unit identifier (slave) in RTU mode */
-//  722     if (uiSlave != m_uiOwnAddress && uiSlave != MODBUS_BROADCAST_ADDRESS)
+//  719 
+//  720     /* Filter on the Modbus unit identifier (slave) in RTU mode */
+//  721     if (uiSlave != m_uiOwnAddress && uiSlave != MODBUS_BROADCAST_ADDRESS)
         MOV     R13, R12
         LSL     R13
         SBC     R13, R13
@@ -3423,14 +3413,14 @@ _A_PINF:
         BREQ    ??Reply_1
         TST     R12
         BREQ    ??Reply_1
-//  723     {
-//  724         return 0;
+//  722     {
+//  723         return 0;
         LDI     R16, 0
         LDI     R17, 0
         RJMP    ??Reply_2
-//  725     }
-//  726 
-//  727     switch (uiFunctionCode)
+//  724     }
+//  725 
+//  726     switch (uiFunctionCode)
 ??Reply_1:
         MOV     R16, R14
         MOV     R17, R16
@@ -3441,9 +3431,9 @@ _A_PINF:
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for Reply>_0`)
         JMP     ?CV_SWITCH_L06
-//  728     {
-//  729     case _FC_READ_COILS:
-//  730         uiLength = ReadCoils(puiRequest, puiResponse, uiLength);
+//  727     {
+//  728     case _FC_READ_COILS:
+//  729         uiLength = ReadCoils(puiRequest, puiResponse, uiLength);
 ??Reply_3:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3451,11 +3441,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ReadCoils
         MOVW    R25:R24, R17:R16
-//  731         break;
+//  730         break;
         RJMP    ??Reply_4
-//  732 
-//  733     case _FC_READ_DISCRETE_INPUTS:
-//  734         uiLength = ReadDiscreteInputs(puiRequest, puiResponse, uiLength);
+//  731 
+//  732     case _FC_READ_DISCRETE_INPUTS:
+//  733         uiLength = ReadDiscreteInputs(puiRequest, puiResponse, uiLength);
 ??Reply_5:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3463,11 +3453,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ReadDiscreteInputs
         MOVW    R25:R24, R17:R16
-//  735         break;
+//  734         break;
         RJMP    ??Reply_4
-//  736 
-//  737     case _FC_READ_HOLDING_REGISTERS:
-//  738         uiLength = ReadHoldingRegisters(puiRequest, puiResponse, uiLength);
+//  735 
+//  736     case _FC_READ_HOLDING_REGISTERS:
+//  737         uiLength = ReadHoldingRegisters(puiRequest, puiResponse, uiLength);
 ??Reply_6:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3475,11 +3465,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ReadHoldingRegisters
         MOVW    R25:R24, R17:R16
-//  739         break;
+//  738         break;
         RJMP    ??Reply_4
-//  740 
-//  741     case _FC_READ_INPUT_REGISTERS:
-//  742         uiLength = ReadInputRegisters(puiRequest, puiResponse, uiLength);
+//  739 
+//  740     case _FC_READ_INPUT_REGISTERS:
+//  741         uiLength = ReadInputRegisters(puiRequest, puiResponse, uiLength);
 ??Reply_7:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3487,11 +3477,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ReadInputRegisters
         MOVW    R25:R24, R17:R16
-//  743         break;
+//  742         break;
         RJMP    ??Reply_4
-//  744 
-//  745     case _FC_WRITE_SINGLE_COIL:
-//  746         uiLength = WriteSingleCoil(puiRequest, puiResponse, uiLength);
+//  743 
+//  744     case _FC_WRITE_SINGLE_COIL:
+//  745         uiLength = WriteSingleCoil(puiRequest, puiResponse, uiLength);
 ??Reply_8:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3499,11 +3489,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??WriteSingleCoil
         MOVW    R25:R24, R17:R16
-//  747         break;
+//  746         break;
         RJMP    ??Reply_4
-//  748 
-//  749     case _FC_WRITE_SINGLE_REGISTER:
-//  750         uiLength = WriteSingleRegister(puiRequest, puiResponse, uiLength);
+//  747 
+//  748     case _FC_WRITE_SINGLE_REGISTER:
+//  749         uiLength = WriteSingleRegister(puiRequest, puiResponse, uiLength);
 ??Reply_9:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3511,11 +3501,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??WriteSingleRegister
         MOVW    R25:R24, R17:R16
-//  751         break;
+//  750         break;
         RJMP    ??Reply_4
-//  752 
-//  753     case _FC_READ_EXCEPTION_STATUS:
-//  754         uiLength = ReadExceptionStatus(puiRequest, puiResponse, uiLength);
+//  751 
+//  752     case _FC_READ_EXCEPTION_STATUS:
+//  753         uiLength = ReadExceptionStatus(puiRequest, puiResponse, uiLength);
 ??Reply_10:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3523,11 +3513,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ReadExceptionStatus
         MOVW    R25:R24, R17:R16
-//  755         break;
+//  754         break;
         RJMP    ??Reply_4
-//  756 
-//  757     case _FC_WRITE_MULTIPLE_COILS:
-//  758         uiLength = WriteMultipleCoils(puiRequest, puiResponse, uiLength);
+//  755 
+//  756     case _FC_WRITE_MULTIPLE_COILS:
+//  757         uiLength = WriteMultipleCoils(puiRequest, puiResponse, uiLength);
 ??Reply_11:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3535,11 +3525,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??WriteMultipleCoils
         MOVW    R25:R24, R17:R16
-//  759         break;
+//  758         break;
         RJMP    ??Reply_4
-//  760 
-//  761     case _FC_PROGRAMMING_COMPLETION_REQUEST:
-//  762         uiLength = PollProgramming(puiRequest, puiResponse, uiLength);
+//  759 
+//  760     case _FC_PROGRAMMING_COMPLETION_REQUEST:
+//  761         uiLength = PollProgramming(puiRequest, puiResponse, uiLength);
 ??Reply_12:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3547,11 +3537,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??PollProgramming
         MOVW    R25:R24, R17:R16
-//  763         break;
+//  762         break;
         RJMP    ??Reply_4
-//  764 
-//  765     case _FC_WRITE_MULTIPLE_REGISTERS:
-//  766         uiLength = WriteMultipleRegisters(puiRequest, puiResponse, uiLength);
+//  763 
+//  764     case _FC_WRITE_MULTIPLE_REGISTERS:
+//  765         uiLength = WriteMultipleRegisters(puiRequest, puiResponse, uiLength);
 ??Reply_13:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3559,11 +3549,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??WriteMultipleRegisters
         MOVW    R25:R24, R17:R16
-//  767         break;
+//  766         break;
         RJMP    ??Reply_4
-//  768 
-//  769     case _FC_REPORT_SLAVE_ID:
-//  770         uiLength = ReportSlaveID(puiRequest, puiResponse, uiLength);
+//  767 
+//  768     case _FC_REPORT_SLAVE_ID:
+//  769         uiLength = ReportSlaveID(puiRequest, puiResponse, uiLength);
 ??Reply_14:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3571,11 +3561,11 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ReportSlaveID
         MOVW    R25:R24, R17:R16
-//  771         break;
+//  770         break;
         RJMP    ??Reply_4
-//  772 
-//  773     case _FC_WRITE_AND_READ_REGISTERS:
-//  774         uiLength = WriteAndReadRegisters(puiRequest, puiResponse, uiLength);
+//  771 
+//  772     case _FC_WRITE_AND_READ_REGISTERS:
+//  773         uiLength = WriteAndReadRegisters(puiRequest, puiResponse, uiLength);
 ??Reply_15:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3583,20 +3573,20 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??WriteAndReadRegisters
         MOVW    R25:R24, R17:R16
-//  775         break;
+//  774         break;
         RJMP    ??Reply_4
-//  776 
-//  777     case _FC_DATA_EXCHANGE:
-//  778         break;
-//  779 
-//  780     case _FC_DATA_BASE_READ:
-//  781         break;
-//  782 
-//  783     case _FC_DATA_BASE_WRITE:
-//  784         break;
-//  785 
-//  786     case _FC_PROGRAMMING:
-//  787         uiLength = Programming(puiRequest, puiResponse, uiLength);
+//  775 
+//  776     case _FC_DATA_EXCHANGE:
+//  777         break;
+//  778 
+//  779     case _FC_DATA_BASE_READ:
+//  780         break;
+//  781 
+//  782     case _FC_DATA_BASE_WRITE:
+//  783         break;
+//  784 
+//  785     case _FC_PROGRAMMING:
+//  786         uiLength = Programming(puiRequest, puiResponse, uiLength);
 ??Reply_16:
         MOVW    R23:R22, R25:R24
         MOVW    R21:R20, R7:R6
@@ -3604,14 +3594,14 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??Programming
         MOVW    R25:R24, R17:R16
-//  788         break;
+//  787         break;
         RJMP    ??Reply_4
-//  789 
-//  790     default:
-//  791         uiLength = ResponseException(uiSlave,
-//  792                                      uiFunctionCode,
-//  793                                      MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
-//  794                                      puiResponse);
+//  788 
+//  789     default:
+//  790         uiLength = ResponseException(uiSlave,
+//  791                                      uiFunctionCode,
+//  792                                      MODBUS_EXCEPTION_ILLEGAL_FUNCTION,
+//  793                                      puiResponse);
 ??Reply_17:
         MOVW    R23:R22, R7:R6
         LDI     R20, 1
@@ -3620,35 +3610,35 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         RCALL   ??ResponseException
         MOVW    R25:R24, R17:R16
-//  795         break;
-//  796     }
-//  797 
-//  798     m_uiMessageLength = uiLength;
+//  794         break;
+//  795     }
+//  796 
+//  797     m_uiMessageLength = uiLength;
 ??Reply_4:
         MOVW    R31:R30, R27:R26
         STD     Z+12, R24
         STD     Z+13, R25
-//  799     return uiLength;
+//  798     return uiLength;
         MOVW    R17:R16, R25:R24
 ??Reply_2:
         LDI     R30, 15
         JMP     ?EPILOGUE_B15_L09
-//  800 //    return SendMessage(puiResponse, uiLength);
-//  801 }
-//  802 
-//  803 //-----------------------------------------------------------------------------------------------------
+//  799 //    return SendMessage(puiResponse, uiLength);
+//  800 }
+//  801 
+//  802 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  804 void CModbus::SetByteFromBits(uint8_t *dest, int16_t index, const uint8_t value)
+//  803 void CModbus::SetByteFromBits(uint8_t *dest, int16_t index, const uint8_t value)
 ??SetByteFromBits:
-//  805 {
+//  804 {
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R3:R2, R17:R16
         MOVW    R1:R0, R21:R20
-//  806     int16_t i;
-//  807 
-//  808     for (i=0; i<8; i++)
+//  805     int16_t i;
+//  806 
+//  807     for (i=0; i<8; i++)
         LDI     R24, 0
         LDI     R25, 0
 ??SetByteFromBits_1:
@@ -3656,8 +3646,8 @@ _A_PINF:
         LDI     R16, 0
         CPC     R25, R16
         BRGE    ??SetByteFromBits_2
-//  809     {
-//  810         dest[index+i] = (value & (1 << i)) ? 1 : 0;
+//  808     {
+//  809         dest[index+i] = (value & (1 << i)) ? 1 : 0;
         MOV     R20, R24
         LDI     R16, 1
         LDI     R17, 0
@@ -3678,22 +3668,22 @@ _A_PINF:
         ADD     R30, R20
         ADC     R31, R21
         ST      Z, R16
-//  811     }
+//  810     }
         ADIW    R25:R24, 1
         RJMP    ??SetByteFromBits_1
-//  812 }
+//  811 }
 ??SetByteFromBits_2:
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  813 
-//  814 //-----------------------------------------------------------------------------------------------------
+//  812 
+//  813 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  815 void CModbus::SetBytesFromBits(uint8_t *dest, int16_t index, uint16_t nb_bits,
+//  814 void CModbus::SetBytesFromBits(uint8_t *dest, int16_t index, uint16_t nb_bits,
 ??SetBytesFromBits:
-//  816                                const uint8_t *tab_byte)
-//  817 {
+//  815                                const uint8_t *tab_byte)
+//  816 {
         CALL    ?PROLOGUE8_L09
         REQUIRE ?Register_R4_is_cg_reg
         REQUIRE ?Register_R5_is_cg_reg
@@ -3703,12 +3693,12 @@ _A_PINF:
         MOVW    R3:R2, R21:R20
         LDD     R4, Y+8
         LDD     R5, Y+9
-//  818     int16_t i;
-//  819     int16_t shift = 0;
+//  817     int16_t i;
+//  818     int16_t shift = 0;
         LDI     R24, 0
         LDI     R25, 0
-//  820 
-//  821     for (i = index; i < index + nb_bits; i++)
+//  819 
+//  820     for (i = index; i < index + nb_bits; i++)
         MOVW    R27:R26, R3:R2
 ??SetBytesFromBits_1:
         MOVW    R17:R16, R3:R2
@@ -3717,8 +3707,8 @@ _A_PINF:
         CP      R26, R16
         CPC     R27, R17
         BRCC    ??SetBytesFromBits_2
-//  822     {
-//  823         dest[i] = tab_byte[(i - index) / 8] & (1 << shift) ? 1 : 0;
+//  821     {
+//  822         dest[i] = tab_byte[(i - index) / 8] & (1 << shift) ? 1 : 0;
         MOVW    R1:R0, R27:R26
         SUB     R0, R2
         SBC     R1, R3
@@ -3746,52 +3736,52 @@ _A_PINF:
         ADD     R30, R26
         ADC     R31, R27
         ST      Z, R16
-//  824         /* gcc doesn't like: shift = (++shift) % 8; */
-//  825         shift++;
+//  823         /* gcc doesn't like: shift = (++shift) % 8; */
+//  824         shift++;
         ADIW    R25:R24, 1
-//  826         shift %= 8;
+//  825         shift %= 8;
         LDI     R20, 8
         LDI     R21, 0
         MOVW    R17:R16, R25:R24
         CALL    ?SS_DIVMOD_L02
         MOVW    R25:R24, R21:R20
-//  827     }
+//  826     }
         ADIW    R27:R26, 1
         RJMP    ??SetBytesFromBits_1
-//  828 }
+//  827 }
 ??SetBytesFromBits_2:
         LDI     R30, 10
         JMP     ?EPILOGUE_B8_L09
-//  829 
-//  830 //-----------------------------------------------------------------------------------------------------
+//  828 
+//  829 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  831 uint8_t CModbus::GetByteFromBits(const uint8_t *src, int16_t index,
+//  830 uint8_t CModbus::GetByteFromBits(const uint8_t *src, int16_t index,
 ??GetByteFromBits:
-//  832                                  uint16_t nb_bits)
-//  833 {
+//  831                                  uint16_t nb_bits)
+//  832 {
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R3:R2, R17:R16
         MOVW    R1:R0, R21:R20
-//  834     int16_t i;
-//  835     uint8_t value = 0;
+//  833     int16_t i;
+//  834     uint8_t value = 0;
         LDI     R21, 0
-//  836 
-//  837     if (nb_bits > 8)
+//  835 
+//  836     if (nb_bits > 8)
         CPI     R22, 9
         LDI     R16, 0
         CPC     R23, R16
         BRCS    ??GetByteFromBits_1
-//  838     {
-//  839         /* Assert is ignored if NDEBUG is set */
-//  840 //        assert(nb_bits < 8); //?
-//  841         nb_bits = 8;
+//  837     {
+//  838         /* Assert is ignored if NDEBUG is set */
+//  839 //        assert(nb_bits < 8); //?
+//  840         nb_bits = 8;
         LDI     R22, 8
         LDI     R23, 0
-//  842     }
-//  843 
-//  844     for (i=0; i < nb_bits; i++)
+//  841     }
+//  842 
+//  843     for (i=0; i < nb_bits; i++)
 ??GetByteFromBits_1:
         LDI     R24, 0
         LDI     R25, 0
@@ -3799,8 +3789,8 @@ _A_PINF:
         CP      R24, R22
         CPC     R25, R23
         BRCC    ??GetByteFromBits_3
-//  845     {
-//  846         value |= (src[index+i] << i);
+//  844     {
+//  845         value |= (src[index+i] << i);
         MOVW    R17:R16, R1:R0
         ADD     R16, R24
         ADC     R17, R25
@@ -3812,29 +3802,29 @@ _A_PINF:
         MOV     R20, R24
         CALL    ?S_SHL_L02
         OR      R21, R16
-//  847     }
+//  846     }
         ADIW    R25:R24, 1
         RJMP    ??GetByteFromBits_2
-//  848 
-//  849     return value;
+//  847 
+//  848     return value;
 ??GetByteFromBits_3:
         MOV     R16, R21
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  850 }
-//  851 
-//  852 //-----------------------------------------------------------------------------------------------------
+//  849 }
+//  850 
+//  851 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  853 float CModbus::GetFloat(const uint16_t *src)
+//  852 float CModbus::GetFloat(const uint16_t *src)
 ??GetFloat:
-//  854 {
+//  853 {
         MOVW    R23:R22, R27:R26
         SBIW    R29:R28, 8
         MOVW    R21:R20, R17:R16
         MOVW    R27:R26, R19:R18
-//  855     float f = 0.0f;
+//  854     float f = 0.0f;
         LDI     R16, 0
         ST      Y, R16
         LDI     R16, 0
@@ -3843,9 +3833,9 @@ _A_PINF:
         STD     Y+2, R16
         LDI     R16, 0
         STD     Y+3, R16
-//  856     uint32_t i;
-//  857 
-//  858     i = (((uint32_t)src[1]) << 16) + src[0];
+//  855     uint32_t i;
+//  856 
+//  857     i = (((uint32_t)src[1]) << 16) + src[0];
         ADIW    R27:R26, 2
         LD      R2, X+
         LD      R3, X
@@ -3865,7 +3855,7 @@ _A_PINF:
         STD     Y+5, R1
         STD     Y+6, R2
         STD     Y+7, R3
-//  859     memcpy(&f, &i, sizeof(float));
+//  858     memcpy(&f, &i, sizeof(float));
         LDD     R16, Y+4
         LDD     R17, Y+5
         LDD     R18, Y+6
@@ -3874,8 +3864,8 @@ _A_PINF:
         STD     Y+1, R17
         STD     Y+2, R18
         STD     Y+3, R19
-//  860 
-//  861     return f;
+//  859 
+//  860     return f;
         LD      R16, Y
         LDD     R17, Y+1
         LDD     R18, Y+2
@@ -3883,20 +3873,20 @@ _A_PINF:
         ADIW    R29:R28, 8
         MOVW    R27:R26, R23:R22
         RET
-//  862 }
-//  863 
-//  864 //-----------------------------------------------------------------------------------------------------
+//  861 }
+//  862 
+//  863 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  865 void CModbus::SetFloat(float f, uint16_t *dest)
+//  864 void CModbus::SetFloat(float f, uint16_t *dest)
 ??SetFloat:
-//  866 {
+//  865 {
         SBIW    R29:R28, 8
         STD     Y+4, R20
         STD     Y+5, R21
         STD     Y+6, R22
         STD     Y+7, R23
-//  867     uint32_t i = 0;
+//  866     uint32_t i = 0;
         LDI     R20, 0
         ST      Y, R20
         LDI     R20, 0
@@ -3905,8 +3895,8 @@ _A_PINF:
         STD     Y+2, R20
         LDI     R20, 0
         STD     Y+3, R20
-//  868 
-//  869     memcpy(&i, &f, sizeof(uint32_t));
+//  867 
+//  868     memcpy(&i, &f, sizeof(uint32_t));
         LDD     R20, Y+4
         LDD     R21, Y+5
         LDD     R22, Y+6
@@ -3915,7 +3905,7 @@ _A_PINF:
         STD     Y+1, R21
         STD     Y+2, R22
         STD     Y+3, R23
-//  870     dest[0] = (uint16_t)i;
+//  869     dest[0] = (uint16_t)i;
         LD      R20, Y
         LDD     R21, Y+1
         LDD     R22, Y+2
@@ -3923,7 +3913,7 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ST      Z, R20
         STD     Z+1, R21
-//  871     dest[1] = (uint16_t)(i >> 16);
+//  870     dest[1] = (uint16_t)(i >> 16);
         LD      R20, Y
         LDD     R21, Y+1
         LDD     R22, Y+2
@@ -3935,68 +3925,68 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         STD     Z+2, R20
         STD     Z+3, R21
-//  872 }
+//  871 }
         ADIW    R29:R28, 8
         RET
-//  873 
-//  874 //-----------------------------------------------------------------------------------------------------
+//  872 
+//  873 //-----------------------------------------------------------------------------------------------------
+//  874 
 //  875 
 //  876 
 //  877 
 //  878 
 //  879 
-//  880 
-//  881 ////-----------------------------------------------------------------------------------------------------
-//  882 //int8_t CModbus::ReadCoilsRequest(uint16_t uiAddress,
-//  883 //                                  uint16_t uiBitNumber)
-//  884 //{
-//  885 //    if (uiBitNumber > MODBUS_MAX_READ_BITS)
-//  886 //    {
-//  887 //        return EMBMDATA;
-//  888 //    }
-//  889 //
-//  890 //    if (MessengerIsReady())
-//  891 //    {
-//  892 //        m_uiFunctionCode = _FC_READ_COILS;
-//  893 //        m_uiMessageLength = RequestBasis(m_uiOwnAddress,
-//  894 //                                         m_uiFunctionCode,
-//  895 //                                         uiAddress,
-//  896 //                                         uiBitNumber,
-//  897 //                                         m_puiTxBuffer);
-//  898 //        SetFsmState(FRAME_TRANSMIT_REQUEST);
-//  899 //        return 1;
-//  900 //    }
-//  901 //    else
-//  902 //    {
-//  903 //        return 0;
-//  904 //    }
-//  905 //}
-//  906 //
-//  907 ////-----------------------------------------------------------------------------------------------------
-//  908 //int16_t CModbus::ReadCoilsReply(uint8_t *puiDestination)
-//  909 //{
-//  910 //
-//  911 //    if (MessengerIsReady())
-//  912 //    {
-//  913 //
-//  914 //        SetFsmState(FRAME_TRANSMIT_REQUEST);
-//  915 //        return 1;
-//  916 //    }
-//  917 //    else
-//  918 //    {
-//  919 //        return 0;
-//  920 //    }
-//  921 //}
+//  880 ////-----------------------------------------------------------------------------------------------------
+//  881 //int8_t CModbus::ReadCoilsRequest(uint16_t uiAddress,
+//  882 //                                  uint16_t uiBitNumber)
+//  883 //{
+//  884 //    if (uiBitNumber > MODBUS_MAX_READ_BITS)
+//  885 //    {
+//  886 //        return EMBMDATA;
+//  887 //    }
+//  888 //
+//  889 //    if (MessengerIsReady())
+//  890 //    {
+//  891 //        m_uiFunctionCode = _FC_READ_COILS;
+//  892 //        m_uiMessageLength = RequestBasis(m_uiOwnAddress,
+//  893 //                                         m_uiFunctionCode,
+//  894 //                                         uiAddress,
+//  895 //                                         uiBitNumber,
+//  896 //                                         m_puiTxBuffer);
+//  897 //        SetFsmState(FRAME_TRANSMIT_REQUEST);
+//  898 //        return 1;
+//  899 //    }
+//  900 //    else
+//  901 //    {
+//  902 //        return 0;
+//  903 //    }
+//  904 //}
+//  905 //
+//  906 ////-----------------------------------------------------------------------------------------------------
+//  907 //int16_t CModbus::ReadCoilsReply(uint8_t *puiDestination)
+//  908 //{
+//  909 //
+//  910 //    if (MessengerIsReady())
+//  911 //    {
+//  912 //
+//  913 //        SetFsmState(FRAME_TRANSMIT_REQUEST);
+//  914 //        return 1;
+//  915 //    }
+//  916 //    else
+//  917 //    {
+//  918 //        return 0;
+//  919 //    }
+//  920 //}
+//  921 
 //  922 
-//  923 
-//  924 //-----------------------------------------------------------------------------------------------------
+//  923 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  925 int8_t CModbus::ReadDiscreteInputsRequest(uint8_t uiSlaveAddress,
+//  924 int8_t CModbus::ReadDiscreteInputsRequest(uint8_t uiSlaveAddress,
 ??ReadDiscreteInputsRequest:
-//  926         uint16_t uiAddress,
-//  927         uint16_t uiBitNumber)
-//  928 {
+//  925         uint16_t uiAddress,
+//  926         uint16_t uiBitNumber)
+//  927 {
         CALL    ?PROLOGUE7_L09
         REQUIRE ?Register_R4_is_cg_reg
         REQUIRE ?Register_R5_is_cg_reg
@@ -4005,18 +3995,18 @@ _A_PINF:
         MOV     R6, R18
         MOVW    R5:R4, R21:R20
         MOVW    R25:R24, R23:R22
-//  929     if (uiBitNumber > MODBUS_MAX_READ_BITS)
+//  928     if (uiBitNumber > MODBUS_MAX_READ_BITS)
         CPI     R24, 209
         LDI     R16, 7
         CPC     R25, R16
         BRCS    ??ReadDiscreteInputsRequest_1
-//  930     {
-//  931         return EMBMDATA;
+//  929     {
+//  930         return EMBMDATA;
         LDI     R16, 16
         RJMP    ??ReadDiscreteInputsRequest_2
-//  932     }
-//  933 
-//  934     if (MessengerIsReady() == 1)
+//  931     }
+//  932 
+//  933     if (MessengerIsReady() == 1)
 ??ReadDiscreteInputsRequest_1:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
@@ -4038,20 +4028,20 @@ _A_PINF:
 ??ReadDiscreteInputsRequest_4:
         TST     R16
         BREQ    ??ReadDiscreteInputsRequest_5
-//  935     {
-//  936         m_uiFunctionCode = _FC_READ_DISCRETE_INPUTS;
+//  934     {
+//  935         m_uiFunctionCode = _FC_READ_DISCRETE_INPUTS;
         MOVW    R31:R30, R27:R26
         LDI     R16, 2
         STD     Z+7, R16
-//  937         m_uiQuantity = uiBitNumber;
+//  936         m_uiQuantity = uiBitNumber;
         MOVW    R31:R30, R27:R26
         STD     Z+8, R24
         STD     Z+9, R25
-//  938         m_uiMessageLength = RequestBasis(uiSlaveAddress,
-//  939                                          m_uiFunctionCode,
-//  940                                          uiAddress,
-//  941                                          uiBitNumber,
-//  942                                          m_puiTxBuffer);
+//  937         m_uiMessageLength = RequestBasis(uiSlaveAddress,
+//  938                                          m_uiFunctionCode,
+//  939                                          uiAddress,
+//  940                                          uiBitNumber,
+//  941                                          m_puiTxBuffer);
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+16
         LDD     R17, Z+17
@@ -4076,72 +4066,72 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+12, R16
         STD     Z+13, R17
-//  943         SetFsmState(FRAME_TRANSMIT_REQUEST);
+//  942         SetFsmState(FRAME_TRANSMIT_REQUEST);
         LDI     R18, 14
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  944         return 1;
+//  943         return 1;
         LDI     R16, 1
         RJMP    ??ReadDiscreteInputsRequest_2
-//  945     }
-//  946     else
-//  947     {
-//  948         return 0;
+//  944     }
+//  945     else
+//  946     {
+//  947         return 0;
 ??ReadDiscreteInputsRequest_5:
         LDI     R16, 0
 ??ReadDiscreteInputsRequest_2:
         LDI     R30, 7
         JMP     ?EPILOGUE_B7_L09
-//  949     }
-//  950 }
-//  951 
-//  952 //-----------------------------------------------------------------------------------------------------
+//  948     }
+//  949 }
+//  950 
+//  951 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  953 int16_t CModbus::ReadDiscreteInputsReceive(uint8_t *puiMessage, uint16_t uiLength)
+//  952 int16_t CModbus::ReadDiscreteInputsReceive(uint8_t *puiMessage, uint16_t uiLength)
 ??ReadDiscreteInputsReceive:
-//  954 {
+//  953 {
         MOVW    R23:R22, R17:R16
-//  955 //    uint8_t uiByteCounter = 0;
-//  956 //    for (int8_t i = 0; i < (m_uiQuantity / 2); )
-//  957 //    {
-//  958 //        uint8_t uiData = puiMessage[uiByteCounter];
-//  959 //        for (uint8_t j = 0; j < CHANNELS_IN_BYTE; j++)
-//  960 //        {
-//  961 //            uint8_t uiState = 0;
-//  962 //            for (uint8_t k = 0; k < MEASURE_CHANNEL_STATE_BIT_NUMBER; k++)
-//  963 //            {
-//  964 //                if (uiData & 0x01)
-//  965 //                {
-//  966 //                    uiState |= (0x01 << k);
-//  967 //                }
-//  968 //                uiData >>= 1;
-//  969 //            }
-//  970 //
-//  971 //            CMvsn21::axChipsChannelsData[m_uiSlaveAddress - 1].axMeasurementChannels[i].uiState = uiState;
-//  972 //            // Следующий дискретный вход.
-//  973 //            i++;
-//  974 //            // Распаковали все данные состояния дискретных входов?
-//  975 //            if (i >= m_uiQuantity)
-//  976 //            {
-//  977 //                // Распаковали все данные состояния дискретных входов.
-//  978 //                return 1;
-//  979 //            }
-//  980 //        }
-//  981 //        uiByteCounter += 1;
-//  982 //    }
-//  983     return 1;
+//  954 //    uint8_t uiByteCounter = 0;
+//  955 //    for (int8_t i = 0; i < (m_uiQuantity / 2); )
+//  956 //    {
+//  957 //        uint8_t uiData = puiMessage[uiByteCounter];
+//  958 //        for (uint8_t j = 0; j < CHANNELS_IN_BYTE; j++)
+//  959 //        {
+//  960 //            uint8_t uiState = 0;
+//  961 //            for (uint8_t k = 0; k < MEASURE_CHANNEL_STATE_BIT_NUMBER; k++)
+//  962 //            {
+//  963 //                if (uiData & 0x01)
+//  964 //                {
+//  965 //                    uiState |= (0x01 << k);
+//  966 //                }
+//  967 //                uiData >>= 1;
+//  968 //            }
+//  969 //
+//  970 //            CMvsn21::axChipsChannelsData[m_uiSlaveAddress - 1].axMeasurementChannels[i].uiState = uiState;
+//  971 //            // Следующий дискретный вход.
+//  972 //            i++;
+//  973 //            // Распаковали все данные состояния дискретных входов?
+//  974 //            if (i >= m_uiQuantity)
+//  975 //            {
+//  976 //                // Распаковали все данные состояния дискретных входов.
+//  977 //                return 1;
+//  978 //            }
+//  979 //        }
+//  980 //        uiByteCounter += 1;
+//  981 //    }
+//  982     return 1;
         LDI     R16, 1
         LDI     R17, 0
         RET
-//  984 }
-//  985 
-//  986 //-----------------------------------------------------------------------------------------------------
+//  983 }
+//  984 
+//  985 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  987 int16_t CModbus::ReceiveMessage(uint8_t *puiResponse, uint16_t uiFrameLength)
+//  986 int16_t CModbus::ReceiveMessage(uint8_t *puiResponse, uint16_t uiFrameLength)
 ??ReceiveMessage:
-//  988 {
+//  987 {
         CALL    ?PROLOGUE12_L09
         REQUIRE ?Register_R4_is_cg_reg
         REQUIRE ?Register_R5_is_cg_reg
@@ -4154,7 +4144,7 @@ _A_PINF:
         MOVW    R27:R26, R17:R16
         MOVW    R5:R4, R19:R18
         MOVW    R7:R6, R21:R20
-//  989     uint16_t uiOffset = HEADER_LENGTH();
+//  988     uint16_t uiOffset = HEADER_LENGTH();
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -4167,22 +4157,22 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R25:R24, R17:R16
-//  990     uint8_t uiSlave = puiResponse[uiOffset - 1];
+//  989     uint8_t uiSlave = puiResponse[uiOffset - 1];
         MOVW    R31:R30, R5:R4
         ADD     R30, R24
         ADC     R31, R25
         SBIW    R31:R30, 1
         LD      R9, Z
-//  991     uint8_t uiFunctionCode = puiResponse[uiOffset];
+//  990     uint8_t uiFunctionCode = puiResponse[uiOffset];
         MOVW    R31:R30, R5:R4
         ADD     R30, R24
         ADC     R31, R25
         LD      R8, Z
-//  992     uint16_t uiLength = uiFrameLength;
+//  991     uint16_t uiLength = uiFrameLength;
         MOVW    R11:R10, R7:R6
-//  993 
-//  994     if ((m_uiSlaveAddress == uiSlave) &&
-//  995             (m_uiFunctionCode == uiFunctionCode))
+//  992 
+//  993     if ((m_uiSlaveAddress == uiSlave) &&
+//  994             (m_uiFunctionCode == uiFunctionCode))
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+6
         CP      R16, R9
@@ -4191,17 +4181,17 @@ _A_PINF:
         LDD     R16, Z+7
         CP      R16, R8
         BRNE    ??ReceiveMessage_1
-//  996     {
-//  997         switch (uiFunctionCode)
+//  995     {
+//  996         switch (uiFunctionCode)
         LDI     R16, 2
         CP      R8, R16
         BRNE    ??ReceiveMessage_2
-//  998         {
-//  999 //    case _FC_READ_COILS:
-// 1000 //        break;
-// 1001 //
-// 1002         case _FC_READ_DISCRETE_INPUTS:
-// 1003             ReadDiscreteInputsReceive(&puiResponse[uiOffset + 2], uiLength);
+//  997         {
+//  998 //    case _FC_READ_COILS:
+//  999 //        break;
+// 1000 //
+// 1001         case _FC_READ_DISCRETE_INPUTS:
+// 1002             ReadDiscreteInputsReceive(&puiResponse[uiOffset + 2], uiLength);
         MOVW    R21:R20, R11:R10
         MOVW    R19:R18, R5:R4
         ADD     R18, R24
@@ -4210,61 +4200,61 @@ _A_PINF:
         SBCI    R19, 255
         MOVW    R17:R16, R27:R26
         RCALL   ??ReadDiscreteInputsReceive
-// 1004             break;
-// 1005 
-// 1006 //    case _FC_READ_HOLDING_REGISTERS:
-// 1007 //        break;
-// 1008 //
-// 1009 //    case _FC_READ_INPUT_REGISTERS:
-// 1010 //        break;
-// 1011 //
-// 1012 //    case _FC_WRITE_SINGLE_COIL:
-// 1013 //        break;
-// 1014 //
-// 1015 //    case _FC_WRITE_SINGLE_REGISTER:
-// 1016 //        break;
-// 1017 //
-// 1018 //    case _FC_READ_EXCEPTION_STATUS:
-// 1019 //        break;
-// 1020 //
-// 1021 //    case _FC_WRITE_MULTIPLE_COILS:
-// 1022 //        break;
-// 1023 //
-// 1024 //    case _FC_PROGRAMMING_COMPLETION_REQUEST:
-// 1025 //        break;
-// 1026 //
-// 1027 //    case _FC_WRITE_MULTIPLE_REGISTERS:
-// 1028 //        break;
-// 1029 //
-// 1030 //    case _FC_REPORT_SLAVE_ID:
-// 1031 //        break;
-// 1032 //
-// 1033 //    case _FC_WRITE_AND_READ_REGISTERS:
-// 1034 //        break;
-// 1035 //
-// 1036 //    case _FC_DATA_EXCHANGE:
-// 1037 //        break;
-// 1038 //
-// 1039 //    case _FC_DATA_BASE_READ:
-// 1040 //        break;
-// 1041 //
-// 1042 //    case _FC_DATA_BASE_WRITE:
-// 1043 //        break;
-// 1044 //
-// 1045 //    case _FC_PROGRAMMING:
-// 1046 //        break;
-// 1047 
-// 1048         default:
-// 1049             break;
-// 1050         }
-// 1051         return 1;
+// 1003             break;
+// 1004 
+// 1005 //    case _FC_READ_HOLDING_REGISTERS:
+// 1006 //        break;
+// 1007 //
+// 1008 //    case _FC_READ_INPUT_REGISTERS:
+// 1009 //        break;
+// 1010 //
+// 1011 //    case _FC_WRITE_SINGLE_COIL:
+// 1012 //        break;
+// 1013 //
+// 1014 //    case _FC_WRITE_SINGLE_REGISTER:
+// 1015 //        break;
+// 1016 //
+// 1017 //    case _FC_READ_EXCEPTION_STATUS:
+// 1018 //        break;
+// 1019 //
+// 1020 //    case _FC_WRITE_MULTIPLE_COILS:
+// 1021 //        break;
+// 1022 //
+// 1023 //    case _FC_PROGRAMMING_COMPLETION_REQUEST:
+// 1024 //        break;
+// 1025 //
+// 1026 //    case _FC_WRITE_MULTIPLE_REGISTERS:
+// 1027 //        break;
+// 1028 //
+// 1029 //    case _FC_REPORT_SLAVE_ID:
+// 1030 //        break;
+// 1031 //
+// 1032 //    case _FC_WRITE_AND_READ_REGISTERS:
+// 1033 //        break;
+// 1034 //
+// 1035 //    case _FC_DATA_EXCHANGE:
+// 1036 //        break;
+// 1037 //
+// 1038 //    case _FC_DATA_BASE_READ:
+// 1039 //        break;
+// 1040 //
+// 1041 //    case _FC_DATA_BASE_WRITE:
+// 1042 //        break;
+// 1043 //
+// 1044 //    case _FC_PROGRAMMING:
+// 1045 //        break;
+// 1046 
+// 1047         default:
+// 1048             break;
+// 1049         }
+// 1050         return 1;
 ??ReceiveMessage_2:
         LDI     R16, 1
         LDI     R17, 0
         RJMP    ??ReceiveMessage_3
-// 1052     }
-// 1053     else if (uiLength == (uiOffset + 2 + CRC_LENGTH()) &&
-// 1054              (uiFunctionCode & 0x80))
+// 1051     }
+// 1052     else if (uiLength == (uiOffset + 2 + CRC_LENGTH()) &&
+// 1053              (uiFunctionCode & 0x80))
 ??ReceiveMessage_1:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
@@ -4298,43 +4288,43 @@ _A_PINF:
 ??ReceiveMessage_6:
         TST     R16
         BREQ    ??ReceiveMessage_7
-// 1055     {
-// 1056         /* EXCEPTION CODE RECEIVED */
-// 1057         int8_t uiExceptionCode =
-// 1058             puiResponse[uiOffset + MODBUS_EXCEPTION_CODE_OFFSET];
+// 1054     {
+// 1055         /* EXCEPTION CODE RECEIVED */
+// 1056         int8_t uiExceptionCode =
+// 1057             puiResponse[uiOffset + MODBUS_EXCEPTION_CODE_OFFSET];
         MOVW    R31:R30, R5:R4
         ADD     R30, R24
         ADC     R31, R25
         LDD     R18, Z+1
-// 1059         if (uiExceptionCode < MODBUS_EXCEPTION_MAX)
+// 1058         if (uiExceptionCode < MODBUS_EXCEPTION_MAX)
         CPI     R18, 12
         BRGE    ??ReceiveMessage_8
-// 1060         {
-// 1061             return MODBUS_ENOBASE + uiExceptionCode;
+// 1059         {
+// 1060             return MODBUS_ENOBASE + uiExceptionCode;
         MOV     R16, R18
         MOV     R17, R16
         LSL     R17
         SBC     R17, R17
         RJMP    ??ReceiveMessage_3
-// 1062         }
-// 1063         else
-// 1064         {
-// 1065             return EMBBADEXC;
+// 1061         }
+// 1062         else
+// 1063         {
+// 1064             return EMBBADEXC;
 ??ReceiveMessage_8:
         LDI     R16, 14
         LDI     R17, 0
         RJMP    ??ReceiveMessage_3
-// 1066         }
-// 1067     }
-// 1068 
-// 1069     return 1;
+// 1065         }
+// 1066     }
+// 1067 
+// 1068     return 1;
 ??ReceiveMessage_7:
         LDI     R16, 1
         LDI     R17, 0
 ??ReceiveMessage_3:
         LDI     R30, 12
         JMP     ?EPILOGUE_B12_L09
-// 1070 }
+// 1069 }
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CDfaLite::SetFsmState(uint8_t)
@@ -4351,13 +4341,6 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDfa::GetFsmEvent()
-??GetFsmEvent:
-        MOVW    R31:R30, R17:R16
-        LDD     R16, Z+4
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CModbus::HEADER_LENGTH()
 ??HEADER_LENGTH:
         MOVW    R19:R18, R17:R16
@@ -4371,6 +4354,18 @@ _A_PINF:
         MOVW    R19:R18, R17:R16
         LDI     R16, 2
         LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CDataStore::GetFsmEvent()
+??GetFsmEvent:
+        LDS     R16, ??m_uiFsmEvent
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CDataBase::GetBlocksNumber()
+??GetBlocksNumber:
+        LDI     R16, 11
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -4447,11 +4442,11 @@ __?EEARH:
         END
 // 
 //   105 bytes in segment ABSOLUTE
-// 4 618 bytes in segment CODE
+// 4 602 bytes in segment CODE
 //    54 bytes in segment NEAR_F
 //    52 bytes in segment SWITCH
 // 
-// 4 666 bytes of CODE memory (+  58 bytes shared)
+// 4 646 bytes of CODE memory (+  62 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

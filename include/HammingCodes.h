@@ -97,8 +97,8 @@ public:
         NONE_ERROR = 0,
     };
 
-    CHammingCodes();
-    virtual ~CHammingCodes();
+//    CHammingCodes();
+//    virtual ~CHammingCodes();
     static uint16_t enHamming(uint8_t data);
     static uint8_t getEvenParityforTx(uint8_t data);
     static uint8_t findHammingError(uint16_t hamming);

@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Aug/2022  12:40:26
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  08:23:28
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Mvsn21.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW333.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW893B.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Mvsn21.cpp --cpu=m128a -ms
 //        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -42,9 +42,12 @@
         PUBLIC ??Allocate
         PUBLIC ??CMvsn21Driver
         PUBLIC ??DataExchange
+        PUBWEAK ??SetErrorAlarmData
         PUBWEAK ??__vtbl_2
+        PUBLIC ??__vtbl_CDfa
         PUBLIC `??new CMvsn21Driver`
         PUBLIC `?~CMvsn21Driver`
+        PUBLIC `?~CMvsn21Driver for CDfaLite/-11/`
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -142,15 +145,19 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CMvsn21Driver 19>` SYMBOL "CMvsn21Driver"
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CMvsn21Driver 19>`
+`?<Name CMvsn21Driver 30>` SYMBOL "CMvsn21Driver"
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CMvsn21Driver 30>`
+??__vtbl_CDfa       SYMBOL "__vtbl_CDfa", `?<Name CMvsn21Driver 30>`
 
+        EXTERN ??CDfa
         EXTERN ??ConnectDevice
         EXTERN ??DisconnectDevice
         EXTERN ??Exchange
+        EXTERN ??Fsm
         EXTERN ??iCrcSummOneByteCompare
         EXTERN `??operator delete`
         EXTERN `??operator new`
+        EXTERN `?~CDfa`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\Mvsn21.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -631,24 +638,37 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 //   15 CMvsn21Driver::CMvsn21Driver(uint8_t uiType)
 ??CMvsn21Driver:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
 //   16 {
-        LDI     R20, LOW(??__vtbl_2)
-        LDI     R21, (??__vtbl_2) >> 8
-        MOVW    R31:R30, R17:R16
-        STD     Z+7, R20
-        STD     Z+8, R21
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 245
+        SBCI    R17, 255
+        CALL    ??CDfa
+        LDI     R16, LOW(??__vtbl_2)
+        LDI     R17, (??__vtbl_2) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+9, R16
+        STD     Z+10, R17
+        LDI     R16, LOW(??__vtbl_CDfa)
+        LDI     R17, (??__vtbl_CDfa) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+12, R16
+        STD     Z+13, R17
 //   17     m_uiType = uiType;
-        MOVW    R31:R30, R17:R16
-        ST      Z, R18
+        ST      X, R24
 //   18 }
-        RET
+        MOVW    R17:R16, R27:R26
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CMvsn21Driver &CMvsn21Driver::new CMvsn21Driver(uint8_t)
 `??new CMvsn21Driver`:
         ST      -Y, R24
         MOV     R24, R16
-        LDI     R16, 17
+        LDI     R16, 24
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -670,22 +690,34 @@ _A_PINF:
 //   21 CMvsn21Driver::~CMvsn21Driver()
 `?~CMvsn21Driver`:
 //   22 {
-        ST      -Y, R25
-        ST      -Y, R24
+        CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
         MOV     R16, R24
         OR      R16, R25
         BREQ    `?~CMvsn21Driver_1`
-        BST     R18, 0
-        BRTC    `?~CMvsn21Driver_1`
 //   23 
 //   24 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        SUBI    R16, 245
+        SBCI    R17, 255
+        CALL    `?~CDfa`
+        BST     R26, 0
+        BRTC    `?~CMvsn21Driver_1`
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CMvsn21Driver_1`:
-        LD      R24, Y+
-        LD      R25, Y+
-        RET
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CMvsn21Driver::~CMvsn21Driver for CDfaLite/-11/()
+`?~CMvsn21Driver for CDfaLite/-11/`:
+        SUBI    R16, 11
+        SBCI    R17, 0
+        RJMP    `?~CMvsn21Driver`
 //   25 
 //   26 //-----------------------------------------------------------------------------------------------------
 
@@ -699,21 +731,21 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         LD      R16, Z
         MOVW    R31:R30, R27:R26
-        STD     Z+9, R16
+        STD     Z+16, R16
 //   30     m_puiRxBuffer = xMemoryAllocationConext.puiRxBuffer;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+1
         LDD     R17, Z+2
         MOVW    R31:R30, R27:R26
-        STD     Z+10, R16
-        STD     Z+11, R17
+        STD     Z+17, R16
+        STD     Z+18, R17
 //   31     m_puiTxBuffer = xMemoryAllocationConext.puiTxBuffer;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+3
         LDD     R17, Z+4
         MOVW    R31:R30, R27:R26
-        STD     Z+12, R16
-        STD     Z+13, R17
+        STD     Z+19, R16
+        STD     Z+20, R17
 //   32     m_puiErrorCode = xMemoryAllocationConext.puiErrorCode;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+5
@@ -734,8 +766,8 @@ _A_PINF:
         ADD     R20, R16
         ADC     R21, R17
         MOVW    R31:R30, R27:R26
-        STD     Z+14, R20
-        STD     Z+15, R21
+        STD     Z+21, R20
+        STD     Z+22, R21
 //   37     // Увеличим общий объём выделенной памяти.
 //   38     xMemoryAllocationConext.
 //   39     uiUsedDiscreteInputs +=
@@ -745,35 +777,59 @@ _A_PINF:
         SUBI    R16, 232
         STD     Z+9, R16
 //   41 
-//   42     m_uiBadAnswerCounter = 0;
+//   42     // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+//   43     m_puiErrorAlarmDataArray =
+//   44         &xMemoryAllocationConext.
+//   45         puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
+        MOVW    R31:R30, R19:R18
+        LDD     R20, Z+19
+        LDD     R21, Z+20
+        MOVW    R31:R30, R19:R18
+        LDD     R16, Z+21
+        LDI     R17, 0
+        ADD     R20, R16
+        ADC     R21, R17
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R20
+        STD     Z+8, R21
+//   46     // Увеличим общий объём выделенной памяти.
+//   47     xMemoryAllocationConext.
+//   48     uiUsedErrorAlarmDataArray +=
+//   49         ERROR_TYPE_LENGTH;
+        MOVW    R31:R30, R19:R18
+        LDD     R16, Z+21
+        INC     R16
+        STD     Z+21, R16
+//   50 
+//   51     m_uiBadAnswerCounter = 0;
         MOVW    R31:R30, R27:R26
         LDI     R16, 0
-        STD     Z+16, R16
-//   43 }
+        STD     Z+23, R16
+//   52 }
         MOVW    R27:R26, R23:R22
         RET
-//   44 
-//   45 //-----------------------------------------------------------------------------------------------------
+//   53 
+//   54 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   46 uint8_t CMvsn21Driver::DataExchange(void)
+//   55 uint8_t CMvsn21Driver::DataExchange(void)
 ??DataExchange:
-//   47 {
+//   56 {
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
-//   48     m_puiTxBuffer[0] = DATA_EXCHANGE_COMMAND;
-        ADIW    R27:R26, 12
+//   57     m_puiTxBuffer[0] = DATA_EXCHANGE_COMMAND;
+        ADIW    R27:R26, 19
         LD      R30, X+
         LD      R31, X
-        SBIW    R27:R26, 13
+        SBIW    R27:R26, 20
         LDI     R16, 66
         ST      Z, R16
-//   49 
-//   50     CPss21::ConnectDevice(m_uiAddress);
+//   58 
+//   59     CPss21::ConnectDevice(m_uiAddress);
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+9
+        LDD     R16, Z+16
         CALL    ??ConnectDevice
-//   51     delay_us(500);
+//   60     delay_us(500);
         LDI     R16, 106
         LDI     R17, 3
         SUBI    R16, 1
@@ -781,97 +837,102 @@ _A_PINF:
         BRNE    $-4
         RJMP    $+2
         NOP
-//   52     CSpi::Exchange(m_puiRxBuffer,
-//   53                    m_puiTxBuffer,
-//   54                    (PRIAMBLE_LENGTH +
-//   55                     DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
-//   56                     ONE_BYTE_CRC_LENGTH));
+//   61     CSpi::Exchange(m_puiRxBuffer,
+//   62                    m_puiTxBuffer,
+//   63                    (PRIAMBLE_LENGTH +
+//   64                     DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
+//   65                     ONE_BYTE_CRC_LENGTH));
         LDI     R20, 9
         LDI     R21, 0
         MOVW    R31:R30, R27:R26
-        LDD     R18, Z+12
-        LDD     R19, Z+13
+        LDD     R18, Z+19
+        LDD     R19, Z+20
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+10
-        LDD     R17, Z+11
+        LDD     R16, Z+17
+        LDD     R17, Z+18
         CALL    ??Exchange
-//   57     CPss21::DisconnectDevice();
+//   66     CPss21::DisconnectDevice();
         CALL    ??DisconnectDevice
-//   58 
-//   59     // что ответил модуль?
-//   60     switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
-        ADIW    R27:R26, 10
+//   67 
+//   68     // что ответил модуль?
+//   69     switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
+        ADIW    R27:R26, 17
         LD      R30, X+
         LD      R31, X
-        SBIW    R27:R26, 11
+        SBIW    R27:R26, 18
         LDD     R16, Z+1
         SUBI    R16, 36
-        BREQ    ??DataExchange_1
+        BRNE    $+2+2
+        RJMP    ??DataExchange_1
         SUBI    R16, 30
         BRNE    ??DataExchange_1
-//   61     {
-//   62     case DATA_READY:
-//   63         // данные не повреждены?
-//   64         if ((iCrcSummOneByteCompare(&m_puiRxBuffer[COMMAND_BYTE_OFFSET],
-//   65                                     (COMMAND_BYTE_LENGTH +
-//   66                                      DATA_EXCHANGE_COMMAND_ANSWER_LENGTH)) > 0))
+//   70     {
+//   71     case DATA_READY:
+//   72         // данные не повреждены?
+//   73         if ((iCrcSummOneByteCompare(&m_puiRxBuffer[COMMAND_BYTE_OFFSET],
+//   74                                     (COMMAND_BYTE_LENGTH +
+//   75                                      DATA_EXCHANGE_COMMAND_ANSWER_LENGTH)) > 0))
         LDI     R18, 7
         LDI     R19, 0
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+10
-        LDD     R17, Z+11
+        LDD     R16, Z+17
+        LDD     R17, Z+18
         SUBI    R16, 255
         SBCI    R17, 255
         CALL    ??iCrcSummOneByteCompare
         CPI     R16, 1
         SBCI    R17, 0
         BRLT    ??DataExchange_1
-//   67         {
-//   68             m_uiBadAnswerCounter = 0;
+//   76         {
+//   77             m_uiBadAnswerCounter = 0;
         MOVW    R31:R30, R27:R26
         LDI     R16, 0
-        STD     Z+16, R16
-//   69             // отправим полученные от модуля данные в рабочий массив прибора.
-//   70             uint8_t *puiDestination = m_puiDiscreteInputs;
+        STD     Z+23, R16
+//   78             SetErrorAlarmData(0);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetErrorAlarmData
+//   79             // отправим полученные от модуля данные в рабочий массив прибора.
+//   80             uint8_t *puiDestination = m_puiDiscreteInputs;
         MOVW    R31:R30, R27:R26
-        LDD     R24, Z+14
-        LDD     R25, Z+15
-//   71             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+        LDD     R24, Z+21
+        LDD     R25, Z+22
+//   81             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
         LDI     R22, 0
 ??DataExchange_2:
         CPI     R22, 6
         BRCC    ??DataExchange_3
-//   72             {
-//   73                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
+//   82             {
+//   83                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+10
-        LDD     R17, Z+11
+        LDD     R16, Z+17
+        LDD     R17, Z+18
         LDI     R23, 0
         ADD     R16, R22
         ADC     R17, R23
         MOVW    R31:R30, R17:R16
         LDD     R19, Z+2
-//   74 
-//   75                 for (uint8_t j = 0; j < DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY; j++)
+//   84 
+//   85                 for (uint8_t j = 0; j < DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY; j++)
         LDI     R18, 0
 ??DataExchange_4:
         CPI     R18, 8
         BRCC    ??DataExchange_5
-//   76                 {
-//   77                     // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
-//   78                     // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
-//   79                     // бит нечётный?
-//   80                     if (j & 0x01)
+//   86                 {
+//   87                     // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
+//   88                     // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
+//   89                     // бит нечётный?
+//   90                     if (j & 0x01)
         BST     R18, 0
         BRTS    ??DataExchange_6
-//   81                     {
-//   82                         //                            // бит достоверен? 0 - достоверно, 1 - недостоверно.
-//   83 //                            *puiDestination2++ = ((uiData & (1 << j)) ? 1 : 0);
-//   84                     }
-//   85                     else
-//   86                     {
-//   87                         //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
-//   88                         if ((uiData & (1 << j)))
+//   91                     {
+//   92                         //                            // бит достоверен? 0 - достоверно, 1 - недостоверно.
+//   93 //                            *puiDestination2++ = ((uiData & (1 << j)) ? 1 : 0);
+//   94                     }
+//   95                     else
+//   96                     {
+//   97                         //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
+//   98                         if ((uiData & (1 << j)))
         LDI     R16, 1
         LDI     R17, 0
         MOV     R20, R18
@@ -880,68 +941,68 @@ _A_PINF:
         AND     R17, R16
         TST     R17
         BREQ    ??DataExchange_7
-//   89                         {
-//   90                             *puiDestination++ = 1;
+//   99                         {
+//  100                             *puiDestination++ = 1;
         MOVW    R31:R30, R25:R24
         LDI     R16, 1
         ST      Z, R16
         ADIW    R25:R24, 1
         RJMP    ??DataExchange_6
-//   91                         }
-//   92                         else
-//   93                         {
-//   94                             *puiDestination++ = 0;
+//  101                         }
+//  102                         else
+//  103                         {
+//  104                             *puiDestination++ = 0;
 ??DataExchange_7:
         MOVW    R31:R30, R25:R24
         LDI     R16, 0
         ST      Z, R16
         ADIW    R25:R24, 1
-//   95                         }
-//   96                     }
-//   97                 }
+//  105                         }
+//  106                     }
+//  107                 }
 ??DataExchange_6:
         INC     R18
         RJMP    ??DataExchange_4
-//   98             }
+//  108             }
 ??DataExchange_5:
         INC     R22
         RJMP    ??DataExchange_2
-//   99             return 1;
+//  109             return 1;
 ??DataExchange_3:
         LDI     R16, 1
         RJMP    ??DataExchange_8
-//  100         }
-//  101         break;
-//  102 
-//  103     case DATA_NOT_READY:
-//  104         break;
-//  105 
-//  106     default:
-//  107         break;
-//  108     };
-//  109 
-//  110     // модуль признан неисправным?
-//  111     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+//  110         }
+//  111         break;
+//  112 
+//  113     case DATA_NOT_READY:
+//  114         break;
+//  115 
+//  116     default:
+//  117         break;
+//  118     };
+//  119 
+//  120     // модуль признан неисправным?
+//  121     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
 ??DataExchange_1:
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+16
+        LDD     R16, Z+23
         CPI     R16, 10
         BRCC    ??DataExchange_9
-//  112     {
-//  113         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
-//  114         m_uiBadAnswerCounter++;
+//  122     {
+//  123         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+//  124         m_uiBadAnswerCounter++;
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+16
+        LDD     R16, Z+23
         INC     R16
-        STD     Z+16, R16
-//  115         return 0;
+        STD     Z+23, R16
+//  125         return 0;
         LDI     R16, 0
         RJMP    ??DataExchange_8
-//  116     }
-//  117     else
-//  118     {
-//  119         // модуль признан неисправным.
-//  120         *m_puiErrorCode = IMD_ERROR;
+//  126     }
+//  127     else
+//  128     {
+//  129         // модуль признан неисправным.
+//  130         *m_puiErrorCode = IMD_ERROR;
 ??DataExchange_9:
         ADIW    R27:R26, 5
         LD      R30, X+
@@ -949,13 +1010,28 @@ _A_PINF:
         SBIW    R27:R26, 6
         LDI     R16, 1
         ST      Z, R16
-//  121         return 0;
+//  131         SetErrorAlarmData(1);
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetErrorAlarmData
+//  132         return 0;
         LDI     R16, 0
 ??DataExchange_8:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-//  122     }
-//  123 }
+//  133     }
+//  134 }
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CDriver::SetErrorAlarmData(uint8_t)
+??SetErrorAlarmData:
+        MOVW    R21:R20, R27:R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+7
+        LDD     R27, Z+8
+        ST      X, R18
+        MOVW    R27:R26, R21:R20
+        RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -981,13 +1057,18 @@ __?EEARH:
 ??__vtbl_2:
         DC16 ??Allocate/2, ??DataExchange/2, `?~CMvsn21Driver`/2
 
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CMvsn21Driver::__vtbl_CDfa[2]
+??__vtbl_CDfa:
+        DC16 `?~CMvsn21Driver for CDfaLite/-11/`/2, ??Fsm/2
+
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 402 bytes in segment CODE
-//  42 bytes in segment NEAR_F
+// 518 bytes in segment CODE
+//  46 bytes in segment NEAR_F
 // 
-// 438 bytes of CODE memory (+   6 bytes shared)
+// 544 bytes of CODE memory (+  20 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

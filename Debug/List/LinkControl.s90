@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Aug/2022  12:40:24
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  08:23:26
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWFAA6.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW8189.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -154,10 +154,10 @@
 `?<Name CPss21 19>` SYMBOL "CPss21"
 ??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 19>`
 ??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 19>`
-`?<Name CLinkControl 43>` SYMBOL "CLinkControl"
-`?<Name CModbusRtuLinkContro 47>` SYMBOL "CModbusRtuLinkControl"
-??__vtbl            SYMBOL "__vtbl", `?<Name CLinkControl 43>`
-??__vtbl_3          SYMBOL "__vtbl", `?<Name CModbusRtuLinkContro 47>`
+`?<Name CLinkControl 41>` SYMBOL "CLinkControl"
+`?<Name CModbusRtuLinkContro 45>` SYMBOL "CModbusRtuLinkControl"
+??__vtbl            SYMBOL "__vtbl", `?<Name CLinkControl 41>`
+??__vtbl_3          SYMBOL "__vtbl", `?<Name CModbusRtuLinkContro 45>`
 
         EXTERN ??CDfa
         EXTERN ??CTimer
@@ -173,7 +173,6 @@
         EXTERN `??operator delete`
         EXTERN `??operator new`
         EXTERN `?~CDfa`
-        EXTERN `?~CTimer`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -677,7 +676,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CLinkControl &CLinkControl::new CLinkControl()
 `??new CLinkControl`:
-        LDI     R16, 11
+        LDI     R16, 9
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -716,7 +715,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CModbusRtuLinkControl &CModbusRtuLinkControl::new CModbusRtuLinkControl()
 `??new CModbusRtuLinkControl`:
-        LDI     R16, 11
+        LDI     R16, 9
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -735,31 +734,20 @@ _A_PINF:
 `?~CLinkControl`:
 //   19 {
         CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R16, R26
-        OR      R16, R27
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
         BREQ    `?~CLinkControl_1`
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
 //   20 
 //   21 }
-        LDI     R18, 2
-        LDI     R19, 0
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 251
-        SBCI    R17, 255
-        CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         CALL    `?~CDfa`
-        BST     R24, 0
+        BST     R26, 0
         BRTC    `?~CLinkControl_1`
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CLinkControl_1`:
         LDI     R30, 4
@@ -1112,10 +1100,10 @@ __?EEARH:
 //  135 
 // 
 // 105 bytes in segment ABSOLUTE
-// 590 bytes in segment CODE
+// 566 bytes in segment CODE
 //  44 bytes in segment NEAR_F
 // 
-// 584 bytes of CODE memory (+  50 bytes shared)
+// 560 bytes of CODE memory (+  50 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

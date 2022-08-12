@@ -52,6 +52,11 @@ public:
         return m_uiModbusReset;
     };
 
+    void SetErrorAlarmData(uint8_t uiData)
+    {
+        *m_puiErrorAlarmDataArray = uiData;
+    };
+
 protected:
 private:
     uint8_t m_uiType;
@@ -60,6 +65,7 @@ private:
     uint8_t m_uiModbusReceipt;
     uint8_t m_uiModbusReset;
     uint8_t *m_puiErrorCode;
+    uint8_t* m_puiErrorAlarmDataArray;
 
     friend class CMvsn21Driver;
     friend class CModuleMrXXDriver;

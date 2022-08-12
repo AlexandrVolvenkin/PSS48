@@ -17,7 +17,7 @@ public:
 //-----------------------------------------------------------------------------------------------------
     CTimer();
     CTimer(uint16_t uiTime);
-    virtual ~CTimer();
+//    virtual ~CTimer();
     void Set(uint16_t uiTime);
     void Reset(void);
     int8_t IsOverflow(void);

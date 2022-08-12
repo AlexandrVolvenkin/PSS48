@@ -334,6 +334,13 @@ private:
 class CFlash
 {
 public:
+
+    enum
+    {
+        // Сохраняемый буфер должен быть на CRC_LENGTH больше.
+        CRC_LENGTH = 2,
+    };
+
 //    CFlash();
 //    virtual ~CFlash();
     static uint8_t Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength);

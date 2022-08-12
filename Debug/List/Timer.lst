@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Aug/2022  12:40:29
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  08:23:30
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWBBF.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW9032.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp --cpu=m128a -ms -o
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -497,12 +497,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",359  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",360  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -521,14 +521,9 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      13          CTimer::CTimer()
    \                     ??CTimer:
      14          {
-   \   00000000   ....               LDI     R18, LOW(??__vtbl_1)
-   \   00000002   ....               LDI     R19, (??__vtbl_1) >> 8
-   \   00000004   01F8               MOVW    R31:R30, R17:R16
-   \   00000006   8324               STD     Z+4, R18
-   \   00000008   8335               STD     Z+5, R19
      15          
      16          }
-   \   0000000A   9508               RET
+   \   00000000   9508               RET
      17          
      18          //-----------------------------------------------------------------------------------------------------
 
@@ -539,47 +534,25 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01D8               MOVW    R27:R26, R17:R16
    \   00000006   01C9               MOVW    R25:R24, R19:R18
-   \   00000008   ....               LDI     R16, LOW(??__vtbl_1)
-   \   0000000A   ....               LDI     R17, (??__vtbl_1) >> 8
-   \   0000000C   01FD               MOVW    R31:R30, R27:R26
-   \   0000000E   8304               STD     Z+4, R16
-   \   00000010   8315               STD     Z+5, R17
      21              m_uiLastSystemTick = CPlatform::GetSystemTick();
-   \   00000012   ........           CALL    ??GetSystemTick
-   \   00000016   01FD               MOVW    R31:R30, R27:R26
-   \   00000018   8302               STD     Z+2, R16
-   \   0000001A   8313               STD     Z+3, R17
+   \   00000008   ........           CALL    ??GetSystemTick
+   \   0000000C   01FD               MOVW    R31:R30, R27:R26
+   \   0000000E   8302               STD     Z+2, R16
+   \   00000010   8313               STD     Z+3, R17
      22              m_uiTime = uiTime;
-   \   0000001C   938D               ST      X+, R24
-   \   0000001E   939C               ST      X, R25
-   \   00000020   9711               SBIW    R27:R26, 1
+   \   00000012   938D               ST      X+, R24
+   \   00000014   939C               ST      X, R25
+   \   00000016   9711               SBIW    R27:R26, 1
      23          }
-   \   00000022   018D               MOVW    R17:R16, R27:R26
-   \   00000024   E0E4               LDI     R30, 4
-   \   00000026   ........           JMP     ?EPILOGUE_B4_L09
+   \   00000018   018D               MOVW    R17:R16, R27:R26
+   \   0000001A   E0E4               LDI     R30, 4
+   \   0000001C   ........           JMP     ?EPILOGUE_B4_L09
      24          
-     25          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
-     26          CTimer::~CTimer()
-   \                     `?~CTimer`:
-     27          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2F08               MOV     R16, R24
-   \   00000008   2B09               OR      R16, R25
-   \   0000000A   F029               BREQ    `?~CTimer_1`
-   \   0000000C   FB20               BST     R18, 0
-   \   0000000E   F41E               BRTC    `?~CTimer_1`
-     28          
-     29          }
-   \   00000010   018C               MOVW    R17:R16, R25:R24
-   \   00000012   ........           CALL    `??operator delete`
-   \                     `?~CTimer_1`:
-   \   00000016   9189               LD      R24, Y+
-   \   00000018   9199               LD      R25, Y+
-   \   0000001A   9508               RET
+     25          ////-----------------------------------------------------------------------------------------------------
+     26          //CTimer::~CTimer()
+     27          //{
+     28          //
+     29          //}
      30          
      31          //-----------------------------------------------------------------------------------------------------
 
@@ -665,7 +638,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CTimer &CTimer::new CTimer()
    \                     `??new CTimer`:
-   \   00000000   E006               LDI     R16, 6
+   \   00000000   E004               LDI     R16, 4
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -684,7 +657,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   E006               LDI     R16, 6
+   \   00000006   E004               LDI     R16, 4
    \   00000008   E010               LDI     R17, 0
    \   0000000A   ........           CALL    `??operator new`
    \   0000000E   2F20               MOV     R18, R16
@@ -724,8 +697,6 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
       2      2   CTimer::new CTimer(uint16_t)
         2      2   -> CTimer::CTimer(uint16_t)
         2      2   -> operator new(unsigned int)
-      2      2   CTimer::~CTimer()
-        2      2   -> operator delete(void *)
 
 
    Segment part sizes:
@@ -733,14 +704,13 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    Bytes  Function/Label
    -----  --------------
       10  CPlatform::GetSystemTick()
-      12  CTimer::CTimer()
-      42  CTimer::CTimer(uint16_t)
+       2  CTimer::CTimer()
+      32  CTimer::CTimer(uint16_t)
       44  CTimer::IsOverflow()
       22  CTimer::Reset()
       30  CTimer::Set(uint16_t)
       24  CTimer::new CTimer()
       36  CTimer::new CTimer(uint16_t)
-      28  CTimer::~CTimer()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -833,14 +803,14 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-      34  -- Other
+      32  -- Other
 
  
  105 bytes in segment ABSOLUTE
- 248 bytes in segment CODE
-  34 bytes in segment NEAR_F
+ 200 bytes in segment CODE
+  32 bytes in segment NEAR_F
  
- 270 bytes of CODE memory (+  12 bytes shared)
+ 222 bytes of CODE memory (+  10 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

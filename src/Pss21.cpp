@@ -43,7 +43,7 @@ CModbusRTU CPss21::m_xModbusRtuOne;
 
 //CDataBase CPss21::m_xDataBase;
 //CDataBase* CPss21::m_pxDataBase;
-CDataStore CPss21::m_xDataStore;
+//CDataStore CPss21::m_xDataStore;
 
 CMultiFunctionKey CPss21::m_xReceiptKey(CPlatform::KeyOneState);
 CMultiFunctionKey CPss21::m_xResetKey(CPlatform::KeyTwoState);
@@ -72,12 +72,16 @@ CModbusRtuLinkControl CPss21::m_xModbusRtuLinkControl;
 
 uint8_t CPss21::m_uiCommonAlarmType;
 uint8_t CPss21::m_uiCommonAlarmTypePrevious;
-CLightBoard CPss21::m_xLightBoard;
+//CLightBoard CPss21::m_xLightBoard;
 TConfigDataPackOne CPss21::m_xDeviceConfigSearch;
 TDevConfig CPss21::m_xDeviceConfiguration;
 TDeviceState CPss21::m_xDeviceState;
 TMBusSetting CPss21::m_xModbusSettings;
 CAlarmDfa *CPss21::m_apxAlarmDfa[];
+
+CErrorAlarmDfa *CPss21::m_apxErrorAlarmDfa[];
+uint8_t CPss21::m_auiErrorAlarmDataArray[];
+
 TDiscreteOutputControl CPss21::m_axDiscreteOutputControl[];
 TOutputData CPss21::m_xDiscreteOutputDataBase;
 CAlarmWindow CPss21::m_axAlarmWindowControl[];
@@ -116,7 +120,7 @@ void CPss21::ModbusInit(void)
                          8,
                          1,
                          CPss21::m_auiReceiveMessageBuff,
-                         CPss21::m_auiReceiveMessageBuff,//CPss21::m_auiTransmitMessageBuff,
+                         CPss21::m_auiReceiveMessageBuff,//reinterpret_cast<uint8_t*>(CPss21::m_aucRtuHoldingRegistersArray),//m_auiTransmitMessageBuff,//
                          CPss21::m_aucRtuDiscreteDataArray,//CPss21::m_aucRtuCoilsArray,
                          CPss21::m_aucRtuDiscreteDataArray,//CPss21::m_aucRtuDiscreteInputsArray,
                          CPss21::m_aucRtuHoldingRegistersArray,
@@ -144,10 +148,12 @@ void CPss21::ModbusDefaultInit(void)
 //-----------------------------------------------------------------------------------------------------
 void CPss21::Init(void)
 {
-    m_xLightBoard.Init(m_axAlarmWindowControl);
+    CLightBoard::Init(m_axAlarmWindowControl);
     m_uiCommonAlarmType = NORMAL;
     m_uiCommonAlarmTypePrevious = NORMAL;
     SetErrorCode(0);
+    // Сбросим все ошибки.
+    memset(CPss21::m_auiErrorAlarmDataArray, 0, HANDLED_ERROR_NUMBER);
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -273,6 +279,16 @@ void CPss21::SearchModules(void)
             }
         }
     }
+
+    if(m_xDeviceConfiguration.FixConfig)
+    {
+        // Предыдущая сохранённая и текущая конфигурации не совпадают?
+        if((m_xDeviceConfiguration.ICount != m_xDeviceConfigSearch.uiDiscreteInputQuantity) ||
+                (m_xDeviceConfiguration.OCount != m_xDeviceConfigSearch.uiDiscreteOutputQuantity))
+        {
+            SetErrorCode(CFG_ERROR);
+        }
+    }
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -305,6 +321,11 @@ void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationCon
     xMemoryAllocationConext.uiUsedDiscreteOutputDataBase = 0;
     // Подключим буфер с базой данных модулей дискретных выходов.
     xMemoryAllocationConext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
+
+    // Обнулим общий объём выделенной памяти.
+    xMemoryAllocationConext.uiUsedErrorAlarmDataArray = 0;
+    // Подключим буфер для хранения состояний ошибок.
+    xMemoryAllocationConext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -353,16 +374,6 @@ void CPss21::CreateDevices(void)
 
         default:
             break;
-        }
-    }
-
-    if(m_xDeviceConfiguration.FixConfig)
-    {
-        // Предыдущая сохранённая и текущая конфигурации не совпадают?
-        if((m_xDeviceConfiguration.ICount != m_xDeviceConfigSearch.uiDiscreteInputQuantity) ||
-                (m_xDeviceConfiguration.OCount != m_xDeviceConfigSearch.uiDiscreteOutputQuantity))
-        {
-            SetErrorCode(CFG_ERROR);
         }
     }
 };
@@ -448,6 +459,17 @@ void CPss21::ModbusDeviceControl(uint8_t* puiData, uint16_t uiLength, uint16_t u
         // Сообщим автомату о состоявшемся сеансе связи.
         m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::LINK_SESSION_HAPPENED_FSM_EVENT);
     }
+////    // Изменение состояния окон сигнализации?
+//    else if ((uiAddress >= DISCRETE_INPUTS_BIT_ARRAY_OFFSET) &&//debag//
+//             (uiAddress < (ALARM_WINDOWS_BIT_ARRAY_OFFSET +
+//                           ALARM_WINDOWS_ARRAY_LENGTH)))
+//    {
+//        SetBytesFromBits(&m_aucRtuDiscreteDataArray[uiAddress],
+//                         puiData,
+//                         uiLength);
+//        // Сообщим автомату о состоявшемся сеансе связи.
+//        m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::LINK_SESSION_HAPPENED_FSM_EVENT);
+//    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -493,9 +515,8 @@ void CPss21::SetModeModbusRtuLinkControlInProgress(bool bData)
 {
     m_xDeviceState.ModbusRtuLinkControlInProgress = bData;
     // Сохраним текущую конфигурацию.
-    CDataBase::Write(reinterpret_cast<uint8_t*>(&m_xDeviceState),
-                     CDataBase::GetBlockLength(TDataBase::DEVICE_STATE),
-                     TDataBase::DEVICE_STATE);
+    CDataBase::WriteBlock(reinterpret_cast<uint8_t*>(&m_xDeviceState),
+                          TDataBase::DEVICE_STATE);
     // База данных изменена при записи блока.
     // Поставим подтверждающую подпись.
     CDataBase::SignatureCreate();
@@ -647,33 +668,30 @@ void CPss21::ConfigurationInit(void)
 
     // Установим конфигурацию устройства.
     // Считаем во временный буфер блок БД - "Конфигурация устройства".
-    CDataBase::Read(puiTempBuffer, TDataBase::DEV_CONFIG);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEV_CONFIG);
     memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceConfiguration),
            puiTempBuffer,
            sizeof(struct TDevConfig));
 
     // Установим параметры интерфейса ModBus.
     // Считаем во временный буфер блок БД - "Параметры интерфейса ModBus".
-    CDataBase::Read(puiTempBuffer, TDataBase::MODBUS_SET);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::MODBUS_SET);
     memcpy(reinterpret_cast<uint8_t*>(&m_xModbusSettings),
            puiTempBuffer,
            sizeof(struct TMBusSetting));
 
     // Считаем во временный буфер блок БД - "БД модулей вывода".
-    CDataBase::Read(puiTempBuffer, TDataBase::OUT_BASE);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::OUT_BASE);
     memcpy(reinterpret_cast<uint8_t*>(&m_xDiscreteOutputDataBase),
            puiTempBuffer,
            sizeof(struct TOutputData));
 
     // Установим уровень дискретного сигнала интерпретируемый как активный.
     // Считаем во временный буфер блок БД - "Уровень дискретного сигнала интерпретируемый как активный".
-    CDataBase::Read(puiTempBuffer, TDataBase::ACTIVITY_LEVEL);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::ACTIVITY_LEVEL);
     for (uint8_t i = 0;
             i < DISCRETE_INPUTS_NUMBER;
         )
-//    for (uint8_t i = 0;
-//            i < DISCRETE_SIGNALS_NUMBER;
-//        )
     {
         uint8_t uiData = *puiTempBuffer;
         for (uint8_t j = 0;
@@ -697,7 +715,7 @@ void CPss21::ConfigurationInit(void)
     puiTempBuffer = m_auiIntermediateBuff;
     // Привяжем окна сигнализации к дискретным сигналам.
     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
-    CDataBase::Read(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
     for (uint8_t i = 0;
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
@@ -707,12 +725,13 @@ void CPss21::ConfigurationInit(void)
     }
 
     // Считаем во временный буфер блок БД - "Тип сигнализации привязанный к окну".
-    CDataBase::Read(puiTempBuffer, TDataBase::ALARM_TYPE);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_TYPE);
     for (uint8_t i = 0;
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
-        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(puiTempBuffer[i] & ~(0x80)) << 8) | i);
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(puiTempBuffer[i] & ~(0x80)) << 8) | i);
+
         uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0x80));
         if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
         {
@@ -728,6 +747,7 @@ void CPss21::ConfigurationInit(void)
             // Оставим уровень дискретного сигнала интерпретируемый как активный.
             puiAlarmDfaInit[i] &= 0x80;
         }
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(puiAlarmDfaInit[i] & ~(0x80)) << 8) | i);
     }
 
     for (uint8_t i = 0;
@@ -793,7 +813,7 @@ void CPss21::ConfigurationInit(void)
 
     // Привяжем окна сигнализации к созданным объектам сигнализаций дискретных сигналов.
     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
-    CDataBase::Read(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
     for (uint8_t i = 0;
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
@@ -812,14 +832,13 @@ void CPss21::ConfigurationInit(void)
     }
 
     // Считаем во временный буфер блок БД - "Выходные реле, сопоставленные физическим входам".
-    CDataBase::Read(puiTempBuffer, TDataBase::RELAY);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::RELAY);
     // Получим связанные выходы на МР.
     for (uint8_t i = 0;
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
         *(m_apxAlarmDfa[i] -> GetLinkedDiscreteOutputsPointer()) = puiTempBuffer[i];
-//        m_apxAlarmDfa[i] -> SetLinkedDiscreteOutputs(puiTempBuffer[i]);
     };
 
     // Получим индексы источников состояния дискретных сигналов - дискретные входы модулей.
@@ -834,15 +853,65 @@ void CPss21::ConfigurationInit(void)
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);;
+        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
     };
 
     // Восстановим  состояние устройства.
     // Считаем во временный буфер блок БД - "Состояние устройства хранимое в EEPROM".
-    CDataBase::Read(puiTempBuffer, TDataBase::DEVICE_STATE);
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEVICE_STATE);
     memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceState),
            puiTempBuffer,
            sizeof(struct TDeviceState));
+
+//    // Создадим автоматы обработки ошибок.
+//    uint8_t uiIndex = 0;
+//
+//    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(IMD_ERROR);
+//    // Установим индекс источника состояния ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(IMD_ERROR);
+//    uiIndex++;
+//
+//    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(OMD_ERROR);
+//    // Установим индекс источника состояния ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(OMD_ERROR);
+//    uiIndex++;
+//
+//    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(CFG_ERROR);
+//    // Установим индекс источника состояния ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(CFG_ERROR);
+//    uiIndex++;
+//
+//    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(DB_ERROR);
+//    // Установим индекс источника состояния ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(DB_ERROR);
+//    uiIndex++;
+//
+//    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(MBS_ERROR);
+//    // Установим индекс источника состояния ошибки.
+//    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
+//    uiIndex++;
+
+    // Создадим автоматы обработки ошибок.
+    for (uint8_t i = 0;
+            i < HANDLED_ERROR_NUMBER;
+            i++)
+    {
+        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
+        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
+        // Установим индекс источника состояния ошибки.
+        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
+    };
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -937,18 +1006,44 @@ void CPss21::AlarmsProcessing(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::ErrorAlarmsProcessing(void)
+{
+    // Обработаем все дискретные сигналы.
+    for (uint8_t i = 0;
+            i < HANDLED_ERROR_NUMBER;
+            i++)
+    {
+        m_apxErrorAlarmDfa[i] -> Fsm();
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 {
     if (uiIndex < DISCRETE_INPUTS_NUMBER)
     {
-        // Получим адреса источников состояния дискретных сигналов - дискретные входы модулей.
+        // Получим состояние дискретного сигнала - дискретные входы модулей.
         return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
     }
     else
     {
-        // Получим адреса источников состояния дискретных сигналов - состояние ячеек(coils Modbus).
+        // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
         return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
     }
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CPss21::SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData)
+{
+    // Установим состояние источника ошибки.
+    m_auiErrorAlarmDataArray[uiIndex] = uiData;
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CPss21::GetErrorAlarmState(uint8_t uiIndex)
+{
+    // Получим состояние источника ошибки.
+    return m_auiErrorAlarmDataArray[uiIndex];
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1045,6 +1140,7 @@ void CPss21::DiscreteSignalsProcessing(void)
 {
     DiscreteOutputControlClear();
     AlarmsProcessing();
+    ErrorAlarmsProcessing();
     SetDiscreteSignalsReceipt(0);
     SetDiscreteSignalsReset(0);
 }
@@ -1064,7 +1160,7 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
         }
     };
 
-    m_xLightBoard.Set();
+    CLightBoard::Set();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1087,7 +1183,7 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
         }
     };
 
-    m_xLightBoard.Set();
+    CLightBoard::Set();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1105,7 +1201,7 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
         m_axAlarmWindowControl[i].SetActivityState(1);
     };
 
-    m_xLightBoard.Set();
+    CLightBoard::Set();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1125,7 +1221,7 @@ void CPss21::ErrorWindowOn(uint8_t uiErrorType)
         m_axAlarmWindowControl[uiErrorType - 1].SetActivityState(0);
     }
 
-    m_xLightBoard.Set();
+    CLightBoard::Set();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1141,7 +1237,7 @@ void CPss21::AllAlarmWindowOff(void)
         m_axAlarmWindowControl[i].SetActivityState(0);
     };
 
-    m_xLightBoard.Set();
+    CLightBoard::Set();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1195,7 +1291,7 @@ void CPss21::LinkControlErrorMainCycle(void)
 
     CPss21::ReceiptResetGlobalFlagsClear();
 
-    CPss21::m_xDataStore.Fsm();
+    CDataStore::Fsm();
 
     CPlatform::WatchdogReset();
 }
@@ -1237,7 +1333,7 @@ void CPss21::MainFsm(void)
 
         NotifyersControlProcessing();
 
-        CPss21::m_xDataStore.Fsm();
+        CDataStore::Fsm();
 
         if (CPss21::m_xMainCycleTimer.IsOverflow())
         {
@@ -1257,7 +1353,7 @@ void CPss21::MainFsm(void)
 
         NotifyersControlProcessing();
 
-        CPss21::m_xDataStore.Fsm();
+        CDataStore::Fsm();
 
         if (CPss21::ModulesInteraction(GetModuleIndex()))
         {
@@ -1381,7 +1477,7 @@ void CPss21::MainFsm(void)
     case PROGRAMMING_ON:
         CPss21::m_xModbusRtuOne.Fsm();
 
-        CPss21::m_xDataStore.Fsm();
+        CDataStore::Fsm();
 
         if (CPss21::m_xMainCycleTimer.IsOverflow())
         {
@@ -1395,7 +1491,7 @@ void CPss21::MainFsm(void)
         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
         CPss21::m_xModbusRtuOne.Fsm();
 
-        CPss21::m_xDataStore.Fsm();
+        CDataStore::Fsm();
         break;
 
 //-----------------------------------------------------------------------------------------------------

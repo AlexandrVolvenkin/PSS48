@@ -7,139 +7,139 @@
 //-----------------------------------------------------------------------------------------------------
 #include "InputDevice.h"
 
-//-----------------------------------------------------------------------------------------------------
-CInputDevice::CInputDevice()
-{
-
-}
-
-//-----------------------------------------------------------------------------------------------------
-CInputDevice::CInputDevice(uint8_t (*fpuiEventSourse)(void)) :
-    m_fpuiEventSourse(fpuiEventSourse)
-{
-    m_uiEventCode = KEY_EVENT_UNPRESSED;
-    SetFsmState(KEY_EVENT_UNPRESSED);
-}
-
-//-----------------------------------------------------------------------------------------------------
-CInputDevice::~CInputDevice()
-{
-
-}
-
-//-----------------------------------------------------------------------------------------------------
-void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
-{
-    m_fpuiEventSourse = fpuiEventSourse;
-    m_uiEventCode = KEY_EVENT_UNPRESSED;
-    SetFsmState(KEY_EVENT_UNPRESSED);
-}
-
-//-----------------------------------------------------------------------------------------------------
-uint8_t CInputDevice::EventHappened(void)
-{
-    if (m_fpuiEventSourse())
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-
-}
-
-//-----------------------------------------------------------------------------------------------------
-uint8_t CInputDevice::KeyEventHappened(uint8_t uiCode)
-{
-    Fsm();
-
-    if (m_uiEventCode == uiCode)
-    {
-        m_uiEventCode = KEY_EVENT_UNPRESSED;
-        m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-
-}
-
-//-----------------------------------------------------------------------------------------------------
-void CInputDevice::Fsm(void)
-{
-    // какое событие обрабатываем?
-    switch (GetFsmState())
-    {
-    case KEY_EVENT_UNPRESSED:
-        SetFsmState(KEY_EVENT_WAITING_PRESSED);
-        break;
-
-    case KEY_EVENT_WAITING_PRESSED:
-        // кнопка нажата?
-        if (EventHappened())
-        {
-            m_xTimer.Set(KEY_PRESSED_TIME_PUSH());
-            SetFsmState(KEY_EVENT_PRESSED_PUSH);
-        }
-        break;
-    case KEY_EVENT_PRESSED_PUSH:
-        // кнопка нажата?
-        if (EventHappened())
-        {
-            if (m_xTimer.IsOverflow())
-            {
-                m_xTimer.Set(KEY_PRESSED_TIME_HOLD());
-                m_uiEventCode = KEY_EVENT_PRESSED_PUSH;
-                SetFsmState(KEY_EVENT_PRESSED_HOLD);
-
-            }
-        }
-        else
-        {
-            SetFsmState(KEY_EVENT_UNPRESSED);
-        }
-        break;
-    case KEY_EVENT_PRESSED_HOLD:
-        // кнопка нажата?
-        if (EventHappened())
-        {
-            if (m_xTimer.IsOverflow())
-            {
-                m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
-                m_uiEventCode = KEY_EVENT_PRESSED_HOLD;
-                SetFsmState(KEY_EVENT_PRESSED_REPEAT);
-
-            }
-        }
-        else
-        {
-            SetFsmState(KEY_EVENT_UNPRESSED);
-        }
-        break;
-
-    case KEY_EVENT_PRESSED_REPEAT:
-        // кнопка нажата?
-        if (EventHappened())
-        {
-            if (m_xTimer.IsOverflow())
-            {
-                m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
-                m_uiEventCode = KEY_EVENT_PRESSED_REPEAT;
-            }
-        }
-        else
-        {
-            SetFsmState(KEY_EVENT_UNPRESSED);
-        }
-        break;
-    default:
-        break;
-    }
-}
-//-----------------------------------------------------------------------------------------------------
+////-----------------------------------------------------------------------------------------------------
+//CInputDevice::CInputDevice()
+//{
+//
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CInputDevice::CInputDevice(uint8_t (*fpuiEventSourse)(void)) :
+//    m_fpuiEventSourse(fpuiEventSourse)
+//{
+//    m_uiEventCode = KEY_EVENT_UNPRESSED;
+//    SetFsmState(KEY_EVENT_UNPRESSED);
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CInputDevice::~CInputDevice()
+//{
+//
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+//{
+//    m_fpuiEventSourse = fpuiEventSourse;
+//    m_uiEventCode = KEY_EVENT_UNPRESSED;
+//    SetFsmState(KEY_EVENT_UNPRESSED);
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//uint8_t CInputDevice::EventHappened(void)
+//{
+//    if (m_fpuiEventSourse())
+//    {
+//        return 1;
+//    }
+//    else
+//    {
+//        return 0;
+//    }
+//
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//uint8_t CInputDevice::KeyEventHappened(uint8_t uiCode)
+//{
+//    Fsm();
+//
+//    if (m_uiEventCode == uiCode)
+//    {
+//        m_uiEventCode = KEY_EVENT_UNPRESSED;
+//        m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+//        return 1;
+//    }
+//    else
+//    {
+//        return 0;
+//    }
+//
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//void CInputDevice::Fsm(void)
+//{
+//    // какое событие обрабатываем?
+//    switch (GetFsmState())
+//    {
+//    case KEY_EVENT_UNPRESSED:
+//        SetFsmState(KEY_EVENT_WAITING_PRESSED);
+//        break;
+//
+//    case KEY_EVENT_WAITING_PRESSED:
+//        // кнопка нажата?
+//        if (EventHappened())
+//        {
+//            m_xTimer.Set(KEY_PRESSED_TIME_PUSH());
+//            SetFsmState(KEY_EVENT_PRESSED_PUSH);
+//        }
+//        break;
+//    case KEY_EVENT_PRESSED_PUSH:
+//        // кнопка нажата?
+//        if (EventHappened())
+//        {
+//            if (m_xTimer.IsOverflow())
+//            {
+//                m_xTimer.Set(KEY_PRESSED_TIME_HOLD());
+//                m_uiEventCode = KEY_EVENT_PRESSED_PUSH;
+//                SetFsmState(KEY_EVENT_PRESSED_HOLD);
+//
+//            }
+//        }
+//        else
+//        {
+//            SetFsmState(KEY_EVENT_UNPRESSED);
+//        }
+//        break;
+//    case KEY_EVENT_PRESSED_HOLD:
+//        // кнопка нажата?
+//        if (EventHappened())
+//        {
+//            if (m_xTimer.IsOverflow())
+//            {
+//                m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
+//                m_uiEventCode = KEY_EVENT_PRESSED_HOLD;
+//                SetFsmState(KEY_EVENT_PRESSED_REPEAT);
+//
+//            }
+//        }
+//        else
+//        {
+//            SetFsmState(KEY_EVENT_UNPRESSED);
+//        }
+//        break;
+//
+//    case KEY_EVENT_PRESSED_REPEAT:
+//        // кнопка нажата?
+//        if (EventHappened())
+//        {
+//            if (m_xTimer.IsOverflow())
+//            {
+//                m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
+//                m_uiEventCode = KEY_EVENT_PRESSED_REPEAT;
+//            }
+//        }
+//        else
+//        {
+//            SetFsmState(KEY_EVENT_UNPRESSED);
+//        }
+//        break;
+//    default:
+//        break;
+//    }
+//}
+////-----------------------------------------------------------------------------------------------------
 
 
 
@@ -164,6 +164,46 @@ CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSourse)(void))
 //-----------------------------------------------------------------------------------------------------
 CMultiFunctionKey::~CMultiFunctionKey()
 {
+
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+{
+    m_fpuiEventSourse = fpuiEventSourse;
+    m_uiEventCode = KEY_EVENT_UNPRESSED;
+    SetFsmState(KEY_EVENT_UNPRESSED);
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CMultiFunctionKey::EventHappened(void)
+{
+    if (m_fpuiEventSourse())
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CMultiFunctionKey::KeyEventHappened(uint8_t uiCode)
+{
+    Fsm();
+
+    if (m_uiEventCode == uiCode)
+    {
+        m_uiEventCode = KEY_EVENT_UNPRESSED;
+        m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 
 }
 

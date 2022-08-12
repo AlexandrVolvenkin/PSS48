@@ -9,24 +9,9 @@
 #define CMVDS9_H
 
 #include <stdint.h>
-#include "Device.h"
 #include "Driver.h"
 #include "DataTypes.h"
-
-//-----------------------------------------------------------------------------------------------------
-class CMvsn21 : virtual public CDevice
-{
-public:
-    CMvsn21(void);
-    CMvsn21(uint8_t uiType, CDriver* pxDriver);
-    virtual ~CMvsn21();
-    uint16_t ReportType(uint8_t * , uint16_t );
-
-protected:
-private:
-    uint8_t m_uiAddress;
-
-};
+#include "Dfa.h"
 
 //-----------------------------------------------------------------------------------------------------
 // Обмен данными модуля ввода дискретных сигналов МВДС9 с МЦП
@@ -47,13 +32,12 @@ private:
 //  четные биты (D0,D2,D4,D6) =0 - разомкнуто (OFF), =1 - замкнуто (ON)
 //  нечетные биты (D1,D3,D5,D7) =0 - достоверно, =1 - недостоверно
 
-class CMvsn21Driver : public CDriver
+class CMvsn21Driver : public CDriver, public CDfa
 {
 public:
-    
+
     enum
     {
-//        DISCRETE_INPUTS_NUMBER = 24,
         DATA_EXCHANGE_COMMAND = 0x42,
         DATA_READY = 0x42,
         DATA_EXCHANGE_OK	= 0x7E,				// Нормальное завершение обмена
@@ -88,3 +72,5 @@ private:
 
 #endif // CMVDS9_H
 
+
+    static uint8_t m_auiErrorAlarmDataArray[HANDLED_ERROR_NUMBER];

@@ -158,6 +158,7 @@ CNormalAlarmDfa::~CNormalAlarmDfa()
 {
     //dtor
 }
+
 //-----------------------------------------------------------------------------------------------------
 
 
@@ -315,6 +316,149 @@ CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
 {
     //dtor
 }
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+CErrorAlarmDfa::CErrorAlarmDfa()
+{
+    SetFsmState(START);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CErrorAlarmDfa::~CErrorAlarmDfa()
+{
+    //dtor
+}
+
+//-----------------------------------------------------------------------------------------------------
+// Автомат обработки системных ошибок.
+void CErrorAlarmDfa::Fsm(void)
+{
+    switch (GetFsmState())
+    {
+    case START:
+        break;
+
+    case ACTIVE_STATE_WAITING:
+        // Дискретный сигнал активен?
+        if (CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        {
+            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+            // чем тип общей сигнализации?
+            if ((CPss21::GetCommonAlarmType() != ERROR) &&
+                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+            {
+                // Установим тип общей сигнализацию.
+                CPss21::SetCommonAlarmType(ALARM_TYPE());
+                // Изменим тип общей сигнализацию.
+                CPss21::AlarmTypeChange();
+            }
+            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+            SetFsmState(RECEIPT_WAITING);
+        }
+        break;
+
+    case RECEIPT_WAITING:
+        // Дискретный сигнал активен?
+        if (CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        {
+        }
+
+        // Событие квитировано?
+        else if (CPss21::GetDiscreteSignalsReceipt())
+        {
+            // Переведём автоматы сигнализаций в состояние - квитировано.
+            CPss21::AlarmTypeReceipt();
+            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+            SetFsmState(RECEIPTED_NOT_ACTIVE_STATE_WAITING);
+        }
+        break;
+
+    case RECEIPTED_NOT_ACTIVE_STATE_WAITING:
+        // Дискретный сигнал не активен?
+        if (!(CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+        {
+            SetFsmState(ACTIVE_STATE_WAITING);
+        }
+        break;
+
+    default:
+        break;
+    }
+}
+//-----------------------------------------------------------------------------------------------------
+
+
+
+//            if ()
+//            {
+//                SaveContextNotifyerControl();
+//                ErrorWindowOn(GetErrorCode());
+//                SetErrorCode(0);
+//
+//                m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+//                m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+//                m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+//                m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+//            }
+
+//        // Событие квитировано?
+//        else if (CPss21::GetDiscreteSignalsReceipt())
+//        {
+//            // Переведём автоматы сигнализаций в состояние - квитировано.
+//            CPss21::AlarmTypeReceipt();
+//            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//            SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
+//        }
+
+
+
+
+
+////-----------------------------------------------------------------------------------------------------
+//CInputModuleErrorAlarmDfa::CInputModuleErrorAlarmDfa()
+//{
+//    SetFsmState(START);
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CInputModuleErrorAlarmDfa::~CInputModuleErrorAlarmDfa()
+//{
+//    //dtor
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//
+//
+//
+//
+//
+//
+//
+//
+////-----------------------------------------------------------------------------------------------------
+//COutpuModuleErrorAlarmDfa::COutpuModuleErrorAlarmDfa()
+//{
+//    SetFsmState(START);
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//COutpuModuleErrorAlarmDfa::~COutpuModuleErrorAlarmDfa()
+//{
+//    //dtor
+//}
+//
+////-----------------------------------------------------------------------------------------------------
 
 
 

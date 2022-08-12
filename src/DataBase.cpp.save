@@ -28,9 +28,7 @@
 uint8_t CDataBase::RestoreDefault(void)
 {
     // Восстановим БД по умолчанию.
-    uint8_t __farflash *puiDataBase;
-
-    CPss21::m_xDataStore.Init();
+    CDataStore::Init();
 
     enum
     {
@@ -50,32 +48,28 @@ uint8_t CDataBase::RestoreDefault(void)
         {
         case BLOCK_WRITE_START:
             // Записаны не все блоки?
-            if (uiBlockCounter < TDataBase::BLOCKS_QUANTITY)
+            if (uiBlockCounter < GetBlocksNumber())
             {
-//                // Получим указатель на блок БД во флеш.
-//                puiDataBase = &reinterpret_cast<__farflash uint8_t*>(m_pxDataBase)[GetBlockOffset(uiBlockCounter)];
-
-//                // Скопируем данные из флеш во временный буфер,
-//                // чтобы передать их в функцию по обычному указателю, а не __farflash.
-//                CFlash::Read(CPss21::m_auiIntermediateBuff,
-//                             &reinterpret_cast<__farflash uint8_t*>(m_pxDataBase)[GetBlockOffset(uiBlockCounter)],
-//                             GetBlockLength(uiBlockCounter));
-////                for (uint16_t i = 0; i < GetBlockLength(uiBlockCounter); i++)
-////                {
-////                    CPss21::m_auiIntermediateBuff[i] = puiDataBase[i];
-////                }
-
                 // Скопируем данные из флеш во временный буфер,
-                uint16_t uiLength = CPss21::m_xDataStore.ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
-
-                // Поместим данные в хранилище.
-                // Блок БД принят к записи?
-                if (Write(CPss21::m_auiIntermediateBuff, GetBlockLength(uiBlockCounter), uiBlockCounter))
+                uint16_t uiLength = CDataStore::ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
+                // Блок не повреждён?
+                if (uiLength)
                 {
-                    uiFsmState = BLOCK_WRITE_END_WAITING;
+                    // Поместим данные в хранилище.
+                    // Блок БД принят к записи?
+                    if (CDataStore::WriteBlock(CPss21::m_auiIntermediateBuff,
+                                               uiLength,
+                                               uiBlockCounter + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER))
+                    {
+                        uiFsmState = BLOCK_WRITE_END_WAITING;
+                    }
+                    // При записи блока БД произошла ошибка?
+                    else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+                    {
+                        uiFsmState = BLOCK_ERROR;
+                    }
                 }
-                // При записи блока БД произошла ошибка?
-                else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+                else
                 {
                     uiFsmState = BLOCK_ERROR;
                 }
@@ -89,13 +83,13 @@ uint8_t CDataBase::RestoreDefault(void)
 
         case BLOCK_WRITE_END_WAITING:
             // Блок записан успешно?
-            if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+            if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
             {
                 uiBlockCounter++;
                 uiFsmState = BLOCK_WRITE_START;
             }
             // При записи блока БД произошла ошибка?
-            else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
             {
                 uiFsmState = BLOCK_ERROR;
             }
@@ -113,7 +107,7 @@ uint8_t CDataBase::RestoreDefault(void)
             break;
         }
 
-        CPss21::m_xDataStore.Fsm();
+        CDataStore::Fsm();
 
         delay_ms(10);
 
@@ -124,33 +118,30 @@ uint8_t CDataBase::RestoreDefault(void)
 //-----------------------------------------------------------------------------------------------------
 bool CDataBase::IntegrityCheck(void)
 {
-    // Все блоки принадлежат текущей базе данных?
-    return CPss21::m_xDataStore.CompareCurrentWithStoredCrc();
+    // Crc блока совпадает с его Crc сохранённом в служебном блоке?
+    return CDataStore::CompareCurrentWithStoredCrc();
 }
 
 //-----------------------------------------------------------------------------------------------------
 void CDataBase::SignatureCreate(void)
 {
     // Создадим Crc из Crc всех блоков.
-    CPss21::m_xDataStore.CrcOfBlocksCrcCreate();
+    CDataStore::CrcOfBlocksCrcCreate();
 }
 
 //-----------------------------------------------------------------------------------------------------
 bool CDataBase::SignatureCheck(void)
 {
     // Crc из Crc всех блоков совпадает?
-    return CPss21::m_xDataStore.CrcOfBlocksCrcCheck();
+    return CDataStore::CrcOfBlocksCrcCheck();
 }
 
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataBase::Check(void)
 {
-//    m_pxDataBase = &xMainDataBase;
-//    m_pxDataBaseBlocksPositionData = axDataBaseBlocksPositionData;
-
     CPss21::SetErrorCode(NO_ERROR);
     // Блоки базы данных не повреждены?
-    if (CPss21::m_xDataStore.Check())
+    if (CDataStore::Check())
     {
         // Все блоки принадлежат текущей базе данных?
         if (IntegrityCheck())
@@ -186,30 +177,32 @@ uint8_t CDataBase::Check(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint16_t CDataBase::Read(uint8_t *puiDestination, uint8_t uiBlock)
+uint16_t CDataBase::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 {
-    return CPss21::m_xDataStore.ReadBlock(puiDestination,
-                                          uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
+    return CDataStore::ReadBlock(puiDestination,
+                                 uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint16_t CDataBase::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+uint16_t CDataBase::WriteBlock(uint8_t *puiSourse, uint8_t uiBlock)
 {
-    return CPss21::m_xDataStore.Write(puiSourse,
-                                      uiLength,
-                                      uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
+    return CDataStore::WriteBlock(puiSourse,
+                                  GetBlockLength(uiBlock),
+                                  uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
 }
 
 //-----------------------------------------------------------------------------------------------------
 uint16_t CDataBase::GetBlockLength(uint8_t uiBlock)
 {
-    return CPss21::m_xDataStore.GetBlockLength(uiBlock);
-}
-
-//-----------------------------------------------------------------------------------------------------
-uint16_t CDataBase::GetBlockOffset(uint8_t uiBlock)
-{
-    return m_pxDataBaseBlocksPositionData[uiBlock].Offset;
+    // Блок существует?
+    if (uiBlock < GetBlocksNumber())
+    {
+        return CDataStore::GetBlockLength(uiBlock + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------

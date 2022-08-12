@@ -9,7 +9,6 @@
 #define CPSS7_H
 
 #include <stdint.h>
-#include "Device.h"
 #include "Driver.h"
 #include "Mvsn21.h"
 #include "Platform.h"
@@ -94,6 +93,8 @@ public:
     static void AlarmTypeChange(void);
     static void AlarmTypeReceipt(void);
     static uint8_t GetDiscreteInputState(uint8_t uiIndex);
+    static void SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData);
+    static uint8_t GetErrorAlarmState(uint8_t uiIndex);
     static void AlarmTypeSet(uint8_t uiAlarmType);
     static void AlarmTypeReset(void);
     static void NotifyersControlProcessing(void);
@@ -102,6 +103,7 @@ public:
     static void RestoreContextNotifyerControl(void);
     static void DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNewViolation);
     static void AlarmsProcessing(void);
+    static void ErrorAlarmsProcessing(void);
     static void DiscreteSignalsProcessing(void);
     static void ActiveAlarmWindowOn(uint8_t uiAlarmType);
     static void ActiveAlarmWindowOff(uint8_t uiAlarmType);
@@ -249,6 +251,8 @@ private:
     static uint8_t m_uiCommonAlarmType;
     static uint8_t m_uiCommonAlarmTypePrevious;
     static CAlarmDfa *m_apxAlarmDfa[DISCRETE_SIGNALS_NUMBER];
+    static CErrorAlarmDfa *m_apxErrorAlarmDfa[HANDLED_ERROR_NUMBER];
+    static uint8_t m_auiErrorAlarmDataArray[HANDLED_ERROR_NUMBER];
 
     // Массив управления модулями дискретных выходов(реле).
     static TDiscreteOutputControl m_axDiscreteOutputControl[DISCRETE_OUTPUT_NUMBER];
@@ -257,7 +261,7 @@ private:
     static __flash uint8_t m_auiErrorLedOn[ALARM_WINDOWS_NUMBER];
 
 public:
-    static CDataStore m_xDataStore;
+//    static CDataStore m_xDataStore;
     static CModbusRTU m_xModbusRtuOne;
     static TConfigDataPackOne m_xDeviceConfigSearch;
     static TDevConfig m_xDeviceConfiguration;
@@ -269,7 +273,7 @@ public:
     static CEmergencyAlarmWindowNotifyerControl m_xEmergencyAlarmWindowNotifyerControl;
     static CStatusLedNotifyerControl m_xStatusLedNotifyerControl;
     static CBuzzerNotifyerControl m_xBuzzerNotifyerControl;
-    static CLightBoard m_xLightBoard;
+//    static CLightBoard m_xLightBoard;
 
 //    static uint8_t m_aucRtuCoilsArray[COILS_WORK_ARRAY_LENGTH];
 //    static uint8_t m_aucRtuDiscreteInputsArray[DISCRETE_INPUTS_ARRAY_LENGTH];

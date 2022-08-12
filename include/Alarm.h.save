@@ -48,18 +48,6 @@ public:
     virtual ~CAlarmDfa();
     virtual void Fsm(void);
 
-//    virtual void SetDiscreteStateSourse(uint8_t *puiPointer)
-//    {
-//        m_puiDiscreteStateSourse = puiPointer;
-//    };
-//    virtual uint8_t* GetDiscreteStateSourse(void)
-//    {
-//        return m_puiDiscreteStateSourse;
-//    };
-//    virtual uint8_t GetDiscreteState(void)
-//    {
-//        return *m_puiDiscreteStateSourse;
-//    };
     void SetDiscreteStateIndex(uint8_t uiDiscreteStateIndex)
     {
         m_uiDiscreteStateIndex = uiDiscreteStateIndex;
@@ -68,15 +56,6 @@ public:
     {
         return m_uiDiscreteStateIndex;
     };
-
-//    void SetAlarmWindowPointer(CAlarmWindow *pxAlarmWindow)
-//    {
-//        m_pxAlarmWindow = pxAlarmWindow;
-//    };
-//    CAlarmWindow* GetAlarmWindowPointer(void)
-//    {
-//        return m_pxAlarmWindow;
-//    };
 
     void SetAlarmWindowIndex(uint8_t uiAlarmWindowIndex)
     {
@@ -91,14 +70,6 @@ public:
     {
         return m_auiLinkedDiscreteOutputs;
     };
-//    uint8_t GetLinkedDiscreteOutputs(void)
-//    {
-//        return m_uiLinkedDiscreteOutputs;
-//    };
-//    void SetLinkedDiscreteOutputs(uint8_t uiLinkedDiscreteOutputs)
-//    {
-//        m_uiLinkedDiscreteOutputs = uiLinkedDiscreteOutputs;
-//    };
 
 protected:
 private:
@@ -160,11 +131,12 @@ public:
 
     uint8_t ACTIVE_LEVEL(void)
     {
-        return 0;
+        return 1;
     };
 
     CPreventiveAlarmLowLevelDfa();
     virtual ~CPreventiveAlarmLowLevelDfa();
+
 
 protected:
 private:
@@ -190,7 +162,7 @@ public:
 
     uint8_t ACTIVE_LEVEL(void)
     {
-        return 1;
+        return 0;
     };
 
     CPreventiveAlarmHighLevelDfa();
@@ -220,7 +192,7 @@ public:
 
     uint8_t ACTIVE_LEVEL(void)
     {
-        return 0;
+        return 1;
     };
 
     CEmergencyAlarmLowLevelDfa();
@@ -250,7 +222,7 @@ public:
 
     uint8_t ACTIVE_LEVEL(void)
     {
-        return 1;
+        return 0;
     };
 
     CEmergencyAlarmHighLevelDfa();
@@ -280,7 +252,7 @@ public:
 
     uint8_t ACTIVE_LEVEL(void)
     {
-        return 0;
+        return 1;
     };
 
     CIndicationAlarmLowLevelDfa();
@@ -311,7 +283,7 @@ public:
 
     uint8_t ACTIVE_LEVEL(void)
     {
-        return 1;
+        return 0;
     };
 
     CIndicationAlarmHighLevelDfa();
@@ -321,6 +293,129 @@ protected:
 private:
 };
 
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 //-----------------------------------------------------------------------------------------------------
+class CErrorAlarmDfa : public CDfaLite
+{
+public:
+    enum
+    {
+        START = 0,
+        ACTIVE_STATE_WAITING,
+        RECEIPT_OR_RESET_WAITING,
+        RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING,
+        RESETED_NOT_ACTIVE_STATE_WAITING,
+        RECEIPTED_RESET_WAITING,
+        NOT_ACTIVE_STATE_WAITING,
+    };
+
+    virtual uint8_t ALARM_TYPE(void)
+    {
+        return ERROR;
+    };
+
+    virtual uint8_t ACTIVE_LEVEL(void)
+    {
+        return 1;
+    };
+
+    CErrorAlarmDfa();
+    virtual ~CErrorAlarmDfa();
+    virtual void Fsm(void);
+
+    void SetDiscreteStateIndex(uint8_t uiDiscreteStateIndex)
+    {
+        m_uiDiscreteStateIndex = uiDiscreteStateIndex;
+    };
+    uint8_t GetDiscreteStateIndex(void)
+    {
+        return m_uiDiscreteStateIndex;
+    };
+
+    void SetAlarmWindowIndex(uint8_t uiAlarmWindowIndex)
+    {
+        m_uiAlarmWindowIndex = uiAlarmWindowIndex;
+    };
+    uint8_t GetAlarmWindowIndex(void)
+    {
+        return m_uiAlarmWindowIndex;
+    };
+
+protected:
+private:
+    // Индекс окна извещателя - светового табло.
+    uint8_t m_uiAlarmWindowIndex;
+    // Источник дискретного сигнала.
+    uint8_t m_uiDiscreteStateIndex;
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+////-----------------------------------------------------------------------------------------------------
+//class CInputModuleErrorAlarmDfa : public CErrorAlarmDfa
+//{
+//public:
+//
+//    uint8_t ALARM_TYPE(void)
+//    {
+//        return ERROR;
+//    };
+//
+//    uint8_t ACTIVE_LEVEL(void)
+//    {
+//        return 1;
+//    };
+//
+//    CInputModuleErrorAlarmDfa();
+//    virtual ~CInputModuleErrorAlarmDfa();
+//
+//protected:
+//private:
+//};
+////-----------------------------------------------------------------------------------------------------
+//
+//
+//
+//
+//
+//
+//
+//
+////-----------------------------------------------------------------------------------------------------
+//class COutpuModuleErrorAlarmDfa : public CErrorAlarmDfa
+//{
+//public:
+//
+//    uint8_t ALARM_TYPE(void)
+//    {
+//        return EMERGENCY;
+//    };
+//
+//    uint8_t ACTIVE_LEVEL(void)
+//    {
+//        return 1;
+//    };
+//
+//    COutpuModuleErrorAlarmDfa();
+//    virtual ~COutpuModuleErrorAlarmDfa();
+//
+//protected:
+//private:
+//};
+////-----------------------------------------------------------------------------------------------------
+
 #endif // CALARM_H

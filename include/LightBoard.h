@@ -18,12 +18,11 @@
 class CLightBoard
 {
 public:
-    typedef CDM134 CLedDriver;
 
-    CLightBoard();
-    virtual ~CLightBoard();
-    void Init(CAlarmWindow* pxAlarmWindowControl);
-    void Set(void);
+//    CLightBoard();
+//    virtual ~CLightBoard();
+    static void Init(CAlarmWindow* pxAlarmWindowControl);
+    static void Set(void);
 
     // Количество светодиодов управляемых одной микросхемой-драйвером.
     static const uint8_t m_uiLedDriverLedNumber = 16;
@@ -33,9 +32,9 @@ public:
 
 protected:
 private:
-    CLedDriver m_xLedDriver;
-    uint8_t m_auiBoardLampsControl[m_uiBoardLedNumber];
-    CAlarmWindow* m_pxAlarmWindowControl;
+//    static CDM134 m_xLedDriver;
+    static uint8_t m_auiBoardLampsControl[m_uiBoardLedNumber];
+    static CAlarmWindow* m_pxAlarmWindowControl;
     static __flash uint8_t m_auiLedMap[];
 };
 

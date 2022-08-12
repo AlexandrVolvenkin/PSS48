@@ -74,7 +74,7 @@ enum
                                   DISCRETE_INPUTS_ARRAY_LENGTH +
                                   ALARM_WINDOWS_ARRAY_LENGTH +
                                   DISCRETE_OUTPUT_ARRAY_LENGTH),
-    HOLDING_REGISTERS_ARRAY_LENGTH = 8,
+    HOLDING_REGISTERS_ARRAY_LENGTH = 8,//debag//
     INPUT_REGISTERS_ARRAY_LENGTH = 8,
 };
 
@@ -115,7 +115,7 @@ enum TYPE_INDICATION
     IND_PREVENTIVE = 4,			// Индикация + предупредительная сигнализация
     IND_EMERGENCY  = 5,			// Индикация + аварийная сигнализация
     ERROR  = 6,			// Звук нажатия кнопок.
-    BEEP_SIGNAL  = 7			// Звук нажатия кнопок.
+    BEEP_SIGNAL  = 7,			// Звук нажатия кнопок.
 };
 
 enum Errors
@@ -125,7 +125,21 @@ enum Errors
     OMD_ERROR	= 2,		// Ошибка связи с модулями вывода
     CFG_ERROR	= 3,		// Ошибка конфигурации
     DB_ERROR	= 4,		// Ошибка БД
-    MBS_ERROR	= 5		// Ошибка канала связи
+    MBS_ERROR	= 5,		// Ошибка канала связи
+};
+
+enum EErrorAlarmType
+{
+    DISCRETE_INPUT_MODULE_FAILURE = 0,
+    DISCRETE_OUTPUT_MODULE_FAILURE,
+    HANDLED_ERROR_NUMBER = 2,
+    ERROR_TYPE_LENGTH = 1,
+};
+
+enum EErrorAlarmWindowIndex
+{
+    DISCRETE_INPUT_MODULE_FAILURE_WINDOW_INDEX = 0,
+    DISCRETE_OUTPUT_MODULE_FAILURE_WINDOW_INDEX,
 };
 
 //-----------------------------------------------------------------------------------------------------

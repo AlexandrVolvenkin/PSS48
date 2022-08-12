@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Aug/2022  12:40:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  08:23:25
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWF798.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW7F07.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp --cpu=m128a -ms
 //        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -35,13 +35,10 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B7_L09
-        EXTERN ?PROLOGUE7_L09
+        EXTERN ?EPILOGUE_B5_L09
+        EXTERN ?PROLOGUE5_L09
         EXTERN ?Register_R4_is_cg_reg
-        EXTERN ?Register_R5_is_cg_reg
-        EXTERN ?Register_R6_is_cg_reg
 
-        PUBLIC ??CDM134
         PUBLIC ??Init
         PUBWEAK ??LedDriverClockOff
         PUBWEAK ??LedDriverClockOn
@@ -55,9 +52,6 @@
         PUBWEAK ??LedDriverSerialInOn
         PUBWEAK ??LedDriverSerialInSetPinOutput
         PUBLIC ??Set
-        PUBWEAK ??__vtbl_2
-        PUBLIC `??new CDM134`
-        PUBLIC `?~CDM134`
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -154,12 +148,6 @@
         PUBWEAK __?EEARL
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
-
-`?<Name CDM134 4>`  SYMBOL "CDM134"
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CDM134 4>`
-
-        EXTERN `??operator delete`
-        EXTERN `??operator new`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\DM134.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -633,24 +621,6 @@ _A_PINF:
         DS8 1
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverLatchSetPinOutput()
-??LedDriverLatchSetPinOutput:
-        LDS     R16, 97
-        ORI     R16, 0x02
-        STS     97, R16
-        RET
-        REQUIRE _A_DDRF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverSerialInSetPinOutput()
-??LedDriverSerialInSetPinOutput:
-        LDS     R16, 97
-        ORI     R16, 0x10
-        STS     97, R16
-        RET
-        REQUIRE _A_DDRF
-
-        RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::LedDriverClockSetPinOutput()
 ??LedDriverClockSetPinOutput:
         LDS     R16, 97
@@ -660,19 +630,10 @@ _A_PINF:
         REQUIRE _A_DDRF
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverLatchOff()
-??LedDriverLatchOff:
+// __version_3 void CPlatform::LedDriverClockOn()
+??LedDriverClockOn:
         LDS     R16, 98
-        ORI     R16, 0x02
-        STS     98, R16
-        RET
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverSerialInOff()
-??LedDriverSerialInOff:
-        LDS     R16, 98
-        ANDI    R16, 0xEF
+        ORI     R16, 0x04
         STS     98, R16
         RET
         REQUIRE _A_PORTF
@@ -687,94 +648,107 @@ _A_PINF:
         REQUIRE _A_PORTF
 
         RSEG CODE:CODE:NOROOT(1)
-??Init:
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        CALL    ??LedDriverClockOff
-        CALL    ??LedDriverSerialInOff
-        CALL    ??LedDriverLatchOff
-        CALL    ??LedDriverClockSetPinOutput
-        CALL    ??LedDriverSerialInSetPinOutput
-        CALL    ??LedDriverLatchSetPinOutput
-        LD      R24, Y+
-        LD      R25, Y+
+// __version_3 void CPlatform::LedDriverSerialInSetPinOutput()
+??LedDriverSerialInSetPinOutput:
+        LDS     R16, 97
+        ORI     R16, 0x10
+        STS     97, R16
+        RET
+        REQUIRE _A_DDRF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverSerialInOn()
+??LedDriverSerialInOn:
+        LDS     R16, 98
+        ORI     R16, 0x10
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverSerialInOff()
+??LedDriverSerialInOff:
+        LDS     R16, 98
+        ANDI    R16, 0xEF
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverLatchSetPinOutput()
+??LedDriverLatchSetPinOutput:
+        LDS     R16, 97
+        ORI     R16, 0x02
+        STS     97, R16
+        RET
+        REQUIRE _A_DDRF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverLatchOn()
+??LedDriverLatchOn:
+        LDS     R16, 98
+        ANDI    R16, 0xFD
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverLatchOff()
+??LedDriverLatchOff:
+        LDS     R16, 98
+        ORI     R16, 0x02
+        STS     98, R16
+        RET
+        REQUIRE _A_PORTF
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverDelay1uS()
+??LedDriverDelay1uS:
+        NOP
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::LedDriverDelay5uS()
+??LedDriverDelay5uS:
+        RJMP    $+2
+        RJMP    $+2
+        NOP
         RET
 //   10 #include "Pss21.h"
 //   11 #include "LightBoard.h"
 //   12 
-//   13 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
-//   14 CDM134::CDM134()
-??CDM134:
-//   15 {
-        ST      -Y, R27
-        ST      -Y, R26
-        MOVW    R27:R26, R17:R16
-        LDI     R16, LOW(??__vtbl_2)
-        LDI     R17, (??__vtbl_2) >> 8
-        ST      X+, R16
-        ST      X, R17
-        SBIW    R27:R26, 1
-//   16     Init();
-        MOVW    R17:R16, R27:R26
-        RCALL   ??Init
-//   17 }
-        MOVW    R17:R16, R27:R26
-        LD      R26, Y+
-        LD      R27, Y+
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 CDM134 &CDM134::new CDM134()
-`??new CDM134`:
-        LDI     R16, 2
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    `??new CDM134_1`
-        RCALL   ??CDM134
-        RET
-`??new CDM134_1`:
-        LDI     R16, 0
-        LDI     R17, 0
-        RET
-//   18 
-//   19 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
-//   20 CDM134::~CDM134()
-`?~CDM134`:
-//   21 {
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        MOV     R16, R24
-        OR      R16, R25
-        BREQ    `?~CDM134_1`
-        BST     R18, 0
-        BRTC    `?~CDM134_1`
-//   22 
-//   23 }
-        MOVW    R17:R16, R25:R24
-        CALL    `??operator delete`
-`?~CDM134_1`:
-        LD      R24, Y+
-        LD      R25, Y+
-        RET
+//   13 ////-----------------------------------------------------------------------------------------------------
+//   14 //CDM134::CDM134()
+//   15 //{
+//   16 //    Init();
+//   17 //}
+//   18 //
+//   19 ////-----------------------------------------------------------------------------------------------------
+//   20 //CDM134::~CDM134()
+//   21 //{
+//   22 //
+//   23 //}
 //   24 
 //   25 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
 //   26 void CDM134::Init(void)
+??Init:
 //   27 {
 //   28     CPlatform::LedDriverClockOff();
+        CALL    ??LedDriverClockOff
 //   29     CPlatform::LedDriverSerialInOff();
+        CALL    ??LedDriverSerialInOff
 //   30     CPlatform::LedDriverLatchOff();
+        CALL    ??LedDriverLatchOff
 //   31     CPlatform::LedDriverClockSetPinOutput();
+        CALL    ??LedDriverClockSetPinOutput
 //   32     CPlatform::LedDriverSerialInSetPinOutput();
+        CALL    ??LedDriverSerialInSetPinOutput
 //   33     CPlatform::LedDriverLatchSetPinOutput();
+        CALL    ??LedDriverLatchSetPinOutput
 //   34 }
+        RET
 //   35 
 //   36 //-----------------------------------------------------------------------------------------------------
 
@@ -782,24 +756,21 @@ _A_PINF:
 //   37 void CDM134::Set(uint8_t* puiBoardLampsControl, uint8_t uiLampNumber)
 ??Set:
 //   38 {
-        CALL    ?PROLOGUE7_L09
+        CALL    ?PROLOGUE5_L09
         REQUIRE ?Register_R4_is_cg_reg
-        REQUIRE ?Register_R5_is_cg_reg
-        REQUIRE ?Register_R6_is_cg_reg
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R6, R20
+        MOVW    R25:R24, R17:R16
+        MOV     R4, R18
 //   39     for(uint8_t i = 0; i < uiLampNumber; i++)
-        CLR     R4
+        LDI     R26, 0
 ??Set_1:
-        CP      R4, R6
+        CP      R26, R4
         BRCC    ??Set_2
 //   40     {
 //   41         if(puiBoardLampsControl[i])
-        CLR     R5
+        LDI     R27, 0
         MOVW    R31:R30, R25:R24
-        ADD     R30, R4
-        ADC     R31, R5
+        ADD     R30, R26
+        ADC     R31, R27
         LD      R16, Z
         TST     R16
         BREQ    ??Set_3
@@ -824,7 +795,7 @@ _A_PINF:
 //   53         CPlatform::LedDriverClockOff();
         CALL    ??LedDriverClockOff
 //   54     }
-        INC     R4
+        INC     R26
         RJMP    ??Set_1
 //   55 
 //   56     CPlatform::LedDriverLatchOff();
@@ -835,49 +806,8 @@ _A_PINF:
 //   58     CPlatform::LedDriverLatchOn();
         CALL    ??LedDriverLatchOn
 //   59 }
-        LDI     R30, 7
-        JMP     ?EPILOGUE_B7_L09
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverClockOn()
-??LedDriverClockOn:
-        LDS     R16, 98
-        ORI     R16, 0x04
-        STS     98, R16
-        RET
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverSerialInOn()
-??LedDriverSerialInOn:
-        LDS     R16, 98
-        ORI     R16, 0x10
-        STS     98, R16
-        RET
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverLatchOn()
-??LedDriverLatchOn:
-        LDS     R16, 98
-        ANDI    R16, 0xFD
-        STS     98, R16
-        RET
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverDelay1uS()
-??LedDriverDelay1uS:
-        NOP
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::LedDriverDelay5uS()
-??LedDriverDelay5uS:
-        RJMP    $+2
-        RJMP    $+2
-        NOP
-        RET
+        LDI     R30, 5
+        JMP     ?EPILOGUE_B5_L09
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -898,18 +828,13 @@ __?EEARH:
         RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
 
-        RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CDM134::__vtbl[1]
-??__vtbl_2:
-        DC16 `?~CDM134`/2
-
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 310 bytes in segment CODE
-//  38 bytes in segment NEAR_F
+// 218 bytes in segment CODE
+//  36 bytes in segment NEAR_F
 // 
-// 226 bytes of CODE memory (+ 122 bytes shared)
+// 134 bytes of CODE memory (+ 120 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

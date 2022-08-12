@@ -9,6 +9,7 @@
 
 #include "Platform.h"
 #include "Pss21.h"
+#include "Crc.h"
 
 
 // ATMega128a
@@ -448,7 +449,7 @@ TDataBase __flash CFlash::xMainDataBase =
 {
     {
         2,1,48,false,false,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
-    },0xCF6B,
+    },0x0A6F,
 
     {
         1,47,BIT(USBS1),0x73,BIT(CS02)|BIT(CS01),0x00,0x00
@@ -457,7 +458,7 @@ TDataBase __flash CFlash::xMainDataBase =
     {
         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-    },0x0B40,
+    },0xF0BE,
 
     {
         0, 1, 2, 3, 4, 5, 6, 7,
@@ -476,7 +477,7 @@ TDataBase __flash CFlash::xMainDataBase =
         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
-    },0x9EC2,
+    },0x5AF9,
 
     {
         0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
@@ -487,7 +488,7 @@ TDataBase __flash CFlash::xMainDataBase =
         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02
-    },0xF746,
+    },0x4139,
 
     {
         { 0x3E,0x3E,0x3E,0x3E,0x3C,0x3C,0x3C,0x3C },
@@ -512,7 +513,7 @@ TDataBase __flash CFlash::xMainDataBase =
         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-    },0x69C6,
+    },0xE899,
 
     {
         1,
@@ -566,7 +567,7 @@ TDataBase __flash CFlash::xMainDataBase =
                 0,0,0,0
             }
         }
-    },0x0000,
+    },0xE223,
 
     {
         1,
@@ -620,7 +621,7 @@ TDataBase __flash CFlash::xMainDataBase =
                 0,0,0,0
             }
         }
-    },0x0000,
+    },0x9C7B,
 
     {
         1,
@@ -674,14 +675,14 @@ TDataBase __flash CFlash::xMainDataBase =
                 0,0,0,0
             }
         }
-    },0x0000,
+    },0x6CFB,
 
 //    { 1, { 1,0x02,0x0010,0x20 }},0xE223,
 //    { 1, { 1,0x05,0x0000,0xFF }},0x9C7B,
 //    { 1, { 1,0x05,0x0001,0xFF }},0x6CFB,
 
 
-    false, {0,0,0,0,0,0,0},0x0000,
+    false, {0,0,0,0,0,0,0},0x0B40,
 };
 
 //-----------------------------------------------------------------------------------------------------
@@ -724,16 +725,33 @@ uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint
     {
         puiDestination[i] = uiSourse[i];
     }
+    return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
 uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 {
+    // Прочитаем блок из флеш вместе с Crc.
     Read(puiDestination,
          GetBlockPointer(uiBlock),
-         GetBlockLength(uiBlock));
+         (GetBlockLength(uiBlock) + CRC_LENGTH));
 
-    return 1;
+    // Получим контрольную сумму блока во флеш.
+    uint16_t uiCrc = static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock)]);
+    uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
+    // Вычислим контрольную сумму блока.
+    // Блок не повреждён?
+    uint16_t uiCrcTemp = usCrc16(puiDestination, GetBlockLength(uiBlock));
+    if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
+    {
+        return GetBlockLength(uiBlock);
+    }
+    else
+    {
+        CPss21::SetErrorCode(DB_ERROR);
+        // Нет данных.
+        return 0;
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------

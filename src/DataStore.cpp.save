@@ -13,26 +13,36 @@
 #include "HammingCodes.h"
 
 
-//CDataStore::TBlocksControlData CDataStore::m_xBlocksControlData;
-//uint8_t* CDataStore::m_puiIntermediateBuff;
-//-----------------------------------------------------------------------------------------------------
-CDataStore::CDataStore()
-{
-//    m_pxStorageDevice = new CEeprom();
-    m_puiIntermediateBuff = CPss21::m_auiIntermediateBuff;
-    SetFsmState(IDDLE);
-    SetSavedFsmState(IDDLE);
-}
+// Служебные данные системы хранения.
+CDataStore::TBlocksControlData CDataStore::m_xBlocksControlData;
+// Массив контрольных сумм блоков.
+uint16_t CDataStore::m_auiBlocksCurrentCrc[MAX_BLOCKS_NUMBER];
+uint8_t* CDataStore::m_puiIntermediateBuff;
+CTimer CDataStore::m_xTimer;
+uint8_t CDataStore::m_uiFsmState;
+uint8_t CDataStore::m_uiFsmEvent;
 
-//-----------------------------------------------------------------------------------------------------
-CDataStore::~CDataStore()
-{
-//    delete m_pxStorageDevice;
-}
+////-----------------------------------------------------------------------------------------------------
+//CDataStore::CDataStore()
+//{
+////    m_pxStorageDevice = new CEeprom();
+//    m_puiIntermediateBuff = CPss21::m_auiIntermediateBuff;
+//    SetFsmState(IDDLE);
+//    SetSavedFsmState(IDDLE);
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CDataStore::~CDataStore()
+//{
+////    delete m_pxStorageDevice;
+//}
 
 //-----------------------------------------------------------------------------------------------------
 void CDataStore::Init(void)
 {
+    m_puiIntermediateBuff = CPss21::m_auiIntermediateBuff;
+    SetFsmState(IDDLE);
+
     // Очистим служебный контекст.
     memset(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
            0,
@@ -56,12 +66,11 @@ void CDataStore::Init(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CDataStore::Check(void)
 {
-    CPss21::m_xDataStore.Init();
+    CDataStore::Init();
 
     // Служебный блок повреждён?
     if (!(ReadBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData), BLOCKS_CONTROL_DATA)))
     {
-        // Блок повреждён.
         return 0;
     }
 
@@ -119,12 +128,12 @@ uint8_t CDataStore::Check(void)
         case BLOCK_WRITE_START:
             // Поместим данные в хранилище.
             // Блок БД принят к записи?
-            if (Write(m_puiIntermediateBuff, uiLength, uiBlockCounter))
+            if (WriteBlock(m_puiIntermediateBuff, uiLength, uiBlockCounter))
             {
                 uiFsmState = BLOCK_WRITE_END_WAITING;
             }
             // При записи блока БД произошла ошибка?
-            else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
             {
                 uiFsmState = BLOCK_ERROR;
             }
@@ -132,12 +141,12 @@ uint8_t CDataStore::Check(void)
 
         case BLOCK_WRITE_END_WAITING:
             // Блок записан успешно?
-            if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+            if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
             {
                 uiFsmState = NEXT_BLOCK;
             }
             // При записи блока БД произошла ошибка?
-            else if (CPss21::m_xDataStore.GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
             {
                 uiFsmState = BLOCK_ERROR;
             }
@@ -161,7 +170,7 @@ uint8_t CDataStore::Check(void)
             break;
         }
 
-        CPss21::m_xDataStore.Fsm();
+        CDataStore::Fsm();
 
         delay_ms(10);
 
@@ -175,8 +184,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     // Произошёл выход за границы буфера?
     if (uiBlock >= MAX_BLOCKS_NUMBER)
     {
-//        CPss21::SetErrorCode(DB_ERROR);
-//        // Нет данных.
+        // Нет данных.
         return 0;
     }
 
@@ -200,17 +208,11 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     }
     else
     {
-//        CPss21::SetErrorCode(DB_ERROR);
-//        // Нет данных.
+        // Нет данных.
         return 0;
     }
 
     // Прочитаем закодированные данные.
-//    for (uint16_t i = 0; i < uiEncodedLength; i++)
-//    {
-//        auiTempArray[i] = CEeprom::ReadByte(uiSourseOffset);
-//        uiSourseOffset++;
-//    }
     CEeprom::Read(auiTempArray, uiSourseOffset, uiEncodedLength);
 
     // Декодируем прочитанные данные.
@@ -258,7 +260,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint16_t CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+uint16_t CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
 {
     // Произошёл выход за границы буфера?
     if (uiBlock >= MAX_BLOCKS_NUMBER)
@@ -299,12 +301,6 @@ uint16_t CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t u
         axBlockPositionData[uiBlock].uiEncodedLength = uiEncodedByteCounter;
     }
 
-//    if (uiBlock != BLOCKS_CONTROL_DATA)
-//    {
-//        m_xBlocksControlData.
-//        axBlockPositionData[uiBlock].uiCrc = uiCrc;
-//    }
-
     CEeprom::WriteInterrupt(m_xBlocksControlData.
                             axBlockPositionData[uiBlock].uiOffset,
                             m_puiIntermediateBuff,
@@ -315,13 +311,13 @@ uint16_t CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t u
 }
 
 //-----------------------------------------------------------------------------------------------------
-bool CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+bool CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
 {
     if (GetFsmState() == IDDLE)
     {
-        if (WriteBlock(puiSourse,
-                       uiLength,
-                       uiBlock))
+        if (Write(puiSourse,
+                  uiLength,
+                  uiBlock))
         {
             SetFsmEvent(WRITE_IN_PROGRESS_FSM_EVENT);
             SetFsmState(START_WRITE);
@@ -343,7 +339,6 @@ bool CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
 //-----------------------------------------------------------------------------------------------------
 bool CDataStore::CompareCurrentWithStoredCrc(void)
 {
-    // Проверим принадлежность всех блоков текущей базе данных.
     // Сравним текущее Crc блока с его Crc сохранённом в служебном блоке в предыдущей сессии записи.
     for (uint16_t i = BLOCKS_CONTROL_DATA_BLOCK_NUMBER;
             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
@@ -366,7 +361,7 @@ void CDataStore::CrcOfBlocksCrcCreate(void)
 {
     // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
     // Сохраняется при первой и последующих записях любых блоков через программатор.
-    // Ноль или её не совпадение свидетельствует о том, что база данных создана по умоланию,
+    // Ноль или её несовпадение свидетельствует о том, что база данных создана по умоланию,
     // и не подтверждена пользователем. В этом случае прибор переходит в режим сигнализации об ошибке,
     // ожидая квитирования или записи базы данных.
     uint16_t auiBlocksCrc[MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER];
@@ -378,12 +373,16 @@ void CDataStore::CrcOfBlocksCrcCreate(void)
     {
         auiBlocksCrc[i] =
             m_xBlocksControlData.axBlockPositionData[i + BLOCKS_CONTROL_DATA_BLOCK_NUMBER].uiCrc;
-    }
-
+    } 
+    
+uint16_t uiTestCrc = usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
+                ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t)));
+                
     // Сохраним Crc всех блоков, не включая служебный.
     m_xBlocksControlData.uiCrcOfBlocksCrc =
         usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
                 ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t)));
+ 
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -391,7 +390,7 @@ bool CDataStore::CrcOfBlocksCrcCheck(void)
 {
     // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
     // Сохраняется при первой и последующих записях любых блоков через программатор.
-    // Ноль или её не совпадение свидетельствует о том, что база данных создана по умоланию,
+    // Ноль или её несовпадение свидетельствует о том, что база данных создана по умоланию,
     // и не подтверждена пользователем. В этом случае прибор переходит в режим сигнализации об ошибке,
     // ожидая квитирования или записи базы данных.
     uint16_t auiBlocksCrc[MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER];
@@ -405,7 +404,7 @@ bool CDataStore::CrcOfBlocksCrcCheck(void)
             m_xBlocksControlData.axBlockPositionData[i + BLOCKS_CONTROL_DATA_BLOCK_NUMBER].uiCrc;
     }
 
-    // База данных подтверждена пользователем?
+    // Crc из Crc всех блоков совпадает с сохранённым в служебном блоке?
     if (m_xBlocksControlData.uiCrcOfBlocksCrc ==
             usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
                     ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t))))
@@ -427,7 +426,7 @@ void CDataStore::Fsm(void)
         break;
 
     case START_WRITE:
-        // Установим время ожидания окончания записи.
+        // Установим время ожидания готовности к записи.
         GetTimerPointer() -> Set(READY_TO_WRITE_WAITING_TIMEOUT);
         SetFsmState(READY_TO_WRITE_WAITING);
         break;
@@ -435,12 +434,12 @@ void CDataStore::Fsm(void)
     case READY_TO_WRITE_WAITING:
         if (CEeprom::IsReadyToWrite())
         {
-            // Установим время ожидания окончания записи.
+            // Установим время ожидания окончания записи записи.
             GetTimerPointer() -> Set(WRITE_END_WAITING_TIMEOUT);
             CEeprom::StartWrite();
             SetFsmState(WRITE_END_WAITING);
         }
-        // Время ожидания окончания записи закончилось?
+        // Время ожидания готовности к записи закончилось?
         else if (GetTimerPointer() -> IsOverflow())
         {
             SetFsmEvent(WRITE_ERROR_FSM_EVENT);
@@ -466,11 +465,11 @@ void CDataStore::Fsm(void)
     case START_WRITE_BLOCKS_CONTROL_DATA:
         // Данные обновлены.
         // Сохраним изменённый служебный контекст.
-        if (WriteBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
-                       sizeof(m_xBlocksControlData),
-                       BLOCKS_CONTROL_DATA))
+        if (Write(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
+                  sizeof(m_xBlocksControlData),
+                  BLOCKS_CONTROL_DATA))
         {
-            // Установим время ожидания окончания записи.
+            // Установим время ожидания готовности к записи.
             GetTimerPointer() -> Set(READY_TO_WRITE_WAITING_TIMEOUT);
             SetFsmState(READY_TO_WRITE_WAITING_BLOCKS_CONTROL_DATA);
         }
@@ -489,7 +488,7 @@ void CDataStore::Fsm(void)
             CEeprom::StartWrite();
             SetFsmState(WRITE_END_WAITING_BLOCKS_CONTROL_DATA);
         }
-        // Время ожидания окончания записи закончилось?
+        // Время ожидания готовности к записи закончилось?
         else if (GetTimerPointer() -> IsOverflow())
         {
             SetFsmEvent(WRITE_ERROR_FSM_EVENT);
@@ -528,5 +527,5 @@ void CDataStore::Fsm(void)
 //-----------------------------------------------------------------------------------------------------
 uint16_t CDataStore::ReadBlockFlash(uint8_t *puiDestination, uint8_t uiBlock)
 {
-
+    return CFlash::ReadBlock(puiDestination, uiBlock);
 }

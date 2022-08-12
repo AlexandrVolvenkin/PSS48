@@ -39,6 +39,15 @@ void CMvsn21Driver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
     uiUsedDiscreteInputs +=
         MVSN21_DISCRETE_INPUTS_NUMBER;
 
+    // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+    m_puiErrorAlarmDataArray =
+        &xMemoryAllocationConext.
+        puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
+    // Увеличим общий объём выделенной памяти.
+    xMemoryAllocationConext.
+    uiUsedErrorAlarmDataArray +=
+        ERROR_TYPE_LENGTH;
+
     m_uiBadAnswerCounter = 0;
 }
 
@@ -66,6 +75,7 @@ uint8_t CMvsn21Driver::DataExchange(void)
                                      DATA_EXCHANGE_COMMAND_ANSWER_LENGTH)) > 0))
         {
             m_uiBadAnswerCounter = 0;
+            SetErrorAlarmData(0);
             // отправим полученные от модуля данные в рабочий массив прибора.
             uint8_t *puiDestination = m_puiDiscreteInputs;
             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
@@ -118,6 +128,7 @@ uint8_t CMvsn21Driver::DataExchange(void)
     {
         // модуль признан неисправным.
         *m_puiErrorCode = IMD_ERROR;
+        SetErrorAlarmData(1);
         return 0;
     }
 }

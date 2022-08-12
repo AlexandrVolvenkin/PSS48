@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          09/Aug/2022  20:55:53
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  00:19:11
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Event.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW36D0.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW2BA4.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Event.cpp --cpu=m128a -ms
 //        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -56,10 +56,10 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CEvent 32>` SYMBOL "CEvent"
-`?<Name CEventUniteLogicAnd 35>` SYMBOL "CEventUniteLogicAnd"
-??__vtbl            SYMBOL "__vtbl", `?<Name CEvent 32>`
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CEventUniteLogicAnd 35>`
+`?<Name CEvent 30>` SYMBOL "CEvent"
+`?<Name CEventUniteLogicAnd 33>` SYMBOL "CEventUniteLogicAnd"
+??__vtbl            SYMBOL "__vtbl", `?<Name CEvent 30>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CEventUniteLogicAnd 33>`
 
         EXTERN ??CDfa
         EXTERN ??CTimer
@@ -69,7 +69,6 @@
         EXTERN `??operator delete`
         EXTERN `??operator new`
         EXTERN `?~CDfa`
-        EXTERN `?~CTimer`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\Event.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -163,7 +162,7 @@
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd()
 `??new CEventUniteLogicAnd`:
-        LDI     R16, 14
+        LDI     R16, 12
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -193,8 +192,8 @@
         SBCI    R17, 255
         CALL    ??CTimer
         MOVW    R31:R30, R27:R26
-        STD     Z+11, R24
-        STD     Z+12, R25
+        STD     Z+9, R24
+        STD     Z+10, R25
         LDI     R18, 0
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
@@ -208,7 +207,7 @@
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-        LDI     R16, 14
+        LDI     R16, 12
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -259,31 +258,20 @@
 `?~CEventUniteLogicAnd`:
 //   41 {
         CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R16, R26
-        OR      R16, R27
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
         BREQ    `?~CEventUniteLogicAnd_1`
-        LDI     R16, LOW(??__vtbl_1)
-        LDI     R17, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
 //   42 
 //   43 }
-        LDI     R18, 2
-        LDI     R19, 0
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 251
-        SBCI    R17, 255
-        CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         RCALL   `?~CEvent`
-        BST     R24, 0
+        BST     R26, 0
         BRTC    `?~CEventUniteLogicAnd_1`
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CEventUniteLogicAnd_1`:
         LDI     R30, 4
@@ -316,7 +304,7 @@
 ??IsHappened_1:
         MOVW    R31:R30, R27:R26
         LDI     R16, 0
-        STD     Z+13, R16
+        STD     Z+11, R16
 //   53         SetFsmState(EVENT_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
@@ -335,9 +323,9 @@
 //   60         {
 //   61             m_uiEventsState |= 0x01;
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+13
+        LDD     R16, Z+11
         ORI     R16, 0x01
-        STD     Z+13, R16
+        STD     Z+11, R16
 //   62         }
 //   63         // Произошло второе событие?
 //   64         if (uiEventTwo)
@@ -347,16 +335,16 @@
 //   65         {
 //   66             m_uiEventsState |= 0x02;
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+13
+        LDD     R16, Z+11
         ORI     R16, 0x02
-        STD     Z+13, R16
+        STD     Z+11, R16
 //   67         }
 //   68         // Установим задержку ожидания второго события.
 //   69         m_xTimer.Set(m_uiTime);
 ??IsHappened_7:
         MOVW    R31:R30, R27:R26
-        LDD     R18, Z+11
-        LDD     R19, Z+12
+        LDD     R18, Z+9
+        LDD     R19, Z+10
         MOVW    R17:R16, R27:R26
         SUBI    R16, 251
         SBCI    R17, 255
@@ -399,9 +387,9 @@
 //   85             {
 //   86                 m_uiEventsState |= 0x01;
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+13
+        LDD     R16, Z+11
         ORI     R16, 0x01
-        STD     Z+13, R16
+        STD     Z+11, R16
 //   87             }
 //   88             // Произошло второе событие?
 //   89             if (uiEventTwo)
@@ -411,15 +399,15 @@
 //   90             {
 //   91                 m_uiEventsState |= 0x02;
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+13
+        LDD     R16, Z+11
         ORI     R16, 0x02
-        STD     Z+13, R16
+        STD     Z+11, R16
 //   92             }
 //   93             // Произошли все объединяемые события?
 //   94             if (m_uiEventsState == 0x03)
 ??IsHappened_10:
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+13
+        LDD     R16, Z+11
         CPI     R16, 3
         BRNE    ??IsHappened_11
 //   95             {
@@ -490,10 +478,10 @@ __?EEARH:
 
         END
 // 
-// 510 bytes in segment CODE
+// 486 bytes in segment CODE
 //   8 bytes in segment NEAR_F
 // 
-// 498 bytes of CODE memory (+ 20 bytes shared)
+// 474 bytes of CODE memory (+ 20 bytes shared)
 //
 //Errors: none
 //Warnings: none

@@ -32,6 +32,15 @@ int main()
         MAIN_STOP
     };
 
+    uint8_t uiNumber = 0;
+    uiNumber = sizeof(struct CNormalAlarmDfa);
+    uiNumber = sizeof(struct CAlarmDfa);
+    uiNumber = sizeof(struct CPreventiveAlarmLowLevelDfa);
+    uiNumber = sizeof(struct CErrorAlarmDfa);
+
+    uiNumber = sizeof(struct CDataStore::TBlocksControlData);
+    uiNumber = CDataStore::BLOCKS_CONTROL_DATA_LENGTH;
+
     CPss21::SetFsmState(CPss21::START);
 
     while(1)

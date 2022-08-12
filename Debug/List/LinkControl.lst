@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Aug/2022  12:40:24
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  08:23:26
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWFAA6.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW8189.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -534,12 +534,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",359  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",360  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -588,35 +588,24 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
    \                     `?~CLinkControl`:
      19          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   01C9               MOVW    R25:R24, R19:R18
-   \   00000008   2F0A               MOV     R16, R26
-   \   0000000A   2B0B               OR      R16, R27
-   \   0000000C   F0B1               BREQ    `?~CLinkControl_1`
-   \   0000000E   ....               LDI     R16, LOW(??__vtbl)
-   \   00000010   ....               LDI     R17, (??__vtbl) >> 8
-   \   00000012   01FD               MOVW    R31:R30, R27:R26
-   \   00000014   8301               STD     Z+1, R16
-   \   00000016   8312               STD     Z+2, R17
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   01D9               MOVW    R27:R26, R19:R18
+   \   00000008   2F08               MOV     R16, R24
+   \   0000000A   2B09               OR      R16, R25
+   \   0000000C   F051               BREQ    `?~CLinkControl_1`
      20          
      21          }
-   \   00000018   E022               LDI     R18, 2
-   \   0000001A   E030               LDI     R19, 0
-   \   0000001C   018D               MOVW    R17:R16, R27:R26
-   \   0000001E   5F0B               SUBI    R16, 251
-   \   00000020   4F1F               SBCI    R17, 255
-   \   00000022   ........           CALL    `?~CTimer`
-   \   00000026   E020               LDI     R18, 0
-   \   00000028   E030               LDI     R19, 0
-   \   0000002A   018D               MOVW    R17:R16, R27:R26
-   \   0000002C   ........           CALL    `?~CDfa`
-   \   00000030   FB80               BST     R24, 0
-   \   00000032   F41E               BRTC    `?~CLinkControl_1`
-   \   00000034   018D               MOVW    R17:R16, R27:R26
-   \   00000036   ........           CALL    `??operator delete`
+   \   0000000E   E020               LDI     R18, 0
+   \   00000010   E030               LDI     R19, 0
+   \   00000012   018C               MOVW    R17:R16, R25:R24
+   \   00000014   ........           CALL    `?~CDfa`
+   \   00000018   FBA0               BST     R26, 0
+   \   0000001A   F41E               BRTC    `?~CLinkControl_1`
+   \   0000001C   018C               MOVW    R17:R16, R25:R24
+   \   0000001E   ........           CALL    `??operator delete`
    \                     `?~CLinkControl_1`:
-   \   0000003A   E0E4               LDI     R30, 4
-   \   0000003C   ........           JMP     ?EPILOGUE_B4_L09
+   \   00000022   E0E4               LDI     R30, 4
+   \   00000024   ........           JMP     ?EPILOGUE_B4_L09
      22          
      23          //-----------------------------------------------------------------------------------------------------
      24          
@@ -910,7 +899,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CLinkControl &CLinkControl::new CLinkControl()
    \                     `??new CLinkControl`:
-   \   00000000   E00B               LDI     R16, 11
+   \   00000000   E009               LDI     R16, 9
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -926,7 +915,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CModbusRtuLinkControl &CModbusRtuLinkControl::new CModbusRtuLinkControl()
    \                     `??new CModbusRtuLinkControl`:
-   \   00000000   E00B               LDI     R16, 11
+   \   00000000   E009               LDI     R16, 9
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -958,7 +947,6 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
         0      2   -> operator new(unsigned int)
       4      2   CLinkControl::~CLinkControl()
         4      2   -> CDfa::~CDfa()
-        4      2   -> CTimer::~CTimer()
         4      2   -> operator delete(void *)
       2      2   CModbusRtuLinkControl::CModbusRtuLinkControl()
         2      2   -> CDfa::SetFsmEvent(uint8_t)
@@ -999,7 +987,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
       40  CLinkControl::CLinkControl()
        6  CLinkControl::GetTimerPointer()
       24  CLinkControl::new CLinkControl()
-      64  CLinkControl::~CLinkControl()
+      40  CLinkControl::~CLinkControl()
       44  CModbusRtuLinkControl::CModbusRtuLinkControl()
      314  CModbusRtuLinkControl::Fsm()
       24  CModbusRtuLinkControl::new CModbusRtuLinkControl()
@@ -1102,10 +1090,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 
  
  105 bytes in segment ABSOLUTE
- 590 bytes in segment CODE
+ 566 bytes in segment CODE
   44 bytes in segment NEAR_F
  
- 584 bytes of CODE memory (+  50 bytes shared)
+ 560 bytes of CODE memory (+  50 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

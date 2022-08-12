@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Aug/2022  12:40:27
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  08:23:28
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW49B.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW8A84.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
@@ -209,18 +209,16 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CPss21 0>`  SYMBOL "CPss21"
-??m_xLightBoard     SYMBOL "m_xLightBoard", `?<Name CPss21 0>`
-`?<Name CNotifyerControl 57>` SYMBOL "CNotifyerControl"
-`?<Name CPreventiveAlarmWind 61>` SYMBOL "CPreventiveAlarmWindowNotifyerControl"
-`?<Name CEmergencyAlarmWindo 64>` SYMBOL "CEmergencyAlarmWindowNotifyerControl"
-`?<Name CStatusLedNotifyerCo 77>` SYMBOL "CStatusLedNotifyerControl"
-`?<Name CBuzzerNotifyerContr 80>` SYMBOL "CBuzzerNotifyerControl"
-??__vtbl            SYMBOL "__vtbl", `?<Name CNotifyerControl 57>`
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CPreventiveAlarmWind 61>`
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CEmergencyAlarmWindo 64>`
-??__vtbl_5          SYMBOL "__vtbl", `?<Name CStatusLedNotifyerCo 77>`
-??__vtbl_6          SYMBOL "__vtbl", `?<Name CBuzzerNotifyerContr 80>`
+`?<Name CNotifyerControl 44>` SYMBOL "CNotifyerControl"
+`?<Name CPreventiveAlarmWind 49>` SYMBOL "CPreventiveAlarmWindowNotifyerControl"
+`?<Name CEmergencyAlarmWindo 52>` SYMBOL "CEmergencyAlarmWindowNotifyerControl"
+`?<Name CStatusLedNotifyerCo 65>` SYMBOL "CStatusLedNotifyerControl"
+`?<Name CBuzzerNotifyerContr 68>` SYMBOL "CBuzzerNotifyerControl"
+??__vtbl            SYMBOL "__vtbl", `?<Name CNotifyerControl 44>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CPreventiveAlarmWind 49>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CEmergencyAlarmWindo 52>`
+??__vtbl_5          SYMBOL "__vtbl", `?<Name CStatusLedNotifyerCo 65>`
+??__vtbl_6          SYMBOL "__vtbl", `?<Name CBuzzerNotifyerContr 68>`
 
         EXTERN ??ActiveAlarmWindowOff
         EXTERN ??ActiveAlarmWindowOn
@@ -232,11 +230,9 @@
         EXTERN ??Off
         EXTERN ??Set
         EXTERN ??Set_1
-        EXTERN ??m_xLightBoard
         EXTERN `??operator delete`
         EXTERN `??operator new`
         EXTERN `?~CDfa`
-        EXTERN `?~CTimer`
         EXTERN __pure_virtual_called
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
@@ -763,7 +759,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CNotifyerControl &CNotifyerControl::new CNotifyerControl()
 `??new CNotifyerControl`:
-        LDI     R16, 12
+        LDI     R16, 10
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -1060,7 +1056,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CPreventiveAlarmWindowNotifyerControl &CPreventiveAlarmWindowNotifyerControl::new CPreventiveAlarmWindowNotifyerControl()
 `??new CPreventiveAlarmWindowNotifyerControl`:
-        LDI     R16, 12
+        LDI     R16, 10
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -1187,7 +1183,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CEmergencyAlarmWindowNotifyerControl &CEmergencyAlarmWindowNotifyerControl::new CEmergencyAlarmWindowNotifyerControl()
 `??new CEmergencyAlarmWindowNotifyerControl`:
-        LDI     R16, 12
+        LDI     R16, 10
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -1319,7 +1315,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CStatusLedNotifyerControl &CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
 `??new CStatusLedNotifyerControl`:
-        LDI     R16, 12
+        LDI     R16, 10
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -1358,7 +1354,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CBuzzerNotifyerControl &CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
 `??new CBuzzerNotifyerControl`:
-        LDI     R16, 12
+        LDI     R16, 10
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -1374,29 +1370,18 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 `?~CNotifyerControl`:
         CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R16, R26
-        OR      R16, R27
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
         BREQ    `?~CNotifyerControl_1`
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
-        LDI     R18, 2
-        LDI     R19, 0
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 250
-        SBCI    R17, 255
-        CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         CALL    `?~CDfa`
-        BST     R24, 0
+        BST     R26, 0
         BRTC    `?~CNotifyerControl_1`
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CNotifyerControl_1`:
         LDI     R30, 4
@@ -2412,9 +2397,7 @@ _A_PINF:
         MOVW    R25:R24, R17:R16
 //  532     CPlatform::StatusLedOff();
         CALL    ??StatusLedOff
-//  533     CPss21::m_xLightBoard.Set();
-        LDI     R16, LOW(??m_xLightBoard)
-        LDI     R17, (??m_xLightBoard) >> 8
+//  533     CLightBoard::Set();
         CALL    ??Set_1
 //  534 }
         LD      R24, Y+
@@ -3003,11 +2986,11 @@ __?EEARH:
 //  628 
 // 
 //   105 bytes in segment ABSOLUTE
-// 2 694 bytes in segment CODE
+// 2 666 bytes in segment CODE
 //   186 bytes in segment NEAR_F
 //   150 bytes in segment SWITCH
 // 
-// 2 680 bytes of CODE memory (+ 350 bytes shared)
+// 2 652 bytes of CODE memory (+ 350 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

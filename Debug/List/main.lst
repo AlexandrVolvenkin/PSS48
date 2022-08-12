@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Aug/2022  12:40:25
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  08:23:26
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWFC1D.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW82E1.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp --cpu=m128a -ms -o
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -496,12 +496,12 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",359  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",360  Warning[Pe427]: 
+"D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
       9          #include "Timer.h"
      10          #include "Modbus.h"
@@ -527,6 +527,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp
      22          int main()
    \                     main:
      23          {
+   \   00000000   938A               ST      -Y, R24
      24              enum
      25              {
      26                  MAIN_START,
@@ -538,31 +539,52 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp
      32                  MAIN_STOP
      33              };
      34          
-     35              CPss21::SetFsmState(CPss21::START);
-   \   00000000   E000               LDI     R16, 0
-   \   00000002   ........           CALL    ??SetFsmState
-     36          
-     37              while(1)
-     38              {
-     39                  CPss21::MainFsm();
+     35              uint8_t uiNumber = 0;
+   \   00000002   E080               LDI     R24, 0
+     36              uiNumber = sizeof(struct CNormalAlarmDfa);
+   \   00000004   E086               LDI     R24, 6
+     37              uiNumber = sizeof(struct CAlarmDfa);
+   \   00000006   E086               LDI     R24, 6
+     38              uiNumber = sizeof(struct CPreventiveAlarmLowLevelDfa);
+   \   00000008   E086               LDI     R24, 6
+     39              uiNumber = sizeof(struct CErrorAlarmDfa);
+   \   0000000A   E085               LDI     R24, 5
+     40          
+     41              uiNumber = sizeof(struct CDataStore::TBlocksControlData);
+   \   0000000C   E684               LDI     R24, 100
+     42              uiNumber = CDataStore::BLOCKS_CONTROL_DATA_LENGTH;
+   \   0000000E   E989               LDI     R24, 153
+     43          
+     44              CPss21::SetFsmState(CPss21::START);
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   ........           CALL    ??SetFsmState
+     45          
+     46              while(1)
+     47              {
+     48                  CPss21::MainFsm();
    \                     ??main_0:
-   \   00000006   ........           CALL    ??MainFsm
-   \   0000000A   CFFD               RJMP    ??main_0
-     40              }
-     41          
-     42              return 0;
+   \   00000016   ........           CALL    ??MainFsm
+   \   0000001A   CFFD               RJMP    ??main_0
+     49              }
+     50          
+     51              return 0;
                      ^
 Warning[Pe111]: statement is unreachable
-     43          }
+
+      uint8_t uiNumber = 0;
+              ^
+"D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp",35  Warning[Pe550]: 
+          variable "uiNumber" was set but never used
+     52          }
 
    Maximum stack usage in bytes:
 
-   RSTACK Function
-   ------ --------
-      2   CPss21::SetFsmState(uint8_t)
-      2   main()
-        2   -> CPss21::MainFsm()
-        2   -> CPss21::SetFsmState(uint8_t)
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CPss21::SetFsmState(uint8_t)
+      1      2   main()
+        1      2   -> CPss21::MainFsm()
+        1      2   -> CPss21::SetFsmState(uint8_t)
 
 
    Segment part sizes:
@@ -662,16 +684,16 @@ Warning[Pe111]: statement is unreachable
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-      12  main()
+      28  main()
       36  -- Other
 
  
  105 bytes in segment ABSOLUTE
-  18 bytes in segment CODE
+  34 bytes in segment CODE
   36 bytes in segment NEAR_F
  
- 48 bytes of CODE memory (+   6 bytes shared)
+ 64 bytes of CODE memory (+   6 bytes shared)
   0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
-Warnings: 3
+Warnings: 4

@@ -334,6 +334,12 @@ private:
 class CFlash
 {
 public:
+
+    enum
+    {
+        // Сохраняемый буфер должен быть на CRC_LENGTH больше.
+        CRC_LENGTH = 2,
+    };
 //    CFlash();
 //    virtual ~CFlash();
     static uint8_t Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength);
@@ -349,7 +355,7 @@ public:
         return axDataBaseBlocksPositionData[uiBlock].Offset;
     };
 
-//                // Получим указатель на блок БД во флеш.
+    // Получим указатель на блок БД во флеш.
     static uint8_t __farflash* GetBlockPointer(uint8_t uiBlock)
     {
         return &(reinterpret_cast<__farflash uint8_t*>(&xMainDataBase)[GetBlockOffset(uiBlock)]);
@@ -358,8 +364,6 @@ public:
 private:
     static __flash TDataBase CFlash::xMainDataBase;
     static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
-//    static __flash TDataBaseBlockPositionData  axDataBaseBlocksPositionData[];
-//    static TDataBase __farflash *m_pxDataBase;
 };
 
 //-----------------------------------------------------------------------------------------------------

@@ -10,6 +10,9 @@
 #include "Pss21.h"
 
 //-------------------------------------------------------------------------------------------------
+//CDM134 CLightBoard::m_xLedDriver;
+uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
+CAlarmWindow* CLightBoard::m_pxAlarmWindowControl;
 __flash uint8_t CLightBoard::m_auiLedMap[] =
 {
 //    // Матрица расположения на панели.
@@ -22,17 +25,17 @@ __flash uint8_t CLightBoard::m_auiLedMap[] =
     55, 56, 39, 40,    23, 24, 7,  8,
 };
 
-//-----------------------------------------------------------------------------------------------------
-CLightBoard::CLightBoard()
-{
-//    Init();
-}
-
-//-----------------------------------------------------------------------------------------------------
-CLightBoard::~CLightBoard()
-{
-
-}
+////-----------------------------------------------------------------------------------------------------
+//CLightBoard::CLightBoard()
+//{
+////    Init();
+//}
+//
+////-----------------------------------------------------------------------------------------------------
+//CLightBoard::~CLightBoard()
+//{
+//
+//}
 
 //-----------------------------------------------------------------------------------------------------
 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
@@ -47,7 +50,7 @@ void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
     CPlatform::LedDriverEnable3SetPinOutput();
     CPlatform::LedDriverEnable4SetPinOutput();
 
-    m_xLedDriver.Init();
+    CDM134::Init();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -67,5 +70,5 @@ void CLightBoard::Set(void)
         }
     };
 
-    m_xLedDriver.Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+    CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
 }
