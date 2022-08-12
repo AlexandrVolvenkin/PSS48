@@ -296,7 +296,6 @@ void CMultiFunctionKey::Fsm(void)
         }
         else
         {
-//            m_uiEventCode = m_uiPreliminaryEventCode;
             SetFsmState(KEY_EVENT_UNPRESSED);
         }
         break;

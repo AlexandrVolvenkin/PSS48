@@ -89,19 +89,6 @@ public:
         TBlockPositionData axBlockPositionData[MAX_BLOCKS_NUMBER];
     };
 
-//    enum
-//    {
-//        // Количество байт служебного контекста
-//        // должно быть известно заранее.
-//        // Так как по нему извлекаются начальные данные.
-//        // Используется самовосстанавливающийся код Хемминга(8,4).
-//        // Коэффициент - 1.5: один байт преобразуется в кодовое слово 12 бит,
-//        // из двух байт полезных данных получается три байта кодированных.
-//        // (((sizeof(struct TBlocksControlData)) * 1.5) = 57)
-////        BLOCKS_CONTROL_DATA_LENGTH = 75,//57,//((sizeof(struct TBlocksControlData)) * 1.5),
-//        BLOCKS_CONTROL_DATA_LENGTH = (((sizeof(struct TBlocksControlData)) * 1.5) + CRC_LENGTH_3),//78,//57,//
-//    };
-
 //    CDataStore();
 //    virtual ~CDataStore();
     static void Init(void);

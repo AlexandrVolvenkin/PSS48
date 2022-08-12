@@ -1102,14 +1102,6 @@ void CPss21::NotifyersControlProcessing(void)
     m_xEmergencyAlarmWindowNotifyerControl.Fsm();
     m_xStatusLedNotifyerControl.Fsm();
     m_xBuzzerNotifyerControl.Fsm();
-//debag//
-//    for (uint8_t i = 0;
-//            i < ALARM_WINDOWS_NUMBER;
-//            i++)
-//    {
-//        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(m_axAlarmWindowControl[i].GetActivityState()) << 8) | i);
-//
-//    };
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1393,8 +1385,8 @@ void CPss21::MainFsm(void)
 
         switch (GetErrorCode())
         {
-        case IMD_ERROR:
-        case OMD_ERROR:
+//        case IMD_ERROR:
+//        case OMD_ERROR:
         case CFG_ERROR:
         case DB_ERROR:
             SetFsmState(ERROR_START);

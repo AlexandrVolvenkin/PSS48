@@ -61,36 +61,12 @@ void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConex
     uiUsedDiscreteOutputDataBase +=
         MR_DISCRETE_OUTPUT_NUMBER;
 
-//    // Получим указатель на место в массиве состояний ошибок для текущего модуля.
-//    m_puiErrorAlarmDataArray =
-//        &xMemoryAllocationConext.
-//        puiErrorAlarmDataArray[xMemoryAllocationConext.uiUsedErrorAlarmDataArray];
-//    // Увеличим общий объём выделенной памяти.
-//    xMemoryAllocationConext.
-//    uiUsedErrorAlarmDataArray +=
-//        ERROR_TYPE_LENGTH;
     m_puiErrorAlarmDataArray =
         &xMemoryAllocationConext.
         puiErrorAlarmDataArray[DISCRETE_OUTPUT_MODULE_FAILURE];
 
     m_uiBadAnswerCounter = 0;
 }
-
-////-----------------------------------------------------------------------------------------------------
-//uint16_t CModuleMrXXDriver::ReportType(uint8_t *puiDestination, uint16_t uiLength)
-//{
-//    memset(m_puiTxBuffer, 0, 4);
-//    uint8_t uiLengthLocal = 0;
-//    m_puiTxBuffer[uiLengthLocal++] = GET_MODULE_TYPE_COMMAND;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-//    m_puiTxBuffer[uiLengthLocal++] = 0;
-//    CPss21::ConnectDevice(m_uiAddress);
-//    delay_us(500);
-//    CSpi::Exchange(m_puiRxBuffer, m_puiTxBuffer, uiLengthLocal);
-//    CPss21::DisconnectDevice();
-//}
 
 //-----------------------------------------------------------------------------------------------------
 uint8_t CModuleMrXXDriver::WriteDataBase(void)

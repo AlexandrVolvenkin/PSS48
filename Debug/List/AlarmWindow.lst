@@ -1,23 +1,22 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  10:44:20
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  19:38:13
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW8476.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW2F39.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --no_cse --no_inline
-#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        --initializers_in_flash --root_variables --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\AlarmWindow.lst
@@ -520,45 +519,32 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp
    \   00000006   8324               STD     Z+4, R18
    \   00000008   8335               STD     Z+5, R19
      15              m_uiActivityState = 0;
-   \   0000000A   01F8               MOVW    R31:R30, R17:R16
-   \   0000000C   E020               LDI     R18, 0
-   \   0000000E   8320               ST      Z, R18
+   \   0000000A   E020               LDI     R18, 0
+   \   0000000C   8320               ST      Z, R18
      16              m_uiSavedActivityState = 0;
-   \   00000010   01F8               MOVW    R31:R30, R17:R16
-   \   00000012   E020               LDI     R18, 0
-   \   00000014   8321               STD     Z+1, R18
+   \   0000000E   8321               STD     Z+1, R18
      17              m_uiAlarmType = NORMAL;
-   \   00000016   01F8               MOVW    R31:R30, R17:R16
-   \   00000018   E020               LDI     R18, 0
-   \   0000001A   8322               STD     Z+2, R18
+   \   00000010   8322               STD     Z+2, R18
      18              m_uiSavedAlarmType = NORMAL;
-   \   0000001C   01F8               MOVW    R31:R30, R17:R16
-   \   0000001E   E020               LDI     R18, 0
-   \   00000020   8323               STD     Z+3, R18
+   \   00000012   8323               STD     Z+3, R18
      19          }
-   \   00000022   9508               RET
+   \   00000014   9508               RET
      20          
 
    \                                 In  segment CODE, align 2, keep-with-next
      21          CAlarmWindow::~CAlarmWindow()
    \                     `?~CAlarmWindow`:
      22          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2F08               MOV     R16, R24
-   \   00000008   2B09               OR      R16, R25
-   \   0000000A   F029               BREQ    `?~CAlarmWindow_1`
-   \   0000000C   FB20               BST     R18, 0
-   \   0000000E   F41E               BRTC    `?~CAlarmWindow_1`
+   \   00000000   2F40               MOV     R20, R16
+   \   00000002   2B41               OR      R20, R17
+   \   00000004   F021               BREQ    `?~CAlarmWindow_1`
+   \   00000006   FB20               BST     R18, 0
+   \   00000008   F416               BRTC    `?~CAlarmWindow_1`
      23          
      24          }
-   \   00000010   018C               MOVW    R17:R16, R25:R24
-   \   00000012   ........           CALL    `??operator delete`
+   \   0000000A   ........           CALL    `??operator delete`
    \                     `?~CAlarmWindow_1`:
-   \   00000016   9189               LD      R24, Y+
-   \   00000018   9199               LD      R25, Y+
-   \   0000001A   9508               RET
+   \   0000000E   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CAlarmWindow &CAlarmWindow::new CAlarmWindow()
@@ -568,33 +554,32 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
    \   0000000A   2B21               OR      R18, R17
-   \   0000000C   F011               BREQ    `??new CAlarmWindow_1`
-   \   0000000E   ....               RCALL   ??CAlarmWindow
-   \   00000010   9508               RET
+   \   0000000C   F009               BREQ    `??new CAlarmWindow_1`
+   \   0000000E   ....               RJMP    ??CAlarmWindow
    \                     `??new CAlarmWindow_1`:
-   \   00000012   E000               LDI     R16, 0
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   9508               RET
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   E010               LDI     R17, 0
+   \   00000014   9508               RET
 
    Maximum stack usage in bytes:
 
-   CSTACK RSTACK Function
-   ------ ------ --------
-      0      2   CAlarmWindow::CAlarmWindow()
-      0      2   CAlarmWindow::new CAlarmWindow()
-        0      2   -> CAlarmWindow::CAlarmWindow()
-        0      2   -> operator new(unsigned int)
-      2      2   CAlarmWindow::~CAlarmWindow()
-        2      2   -> operator delete(void *)
+   RSTACK Function
+   ------ --------
+      2   CAlarmWindow::CAlarmWindow()
+      2   CAlarmWindow::new CAlarmWindow()
+        2   -> CAlarmWindow::CAlarmWindow()
+        2   -> operator new(unsigned int)
+      2   CAlarmWindow::~CAlarmWindow()
+        2   -> operator delete(void *)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-      36  CAlarmWindow::CAlarmWindow()
-      24  CAlarmWindow::new CAlarmWindow()
-      28  CAlarmWindow::~CAlarmWindow()
+      22  CAlarmWindow::CAlarmWindow()
+      22  CAlarmWindow::new CAlarmWindow()
+      16  CAlarmWindow::~CAlarmWindow()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -687,15 +672,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-      34  -- Other
+       2  -- Other
 
  
  105 bytes in segment ABSOLUTE
-  88 bytes in segment CODE
-  34 bytes in segment NEAR_F
+  60 bytes in segment CODE
+   2 bytes in segment NEAR_F
  
- 120 bytes of CODE memory (+   2 bytes shared)
-   0 bytes of DATA memory (+ 105 bytes shared)
+ 60 bytes of CODE memory (+   2 bytes shared)
+  0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
 Warnings: 2

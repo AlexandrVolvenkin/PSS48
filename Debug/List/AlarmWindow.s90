@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  10:44:20
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:13
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW8476.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW2F39.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\AlarmWindow.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\AlarmWindow.s90
@@ -626,20 +625,13 @@ _A_PINF:
         STD     Z+4, R18
         STD     Z+5, R19
 //   15     m_uiActivityState = 0;
-        MOVW    R31:R30, R17:R16
         LDI     R18, 0
         ST      Z, R18
 //   16     m_uiSavedActivityState = 0;
-        MOVW    R31:R30, R17:R16
-        LDI     R18, 0
         STD     Z+1, R18
 //   17     m_uiAlarmType = NORMAL;
-        MOVW    R31:R30, R17:R16
-        LDI     R18, 0
         STD     Z+2, R18
 //   18     m_uiSavedAlarmType = NORMAL;
-        MOVW    R31:R30, R17:R16
-        LDI     R18, 0
         STD     Z+3, R18
 //   19 }
         RET
@@ -653,8 +645,7 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    `??new CAlarmWindow_1`
-        RCALL   ??CAlarmWindow
-        RET
+        RJMP    ??CAlarmWindow
 `??new CAlarmWindow_1`:
         LDI     R16, 0
         LDI     R17, 0
@@ -665,21 +656,15 @@ _A_PINF:
 //   21 CAlarmWindow::~CAlarmWindow()
 `?~CAlarmWindow`:
 //   22 {
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        MOV     R16, R24
-        OR      R16, R25
+        MOV     R20, R16
+        OR      R20, R17
         BREQ    `?~CAlarmWindow_1`
         BST     R18, 0
         BRTC    `?~CAlarmWindow_1`
 //   23 
 //   24 }
-        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CAlarmWindow_1`:
-        LD      R24, Y+
-        LD      R25, Y+
         RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -699,18 +684,14 @@ __?EEARH:
 ??__vtbl:
         DC16 `?~CAlarmWindow`/2
 
-        RSEG NEAR_F:CODE:ROOT(0)
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-
         END
 // 
 // 105 bytes in segment ABSOLUTE
-//  88 bytes in segment CODE
-//  34 bytes in segment NEAR_F
+//  60 bytes in segment CODE
+//   2 bytes in segment NEAR_F
 // 
-// 120 bytes of CODE memory (+   2 bytes shared)
-//   0 bytes of DATA memory (+ 105 bytes shared)
+// 60 bytes of CODE memory (+   2 bytes shared)
+//  0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 2

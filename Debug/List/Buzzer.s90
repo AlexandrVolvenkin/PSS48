@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  10:44:20
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:13
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW8561.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW3034.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Buzzer.cpp --cpu=m128a -ms
 //        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Buzzer.s90
@@ -35,18 +34,12 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        PUBWEAK ??BuzzerClockAOff
-        PUBWEAK ??BuzzerClockAOn
-        PUBWEAK ??BuzzerClockASetPinOutput
-        PUBWEAK ??BuzzerClockBOff
-        PUBWEAK ??BuzzerClockBOn
-        PUBWEAK ??BuzzerClockBSetPinOutput
         PUBLIC ??CBuzzer
         PUBLIC ??HighOn
         PUBLIC ??Init
         PUBLIC ??LowOn
         PUBLIC ??Off
-        PUBWEAK ??__vtbl_1
+        PUBWEAK ??__vtbl
         PUBLIC `??new CBuzzer`
         PUBLIC `?~CBuzzer`
         PUBWEAK _A_ACSR
@@ -146,8 +139,8 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CBuzzer 25>` SYMBOL "CBuzzer"
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CBuzzer 25>`
+`?<Name CBuzzer 13>` SYMBOL "CBuzzer"
+??__vtbl            SYMBOL "__vtbl", `?<Name CBuzzer 13>`
 
         EXTERN ??BuzzerTimerFrequencySet
         EXTERN ??BuzzerTimerStop
@@ -624,21 +617,6 @@ _A_PINE:
 // union <unnamed> volatile __io _A_PINF
 _A_PINF:
         DS8 1
-//   10 
-//   11 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
-//   12 CBuzzer::CBuzzer()
-??CBuzzer:
-//   13 {
-        LDI     R18, LOW(??__vtbl_1)
-        LDI     R19, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R17:R16
-        ST      Z, R18
-        STD     Z+1, R19
-//   14 
-//   15 }
-        RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CBuzzer &CBuzzer::new CBuzzer()
@@ -649,12 +627,31 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    `??new CBuzzer_1`
-        RCALL   ??CBuzzer
-        RET
+        RJMP    ?Subroutine0
 `??new CBuzzer_1`:
         LDI     R16, 0
         LDI     R17, 0
         RET
+//   10 
+//   11 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   12 CBuzzer::CBuzzer()
+??CBuzzer:
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+//   13 {
+        LDI     R18, LOW(??__vtbl)
+        LDI     R19, (??__vtbl) >> 8
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+        RET
+//   14 
+//   15 }
 //   16 
 //   17 //-----------------------------------------------------------------------------------------------------
 
@@ -662,21 +659,15 @@ _A_PINF:
 //   18 CBuzzer::~CBuzzer()
 `?~CBuzzer`:
 //   19 {
-        ST      -Y, R25
-        ST      -Y, R24
-        MOVW    R25:R24, R17:R16
-        MOV     R16, R24
-        OR      R16, R25
+        MOV     R20, R16
+        OR      R20, R17
         BREQ    `?~CBuzzer_1`
         BST     R18, 0
         BRTC    `?~CBuzzer_1`
 //   20 
 //   21 }
-        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CBuzzer_1`:
-        LD      R24, Y+
-        LD      R25, Y+
         RET
 //   22 
 //   23 //-----------------------------------------------------------------------------------------------------
@@ -686,15 +677,17 @@ _A_PINF:
 ??Init:
 //   25 {
 //   26     CPlatform::BuzzerClockAOff();
-        CALL    ??BuzzerClockAOff
+        CBI     0x03, 0x03
 //   27     CPlatform::BuzzerClockASetPinOutput();
-        CALL    ??BuzzerClockASetPinOutput
+        SBI     0x02, 0x03
 //   28     CPlatform::BuzzerClockBOff();
-        CALL    ??BuzzerClockBOff
+        CBI     0x03, 0x04
 //   29     CPlatform::BuzzerClockBSetPinOutput();
-        CALL    ??BuzzerClockBSetPinOutput
+        SBI     0x02, 0x04
 //   30 }
         RET
+        REQUIRE _A_DDRE
+        REQUIRE _A_PORTE
 //   31 
 //   32 //-----------------------------------------------------------------------------------------------------
 
@@ -706,13 +699,11 @@ _A_PINF:
 //   36     CPlatform::BuzzerTimerFrequencySet(760);
         LDI     R16, 248
         LDI     R17, 2
-        CALL    ??BuzzerTimerFrequencySet
+        RJMP    ?Subroutine1
+        REQUIRE _A_PORTE
 //   37     CPlatform::BuzzerClockAOn();
-        CALL    ??BuzzerClockAOn
 //   38     CPlatform::BuzzerClockBOn();
-        CALL    ??BuzzerClockBOn
 //   39 }
-        RET
 //   40 
 //   41 //-----------------------------------------------------------------------------------------------------
 
@@ -724,12 +715,18 @@ _A_PINF:
 //   45     CPlatform::BuzzerTimerFrequencySet(3210);
         LDI     R16, 138
         LDI     R17, 12
-        CALL    ??BuzzerTimerFrequencySet
+        REQUIRE ?Subroutine1
+        REQUIRE _A_PORTE
+        ;               // Fall through to label ?Subroutine1
 //   46     CPlatform::BuzzerClockAOn();
-        CALL    ??BuzzerClockAOn
 //   47     CPlatform::BuzzerClockBOn();
-        CALL    ??BuzzerClockBOn
 //   48 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        CALL    ??BuzzerTimerFrequencySet
+        SBI     0x03, 0x03
+        SBI     0x03, 0x04
         RET
 //   49 
 //   50 //-----------------------------------------------------------------------------------------------------
@@ -739,55 +736,13 @@ _A_PINF:
 ??Off:
 //   52 {
 //   53     CPlatform::BuzzerClockAOff();
-        CALL    ??BuzzerClockAOff
-//   54     CPlatform::BuzzerClockBOff();
-        CALL    ??BuzzerClockBOff
-//   55     CPlatform::BuzzerTimerStop();
-        CALL    ??BuzzerTimerStop
-//   56 }
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::BuzzerClockASetPinOutput()
-??BuzzerClockASetPinOutput:
-        SBI     0x02, 0x03
-        RET
-        REQUIRE _A_DDRE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::BuzzerClockAOn()
-??BuzzerClockAOn:
-        SBI     0x03, 0x03
-        RET
-        REQUIRE _A_PORTE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::BuzzerClockAOff()
-??BuzzerClockAOff:
         CBI     0x03, 0x03
-        RET
-        REQUIRE _A_PORTE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::BuzzerClockBSetPinOutput()
-??BuzzerClockBSetPinOutput:
-        SBI     0x02, 0x04
-        RET
-        REQUIRE _A_DDRE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::BuzzerClockBOn()
-??BuzzerClockBOn:
-        SBI     0x03, 0x04
-        RET
-        REQUIRE _A_PORTE
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::BuzzerClockBOff()
-??BuzzerClockBOff:
+//   54     CPlatform::BuzzerClockBOff();
         CBI     0x03, 0x04
-        RET
+//   55     CPlatform::BuzzerTimerStop();
+        JMP     ??BuzzerTimerStop
         REQUIRE _A_PORTE
+//   56 }
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -802,23 +757,19 @@ __?EEARL:
 __?EEARH:
 
         RSEG NEAR_F:CODE:ROOT(0)
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-
-        RSEG NEAR_F:CODE:ROOT(0)
 // __vtbl_entry const __flash CBuzzer::__vtbl[1]
-??__vtbl_1:
+??__vtbl:
         DC16 `?~CBuzzer`/2
 
         END
 //   57 
 // 
 // 105 bytes in segment ABSOLUTE
-// 156 bytes in segment CODE
-//  34 bytes in segment NEAR_F
+//  88 bytes in segment CODE
+//   2 bytes in segment NEAR_F
 // 
-// 164 bytes of CODE memory (+  26 bytes shared)
-//   0 bytes of DATA memory (+ 105 bytes shared)
+// 88 bytes of CODE memory (+   2 bytes shared)
+//  0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 2

@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  11:47:43
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:14
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW8BE4.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW32F4.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DataStore.s90
@@ -35,27 +34,14 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B10_L09
-        EXTERN ?EPILOGUE_B14_L09
-        EXTERN ?EPILOGUE_B3_L09
-        EXTERN ?EPILOGUE_B4_L09
-        EXTERN ?EPILOGUE_B5_L09
-        EXTERN ?PROLOGUE10_L09
-        EXTERN ?PROLOGUE14_L09
-        EXTERN ?PROLOGUE3_L09
-        EXTERN ?PROLOGUE4_L09
-        EXTERN ?PROLOGUE5_L09
-        EXTERN ?Register_R10_is_cg_reg
-        EXTERN ?Register_R11_is_cg_reg
-        EXTERN ?Register_R12_is_cg_reg
-        EXTERN ?Register_R13_is_cg_reg
+        EXTERN ?EPILOGUE_B6_L09
+        EXTERN ?EPILOGUE_B7_L09
+        EXTERN ?PROLOGUE6_L09
+        EXTERN ?PROLOGUE7_L09
         EXTERN ?Register_R4_is_cg_reg
         EXTERN ?Register_R5_is_cg_reg
         EXTERN ?Register_R6_is_cg_reg
-        EXTERN ?Register_R7_is_cg_reg
-        EXTERN ?Register_R8_is_cg_reg
-        EXTERN ?Register_R9_is_cg_reg
-        EXTERN ?S_EC_MUL_L02
+        EXTERN ?S_SHL_L02
         EXTERN ?call_ctors
         EXTERN ?need_segment_init
 
@@ -65,23 +51,10 @@
         PUBLIC ??CrcOfBlocksCrcCheck
         PUBLIC ??CrcOfBlocksCrcCreate
         PUBLIC ??Fsm
-        PUBWEAK ??GetBufferIsWrited
-        PUBWEAK ??GetErrorCode
-        PUBWEAK ??GetFsmEvent
-        PUBWEAK ??GetFsmState
-        PUBWEAK ??GetTimerPointer
         PUBLIC ??Init
-        PUBWEAK ??IsReadyToWrite
         PUBLIC ??ReadBlock
         PUBLIC ??ReadBlockFlash
-        PUBWEAK ??ReadyInterruptEnable
-        PUBWEAK ??SetBufferIsWrited
-        PUBWEAK ??SetErrorCode
-        PUBWEAK ??SetErrorCode_1
-        PUBWEAK ??SetFsmEvent
-        PUBWEAK ??SetFsmState
         PUBWEAK ??StartWrite
-        PUBWEAK ??WatchdogReset
         PUBLIC ??Write
         PUBLIC ??WriteBlock
         PUBLIC ??m_auiBlocksCurrentCrc
@@ -207,7 +180,7 @@
         EXTERN ??HammingCodesToBytes
         EXTERN ??IsOverflow
         EXTERN ??Read
-        EXTERN ??ReadBlock_8
+        EXTERN ??ReadBlock_4
         EXTERN ??Set
         EXTERN ??WriteInterrupt
         EXTERN ??delay_ms
@@ -709,38 +682,28 @@ _A_PINF:
 //   19 uint16_t CDataStore::m_auiBlocksCurrentCrc[MAX_BLOCKS_NUMBER];
 ??m_auiBlocksCurrentCrc:
         DS8 24
-
-        RSEG NEAR_Z:DATA:ROOT(0)
-        REQUIRE `?<Segment init: NEAR_Z>`
 //   20 uint8_t* CDataStore::m_puiIntermediateBuff;
-??m_puiIntermediateBuff:
-        DS8 2
 
         RSEG CODE:CODE:NOROOT(1)
 // static __intrinsic __version_3 void __sti__routine()
 ??__sti__routine:
 //   21 CTimer CDataStore::m_xTimer;
-        LDI     R16, LOW(??m_xTimer)
-        LDI     R17, (??m_xTimer) >> 8
-        CALL    ??CTimer
-        RET
+        LDI     R16, LOW((??m_puiIntermediateBuff + 4))
+        LDI     R17, HIGH((??m_puiIntermediateBuff + 4))
+        JMP     ??CTimer
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-??m_xTimer:
-        DS8 4
-
-        RSEG NEAR_Z:DATA:ROOT(0)
-        REQUIRE `?<Segment init: NEAR_Z>`
+??m_puiIntermediateBuff:
+        DS8 2
 //   22 uint8_t CDataStore::m_uiFsmState;
 ??m_uiFsmState:
         DS8 1
-
-        RSEG NEAR_Z:DATA:ROOT(0)
-        REQUIRE `?<Segment init: NEAR_Z>`
 //   23 uint8_t CDataStore::m_uiFsmEvent;
 ??m_uiFsmEvent:
         DS8 1
+??m_xTimer:
+        DS8 4
 //   24 
 //   25 ////-----------------------------------------------------------------------------------------------------
 //   26 //CDataStore::CDataStore()
@@ -764,15 +727,15 @@ _A_PINF:
 ??Init:
 //   42 {
 //   43     m_puiIntermediateBuff = CPss21::m_auiIntermediateBuff;
-        LDI     R16, LOW(??m_auiIntermediateBuff)
-        LDI     R17, (??m_auiIntermediateBuff) >> 8
         LDI     R30, LOW(??m_puiIntermediateBuff)
         LDI     R31, (??m_puiIntermediateBuff) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
+        LDI     R16, LOW(??m_auiIntermediateBuff)
+        LDI     R17, (??m_auiIntermediateBuff) >> 8
+        RCALL   ?Subroutine10
 //   44     SetFsmState(IDDLE);
+??CrossCallReturnLabel_24:
         LDI     R16, 0
-        CALL    ??SetFsmState
+        STD     Z+2, R16
 //   45 
 //   46     // Очистим служебный контекст.
 //   47     memset(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
@@ -798,359 +761,41 @@ _A_PINF:
 //   54     // Установим размер первичных данных.
 //   55     m_xBlocksControlData.
 //   56     axBlockPositionData[BLOCKS_CONTROL_DATA].uiLength = sizeof(struct TBlocksControlData);
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
         LDI     R16, 100
-        LDI     R17, 0
         STD     Z+6, R16
         STD     Z+7, R17
 //   57     // Установим размер закодированных данных.
 //   58     m_xBlocksControlData.
 //   59     axBlockPositionData[BLOCKS_CONTROL_DATA].uiEncodedLength = BLOCKS_CONTROL_DATA_LENGTH;
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
         LDI     R16, 153
-        LDI     R17, 0
         STD     Z+8, R16
         STD     Z+9, R17
 //   60     // Установим смещение для служебного контекста.
 //   61     m_xBlocksControlData.uiFreeSpaceOffset = (BLOCKS_CONTROL_DATA_BEGIN + BLOCKS_CONTROL_DATA_LENGTH);
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
         LDI     R16, 169
-        LDI     R17, 0
         STD     Z+2, R16
         STD     Z+3, R17
 //   62     // Установим признак - база данных не подтверждена пользователем.
 //   63     m_xBlocksControlData.uiCrcOfBlocksCrc = 0;
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
-        LDI     R16, 0
-        ST      Z, R16
-        LDI     R16, 0
-        STD     Z+1, R16
+        ST      Z, R17
+        REQUIRE ?Subroutine15
+        ;               // Fall through to label ?Subroutine15
 //   64 }
-        RET
 
         RSEG CODE:CODE:NOROOT(1)
-??Fsm:
-        CALL    ??GetFsmState
-        SUBI    R16, 0
-        BREQ    ??Fsm_1
-        DEC     R16
-        BREQ    ??Fsm_2
-        DEC     R16
-        BREQ    ??Fsm_3
-        DEC     R16
-        BREQ    ??Fsm_4
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_5
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_6
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_7
-??Fsm_1:
+?Subroutine15:
+        STD     Z+1, R17
         RET
-??Fsm_2:
-        CALL    ??GetTimerPointer
-        LDI     R18, 200
-        LDI     R19, 0
-        CALL    ??Set
-        LDI     R16, 2
-        CALL    ??SetFsmState
-        RET
-??Fsm_3:
-        CALL    ??IsReadyToWrite
-        TST     R16
-        BREQ    ??Fsm_8
-        CALL    ??GetTimerPointer
-        LDI     R18, 16
-        LDI     R19, 39
-        CALL    ??Set
-        CALL    ??StartWrite
-        LDI     R16, 3
-        CALL    ??SetFsmState
-        RET
-??Fsm_8:
-        CALL    ??GetTimerPointer
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_9
-        LDI     R16, 4
-        CALL    ??SetFsmEvent
-        LDI     R16, 0
-        CALL    ??SetFsmState
-??Fsm_9:
-        RET
-??Fsm_4:
-        CALL    ??GetBufferIsWrited
-        TST     R16
-        BREQ    ??Fsm_10
-        LDI     R16, 4
-        CALL    ??SetFsmState
-        RET
-??Fsm_10:
-        CALL    ??GetTimerPointer
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_11
-        LDI     R16, 4
-        CALL    ??SetFsmEvent
-        LDI     R16, 0
-        CALL    ??SetFsmState
-??Fsm_11:
-        RET
-??Fsm_5:
-        LDI     R20, 0
-        LDI     R18, 100
-        LDI     R19, 0
-        LDI     R16, LOW(??m_xBlocksControlData)
-        LDI     R17, (??m_xBlocksControlData) >> 8
-        RCALL   ??Write
-        OR      R16, R17
-        BREQ    ??Fsm_12
-        CALL    ??GetTimerPointer
-        LDI     R18, 200
-        LDI     R19, 0
-        CALL    ??Set
-        LDI     R16, 5
-        CALL    ??SetFsmState
-        RET
-??Fsm_12:
-        LDI     R16, 4
-        CALL    ??SetFsmEvent
-        LDI     R16, 0
-        CALL    ??SetFsmState
-        RET
-??Fsm_6:
-        CALL    ??IsReadyToWrite
-        TST     R16
-        BREQ    ??Fsm_13
-        CALL    ??GetTimerPointer
-        LDI     R18, 16
-        LDI     R19, 39
-        CALL    ??Set
-        CALL    ??StartWrite
-        LDI     R16, 6
-        CALL    ??SetFsmState
-        RET
-??Fsm_13:
-        CALL    ??GetTimerPointer
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_14
-        LDI     R16, 4
-        CALL    ??SetFsmEvent
-        LDI     R16, 0
-        CALL    ??SetFsmState
-        RET
-??Fsm_7:
-        CALL    ??GetBufferIsWrited
-        TST     R16
-        BREQ    ??Fsm_15
-        LDI     R16, 3
-        CALL    ??SetFsmEvent
-        LDI     R16, 0
-        CALL    ??SetFsmState
-        RET
-??Fsm_15:
-        CALL    ??GetTimerPointer
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_14
-        LDI     R16, 4
-        CALL    ??SetFsmEvent
-        LDI     R16, 0
-        CALL    ??SetFsmState
-??Fsm_14:
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-??ReadBlock:
-        CALL    ?PROLOGUE14_L09
-        REQUIRE ?Register_R4_is_cg_reg
-        REQUIRE ?Register_R5_is_cg_reg
-        REQUIRE ?Register_R6_is_cg_reg
-        REQUIRE ?Register_R7_is_cg_reg
-        REQUIRE ?Register_R8_is_cg_reg
-        REQUIRE ?Register_R10_is_cg_reg
-        REQUIRE ?Register_R11_is_cg_reg
-        REQUIRE ?Register_R12_is_cg_reg
-        REQUIRE ?Register_R13_is_cg_reg
-        SUBI    R29, 1
-        MOVW    R7:R6, R17:R16
-        MOV     R8, R18
-        LDI     R16, 12
-        CP      R8, R16
-        BRCS    ??ReadBlock_1
-        LDI     R16, 0
-        LDI     R17, 0
-        RJMP    ??ReadBlock_2
-??ReadBlock_1:
-        MOV     R16, R8
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        LDD     R16, Z+4
-        LDD     R17, Z+5
-        OR      R16, R17
-        BREQ    ??ReadBlock_3
-        MOV     R16, R8
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        LDD     R16, Z+8
-        LDD     R17, Z+9
-        OR      R16, R17
-        BREQ    ??ReadBlock_3
-        MOV     R16, R8
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        LDD     R16, Z+4
-        LDD     R17, Z+5
-        MOVW    R13:R12, R17:R16
-        MOV     R16, R8
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        LDD     R16, Z+8
-        LDD     R17, Z+9
-        MOVW    R11:R10, R17:R16
-        MOVW    R21:R20, R11:R10
-        MOVW    R19:R18, R13:R12
-        MOVW    R17:R16, R29:R28
-        CALL    ??Read
-        MOVW    R21:R20, R11:R10
-        MOVW    R19:R18, R29:R28
-        MOVW    R17:R16, R29:R28
-        CALL    ??HammingCodesToBytes
-        MOVW    R5:R4, R17:R16
-        LDI     R16, 3
-        CP      R4, R16
-        LDI     R16, 0
-        CPC     R5, R16
-        BRCC    ??ReadBlock_4
-        RJMP    ??ReadBlock_5
-??ReadBlock_3:
-        LDI     R16, 0
-        LDI     R17, 0
-        RJMP    ??ReadBlock_2
-??ReadBlock_5:
-        LDI     R16, 4
-        CALL    ??SetErrorCode
-        LDI     R16, 0
-        LDI     R17, 0
-        RJMP    ??ReadBlock_2
-??ReadBlock_4:
-        LDI     R16, 254
-        ADD     R4, R16
-        LDI     R16, 255
-        ADC     R5, R16
-        MOV     R16, R8
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        LDD     R16, Z+6
-        LDD     R17, Z+7
-        CP      R4, R16
-        CPC     R5, R17
-        BREQ    ??ReadBlock_6
-        LDI     R16, 4
-        CALL    ??SetErrorCode
-        LDI     R16, 0
-        LDI     R17, 0
-        RJMP    ??ReadBlock_2
-??ReadBlock_6:
-        MOVW    R31:R30, R29:R28
-        ADD     R30, R4
-        ADC     R31, R5
-        LD      R24, Z
-        LDI     R25, 0
-        MOVW    R31:R30, R29:R28
-        ADD     R30, R4
-        ADC     R31, R5
-        LDD     R17, Z+1
-        LDI     R16, 0
-        OR      R24, R16
-        OR      R25, R17
-        MOVW    R19:R18, R5:R4
-        MOVW    R17:R16, R29:R28
-        CALL    ??usCrc16
-        MOVW    R27:R26, R17:R16
-        CP      R24, R26
-        CPC     R25, R27
-        BRNE    ??ReadBlock_7
-        MOV     R16, R8
-        LDI     R17, 0
-        LSL     R16
-        ROL     R17
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_auiBlocksCurrentCrc) & 0xFFFF))
-        SBCI    R31, (-(??m_auiBlocksCurrentCrc) & 0xFFFF) >> 8
-        ST      Z, R24
-        STD     Z+1, R25
-        MOVW    R21:R20, R5:R4
-        MOVW    R19:R18, R29:R28
-        MOVW    R17:R16, R7:R6
-        CALL    memcpy
-        MOVW    R17:R16, R5:R4
-        RJMP    ??ReadBlock_2
-??ReadBlock_7:
-        LDI     R16, 4
-        CALL    ??SetErrorCode
-        LDI     R16, 0
-        LDI     R17, 0
-??ReadBlock_2:
-        SUBI    R29, 255
-        LDI     R30, 14
-        JMP     ?EPILOGUE_B14_L09
 //   65 
 //   66 //-----------------------------------------------------------------------------------------------------
-
-        RSEG CODE:CODE:NOROOT(1)
 //   67 uint8_t CDataStore::Check(void)
-??Check:
 //   68 {
-        CALL    ?PROLOGUE4_L09
 //   69     CDataStore::Init();
-        RCALL   ??Init
 //   70 
 //   71     // Служебный блок повреждён?
 //   72     if (!(ReadBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData), BLOCKS_CONTROL_DATA)))
-        LDI     R18, 0
-        LDI     R16, LOW(??m_xBlocksControlData)
-        LDI     R17, (??m_xBlocksControlData) >> 8
-        RCALL   ??ReadBlock
-        OR      R16, R17
-        BRNE    ??Check_1
 //   73     {
 //   74         return 0;
-        LDI     R16, 0
-        RJMP    ??Check_2
 //   75     }
 //   76 
 //   77     enum
@@ -1165,171 +810,84 @@ _A_PINF:
 //   86     };
 //   87 
 //   88     uint8_t uiBlockCounter = 0;
-??Check_1:
-        LDI     R27, 0
 //   89     uint8_t uiFsmState = BLOCK_CHECK_START;
-        LDI     R26, 1
 //   90     uint16_t uiLength;
 //   91 
 //   92     CHammingCodes::SetErrorCode(CHammingCodes::NONE_ERROR);
-        LDI     R16, 0
-        CALL    ??SetErrorCode_1
 //   93 
 //   94     while (1)
 //   95     {
 //   96         switch (uiFsmState)
-??Check_3:
-        MOV     R16, R26
-        SUBI    R16, 1
-        BREQ    ??Check_4
-        DEC     R16
-        BREQ    ??Check_5
-        DEC     R16
-        BREQ    ??Check_6
-        DEC     R16
-        BREQ    ??Check_7
-        DEC     R16
-        BREQ    ??Check_8
-        DEC     R16
-        BREQ    ??Check_9
-        RJMP    ??Check_10
 //   97         {
 //   98         case BLOCK_CHECK_START:
 //   99             // Проверены не все блоки?
 //  100             if (uiBlockCounter < MAX_BLOCKS_NUMBER)
-??Check_4:
-        CPI     R27, 12
-        BRCC    ??Check_11
 //  101             {
 //  102                 uiLength = ReadBlock(m_puiIntermediateBuff, uiBlockCounter);
-        MOV     R18, R27
-        LDI     R30, LOW(??m_puiIntermediateBuff)
-        LDI     R31, (??m_puiIntermediateBuff) >> 8
-        LD      R16, Z
-        LDD     R17, Z+1
-        RCALL   ??ReadBlock
-        MOVW    R25:R24, R17:R16
 //  103                 // Блок не повреждён?
 //  104                 if (uiLength)
-        MOV     R16, R24
-        OR      R16, R25
-        BREQ    ??Check_12
 //  105                 {
 //  106                     // Блок восстановлен после обнаружения ошибки?
 //  107                     if (CHammingCodes::GetErrorCode() != CHammingCodes::NONE_ERROR)
-        CALL    ??GetErrorCode
-        TST     R16
-        BREQ    ??Check_13
 //  108                     {
 //  109                         // Обновим восстановленный блок в хранилище.
 //  110                         uiFsmState = BLOCK_WRITE_START;
-        LDI     R26, 2
-        RJMP    ??Check_10
 //  111                     }
 //  112                     else
 //  113                     {
 //  114                         uiFsmState = NEXT_BLOCK;
-??Check_13:
-        LDI     R26, 4
-        RJMP    ??Check_10
 //  115                     }
 //  116                 }
 //  117                 else
 //  118                 {
 //  119                     uiFsmState = BLOCK_ERROR;
-??Check_12:
-        LDI     R26, 5
-        RJMP    ??Check_10
 //  120                 }
 //  121             }
 //  122             else
 //  123             {
 //  124                 uiFsmState = ALL_BLOCKS_CHECKED;
-??Check_11:
-        LDI     R26, 6
 //  125             }
 //  126             break;
-        RJMP    ??Check_10
 //  127 
 //  128         case BLOCK_WRITE_START:
 //  129             // Поместим данные в хранилище.
 //  130             // Блок БД принят к записи?
 //  131             if (WriteBlock(m_puiIntermediateBuff, uiLength, uiBlockCounter))
-??Check_5:
-        MOV     R20, R27
-        MOVW    R19:R18, R25:R24
-        LDI     R30, LOW(??m_puiIntermediateBuff)
-        LDI     R31, (??m_puiIntermediateBuff) >> 8
-        LD      R16, Z
-        LDD     R17, Z+1
-        RCALL   ??WriteBlock
-        TST     R16
-        BREQ    ??Check_14
 //  132             {
 //  133                 uiFsmState = BLOCK_WRITE_END_WAITING;
-        LDI     R26, 3
-        RJMP    ??Check_10
 //  134             }
 //  135             // При записи блока БД произошла ошибка?
 //  136             else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-??Check_14:
-        CALL    ??GetFsmEvent
-        CPI     R16, 4
-        BRNE    ??Check_10
 //  137             {
 //  138                 uiFsmState = BLOCK_ERROR;
-        LDI     R26, 5
 //  139             }
 //  140             break;
-        RJMP    ??Check_10
 //  141 
 //  142         case BLOCK_WRITE_END_WAITING:
 //  143             // Блок записан успешно?
 //  144             if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
-??Check_6:
-        CALL    ??GetFsmEvent
-        CPI     R16, 3
-        BRNE    ??Check_15
 //  145             {
 //  146                 uiFsmState = NEXT_BLOCK;
-        LDI     R26, 4
-        RJMP    ??Check_10
 //  147             }
 //  148             // При записи блока БД произошла ошибка?
 //  149             else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-??Check_15:
-        CALL    ??GetFsmEvent
-        CPI     R16, 4
-        BRNE    ??Check_10
 //  150             {
 //  151                 uiFsmState = BLOCK_ERROR;
-        LDI     R26, 5
 //  152             }
 //  153             break;
-        RJMP    ??Check_10
 //  154 
 //  155         case NEXT_BLOCK:
 //  156             uiBlockCounter++;
-??Check_7:
-        INC     R27
 //  157             uiFsmState = BLOCK_CHECK_START;
-        LDI     R26, 1
 //  158             break;
-        RJMP    ??Check_10
 //  159 
 //  160         case ALL_BLOCKS_CHECKED:
 //  161             // данные не повреждены.
 //  162             return 1;
-??Check_9:
-        LDI     R16, 1
-        RJMP    ??Check_2
 //  163             break;
 //  164 
 //  165         case BLOCK_ERROR:
 //  166             return 0;
-??Check_8:
-        LDI     R16, 0
-        RJMP    ??Check_2
 //  167             break;
 //  168 
 //  169         default:
@@ -1337,28 +895,30 @@ _A_PINF:
 //  171         }
 //  172 
 //  173         CDataStore::Fsm();
-??Check_10:
-        RCALL   ??Fsm
 //  174 
 //  175         delay_ms(10);
-        LDI     R16, 10
-        LDI     R17, 0
-        CALL    ??delay_ms
 //  176 
 //  177         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-        RJMP    ??Check_3
 //  178     }
-??Check_2:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
 //  179 }
 //  180 
 //  181 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
 //  182 uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+??ReadBlock:
 //  183 {
+        CALL    ?PROLOGUE7_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        DEC     R29
+        MOVW    R5:R4, R17:R16
+        MOV     R6, R18
 //  184     // Произошёл выход за границы буфера?
 //  185     if (uiBlock >= MAX_BLOCKS_NUMBER)
+        CPI     R18, 12
+        BRCC    ??ReadBlock_1
 //  186     {
 //  187         // Нет данных.
 //  188         return 0;
@@ -1374,6 +934,19 @@ _A_PINF:
 //  198             axBlockPositionData[uiBlock].uiOffset != 0) &&
 //  199             (m_xBlocksControlData.
 //  200              axBlockPositionData[uiBlock].uiEncodedLength != 0))
+        LDI     R16, 8
+        MUL     R6, R16
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_6:
+        LDD     R16, Z+4
+        LDD     R17, Z+5
+        OR      R16, R17
+        BREQ    ??ReadBlock_1
+        LDD     R24, Z+8
+        LDD     R25, Z+9
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    ??ReadBlock_1
 //  201     {
 //  202         // Получим адрес блока в EEPROM.
 //  203         uiSourseOffset = m_xBlocksControlData.
@@ -1390,12 +963,25 @@ _A_PINF:
 //  214 
 //  215     // Прочитаем закодированные данные.
 //  216     CEeprom::Read(auiTempArray, uiSourseOffset, uiEncodedLength);
+        MOVW    R21:R20, R25:R24
+        LDD     R18, Z+4
+        MOV     R19, R17
+        MOVW    R17:R16, R29:R28
+        CALL    ??Read
 //  217 
 //  218     // Декодируем прочитанные данные.
 //  219     uiDecodedByteCounter = CHammingCodes::HammingCodesToBytes(auiTempArray, auiTempArray, uiEncodedLength);
+        MOVW    R21:R20, R25:R24
+        MOVW    R19:R18, R29:R28
+        MOVW    R17:R16, R29:R28
+        CALL    ??HammingCodesToBytes
+        MOVW    R25:R24, R17:R16
 //  220     // Слишком короткий блок?
 //  221     // Минимум 3 байта 1 - данные и 2 - Crc.
 //  222     if (uiDecodedByteCounter <= CRC_LENGTH)
+        CPI     R16, 3
+        SBCI    R17, 0
+        BRCS    ??ReadBlock_2
 //  223     {
 //  224         CPss21::SetErrorCode(DB_ERROR);
 //  225         // Нет данных.
@@ -1404,10 +990,17 @@ _A_PINF:
 //  228 
 //  229     // Получим длину блока.
 //  230     uiDecodedByteCounter -= CRC_LENGTH;
+        SBIW    R25:R24, 2
 //  231     // Размер блока не совпадает?
 //  232     if (uiDecodedByteCounter !=
 //  233             m_xBlocksControlData.
 //  234             axBlockPositionData[uiBlock].uiLength)
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+6
+        LDD     R17, Z+7
+        CP      R24, R16
+        CPC     R25, R17
+        BRNE    ??ReadBlock_2
 //  235     {
 //  236         CPss21::SetErrorCode(DB_ERROR);
 //  237         // Нет данных.
@@ -1417,23 +1010,274 @@ _A_PINF:
 //  241     // Получим контрольную сумму блока.
 //  242     uint16_t uiCrc = static_cast<uint16_t>(auiTempArray[uiDecodedByteCounter]);
 //  243     uiCrc |= (static_cast<uint16_t>(auiTempArray[uiDecodedByteCounter + 1]) << 8);
+        MOVW    R31:R30, R29:R28
+        ADD     R30, R24
+        ADC     R31, R25
+        LD      R26, Z
+        LDD     R27, Z+1
 //  244     // Вычислим контрольную сумму блока.
 //  245     uint16_t uiCalculatedCrc = usCrc16(auiTempArray, uiDecodedByteCounter);
 //  246 
 //  247     // Блок не повреждён?
 //  248     if (uiCrc == uiCalculatedCrc)
+        MOVW    R19:R18, R25:R24
+        RCALL   ?Subroutine11
+??CrossCallReturnLabel_20:
+        CP      R26, R16
+        CPC     R27, R17
+        BRNE    ??ReadBlock_2
 //  249     {
 //  250         m_auiBlocksCurrentCrc[uiBlock] = uiCrc;
+        LDI     R16, 2
+        MUL     R6, R16
+        MOVW    R31:R30, R1:R0
+        SUBI    R30, LOW((-(??m_auiBlocksCurrentCrc) & 0xFFFF))
+        SBCI    R31, (-(??m_auiBlocksCurrentCrc) & 0xFFFF) >> 8
+        ST      Z, R26
+        STD     Z+1, R27
 //  251         memcpy(puiDestination, auiTempArray, uiDecodedByteCounter);
+        MOVW    R21:R20, R25:R24
+        MOVW    R19:R18, R29:R28
+        MOVW    R17:R16, R5:R4
+        CALL    memcpy
 //  252         return uiDecodedByteCounter;
+        MOVW    R17:R16, R25:R24
+        RJMP    ??ReadBlock_3
 //  253     }
 //  254     else
 //  255     {
 //  256         CPss21::SetErrorCode(DB_ERROR);
+??ReadBlock_2:
+        LDI     R16, 4
+        STS     ??m_uiErrorCode, R16
 //  257         // Нет данных.
 //  258         return 0;
+??ReadBlock_1:
+        LDI     R16, 0
+        LDI     R17, 0
+??ReadBlock_3:
+        INC     R29
+        LDI     R30, 7
+        JMP     ?EPILOGUE_B7_L09
 //  259     }
 //  260 }
+
+        RSEG CODE:CODE:NOROOT(1)
+??Fsm:
+        LDS     R16, (??m_puiIntermediateBuff + 2)
+        DEC     R16
+        BREQ    ??Fsm_1
+        DEC     R16
+        BREQ    ??Fsm_2
+        DEC     R16
+        BREQ    ??Fsm_3
+        DEC     R16
+        BREQ    ??Fsm_4
+        DEC     R16
+        BREQ    ??Fsm_5
+        DEC     R16
+        BREQ    ??Fsm_6
+        RET
+??Fsm_1:
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_17:
+        LDI     R16, 2
+        RJMP    ??CrossCallReturnLabel_14
+??Fsm_2:
+        SBIC    0x1C, 0x01
+        RJMP    ??Fsm_7
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_1:
+        LDI     R16, 3
+        RJMP    ??CrossCallReturnLabel_14
+??Fsm_3:
+        LDS     R16, ??m_bBufferIsWrited
+        TST     R16
+        BREQ    ??Fsm_7
+        LDI     R16, 4
+        RJMP    ??CrossCallReturnLabel_14
+??Fsm_7:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_4:
+        BREQ    ??Fsm_8
+??Fsm_9:
+        LDI     R16, 4
+??Fsm_10:
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_14:
+        RJMP    ?Subroutine14
+??Fsm_4:
+        LDI     R20, 0
+        LDI     R18, 100
+        LDI     R19, 0
+        LDI     R16, LOW(??m_xBlocksControlData)
+        LDI     R17, (??m_xBlocksControlData) >> 8
+        RCALL   ??Write
+        OR      R16, R17
+        BREQ    ??Fsm_9
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_18:
+        LDI     R16, 5
+        RJMP    ??CrossCallReturnLabel_14
+??Fsm_5:
+        SBIC    0x1C, 0x01
+        RJMP    ??Fsm_7
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_0:
+        LDI     R16, 6
+        RJMP    ??CrossCallReturnLabel_14
+??Fsm_6:
+        LDS     R16, ??m_bBufferIsWrited
+        TST     R16
+        BREQ    ??Fsm_11
+        LDI     R16, 3
+        RJMP    ??Fsm_10
+??Fsm_11:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_5:
+        BREQ    ??Fsm_8
+        LDI     R16, 4
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_15:
+        STS     (??m_puiIntermediateBuff + 2), R16
+??Fsm_8:
+        RET
+        REQUIRE _A_EECR
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine14:
+        STS     (??m_puiIntermediateBuff + 2), R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
+        LDI     R16, LOW((??m_puiIntermediateBuff + 4))
+        LDI     R17, HIGH((??m_puiIntermediateBuff + 4))
+        CALL    ??IsOverflow
+        TST     R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        LDI     R18, 200
+        LDI     R19, 0
+        REQUIRE ?Subroutine9
+        ;               // Fall through to label ?Subroutine9
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine9:
+        LDI     R16, LOW((??m_puiIntermediateBuff + 4))
+        LDI     R17, HIGH((??m_puiIntermediateBuff + 4))
+        JMP     ??Set
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R18, 16
+        LDI     R19, 39
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_16:
+        JMP     ??StartWrite
+
+        RSEG CODE:CODE:NOROOT(1)
+??Check:
+        CALL    ?PROLOGUE6_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        RCALL   ??Init
+        LDI     R18, 0
+        LDI     R16, LOW(??m_xBlocksControlData)
+        LDI     R17, (??m_xBlocksControlData) >> 8
+        RCALL   ??ReadBlock
+        OR      R16, R17
+        BREQ    ??Check_1
+        CLR     R5
+        STS     ??m_uiErrorCode_1, R5
+        LDI     R26, LOW(??m_puiIntermediateBuff)
+        LDI     R27, (??m_puiIntermediateBuff) >> 8
+        RJMP    ??Check_2
+??Check_3:
+        LDI     R16, 6
+        RJMP    ??Check_4
+??Check_5:
+        MOV     R20, R5
+        MOVW    R19:R18, R25:R24
+        LD      R16, X+
+        LD      R17, X
+        SBIW    R27:R26, 1
+        RCALL   ??WriteBlock
+        TST     R16
+        BREQ    ??Check_6
+        LDI     R16, 3
+        RJMP    ??Check_4
+??Check_6:
+        LDS     R16, (??m_puiIntermediateBuff + 3)
+        CPI     R16, 4
+        BRNE    ??Check_7
+        RJMP    ??Check_8
+??Check_9:
+        LDS     R16, (??m_puiIntermediateBuff + 3)
+        CPI     R16, 3
+        BRNE    ??Check_10
+??Check_11:
+        LDI     R16, 4
+        RJMP    ??Check_4
+??Check_10:
+        CPI     R16, 4
+        BRNE    ??Check_7
+??Check_8:
+        LDI     R16, 5
+??Check_4:
+        MOV     R4, R16
+        RJMP    ??Check_7
+??Check_12:
+        LDI     R16, 1
+??Check_13:
+        RJMP    ?Subroutine16
+??Check_1:
+        LDI     R16, 0
+        RJMP    ??Check_13
+??Check_14:
+        INC     R5
+        CLR     R4
+        INC     R4
+??Check_7:
+        RCALL   ??Fsm
+        LDI     R16, 10
+        LDI     R17, 0
+        CALL    ??delay_ms
+        WDR
+        MOV     R16, R4
+        DEC     R16
+        BREQ    ??Check_15
+        DEC     R16
+        BREQ    ??Check_5
+        DEC     R16
+        BREQ    ??Check_9
+        DEC     R16
+        BREQ    ??Check_14
+        DEC     R16
+        BREQ    ??Check_1
+        DEC     R16
+        BREQ    ??Check_12
+        RJMP    ??Check_7
+??Check_15:
+        LDI     R16, 12
+        CP      R5, R16
+        BRCC    ??Check_3
+??Check_2:
+        MOV     R18, R5
+        LD      R16, X+
+        LD      R17, X
+        SBIW    R27:R26, 1
+        RCALL   ??ReadBlock
+        MOVW    R25:R24, R17:R16
+        OR      R16, R17
+        BREQ    ??Check_8
+        LDS     R16, ??m_uiErrorCode_1
+        TST     R16
+        BREQ    ??Check_11
+        LDI     R16, 2
+        RJMP    ??Check_4
 //  261 
 //  262 //-----------------------------------------------------------------------------------------------------
 
@@ -1441,20 +1285,16 @@ _A_PINF:
 //  263 uint16_t CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
 ??Write:
 //  264 {
-        CALL    ?PROLOGUE10_L09
+        CALL    ?PROLOGUE6_L09
         REQUIRE ?Register_R4_is_cg_reg
         REQUIRE ?Register_R5_is_cg_reg
-        REQUIRE ?Register_R6_is_cg_reg
-        REQUIRE ?Register_R8_is_cg_reg
-        REQUIRE ?Register_R9_is_cg_reg
-        SUBI    R29, 1
-        MOVW    R5:R4, R17:R16
+        DEC     R29
+        MOVW    R27:R26, R17:R16
         MOVW    R25:R24, R19:R18
-        MOV     R6, R20
+        MOV     R4, R20
 //  265     // Произошёл выход за границы буфера?
 //  266     if (uiBlock >= MAX_BLOCKS_NUMBER)
-        LDI     R16, 12
-        CP      R6, R16
+        CPI     R20, 12
         BRCS    ??Write_1
 //  267     {
 //  268         // Нет данных.
@@ -1469,43 +1309,31 @@ _A_PINF:
 //  274 
 //  275     memcpy(auiTempArray, puiSourse, uiLength);
 ??Write_1:
-        MOVW    R21:R20, R25:R24
-        MOVW    R19:R18, R5:R4
+        MOVW    R21:R20, R19:R18
+        MOVW    R19:R18, R17:R16
         MOVW    R17:R16, R29:R28
         CALL    memcpy
 //  276     // Вычислим контрольную сумму поступивших данных.
 //  277     uint16_t uiCrc = usCrc16(puiSourse, uiLength);
         MOVW    R19:R18, R25:R24
-        MOVW    R17:R16, R5:R4
-        CALL    ??usCrc16
-        MOVW    R27:R26, R17:R16
-//  278     auiTempArray[uiLength] = static_cast<uint8_t>(uiCrc);
-        MOV     R16, R26
-        MOVW    R31:R30, R29:R28
-        ADD     R30, R24
-        ADC     R31, R25
-        ST      Z, R16
-//  279     auiTempArray[uiLength + 1] = static_cast<uint8_t>(uiCrc >> 8);
         MOVW    R17:R16, R27:R26
-        MOV     R16, R17
-        LDI     R17, 0
+        CALL    ??usCrc16
+//  278     auiTempArray[uiLength] = static_cast<uint8_t>(uiCrc);
         MOVW    R31:R30, R29:R28
         ADD     R30, R24
         ADC     R31, R25
-        STD     Z+1, R16
+        RCALL   ?Subroutine10
+//  279     auiTempArray[uiLength + 1] = static_cast<uint8_t>(uiCrc >> 8);
 //  280 
 //  281     m_xBlocksControlData.
 //  282     axBlockPositionData[uiBlock].uiCrc = uiCrc;
-        MOV     R16, R6
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        STD     Z+10, R26
-        STD     Z+11, R27
+??CrossCallReturnLabel_23:
+        LDI     R18, 8
+        MUL     R4, R18
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_7:
+        STD     Z+10, R16
+        STD     Z+11, R17
 //  283 
 //  284     uiEncodedByteCounter = CHammingCodes::BytesToHammingCodes(m_puiIntermediateBuff, auiTempArray, (uiLength + CRC_LENGTH));
         MOVW    R21:R20, R25:R24
@@ -1517,19 +1345,12 @@ _A_PINF:
         LD      R16, Z
         LDD     R17, Z+1
         CALL    ??BytesToHammingCodes
-        MOVW    R9:R8, R17:R16
+        MOVW    R5:R4, R17:R16
 //  285 
 //  286     // Данные текущего блока данных - uiBlock сохраняются впервые?
 //  287     if (m_xBlocksControlData.
 //  288             axBlockPositionData[uiBlock].uiEncodedLength == 0)
-        MOV     R16, R6
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+        MOVW    R31:R30, R27:R26
         LDD     R16, Z+8
         LDD     R17, Z+9
         OR      R16, R17
@@ -1539,56 +1360,30 @@ _A_PINF:
 //  291         // Сохраним смещение на блок.
 //  292         m_xBlocksControlData.
 //  293         axBlockPositionData[uiBlock].uiOffset = m_xBlocksControlData.uiFreeSpaceOffset;
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
-        LDD     R18, Z+2
-        LDD     R19, Z+3
-        MOV     R16, R6
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        STD     Z+4, R18
-        STD     Z+5, R19
+        RCALL   ?Subroutine6
+??CrossCallReturnLabel_10:
+        MOVW    R31:R30, R27:R26
+        STD     Z+4, R16
+        STD     Z+5, R17
 //  294         // Изменим смещение на свободное место.
 //  295         m_xBlocksControlData.uiFreeSpaceOffset += uiEncodedByteCounter;
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
-        LDD     R16, Z+2
-        LDD     R17, Z+3
-        ADD     R16, R8
-        ADC     R17, R9
+        RCALL   ?Subroutine6
+??CrossCallReturnLabel_11:
+        ADD     R16, R4
+        ADC     R17, R5
         STD     Z+2, R16
         STD     Z+3, R17
 //  296         // Сохраним размер первичных данных.
 //  297         m_xBlocksControlData.
 //  298         axBlockPositionData[uiBlock].uiLength = uiLength;
-        MOV     R16, R6
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+        MOVW    R31:R30, R27:R26
         STD     Z+6, R24
         STD     Z+7, R25
 //  299         // Сохраним размер закодированных данных.
 //  300         m_xBlocksControlData.
 //  301         axBlockPositionData[uiBlock].uiEncodedLength = uiEncodedByteCounter;
-        MOV     R16, R6
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        STD     Z+8, R8
-        STD     Z+9, R9
+        STD     Z+8, R4
+        STD     Z+9, R5
 //  302     }
 //  303 
 //  304     CEeprom::WriteInterrupt(m_xBlocksControlData.
@@ -1596,33 +1391,46 @@ _A_PINF:
 //  306                             m_puiIntermediateBuff,
 //  307                             uiEncodedByteCounter);
 ??Write_3:
-        MOVW    R21:R20, R9:R8
+        MOVW    R21:R20, R5:R4
         LDI     R30, LOW(??m_puiIntermediateBuff)
         LDI     R31, (??m_puiIntermediateBuff) >> 8
         LD      R18, Z
         LDD     R19, Z+1
-        MOVW    R23:R22, R21:R20
-        MOV     R16, R6
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+        MOVW    R31:R30, R27:R26
         LDD     R16, Z+4
         LDD     R17, Z+5
-        MOVW    R21:R20, R23:R22
         CALL    ??WriteInterrupt
 //  308 
 //  309     // Out length.
 //  310     return uiEncodedByteCounter;
-        MOVW    R17:R16, R9:R8
+        MOVW    R17:R16, R5:R4
 ??Write_2:
-        SUBI    R29, 255
-        LDI     R30, 10
-        JMP     ?EPILOGUE_B10_L09
+        INC     R29
+        REQUIRE ?Subroutine16
+        ;               // Fall through to label ?Subroutine16
 //  311 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine16:
+        LDI     R30, 6
+        JMP     ?EPILOGUE_B6_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        LDI     R30, LOW(??m_xBlocksControlData)
+        LDI     R31, (??m_xBlocksControlData) >> 8
+        LDD     R16, Z+2
+        LDD     R17, Z+3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        LDI     R26, LOW(??m_xBlocksControlData)
+        LDI     R27, (??m_xBlocksControlData) >> 8
+        ADD     R26, R0
+        ADC     R27, R1
+        MOVW    R31:R30, R27:R26
+        RET
 //  312 
 //  313 //-----------------------------------------------------------------------------------------------------
 
@@ -1630,45 +1438,32 @@ _A_PINF:
 //  314 bool CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
 ??WriteBlock:
 //  315 {
-        CALL    ?PROLOGUE5_L09
-        REQUIRE ?Register_R4_is_cg_reg
-        MOVW    R27:R26, R17:R16
-        MOVW    R25:R24, R19:R18
-        MOV     R4, R20
-//  316     if (GetFsmState() == IDDLE)
-        CALL    ??GetFsmState
-        TST     R16
+        LDS     R21, (??m_puiIntermediateBuff + 2)
+        TST     R21
         BRNE    ??WriteBlock_1
+//  316     if (GetFsmState() == IDDLE)
 //  317     {
 //  318         if (Write(puiSourse,
 //  319                   uiLength,
 //  320                   uiBlock))
-        MOV     R20, R4
-        MOVW    R19:R18, R25:R24
-        MOVW    R17:R16, R27:R26
         RCALL   ??Write
         OR      R16, R17
         BREQ    ??WriteBlock_2
 //  321         {
 //  322             SetFsmEvent(WRITE_IN_PROGRESS_FSM_EVENT);
         LDI     R16, 1
-        CALL    ??SetFsmEvent
+        STS     (??m_puiIntermediateBuff + 3), R16
 //  323             SetFsmState(START_WRITE);
-        LDI     R16, 1
-        CALL    ??SetFsmState
+        RJMP    ?Subroutine14
 //  324             return true;
-        LDI     R16, 1
-        RJMP    ??WriteBlock_3
 //  325         }
 //  326         else
 //  327         {
 //  328             SetFsmEvent(WRITE_ERROR_FSM_EVENT);
 ??WriteBlock_2:
         LDI     R16, 4
-        CALL    ??SetFsmEvent
-//  329             return false;
-        LDI     R16, 0
         RJMP    ??WriteBlock_3
+//  329             return false;
 //  330         }
 //  331     }
 //  332     else
@@ -1676,14 +1471,18 @@ _A_PINF:
 //  334         SetFsmEvent(STORAGE_DEVICE_BUSY_FSM_EVENT);
 ??WriteBlock_1:
         LDI     R16, 2
-        CALL    ??SetFsmEvent
 //  335         return false;
-        LDI     R16, 0
-??WriteBlock_3:
-        LDI     R30, 5
-        JMP     ?EPILOGUE_B5_L09
 //  336     }
+??WriteBlock_3:
+        REQUIRE ?Subroutine8
+        ;               // Fall through to label ?Subroutine8
 //  337 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine8:
+        STS     (??m_puiIntermediateBuff + 3), R16
+        LDI     R16, 0
+        RET
 //  338 
 //  339 //-----------------------------------------------------------------------------------------------------
 
@@ -1691,59 +1490,51 @@ _A_PINF:
 //  340 bool CDataStore::CompareCurrentWithStoredCrc(void)
 ??CompareCurrentWithStoredCrc:
 //  341 {
-        MOVW    R23:R22, R27:R26
+        MOV     R19, R25
+        MOV     R0, R24
 //  342     // Сравним текущее Crc блока с его Crc сохранённом в служебном блоке в предыдущей сессии записи.
 //  343     for (uint16_t i = BLOCKS_CONTROL_DATA_BLOCK_NUMBER;
-        LDI     R30, 1
-        LDI     R31, 0
+        LDI     R24, 1
+        LDI     R25, 0
+        LDI     R18, 10
 //  344             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
-??CompareCurrentWithStoredCrc_1:
-        CPI     R30, 11
-        LDI     R16, 0
-        CPC     R31, R16
-        BRCC    ??CompareCurrentWithStoredCrc_2
 //  345             i++)
 //  346     {
 //  347         if (m_auiBlocksCurrentCrc[i] !=
 //  348                 m_xBlocksControlData.axBlockPositionData[i].uiCrc)
-        MOVW    R17:R16, R31:R30
+??CompareCurrentWithStoredCrc_1:
+        MOVW    R17:R16, R25:R24
         LSL     R16
         ROL     R17
-        MOVW    R27:R26, R17:R16
-        SUBI    R26, LOW((-(??m_auiBlocksCurrentCrc) & 0xFFFF))
-        SBCI    R27, (-(??m_auiBlocksCurrentCrc) & 0xFFFF) >> 8
-        LD      R18, X+
-        LD      R19, X
-        SBIW    R27:R26, 1
-        MOVW    R17:R16, R31:R30
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R27:R26, R17:R16
-        SUBI    R26, LOW((-(??m_xBlocksControlData + 10) & 0xFFFF))
-        SBCI    R27, HIGH((-(??m_xBlocksControlData + 10) & 0xFFFF))
-        LD      R16, X+
-        LD      R17, X
-        SBIW    R27:R26, 1
-        CP      R18, R16
-        CPC     R19, R17
-        BREQ    ??CompareCurrentWithStoredCrc_3
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(??m_auiBlocksCurrentCrc) & 0xFFFF))
+        SBCI    R31, (-(??m_auiBlocksCurrentCrc) & 0xFFFF) >> 8
+        LD      R22, Z
+        LDD     R23, Z+1
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_21:
+        LDD     R16, Z+10
+        LDD     R17, Z+11
+        CP      R22, R16
+        CPC     R23, R17
+        BREQ    ??CompareCurrentWithStoredCrc_2
 //  349         {
 //  350             return false;
         LDI     R16, 0
-        RJMP    ??CompareCurrentWithStoredCrc_4
+        RJMP    ??CompareCurrentWithStoredCrc_3
 //  351         }
 //  352     }
-??CompareCurrentWithStoredCrc_3:
-        ADIW    R31:R30, 1
-        RJMP    ??CompareCurrentWithStoredCrc_1
+??CompareCurrentWithStoredCrc_2:
+        ADIW    R25:R24, 1
+        DEC     R18
+        BRNE    ??CompareCurrentWithStoredCrc_1
 //  353 
 //  354     // Все блоки принадлежат текущей базе данных.
 //  355     return true;
-??CompareCurrentWithStoredCrc_2:
         LDI     R16, 1
-??CompareCurrentWithStoredCrc_4:
-        MOVW    R27:R26, R23:R22
+??CompareCurrentWithStoredCrc_3:
+        MOV     R24, R0
+        MOV     R25, R19
         RET
 //  356 }
 //  357 
@@ -1754,9 +1545,7 @@ _A_PINF:
 //  360 void CDataStore::CrcOfBlocksCrcCreate(void)
 ??CrcOfBlocksCrcCreate:
 //  361 {
-        ST      -Y, R27
-        ST      -Y, R26
-        SBIW    R29:R28, 22
+        RCALL   ?Subroutine7
 //  362     // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
 //  363     // Сохраняется при первой и последующих записях любых блоков через программатор.
 //  364     // Ноль или её несовпадение свидетельствует о том, что база данных создана по умоланию,
@@ -1766,60 +1555,41 @@ _A_PINF:
 //  368 
 //  369     // Получим Crc всех блоков, не включая служебный.
 //  370     for (uint16_t i = 0;
-        LDI     R30, 0
-        LDI     R31, 0
 //  371             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
-??CrcOfBlocksCrcCreate_1:
-        CPI     R30, 11
-        LDI     R16, 0
-        CPC     R31, R16
-        BRCC    ??CrcOfBlocksCrcCreate_2
 //  372             i++)
 //  373     {
 //  374         auiBlocksCrc[i] =
 //  375             m_xBlocksControlData.axBlockPositionData[i + BLOCKS_CONTROL_DATA_BLOCK_NUMBER].uiCrc;
-        MOVW    R17:R16, R31:R30
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R27:R26, R17:R16
-        SUBI    R26, LOW((-(??m_xBlocksControlData + 18) & 0xFFFF))
-        SBCI    R27, HIGH((-(??m_xBlocksControlData + 18) & 0xFFFF))
-        LD      R18, X+
-        LD      R19, X
-        SBIW    R27:R26, 1
-        MOVW    R27:R26, R29:R28
-        MOVW    R17:R16, R31:R30
-        LSL     R16
-        ROL     R17
-        ADD     R26, R16
-        ADC     R27, R17
-        ST      X+, R18
-        ST      X, R19
-        SBIW    R27:R26, 1
+??CrossCallReturnLabel_12:
+        RCALL   ?Subroutine5
 //  376     }
-        ADIW    R31:R30, 1
-        RJMP    ??CrcOfBlocksCrcCreate_1
+??CrossCallReturnLabel_8:
+        BRNE    ??CrossCallReturnLabel_12
 //  377 
 //  378     // Сохраним Crc всех блоков, не включая служебный.
 //  379     m_xBlocksControlData.uiCrcOfBlocksCrc =
 //  380         usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
 //  381                 ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t)));
-??CrcOfBlocksCrcCreate_2:
-        LDI     R18, 22
-        LDI     R19, 0
-        MOVW    R17:R16, R29:R28
-        CALL    ??usCrc16
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_2:
+        RCALL   ?Subroutine10
 //  382 
 //  383 }
+??CrossCallReturnLabel_25:
+        REQUIRE ?Subroutine13
+        ;               // Fall through to label ?Subroutine13
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine13:
         ADIW    R29:R28, 22
-        LD      R26, Y+
-        LD      R27, Y+
+        LD      R24, Y+
+        LD      R25, Y+
         RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine10:
+        ST      Z, R16
+        RJMP    ?Subroutine15
 //  384 
 //  385 //-----------------------------------------------------------------------------------------------------
 
@@ -1827,9 +1597,7 @@ _A_PINF:
 //  386 bool CDataStore::CrcOfBlocksCrcCheck(void)
 ??CrcOfBlocksCrcCheck:
 //  387 {
-        ST      -Y, R27
-        ST      -Y, R26
-        SBIW    R29:R28, 22
+        RCALL   ?Subroutine7
 //  388     // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
 //  389     // Сохраняется при первой и последующих записях любых блоков через программатор.
 //  390     // Ноль или её несовпадение свидетельствует о том, что база данных создана по умоланию,
@@ -1839,74 +1607,95 @@ _A_PINF:
 //  394 
 //  395     // Получим Crc всех блоков, не включая служебный.
 //  396     for (uint16_t i = 0;
-        LDI     R30, 0
-        LDI     R31, 0
 //  397             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
-??CrcOfBlocksCrcCheck_1:
-        CPI     R30, 11
-        LDI     R16, 0
-        CPC     R31, R16
-        BRCC    ??CrcOfBlocksCrcCheck_2
 //  398             i++)
 //  399     {
 //  400         auiBlocksCrc[i] =
 //  401             m_xBlocksControlData.axBlockPositionData[i + BLOCKS_CONTROL_DATA_BLOCK_NUMBER].uiCrc;
-        MOVW    R17:R16, R31:R30
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R27:R26, R17:R16
-        SUBI    R26, LOW((-(??m_xBlocksControlData + 18) & 0xFFFF))
-        SBCI    R27, HIGH((-(??m_xBlocksControlData + 18) & 0xFFFF))
-        LD      R18, X+
-        LD      R19, X
-        SBIW    R27:R26, 1
-        MOVW    R27:R26, R29:R28
-        MOVW    R17:R16, R31:R30
-        LSL     R16
-        ROL     R17
-        ADD     R26, R16
-        ADC     R27, R17
-        ST      X+, R18
-        ST      X, R19
-        SBIW    R27:R26, 1
+??CrossCallReturnLabel_13:
+        RCALL   ?Subroutine5
 //  402     }
-        ADIW    R31:R30, 1
-        RJMP    ??CrcOfBlocksCrcCheck_1
+??CrossCallReturnLabel_9:
+        BRNE    ??CrossCallReturnLabel_13
 //  403 
 //  404     // Crc из Crc всех блоков совпадает с сохранённым в служебном блоке?
 //  405     if (m_xBlocksControlData.uiCrcOfBlocksCrc ==
 //  406             usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
 //  407                     ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t))))
-??CrcOfBlocksCrcCheck_2:
-        LDI     R18, 22
-        LDI     R19, 0
-        MOVW    R17:R16, R29:R28
-        CALL    ??usCrc16
-        LDI     R30, LOW(??m_xBlocksControlData)
-        LDI     R31, (??m_xBlocksControlData) >> 8
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_3:
         LD      R18, Z
         LDD     R19, Z+1
         CP      R18, R16
         CPC     R19, R17
-        BRNE    ??CrcOfBlocksCrcCheck_3
+        BRNE    ??CrcOfBlocksCrcCheck_1
 //  408     {
 //  409         return true;
         LDI     R16, 1
-        RJMP    ??CrcOfBlocksCrcCheck_4
+        RJMP    ??CrcOfBlocksCrcCheck_2
 //  410     }
 //  411     else
 //  412     {
 //  413         return false;
-??CrcOfBlocksCrcCheck_3:
+??CrcOfBlocksCrcCheck_1:
         LDI     R16, 0
-??CrcOfBlocksCrcCheck_4:
-        ADIW    R29:R28, 22
-        LD      R26, Y+
-        LD      R27, Y+
-        RET
 //  414     }
+??CrcOfBlocksCrcCheck_2:
+        RJMP    ?Subroutine13
 //  415 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        ST      -Y, R25
+        ST      -Y, R24
+        SBIW    R29:R28, 22
+        LDI     R24, 0
+        LDI     R25, 0
+        LDI     R18, 11
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_22:
+        LDD     R16, Z+18
+        LDD     R17, Z+19
+        MOVW    R31:R30, R29:R28
+        MOVW    R21:R20, R25:R24
+        LSL     R20
+        ROL     R21
+        ADD     R30, R20
+        ADC     R31, R21
+        RCALL   ?Subroutine10
+??CrossCallReturnLabel_26:
+        ADIW    R25:R24, 1
+        DEC     R18
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine12:
+        LDI     R20, 3
+        MOVW    R17:R16, R25:R24
+        CALL    ?S_SHL_L02
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
+        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        LDI     R18, 22
+        LDI     R19, 0
+        RCALL   ?Subroutine11
+??CrossCallReturnLabel_19:
+        LDI     R30, LOW(??m_xBlocksControlData)
+        LDI     R31, (??m_xBlocksControlData) >> 8
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine11:
+        MOVW    R17:R16, R29:R28
+        JMP     ??usCrc16
 //  416 
 //  417 //-----------------------------------------------------------------------------------------------------
 //  418 void CDataStore::Fsm(void)
@@ -2021,110 +1810,18 @@ _A_PINF:
 //  525 uint16_t CDataStore::ReadBlockFlash(uint8_t *puiDestination, uint8_t uiBlock)
 ??ReadBlockFlash:
 //  526 {
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
-        MOV     R26, R18
 //  527     return CFlash::ReadBlock(puiDestination, uiBlock);
-        MOV     R18, R26
-        MOVW    R17:R16, R25:R24
-        CALL    ??ReadBlock_8
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+        JMP     ??ReadBlock_4
 //  528 }
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CEeprom::ReadyInterruptEnable()
-??ReadyInterruptEnable:
-        SBI     0x1C, 0x03
-        RET
-        REQUIRE _A_EECR
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 bool CEeprom::IsReadyToWrite()
-??IsReadyToWrite:
-        SBIS    0x1C, 0x01
-        RJMP    ??IsReadyToWrite_1
-        LDI     R16, 0
-        RET
-??IsReadyToWrite_1:
-        LDI     R16, 1
-        RET
-        REQUIRE _A_EECR
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CEeprom::SetBufferIsWrited(bool)
-??SetBufferIsWrited:
-        STS     ??m_bBufferIsWrited, R16
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 bool CEeprom::GetBufferIsWrited()
-??GetBufferIsWrited:
-        LDS     R16, ??m_bBufferIsWrited
-        RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CEeprom::StartWrite()
 ??StartWrite:
         LDI     R16, 0
-        CALL    ??SetBufferIsWrited
-        CALL    ??ReadyInterruptEnable
+        STS     ??m_bBufferIsWrited, R16
+        SBI     0x1C, 0x03
         RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::WatchdogReset()
-??WatchdogReset:
-        WDR
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 CTimer *CDataStore::GetTimerPointer()
-??GetTimerPointer:
-        LDI     R16, LOW(??m_xTimer)
-        LDI     R17, (??m_xTimer) >> 8
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CDataStore::SetFsmState(uint8_t)
-??SetFsmState:
-        STS     ??m_uiFsmState, R16
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDataStore::GetFsmState()
-??GetFsmState:
-        LDS     R16, ??m_uiFsmState
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CDataStore::SetFsmEvent(uint8_t)
-??SetFsmEvent:
-        STS     ??m_uiFsmEvent, R16
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDataStore::GetFsmEvent()
-??GetFsmEvent:
-        LDS     R16, ??m_uiFsmEvent
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPss21::SetErrorCode(uint8_t)
-??SetErrorCode:
-        STS     ??m_uiErrorCode, R16
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CHammingCodes::SetErrorCode(uint8_t)
-??SetErrorCode_1:
-        STS     ??m_uiErrorCode_1, R16
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CHammingCodes::GetErrorCode()
-??GetErrorCode:
-        LDS     R16, ??m_uiErrorCode_1
-        RET
+        REQUIRE _A_EECR
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -2150,23 +1847,19 @@ __?EEARH:
         DW      ??__sti__routine/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-
-        RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
 
         END
 // 
-//   105 bytes in segment ABSOLUTE
-// 1 660 bytes in segment CODE
-//     2 bytes in segment DIFUNCT
-//     7 bytes in segment INITTAB
-//    36 bytes in segment NEAR_F
-//   132 bytes in segment NEAR_Z
+// 105 bytes in segment ABSOLUTE
+// 960 bytes in segment CODE
+//   2 bytes in segment DIFUNCT
+//   7 bytes in segment INITTAB
+//   4 bytes in segment NEAR_F
+// 132 bytes in segment NEAR_Z
 // 
-// 1 606 bytes of CODE memory (+  99 bytes shared)
-//   132 bytes of DATA memory (+ 105 bytes shared)
+// 956 bytes of CODE memory (+  17 bytes shared)
+// 132 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 2

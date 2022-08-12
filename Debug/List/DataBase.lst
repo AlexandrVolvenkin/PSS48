@@ -1,23 +1,22 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  11:47:43
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  19:38:13
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW8A7C.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW314D.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp --cpu=m128a -ms
 #        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-#        --initializers_in_flash --root_variables --no_cse --no_inline
-#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        --initializers_in_flash --root_variables --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 #        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DataBase.lst
@@ -505,53 +504,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
                                                 ^
 "D:\Projects\CautoProjects\PSS48\PSS48\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPlatform::WatchdogReset()
-   \                     ??WatchdogReset:
-   \   00000000   95A8               WDR
-   \   00000002   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 uint8_t CDataStore::GetBlockLength(uint8_t)
-   \                     ??GetBlockLength:
-   \   00000000   2F20               MOV     R18, R16
-   \   00000002   302C               CPI     R18, 12
-   \   00000004   F460               BRCC    ??GetBlockLength_2
-   \   00000006   2F02               MOV     R16, R18
-   \   00000008   E010               LDI     R17, 0
-   \   0000000A   E048               LDI     R20, 8
-   \   0000000C   E050               LDI     R21, 0
-   \   0000000E   ........           CALL    ?S_EC_MUL_L02
-   \   00000012   01F8               MOVW    R31:R30, R17:R16
-   \   00000014   ....               SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-   \   00000016   ....               SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-   \   00000018   8106               LDD     R16, Z+6
-   \   0000001A   8117               LDD     R17, Z+7
-   \   0000001C   9508               RET
-   \                     ??GetBlockLength_2:
-   \   0000001E   E000               LDI     R16, 0
-   \   00000020   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 uint8_t CDataStore::GetFsmEvent()
-   \                     ??GetFsmEvent:
-   \   00000000   9100....           LDS     R16, ??m_uiFsmEvent
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 uint8_t CDataBase::GetBlocksNumber()
-   \                     ??GetBlocksNumber:
-   \   00000000   E00B               LDI     R16, 11
-   \   00000002   9508               RET
       9          #include "Platform.h"
      10          #include "Pss21.h"
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPss21::SetErrorCode(uint8_t)
-   \                     ??SetErrorCode:
-   \   00000000   9300....           STS     ??m_uiErrorCode, R16
-   \   00000004   9508               RET
      11          #include "DataStore.h"
      12          #include <cstddef>
      13          
@@ -574,7 +528,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
      28          uint8_t CDataBase::RestoreDefault(void)
    \                     ??RestoreDefault:
      29          {
-   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
      30              // Восстановим БД по умолчанию.
      31              CDataStore::Init();
    \   00000004   ........           CALL    ??Init
@@ -589,133 +544,99 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
      40              };
      41          
      42              uint8_t uiBlockCounter = 0;
-   \   00000008   E0B0               LDI     R27, 0
+   \   00000008   E090               LDI     R25, 0
      43              uint8_t uiFsmState = BLOCK_WRITE_START;
-   \   0000000A   E0A1               LDI     R26, 1
+   \   0000000A   E081               LDI     R24, 1
+   \   0000000C   C02A               RJMP    ??RestoreDefault_1
      44          
      45              while (1)
      46              {
      47                  switch (uiFsmState)
-   \                     ??RestoreDefault_1:
-   \   0000000C   2F0A               MOV     R16, R26
-   \   0000000E   5001               SUBI    R16, 1
-   \   00000010   F039               BREQ    ??RestoreDefault_2
-   \   00000012   950A               DEC     R16
-   \   00000014   F139               BREQ    ??RestoreDefault_3
-   \   00000016   950A               DEC     R16
-   \   00000018   F1A1               BREQ    ??RestoreDefault_4
-   \   0000001A   950A               DEC     R16
-   \   0000001C   F181               BREQ    ??RestoreDefault_5
-   \   0000001E   C033               RJMP    ??RestoreDefault_6
      48                  {
      49                  case BLOCK_WRITE_START:
      50                      // Записаны не все блоки?
      51                      if (uiBlockCounter < GetBlocksNumber())
-   \                     ??RestoreDefault_2:
-   \   00000020   ........           CALL    ??GetBlocksNumber
-   \   00000024   17B0               CP      R27, R16
-   \   00000026   F4E0               BRCC    ??RestoreDefault_7
      52                      {
      53                          // Скопируем данные из флеш во временный буфер,
      54                          uint16_t uiLength = CDataStore::ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
-   \   00000028   2F2B               MOV     R18, R27
-   \   0000002A   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
-   \   0000002C   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
-   \   0000002E   ........           CALL    ??ReadBlockFlash
-   \   00000032   01C8               MOVW    R25:R24, R17:R16
      55                          // Блок не повреждён?
      56                          if (uiLength)
-   \   00000034   2F08               MOV     R16, R24
-   \   00000036   2B09               OR      R16, R25
-   \   00000038   F089               BREQ    ??RestoreDefault_8
      57                          {
      58                              // Поместим данные в хранилище.
      59                              // Блок БД принят к записи?
      60                              if (CDataStore::WriteBlock(CPss21::m_auiIntermediateBuff,
      61                                                         uiLength,
      62                                                         uiBlockCounter + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER))
-   \   0000003A   2F4B               MOV     R20, R27
-   \   0000003C   9543               INC     R20
-   \   0000003E   019C               MOVW    R19:R18, R25:R24
-   \   00000040   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
-   \   00000042   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
-   \   00000044   ........           CALL    ??WriteBlock_1
-   \   00000048   2300               TST     R16
-   \   0000004A   F011               BREQ    ??RestoreDefault_9
      63                              {
      64                                  uiFsmState = BLOCK_WRITE_END_WAITING;
-   \   0000004C   E0A2               LDI     R26, 2
-   \   0000004E   C01B               RJMP    ??RestoreDefault_6
      65                              }
      66                              // При записи блока БД произошла ошибка?
      67                              else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-   \                     ??RestoreDefault_9:
-   \   00000050   ........           CALL    ??GetFsmEvent
-   \   00000054   3004               CPI     R16, 4
-   \   00000056   F4B9               BRNE    ??RestoreDefault_6
+   \                     ??RestoreDefault_2:
+   \   0000000E   9100....           LDS     R16, ??m_uiFsmEvent
+   \   00000012   3004               CPI     R16, 4
+   \   00000014   F499               BRNE    ??RestoreDefault_3
+   \   00000016   C009               RJMP    ??RestoreDefault_4
      68                              {
      69                                  uiFsmState = BLOCK_ERROR;
-   \   00000058   E0A3               LDI     R26, 3
-   \   0000005A   C015               RJMP    ??RestoreDefault_6
      70                              }
      71                          }
      72                          else
      73                          {
      74                              uiFsmState = BLOCK_ERROR;
-   \                     ??RestoreDefault_8:
-   \   0000005C   E0A3               LDI     R26, 3
-   \   0000005E   C013               RJMP    ??RestoreDefault_6
      75                          }
      76                      }
      77                      else
      78                      {
      79                          uiFsmState = ALL_BLOCKS_WRITED;
-   \                     ??RestoreDefault_7:
-   \   00000060   E0A4               LDI     R26, 4
      80                      }
      81          
      82                      break;
-   \   00000062   C011               RJMP    ??RestoreDefault_6
      83          
      84                  case BLOCK_WRITE_END_WAITING:
      85                      // Блок записан успешно?
      86                      if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
-   \                     ??RestoreDefault_3:
-   \   00000064   ........           CALL    ??GetFsmEvent
-   \   00000068   3003               CPI     R16, 3
-   \   0000006A   F419               BRNE    ??RestoreDefault_10
+   \                     ??RestoreDefault_5:
+   \   00000018   9100....           LDS     R16, ??m_uiFsmEvent
+   \   0000001C   3003               CPI     R16, 3
+   \   0000001E   F419               BRNE    ??RestoreDefault_6
      87                      {
      88                          uiBlockCounter++;
-   \   0000006C   95B3               INC     R27
+   \   00000020   9593               INC     R25
      89                          uiFsmState = BLOCK_WRITE_START;
-   \   0000006E   E0A1               LDI     R26, 1
-   \   00000070   C00A               RJMP    ??RestoreDefault_6
+   \   00000022   E081               LDI     R24, 1
+   \   00000024   C00B               RJMP    ??RestoreDefault_3
      90                      }
      91                      // При записи блока БД произошла ошибка?
      92                      else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-   \                     ??RestoreDefault_10:
-   \   00000072   ........           CALL    ??GetFsmEvent
-   \   00000076   3004               CPI     R16, 4
-   \   00000078   F431               BRNE    ??RestoreDefault_6
+   \                     ??RestoreDefault_6:
+   \   00000026   3004               CPI     R16, 4
+   \   00000028   F449               BRNE    ??RestoreDefault_3
      93                      {
      94                          uiFsmState = BLOCK_ERROR;
-   \   0000007A   E0A3               LDI     R26, 3
+   \                     ??RestoreDefault_4:
+   \   0000002A   E083               LDI     R24, 3
+   \   0000002C   C007               RJMP    ??RestoreDefault_3
      95                      }
      96                      break;
-   \   0000007C   C004               RJMP    ??RestoreDefault_6
      97          
      98                  case ALL_BLOCKS_WRITED:
      99                      return 1;
-   \                     ??RestoreDefault_5:
-   \   0000007E   E001               LDI     R16, 1
-   \   00000080   C00B               RJMP    ??RestoreDefault_11
+   \                     ??RestoreDefault_7:
+   \   0000002E   E001               LDI     R16, 1
+   \                     ??RestoreDefault_8:
+   \   00000030   9189               LD      R24, Y+
+   \   00000032   9199               LD      R25, Y+
+   \   00000034   9508               RET
     100                      break;
     101          
     102                  case BLOCK_ERROR:
     103                      return 0;
-   \                     ??RestoreDefault_4:
-   \   00000082   E000               LDI     R16, 0
-   \   00000084   C009               RJMP    ??RestoreDefault_11
+   \                     ??RestoreDefault_9:
+   \   00000036   E000               LDI     R16, 0
+   \   00000038   CFFB               RJMP    ??RestoreDefault_8
+   \                     ??RestoreDefault_10:
+   \   0000003A   E084               LDI     R24, 4
     104                      break;
     105          
     106                  default:
@@ -723,21 +644,47 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     108                  }
     109          
     110                  CDataStore::Fsm();
-   \                     ??RestoreDefault_6:
-   \   00000086   ........           CALL    ??Fsm
+   \                     ??RestoreDefault_3:
+   \   0000003C   ........           CALL    ??Fsm
     111          
     112                  delay_ms(10);
-   \   0000008A   E00A               LDI     R16, 10
-   \   0000008C   E010               LDI     R17, 0
-   \   0000008E   ........           CALL    ??delay_ms
+   \   00000040   E00A               LDI     R16, 10
+   \   00000042   E010               LDI     R17, 0
+   \   00000044   ........           CALL    ??delay_ms
     113          
     114                  CPlatform::WatchdogReset();
-   \   00000092   ........           CALL    ??WatchdogReset
-   \   00000096   CFBA               RJMP    ??RestoreDefault_1
-    115              }
+   \   00000048   95A8               WDR
+   \   0000004A   2F08               MOV     R16, R24
+   \   0000004C   950A               DEC     R16
+   \   0000004E   F039               BREQ    ??RestoreDefault_11
+   \   00000050   950A               DEC     R16
+   \   00000052   F311               BREQ    ??RestoreDefault_5
+   \   00000054   950A               DEC     R16
+   \   00000056   F379               BREQ    ??RestoreDefault_9
+   \   00000058   950A               DEC     R16
+   \   0000005A   F349               BREQ    ??RestoreDefault_7
+   \   0000005C   CFEF               RJMP    ??RestoreDefault_3
    \                     ??RestoreDefault_11:
-   \   00000098   E0E4               LDI     R30, 4
-   \   0000009A   ........           JMP     ?EPILOGUE_B4_L09
+   \   0000005E   309B               CPI     R25, 11
+   \   00000060   F760               BRCC    ??RestoreDefault_10
+   \                     ??RestoreDefault_1:
+   \   00000062   2F29               MOV     R18, R25
+   \   00000064   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   00000066   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   00000068   ........           CALL    ??ReadBlockFlash
+   \   0000006C   0198               MOVW    R19:R18, R17:R16
+   \   0000006E   2B03               OR      R16, R19
+   \   00000070   F2E1               BREQ    ??RestoreDefault_4
+   \   00000072   2F49               MOV     R20, R25
+   \   00000074   9543               INC     R20
+   \   00000076   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   00000078   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   0000007A   ........           CALL    ??WriteBlock_1
+   \   0000007E   2300               TST     R16
+   \   00000080   F231               BREQ    ??RestoreDefault_2
+   \   00000082   E082               LDI     R24, 2
+   \   00000084   CFDB               RJMP    ??RestoreDefault_3
+    115              }
     116          }
     117          
     118          //-----------------------------------------------------------------------------------------------------
@@ -748,8 +695,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     120          {
     121              // Crc блока совпадает с его Crc сохранённом в служебном блоке?
     122              return CDataStore::CompareCurrentWithStoredCrc();
-   \   00000000   ........           CALL    ??CompareCurrentWithStoredCrc
-   \   00000004   9508               RET
+   \   00000000   ........           JMP     ??CompareCurrentWithStoredCrc
     123          }
     124          
     125          //-----------------------------------------------------------------------------------------------------
@@ -760,9 +706,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     127          {
     128              // Создадим Crc из Crc всех блоков.
     129              CDataStore::CrcOfBlocksCrcCreate();
-   \   00000000   ........           CALL    ??CrcOfBlocksCrcCreate
+   \   00000000   ........           JMP     ??CrcOfBlocksCrcCreate
     130          }
-   \   00000004   9508               RET
     131          
     132          //-----------------------------------------------------------------------------------------------------
 
@@ -772,8 +717,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     134          {
     135              // Crc из Crc всех блоков совпадает?
     136              return CDataStore::CrcOfBlocksCrcCheck();
-   \   00000000   ........           CALL    ??CrcOfBlocksCrcCheck
-   \   00000004   9508               RET
+   \   00000000   ........           JMP     ??CrcOfBlocksCrcCheck
     137          }
     138          
     139          //-----------------------------------------------------------------------------------------------------
@@ -784,68 +728,62 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     141          {
     142              CPss21::SetErrorCode(NO_ERROR);
    \   00000000   E000               LDI     R16, 0
-   \   00000002   ........           CALL    ??SetErrorCode
+   \   00000002   9300....           STS     ??m_uiErrorCode, R16
     143              // Блоки базы данных не повреждены?
     144              if (CDataStore::Check())
    \   00000006   ........           CALL    ??Check_1
    \   0000000A   2300               TST     R16
-   \   0000000C   F099               BREQ    ??Check_2
+   \   0000000C   F071               BREQ    ??Check_2
     145              {
     146                  // Все блоки принадлежат текущей базе данных?
     147                  if (IntegrityCheck())
-   \   0000000E   ....               RCALL   ??IntegrityCheck
-   \   00000010   2300               TST     R16
-   \   00000012   F051               BREQ    ??Check_3
+   \   0000000E   ........           CALL    ??CompareCurrentWithStoredCrc
+   \   00000012   2300               TST     R16
+   \   00000014   F051               BREQ    ??Check_2
     148                  {
     149                      // База данных подтверждена пользователем?
     150                      if (SignatureCheck())
-   \   00000014   ....               RCALL   ??SignatureCheck
-   \   00000016   2300               TST     R16
-   \   00000018   F011               BREQ    ??Check_4
+   \   00000016   ........           CALL    ??CrcOfBlocksCrcCheck
+   \   0000001A   2300               TST     R16
+   \   0000001C   F011               BREQ    ??Check_3
     151                      {
     152                          return 1;
-   \   0000001A   E001               LDI     R16, 1
-   \   0000001C   9508               RET
+   \   0000001E   E001               LDI     R16, 1
+   \   00000020   9508               RET
     153                      }
     154                      else
     155                      {
     156                          CPss21::SetErrorCode(DB_ERROR);
-   \                     ??Check_4:
-   \   0000001E   E004               LDI     R16, 4
-   \   00000020   ........           CALL    ??SetErrorCode
+   \                     ??Check_3:
+   \   00000022   E004               LDI     R16, 4
+   \   00000024   9300....           STS     ??m_uiErrorCode, R16
     157                          return 0;
-   \   00000024   E000               LDI     R16, 0
-   \   00000026   9508               RET
+   \   00000028   C004               RJMP    ??Check_4
     158                      }
     159                  }
     160                  else
     161                  {
     162                      CPss21::SetErrorCode(DB_ERROR);
-   \                     ??Check_3:
-   \   00000028   E004               LDI     R16, 4
-   \   0000002A   ........           CALL    ??SetErrorCode
     163                      // Восстановим БД по умолчанию.
     164                      // БД по умолчанию восстановлена успешно?
     165                      RestoreDefault();
-   \   0000002E   ....               RCALL   ??RestoreDefault
     166                      return 0;
-   \   00000030   E000               LDI     R16, 0
-   \   00000032   9508               RET
     167                  }
     168              }
     169              else
     170              {
     171                  CPss21::SetErrorCode(DB_ERROR);
    \                     ??Check_2:
-   \   00000034   E004               LDI     R16, 4
-   \   00000036   ........           CALL    ??SetErrorCode
+   \   0000002A   E004               LDI     R16, 4
+   \   0000002C   9300....           STS     ??m_uiErrorCode, R16
     172                  // Восстановим БД по умолчанию.
     173                  // БД по умолчанию восстановлена успешно?
     174                  RestoreDefault();
-   \   0000003A   ....               RCALL   ??RestoreDefault
+   \   00000030   ....               RCALL   ??RestoreDefault
     175                  return 0;
-   \   0000003C   E000               LDI     R16, 0
-   \   0000003E   9508               RET
+   \                     ??Check_4:
+   \   00000032   E000               LDI     R16, 0
+   \   00000034   9508               RET
     176              }
     177          }
     178          
@@ -855,74 +793,69 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     180          uint16_t CDataBase::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
    \                     ??ReadBlock:
     181          {
-   \   00000000   ........           CALL    ?PROLOGUE3_L09
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2FA2               MOV     R26, R18
     182              return CDataStore::ReadBlock(puiDestination,
     183                                           uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
-   \   00000008   2F2A               MOV     R18, R26
-   \   0000000A   9523               INC     R18
-   \   0000000C   018C               MOVW    R17:R16, R25:R24
-   \   0000000E   ........           CALL    ??ReadBlock_1
-   \   00000012   E0E3               LDI     R30, 3
-   \   00000014   ........           JMP     ?EPILOGUE_B3_L09
+   \   00000000   9523               INC     R18
+   \   00000002   ........           JMP     ??ReadBlock_1
     184          }
     185          
     186          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   E010               LDI     R17, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
     187          uint16_t CDataBase::WriteBlock(uint8_t *puiSourse, uint8_t uiBlock)
    \                     ??WriteBlock:
     188          {
-   \   00000000   ........           CALL    ?PROLOGUE3_L09
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2FA2               MOV     R26, R18
+   \   00000000   01B8               MOVW    R23:R22, R17:R16
     189              return CDataStore::WriteBlock(puiSourse,
     190                                            GetBlockLength(uiBlock),
     191                                            uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
-   \   00000008   2F0A               MOV     R16, R26
-   \   0000000A   ....               RCALL   ??GetBlockLength_1
-   \   0000000C   0198               MOVW    R19:R18, R17:R16
-   \   0000000E   2F4A               MOV     R20, R26
-   \   00000010   9543               INC     R20
-   \   00000012   018C               MOVW    R17:R16, R25:R24
-   \   00000014   ........           CALL    ??WriteBlock_1
-   \   00000018   E010               LDI     R17, 0
-   \   0000001A   E0E3               LDI     R30, 3
-   \   0000001C   ........           JMP     ?EPILOGUE_B3_L09
+   \   00000002   2F02               MOV     R16, R18
+   \   00000004   ....               RCALL   ??GetBlockLength
+   \   00000006   9523               INC     R18
+   \   00000008   2F42               MOV     R20, R18
+   \   0000000A   0198               MOVW    R19:R18, R17:R16
+   \   0000000C   018B               MOVW    R17:R16, R23:R22
+   \   0000000E   ........           CALL    ??WriteBlock_1
+   \   00000012   ....               RJMP    ?Subroutine0
     192          }
     193          
     194          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
     195          uint16_t CDataBase::GetBlockLength(uint8_t uiBlock)
-   \                     ??GetBlockLength_1:
+   \                     ??GetBlockLength:
     196          {
-   \   00000000   938A               ST      -Y, R24
-   \   00000002   2F80               MOV     R24, R16
     197              // Блок существует?
     198              if (uiBlock < GetBlocksNumber())
-   \   00000004   ........           CALL    ??GetBlocksNumber
-   \   00000008   1780               CP      R24, R16
-   \   0000000A   F430               BRCC    ??GetBlockLength_3
+   \   00000000   300B               CPI     R16, 11
+   \   00000002   F450               BRCC    ??GetBlockLength_1
     199              {
     200                  return CDataStore::GetBlockLength(uiBlock + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
-   \   0000000C   2F08               MOV     R16, R24
-   \   0000000E   9503               INC     R16
-   \   00000010   ........           CALL    ??GetBlockLength
-   \   00000014   E010               LDI     R17, 0
-   \   00000016   C002               RJMP    ??GetBlockLength_4
+   \   00000004   9503               INC     R16
+   \   00000006   300C               CPI     R16, 12
+   \   00000008   F438               BRCC    ??GetBlockLength_1
+   \   0000000A   E018               LDI     R17, 8
+   \   0000000C   9F01               MUL     R16, R17
+   \   0000000E   01F0               MOVW    R31:R30, R1:R0
+   \   00000010   ....               SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
+   \   00000012   ....               SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+   \   00000014   8106               LDD     R16, Z+6
+   \   00000016   C001               RJMP    ??GetBlockLength_2
     201              }
     202              else
     203              {
     204                  return 0;
-   \                     ??GetBlockLength_3:
+   \                     ??GetBlockLength_1:
    \   00000018   E000               LDI     R16, 0
-   \   0000001A   E010               LDI     R17, 0
-   \                     ??GetBlockLength_4:
-   \   0000001C   9189               LD      R24, Y+
-   \   0000001E   9508               RET
     205              }
+   \                     ??GetBlockLength_2:
+   \   0000001A                      REQUIRE ?Subroutine0
+   \   0000001A                      ;               // Fall through to label ?Subroutine0
     206          }
     207          
     208          //-----------------------------------------------------------------------------------------------------
@@ -932,59 +865,43 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
    CSTACK RSTACK Function
    ------ ------ --------
       0      2   CDataBase::Check()
-        0      2   -> CDataBase::IntegrityCheck()
         0      2   -> CDataBase::RestoreDefault()
-        0      2   -> CDataBase::SignatureCheck()
         0      2   -> CDataStore::Check()
-        0      2   -> CPss21::SetErrorCode(uint8_t)
-      1      2   CDataBase::GetBlockLength(uint8_t)
-        1      2   -> CDataBase::GetBlocksNumber()
-        1      2   -> CDataStore::GetBlockLength(uint8_t)
-      0      2   CDataBase::GetBlocksNumber()
+        0      2   -> CDataStore::CompareCurrentWithStoredCrc()
+        0      2   -> CDataStore::CrcOfBlocksCrcCheck()
+      0      2   CDataBase::GetBlockLength(uint8_t)
       0      2   CDataBase::IntegrityCheck()
         0      2   -> CDataStore::CompareCurrentWithStoredCrc()
-      3      2   CDataBase::ReadBlock(uint8_t *, uint8_t)
-        3      2   -> CDataStore::ReadBlock(uint8_t *, uint8_t)
-      4      2   CDataBase::RestoreDefault()
-        4      2   -> CDataBase::GetBlocksNumber()
-        4      2   -> CDataStore::Fsm()
-        4      2   -> CDataStore::GetFsmEvent()
-        4      2   -> CDataStore::Init()
-        4      2   -> CDataStore::ReadBlockFlash(uint8_t *, uint8_t)
-        4      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
-        4      2   -> CPlatform::WatchdogReset()
-        4      2   -> delay_ms(uint16_t)
+      0      2   CDataBase::ReadBlock(uint8_t *, uint8_t)
+        0      2   -> CDataStore::ReadBlock(uint8_t *, uint8_t)
+      2      2   CDataBase::RestoreDefault()
+        2      2   -> CDataStore::Fsm()
+        2      2   -> CDataStore::Init()
+        2      2   -> CDataStore::ReadBlockFlash(uint8_t *, uint8_t)
+        2      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+        2      2   -> delay_ms(uint16_t)
       0      2   CDataBase::SignatureCheck()
         0      2   -> CDataStore::CrcOfBlocksCrcCheck()
       0      2   CDataBase::SignatureCreate()
         0      2   -> CDataStore::CrcOfBlocksCrcCreate()
-      3      2   CDataBase::WriteBlock(uint8_t *, uint8_t)
-        3      2   -> CDataBase::GetBlockLength(uint8_t)
-        3      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
-      0      2   CDataStore::GetBlockLength(uint8_t)
-        0      2 ?S_EC_MUL_L02
-      0      2   CDataStore::GetFsmEvent()
-      0      2   CPlatform::WatchdogReset()
-      0      2   CPss21::SetErrorCode(uint8_t)
+      0      2   CDataBase::WriteBlock(uint8_t *, uint8_t)
+        0      2   -> CDataBase::GetBlockLength(uint8_t)
+        0      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-      64  CDataBase::Check()
-      32  CDataBase::GetBlockLength(uint8_t)
-       4  CDataBase::GetBlocksNumber()
-       6  CDataBase::IntegrityCheck()
-      24  CDataBase::ReadBlock(uint8_t *, uint8_t)
-     158  CDataBase::RestoreDefault()
-       6  CDataBase::SignatureCheck()
-       6  CDataBase::SignatureCreate()
-      32  CDataBase::WriteBlock(uint8_t *, uint8_t)
-      34  CDataStore::GetBlockLength(uint8_t)
-       6  CDataStore::GetFsmEvent()
-       4  CPlatform::WatchdogReset()
-       6  CPss21::SetErrorCode(uint8_t)
+       4  ?Subroutine0
+      54  CDataBase::Check()
+      26  CDataBase::GetBlockLength(uint8_t)
+       4  CDataBase::IntegrityCheck()
+       6  CDataBase::ReadBlock(uint8_t *, uint8_t)
+     134  CDataBase::RestoreDefault()
+       4  CDataBase::SignatureCheck()
+       4  CDataBase::SignatureCreate()
+      20  CDataBase::WriteBlock(uint8_t *, uint8_t)
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -1077,14 +994,14 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-      36  -- Other
+       4  -- Other
 
  
  105 bytes in segment ABSOLUTE
- 382 bytes in segment CODE
-  36 bytes in segment NEAR_F
+ 256 bytes in segment CODE
+   4 bytes in segment NEAR_F
  
- 364 bytes of CODE memory (+  54 bytes shared)
+ 260 bytes of CODE memory
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

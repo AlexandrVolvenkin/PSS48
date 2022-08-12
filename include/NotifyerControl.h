@@ -111,20 +111,20 @@ public:
 
     virtual uint16_t WARNING_SIGNAL_ON_TIME(void)
     {
-        return 1000;
+        return 800;
     };
     virtual uint16_t WARNING_SIGNAL_OFF_TIME(void)
     {
-        return 1000;
+        return 300;
     };
 
     virtual uint16_t ALARM_SIGNAL_ON_TIME(void)
     {
-        return 500;
+        return 300;
     };
     virtual uint16_t ALARM_SIGNAL_OFF_TIME(void)
     {
-        return 500;
+        return 300;
     };
 
     virtual uint16_t ERROR_SIGNAL_ON_TIME(void)

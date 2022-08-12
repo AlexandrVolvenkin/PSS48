@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  11:47:45
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:16
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW929D.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW3D18.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\main.cpp --cpu=m128a -ms -o
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\main.s90
 //
@@ -34,7 +33,6 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        PUBWEAK ??SetFsmState
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -613,12 +611,6 @@ _A_PINF:
 //   11 #include "ModbusRTU.h"
 //   12 #include "InputDevice.h"
 //   13 #include "Pss21.h"
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPss21::SetFsmState(uint8_t)
-??SetFsmState:
-        STS     ??m_uiFsmState, R16
-        RET
 //   14 #include "Mvsn21.h"
 //   15 #include "Buzzer.h"
 //   16 #include "DataStore.h"
@@ -632,48 +624,20 @@ _A_PINF:
 //   22 int main()
 main:
 //   23 {
-        ST      -Y, R24
-//   24     enum
-//   25     {
-//   26         MAIN_START,
-//   27         MAIN_FIRST_STEP,
-//   28         MAIN_SECOND_STEP,
-//   29         MAIN_THIRD_STEP,
-//   30         MAIN_FORTH_STEP,
-//   31         MAIN_THIRD_REBOOT,
-//   32         MAIN_STOP
-//   33     };
-//   34 
-//   35     uint8_t uiNumber = 0;
-        LDI     R24, 0
-//   36     uiNumber = sizeof(struct CNormalAlarmDfa);
-        LDI     R24, 6
-//   37     uiNumber = sizeof(struct CAlarmDfa);
-        LDI     R24, 6
-//   38     uiNumber = sizeof(struct CPreventiveAlarmLowLevelDfa);
-        LDI     R24, 6
-//   39     uiNumber = sizeof(struct CErrorAlarmDfa);
-        LDI     R24, 5
-//   40 
-//   41     uiNumber = sizeof(struct CDataStore::TBlocksControlData);
-        LDI     R24, 100
-//   42     uiNumber = CDataStore::BLOCKS_CONTROL_DATA_LENGTH;
-        LDI     R24, 153
-//   43 
-//   44     CPss21::SetFsmState(CPss21::START);
+//   24     CPss21::SetFsmState(CPss21::START);
         LDI     R16, 0
-        CALL    ??SetFsmState
-//   45 
-//   46     while(1)
-//   47     {
-//   48         CPss21::MainFsm();
+        STS     ??m_uiFsmState, R16
+//   25 
+//   26     while(1)
+//   27     {
+//   28         CPss21::MainFsm();
 ??main_0:
         CALL    ??MainFsm
         RJMP    ??main_0
-//   49     }
-//   50 
-//   51     return 0;
-//   52 }
+//   29     }
+//   30 
+//   31     return 0;
+//   32 }
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -688,20 +652,16 @@ __?EEARL:
 __?EEARH:
 
         RSEG NEAR_F:CODE:ROOT(0)
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-
-        RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
 
         END
 // 
 // 105 bytes in segment ABSOLUTE
-//  34 bytes in segment CODE
-//  36 bytes in segment NEAR_F
+//  12 bytes in segment CODE
+//   4 bytes in segment NEAR_F
 // 
-// 64 bytes of CODE memory (+   6 bytes shared)
+// 16 bytes of CODE memory
 //  0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
-//Warnings: 4
+//Warnings: 3

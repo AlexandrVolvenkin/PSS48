@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  10:44:22
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:15
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Event.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW8BCC.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW3844.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Event.cpp --cpu=m128a -ms
 //        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Event.s90
@@ -35,15 +34,15 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
+        EXTERN ?EPILOGUE_B3_L09
         EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE3_L09
         EXTERN ?PROLOGUE4_L09
 
         PUBLIC ??CEvent
         PUBLIC ??CEventUniteLogicAnd
         PUBLIC ??CEventUniteLogicAnd_1
-        PUBWEAK ??GetFsmState
         PUBLIC ??IsHappened
-        PUBWEAK ??SetFsmState
         PUBWEAK ??__vtbl
         PUBWEAK ??__vtbl_1
         PUBLIC `??new CEvent`
@@ -89,16 +88,18 @@
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
 //   12 {
-        MOVW    R17:R16, R27:R26
         CALL    ??CDfa
         LDI     R16, LOW(??__vtbl)
         LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
+        RCALL   ?Subroutine4
 //   13 
 //   14 }
-        MOVW    R17:R16, R27:R26
+??CrossCallReturnLabel_6:
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -107,14 +108,16 @@
 // __version_3 CEvent &CEvent::new CEvent()
 `??new CEvent`:
         LDI     R16, 5
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ??Subroutine9_0
+??CrossCallReturnLabel_10:
         BREQ    `??new CEvent_1`
-        RCALL   ??CEvent
-        RET
+        RJMP    ??CEvent
 `??new CEvent_1`:
+        REQUIRE ?Subroutine6
+        ;               // Fall through to label ?Subroutine6
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
         LDI     R16, 0
         LDI     R17, 0
         RET
@@ -138,41 +141,37 @@
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
 //   28 {
-        MOVW    R17:R16, R27:R26
-        RCALL   ??CEvent
-        LDI     R16, LOW(??__vtbl_1)
-        LDI     R17, (??__vtbl_1) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 251
-        SBCI    R17, 255
-        CALL    ??CTimer
+        RCALL   ?Subroutine0
 //   29     SetFsmState(START);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+??CrossCallReturnLabel_1:
+        LDI     R16, 0
+        ST      X, R16
 //   30 }
         MOVW    R17:R16, R27:R26
-        LD      R26, Y+
-        LD      R27, Y+
-        RET
+        RJMP    ?Subroutine5
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd()
 `??new CEventUniteLogicAnd`:
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_8:
+        BREQ    `??new CEventUniteLogicAnd_2`
+        RJMP    ??CEventUniteLogicAnd
+`??new CEventUniteLogicAnd_2`:
+        RJMP    ?Subroutine6
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
         LDI     R16, 12
+        REQUIRE ??Subroutine9_0
+        ;               // Fall through to label ??Subroutine9_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine9_0:
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
         OR      R18, R17
-        BREQ    `??new CEventUniteLogicAnd_2`
-        RCALL   ??CEventUniteLogicAnd
-        RET
-`??new CEventUniteLogicAnd_2`:
-        LDI     R16, 0
-        LDI     R17, 0
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -180,26 +179,40 @@
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
         MOVW    R25:R24, R19:R18
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_0:
+        MOVW    R31:R30, R27:R26
+        STD     Z+9, R24
+        STD     Z+10, R25
+        LDI     R16, 0
+        ST      X, R16
         MOVW    R17:R16, R27:R26
+        REQUIRE ?Subroutine7
+        ;               // Fall through to label ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
         RCALL   ??CEvent
         LDI     R16, LOW(??__vtbl_1)
         LDI     R17, (??__vtbl_1) >> 8
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_7:
+        SUBI    R16, 251
+        SBCI    R17, 255
+        JMP     ??CTimer
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
         MOVW    R17:R16, R27:R26
-        SUBI    R16, 251
-        SBCI    R17, 255
-        CALL    ??CTimer
-        MOVW    R31:R30, R27:R26
-        STD     Z+9, R24
-        STD     Z+10, R25
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        MOVW    R17:R16, R27:R26
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd(uint16_t)
@@ -207,11 +220,8 @@
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-        LDI     R16, 12
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_9:
         BREQ    `??new CEventUniteLogicAnd_3`
         MOVW    R19:R18, R25:R24
         RCALL   ??CEventUniteLogicAnd_1
@@ -226,23 +236,22 @@
 
         RSEG CODE:CODE:NOROOT(1)
 `?~CEvent`:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R25:R24, R17:R16
-        MOVW    R27:R26, R19:R18
-        MOV     R16, R24
-        OR      R16, R25
-        BREQ    `?~CEvent_1`
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_2:
+        BREQ    ??CrossCallReturnLabel_4
         LDI     R18, 0
         LDI     R19, 0
-        MOVW    R17:R16, R25:R24
+        MOV     R16, R24
         CALL    `?~CDfa`
-        BST     R26, 0
-        BRTC    `?~CEvent_1`
-        MOVW    R17:R16, R25:R24
-        CALL    `??operator delete`
-`?~CEvent_1`:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_4:
+        REQUIRE ?Subroutine8
+        ;               // Fall through to label ?Subroutine8
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine8:
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
 //   31 
 //   32 //-----------------------------------------------------------------------------------------------------
 //   33 CEventUniteLogicAnd::CEventUniteLogicAnd(uint16_t uiTime) :
@@ -257,25 +266,35 @@
 //   40 CEventUniteLogicAnd::~CEventUniteLogicAnd()
 `?~CEventUniteLogicAnd`:
 //   41 {
-        CALL    ?PROLOGUE4_L09
-        MOVW    R25:R24, R17:R16
-        MOVW    R27:R26, R19:R18
-        MOV     R16, R24
-        OR      R16, R25
-        BREQ    `?~CEventUniteLogicAnd_1`
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_3:
+        BREQ    ??CrossCallReturnLabel_5
 //   42 
 //   43 }
         LDI     R18, 0
         LDI     R19, 0
-        MOVW    R17:R16, R25:R24
+        MOV     R16, R24
         RCALL   `?~CEvent`
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_5:
+        RJMP    ?Subroutine8
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
         BST     R26, 0
-        BRTC    `?~CEventUniteLogicAnd_1`
+        BRTC    ??Subroutine3_0
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
-`?~CEventUniteLogicAnd_1`:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+??Subroutine3_0:
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
+        MOV     R26, R18
+        OR      R16, R17
+        RET
 //   44 
 //   45 //-----------------------------------------------------------------------------------------------------
 //   46 // Объединяет события произошедшие совместно в течении UNITED_WAITING_TIME.
@@ -289,9 +308,8 @@
         MOV     R25, R18
         MOV     R24, R19
 //   49     switch (GetFsmState())
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetFsmState
-        SUBI    R16, 0
+        LD      R16, X
+        TST     R16
         BREQ    ??IsHappened_1
         DEC     R16
         BREQ    ??IsHappened_2
@@ -306,19 +324,16 @@
         LDI     R16, 0
         STD     Z+11, R16
 //   53         SetFsmState(EVENT_WAITING);
-        LDI     R18, 1
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-//   54         return 0;
-        LDI     R16, 0
+        LDI     R16, 1
         RJMP    ??IsHappened_5
+//   54         return 0;
 //   55         break;
 //   56 
 //   57     case EVENT_WAITING:
 //   58         // Произошло первое событие?
 //   59         if (uiEventOne)
 ??IsHappened_2:
-        TST     R25
+        TST     R18
         BREQ    ??IsHappened_6
 //   60         {
 //   61             m_uiEventsState |= 0x01;
@@ -330,7 +345,7 @@
 //   63         // Произошло второе событие?
 //   64         if (uiEventTwo)
 ??IsHappened_6:
-        TST     R24
+        TST     R19
         BREQ    ??IsHappened_7
 //   65         {
 //   66             m_uiEventsState |= 0x02;
@@ -345,24 +360,23 @@
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+9
         LDD     R19, Z+10
-        MOVW    R17:R16, R27:R26
+        MOV     R16, R26
         SUBI    R16, 251
         SBCI    R17, 255
         CALL    ??Set
 //   70         SetFsmState(EVENT_UNITE_WAITING);
-        LDI     R18, 2
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+        LDI     R16, 2
+??IsHappened_5:
+        ST      X, R16
 //   71         return 0;
-        LDI     R16, 0
-        RJMP    ??IsHappened_5
+        RJMP    ??IsHappened_4
 //   72         break;
 //   73 
 //   74     case EVENT_UNITE_WAITING:
 //   75         // Закончилось время объединения событий?
 //   76         if (m_xTimer.IsOverflow())
 ??IsHappened_3:
-        MOVW    R17:R16, R27:R26
+        MOV     R16, R26
         SUBI    R16, 251
         SBCI    R17, 255
         CALL    ??IsOverflow
@@ -370,61 +384,50 @@
         BREQ    ??IsHappened_8
 //   77         {
 //   78             SetFsmState(START);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-//   79             return 0;
         LDI     R16, 0
-        RJMP    ??IsHappened_5
+        ST      X, R16
+//   79             return 0;
+        RJMP    ??IsHappened_9
 //   80         }
 //   81         else
 //   82         {
 //   83             // Произошло первое событие?
 //   84             if (uiEventOne)
 ??IsHappened_8:
-        TST     R25
-        BREQ    ??IsHappened_9
-//   85             {
-//   86                 m_uiEventsState |= 0x01;
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+11
+        TST     R25
+        BREQ    ??IsHappened_10
+//   85             {
+//   86                 m_uiEventsState |= 0x01;
         ORI     R16, 0x01
-        STD     Z+11, R16
 //   87             }
 //   88             // Произошло второе событие?
 //   89             if (uiEventTwo)
-??IsHappened_9:
+??IsHappened_10:
         TST     R24
-        BREQ    ??IsHappened_10
+        BREQ    ??IsHappened_11
 //   90             {
 //   91                 m_uiEventsState |= 0x02;
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+11
         ORI     R16, 0x02
+??IsHappened_11:
         STD     Z+11, R16
 //   92             }
 //   93             // Произошли все объединяемые события?
 //   94             if (m_uiEventsState == 0x03)
-??IsHappened_10:
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+11
         CPI     R16, 3
-        BRNE    ??IsHappened_11
+        LDI     R16, 0
+        BRNE    ??IsHappened_9
 //   95             {
 //   96                 SetFsmState(START);
-        LDI     R18, 0
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
+        ST      X, R16
 //   97                 return 1;
         LDI     R16, 1
-        RJMP    ??IsHappened_5
+        RJMP    ??IsHappened_9
 //   98             }
 //   99             else
 //  100             {
 //  101                 return 0;
-??IsHappened_11:
-        LDI     R16, 0
-        RJMP    ??IsHappened_5
 //  102             }
 //  103         }
 //  104         break;
@@ -433,26 +436,11 @@
 //  107         return 0;
 ??IsHappened_4:
         LDI     R16, 0
-??IsHappened_5:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
 //  108         break;
 //  109     }
+??IsHappened_9:
+        RJMP    ?Subroutine7
 //  110 }
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CDfaLite::SetFsmState(uint8_t)
-??SetFsmState:
-        MOVW    R31:R30, R17:R16
-        ST      Z, R18
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDfaLite::GetFsmState()
-??GetFsmState:
-        MOVW    R31:R30, R17:R16
-        LD      R16, Z
-        RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -478,10 +466,10 @@ __?EEARH:
 
         END
 // 
-// 486 bytes in segment CODE
+// 352 bytes in segment CODE
 //   8 bytes in segment NEAR_F
 // 
-// 474 bytes of CODE memory (+ 20 bytes shared)
+// 352 bytes of CODE memory (+ 8 bytes shared)
 //
 //Errors: none
 //Warnings: none

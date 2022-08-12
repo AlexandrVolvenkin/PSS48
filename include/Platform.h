@@ -155,75 +155,75 @@ private:
 
 
 
-//-----------------------------------------------------------------------------------------------------
-class CStorageDevice
-{
-public:
-//    CStorageDevice();
-//    virtual ~CStorageDevice();
-    virtual uint8_t Read(uint8_t * , uint16_t , uint16_t ) = 0;
-    virtual uint8_t Write(uint16_t , uint8_t * , uint16_t ) = 0;
-    virtual uint8_t ReadByte(uint16_t ) = 0;
-    virtual void WriteByte(uint16_t , uint8_t ) = 0;
-    virtual void ReadyInterruptHandler(void) = 0;
-    virtual void ReadyInterruptEnable(void) = 0;
-    virtual void ReadyInterruptDisaable(void) = 0;
-
-
-    virtual uint8_t* GetBufferPointer(void)
-    {
-        return m_puiBuffer;
-    };
-    virtual void SetBufferByteCounter(uint16_t nuiBufferByteCounter)
-    {
-        m_nuiBufferByteCounter = nuiBufferByteCounter;
-    };
-    virtual uint16_t GetBufferByteCounter(void)
-    {
-        return m_nuiBufferByteCounter;
-    };
-
-    virtual void SetLength(uint16_t uiLength)
-    {
-        m_uiLength = uiLength;
-    };
-    virtual uint16_t GetLength(void)
-    {
-        return m_uiLength;
-    };
-
-    virtual void SetBufferIsWrited(bool bBufferIsWrited)
-    {
-        m_bBufferIsWrited = bBufferIsWrited;
-    };
-    virtual bool GetBufferIsWrited(void)
-    {
-        return m_bBufferIsWrited;
-    };
-
-    virtual void StartWrite(void)
-    {
-        SetBufferIsWrited(false);
-        ReadyInterruptEnable();
-    };
-
-//    virtual uint8_t* GetBufferPointer(void) = 0;
-//    virtual void SetBufferByteCounter(uint16_t nuiBufferByteCounter) = 0;
-//    virtual uint16_t GetBufferByteCounter(void) = 0;
-//    virtual void SetLength(uint16_t uiLength) = 0;
-//    virtual uint16_t GetLength(void) = 0;
-//    virtual void SetBufferIsWrited(bool bBufferIsWrited) = 0;
-//    virtual bool GetBufferIsWrited(void) = 0;
-    virtual bool IsReadyToWrite(void) = 0;
-
-private:
-    uint8_t* m_puiBuffer;
-    static uint16_t m_uiAddress;
-    uint16_t m_nuiBufferByteCounter;
-    uint16_t m_uiLength;
-    bool m_bBufferIsWrited;
-};
-//-----------------------------------------------------------------------------------------------------
+////-----------------------------------------------------------------------------------------------------
+//class CStorageDevice
+//{
+//public:
+////    CStorageDevice();
+////    virtual ~CStorageDevice();
+//    virtual uint8_t Read(uint8_t * , uint16_t , uint16_t ) = 0;
+//    virtual uint8_t Write(uint16_t , uint8_t * , uint16_t ) = 0;
+//    virtual uint8_t ReadByte(uint16_t ) = 0;
+//    virtual void WriteByte(uint16_t , uint8_t ) = 0;
+//    virtual void ReadyInterruptHandler(void) = 0;
+//    virtual void ReadyInterruptEnable(void) = 0;
+//    virtual void ReadyInterruptDisaable(void) = 0;
+//
+//
+//    virtual uint8_t* GetBufferPointer(void)
+//    {
+//        return m_puiBuffer;
+//    };
+//    virtual void SetBufferByteCounter(uint16_t nuiBufferByteCounter)
+//    {
+//        m_nuiBufferByteCounter = nuiBufferByteCounter;
+//    };
+//    virtual uint16_t GetBufferByteCounter(void)
+//    {
+//        return m_nuiBufferByteCounter;
+//    };
+//
+//    virtual void SetLength(uint16_t uiLength)
+//    {
+//        m_uiLength = uiLength;
+//    };
+//    virtual uint16_t GetLength(void)
+//    {
+//        return m_uiLength;
+//    };
+//
+//    virtual void SetBufferIsWrited(bool bBufferIsWrited)
+//    {
+//        m_bBufferIsWrited = bBufferIsWrited;
+//    };
+//    virtual bool GetBufferIsWrited(void)
+//    {
+//        return m_bBufferIsWrited;
+//    };
+//
+//    virtual void StartWrite(void)
+//    {
+//        SetBufferIsWrited(false);
+//        ReadyInterruptEnable();
+//    };
+//
+////    virtual uint8_t* GetBufferPointer(void) = 0;
+////    virtual void SetBufferByteCounter(uint16_t nuiBufferByteCounter) = 0;
+////    virtual uint16_t GetBufferByteCounter(void) = 0;
+////    virtual void SetLength(uint16_t uiLength) = 0;
+////    virtual uint16_t GetLength(void) = 0;
+////    virtual void SetBufferIsWrited(bool bBufferIsWrited) = 0;
+////    virtual bool GetBufferIsWrited(void) = 0;
+//    virtual bool IsReadyToWrite(void) = 0;
+//
+//private:
+//    uint8_t* m_puiBuffer;
+//    static uint16_t m_uiAddress;
+//    uint16_t m_nuiBufferByteCounter;
+//    uint16_t m_uiLength;
+//    bool m_bBufferIsWrited;
+//};
+////-----------------------------------------------------------------------------------------------------
 
 
 

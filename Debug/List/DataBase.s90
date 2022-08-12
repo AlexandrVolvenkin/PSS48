@@ -1,23 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  11:47:43
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:13
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW8A7C.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW314D.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lB
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
-//        --initializers_in_flash --root_variables --no_cse --no_inline
-//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        --initializers_in_flash --root_variables --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
 //        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
 //        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
-//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\DataBase.s90
@@ -35,24 +34,13 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B3_L09
-        EXTERN ?EPILOGUE_B4_L09
-        EXTERN ?PROLOGUE3_L09
-        EXTERN ?PROLOGUE4_L09
-        EXTERN ?S_EC_MUL_L02
-
         PUBLIC ??Check
-        PUBWEAK ??GetBlockLength
-        PUBLIC ??GetBlockLength_1
-        PUBWEAK ??GetBlocksNumber
-        PUBWEAK ??GetFsmEvent
+        PUBLIC ??GetBlockLength
         PUBLIC ??IntegrityCheck
         PUBLIC ??ReadBlock
         PUBLIC ??RestoreDefault
-        PUBWEAK ??SetErrorCode
         PUBLIC ??SignatureCheck
         PUBLIC ??SignatureCreate
-        PUBWEAK ??WatchdogReset
         PUBLIC ??WriteBlock
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
@@ -642,53 +630,8 @@ _A_PINE:
 // union <unnamed> volatile __io _A_PINF
 _A_PINF:
         DS8 1
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPlatform::WatchdogReset()
-??WatchdogReset:
-        WDR
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDataStore::GetBlockLength(uint8_t)
-??GetBlockLength:
-        MOV     R18, R16
-        CPI     R18, 12
-        BRCC    ??GetBlockLength_2
-        MOV     R16, R18
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-        LDD     R16, Z+6
-        LDD     R17, Z+7
-        RET
-??GetBlockLength_2:
-        LDI     R16, 0
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDataStore::GetFsmEvent()
-??GetFsmEvent:
-        LDS     R16, ??m_uiFsmEvent
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 uint8_t CDataBase::GetBlocksNumber()
-??GetBlocksNumber:
-        LDI     R16, 11
-        RET
 //    9 #include "Platform.h"
 //   10 #include "Pss21.h"
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CPss21::SetErrorCode(uint8_t)
-??SetErrorCode:
-        STS     ??m_uiErrorCode, R16
-        RET
 //   11 #include "DataStore.h"
 //   12 #include <cstddef>
 //   13 
@@ -711,7 +654,8 @@ _A_PINF:
 //   28 uint8_t CDataBase::RestoreDefault(void)
 ??RestoreDefault:
 //   29 {
-        CALL    ?PROLOGUE4_L09
+        ST      -Y, R25
+        ST      -Y, R24
 //   30     // Восстановим БД по умолчанию.
 //   31     CDataStore::Init();
         CALL    ??Init
@@ -726,133 +670,99 @@ _A_PINF:
 //   40     };
 //   41 
 //   42     uint8_t uiBlockCounter = 0;
-        LDI     R27, 0
+        LDI     R25, 0
 //   43     uint8_t uiFsmState = BLOCK_WRITE_START;
-        LDI     R26, 1
+        LDI     R24, 1
+        RJMP    ??RestoreDefault_1
 //   44 
 //   45     while (1)
 //   46     {
 //   47         switch (uiFsmState)
-??RestoreDefault_1:
-        MOV     R16, R26
-        SUBI    R16, 1
-        BREQ    ??RestoreDefault_2
-        DEC     R16
-        BREQ    ??RestoreDefault_3
-        DEC     R16
-        BREQ    ??RestoreDefault_4
-        DEC     R16
-        BREQ    ??RestoreDefault_5
-        RJMP    ??RestoreDefault_6
 //   48         {
 //   49         case BLOCK_WRITE_START:
 //   50             // Записаны не все блоки?
 //   51             if (uiBlockCounter < GetBlocksNumber())
-??RestoreDefault_2:
-        CALL    ??GetBlocksNumber
-        CP      R27, R16
-        BRCC    ??RestoreDefault_7
 //   52             {
 //   53                 // Скопируем данные из флеш во временный буфер,
 //   54                 uint16_t uiLength = CDataStore::ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
-        MOV     R18, R27
-        LDI     R16, LOW(??m_auiIntermediateBuff)
-        LDI     R17, (??m_auiIntermediateBuff) >> 8
-        CALL    ??ReadBlockFlash
-        MOVW    R25:R24, R17:R16
 //   55                 // Блок не повреждён?
 //   56                 if (uiLength)
-        MOV     R16, R24
-        OR      R16, R25
-        BREQ    ??RestoreDefault_8
 //   57                 {
 //   58                     // Поместим данные в хранилище.
 //   59                     // Блок БД принят к записи?
 //   60                     if (CDataStore::WriteBlock(CPss21::m_auiIntermediateBuff,
 //   61                                                uiLength,
 //   62                                                uiBlockCounter + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER))
-        MOV     R20, R27
-        INC     R20
-        MOVW    R19:R18, R25:R24
-        LDI     R16, LOW(??m_auiIntermediateBuff)
-        LDI     R17, (??m_auiIntermediateBuff) >> 8
-        CALL    ??WriteBlock_1
-        TST     R16
-        BREQ    ??RestoreDefault_9
 //   63                     {
 //   64                         uiFsmState = BLOCK_WRITE_END_WAITING;
-        LDI     R26, 2
-        RJMP    ??RestoreDefault_6
 //   65                     }
 //   66                     // При записи блока БД произошла ошибка?
 //   67                     else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-??RestoreDefault_9:
-        CALL    ??GetFsmEvent
+??RestoreDefault_2:
+        LDS     R16, ??m_uiFsmEvent
         CPI     R16, 4
-        BRNE    ??RestoreDefault_6
+        BRNE    ??RestoreDefault_3
+        RJMP    ??RestoreDefault_4
 //   68                     {
 //   69                         uiFsmState = BLOCK_ERROR;
-        LDI     R26, 3
-        RJMP    ??RestoreDefault_6
 //   70                     }
 //   71                 }
 //   72                 else
 //   73                 {
 //   74                     uiFsmState = BLOCK_ERROR;
-??RestoreDefault_8:
-        LDI     R26, 3
-        RJMP    ??RestoreDefault_6
 //   75                 }
 //   76             }
 //   77             else
 //   78             {
 //   79                 uiFsmState = ALL_BLOCKS_WRITED;
-??RestoreDefault_7:
-        LDI     R26, 4
 //   80             }
 //   81 
 //   82             break;
-        RJMP    ??RestoreDefault_6
 //   83 
 //   84         case BLOCK_WRITE_END_WAITING:
 //   85             // Блок записан успешно?
 //   86             if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
-??RestoreDefault_3:
-        CALL    ??GetFsmEvent
+??RestoreDefault_5:
+        LDS     R16, ??m_uiFsmEvent
         CPI     R16, 3
-        BRNE    ??RestoreDefault_10
+        BRNE    ??RestoreDefault_6
 //   87             {
 //   88                 uiBlockCounter++;
-        INC     R27
+        INC     R25
 //   89                 uiFsmState = BLOCK_WRITE_START;
-        LDI     R26, 1
-        RJMP    ??RestoreDefault_6
+        LDI     R24, 1
+        RJMP    ??RestoreDefault_3
 //   90             }
 //   91             // При записи блока БД произошла ошибка?
 //   92             else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-??RestoreDefault_10:
-        CALL    ??GetFsmEvent
+??RestoreDefault_6:
         CPI     R16, 4
-        BRNE    ??RestoreDefault_6
+        BRNE    ??RestoreDefault_3
 //   93             {
 //   94                 uiFsmState = BLOCK_ERROR;
-        LDI     R26, 3
+??RestoreDefault_4:
+        LDI     R24, 3
+        RJMP    ??RestoreDefault_3
 //   95             }
 //   96             break;
-        RJMP    ??RestoreDefault_6
 //   97 
 //   98         case ALL_BLOCKS_WRITED:
 //   99             return 1;
-??RestoreDefault_5:
+??RestoreDefault_7:
         LDI     R16, 1
-        RJMP    ??RestoreDefault_11
+??RestoreDefault_8:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
 //  100             break;
 //  101 
 //  102         case BLOCK_ERROR:
 //  103             return 0;
-??RestoreDefault_4:
+??RestoreDefault_9:
         LDI     R16, 0
-        RJMP    ??RestoreDefault_11
+        RJMP    ??RestoreDefault_8
+??RestoreDefault_10:
+        LDI     R24, 4
 //  104             break;
 //  105 
 //  106         default:
@@ -860,7 +770,7 @@ _A_PINF:
 //  108         }
 //  109 
 //  110         CDataStore::Fsm();
-??RestoreDefault_6:
+??RestoreDefault_3:
         CALL    ??Fsm
 //  111 
 //  112         delay_ms(10);
@@ -869,12 +779,38 @@ _A_PINF:
         CALL    ??delay_ms
 //  113 
 //  114         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-        RJMP    ??RestoreDefault_1
-//  115     }
+        WDR
+        MOV     R16, R24
+        DEC     R16
+        BREQ    ??RestoreDefault_11
+        DEC     R16
+        BREQ    ??RestoreDefault_5
+        DEC     R16
+        BREQ    ??RestoreDefault_9
+        DEC     R16
+        BREQ    ??RestoreDefault_7
+        RJMP    ??RestoreDefault_3
 ??RestoreDefault_11:
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        CPI     R25, 11
+        BRCC    ??RestoreDefault_10
+??RestoreDefault_1:
+        MOV     R18, R25
+        LDI     R16, LOW(??m_auiIntermediateBuff)
+        LDI     R17, (??m_auiIntermediateBuff) >> 8
+        CALL    ??ReadBlockFlash
+        MOVW    R19:R18, R17:R16
+        OR      R16, R19
+        BREQ    ??RestoreDefault_4
+        MOV     R20, R25
+        INC     R20
+        LDI     R16, LOW(??m_auiIntermediateBuff)
+        LDI     R17, (??m_auiIntermediateBuff) >> 8
+        CALL    ??WriteBlock_1
+        TST     R16
+        BREQ    ??RestoreDefault_2
+        LDI     R24, 2
+        RJMP    ??RestoreDefault_3
+//  115     }
 //  116 }
 //  117 
 //  118 //-----------------------------------------------------------------------------------------------------
@@ -885,8 +821,7 @@ _A_PINF:
 //  120 {
 //  121     // Crc блока совпадает с его Crc сохранённом в служебном блоке?
 //  122     return CDataStore::CompareCurrentWithStoredCrc();
-        CALL    ??CompareCurrentWithStoredCrc
-        RET
+        JMP     ??CompareCurrentWithStoredCrc
 //  123 }
 //  124 
 //  125 //-----------------------------------------------------------------------------------------------------
@@ -897,9 +832,8 @@ _A_PINF:
 //  127 {
 //  128     // Создадим Crc из Crc всех блоков.
 //  129     CDataStore::CrcOfBlocksCrcCreate();
-        CALL    ??CrcOfBlocksCrcCreate
+        JMP     ??CrcOfBlocksCrcCreate
 //  130 }
-        RET
 //  131 
 //  132 //-----------------------------------------------------------------------------------------------------
 
@@ -909,8 +843,7 @@ _A_PINF:
 //  134 {
 //  135     // Crc из Crc всех блоков совпадает?
 //  136     return CDataStore::CrcOfBlocksCrcCheck();
-        CALL    ??CrcOfBlocksCrcCheck
-        RET
+        JMP     ??CrcOfBlocksCrcCheck
 //  137 }
 //  138 
 //  139 //-----------------------------------------------------------------------------------------------------
@@ -921,7 +854,7 @@ _A_PINF:
 //  141 {
 //  142     CPss21::SetErrorCode(NO_ERROR);
         LDI     R16, 0
-        CALL    ??SetErrorCode
+        STS     ??m_uiErrorCode, R16
 //  143     // Блоки базы данных не повреждены?
 //  144     if (CDataStore::Check())
         CALL    ??Check_1
@@ -930,15 +863,15 @@ _A_PINF:
 //  145     {
 //  146         // Все блоки принадлежат текущей базе данных?
 //  147         if (IntegrityCheck())
-        RCALL   ??IntegrityCheck
+        CALL    ??CompareCurrentWithStoredCrc
         TST     R16
-        BREQ    ??Check_3
+        BREQ    ??Check_2
 //  148         {
 //  149             // База данных подтверждена пользователем?
 //  150             if (SignatureCheck())
-        RCALL   ??SignatureCheck
+        CALL    ??CrcOfBlocksCrcCheck
         TST     R16
-        BREQ    ??Check_4
+        BREQ    ??Check_3
 //  151             {
 //  152                 return 1;
         LDI     R16, 1
@@ -947,27 +880,20 @@ _A_PINF:
 //  154             else
 //  155             {
 //  156                 CPss21::SetErrorCode(DB_ERROR);
-??Check_4:
+??Check_3:
         LDI     R16, 4
-        CALL    ??SetErrorCode
+        STS     ??m_uiErrorCode, R16
 //  157                 return 0;
-        LDI     R16, 0
-        RET
+        RJMP    ??Check_4
 //  158             }
 //  159         }
 //  160         else
 //  161         {
 //  162             CPss21::SetErrorCode(DB_ERROR);
-??Check_3:
-        LDI     R16, 4
-        CALL    ??SetErrorCode
 //  163             // Восстановим БД по умолчанию.
 //  164             // БД по умолчанию восстановлена успешно?
 //  165             RestoreDefault();
-        RCALL   ??RestoreDefault
 //  166             return 0;
-        LDI     R16, 0
-        RET
 //  167         }
 //  168     }
 //  169     else
@@ -975,12 +901,13 @@ _A_PINF:
 //  171         CPss21::SetErrorCode(DB_ERROR);
 ??Check_2:
         LDI     R16, 4
-        CALL    ??SetErrorCode
+        STS     ??m_uiErrorCode, R16
 //  172         // Восстановим БД по умолчанию.
 //  173         // БД по умолчанию восстановлена успешно?
 //  174         RestoreDefault();
         RCALL   ??RestoreDefault
 //  175         return 0;
+??Check_4:
         LDI     R16, 0
         RET
 //  176     }
@@ -992,60 +919,55 @@ _A_PINF:
 //  180 uint16_t CDataBase::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 ??ReadBlock:
 //  181 {
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
-        MOV     R26, R18
 //  182     return CDataStore::ReadBlock(puiDestination,
 //  183                                  uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
-        MOV     R18, R26
         INC     R18
-        MOVW    R17:R16, R25:R24
-        CALL    ??ReadBlock_1
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+        JMP     ??ReadBlock_1
 //  184 }
 
         RSEG CODE:CODE:NOROOT(1)
-??GetBlockLength_1:
-        ST      -Y, R24
-        MOV     R24, R16
-        CALL    ??GetBlocksNumber
-        CP      R24, R16
-        BRCC    ??GetBlockLength_3
-        MOV     R16, R24
+??GetBlockLength:
+        CPI     R16, 11
+        BRCC    ??GetBlockLength_1
         INC     R16
-        CALL    ??GetBlockLength
-        LDI     R17, 0
-        RJMP    ??GetBlockLength_4
-??GetBlockLength_3:
+        CPI     R16, 12
+        BRCC    ??GetBlockLength_1
+        LDI     R17, 8
+        MUL     R16, R17
+        MOVW    R31:R30, R1:R0
+        SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
+        SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+        LDD     R16, Z+6
+        RJMP    ??GetBlockLength_2
+??GetBlockLength_1:
         LDI     R16, 0
-        LDI     R17, 0
-??GetBlockLength_4:
-        LD      R24, Y+
-        RET
+??GetBlockLength_2:
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
 //  185 
 //  186 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R17, 0
+        RET
 
         RSEG CODE:CODE:NOROOT(1)
 //  187 uint16_t CDataBase::WriteBlock(uint8_t *puiSourse, uint8_t uiBlock)
 ??WriteBlock:
 //  188 {
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
-        MOV     R26, R18
+        MOVW    R23:R22, R17:R16
 //  189     return CDataStore::WriteBlock(puiSourse,
 //  190                                   GetBlockLength(uiBlock),
 //  191                                   uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
-        MOV     R16, R26
-        RCALL   ??GetBlockLength_1
+        MOV     R16, R18
+        RCALL   ??GetBlockLength
+        INC     R18
+        MOV     R20, R18
         MOVW    R19:R18, R17:R16
-        MOV     R20, R26
-        INC     R20
-        MOVW    R17:R16, R25:R24
+        MOVW    R17:R16, R23:R22
         CALL    ??WriteBlock_1
-        LDI     R17, 0
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+        RJMP    ?Subroutine0
 //  192 }
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -1059,10 +981,6 @@ __?EEARL:
 
         ASEGN ABSOLUTE:DATA:NOROOT,01fH
 __?EEARH:
-
-        RSEG NEAR_F:CODE:ROOT(0)
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
         RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
@@ -1086,10 +1004,10 @@ __?EEARH:
 //  208 //-----------------------------------------------------------------------------------------------------
 // 
 // 105 bytes in segment ABSOLUTE
-// 382 bytes in segment CODE
-//  36 bytes in segment NEAR_F
+// 256 bytes in segment CODE
+//   4 bytes in segment NEAR_F
 // 
-// 364 bytes of CODE memory (+  54 bytes shared)
+// 260 bytes of CODE memory
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

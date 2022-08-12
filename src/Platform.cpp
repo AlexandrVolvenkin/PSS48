@@ -696,10 +696,6 @@ TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
     { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
 };
 
-////-----------------------------------------------------------------------------------------------------
-//TDataBase __farflash *CDataBase::m_pxDataBase;
-//TDataBaseBlockPositionData __farflash *CDataBase::m_pxDataBaseBlocksPositionData;
-
 //----------------------------------------- Flash ----------------------------------------------------------------
 //CFlash::CFlash()
 //{
@@ -804,7 +800,7 @@ uint8_t CSpi::Exchange(uint8_t uiData)
     {
         CPlatform::WatchdogReset();
 
-        if (uiGuardCounter < 100)
+        if (uiGuardCounter < 200)
         {
             uiGuardCounter++;
         }
@@ -814,7 +810,7 @@ uint8_t CSpi::Exchange(uint8_t uiData)
         }
     };
 
-    delay_us(50);
+    delay_us(100);
 
     return  SPDR;
 }

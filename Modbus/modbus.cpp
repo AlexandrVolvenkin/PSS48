@@ -581,7 +581,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
                     puiResponse[(uiOffset + DATA_BEGIN) + 2] = ALARM_WINDOWS_NUMBER;
 
                     puiResponse[uiLength++] = 0;
-                    puiResponse[uiLength++] = uiLengthLocal;
+                    puiResponse[uiLength++] = uiLengthLocal + 2;
                     puiResponse[uiLength++] = puiRequest[uiOffset + REQUEST_COMMAND];
                     puiResponse[uiLength++] = uiBlockNumber;
                     uiLength += uiLengthLocal;
@@ -591,7 +591,7 @@ int16_t CModbus::Programming(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t
                     // Прочитаем блок БД.
                     uint16_t uiLengthLocal = CDataBase::ReadBlock(&puiResponse[uiOffset + DATA_BEGIN], uiBlockNumber);
                     puiResponse[uiLength++] = 0;
-                    puiResponse[uiLength++] = uiLengthLocal;
+                    puiResponse[uiLength++] = uiLengthLocal + 2;
                     puiResponse[uiLength++] = puiRequest[uiOffset + REQUEST_COMMAND];
                     puiResponse[uiLength++] = uiBlockNumber;
                     uiLength += uiLengthLocal;

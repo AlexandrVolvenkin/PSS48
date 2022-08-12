@@ -74,7 +74,7 @@ enum
                                   DISCRETE_INPUTS_ARRAY_LENGTH +
                                   ALARM_WINDOWS_ARRAY_LENGTH +
                                   DISCRETE_OUTPUT_ARRAY_LENGTH),
-    HOLDING_REGISTERS_ARRAY_LENGTH = 8,//debag//
+    HOLDING_REGISTERS_ARRAY_LENGTH = 128,//debag//
     INPUT_REGISTERS_ARRAY_LENGTH = 8,
 };
 
