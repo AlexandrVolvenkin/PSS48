@@ -195,7 +195,7 @@ void CNotifyerControl::Fsm(void)
         break;
 
     case ERROR_SIGNAL_START:
-        m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+        m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
         NotifyerEmergencyOn();
         SetFsmState(ERROR_SIGNAL_ON);
         break;
@@ -203,7 +203,7 @@ void CNotifyerControl::Fsm(void)
     case ERROR_SIGNAL_ON:
         if (m_xTimer.IsOverflow())
         {
-            m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+            m_xTimer.Set(ERROR_SIGNAL_OFF_TIME());
             NotifyerOff();
             SetFsmState(ERROR_SIGNAL_OFF);
         }
@@ -212,7 +212,7 @@ void CNotifyerControl::Fsm(void)
     case ERROR_SIGNAL_OFF:
         if (m_xTimer.IsOverflow())
         {
-            m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+            m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
             NotifyerEmergencyOn();
             SetFsmState(ERROR_SIGNAL_ON_2);
         }
@@ -221,7 +221,7 @@ void CNotifyerControl::Fsm(void)
     case ERROR_SIGNAL_ON_2:
         if (m_xTimer.IsOverflow())
         {
-            m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+            m_xTimer.Set(ERROR_SIGNAL_PAUSE_TIME());
             NotifyerOff();
             SetFsmState(ERROR_SIGNAL_OFF_2);
         }
@@ -230,7 +230,7 @@ void CNotifyerControl::Fsm(void)
     case ERROR_SIGNAL_OFF_2:
         if (m_xTimer.IsOverflow())
         {
-            m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+            m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
             NotifyerEmergencyOn();
             SetFsmState(ERROR_SIGNAL_ON);
         }

@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  10:44:25
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  11:47:46
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW970C.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW98E8.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
@@ -58,6 +58,9 @@
         PUBLIC ??CNotifyerControl
         PUBLIC ??CPreventiveAlarmWindowNotifyerControl
         PUBLIC ??CStatusLedNotifyerControl
+        PUBWEAK ??ERROR_SIGNAL_OFF_TIME
+        PUBWEAK ??ERROR_SIGNAL_ON_TIME
+        PUBWEAK ??ERROR_SIGNAL_PAUSE_TIME
         PUBLIC ??Fsm
         PUBWEAK ??GetFsmState
         PUBWEAK ??GetSavedFsmState
@@ -950,7 +953,7 @@ _A_PINF:
 //  195         break;
 //  196 
 //  197     case ERROR_SIGNAL_START:
-//  198         m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+//  198         m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
 //  199         NotifyerEmergencyOn();
 //  200         SetFsmState(ERROR_SIGNAL_ON);
 //  201         break;
@@ -958,7 +961,7 @@ _A_PINF:
 //  203     case ERROR_SIGNAL_ON:
 //  204         if (m_xTimer.IsOverflow())
 //  205         {
-//  206             m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+//  206             m_xTimer.Set(ERROR_SIGNAL_OFF_TIME());
 //  207             NotifyerOff();
 //  208             SetFsmState(ERROR_SIGNAL_OFF);
 //  209         }
@@ -967,7 +970,7 @@ _A_PINF:
 //  212     case ERROR_SIGNAL_OFF:
 //  213         if (m_xTimer.IsOverflow())
 //  214         {
-//  215             m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+//  215             m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
 //  216             NotifyerEmergencyOn();
 //  217             SetFsmState(ERROR_SIGNAL_ON_2);
 //  218         }
@@ -976,7 +979,7 @@ _A_PINF:
 //  221     case ERROR_SIGNAL_ON_2:
 //  222         if (m_xTimer.IsOverflow())
 //  223         {
-//  224             m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+//  224             m_xTimer.Set(ERROR_SIGNAL_PAUSE_TIME());
 //  225             NotifyerOff();
 //  226             SetFsmState(ERROR_SIGNAL_OFF_2);
 //  227         }
@@ -985,7 +988,7 @@ _A_PINF:
 //  230     case ERROR_SIGNAL_OFF_2:
 //  231         if (m_xTimer.IsOverflow())
 //  232         {
-//  233             m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+//  233             m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
 //  234             NotifyerEmergencyOn();
 //  235             SetFsmState(ERROR_SIGNAL_ON);
 //  236         }
@@ -1751,10 +1754,10 @@ _A_PINF:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 2
-        ADIW    R31:R30, 24
+        ADIW    R31:R30, 28
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 25
+        SBIW    R31:R30, 29
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R19:R18, R17:R16
@@ -1789,10 +1792,10 @@ _A_PINF:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 2
-        ADIW    R31:R30, 26
+        ADIW    R31:R30, 30
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 27
+        SBIW    R31:R30, 31
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R19:R18, R17:R16
@@ -1828,10 +1831,10 @@ _A_PINF:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 2
-        ADIW    R31:R30, 24
+        ADIW    R31:R30, 28
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 25
+        SBIW    R31:R30, 29
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R19:R18, R17:R16
@@ -1867,10 +1870,10 @@ _A_PINF:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 2
-        ADIW    R31:R30, 22
+        ADIW    R31:R30, 32
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 23
+        SBIW    R31:R30, 33
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R19:R18, R17:R16
@@ -1906,10 +1909,10 @@ _A_PINF:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 2
-        ADIW    R31:R30, 24
+        ADIW    R31:R30, 28
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 25
+        SBIW    R31:R30, 29
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R19:R18, R17:R16
@@ -1939,10 +1942,10 @@ _A_PINF:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 2
-        ADIW    R31:R30, 28
+        ADIW    R31:R30, 34
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 29
+        SBIW    R31:R30, 35
         MOVW    R31:R30, R19:R18
         ICALL
         MOVW    R19:R18, R17:R16
@@ -2680,6 +2683,30 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+??ERROR_SIGNAL_ON_TIME:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 150
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+??ERROR_SIGNAL_OFF_TIME:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 150
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
+??ERROR_SIGNAL_PAUSE_TIME:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 194
+        LDI     R17, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CNotifyerControl::BEEP_SIGNAL_ON_TIME()
 ??BEEP_SIGNAL_ON_TIME:
         MOVW    R19:R18, R17:R16
@@ -2707,7 +2734,7 @@ _A_PINF:
 // __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
 ??WARNING_SIGNAL_ON_TIME_1:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 232
+        LDI     R16, 32
         LDI     R17, 3
         RET
 
@@ -2715,15 +2742,15 @@ _A_PINF:
 // __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
 ??WARNING_SIGNAL_OFF_TIME_1:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 232
-        LDI     R17, 3
+        LDI     R16, 44
+        LDI     R17, 1
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
 ??ALARM_SIGNAL_ON_TIME_1:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 244
+        LDI     R16, 44
         LDI     R17, 1
         RET
 
@@ -2731,7 +2758,7 @@ _A_PINF:
 // __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
 ??ALARM_SIGNAL_OFF_TIME_1:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 244
+        LDI     R16, 44
         LDI     R17, 1
         RET
 
@@ -2755,7 +2782,7 @@ _A_PINF:
 // __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
 ??WARNING_SIGNAL_ON_TIME_2:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 232
+        LDI     R16, 32
         LDI     R17, 3
         RET
 
@@ -2763,15 +2790,15 @@ _A_PINF:
 // __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
 ??WARNING_SIGNAL_OFF_TIME_2:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 232
-        LDI     R17, 3
+        LDI     R16, 44
+        LDI     R17, 1
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
 ??ALARM_SIGNAL_ON_TIME_2:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 244
+        LDI     R16, 44
         LDI     R17, 1
         RET
 
@@ -2779,7 +2806,7 @@ _A_PINF:
 // __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
 ??ALARM_SIGNAL_OFF_TIME_2:
         MOVW    R19:R18, R17:R16
-        LDI     R16, 244
+        LDI     R16, 44
         LDI     R17, 1
         RET
 
@@ -2919,7 +2946,7 @@ __?EEARH:
         DW      (??AlarmSet_26) /2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CNotifyerControl::__vtbl[15]
+// __vtbl_entry const __flash CNotifyerControl::__vtbl[18]
 ??__vtbl:
         DC16 `?~CNotifyerControl`/2, ??Fsm/2, __pure_virtual_called/2
         DC16 __pure_virtual_called/2, __pure_virtual_called/2
@@ -2927,10 +2954,12 @@ __?EEARH:
         DC16 __pure_virtual_called/2, ??NORMAL_SIGNAL_ON_TIME/2
         DC16 ??NORMAL_SIGNAL_OFF_TIME/2, ??WARNING_SIGNAL_ON_TIME/2
         DC16 ??WARNING_SIGNAL_OFF_TIME/2, ??ALARM_SIGNAL_ON_TIME/2
-        DC16 ??ALARM_SIGNAL_OFF_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
+        DC16 ??ALARM_SIGNAL_OFF_TIME/2, ??ERROR_SIGNAL_ON_TIME/2
+        DC16 ??ERROR_SIGNAL_OFF_TIME/2, ??ERROR_SIGNAL_PAUSE_TIME/2
+        DC16 ??BEEP_SIGNAL_ON_TIME/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CPreventiveAlarmWindowNotifyerControl::__vtbl[15]
+// __vtbl_entry const __flash CPreventiveAlarmWindowNotifyerControl::__vtbl[18]
 ??__vtbl_1:
         DC16 `?~CPreventiveAlarmWindowNotifyerControl`/2, ??Fsm/2
         DC16 ??NotifyerNormalOn/2, ??NotifyerIndicationOn/2
@@ -2938,10 +2967,12 @@ __?EEARH:
         DC16 ??AlarmSet/2, ??NORMAL_SIGNAL_ON_TIME_1/2
         DC16 ??NORMAL_SIGNAL_OFF_TIME_1/2, ??WARNING_SIGNAL_ON_TIME_1/2
         DC16 ??WARNING_SIGNAL_OFF_TIME_1/2, ??ALARM_SIGNAL_ON_TIME_1/2
-        DC16 ??ALARM_SIGNAL_OFF_TIME_1/2, ??BEEP_SIGNAL_ON_TIME/2
+        DC16 ??ALARM_SIGNAL_OFF_TIME_1/2, ??ERROR_SIGNAL_ON_TIME/2
+        DC16 ??ERROR_SIGNAL_OFF_TIME/2, ??ERROR_SIGNAL_PAUSE_TIME/2
+        DC16 ??BEEP_SIGNAL_ON_TIME/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CEmergencyAlarmWindowNotifyerControl::__vtbl[15]
+// __vtbl_entry const __flash CEmergencyAlarmWindowNotifyerControl::__vtbl[18]
 ??__vtbl_2:
         DC16 `?~CEmergencyAlarmWindowNotifyerControl`/2, ??Fsm/2
         DC16 ??NotifyerNormalOn_1/2, ??NotifyerIndicationOn_1/2
@@ -2949,7 +2980,9 @@ __?EEARH:
         DC16 ??NotifyerOff_1/2, ??AlarmSet_1/2, ??NORMAL_SIGNAL_ON_TIME_2/2
         DC16 ??NORMAL_SIGNAL_OFF_TIME_2/2, ??WARNING_SIGNAL_ON_TIME_2/2
         DC16 ??WARNING_SIGNAL_OFF_TIME_2/2, ??ALARM_SIGNAL_ON_TIME_2/2
-        DC16 ??ALARM_SIGNAL_OFF_TIME_2/2, ??BEEP_SIGNAL_ON_TIME/2
+        DC16 ??ALARM_SIGNAL_OFF_TIME_2/2, ??ERROR_SIGNAL_ON_TIME/2
+        DC16 ??ERROR_SIGNAL_OFF_TIME/2, ??ERROR_SIGNAL_PAUSE_TIME/2
+        DC16 ??BEEP_SIGNAL_ON_TIME/2
 
         RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -2959,7 +2992,7 @@ __?EEARH:
         DC8 0, 0, 0, 0
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CStatusLedNotifyerControl::__vtbl[15]
+// __vtbl_entry const __flash CStatusLedNotifyerControl::__vtbl[18]
 ??__vtbl_5:
         DC16 `?~CStatusLedNotifyerControl`/2, ??Fsm/2, ??NotifyerNormalOn_2/2
         DC16 ??NotifyerIndicationOn_2/2, ??NotifyerPreventiveOn_2/2
@@ -2967,10 +3000,11 @@ __?EEARH:
         DC16 ??NORMAL_SIGNAL_ON_TIME/2, ??NORMAL_SIGNAL_OFF_TIME/2
         DC16 ??WARNING_SIGNAL_ON_TIME/2, ??WARNING_SIGNAL_OFF_TIME/2
         DC16 ??ALARM_SIGNAL_ON_TIME/2, ??ALARM_SIGNAL_OFF_TIME/2
-        DC16 ??BEEP_SIGNAL_ON_TIME/2
+        DC16 ??ERROR_SIGNAL_ON_TIME/2, ??ERROR_SIGNAL_OFF_TIME/2
+        DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CBuzzerNotifyerControl::__vtbl[15]
+// __vtbl_entry const __flash CBuzzerNotifyerControl::__vtbl[18]
 ??__vtbl_6:
         DC16 `?~CBuzzerNotifyerControl`/2, ??Fsm/2, ??NotifyerNormalOn_3/2
         DC16 ??NotifyerIndicationOn_3/2, ??NotifyerPreventiveOn_3/2
@@ -2978,7 +3012,8 @@ __?EEARH:
         DC16 ??NORMAL_SIGNAL_ON_TIME/2, ??NORMAL_SIGNAL_OFF_TIME/2
         DC16 ??WARNING_SIGNAL_ON_TIME/2, ??WARNING_SIGNAL_OFF_TIME/2
         DC16 ??ALARM_SIGNAL_ON_TIME/2, ??ALARM_SIGNAL_OFF_TIME/2
-        DC16 ??BEEP_SIGNAL_ON_TIME/2
+        DC16 ??ERROR_SIGNAL_ON_TIME/2, ??ERROR_SIGNAL_OFF_TIME/2
+        DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
 
         END
 //  626 
@@ -2986,11 +3021,11 @@ __?EEARH:
 //  628 
 // 
 //   105 bytes in segment ABSOLUTE
-// 2 666 bytes in segment CODE
-//   186 bytes in segment NEAR_F
+// 2 690 bytes in segment CODE
+//   216 bytes in segment NEAR_F
 //   150 bytes in segment SWITCH
 // 
-// 2 652 bytes of CODE memory (+ 350 bytes shared)
+// 2 652 bytes of CODE memory (+ 404 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  10:44:25
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  11:47:46
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW970C.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW98E8.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -114,6 +114,30 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   00000006   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+   \                     ??ERROR_SIGNAL_ON_TIME:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E906               LDI     R16, 150
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+   \                     ??ERROR_SIGNAL_OFF_TIME:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E906               LDI     R16, 150
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
+   \                     ??ERROR_SIGNAL_PAUSE_TIME:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   EC02               LDI     R16, 194
+   \   00000004   E011               LDI     R17, 1
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 uint16_t CNotifyerControl::BEEP_SIGNAL_ON_TIME()
    \                     ??BEEP_SIGNAL_ON_TIME:
    \   00000000   0198               MOVW    R19:R18, R17:R16
@@ -141,7 +165,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
    \                     ??WARNING_SIGNAL_ON_TIME_1:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EE08               LDI     R16, 232
+   \   00000002   E200               LDI     R16, 32
    \   00000004   E013               LDI     R17, 3
    \   00000006   9508               RET
 
@@ -149,15 +173,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
    \                     ??WARNING_SIGNAL_OFF_TIME_1:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EE08               LDI     R16, 232
-   \   00000004   E013               LDI     R17, 3
+   \   00000002   E20C               LDI     R16, 44
+   \   00000004   E011               LDI     R17, 1
    \   00000006   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
    \                     ??ALARM_SIGNAL_ON_TIME_1:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EF04               LDI     R16, 244
+   \   00000002   E20C               LDI     R16, 44
    \   00000004   E011               LDI     R17, 1
    \   00000006   9508               RET
 
@@ -165,7 +189,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
    \                     ??ALARM_SIGNAL_OFF_TIME_1:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EF04               LDI     R16, 244
+   \   00000002   E20C               LDI     R16, 44
    \   00000004   E011               LDI     R17, 1
    \   00000006   9508               RET
 
@@ -189,7 +213,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
    \                     ??WARNING_SIGNAL_ON_TIME_2:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EE08               LDI     R16, 232
+   \   00000002   E200               LDI     R16, 32
    \   00000004   E013               LDI     R17, 3
    \   00000006   9508               RET
 
@@ -197,15 +221,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
    \                     ??WARNING_SIGNAL_OFF_TIME_2:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EE08               LDI     R16, 232
-   \   00000004   E013               LDI     R17, 3
+   \   00000002   E20C               LDI     R16, 44
+   \   00000004   E011               LDI     R17, 1
    \   00000006   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
    \                     ??ALARM_SIGNAL_ON_TIME_2:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EF04               LDI     R16, 244
+   \   00000002   E20C               LDI     R16, 44
    \   00000004   E011               LDI     R17, 1
    \   00000006   9508               RET
 
@@ -213,7 +237,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
    \                     ??ALARM_SIGNAL_OFF_TIME_2:
    \   00000000   0198               MOVW    R19:R18, R17:R16
-   \   00000002   EF04               LDI     R16, 244
+   \   00000002   E20C               LDI     R16, 44
    \   00000004   E011               LDI     R17, 1
    \   00000006   9508               RET
       9          #include "Platform.h"
@@ -1299,17 +1323,17 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   000002DC   C10B               RJMP    ??Fsm_2
     196          
     197              case ERROR_SIGNAL_START:
-    198                  m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+    198                  m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
    \                     ??Fsm_18:
    \   000002DE   018D               MOVW    R17:R16, R27:R26
    \   000002E0   9611               ADIW    R27:R26, 1
    \   000002E2   91ED               LD      R30, X+
    \   000002E4   91FC               LD      R31, X
    \   000002E6   9712               SBIW    R27:R26, 2
-   \   000002E8   9678               ADIW    R31:R30, 24
+   \   000002E8   967C               ADIW    R31:R30, 28
    \   000002EA   9125               LPM     R18, Z+
    \   000002EC   9134               LPM     R19, Z
-   \   000002EE   9779               SBIW    R31:R30, 25
+   \   000002EE   977D               SBIW    R31:R30, 29
    \   000002F0   01F9               MOVW    R31:R30, R19:R18
    \   000002F2   9509               ICALL
    \   000002F4   0198               MOVW    R19:R18, R17:R16
@@ -1346,16 +1370,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   0000032A   2300               TST     R16
    \   0000032C   F101               BREQ    ??Fsm_20
     205                  {
-    206                      m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+    206                      m_xTimer.Set(ERROR_SIGNAL_OFF_TIME());
    \   0000032E   018D               MOVW    R17:R16, R27:R26
    \   00000330   9611               ADIW    R27:R26, 1
    \   00000332   91ED               LD      R30, X+
    \   00000334   91FC               LD      R31, X
    \   00000336   9712               SBIW    R27:R26, 2
-   \   00000338   967A               ADIW    R31:R30, 26
+   \   00000338   967E               ADIW    R31:R30, 30
    \   0000033A   9125               LPM     R18, Z+
    \   0000033C   9134               LPM     R19, Z
-   \   0000033E   977B               SBIW    R31:R30, 27
+   \   0000033E   977F               SBIW    R31:R30, 31
    \   00000340   01F9               MOVW    R31:R30, R19:R18
    \   00000342   9509               ICALL
    \   00000344   0198               MOVW    R19:R18, R17:R16
@@ -1394,16 +1418,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   0000037A   2300               TST     R16
    \   0000037C   F101               BREQ    ??Fsm_22
     214                  {
-    215                      m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+    215                      m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
    \   0000037E   018D               MOVW    R17:R16, R27:R26
    \   00000380   9611               ADIW    R27:R26, 1
    \   00000382   91ED               LD      R30, X+
    \   00000384   91FC               LD      R31, X
    \   00000386   9712               SBIW    R27:R26, 2
-   \   00000388   9678               ADIW    R31:R30, 24
+   \   00000388   967C               ADIW    R31:R30, 28
    \   0000038A   9125               LPM     R18, Z+
    \   0000038C   9134               LPM     R19, Z
-   \   0000038E   9779               SBIW    R31:R30, 25
+   \   0000038E   977D               SBIW    R31:R30, 29
    \   00000390   01F9               MOVW    R31:R30, R19:R18
    \   00000392   9509               ICALL
    \   00000394   0198               MOVW    R19:R18, R17:R16
@@ -1442,16 +1466,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   000003CA   2300               TST     R16
    \   000003CC   F101               BREQ    ??Fsm_24
     223                  {
-    224                      m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+    224                      m_xTimer.Set(ERROR_SIGNAL_PAUSE_TIME());
    \   000003CE   018D               MOVW    R17:R16, R27:R26
    \   000003D0   9611               ADIW    R27:R26, 1
    \   000003D2   91ED               LD      R30, X+
    \   000003D4   91FC               LD      R31, X
    \   000003D6   9712               SBIW    R27:R26, 2
-   \   000003D8   9676               ADIW    R31:R30, 22
+   \   000003D8   96B0               ADIW    R31:R30, 32
    \   000003DA   9125               LPM     R18, Z+
    \   000003DC   9134               LPM     R19, Z
-   \   000003DE   9777               SBIW    R31:R30, 23
+   \   000003DE   97B1               SBIW    R31:R30, 33
    \   000003E0   01F9               MOVW    R31:R30, R19:R18
    \   000003E2   9509               ICALL
    \   000003E4   0198               MOVW    R19:R18, R17:R16
@@ -1490,16 +1514,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   0000041A   2300               TST     R16
    \   0000041C   F101               BREQ    ??Fsm_26
     232                  {
-    233                      m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+    233                      m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
    \   0000041E   018D               MOVW    R17:R16, R27:R26
    \   00000420   9611               ADIW    R27:R26, 1
    \   00000422   91ED               LD      R30, X+
    \   00000424   91FC               LD      R31, X
    \   00000426   9712               SBIW    R27:R26, 2
-   \   00000428   9678               ADIW    R31:R30, 24
+   \   00000428   967C               ADIW    R31:R30, 28
    \   0000042A   9125               LPM     R18, Z+
    \   0000042C   9134               LPM     R19, Z
-   \   0000042E   9779               SBIW    R31:R30, 25
+   \   0000042E   977D               SBIW    R31:R30, 29
    \   00000430   01F9               MOVW    R31:R30, R19:R18
    \   00000432   9509               ICALL
    \   00000434   0198               MOVW    R19:R18, R17:R16
@@ -1536,10 +1560,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   00000464   91ED               LD      R30, X+
    \   00000466   91FC               LD      R31, X
    \   00000468   9712               SBIW    R27:R26, 2
-   \   0000046A   967C               ADIW    R31:R30, 28
+   \   0000046A   96B2               ADIW    R31:R30, 34
    \   0000046C   9125               LPM     R18, Z+
    \   0000046E   9134               LPM     R19, Z
-   \   00000470   977D               SBIW    R31:R30, 29
+   \   00000470   97B3               SBIW    R31:R30, 35
    \   00000472   01F9               MOVW    R31:R30, R19:R18
    \   00000474   9509               ICALL
    \   00000476   0198               MOVW    R19:R18, R17:R16
@@ -2783,6 +2807,9 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
         2      2   -> CDfa::SetSavedFsmState(uint8_t)
         2      2   -> CDfaLite::SetFsmState(uint8_t)
         2      2   -> CTimer::CTimer()
+      0      2   CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+      0      2   CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+      0      2   CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
       2      2   CNotifyerControl::Fsm()
         2      2   -- Indirect call
         2      2   -> CDfa::GetSavedFsmState()
@@ -2902,6 +2929,9 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        8  CNotifyerControl::ALARM_SIGNAL_ON_TIME()
        8  CNotifyerControl::BEEP_SIGNAL_ON_TIME()
       56  CNotifyerControl::CNotifyerControl()
+       8  CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+       8  CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+       8  CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
     1274  CNotifyerControl::Fsm()
        8  CNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
        8  CNotifyerControl::NORMAL_SIGNAL_ON_TIME()
@@ -3027,15 +3057,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-     186  -- Other
+     216  -- Other
 
  
    105 bytes in segment ABSOLUTE
- 2 666 bytes in segment CODE
-   186 bytes in segment NEAR_F
+ 2 690 bytes in segment CODE
+   216 bytes in segment NEAR_F
    150 bytes in segment SWITCH
  
- 2 652 bytes of CODE memory (+ 350 bytes shared)
+ 2 652 bytes of CODE memory (+ 404 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

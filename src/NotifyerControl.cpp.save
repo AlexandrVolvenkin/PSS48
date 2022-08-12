@@ -195,7 +195,7 @@ void CNotifyerControl::Fsm(void)
         break;
 
     case ERROR_SIGNAL_START:
-        m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+        m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
         NotifyerEmergencyOn();
         SetFsmState(ERROR_SIGNAL_ON);
         break;
