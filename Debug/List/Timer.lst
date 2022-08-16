@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  16:03:14
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:07:32
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWCDE2.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW9F24.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp --cpu=m128a -ms -o
 #        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -509,20 +509,30 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 
    \                                 In  segment CODE, align 2, keep-with-next
      13          CTimer::CTimer()
-   \                     ??CTimer_1:
+   \                     ??CTimer:
      14          {
+   \   00000000   ....               LDI     R18, LOW(??__vtbl)
+   \   00000002   ....               LDI     R19, (??__vtbl) >> 8
+   \   00000004   01F8               MOVW    R31:R30, R17:R16
+   \   00000006   8324               STD     Z+4, R18
+   \   00000008   8335               STD     Z+5, R19
      15          
      16          }
-   \   00000000   9508               RET
+   \   0000000A   9508               RET
      17          
      18          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
      19          CTimer::CTimer(uint16_t uiTime)
-   \                     ??CTimer:
+   \                     ??CTimer_1:
      20          {
+   \   00000000   ....               LDI     R20, LOW(??__vtbl)
+   \   00000002   ....               LDI     R21, (??__vtbl) >> 8
+   \   00000004   01F8               MOVW    R31:R30, R17:R16
+   \   00000006   8344               STD     Z+4, R20
+   \   00000008   8355               STD     Z+5, R21
      21              m_uiLastSystemTick = CPlatform::GetSystemTick();
-   \   00000000   ....               RJMP    ?Subroutine0
+   \   0000000A   ....               RJMP    ?Subroutine0
      22              m_uiTime = uiTime;
      23          }
 
@@ -539,11 +549,22 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \   00000010   8331               STD     Z+1, R19
    \   00000012   9508               RET
      24          
-     25          ////-----------------------------------------------------------------------------------------------------
-     26          //CTimer::~CTimer()
-     27          //{
-     28          //
-     29          //}
+     25          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     26          CTimer::~CTimer()
+   \                     `?~CTimer`:
+     27          {
+   \   00000000   2F40               MOV     R20, R16
+   \   00000002   2B41               OR      R20, R17
+   \   00000004   F021               BREQ    `?~CTimer_1`
+   \   00000006   FB20               BST     R18, 0
+   \   00000008   F416               BRTC    `?~CTimer_1`
+     28          
+     29          }
+   \   0000000A   ........           CALL    `??operator delete`
+   \                     `?~CTimer_1`:
+   \   0000000E   9508               RET
      30          
      31          //-----------------------------------------------------------------------------------------------------
 
@@ -583,11 +604,20 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
      44          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-     45          int8_t CTimer::IsOverflow(void)
+     45          bool CTimer::IsOverflow(void)
    \                     ??IsOverflow:
      46          {
-     47              if ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
-     48                      m_uiTime)
+     47              //    if ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
+     48          //            m_uiTime)
+     49          //    {
+     50          //        return true;
+     51          //    }
+     52          //    else
+     53          //    {
+     54          //        return false;
+     55          //    }
+     56              return ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
+     57                      m_uiTime);
    \   00000000   ....               RCALL   ?Subroutine2
    \                     ??CrossCallReturnLabel_3:
    \   00000002   8142               LDD     R20, Z+2
@@ -599,30 +629,24 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \   0000000E   1720               CP      R18, R16
    \   00000010   0731               CPC     R19, R17
    \   00000012   F010               BRCS    ??IsOverflow_1
-     49              {
-     50                  return true;
    \   00000014   E001               LDI     R16, 1
    \   00000016   9508               RET
-     51              }
-     52              else
-     53              {
-     54                  return false;
    \                     ??IsOverflow_1:
    \   00000018   E000               LDI     R16, 0
    \   0000001A   9508               RET
-     55              }
-     56          }
+     58          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CTimer &CTimer::new CTimer()
    \                     `??new CTimer`:
    \   00000000   ....               RCALL   ?Subroutine1
    \                     ??CrossCallReturnLabel_0:
-   \   00000002   F411               BRNE    `??new CTimer_2`
-   \   00000004   E000               LDI     R16, 0
-   \   00000006   E010               LDI     R17, 0
+   \   00000002   F009               BREQ    `??new CTimer_2`
+   \   00000004   ....               RJMP    ??CTimer
    \                     `??new CTimer_2`:
-   \   00000008   9508               RET
+   \   00000006   E000               LDI     R16, 0
+   \   00000008   E010               LDI     R17, 0
+   \   0000000A   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CTimer &CTimer::new CTimer(uint16_t)
@@ -634,7 +658,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
    \                     ??CrossCallReturnLabel_1:
    \   00000008   F019               BREQ    `??new CTimer_3`
    \   0000000A   019C               MOVW    R19:R18, R25:R24
-   \   0000000C   ....               RCALL   ??CTimer
+   \   0000000C   ....               RCALL   ??CTimer_1
    \   0000000E   C002               RJMP    `??new CTimer_4`
    \                     `??new CTimer_3`:
    \   00000010   E000               LDI     R16, 0
@@ -646,15 +670,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine1:
-   \   00000000   E004               LDI     R16, 4
+   \   00000000   E006               LDI     R16, 6
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
    \   0000000A   2B21               OR      R18, R17
    \   0000000C   9508               RET
-     57          
-     58          //-----------------------------------------------------------------------------------------------------
      59          
+     60          //-----------------------------------------------------------------------------------------------------
+     61          
 
    Maximum stack usage in bytes:
 
@@ -666,10 +690,13 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
       0      2   CTimer::Reset()
       0      0   CTimer::Set(uint16_t)
       0      2   CTimer::new CTimer()
+        0      2   -> CTimer::CTimer()
         0      4   -> operator new(unsigned int)
       2      2   CTimer::new CTimer(uint16_t)
         2      2   -> CTimer::CTimer(uint16_t)
         2      4   -> operator new(unsigned int)
+      0      2   CTimer::~CTimer()
+        0      2   -> operator delete(void *)
 
 
    Segment part sizes:
@@ -679,13 +706,14 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
       20  ?Subroutine0
       14  ?Subroutine1
       12  ?Subroutine2
-       2  CTimer::CTimer()
-       2  CTimer::CTimer(uint16_t)
+      12  CTimer::CTimer()
+      12  CTimer::CTimer(uint16_t)
       28  CTimer::IsOverflow()
        8  CTimer::Reset()
        0  CTimer::Set(uint16_t)
-      10  CTimer::new CTimer()
+      12  CTimer::new CTimer()
       26  CTimer::new CTimer(uint16_t)
+      16  CTimer::~CTimer()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -778,12 +806,14 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\Timer.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
+       2  -- Other
 
  
  105 bytes in segment ABSOLUTE
- 122 bytes in segment CODE
+ 160 bytes in segment CODE
+   2 bytes in segment NEAR_F
  
- 122 bytes of CODE memory
+ 160 bytes of CODE memory (+   2 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

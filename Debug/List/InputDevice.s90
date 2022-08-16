@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  16:03:05
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:07:23
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWAB98.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW7BC1.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -34,9 +34,7 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B3_L09
         EXTERN ?EPILOGUE_B4_L09
-        EXTERN ?PROLOGUE3_L09
         EXTERN ?PROLOGUE4_L09
 
         PUBLIC ??CMultiFunctionKey
@@ -54,8 +52,8 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CMultiFunctionKey 28>` SYMBOL "CMultiFunctionKey"
-??__vtbl            SYMBOL "__vtbl", `?<Name CMultiFunctionKey 28>`
+`?<Name CMultiFunctionKey 29>` SYMBOL "CMultiFunctionKey"
+??__vtbl            SYMBOL "__vtbl", `?<Name CMultiFunctionKey 29>`
 
         EXTERN ??CDfa
         EXTERN ??CTimer
@@ -64,6 +62,7 @@
         EXTERN `??operator delete`
         EXTERN `??operator new`
         EXTERN `?~CDfa`
+        EXTERN `?~CTimer`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -227,11 +226,11 @@
 //  153 }
 ??CrossCallReturnLabel_5:
         MOVW    R17:R16, R27:R26
-        REQUIRE ?Subroutine8
-        ;               // Fall through to label ?Subroutine8
+        REQUIRE ?Subroutine10
+        ;               // Fall through to label ?Subroutine10
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine8:
+?Subroutine10:
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -272,24 +271,21 @@
         ST      X, R16
 //  162 }
         MOVW    R17:R16, R27:R26
-        REQUIRE ?Subroutine10
-        ;               // Fall through to label ?Subroutine10
+        REQUIRE ?Subroutine12
+        ;               // Fall through to label ?Subroutine12
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine10:
+?Subroutine12:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine2:
         CALL    ??CDfa
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_14:
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_19:
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_15:
         JMP     ??CTimer
 
         RSEG CODE:CODE:NOROOT(1)
@@ -314,7 +310,7 @@
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine3:
-        LDI     R16, 13
+        LDI     R16, 15
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -327,24 +323,37 @@
 //  165 CMultiFunctionKey::~CMultiFunctionKey()
 `?~CMultiFunctionKey`:
 //  166 {
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
-        MOV     R26, R18
-        OR      R16, R17
+        RCALL   ?Subroutine6
+??CrossCallReturnLabel_11:
+        OR      R16, R27
         BREQ    `?~CMultiFunctionKey_1`
+        RCALL   ?Subroutine9
 //  167 
 //  168 }
+??CrossCallReturnLabel_18:
+        LDI     R18, 2
+        RCALL   ?Subroutine7
+??CrossCallReturnLabel_16:
+        CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
-        MOV     R16, R24
+        MOVW    R17:R16, R27:R26
         CALL    `?~CDfa`
-        BST     R26, 0
+        BST     R24, 0
         BRTC    `?~CMultiFunctionKey_1`
-        MOVW    R17:R16, R25:R24
+        MOVW    R17:R16, R27:R26
         CALL    `??operator delete`
 `?~CMultiFunctionKey_1`:
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+        RJMP    ?Subroutine12
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine9:
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        RET
 //  169 
 //  170 //-----------------------------------------------------------------------------------------------------
 
@@ -391,7 +400,7 @@
         LDI     R16, 0
 //  188     }
 ??EventHappened_2:
-        RJMP    ?Subroutine8
+        RJMP    ?Subroutine10
 //  189 
 //  190 }
 
@@ -408,10 +417,9 @@
 //  193 uint8_t CMultiFunctionKey::KeyEventHappened(uint8_t uiCode)
 ??KeyEventHappened:
 //  194 {
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOV     R24, R18
+        RCALL   ?Subroutine6
 //  195     Fsm();
+??CrossCallReturnLabel_12:
         MOVW    R31:R30, R17:R16
         LDD     R18, Z+1
         LDD     R31, Z+2
@@ -440,10 +448,17 @@
 //  204     {
 //  205         return 0;
 ??KeyEventHappened_1:
-        RJMP    ?Subroutine10
+        RJMP    ?Subroutine12
 //  206     }
 //  207 
 //  208 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+        RET
 //  209 
 //  210 //-----------------------------------------------------------------------------------------------------
 
@@ -488,15 +503,15 @@
 //  223         if (EventHappened())
 ??Fsm_2:
         RCALL   ?Subroutine5
-??CrossCallReturnLabel_20:
+??CrossCallReturnLabel_24:
         BREQ    ??Fsm_8
 //  224         {
 //  225             m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
         LDI     R18, 100
-        LDI     R19, 0
-        RCALL   ?Subroutine6
+        RCALL   ?Subroutine7
+??CrossCallReturnLabel_17:
+        CALL    ??Set
 //  226             SetFsmState(KEY_EVENT_PRESSED_RECEIPT);
-??CrossCallReturnLabel_12:
         LDI     R16, 2
         RJMP    ??Fsm_9
 //  227         }
@@ -506,22 +521,22 @@
 //  231         if (EventHappened())
 ??Fsm_3:
         RCALL   ?Subroutine5
-??CrossCallReturnLabel_21:
+??CrossCallReturnLabel_25:
         BREQ    ??Fsm_10
 //  232         {
 //  233             if (m_xTimer.IsOverflow())
         RCALL   ?Subroutine1
-??CrossCallReturnLabel_16:
+??CrossCallReturnLabel_20:
         BREQ    ??Fsm_8
 //  234             {
 //  235                 m_xTimer.Set(KEY_PRESSED_TIME_RESET());
         LDI     R18, 220
         LDI     R19, 5
         RCALL   ?Subroutine0
+//  236                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
 ??CrossCallReturnLabel_0:
         LDI     R16, 2
         STD     Z+8, R16
-//  236                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
 //  237                 SetFsmState(KEY_EVENT_PRESSED_RESET);
         LDI     R16, 3
         RJMP    ??Fsm_9
@@ -538,22 +553,22 @@
 //  248         if (EventHappened())
 ??Fsm_4:
         RCALL   ?Subroutine5
-??CrossCallReturnLabel_22:
+??CrossCallReturnLabel_26:
         BREQ    ??Fsm_10
 //  249         {
 //  250             if (m_xTimer.IsOverflow())
         RCALL   ?Subroutine1
-??CrossCallReturnLabel_17:
+??CrossCallReturnLabel_21:
         BREQ    ??Fsm_8
 //  251             {
 //  252                 m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
         LDI     R18, 184
         LDI     R19, 11
         RCALL   ?Subroutine0
+//  253                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
 ??CrossCallReturnLabel_1:
         LDI     R16, 3
         STD     Z+8, R16
-//  253                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
 //  254                 SetFsmState(KEY_EVENT_PRESSED_CHECK);
         LDI     R16, 4
         RJMP    ??Fsm_9
@@ -572,22 +587,22 @@
 //  267         if (EventHappened())
 ??Fsm_5:
         RCALL   ?Subroutine5
-??CrossCallReturnLabel_23:
+??CrossCallReturnLabel_27:
         BREQ    ??Fsm_10
 //  268         {
 //  269             if (m_xTimer.IsOverflow())
         RCALL   ?Subroutine1
-??CrossCallReturnLabel_18:
+??CrossCallReturnLabel_22:
         BREQ    ??Fsm_8
 //  270             {
 //  271                 m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
         LDI     R18, 136
         LDI     R19, 19
         RCALL   ?Subroutine0
+//  272                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
 ??CrossCallReturnLabel_2:
         LDI     R16, 4
         STD     Z+8, R16
-//  272                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
 //  273                 SetFsmState(KEY_EVENT_PRESSED_SET_DEFAULT);
         LDI     R16, 5
         RJMP    ??Fsm_9
@@ -611,12 +626,12 @@
 //  286         if (EventHappened())
 ??Fsm_6:
         RCALL   ?Subroutine5
-??CrossCallReturnLabel_24:
+??CrossCallReturnLabel_28:
         BREQ    ??Fsm_11
 //  287         {
 //  288             if (m_xTimer.IsOverflow())
         RCALL   ?Subroutine1
-??CrossCallReturnLabel_19:
+??CrossCallReturnLabel_23:
         BREQ    ??Fsm_8
 //  289             {
 //  290                 m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
@@ -646,7 +661,7 @@
 //  305         if (!(EventHappened()))
 ??Fsm_7:
         RCALL   ?Subroutine5
-??CrossCallReturnLabel_25:
+??CrossCallReturnLabel_29:
         BRNE    ??Fsm_8
 //  306         {
 //  307             SetFsmState(KEY_EVENT_UNPRESSED);
@@ -663,46 +678,47 @@
 //  314     }
 //  315 }
 ??Fsm_8:
-        RJMP    ?Subroutine8
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine5:
-        MOV     R16, R26
-        RCALL   ??EventHappened
-        REQUIRE ?Subroutine9
-        ;               // Fall through to label ?Subroutine9
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine9:
-        TST     R16
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine1:
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_13:
-        CALL    ??IsOverflow
-        RJMP    ?Subroutine9
+        RJMP    ?Subroutine10
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine7:
+        LDI     R19, 0
+        REQUIRE ?Subroutine8
+        ;               // Fall through to label ?Subroutine8
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine8:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 247
         SBCI    R17, 255
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine0:
-        RCALL   ?Subroutine6
-??CrossCallReturnLabel_11:
-        MOVW    R31:R30, R27:R26
+?Subroutine5:
+        MOV     R16, R26
+        RCALL   ??EventHappened
+        REQUIRE ?Subroutine11
+        ;               // Fall through to label ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine11:
+        TST     R16
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine6:
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_15:
-        JMP     ??Set
+?Subroutine1:
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_14:
+        CALL    ??IsOverflow
+        RJMP    ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_13:
+        CALL    ??Set
+        MOVW    R31:R30, R27:R26
+        RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -723,10 +739,10 @@ __?EEARH:
 
         END
 // 
-// 444 bytes in segment CODE
+// 454 bytes in segment CODE
 //   4 bytes in segment NEAR_F
 // 
-// 444 bytes of CODE memory (+ 4 bytes shared)
+// 454 bytes of CODE memory (+ 4 bytes shared)
 //
 //Errors: none
 //Warnings: none

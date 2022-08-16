@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  16:03:03
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:13:29
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWA453.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW107B.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -45,6 +45,7 @@
         EXTERN ?call_ctors
         EXTERN ?need_segment_init
 
+        PUBWEAK `?<Segment init: NEAR_I>`
         PUBWEAK `?<Segment init: NEAR_Z>`
         PUBLIC ??Check
         PUBLIC ??CompareCurrentWithStoredCrc
@@ -161,19 +162,19 @@
         PUBWEAK __?EEDR
 
 `?<Name CHammingCodes 0>` SYMBOL "CHammingCodes"
-`?<Name CEeprom 17>` SYMBOL "CEeprom"
-`?<Name CPss21 32>` SYMBOL "CPss21"
-??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 32>`
-??m_bBufferIsWrited SYMBOL "m_bBufferIsWrited", `?<Name CEeprom 17>`
-??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 32>`
+`?<Name CEeprom 19>` SYMBOL "CEeprom"
+`?<Name CPss21 31>` SYMBOL "CPss21"
+??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 31>`
+??m_bBufferIsWrited SYMBOL "m_bBufferIsWrited", `?<Name CEeprom 19>`
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 31>`
 ??m_uiErrorCode_1   SYMBOL "m_uiErrorCode", `?<Name CHammingCodes 0>`
-`?<Name CDataStore 41>` SYMBOL "CDataStore"
-??m_auiBlocksCurrentCrc SYMBOL "m_auiBlocksCurrentCrc", `?<Name CDataStore 41>`
-??m_puiIntermediateBuff SYMBOL "m_puiIntermediateBuff", `?<Name CDataStore 41>`
-??m_uiFsmEvent      SYMBOL "m_uiFsmEvent", `?<Name CDataStore 41>`
-??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CDataStore 41>`
-??m_xBlocksControlData SYMBOL "m_xBlocksControlData", `?<Name CDataStore 41>`
-??m_xTimer          SYMBOL "m_xTimer", `?<Name CDataStore 41>`
+`?<Name CDataStore 43>` SYMBOL "CDataStore"
+??m_auiBlocksCurrentCrc SYMBOL "m_auiBlocksCurrentCrc", `?<Name CDataStore 43>`
+??m_puiIntermediateBuff SYMBOL "m_puiIntermediateBuff", `?<Name CDataStore 43>`
+??m_uiFsmEvent      SYMBOL "m_uiFsmEvent", `?<Name CDataStore 43>`
+??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CDataStore 43>`
+??m_xBlocksControlData SYMBOL "m_xBlocksControlData", `?<Name CDataStore 43>`
+??m_xTimer          SYMBOL "m_xTimer", `?<Name CDataStore 43>`
 
         EXTERN ??BytesToHammingCodes
         EXTERN ??CTimer
@@ -190,6 +191,8 @@
         EXTERN ??m_uiErrorCode
         EXTERN ??m_uiErrorCode_1
         EXTERN ??usCrc16
+        EXTERN `?~CTimer`
+        EXTERN __record_needed_destruction
         EXTERN memcpy
         EXTERN memset
 
@@ -683,15 +686,30 @@ _A_PINF:
 //   19 uint16_t CDataStore::m_auiBlocksCurrentCrc[MAX_BLOCKS_NUMBER];
 ??m_auiBlocksCurrentCrc:
         DS8 24
+
+        RSEG NEAR_I:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_I>`
 //   20 uint8_t* CDataStore::m_puiIntermediateBuff;
+//   21 CTimer CDataStore::m_xTimer;
+?_0:
+        DS8 6
+        REQUIRE `?<Initializer for >`
 
         RSEG CODE:CODE:NOROOT(1)
 // static __intrinsic __version_3 void __sti__routine()
 ??__sti__routine:
-//   21 CTimer CDataStore::m_xTimer;
         LDI     R16, LOW((??m_puiIntermediateBuff + 4))
         LDI     R17, HIGH((??m_puiIntermediateBuff + 4))
-        JMP     ??CTimer
+        CALL    ??CTimer
+        LDI     R16, LOW(?_0)
+        LDI     R17, (?_0) >> 8
+        JMP     __record_needed_destruction
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 0>`:
+        LDI     R18, 2
+        LDI     R19, 0
+        JMP     `?~CTimer`
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
@@ -704,7 +722,12 @@ _A_PINF:
 ??m_uiFsmEvent:
         DS8 1
 ??m_xTimer:
-        DS8 4
+        DS8 6
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_1:
+        DS8 2
 //   24 
 //   25 ////-----------------------------------------------------------------------------------------------------
 //   26 //CDataStore::CDataStore()
@@ -902,8 +925,8 @@ _A_PINF:
 //  124     // Блок не повреждён?
 //  125     if (uiCrc == uiCalculatedCrc)
         MOVW    R19:R18, R27:R26
-        RCALL   ?Subroutine10
-??CrossCallReturnLabel_22:
+        RCALL   ?Subroutine11
+??CrossCallReturnLabel_24:
         CP      R24, R16
         CPC     R25, R17
         BRNE    ??ReadBlock_2
@@ -1174,8 +1197,8 @@ _A_PINF:
         SBCI    R31, (-(??m_auiBlocksCurrentCrc) & 0xFFFF) >> 8
         LD      R22, Z
         LDD     R23, Z+1
-        RCALL   ?Subroutine11
-??CrossCallReturnLabel_23:
+        RCALL   ?Subroutine10
+??CrossCallReturnLabel_21:
         LDD     R16, Z+10
         LDD     R17, Z+11
         CP      R22, R16
@@ -1320,8 +1343,8 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine4:
-        RCALL   ?Subroutine11
-??CrossCallReturnLabel_24:
+        RCALL   ?Subroutine10
+??CrossCallReturnLabel_22:
         LDD     R16, Z+18
         LDD     R17, Z+19
         MOVW    R31:R30, R29:R28
@@ -1337,7 +1360,7 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine11:
+?Subroutine10:
         LDI     R20, 3
         MOVW    R17:R16, R25:R24
         CALL    ?S_SHL_L02
@@ -1350,14 +1373,14 @@ _A_PINF:
 ?Subroutine1:
         LDI     R18, 22
         LDI     R19, 0
-        RCALL   ?Subroutine10
-??CrossCallReturnLabel_21:
+        RCALL   ?Subroutine11
+??CrossCallReturnLabel_23:
         LDI     R30, LOW(??m_xBlocksControlData)
         LDI     R31, (??m_xBlocksControlData) >> 8
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine10:
+?Subroutine11:
         MOVW    R17:R16, R29:R28
         JMP     ??usCrc16
 
@@ -1833,6 +1856,17 @@ __?EEARH:
         DP      0
         REQUIRE ?need_segment_init
 
+        RSEG NEAR_ID:CODE:ROOT(0)
+`?<Initializer for >`:
+        DC16 ?_1, ??m_xTimer, `?<Unnamed 0>`/2
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_I>`:
+        DC16    SFE(NEAR_I) - SFB(NEAR_I)
+        DC16    SFB(NEAR_I)
+        DP      SFB(NEAR_ID)
+        REQUIRE ?need_segment_init
+
         RSEG DIFUNCT:CODE:ROOT(0)
         REQUIRE ?call_ctors
         DW      ??__sti__routine/2
@@ -1843,14 +1877,16 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 982 bytes in segment CODE
+// 998 bytes in segment CODE
 //   2 bytes in segment DIFUNCT
-//   7 bytes in segment INITTAB
+//  14 bytes in segment INITTAB
 //   4 bytes in segment NEAR_F
-// 132 bytes in segment NEAR_Z
+//   6 bytes in segment NEAR_I
+//   6 bytes in segment NEAR_ID
+// 136 bytes in segment NEAR_Z
 // 
-// 978 bytes of CODE memory (+  17 bytes shared)
-// 132 bytes of DATA memory (+ 105 bytes shared)
+// 1 000 bytes of CODE memory (+  24 bytes shared)
+//   142 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 2

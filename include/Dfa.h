@@ -10,9 +10,6 @@
 
 #include <stdint.h>
 
-#include "Configuration.h"
-#include "AlarmWindow.h"
-
 //-----------------------------------------------------------------------------------------------------
 class CDfaLite
 {

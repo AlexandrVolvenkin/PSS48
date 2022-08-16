@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  16:03:06
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:13:31
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWADCC.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW1771.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -35,7 +35,9 @@
 //      by the C++ compiler.
 
         EXTERN ?EPILOGUE_B3_L09
+        EXTERN ?EPILOGUE_B4_L09
         EXTERN ?PROLOGUE3_L09
+        EXTERN ?PROLOGUE4_L09
 
         PUBLIC ??CLinkControl
         PUBLIC ??CModbusRtuLinkControl
@@ -146,10 +148,10 @@
 `?<Name CPss21 19>` SYMBOL "CPss21"
 ??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 19>`
 ??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 19>`
-`?<Name CLinkControl 41>` SYMBOL "CLinkControl"
-`?<Name CModbusRtuLinkContro 45>` SYMBOL "CModbusRtuLinkControl"
-??__vtbl            SYMBOL "__vtbl", `?<Name CLinkControl 41>`
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CModbusRtuLinkContro 45>`
+`?<Name CLinkControl 42>` SYMBOL "CLinkControl"
+`?<Name CModbusRtuLinkContro 46>` SYMBOL "CModbusRtuLinkControl"
+??__vtbl            SYMBOL "__vtbl", `?<Name CLinkControl 42>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CModbusRtuLinkContro 46>`
 
         EXTERN ??CDfa
         EXTERN ??CTimer
@@ -165,6 +167,7 @@
         EXTERN `??operator delete`
         EXTERN `??operator new`
         EXTERN `?~CDfa`
+        EXTERN `?~CTimer`
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\LinkControl.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -647,14 +650,10 @@ _A_PINF:
 //   14 {
 ??CrossCallReturnLabel_2:
         CALL    ??CDfa
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
-        MOVW    R31:R30, R27:R26
-        STD     Z+1, R16
-        STD     Z+2, R17
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 251
-        SBCI    R17, 255
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_5:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_7:
         CALL    ??CTimer
 //   15 
 //   16 }
@@ -664,11 +663,11 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine5:
         MOVW    R17:R16, R27:R26
-        REQUIRE ??Subroutine8_0
-        ;               // Fall through to label ??Subroutine8_0
+        REQUIRE ??Subroutine7_0
+        ;               // Fall through to label ??Subroutine7_0
 
         RSEG CODE:CODE:NOROOT(1)
-??Subroutine8_0:
+??Subroutine7_0:
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -700,8 +699,8 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-        RCALL   ?Subroutine2
-??CrossCallReturnLabel_5:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_10:
         LDI     R16, 1
         ST      X, R16
         RJMP    ?Subroutine5
@@ -725,7 +724,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine0:
-        LDI     R16, 9
+        LDI     R16, 11
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -737,24 +736,47 @@ _A_PINF:
 //   18 CLinkControl::~CLinkControl()
 `?~CLinkControl`:
 //   19 {
-        RCALL   ?Subroutine3
-??CrossCallReturnLabel_10:
-        BREQ    ??CrossCallReturnLabel_12
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+        OR      R16, R27
+        BREQ    `?~CLinkControl_1`
+        RCALL   ?Subroutine2
 //   20 
 //   21 }
+??CrossCallReturnLabel_6:
+        LDI     R18, 2
+        LDI     R19, 0
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_8:
+        CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
-        MOV     R16, R24
+        MOVW    R17:R16, R27:R26
         CALL    `?~CDfa`
-        RCALL   ?Subroutine4
-??CrossCallReturnLabel_12:
-        REQUIRE ?Subroutine7
-        ;               // Fall through to label ?Subroutine7
+        BST     R24, 0
+        BRTC    `?~CLinkControl_1`
+        MOVW    R17:R16, R27:R26
+        CALL    `??operator delete`
+`?~CLinkControl_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine7:
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+?Subroutine3:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 251
+        SBCI    R17, 255
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        RET
 //   22 
 //   23 //-----------------------------------------------------------------------------------------------------
 //   24 
@@ -776,35 +798,24 @@ _A_PINF:
 //   38 CModbusRtuLinkControl::~CModbusRtuLinkControl()
 `?~CModbusRtuLinkControl`:
 //   39 {
-        RCALL   ?Subroutine3
-??CrossCallReturnLabel_11:
-        BREQ    ??CrossCallReturnLabel_13
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
+        MOV     R26, R18
+        OR      R16, R17
+        BREQ    `?~CModbusRtuLinkControl_1`
 //   40 
 //   41 }
         LDI     R18, 0
         LDI     R19, 0
         MOV     R16, R24
         RCALL   `?~CLinkControl`
-        RCALL   ?Subroutine4
-??CrossCallReturnLabel_13:
-        RJMP    ?Subroutine7
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine4:
         BST     R26, 0
-        BRTC    ??Subroutine4_0
+        BRTC    `?~CModbusRtuLinkControl_1`
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
-??Subroutine4_0:
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine3:
-        CALL    ?PROLOGUE3_L09
-        MOVW    R25:R24, R17:R16
-        MOV     R26, R18
-        OR      R16, R17
-        RET
+`?~CModbusRtuLinkControl_1`:
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
 //   42 
 //   43 //-----------------------------------------------------------------------------------------------------
 
@@ -872,10 +883,10 @@ _A_PINF:
         BRNE    ??Fsm_6
 //   76         {
 //   77             SetFsmEvent(NO_EVENT_FSM_EVENT);
-        RCALL   ?Subroutine2
+        RCALL   ?Subroutine4
 //   78             // Запустим рабоий процесс режима контроля связи.
 //   79             CPss21::SetModeModbusRtuLinkControlInProgress(true);
-??CrossCallReturnLabel_6:
+??CrossCallReturnLabel_11:
         LDI     R16, 1
         CALL    ??SetModeModbusRtuLinkControlInProgress
 //   80             // Установим время ожидания следующего сеанса связи.
@@ -895,10 +906,10 @@ _A_PINF:
         BRNE    ??Fsm_11
 //   89         {
 //   90             SetFsmEvent(NO_EVENT_FSM_EVENT);
-        RCALL   ?Subroutine2
+        RCALL   ?Subroutine4
 //   91             // Установим время ожидания следующего сеанса связи.
 //   92             GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
-??CrossCallReturnLabel_7:
+??CrossCallReturnLabel_12:
         CALL    ??GetTimeoutModbusRtuLinkControl
 //   93         }
         MOVW    R19:R18, R17:R16
@@ -943,9 +954,9 @@ _A_PINF:
 //  109         case LINK_SESSION_HAPPENED_FSM_EVENT:
 //  110             SetFsmEvent(NO_EVENT_FSM_EVENT);
 ??Fsm_12:
-        RCALL   ?Subroutine2
+        RCALL   ?Subroutine4
 //  111             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
-??CrossCallReturnLabel_8:
+??CrossCallReturnLabel_13:
         LDI     R16, 12
         STS     ??m_uiFsmState, R16
 //  112             // Установим время ожидания следующего сеанса связи.
@@ -953,9 +964,8 @@ _A_PINF:
 ??Fsm_8:
         CALL    ??GetTimeoutModbusRtuLinkControl
         MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 251
-        SBCI    R17, 255
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_9:
         CALL    ??Set
 //  114             SetFsmState(NEXT_LINK_SESSION_WAITING);
         LDI     R16, 3
@@ -965,10 +975,10 @@ _A_PINF:
 //  117         case RECEIPT_HAPPENED_FSM_EVENT:
 //  118             SetFsmEvent(NO_EVENT_FSM_EVENT);
 ??Fsm_13:
-        RCALL   ?Subroutine2
+        RCALL   ?Subroutine4
 //  119             // Остановим рабоий процесс режима контроля связи.
 //  120             CPss21::SetModeModbusRtuLinkControlInProgress(false);
-??CrossCallReturnLabel_9:
+??CrossCallReturnLabel_14:
         CALL    ??SetModeModbusRtuLinkControlInProgress
 //  121             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
         LDI     R16, 12
@@ -990,10 +1000,10 @@ _A_PINF:
 //  132     }
 //  133 }
 ??Fsm_6:
-        RJMP    ??Subroutine8_0
+        RJMP    ??Subroutine7_0
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine2:
+?Subroutine4:
         LDI     R16, 0
         STD     Z+4, R16
         RET
@@ -1028,10 +1038,10 @@ __?EEARH:
 //  135 
 // 
 // 105 bytes in segment ABSOLUTE
-// 338 bytes in segment CODE
+// 366 bytes in segment CODE
 //  12 bytes in segment NEAR_F
 // 
-// 342 bytes of CODE memory (+   8 bytes shared)
+// 370 bytes of CODE memory (+   8 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

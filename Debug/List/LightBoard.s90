@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  16:03:05
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  19:27:21
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWAC93.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWB1F6.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -637,95 +637,107 @@ _A_PINF:
 
         RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
+//   16 // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
 
         RSEG NEAR_F:CODE:ROOT(0)
-//   16 __flash uint8_t CLightBoard::m_auiLedMap[] =
+//   17 __flash uint8_t CLightBoard::m_auiLedMap[] =
 ??m_auiLedMap:
         DC8 48, 60, 32, 45, 16, 28, 0, 13, 49, 61, 33, 44, 17, 29, 1, 12, 52
         DC8 62, 36, 43, 20, 30, 4, 11, 53, 63, 37, 42, 21, 31, 5, 10, 54, 57
         DC8 38, 41, 22, 25, 6, 9, 55, 56, 39, 40, 23, 24, 7, 8
-//   17 {
-//   18 //    // Матрица расположения на панели.
-//   19 //    // Левая часть.    // Правая часть.
-//   20     48, 60, 32, 45,    16, 28, 0, 13,
-//   21     49, 61, 33, 44,    17, 29, 1, 12,
-//   22     52, 62, 36, 43,    20, 30, 4, 11,
-//   23     53, 63, 37, 42,    21, 31, 5, 10,
-//   24     54, 57, 38, 41,    22, 25, 6,  9,
-//   25     55, 56, 39, 40,    23, 24, 7,  8,
-//   26 };
-//   27 
-//   28 ////-----------------------------------------------------------------------------------------------------
-//   29 //CLightBoard::CLightBoard()
-//   30 //{
-//   31 ////    Init();
-//   32 //}
-//   33 //
-//   34 ////-----------------------------------------------------------------------------------------------------
-//   35 //CLightBoard::~CLightBoard()
-//   36 //{
-//   37 //
-//   38 //}
+//   18 {
+//   19     // Индекс окна на панели сопоставлен с выходом драйвера управления светодиодом на схеме.
+//   20     // На схеме панели 4 драйвера по 16 выходов. Два драйвера на левой стороне(плата МЦП-21-24)
+//   21     // и два драйвера на правой стороне(плата МРИ-21-24).
+//   22     // Длина массива управления драйверами 16 * 4 = 64 выхода.
+//   23     // Последовательность адресации выходов драйверов в массиве:
+//   24     // (0-15) - DD1 плата МРИ-21-24, (16-31) - DD2 плата МРИ-21-24,
+//   25     // (32-47) - DD1 плата МЦП-21-24, (48-63) - DD2 плата МЦП-21-24.
+//   26     // Последовательное продвижение состояния светодиода в сдвиговом регистре драйвера идёт от
+//   27     // младшего выхода к старшему. Поэтому, состояние светодиода по нулевому индексу в массиве управления,
+//   28     // после 64 сдвигов придёт на выход OUT15 драйвера DD1 платы МРИ-21-24, что соответстствует индексу окна 6.
+//   29     // Например: Индекс окна - 6 сопоставлен с выходом OUT15 драйвера DD1 плата МРИ-21-24.
+//   30     // Индекс окна - 7 сопоставлен с выходом OUT2 драйвера DD1 плата МРИ-21-24.
+//   31     // Левая часть.    // Правая часть.
+//   32     48, 60, 32, 45,    16, 28, 0, 13,
+//   33     49, 61, 33, 44,    17, 29, 1, 12,
+//   34     52, 62, 36, 43,    20, 30, 4, 11,
+//   35     53, 63, 37, 42,    21, 31, 5, 10,
+//   36     54, 57, 38, 41,    22, 25, 6,  9,
+//   37     55, 56, 39, 40,    23, 24, 7,  8,
+//   38 };
 //   39 
-//   40 //-----------------------------------------------------------------------------------------------------
+//   40 ////-----------------------------------------------------------------------------------------------------
+//   41 //CLightBoard::CLightBoard()
+//   42 //{
+//   43 ////    Init();
+//   44 //}
+//   45 //
+//   46 ////-----------------------------------------------------------------------------------------------------
+//   47 //CLightBoard::~CLightBoard()
+//   48 //{
+//   49 //
+//   50 //}
+//   51 
+//   52 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   41 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
+//   53 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
 ??Init:
-//   42 {
-//   43     m_pxAlarmWindowControl = pxAlarmWindowControl;
+//   54 {
+//   55     m_pxAlarmWindowControl = pxAlarmWindowControl;
         LDI     R30, LOW(??m_pxAlarmWindowControl)
         LDI     R31, (??m_pxAlarmWindowControl) >> 8
         ST      Z, R16
         STD     Z+1, R17
-//   44     CPlatform::LedDriverEnable1On();
+//   56     CPlatform::LedDriverEnable1On();
         LDS     R16, 98
         ANDI    R16, 0xFE
         STS     98, R16
-//   45     CPlatform::LedDriverEnable2On();
+//   57     CPlatform::LedDriverEnable2On();
         LDS     R16, 98
         ANDI    R16, 0xDF
         STS     98, R16
-//   46     CPlatform::LedDriverEnable3On();
+//   58     CPlatform::LedDriverEnable3On();
         CBI     0x03, 0x06
-//   47     CPlatform::LedDriverEnable4On();
+//   59     CPlatform::LedDriverEnable4On();
         CBI     0x03, 0x07
-//   48     CPlatform::LedDriverEnable1SetPinOutput();
+//   60     CPlatform::LedDriverEnable1SetPinOutput();
         LDS     R16, 97
         ORI     R16, 0x01
         STS     97, R16
-//   49     CPlatform::LedDriverEnable2SetPinOutput();
+//   61     CPlatform::LedDriverEnable2SetPinOutput();
         LDS     R16, 97
         ORI     R16, 0x20
         STS     97, R16
-//   50     CPlatform::LedDriverEnable3SetPinOutput();
+//   62     CPlatform::LedDriverEnable3SetPinOutput();
         SBI     0x02, 0x06
-//   51     CPlatform::LedDriverEnable4SetPinOutput();
+//   63     CPlatform::LedDriverEnable4SetPinOutput();
         SBI     0x02, 0x07
-//   52 
-//   53     CDM134::Init();
+//   64 
+//   65     CDM134::Init();
         JMP     ??Init_1
         REQUIRE _A_DDRF
         REQUIRE _A_PORTF
         REQUIRE _A_DDRE
         REQUIRE _A_PORTE
-//   54 }
-//   55 
-//   56 //-----------------------------------------------------------------------------------------------------
+//   66 }
+//   67 
+//   68 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   57 void CLightBoard::Set(void)
+//   69 void CLightBoard::Set(void)
 ??Set:
-//   58 {
+//   70 {
         ST      -Y, R27
         ST      -Y, R26
-//   59     for (uint8_t i = 0;
+//   71     for (uint8_t i = 0;
         LDI     R18, 0
         LDI     R19, 48
-//   60             i < ALARM_WINDOWS_NUMBER;
-//   61             i++)
-//   62     {
-//   63         if (m_pxAlarmWindowControl[i].GetActivityState())
+//   72             i < ALARM_WINDOWS_NUMBER;
+//   73             i++)
+//   74     {
+//   75         if (m_pxAlarmWindowControl[i].GetActivityState())
 ??Set_2:
         MOV     R30, R18
         LDI     R31, 0
@@ -752,30 +764,30 @@ _A_PINF:
         LD      R16, X
         TST     R16
         BREQ    ??Set_3
-//   64         {
-//   65             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
+//   76         {
+//   77             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
         LDI     R16, 1
         RJMP    ??Set_4
-//   66         }
-//   67         else
-//   68         {
-//   69             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
+//   78         }
+//   79         else
+//   80         {
+//   81             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
 ??Set_3:
         LDI     R16, 0
 ??Set_4:
         ST      Z, R16
-//   70         }
-//   71     };
+//   82         }
+//   83     };
         INC     R18
         DEC     R19
         BRNE    ??Set_2
-//   72 
-//   73     CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+//   84 
+//   85     CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
         LDI     R18, 64
         LDI     R16, LOW(??m_auiBoardLampsControl)
         LDI     R17, (??m_auiBoardLampsControl) >> 8
         CALL    ??Set_1
-//   74 }
+//   86 }
         LD      R26, Y+
         LD      R27, Y+
         RET

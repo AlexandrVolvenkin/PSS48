@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  16:03:03
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:13:29
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWA453.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW107B.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -542,7 +542,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
      21          CTimer CDataStore::m_xTimer;
    \   00000000   ....               LDI     R16, LOW((??m_puiIntermediateBuff + 4))
    \   00000002   ....               LDI     R17, HIGH((??m_puiIntermediateBuff + 4))
-   \   00000004   ........           JMP     ??CTimer
+   \   00000004   ........           CALL    ??CTimer
+   \   00000008   ....               LDI     R16, LOW(?_0)
+   \   0000000A   ....               LDI     R17, (?_0) >> 8
+   \   0000000C   ........           JMP     __record_needed_destruction
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     `?<Unnamed 0>`:
+   \   00000000   E022               LDI     R18, 2
+   \   00000002   E030               LDI     R19, 0
+   \   00000004   ........           JMP     `?~CTimer`
 
    \                                 In  segment NEAR_Z, align 1, keep-with-next, root
    \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
@@ -555,7 +564,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
    \                     ??m_uiFsmEvent:
    \   00000003                      DS8 1
    \                     ??m_xTimer:
-   \   00000004                      DS8 4
+   \   00000004                      DS8 6
      24          
      25          ////-----------------------------------------------------------------------------------------------------
      26          //CDataStore::CDataStore()
@@ -759,8 +768,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     124              // Блок не повреждён?
     125              if (uiCrc == uiCalculatedCrc)
    \   00000054   019D               MOVW    R19:R18, R27:R26
-   \   00000056   ....               RCALL   ?Subroutine10
-   \                     ??CrossCallReturnLabel_22:
+   \   00000056   ....               RCALL   ?Subroutine11
+   \                     ??CrossCallReturnLabel_24:
    \   00000058   1780               CP      R24, R16
    \   0000005A   0791               CPC     R25, R17
    \   0000005C   F471               BRNE    ??ReadBlock_2
@@ -802,7 +811,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     138          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine10:
+   \                     ?Subroutine11:
    \   00000000   018E               MOVW    R17:R16, R29:R28
    \   00000002   ........           JMP     ??usCrc16
     139          
@@ -1036,8 +1045,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
    \   00000014   ....               SBCI    R31, (-(??m_auiBlocksCurrentCrc) & 0xFFFF) >> 8
    \   00000016   8160               LD      R22, Z
    \   00000018   8171               LDD     R23, Z+1
-   \   0000001A   ....               RCALL   ?Subroutine11
-   \                     ??CrossCallReturnLabel_23:
+   \   0000001A   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_21:
    \   0000001C   8502               LDD     R16, Z+10
    \   0000001E   8513               LDD     R17, Z+11
    \   00000020   1760               CP      R22, R16
@@ -1064,7 +1073,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     234          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine11:
+   \                     ?Subroutine10:
    \   00000000   E043               LDI     R20, 3
    \   00000002   018C               MOVW    R17:R16, R25:R24
    \   00000004   ........           CALL    ?S_SHL_L02
@@ -1133,8 +1142,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine4:
-   \   00000000   ....               RCALL   ?Subroutine11
-   \                     ??CrossCallReturnLabel_24:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_22:
    \   00000002   8902               LDD     R16, Z+18
    \   00000004   8913               LDD     R17, Z+19
    \   00000006   01FE               MOVW    R31:R30, R29:R28
@@ -1153,8 +1162,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
    \                     ?Subroutine1:
    \   00000000   E126               LDI     R18, 22
    \   00000002   E030               LDI     R19, 0
-   \   00000004   ....               RCALL   ?Subroutine10
-   \                     ??CrossCallReturnLabel_21:
+   \   00000004   ....               RCALL   ?Subroutine11
+   \                     ??CrossCallReturnLabel_23:
    \   00000006   ....               LDI     R30, LOW(??m_xBlocksControlData)
    \   00000008   ....               LDI     R31, (??m_xBlocksControlData) >> 8
    \   0000000A   9508               RET
@@ -1656,6 +1665,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
    \   00000000   ........           JMP     ??ReadBlock_4
     521          }
 
+   \                                 In  segment NEAR_ID, align 1, keep-with-next, root
+   \                     `?<Initializer for >`:
+   \   00000000   ............       DC16 ?_1, ??m_xTimer, `?<Unnamed 0>`/2
+
    \                                 In  segment DIFUNCT, align 1, keep-with-next, root
    \   00000000                      REQUIRE ?call_ctors
    \   00000000   ....               DW      ??__sti__routine/2
@@ -1664,6 +1677,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
 
    CSTACK RSTACK Function
    ------ ------ --------
+      0      2   <Unnamed 0>
+        0      2   -> CTimer::~CTimer()
       6      2   CDataStore::Check()
         6      2   -> CDataStore::Fsm()
         6      2   -> CDataStore::Init()
@@ -1704,16 +1719,19 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
       0      2   CEeprom::StartWrite()
       0      2   __sti__routine()
         0      2   -> CTimer::CTimer()
+        0      2   -> __record_needed_destruction
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
+       6  ?<Initializer for >
+       8  ?<Unnamed 0>
       10  ?Subroutine0
       12  ?Subroutine1
-       6  ?Subroutine10
-      16  ?Subroutine11
+      16  ?Subroutine10
+       6  ?Subroutine11
        8  ?Subroutine12
        6  ?Subroutine13
        6  ?Subroutine14
@@ -1736,7 +1754,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
      150  CDataStore::Write(uint8_t *, uint16_t, uint8_t)
       30  CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
       24  CDataStore::m_auiBlocksCurrentCrc
-       8  CDataStore::m_puiIntermediateBuff
+      10  CDataStore::m_puiIntermediateBuff
           CDataStore::m_uiFsmState
           CDataStore::m_uiFsmEvent
           CDataStore::m_xTimer
@@ -1834,19 +1852,21 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
        1  _A_XDIV
        1  _A_XMCRA
        1  _A_XMCRB
-       8  __sti__routine()
-      13  -- Other
+      16  __sti__routine()
+      28  -- Other
 
  
  105 bytes in segment ABSOLUTE
- 982 bytes in segment CODE
+ 998 bytes in segment CODE
    2 bytes in segment DIFUNCT
-   7 bytes in segment INITTAB
+  14 bytes in segment INITTAB
    4 bytes in segment NEAR_F
- 132 bytes in segment NEAR_Z
+   6 bytes in segment NEAR_I
+   6 bytes in segment NEAR_ID
+ 136 bytes in segment NEAR_Z
  
- 978 bytes of CODE memory (+  17 bytes shared)
- 132 bytes of DATA memory (+ 105 bytes shared)
+ 1 000 bytes of CODE memory (+  24 bytes shared)
+   142 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
 Warnings: 2

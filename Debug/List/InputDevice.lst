@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  16:03:05
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:07:23
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EWAB98.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW7BC1.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -187,11 +187,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     153          }
    \                     ??CrossCallReturnLabel_5:
    \   00000004   018D               MOVW    R17:R16, R27:R26
-   \   00000006                      REQUIRE ?Subroutine8
-   \   00000006                      ;               // Fall through to label ?Subroutine8
+   \   00000006                      REQUIRE ?Subroutine10
+   \   00000006                      ;               // Fall through to label ?Subroutine10
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine8:
+   \                     ?Subroutine10:
    \   00000000   91A9               LD      R26, Y+
    \   00000002   91B9               LD      R27, Y+
    \   00000004   9508               RET
@@ -199,14 +199,20 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine2:
    \   00000000   ........           CALL    ??CDfa
-   \   00000004   ....               LDI     R16, LOW(??__vtbl)
-   \   00000006   ....               LDI     R17, (??__vtbl) >> 8
-   \   00000008   01FD               MOVW    R31:R30, R27:R26
-   \   0000000A   8301               STD     Z+1, R16
-   \   0000000C   8312               STD     Z+2, R17
-   \   0000000E   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_14:
-   \   00000010   ........           JMP     ??CTimer
+   \   00000004   ....               RCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_19:
+   \   00000006   ....               RCALL   ?Subroutine8
+   \                     ??CrossCallReturnLabel_15:
+   \   00000008   ........           JMP     ??CTimer
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine9:
+   \   00000000   ....               LDI     R16, LOW(??__vtbl)
+   \   00000002   ....               LDI     R17, (??__vtbl) >> 8
+   \   00000004   01FD               MOVW    R31:R30, R27:R26
+   \   00000006   8301               STD     Z+1, R16
+   \   00000008   8312               STD     Z+2, R17
+   \   0000000A   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine4:
@@ -216,7 +222,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
    \   00000006   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine7:
+   \                     ?Subroutine8:
    \   00000000   018D               MOVW    R17:R16, R27:R26
    \   00000002   5F07               SUBI    R16, 247
    \   00000004   4F1F               SBCI    R17, 255
@@ -246,11 +252,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
    \   00000016   930C               ST      X, R16
     162          }
    \   00000018   018D               MOVW    R17:R16, R27:R26
-   \   0000001A                      REQUIRE ?Subroutine10
-   \   0000001A                      ;               // Fall through to label ?Subroutine10
+   \   0000001A                      REQUIRE ?Subroutine12
+   \   0000001A                      ;               // Fall through to label ?Subroutine12
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine10:
+   \                     ?Subroutine12:
    \   00000000   E0E4               LDI     R30, 4
    \   00000002   ........           JMP     ?EPILOGUE_B4_L09
     163          
@@ -260,24 +266,41 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     165          CMultiFunctionKey::~CMultiFunctionKey()
    \                     `?~CMultiFunctionKey`:
     166          {
-   \   00000000   ........           CALL    ?PROLOGUE3_L09
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   2FA2               MOV     R26, R18
-   \   00000008   2B01               OR      R16, R17
-   \   0000000A   F051               BREQ    `?~CMultiFunctionKey_1`
+   \   00000000   ....               RCALL   ?Subroutine6
+   \                     ??CrossCallReturnLabel_11:
+   \   00000002   2B0B               OR      R16, R27
+   \   00000004   F079               BREQ    `?~CMultiFunctionKey_1`
+   \   00000006   ....               RCALL   ?Subroutine9
     167          
     168          }
-   \   0000000C   E020               LDI     R18, 0
-   \   0000000E   E030               LDI     R19, 0
-   \   00000010   2F08               MOV     R16, R24
-   \   00000012   ........           CALL    `?~CDfa`
-   \   00000016   FBA0               BST     R26, 0
-   \   00000018   F41E               BRTC    `?~CMultiFunctionKey_1`
-   \   0000001A   018C               MOVW    R17:R16, R25:R24
-   \   0000001C   ........           CALL    `??operator delete`
+   \                     ??CrossCallReturnLabel_18:
+   \   00000008   E022               LDI     R18, 2
+   \   0000000A   ....               RCALL   ?Subroutine7
+   \                     ??CrossCallReturnLabel_16:
+   \   0000000C   ........           CALL    `?~CTimer`
+   \   00000010   E020               LDI     R18, 0
+   \   00000012   E030               LDI     R19, 0
+   \   00000014   018D               MOVW    R17:R16, R27:R26
+   \   00000016   ........           CALL    `?~CDfa`
+   \   0000001A   FB80               BST     R24, 0
+   \   0000001C   F41E               BRTC    `?~CMultiFunctionKey_1`
+   \   0000001E   018D               MOVW    R17:R16, R27:R26
+   \   00000020   ........           CALL    `??operator delete`
    \                     `?~CMultiFunctionKey_1`:
-   \   00000020   E0E3               LDI     R30, 3
-   \   00000022   ........           JMP     ?EPILOGUE_B3_L09
+   \   00000024   ....               RJMP    ?Subroutine12
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine6:
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   2F82               MOV     R24, R18
+   \   00000008   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine7:
+   \   00000000   E030               LDI     R19, 0
+   \   00000002                      REQUIRE ?Subroutine8
+   \   00000002                      ;               // Fall through to label ?Subroutine8
     169          
     170          //-----------------------------------------------------------------------------------------------------
 
@@ -324,7 +347,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
    \   00000012   E000               LDI     R16, 0
     188              }
    \                     ??EventHappened_2:
-   \   00000014   ....               RJMP    ?Subroutine8
+   \   00000014   ....               RJMP    ?Subroutine10
     189          
     190          }
     191          
@@ -334,39 +357,38 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     193          uint8_t CMultiFunctionKey::KeyEventHappened(uint8_t uiCode)
    \                     ??KeyEventHappened:
     194          {
-   \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   2F82               MOV     R24, R18
+   \   00000000   ....               RCALL   ?Subroutine6
     195              Fsm();
-   \   00000008   01F8               MOVW    R31:R30, R17:R16
-   \   0000000A   8121               LDD     R18, Z+1
-   \   0000000C   81F2               LDD     R31, Z+2
-   \   0000000E   2FE2               MOV     R30, R18
-   \   00000010   9632               ADIW    R31:R30, 2
-   \   00000012   9125               LPM     R18, Z+
-   \   00000014   91F4               LPM     R31, Z
-   \   00000016   2FE2               MOV     R30, R18
-   \   00000018   9509               ICALL
+   \                     ??CrossCallReturnLabel_12:
+   \   00000002   01F8               MOVW    R31:R30, R17:R16
+   \   00000004   8121               LDD     R18, Z+1
+   \   00000006   81F2               LDD     R31, Z+2
+   \   00000008   2FE2               MOV     R30, R18
+   \   0000000A   9632               ADIW    R31:R30, 2
+   \   0000000C   9125               LPM     R18, Z+
+   \   0000000E   91F4               LPM     R31, Z
+   \   00000010   2FE2               MOV     R30, R18
+   \   00000012   9509               ICALL
     196          
     197              if (m_uiEventCode == uiCode)
-   \   0000001A   01FD               MOVW    R31:R30, R27:R26
-   \   0000001C   8107               LDD     R16, Z+7
-   \   0000001E   1708               CP      R16, R24
-   \   00000020   E000               LDI     R16, 0
-   \   00000022   F419               BRNE    ??KeyEventHappened_1
+   \   00000014   01FD               MOVW    R31:R30, R27:R26
+   \   00000016   8107               LDD     R16, Z+7
+   \   00000018   1708               CP      R16, R24
+   \   0000001A   E000               LDI     R16, 0
+   \   0000001C   F419               BRNE    ??KeyEventHappened_1
     198              {
     199                  m_uiEventCode = KEY_EVENT_UNPRESSED;
-   \   00000024   8307               STD     Z+7, R16
+   \   0000001E   8307               STD     Z+7, R16
     200                  m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
-   \   00000026   8700               STD     Z+8, R16
+   \   00000020   8700               STD     Z+8, R16
     201                  return 1;
-   \   00000028   E001               LDI     R16, 1
+   \   00000022   E001               LDI     R16, 1
     202              }
     203              else
     204              {
     205                  return 0;
    \                     ??KeyEventHappened_1:
-   \   0000002A   ....               RJMP    ?Subroutine10
+   \   00000024   ....               RJMP    ?Subroutine12
     206              }
     207          
     208          }
@@ -387,16 +409,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
    \   00000008   950A               DEC     R16
    \   0000000A   F081               BREQ    ??Fsm_2
    \   0000000C   950A               DEC     R16
-   \   0000000E   F0A9               BREQ    ??Fsm_3
+   \   0000000E   F0B1               BREQ    ??Fsm_3
    \   00000010   950A               DEC     R16
-   \   00000012   F0F1               BREQ    ??Fsm_4
+   \   00000012   F0F9               BREQ    ??Fsm_4
    \   00000014   950A               DEC     R16
-   \   00000016   F139               BREQ    ??Fsm_5
+   \   00000016   F141               BREQ    ??Fsm_5
    \   00000018   950A               DEC     R16
-   \   0000001A   F1A1               BREQ    ??Fsm_6
+   \   0000001A   F1A9               BREQ    ??Fsm_6
    \   0000001C   5002               SUBI    R16, 2
-   \   0000001E   F1F1               BREQ    ??Fsm_7
-   \   00000020   C041               RJMP    ??Fsm_8
+   \   0000001E   F1F9               BREQ    ??Fsm_7
+   \   00000020   C042               RJMP    ??Fsm_8
     215              {
     216              case KEY_EVENT_UNPRESSED:
     217                  m_uiEventCode = m_uiPreliminaryEventCode;
@@ -406,7 +428,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
    \   00000026   8307               STD     Z+7, R16
     218                  SetFsmState(KEY_EVENT_WAITING_PRESSED);
    \   00000028   E001               LDI     R16, 1
-   \   0000002A   C03B               RJMP    ??Fsm_9
+   \   0000002A   C03C               RJMP    ??Fsm_9
     219                  break;
     220          
     221              case KEY_EVENT_WAITING_PRESSED:
@@ -414,43 +436,43 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     223                  if (EventHappened())
    \                     ??Fsm_2:
    \   0000002C   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_20:
-   \   0000002E   F1D1               BREQ    ??Fsm_8
+   \                     ??CrossCallReturnLabel_24:
+   \   0000002E   F1D9               BREQ    ??Fsm_8
     224                  {
     225                      m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
    \   00000030   E624               LDI     R18, 100
-   \   00000032   E030               LDI     R19, 0
-   \   00000034   ....               RCALL   ?Subroutine6
+   \   00000032   ....               RCALL   ?Subroutine7
+   \                     ??CrossCallReturnLabel_17:
+   \   00000034   ........           CALL    ??Set
     226                      SetFsmState(KEY_EVENT_PRESSED_RECEIPT);
-   \                     ??CrossCallReturnLabel_12:
-   \   00000036   E002               LDI     R16, 2
-   \   00000038   C034               RJMP    ??Fsm_9
+   \   00000038   E002               LDI     R16, 2
+   \   0000003A   C034               RJMP    ??Fsm_9
     227                  }
     228                  break;
     229              case KEY_EVENT_PRESSED_RECEIPT:
     230                  // кнопка нажата?
     231                  if (EventHappened())
    \                     ??Fsm_3:
-   \   0000003A   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_21:
-   \   0000003C   F0F9               BREQ    ??Fsm_10
+   \   0000003C   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_25:
+   \   0000003E   F0F9               BREQ    ??Fsm_10
     232                  {
     233                      if (m_xTimer.IsOverflow())
-   \   0000003E   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_16:
-   \   00000040   F189               BREQ    ??Fsm_8
+   \   00000040   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_20:
+   \   00000042   F189               BREQ    ??Fsm_8
     234                      {
     235                          m_xTimer.Set(KEY_PRESSED_TIME_RESET());
-   \   00000042   ED2C               LDI     R18, 220
-   \   00000044   E035               LDI     R19, 5
-   \   00000046   ....               RCALL   ?Subroutine0
-   \                     ??CrossCallReturnLabel_0:
-   \   00000048   E002               LDI     R16, 2
-   \   0000004A   8700               STD     Z+8, R16
+   \   00000044   ED2C               LDI     R18, 220
+   \   00000046   E035               LDI     R19, 5
+   \   00000048   ....               RCALL   ?Subroutine0
     236                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
+   \                     ??CrossCallReturnLabel_0:
+   \   0000004A   E002               LDI     R16, 2
+   \   0000004C   8700               STD     Z+8, R16
     237                          SetFsmState(KEY_EVENT_PRESSED_RESET);
-   \   0000004C   E003               LDI     R16, 3
-   \   0000004E   C029               RJMP    ??Fsm_9
+   \   0000004E   E003               LDI     R16, 3
+   \   00000050   C029               RJMP    ??Fsm_9
     238                      }
     239                  }
     240                  else
@@ -463,26 +485,26 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     247                  // кнопка нажата?
     248                  if (EventHappened())
    \                     ??Fsm_4:
-   \   00000050   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_22:
-   \   00000052   F0A1               BREQ    ??Fsm_10
+   \   00000052   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_26:
+   \   00000054   F0A1               BREQ    ??Fsm_10
     249                  {
     250                      if (m_xTimer.IsOverflow())
-   \   00000054   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_17:
-   \   00000056   F131               BREQ    ??Fsm_8
+   \   00000056   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_21:
+   \   00000058   F131               BREQ    ??Fsm_8
     251                      {
     252                          m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
-   \   00000058   EB28               LDI     R18, 184
-   \   0000005A   E03B               LDI     R19, 11
-   \   0000005C   ....               RCALL   ?Subroutine0
-   \                     ??CrossCallReturnLabel_1:
-   \   0000005E   E003               LDI     R16, 3
-   \   00000060   8700               STD     Z+8, R16
+   \   0000005A   EB28               LDI     R18, 184
+   \   0000005C   E03B               LDI     R19, 11
+   \   0000005E   ....               RCALL   ?Subroutine0
     253                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
+   \                     ??CrossCallReturnLabel_1:
+   \   00000060   E003               LDI     R16, 3
+   \   00000062   8700               STD     Z+8, R16
     254                          SetFsmState(KEY_EVENT_PRESSED_CHECK);
-   \   00000062   E004               LDI     R16, 4
-   \   00000064   C01E               RJMP    ??Fsm_9
+   \   00000064   E004               LDI     R16, 4
+   \   00000066   C01E               RJMP    ??Fsm_9
     255          
     256                      }
     257                  }
@@ -497,26 +519,26 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     266                  // кнопка нажата?
     267                  if (EventHappened())
    \                     ??Fsm_5:
-   \   00000066   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_23:
-   \   00000068   F049               BREQ    ??Fsm_10
+   \   00000068   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_27:
+   \   0000006A   F049               BREQ    ??Fsm_10
     268                  {
     269                      if (m_xTimer.IsOverflow())
-   \   0000006A   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_18:
-   \   0000006C   F0D9               BREQ    ??Fsm_8
+   \   0000006C   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_22:
+   \   0000006E   F0D9               BREQ    ??Fsm_8
     270                      {
     271                          m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
-   \   0000006E   E828               LDI     R18, 136
-   \   00000070   E133               LDI     R19, 19
-   \   00000072   ....               RCALL   ?Subroutine0
-   \                     ??CrossCallReturnLabel_2:
-   \   00000074   E004               LDI     R16, 4
-   \   00000076   8700               STD     Z+8, R16
+   \   00000070   E828               LDI     R18, 136
+   \   00000072   E133               LDI     R19, 19
+   \   00000074   ....               RCALL   ?Subroutine0
     272                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
+   \                     ??CrossCallReturnLabel_2:
+   \   00000076   E004               LDI     R16, 4
+   \   00000078   8700               STD     Z+8, R16
     273                          SetFsmState(KEY_EVENT_PRESSED_SET_DEFAULT);
-   \   00000078   E005               LDI     R16, 5
-   \   0000007A   C013               RJMP    ??Fsm_9
+   \   0000007A   E005               LDI     R16, 5
+   \   0000007C   C013               RJMP    ??Fsm_9
     274          
     275                      }
     276                  }
@@ -524,11 +546,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     278                  {
     279                      m_uiEventCode = m_uiPreliminaryEventCode;
    \                     ??Fsm_10:
-   \   0000007C   01FD               MOVW    R31:R30, R27:R26
-   \   0000007E   8500               LDD     R16, Z+8
-   \   00000080   8307               STD     Z+7, R16
+   \   0000007E   01FD               MOVW    R31:R30, R27:R26
+   \   00000080   8500               LDD     R16, Z+8
+   \   00000082   8307               STD     Z+7, R16
     280                      SetFsmState(KEY_EVENT_UNPRESSED);
-   \   00000082   C00E               RJMP    ??Fsm_11
+   \   00000084   C00E               RJMP    ??Fsm_11
     281                  }
     282                  break;
     283          
@@ -536,28 +558,28 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     285                  // кнопка нажата?
     286                  if (EventHappened())
    \                     ??Fsm_6:
-   \   00000084   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_24:
-   \   00000086   F061               BREQ    ??Fsm_11
+   \   00000086   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_28:
+   \   00000088   F061               BREQ    ??Fsm_11
     287                  {
     288                      if (m_xTimer.IsOverflow())
-   \   00000088   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_19:
-   \   0000008A   F061               BREQ    ??Fsm_8
+   \   0000008A   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_23:
+   \   0000008C   F061               BREQ    ??Fsm_8
     289                      {
     290                          m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
-   \   0000008C   E322               LDI     R18, 50
-   \   0000008E   E030               LDI     R19, 0
-   \   00000090   ....               RCALL   ?Subroutine0
+   \   0000008E   E322               LDI     R18, 50
+   \   00000090   E030               LDI     R19, 0
+   \   00000092   ....               RCALL   ?Subroutine0
     291                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_SET_DEFAULT;
    \                     ??CrossCallReturnLabel_3:
-   \   00000092   E005               LDI     R16, 5
-   \   00000094   8700               STD     Z+8, R16
+   \   00000094   E005               LDI     R16, 5
+   \   00000096   8700               STD     Z+8, R16
     292                          m_uiEventCode = m_uiPreliminaryEventCode;
-   \   00000096   8307               STD     Z+7, R16
+   \   00000098   8307               STD     Z+7, R16
     293                          SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
-   \   00000098   E007               LDI     R16, 7
-   \   0000009A   C003               RJMP    ??Fsm_9
+   \   0000009A   E007               LDI     R16, 7
+   \   0000009C   C003               RJMP    ??Fsm_9
     294          
     295                      }
     296                  }
@@ -571,15 +593,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     304                  // кнопка нажата?
     305                  if (!(EventHappened()))
    \                     ??Fsm_7:
-   \   0000009C   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_25:
-   \   0000009E   F411               BRNE    ??Fsm_8
+   \   0000009E   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_29:
+   \   000000A0   F411               BRNE    ??Fsm_8
     306                  {
     307                      SetFsmState(KEY_EVENT_UNPRESSED);
    \                     ??Fsm_11:
-   \   000000A0   E000               LDI     R16, 0
+   \   000000A2   E000               LDI     R16, 0
    \                     ??Fsm_9:
-   \   000000A2   930C               ST      X, R16
+   \   000000A4   930C               ST      X, R16
     308                  }
     309                  break;
     310          
@@ -589,39 +611,34 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
     314              }
     315          }
    \                     ??Fsm_8:
-   \   000000A4   ....               RJMP    ?Subroutine8
+   \   000000A6   ....               RJMP    ?Subroutine10
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine5:
    \   00000000   2F0A               MOV     R16, R26
    \   00000002   ....               RCALL   ??EventHappened
-   \   00000004                      REQUIRE ?Subroutine9
-   \   00000004                      ;               // Fall through to label ?Subroutine9
+   \   00000004                      REQUIRE ?Subroutine11
+   \   00000004                      ;               // Fall through to label ?Subroutine11
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine9:
+   \                     ?Subroutine11:
    \   00000000   2300               TST     R16
    \   00000002   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine1:
-   \   00000000   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_13:
+   \   00000000   ....               RCALL   ?Subroutine8
+   \                     ??CrossCallReturnLabel_14:
    \   00000002   ........           CALL    ??IsOverflow
-   \   00000006   ....               RJMP    ?Subroutine9
+   \   00000006   ....               RJMP    ?Subroutine11
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine0:
-   \   00000000   ....               RCALL   ?Subroutine6
-   \                     ??CrossCallReturnLabel_11:
-   \   00000002   01FD               MOVW    R31:R30, R27:R26
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine6:
-   \   00000000   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_15:
-   \   00000002   ........           JMP     ??Set
+   \   00000000   ....               RCALL   ?Subroutine8
+   \                     ??CrossCallReturnLabel_13:
+   \   00000002   ........           CALL    ??Set
+   \   00000006   01FD               MOVW    R31:R30, R27:R26
+   \   00000008   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey()
@@ -657,7 +674,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine3:
-   \   00000000   E00D               LDI     R16, 13
+   \   00000000   E00F               LDI     R16, 15
    \   00000002   E010               LDI     R17, 0
    \   00000004   ........           CALL    `??operator new`
    \   00000008   2F20               MOV     R18, R16
@@ -690,31 +707,34 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
       2      2   CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
         2      2   -> CMultiFunctionKey::CMultiFunctionKey(uint8_t (*)())
         2      4   -> operator new(unsigned int)
-      3      2   CMultiFunctionKey::~CMultiFunctionKey()
-        3      2   -> CDfa::~CDfa()
-        3      2   -> operator delete(void *)
+      4      2   CMultiFunctionKey::~CMultiFunctionKey()
+        4      2   -> CDfa::~CDfa()
+        4      2   -> CTimer::~CTimer()
+        4      2   -> operator delete(void *)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-       6  ?Subroutine0
+      10  ?Subroutine0
        8  ?Subroutine1
        6  ?Subroutine10
-      20  ?Subroutine2
+       4  ?Subroutine11
+       6  ?Subroutine12
+      12  ?Subroutine2
       14  ?Subroutine3
        8  ?Subroutine4
        4  ?Subroutine5
-       6  ?Subroutine6
-       8  ?Subroutine7
-       6  ?Subroutine8
-       4  ?Subroutine9
+      10  ?Subroutine6
+       2  ?Subroutine7
+       8  ?Subroutine8
+      12  ?Subroutine9
        6  CMultiFunctionKey::CMultiFunctionKey()
       26  CMultiFunctionKey::CMultiFunctionKey(uint8_t (*)())
       22  CMultiFunctionKey::EventHappened()
-     166  CMultiFunctionKey::Fsm()
-      44  CMultiFunctionKey::KeyEventHappened(uint8_t)
+     168  CMultiFunctionKey::Fsm()
+      38  CMultiFunctionKey::KeyEventHappened(uint8_t)
       14  CMultiFunctionKey::SetCapabilities(uint8_t (*)())
       12  CMultiFunctionKey::new CMultiFunctionKey()
       26  CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
@@ -722,10 +742,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
        4  -- Other
 
  
- 444 bytes in segment CODE
+ 454 bytes in segment CODE
    4 bytes in segment NEAR_F
  
- 444 bytes of CODE memory (+ 4 bytes shared)
+ 454 bytes of CODE memory (+ 4 bytes shared)
 
 Errors: none
 Warnings: none
