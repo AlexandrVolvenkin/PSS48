@@ -134,7 +134,7 @@ union TOutSetting
 struct TOutputData
 {
     unsigned char DiscreteOutputModuleDataBase[DISCRETE_OUTPUT_NUMBER];		// Настройки МР-54
-    unsigned char ExternalReceiotAddress[DISCRETE_OUTPUT_NUMBER];		// Адреса входов внешнего квитирования
+    unsigned char ExternalReceiptAddress[DISCRETE_OUTPUT_NUMBER];		// Адреса входов внешнего квитирования
     unsigned char ExternalResetAddress[DISCRETE_OUTPUT_NUMBER];		// Адреса входов внешнего сброса
 };
 

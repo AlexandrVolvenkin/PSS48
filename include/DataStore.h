@@ -18,27 +18,38 @@
 class CDataStore// : public CDfa
 {
 public:
+//    CDataStore();
+//    virtual ~CDataStore();
+    static void Init(void);
+    static uint16_t ReadBlock(uint8_t * , uint8_t );
+    static bool WriteBlock(uint8_t * , uint16_t , uint8_t );
+    static uint16_t Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock);
+    static uint8_t Check(void);
+    static bool CompareCurrentWithStoredCrc(void);
+    static void CrcOfBlocksCrcCreate(void);
+    static bool CrcOfBlocksCrcCheck(void);
+    static void Fsm(void);
+    static uint16_t ReadBlockFlash(uint8_t *puiDestination, uint8_t uiBlock);
+
+    static uint8_t GetBlockLength(uint8_t uiBlock)
+    {
+        return m_xBlocksControlData.
+               axBlockPositionData[uiBlock].uiLength;
+    };
+
+    static uint8_t GetFsmEvent(void)
+    {
+        return m_uiFsmEvent;
+    };
 
     enum
     {
-        EEPROM_CONTEXT_BEGIN = 0,
         // Нулевой байт может быть стёрт при сбое питания.
         BLOCKS_CONTROL_DATA_BEGIN = 16,
         BLOCKS_CONTROL_DATA_BLOCK_NUMBER = 1,
         MAX_BLOCKS_NUMBER = (TDataBase::BLOCKS_QUANTITY + BLOCKS_CONTROL_DATA_BLOCK_NUMBER),
         // Сохраняемый буфер должен быть на CRC_LENGTH больше.
         CRC_LENGTH = 2,
-        // Контрольная сумма в коде Хемминга занимает 3 байта.
-        CRC_LENGTH_3 = 3,
-        // Количество байт служебного контекста
-        // должно быть известно заранее.
-        // Так как по нему извлекаются начальные данные.
-        // Используется самовосстанавливающийся код Хемминга(8,4).
-        // Коэффициент - 1.5: один байт преобразуется в кодовое слово 12 бит,
-        // из двух байт полезных данных получается три байта кодированных.
-        // (((sizeof(struct TBlocksControlData)) * 1.5) = 57)
-//        BLOCKS_CONTROL_DATA_LENGTH = 75,//57,//((sizeof(struct TBlocksControlData)) * 1.5),
-        BLOCKS_CONTROL_DATA_LENGTH = 153,//114,//78,//57,//(((sizeof(struct TBlocksControlData) + CRC_LENGTH) * 1.5)),
     };
 
     enum
@@ -69,6 +80,27 @@ public:
         WRITE_ERROR_FSM_EVENT,
     };
 
+protected:
+private:
+    static CTimer* GetTimerPointer(void)
+    {
+        return &m_xTimer;
+    };
+
+    static void SetFsmState(uint8_t uiData)
+    {
+        m_uiFsmState = uiData;
+    };
+    static uint8_t GetFsmState(void)
+    {
+        return m_uiFsmState;
+    };
+
+    static void SetFsmEvent(uint8_t uiData)
+    {
+        m_uiFsmEvent = uiData;
+    };
+
     struct TBlockPositionData
     {
         uint16_t uiOffset;
@@ -89,59 +121,6 @@ public:
         TBlockPositionData axBlockPositionData[MAX_BLOCKS_NUMBER];
     };
 
-//    CDataStore();
-//    virtual ~CDataStore();
-    static void Init(void);
-    static uint8_t Check(void);
-    static uint16_t ReadBlock(uint8_t * , uint8_t );
-    static bool WriteBlock(uint8_t * , uint16_t , uint8_t );
-    static uint16_t Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock);
-    static bool CompareCurrentWithStoredCrc(void);
-    static void CrcOfBlocksCrcCreate(void);
-    static bool CrcOfBlocksCrcCheck(void);
-    static void Fsm(void);
-
-    static uint16_t ReadBlockFlash(uint8_t *puiDestination, uint8_t uiBlock);
-
-    static uint8_t GetBlockLength(uint8_t uiBlock)
-    {
-        // Блок существует?
-        if (uiBlock < MAX_BLOCKS_NUMBER)
-        {
-            return m_xBlocksControlData.
-                   axBlockPositionData[uiBlock].uiLength;
-        }
-        else
-        {
-            return 0;
-        }
-    };
-
-    static CTimer* GetTimerPointer(void)
-    {
-        return &m_xTimer;
-    };
-
-    static void SetFsmState(uint8_t uiData)
-    {
-        m_uiFsmState = uiData;
-    };
-    static uint8_t GetFsmState(void)
-    {
-        return m_uiFsmState;
-    };
-
-    static void SetFsmEvent(uint8_t uiData)
-    {
-        m_uiFsmEvent = uiData;
-    };
-    static uint8_t GetFsmEvent(void)
-    {
-        return m_uiFsmEvent;
-    };
-
-protected:
-private:
     // Служебные данные системы хранения.
     static TBlocksControlData m_xBlocksControlData;
     // Массив контрольных сумм блоков.

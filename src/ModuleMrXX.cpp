@@ -40,7 +40,7 @@ void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConex
     m_puiDiscreteInputs = xMemoryAllocationConext.puiDiscreteInputs;
 
     // ѕолучим указатель на массив базы данных.
-    m_pxDiscreteOutputDataBase = xMemoryAllocationConext.pxDiscreteOutputDataBase;
+    m_pxDiscreteOutputDataBase = xMemoryAllocationConext.pxDiscreteOutputDataBase;//debag//
 
     m_puiDiscreteOutputState = xMemoryAllocationConext.puiDiscreteOutputState;
 
@@ -126,10 +126,10 @@ uint8_t CModuleMrXXDriver::Exchange(void)
     for (uint8_t i = 0; i < MR_DISCRETE_OUTPUT_NUMBER; i++)
     {
         // дл€ текущего входа внешнее квитирование запрограммировано?
-        if (m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i] != 0xFF)
+        if (m_pxDiscreteOutputDataBase -> ExternalReceiptAddress[i] != 0xFF)
         {
             // дл€ текущего входа есть внешнее квитирование?
-            if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i]])
+            if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalReceiptAddress[i]])
             {
                 // установим квитирование дл€ текущего входа.
                 uiExternalReceipt |= (1 << i);

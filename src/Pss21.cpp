@@ -314,7 +314,7 @@ void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationCon
 
     // Обнулим общий объём выделенной памяти.
     xMemoryAllocationConext.uiUsedDiscreteOutputs = 0;
-    // Подключим буфер для управления дискретными выходов.
+    // Подключим буфер для управления дискретными выходами.
     xMemoryAllocationConext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
 
     // Обнулим общий объём выделенной памяти.
@@ -346,13 +346,17 @@ void CPss21::CreateDevices(void)
         case MODULE_TYPE_MVSN:
 //        case MODULE_TYPE_MVDI:
 //        case MODULE_TYPE_MVDS9:
+            if (m_xDeviceConfigSearch.uiDiscreteInputQuantity <
+                    DISCRETE_INPUT_MODULE_MAX_NUMBER)
+            {
 //            m_apxDevices[i] = new CMvsn21;
 //            m_apxDevices[i] -> m_pxDriver = new CMvsn21Driver(uiType);
-            m_apxDrivers[i] = new CMvsn21Driver(uiType);
-            xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+                m_apxDrivers[i] = new CMvsn21Driver(uiType);
+                xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-            m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
-            m_xDeviceConfigSearch.uiDiscreteInputQuantity += 1;
+                m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+                m_xDeviceConfigSearch.uiDiscreteInputQuantity += 1;
+            }
             break;
 
         case MODULE_TYPE_MVDO5:
@@ -360,13 +364,17 @@ void CPss21::CreateDevices(void)
 
         case MODULE_TYPE_MR53:
         case MODULE_TYPE_MR54:
+            if (m_xDeviceConfigSearch.uiDiscreteOutputQuantity <
+                    DISCRETE_OUTPUT_MODULE_MAX_NUMBER)
+            {
 //            m_apxDevices[i] = new CModuleMrXX;
 //            m_apxDevices[i] -> m_pxDriver = new CModuleMrXXDriver(uiType);
-            m_apxDrivers[i] = new CModuleMrXXDriver(uiType);
-            xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+                m_apxDrivers[i] = new CModuleMrXXDriver(uiType);
+                xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-            m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
-            m_xDeviceConfigSearch.uiDiscreteOutputQuantity += 1;
+                m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+                m_xDeviceConfigSearch.uiDiscreteOutputQuantity += 1;
+            }
             break;
 
         case MODULE_TYPE_MVI:
@@ -556,6 +564,9 @@ void CPss21::SendToDevicesModbusReceipt(void)
     {
         m_apxDrivers[i] -> SetModbusReceipt(1);
     }
+
+    // Сообщим автомату о состоявшемся квитировании.
+    m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::RECEIPT_HAPPENED_FSM_EVENT);
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -730,9 +741,8 @@ void CPss21::ConfigurationInit(void)
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
-//        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(puiTempBuffer[i] & ~(0x80)) << 8) | i);
-
         uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0x80));
+        // Для текущего дискретного сигнала запрограммирована сигнализация?
         if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
         {
             // Очистим индекс привязанного окна, больше не нужен.
@@ -747,9 +757,9 @@ void CPss21::ConfigurationInit(void)
             // Оставим уровень дискретного сигнала интерпретируемый как активный.
             puiAlarmDfaInit[i] &= 0x80;
         }
-//        CPss21::m_aucRtuHoldingRegistersArray[i] = ((static_cast<uint16_t>(puiAlarmDfaInit[i] & ~(0x80)) << 8) | i);
     }
 
+    // Создадим объекты автоматов обработки сигнализаций дискретных сигналов.
     for (uint8_t i = 0;
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
@@ -818,9 +828,10 @@ void CPss21::ConfigurationInit(void)
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
-        // Привяжем окно сигнализации к текущему дискретному сигналу.
+        // Для текущего дискретного сигнала запрограммирована сигнализация?
         if (puiTempBuffer[i] < ALARM_WINDOWS_NUMBER)
         {
+            // Привяжем окно сигнализации к текущему дискретному сигналу.
             m_apxAlarmDfa[i] ->
             SetAlarmWindowIndex(puiTempBuffer[i]);
         }

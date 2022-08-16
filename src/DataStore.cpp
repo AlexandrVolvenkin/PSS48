@@ -54,128 +54,22 @@ void CDataStore::Init(void)
     // Установим размер первичных данных.
     m_xBlocksControlData.
     axBlockPositionData[BLOCKS_CONTROL_DATA].uiLength = sizeof(struct TBlocksControlData);
+    // Количество байт служебного контекста
+    // должно быть известно заранее.
+    // Так как по нему извлекаются начальные данные.
+    // Используется самовосстанавливающийся код Хемминга(8,4).
+    // Коэффициент - 1.5: один байт преобразуется в кодовое слово 12 бит,
+    // из двух байт полезных данных получается три байта кодированных.
     // Установим размер закодированных данных.
     m_xBlocksControlData.
-    axBlockPositionData[BLOCKS_CONTROL_DATA].uiEncodedLength = BLOCKS_CONTROL_DATA_LENGTH;
+    axBlockPositionData[BLOCKS_CONTROL_DATA].uiEncodedLength =
+        (CHammingCodes::CalculateEncodedDataLength(sizeof(struct TBlocksControlData) + CRC_LENGTH));
     // Установим смещение для служебного контекста.
-    m_xBlocksControlData.uiFreeSpaceOffset = (BLOCKS_CONTROL_DATA_BEGIN + BLOCKS_CONTROL_DATA_LENGTH);
+    m_xBlocksControlData.uiFreeSpaceOffset =
+        (BLOCKS_CONTROL_DATA_BEGIN +
+         CHammingCodes::CalculateEncodedDataLength(sizeof(struct TBlocksControlData) + CRC_LENGTH));
     // Установим признак - база данных не подтверждена пользователем.
     m_xBlocksControlData.uiCrcOfBlocksCrc = 0;
-}
-
-//-----------------------------------------------------------------------------------------------------
-uint8_t CDataStore::Check(void)
-{
-    CDataStore::Init();
-
-    // Служебный блок повреждён?
-    if (!(ReadBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData), BLOCKS_CONTROL_DATA)))
-    {
-        return 0;
-    }
-
-    enum
-    {
-        IDDLE = 0,
-        BLOCK_CHECK_START,
-        BLOCK_WRITE_START,
-        BLOCK_WRITE_END_WAITING,
-        NEXT_BLOCK,
-        BLOCK_ERROR,
-        ALL_BLOCKS_CHECKED,
-    };
-
-    uint8_t uiBlockCounter = 0;
-    uint8_t uiFsmState = BLOCK_CHECK_START;
-    uint16_t uiLength;
-
-    CHammingCodes::SetErrorCode(CHammingCodes::NONE_ERROR);
-
-    while (1)
-    {
-        switch (uiFsmState)
-        {
-        case BLOCK_CHECK_START:
-            // Проверены не все блоки?
-            if (uiBlockCounter < MAX_BLOCKS_NUMBER)
-            {
-                uiLength = ReadBlock(m_puiIntermediateBuff, uiBlockCounter);
-                // Блок не повреждён?
-                if (uiLength)
-                {
-                    // Блок восстановлен после обнаружения ошибки?
-                    if (CHammingCodes::GetErrorCode() != CHammingCodes::NONE_ERROR)
-                    {
-                        // Обновим восстановленный блок в хранилище.
-                        uiFsmState = BLOCK_WRITE_START;
-                    }
-                    else
-                    {
-                        uiFsmState = NEXT_BLOCK;
-                    }
-                }
-                else
-                {
-                    uiFsmState = BLOCK_ERROR;
-                }
-            }
-            else
-            {
-                uiFsmState = ALL_BLOCKS_CHECKED;
-            }
-            break;
-
-        case BLOCK_WRITE_START:
-            // Поместим данные в хранилище.
-            // Блок БД принят к записи?
-            if (WriteBlock(m_puiIntermediateBuff, uiLength, uiBlockCounter))
-            {
-                uiFsmState = BLOCK_WRITE_END_WAITING;
-            }
-            // При записи блока БД произошла ошибка?
-            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-            {
-                uiFsmState = BLOCK_ERROR;
-            }
-            break;
-
-        case BLOCK_WRITE_END_WAITING:
-            // Блок записан успешно?
-            if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
-            {
-                uiFsmState = NEXT_BLOCK;
-            }
-            // При записи блока БД произошла ошибка?
-            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
-            {
-                uiFsmState = BLOCK_ERROR;
-            }
-            break;
-
-        case NEXT_BLOCK:
-            uiBlockCounter++;
-            uiFsmState = BLOCK_CHECK_START;
-            break;
-
-        case ALL_BLOCKS_CHECKED:
-            // данные не повреждены.
-            return 1;
-            break;
-
-        case BLOCK_ERROR:
-            return 0;
-            break;
-
-        default:
-            break;
-        }
-
-        CDataStore::Fsm();
-
-        delay_ms(10);
-
-        CPlatform::WatchdogReset();
-    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -188,14 +82,14 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
         return 0;
     }
 
-    uint16_t uiDecodedByteCounter;
+    uint16_t uiLength;
     uint16_t uiEncodedLength;
     uint16_t uiSourseOffset;
     uint8_t auiTempArray[256];
 
     // Блок существует?
     if ((m_xBlocksControlData.
-            axBlockPositionData[uiBlock].uiOffset != 0) &&
+            axBlockPositionData[uiBlock].uiLength != 0) &&
             (m_xBlocksControlData.
              axBlockPositionData[uiBlock].uiEncodedLength != 0))
     {
@@ -203,6 +97,9 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
         uiSourseOffset = m_xBlocksControlData.
                          axBlockPositionData[uiBlock].uiOffset;
         // Получим размер блока.
+        uiLength = m_xBlocksControlData.
+                   axBlockPositionData[uiBlock].uiLength;
+        // Получим размер закодированного блока.
         uiEncodedLength = m_xBlocksControlData.
                           axBlockPositionData[uiBlock].uiEncodedLength;
     }
@@ -216,40 +113,21 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     CEeprom::Read(auiTempArray, uiSourseOffset, uiEncodedLength);
 
     // Декодируем прочитанные данные.
-    uiDecodedByteCounter = CHammingCodes::HammingCodesToBytes(auiTempArray, auiTempArray, uiEncodedLength);
-    // Слишком короткий блок?
-    // Минимум 3 байта 1 - данные и 2 - Crc.
-    if (uiDecodedByteCounter <= CRC_LENGTH)
-    {
-        CPss21::SetErrorCode(DB_ERROR);
-        // Нет данных.
-        return 0;
-    }
-
-    // Получим длину блока.
-    uiDecodedByteCounter -= CRC_LENGTH;
-    // Размер блока не совпадает?
-    if (uiDecodedByteCounter !=
-            m_xBlocksControlData.
-            axBlockPositionData[uiBlock].uiLength)
-    {
-        CPss21::SetErrorCode(DB_ERROR);
-        // Нет данных.
-        return 0;
-    }
+    CHammingCodes::HammingCodesToBytes(auiTempArray, auiTempArray, uiEncodedLength);
 
     // Получим контрольную сумму блока.
-    uint16_t uiCrc = static_cast<uint16_t>(auiTempArray[uiDecodedByteCounter]);
-    uiCrc |= (static_cast<uint16_t>(auiTempArray[uiDecodedByteCounter + 1]) << 8);
+    uint16_t uiCrc = static_cast<uint16_t>(auiTempArray[uiLength]);
+    uiCrc |= (static_cast<uint16_t>(auiTempArray[uiLength + 1]) << 8);
     // Вычислим контрольную сумму блока.
-    uint16_t uiCalculatedCrc = usCrc16(auiTempArray, uiDecodedByteCounter);
+    uint16_t uiCalculatedCrc = usCrc16(auiTempArray, uiLength);
 
     // Блок не повреждён?
     if (uiCrc == uiCalculatedCrc)
     {
+        // Сохраним Crc текущего блока.
         m_auiBlocksCurrentCrc[uiBlock] = uiCrc;
-        memcpy(puiDestination, auiTempArray, uiDecodedByteCounter);
-        return uiDecodedByteCounter;
+        memcpy(puiDestination, auiTempArray, uiLength);
+        return uiLength;
     }
     else
     {
@@ -411,6 +289,121 @@ bool CDataStore::CrcOfBlocksCrcCheck(void)
     else
     {
         return false;
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CDataStore::Check(void)
+{
+    CDataStore::Init();
+
+    // Служебный блок повреждён?
+    if (!(ReadBlock(reinterpret_cast<uint8_t*>(&m_xBlocksControlData), BLOCKS_CONTROL_DATA)))
+    {
+        return 0;
+    }
+
+    enum
+    {
+        IDDLE = 0,
+        BLOCK_CHECK_START,
+        BLOCK_WRITE_START,
+        BLOCK_WRITE_END_WAITING,
+        NEXT_BLOCK,
+        BLOCK_ERROR,
+        ALL_BLOCKS_CHECKED,
+    };
+
+    uint8_t uiBlockCounter = 0;
+    uint8_t uiFsmState = BLOCK_CHECK_START;
+    uint16_t uiLength;
+
+    CHammingCodes::SetErrorCode(CHammingCodes::NONE_ERROR);
+
+    while (1)
+    {
+        switch (uiFsmState)
+        {
+        case BLOCK_CHECK_START:
+            // Проверены не все блоки?
+            if (uiBlockCounter < MAX_BLOCKS_NUMBER)
+            {
+                uiLength = ReadBlock(m_puiIntermediateBuff, uiBlockCounter);
+                // Блок не повреждён?
+                if (uiLength)
+                {
+                    // Блок восстановлен после обнаружения ошибки?
+                    if (CHammingCodes::GetErrorCode() != CHammingCodes::NONE_ERROR)
+                    {
+                        // Обновим восстановленный блок в хранилище.
+                        uiFsmState = BLOCK_WRITE_START;
+                    }
+                    else
+                    {
+                        uiFsmState = NEXT_BLOCK;
+                    }
+                }
+                else
+                {
+                    uiFsmState = BLOCK_ERROR;
+                }
+            }
+            else
+            {
+                uiFsmState = ALL_BLOCKS_CHECKED;
+            }
+            break;
+
+        case BLOCK_WRITE_START:
+            // Поместим данные в хранилище.
+            // Блок БД принят к записи?
+            if (WriteBlock(m_puiIntermediateBuff, uiLength, uiBlockCounter))
+            {
+                uiFsmState = BLOCK_WRITE_END_WAITING;
+            }
+            // При записи блока БД произошла ошибка?
+            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+            {
+                uiFsmState = BLOCK_ERROR;
+            }
+            break;
+
+        case BLOCK_WRITE_END_WAITING:
+            // Блок записан успешно?
+            if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+            {
+                uiFsmState = NEXT_BLOCK;
+            }
+            // При записи блока БД произошла ошибка?
+            else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+            {
+                uiFsmState = BLOCK_ERROR;
+            }
+            break;
+
+        case NEXT_BLOCK:
+            uiBlockCounter++;
+            uiFsmState = BLOCK_CHECK_START;
+            break;
+
+        case ALL_BLOCKS_CHECKED:
+            // данные не повреждены.
+            return 1;
+            break;
+
+        case BLOCK_ERROR:
+            return 0;
+            break;
+
+        default:
+            break;
+        }
+
+        CDataStore::Fsm();
+
+        delay_ms(10);
+
+        CPlatform::WatchdogReset();
     }
 }
 

@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Aug/2022  19:38:20
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  16:03:09
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW49B8.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWBBA5.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -820,7 +820,7 @@ _A_PINF:
         STD     Z+22, R17
 //   41 
 //   42     // ѕолучим указатель на массив базы данных.
-//   43     m_pxDiscreteOutputDataBase = xMemoryAllocationConext.pxDiscreteOutputDataBase;
+//   43     m_pxDiscreteOutputDataBase = xMemoryAllocationConext.pxDiscreteOutputDataBase;//debag//
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+16
         LDD     R17, Z+17
@@ -1039,10 +1039,10 @@ _A_PINF:
         BREQ    ??Exchange_3
 //  127     {
 //  128         // дл€ текущего входа внешнее квитирование запрограммировано?
-//  129         if (m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i] != 0xFF)
+//  129         if (m_pxDiscreteOutputDataBase -> ExternalReceiptAddress[i] != 0xFF)
 //  130         {
 //  131             // дл€ текущего входа есть внешнее квитирование?
-//  132             if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalReceiotAddress[i]])
+//  132             if (m_puiDiscreteInputs[m_pxDiscreteOutputDataBase -> ExternalReceiptAddress[i]])
         RCALL   ?Subroutine3
 ??CrossCallReturnLabel_6:
         BREQ    ??Exchange_3

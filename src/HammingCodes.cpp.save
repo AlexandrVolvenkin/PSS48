@@ -207,7 +207,7 @@ uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* pu
 {
     uint16_t uiDecodedByteCounter = 0;
     uint16_t uiSourseIndex = 0;
-//    bool bTailIsPresent = false;
+    bool bTailIsPresent = false;
 
     // uiEncodedLength = (uiLength * 1.5) (HammingCodes 8 + 4 на один байт приходится 12 закодированных бит - всегда кратно трём).
     // Длина закодированных данных не кратно трём?

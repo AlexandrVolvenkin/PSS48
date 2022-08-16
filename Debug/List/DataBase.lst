@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Aug/2022  19:38:13
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  16:03:03
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW314D.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EWA2DB.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp --cpu=m128a -ms
 #        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -833,29 +833,27 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
     197              // Блок существует?
     198              if (uiBlock < GetBlocksNumber())
    \   00000000   300B               CPI     R16, 11
-   \   00000002   F450               BRCC    ??GetBlockLength_1
+   \   00000002   F440               BRCC    ??GetBlockLength_1
     199              {
     200                  return CDataStore::GetBlockLength(uiBlock + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
    \   00000004   9503               INC     R16
-   \   00000006   300C               CPI     R16, 12
-   \   00000008   F438               BRCC    ??GetBlockLength_1
-   \   0000000A   E018               LDI     R17, 8
-   \   0000000C   9F01               MUL     R16, R17
-   \   0000000E   01F0               MOVW    R31:R30, R1:R0
-   \   00000010   ....               SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
-   \   00000012   ....               SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
-   \   00000014   8106               LDD     R16, Z+6
-   \   00000016   C001               RJMP    ??GetBlockLength_2
+   \   00000006   E018               LDI     R17, 8
+   \   00000008   9F01               MUL     R16, R17
+   \   0000000A   01F0               MOVW    R31:R30, R1:R0
+   \   0000000C   ....               SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
+   \   0000000E   ....               SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+   \   00000010   8106               LDD     R16, Z+6
+   \   00000012   C001               RJMP    ??GetBlockLength_2
     201              }
     202              else
     203              {
     204                  return 0;
    \                     ??GetBlockLength_1:
-   \   00000018   E000               LDI     R16, 0
+   \   00000014   E000               LDI     R16, 0
     205              }
    \                     ??GetBlockLength_2:
-   \   0000001A                      REQUIRE ?Subroutine0
-   \   0000001A                      ;               // Fall through to label ?Subroutine0
+   \   00000016                      REQUIRE ?Subroutine0
+   \   00000016                      ;               // Fall through to label ?Subroutine0
     206          }
     207          
     208          //-----------------------------------------------------------------------------------------------------
@@ -895,7 +893,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
    -----  --------------
        4  ?Subroutine0
       54  CDataBase::Check()
-      26  CDataBase::GetBlockLength(uint8_t)
+      22  CDataBase::GetBlockLength(uint8_t)
        4  CDataBase::IntegrityCheck()
        6  CDataBase::ReadBlock(uint8_t *, uint8_t)
      134  CDataBase::RestoreDefault()
@@ -998,10 +996,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataBase.cpp
 
  
  105 bytes in segment ABSOLUTE
- 256 bytes in segment CODE
+ 252 bytes in segment CODE
    4 bytes in segment NEAR_F
  
- 260 bytes of CODE memory
+ 256 bytes of CODE memory
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
