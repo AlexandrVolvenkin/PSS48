@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -530,7 +530,7 @@ void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
 void CStatusLedNotifyerControl::NotifyerOff(void)
 {
     CPlatform::StatusLedOff();
-    CLightBoard::Set();
+    CPss21::BoardWindowsUpdate();
 }
 //-----------------------------------------------------------------------------------------------------
 

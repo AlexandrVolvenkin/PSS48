@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -343,7 +343,7 @@ public:
 
 //    CFlash();
 //    virtual ~CFlash();
-    static uint8_t Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength);
+    static uint8_t Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength);
     static uint16_t ReadBlock(uint8_t *puiDestination, uint8_t uiBlock);
 
     static uint16_t GetBlockLength(uint8_t uiBlock)

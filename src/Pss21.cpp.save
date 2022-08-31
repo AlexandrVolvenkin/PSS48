@@ -347,7 +347,7 @@ void CPss21::CreateDevices(void)
 //        case MODULE_TYPE_MVDI:
 //        case MODULE_TYPE_MVDS9:
             if (m_xDeviceConfigSearch.uiDiscreteInputQuantity <
-                    DISCRETE_OUTPUT_MODULE_MAX_NUMBER)
+                    DISCRETE_INPUT_MODULE_MAX_NUMBER)
             {
 //            m_apxDevices[i] = new CMvsn21;
 //            m_apxDevices[i] -> m_pxDriver = new CMvsn21Driver(uiType);
@@ -1171,6 +1171,12 @@ void CPss21::DiscreteSignalsProcessing(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::AllAlarmWindowsUpdate(void)
+{
+    CLightBoard::Set(m_axAlarmWindowControl);
+}
+
+//-----------------------------------------------------------------------------------------------------
 void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
 {
     for (uint8_t i = 0;
@@ -1185,7 +1191,7 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
         }
     };
 
-    CLightBoard::Set();
+    AllAlarmWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1208,7 +1214,7 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
         }
     };
 
-    CLightBoard::Set();
+    AllAlarmWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1226,7 +1232,7 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
         m_axAlarmWindowControl[i].SetActivityState(1);
     };
 
-    CLightBoard::Set();
+    AllAlarmWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1251,7 +1257,7 @@ void CPss21::ErrorWindowOn(uint8_t uiIndex)
         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
     }
 
-    CLightBoard::Set();
+    AllAlarmWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1267,7 +1273,7 @@ void CPss21::AllAlarmWindowOff(void)
         m_axAlarmWindowControl[i].SetActivityState(0);
     };
 
-    CLightBoard::Set();
+    AllAlarmWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------

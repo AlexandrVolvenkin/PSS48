@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -179,9 +179,9 @@ void CUart::TransmitDisable(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
-int16_t CUart::Write(uint8_t *puiSourse, uint16_t uiLength)
+int16_t CUart::Write(uint8_t *puiSource, uint16_t uiLength)
 {
-    m_puiTxBuffer = (uint8_t*)puiSourse;
+    m_puiTxBuffer = (uint8_t*)puiSource;
     m_nuiTxBuffByteCounter = uiLength;
 
     return 1;
@@ -335,29 +335,29 @@ CEeprom::~CEeprom()
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSourse, uint16_t uiLength)
+uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSource, uint16_t uiLength)
 {
     while (uiLength != 0)
     {
-        *puiDestination++ = ReadByte(uiSourse++);
+        *puiDestination++ = ReadByte(uiSource++);
         uiLength--;
     }
     return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
+uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
 {
     while (uiLength != 0)
     {
-        WriteByte((uiDestination++), (*puiSourse++));
+        WriteByte((uiDestination++), (*puiSource++));
         uiLength--;
     }
     return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CEeprom::ReadByte(uint16_t uiSourse)
+uint8_t CEeprom::ReadByte(uint16_t uiSource)
 {
     __watchdog_reset();
     while (BitIsSet(EECR, EEWE))
@@ -365,7 +365,7 @@ uint8_t CEeprom::ReadByte(uint16_t uiSourse)
         __watchdog_reset();
     }
     __disable_interrupt();
-    EEAR = uiSourse;
+    EEAR = uiSource;
     SetBit(EECR, EERE);
     __enable_interrupt();
     return EEDR;
@@ -391,10 +391,10 @@ void CEeprom::WriteByte(uint16_t uiDestination, uint8_t uiData)
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
+void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
 {
     SetAddress(uiDestination);
-    SetBufferPointer(puiSourse);
+    SetBufferPointer(puiSource);
     SetLength(uiLength);
     SetBufferByteCounter(0);
 }
@@ -709,12 +709,12 @@ TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
 //}
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength)
+uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
 {
     // Скопируем данные из флеш в буфер Ram.
     for (uint16_t i = 0; i < uiLength; i++)
     {
-        puiDestination[i] = uiSourse[i];
+        puiDestination[i] = uiSource[i];
     }
     return 1;
 }
@@ -816,7 +816,7 @@ uint8_t CSpi::Exchange(uint8_t uiData)
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t uiLength)
+uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
 {
     if (uiLength > BUFFER_LENGTH)
     {
@@ -825,7 +825,7 @@ uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t uiL
 
     for (uint16_t i = 0; i < uiLength; i++)
     {
-        puiDestination[i] = Exchange(pucSourse[i]);
+        puiDestination[i] = Exchange(pucSource[i]);
     }
     return 1;
 }
@@ -980,7 +980,7 @@ void CPlatform::SystemTickInit(void)
     before this is called so we need not worry here. */
     OCR2 = ulCompareMatch;
 
-    /* Setup clock Sourse and compare match behaviour. */
+    /* Setup clock Source and compare match behaviour. */
     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
     TCCR2 = ucLowByte;
 
@@ -1013,7 +1013,7 @@ void CPlatform::SystemTickInit(void)
     before this is called so we need not worry here. */
     OCR1A = ulCompareMatch;
 
-    /* Setup clock Sourse and compare match behaviour. */
+    /* Setup clock Source and compare match behaviour. */
     TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
     TCCR1B = ucLowByte;

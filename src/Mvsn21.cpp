@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -113,7 +113,7 @@ uint8_t CMvsn21Driver::DataExchange(void)
         break;
     };
 
-    // модуль признан неисправным?
+    // модуль не признан неисправным?
     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
     {
         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".

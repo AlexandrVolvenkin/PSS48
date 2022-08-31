@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -184,9 +184,9 @@ uint16_t CDataBase::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint16_t CDataBase::WriteBlock(uint8_t *puiSourse, uint8_t uiBlock)
+uint16_t CDataBase::WriteBlock(uint8_t *puiSource, uint8_t uiBlock)
 {
-    return CDataStore::WriteBlock(puiSourse,
+    return CDataStore::WriteBlock(puiSource,
                                   GetBlockLength(uiBlock),
                                   uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
 }

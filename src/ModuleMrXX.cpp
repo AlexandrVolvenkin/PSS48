@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -268,14 +268,19 @@ uint8_t CModuleMrXXDriver::Exchange(void)
         break;
 
     case DBASE_ERR:
-        return 0;
+        // модуль не признан неисправным?
+        if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+        {
+            // База данных повреждена. Попытаемся записать её повторно.
+            SetFsmState(MRXX_FSM_STATE_WRITE_DATABASE);
+        }
         break;
 
     default:
         break;
     };
 
-    // модуль признан неисправным?
+    // модуль не признан неисправным?
     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
     {
         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".

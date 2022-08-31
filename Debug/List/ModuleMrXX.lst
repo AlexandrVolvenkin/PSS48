@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:13:34
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           31/Aug/2022  19:10:46
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW2134.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW86D5.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -27,7 +27,7 @@
 
 D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
       1          //-----------------------------------------------------------------------------------------------------
-      2          //  Sourse      : FileName.cpp
+      2          //  Source      : FileName.cpp
       3          //  Created     : 01.06.2022
       4          //  Author      : Alexandr Volvenkin
       5          //  email       : aav-36@mail.ru
@@ -731,7 +731,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
      72          uint8_t CModuleMrXXDriver::WriteDataBase(void)
    \                     ??WriteDataBase:
      73          {
-   \   00000000   ....               RCALL   ?Subroutine8
+   \   00000000   ....               RCALL   ?Subroutine9
      74              uint16_t usData;
      75              uint8_t *puiDestination;
      76          
@@ -808,7 +808,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
     105              // модуль исправен?
     106              if (m_puiRxBuffer[COMMAND_BYTE_OFFSET] == MRXX_SET_DATA_BASE_COMMAND)
    \                     ??CrossCallReturnLabel_5:
-   \   0000004C   ....               RCALL   ?Subroutine9
+   \   0000004C   ....               RCALL   ?Subroutine8
    \                     ??CrossCallReturnLabel_26:
    \   0000004E   8101               LDD     R16, Z+1
    \   00000050   3801               CPI     R16, 129
@@ -845,7 +845,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000008   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine9:
+   \                     ?Subroutine8:
    \   00000000   9651               ADIW    R27:R26, 17
    \   00000002                      REQUIRE ??Subroutine14_0
    \   00000002                      ;               // Fall through to label ??Subroutine14_0
@@ -888,7 +888,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000018   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine8:
+   \                     ?Subroutine9:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
@@ -1153,7 +1153,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000000EE   5224               SUBI    R18, 36
    \   000000F0   F181               BREQ    ??Exchange_12
    \   000000F2   512E               SUBI    R18, 30
-   \   000000F4   F579               BRNE    ??Exchange_13
+   \   000000F4   F5A1               BRNE    ??Exchange_13
     236              {
     237              case DATA_READY:
     238                  // данные не повреждены?
@@ -1166,18 +1166,18 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   000000FE   ........           CALL    ??iCrcSummTwoByteCompare
    \   00000102   3001               CPI     R16, 1
    \   00000104   4010               SBCI    R17, 0
-   \   00000106   F134               BRLT    ??Exchange_13
+   \   00000106   F15C               BRLT    ??Exchange_13
     241                  {
     242                      // есть подтверждение?
     243                      if (m_puiRxBuffer[DATA_BYTE_OFFSET +
     244                                        DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
     245                                        TWO_BYTE_CRC_LENGTH] == DATA_EXCHANGE_OK)
-   \   00000108   ....               RCALL   ?Subroutine9
+   \   00000108   ....               RCALL   ?Subroutine8
    \                     ??CrossCallReturnLabel_27:
    \   0000010A   9752               SBIW    R27:R26, 18
    \   0000010C   8501               LDD     R16, Z+9
    \   0000010E   370E               CPI     R16, 126
-   \   00000110   F509               BRNE    ??Exchange_13
+   \   00000110   F531               BRNE    ??Exchange_13
     246                      {
     247                          // есть подтверждение.
     248                          m_uiBadAnswerCounter = 0;
@@ -1235,60 +1235,70 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
     264          
     265                          return 1;
    \   0000014E   E001               LDI     R16, 1
-   \   00000150   C013               RJMP    ??Exchange_17
+   \   00000150   C018               RJMP    ??Exchange_17
     266                      }
     267                  }
     268                  break;
     269          
     270              case DBASE_ERR:
-    271                  return 0;
+    271                  // модуль не признан неисправным?
+    272                  if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
    \                     ??Exchange_12:
-   \   00000152   C011               RJMP    ??Exchange_18
-    272                  break;
-    273          
-    274              default:
-    275                  break;
-    276              };
-    277          
-    278              // модуль признан неисправным?
-    279              if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+   \   00000152   01FD               MOVW    R31:R30, R27:R26
+   \   00000154   8D05               LDD     R16, Z+29
+   \   00000156   300A               CPI     R16, 10
+   \   00000158   F410               BRCC    ??Exchange_13
+    273                  {
+    274                      // База данных повреждена. Попытаемся записать её повторно.
+    275                      SetFsmState(MRXX_FSM_STATE_WRITE_DATABASE);
+   \   0000015A   E000               LDI     R16, 0
+   \   0000015C   8703               STD     Z+11, R16
+    276                  }
+    277                  break;
+    278          
+    279              default:
+    280                  break;
+    281              };
+    282          
+    283              // модуль не признан неисправным?
+    284              if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
    \                     ??Exchange_13:
-   \   00000154   01FD               MOVW    R31:R30, R27:R26
-   \   00000156   8D05               LDD     R16, Z+29
-   \   00000158   300A               CPI     R16, 10
-   \   0000015A   F418               BRCC    ??Exchange_19
-    280              {
-    281                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
-    282                  m_uiBadAnswerCounter++;
-   \   0000015C   9503               INC     R16
-   \   0000015E   8F05               STD     Z+29, R16
-    283                  return 0;
-   \   00000160   C00A               RJMP    ??Exchange_18
-    284              }
-    285              else
-    286              {
-    287                  // модуль признан неисправным.
-    288                  *m_puiErrorCode = OMD_ERROR;
-   \                     ??Exchange_19:
-   \   00000162   9615               ADIW    R27:R26, 5
-   \   00000164   ....               RCALL   ??Subroutine14_0
-   \                     ??CrossCallReturnLabel_25:
-   \   00000166   9716               SBIW    R27:R26, 6
-   \   00000168   E002               LDI     R16, 2
-   \   0000016A   8300               ST      Z, R16
-    289                  SetErrorAlarmData(1);
-   \   0000016C   01FD               MOVW    R31:R30, R27:R26
-   \   0000016E   81A7               LDD     R26, Z+7
-   \   00000170   85B0               LDD     R27, Z+8
-   \   00000172   E001               LDI     R16, 1
-   \   00000174   930C               ST      X, R16
-    290                  return 0;
+   \   0000015E   01FD               MOVW    R31:R30, R27:R26
+   \   00000160   8D05               LDD     R16, Z+29
+   \   00000162   300A               CPI     R16, 10
+   \   00000164   F418               BRCC    ??Exchange_18
+    285              {
+    286                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+    287                  m_uiBadAnswerCounter++;
+   \   00000166   9503               INC     R16
+   \   00000168   8F05               STD     Z+29, R16
+    288                  return 0;
+   \   0000016A   C00A               RJMP    ??Exchange_19
+    289              }
+    290              else
+    291              {
+    292                  // модуль признан неисправным.
+    293                  *m_puiErrorCode = OMD_ERROR;
    \                     ??Exchange_18:
-   \   00000176   E000               LDI     R16, 0
-    291              }
+   \   0000016C   9615               ADIW    R27:R26, 5
+   \   0000016E   ....               RCALL   ??Subroutine14_0
+   \                     ??CrossCallReturnLabel_25:
+   \   00000170   9716               SBIW    R27:R26, 6
+   \   00000172   E002               LDI     R16, 2
+   \   00000174   8300               ST      Z, R16
+    294                  SetErrorAlarmData(1);
+   \   00000176   01FD               MOVW    R31:R30, R27:R26
+   \   00000178   81A7               LDD     R26, Z+7
+   \   0000017A   85B0               LDD     R27, Z+8
+   \   0000017C   E001               LDI     R16, 1
+   \   0000017E   930C               ST      X, R16
+    295                  return 0;
+   \                     ??Exchange_19:
+   \   00000180   E000               LDI     R16, 0
+    296              }
    \                     ??Exchange_17:
-   \   00000178   ....               RJMP    ?Subroutine11
-    292          }
+   \   00000182   ....               RJMP    ?Subroutine11
+    297          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine7:
@@ -1329,16 +1339,16 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   0000000C   8100               LD      R16, Z
    \   0000000E   2300               TST     R16
    \   00000010   9508               RET
-    293          
-    294          //-----------------------------------------------------------------------------------------------------
+    298          
+    299          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    295          uint8_t CModuleMrXXDriver::DataExchange(void)
+    300          uint8_t CModuleMrXXDriver::DataExchange(void)
    \                     ??DataExchange:
-    296          {
-   \   00000000   ....               RCALL   ?Subroutine8
-    297              uint8_t uiResult;
-    298              switch (GetFsmState())
+    301          {
+   \   00000000   ....               RCALL   ?Subroutine9
+    302              uint8_t uiResult;
+    303              switch (GetFsmState())
    \                     ??CrossCallReturnLabel_18:
    \   00000002   8513               LDD     R17, Z+11
    \   00000004   2311               TST     R17
@@ -1346,36 +1356,36 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
    \   00000008   951A               DEC     R17
    \   0000000A   F039               BREQ    ??DataExchange_2
    \   0000000C   C008               RJMP    ??DataExchange_3
-    299              {
-    300                  // при старте база данных записывается из прибора в модуль реле.
-    301              case MRXX_FSM_STATE_WRITE_DATABASE:
-    302                  uiResult = WriteDataBase();
+    304              {
+    305                  // при старте база данных записывается из прибора в модуль реле.
+    306              case MRXX_FSM_STATE_WRITE_DATABASE:
+    307                  uiResult = WriteDataBase();
    \                     ??DataExchange_1:
    \   0000000E   2F1B               MOV     R17, R27
    \   00000010   ....               RCALL   ??WriteDataBase
-    303                  // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
-    304                  SetFsmState(MRXX_FSM_STATE_TRANSFER);
+    308                  // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
+    309                  SetFsmState(MRXX_FSM_STATE_TRANSFER);
    \   00000012   01FD               MOVW    R31:R30, R27:R26
    \   00000014   E011               LDI     R17, 1
    \   00000016   8713               STD     Z+11, R17
-    305                  break;
+    310                  break;
    \   00000018   C002               RJMP    ??DataExchange_3
-    306          
-    307              case MRXX_FSM_STATE_TRANSFER:
-    308                  uiResult = Exchange();
+    311          
+    312              case MRXX_FSM_STATE_TRANSFER:
+    313                  uiResult = Exchange();
    \                     ??DataExchange_2:
    \   0000001A   2F1B               MOV     R17, R27
    \   0000001C   ....               RCALL   ??Exchange
-    309                  break;
-    310          
-    311              default:
-    312                  break;
-    313              };
-    314          
-    315              return uiResult;
+    314                  break;
+    315          
+    316              default:
+    317                  break;
+    318              };
+    319          
+    320              return uiResult;
    \                     ??DataExchange_3:
    \   0000001E   ....               RJMP    ?Subroutine12
-    316          }
+    321          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CModuleMrXXDriver &CModuleMrXXDriver::new CModuleMrXXDriver(uint8_t)
@@ -1479,13 +1489,13 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
       10  ?Subroutine5
       14  ?Subroutine6
       14  ?Subroutine7
-       8  ?Subroutine8
-       2  ?Subroutine9
+       2  ?Subroutine8
+       8  ?Subroutine9
      168  CModuleMrXXDriver::Allocate(TMemoryAllocationConext &)
       10  CModuleMrXXDriver::CModuleMrXXDriver()
       18  CModuleMrXXDriver::CModuleMrXXDriver(uint8_t)
       32  CModuleMrXXDriver::DataExchange()
-     378  CModuleMrXXDriver::Exchange()
+     388  CModuleMrXXDriver::Exchange()
       98  CModuleMrXXDriver::WriteDataBase()
       12  CModuleMrXXDriver::new CModuleMrXXDriver()
       22  CModuleMrXXDriver::new CModuleMrXXDriver(uint8_t)
@@ -1587,10 +1597,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 
  
  105 bytes in segment ABSOLUTE
- 972 bytes in segment CODE
+ 982 bytes in segment CODE
   14 bytes in segment NEAR_F
  
- 980 bytes of CODE memory (+   6 bytes shared)
+ 990 bytes of CODE memory (+   6 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

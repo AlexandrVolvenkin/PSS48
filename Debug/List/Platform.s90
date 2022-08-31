@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:13:36
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2022  21:01:08
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW29BF.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW5619.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -262,7 +262,7 @@
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
-//    2 //  Sourse      : FileName.cpp
+//    2 //  Source      : FileName.cpp
 //    3 //  Created     : 01.06.2022
 //    4 //  Author      : Alexandr Volvenkin
 //    5 //  email       : aav-36@mail.ru
@@ -1341,10 +1341,10 @@ _A_PINF:
 //  181 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  182 int16_t CUart::Write(uint8_t *puiSourse, uint16_t uiLength)
+//  182 int16_t CUart::Write(uint8_t *puiSource, uint16_t uiLength)
 ??Write:
 //  183 {
-//  184     m_puiTxBuffer = (uint8_t*)puiSourse;
+//  184     m_puiTxBuffer = (uint8_t*)puiSource;
         MOVW    R31:R30, R17:R16
         STD     Z+18, R18
         STD     Z+19, R19
@@ -1810,14 +1810,14 @@ _A_PINF:
 //  337 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  338 uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSourse, uint16_t uiLength)
+//  338 uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSource, uint16_t uiLength)
 ??Read_1:
 //  339 {
         MOVW    R31:R30, R17:R16
         RJMP    ??Read_9
 //  340     while (uiLength != 0)
 //  341     {
-//  342         *puiDestination++ = ReadByte(uiSourse++);
+//  342         *puiDestination++ = ReadByte(uiSource++);
 ??Read_10:
         MOVW    R17:R16, R19:R18
         RCALL   ??ReadByte
@@ -1868,7 +1868,7 @@ _A_PINF:
 //  348 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  349 uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
+//  349 uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
 ??Write_1:
 //  350 {
         RCALL   ?Subroutine17
@@ -1879,7 +1879,7 @@ _A_PINF:
         RJMP    ??Write_2
 //  351     while (uiLength != 0)
 //  352     {
-//  353         WriteByte((uiDestination++), (*puiSourse++));
+//  353         WriteByte((uiDestination++), (*puiSource++));
 ??Write_3:
         LD      R18, X+
         MOVW    R17:R16, R25:R24
@@ -1898,7 +1898,7 @@ _A_PINF:
 //  357 }
 //  358 
 //  359 //-----------------------------------------------------------------------------------------------------
-//  360 uint8_t CEeprom::ReadByte(uint16_t uiSourse)
+//  360 uint8_t CEeprom::ReadByte(uint16_t uiSource)
 //  361 {
 //  362     __watchdog_reset();
 //  363     while (BitIsSet(EECR, EEWE))
@@ -1906,7 +1906,7 @@ _A_PINF:
 //  365         __watchdog_reset();
 //  366     }
 //  367     __disable_interrupt();
-//  368     EEAR = uiSourse;
+//  368     EEAR = uiSource;
 //  369     SetBit(EECR, EERE);
 //  370     __enable_interrupt();
 //  371     return EEDR;
@@ -1934,7 +1934,7 @@ _A_PINF:
 //  393 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  394 void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
+//  394 void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
 ??WriteInterrupt:
 //  395 {
 //  396     SetAddress(uiDestination);
@@ -1942,7 +1942,7 @@ _A_PINF:
         LDI     R31, (??m_puiBuffer) >> 8
         STD     Z+2, R16
         STD     Z+3, R17
-//  397     SetBufferPointer(puiSourse);
+//  397     SetBufferPointer(puiSource);
         ST      Z, R18
         STD     Z+1, R19
 //  398     SetLength(uiLength);
@@ -2546,7 +2546,7 @@ _A_PINF:
 //  711 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  712 uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength)
+//  712 uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
 ??Read_2:
 //  713 {
         MOV     R23, R25
@@ -2558,7 +2558,7 @@ _A_PINF:
         LDI     R25, 0
         RJMP    ??Read_11
 //  716     {
-//  717         puiDestination[i] = uiSourse[i];
+//  717         puiDestination[i] = uiSource[i];
 ??Read_12:
         MOVW    R31:R30, R21:R20
         RCALL   ?Subroutine20
@@ -2825,7 +2825,7 @@ _A_PINF:
 //  818 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  819 uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t uiLength)
+//  819 uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
 ??Exchange_1:
 //  820 {
         MOV     R23, R25
@@ -2845,7 +2845,7 @@ _A_PINF:
         LDI     R25, 0
         RJMP    ??Exchange_7
 //  827     {
-//  828         puiDestination[i] = Exchange(pucSourse[i]);
+//  828         puiDestination[i] = Exchange(pucSource[i]);
 ??Exchange_8:
         MOVW    R31:R30, R19:R18
         RCALL   ?Subroutine20
@@ -3221,7 +3221,7 @@ _A_PINF:
 //  980     before this is called so we need not worry here. */
 //  981     OCR2 = ulCompareMatch;
 //  982 
-//  983     /* Setup clock Sourse and compare match behaviour. */
+//  983     /* Setup clock Source and compare match behaviour. */
 //  984     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
 //  985     TCCR2 = ucLowByte;
 //  986 
@@ -3254,7 +3254,7 @@ _A_PINF:
 // 1013     before this is called so we need not worry here. */
 // 1014     OCR1A = ulCompareMatch;
 // 1015 
-// 1016     /* Setup clock Sourse and compare match behaviour. */
+// 1016     /* Setup clock Source and compare match behaviour. */
 // 1017     TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
 // 1018     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
 // 1019     TCCR1B = ucLowByte;

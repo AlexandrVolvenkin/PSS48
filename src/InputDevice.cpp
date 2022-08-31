@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -14,8 +14,8 @@
 //}
 //
 ////-----------------------------------------------------------------------------------------------------
-//CInputDevice::CInputDevice(uint8_t (*fpuiEventSourse)(void)) :
-//    m_fpuiEventSourse(fpuiEventSourse)
+//CInputDevice::CInputDevice(uint8_t (*fpuiEventSource)(void)) :
+//    m_fpuiEventSource(fpuiEventSource)
 //{
 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
 //    SetFsmState(KEY_EVENT_UNPRESSED);
@@ -28,9 +28,9 @@
 //}
 //
 ////-----------------------------------------------------------------------------------------------------
-//void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+//void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSource)(void))
 //{
-//    m_fpuiEventSourse = fpuiEventSourse;
+//    m_fpuiEventSource = fpuiEventSource;
 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
 //    SetFsmState(KEY_EVENT_UNPRESSED);
 //}
@@ -38,7 +38,7 @@
 ////-----------------------------------------------------------------------------------------------------
 //uint8_t CInputDevice::EventHappened(void)
 //{
-//    if (m_fpuiEventSourse())
+//    if (m_fpuiEventSource())
 //    {
 //        return 1;
 //    }
@@ -153,9 +153,9 @@ CMultiFunctionKey::CMultiFunctionKey()
 }
 
 //-----------------------------------------------------------------------------------------------------
-CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSourse)(void))
+CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSource)(void))
 {
-    m_fpuiEventSourse = fpuiEventSourse;
+    m_fpuiEventSource = fpuiEventSource;
     m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
     m_uiEventCode = KEY_EVENT_UNPRESSED;
     SetFsmState(KEY_EVENT_UNPRESSED);
@@ -168,9 +168,9 @@ CMultiFunctionKey::~CMultiFunctionKey()
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSource)(void))
 {
-    m_fpuiEventSourse = fpuiEventSourse;
+    m_fpuiEventSource = fpuiEventSource;
     m_uiEventCode = KEY_EVENT_UNPRESSED;
     SetFsmState(KEY_EVENT_UNPRESSED);
 }
@@ -178,7 +178,7 @@ void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
 //-----------------------------------------------------------------------------------------------------
 uint8_t CMultiFunctionKey::EventHappened(void)
 {
-    if (m_fpuiEventSourse())
+    if (m_fpuiEventSource())
     {
         return 1;
     }

@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -71,7 +71,7 @@ public:
     static void DisconnectDevice(void);
     static uint16_t ReportType(uint8_t * , uint16_t );
     static void SetBytesFromBits(uint8_t *uiDestination,
-                                 uint8_t *uiSourse,
+                                 uint8_t *uiSource,
                                  uint16_t uiLength);
     static void ModbusDeviceControl(uint8_t* puiData,
                                     uint16_t uiLength,
@@ -106,6 +106,7 @@ public:
     static void AlarmsProcessing(void);
     static void ErrorAlarmsProcessing(void);
     static void DiscreteSignalsProcessing(void);
+    static void BoardWindowsUpdate(void);
     static void ActiveAlarmWindowOn(uint8_t uiAlarmType);
     static void ActiveAlarmWindowOff(uint8_t uiAlarmType);
     static void AllAlarmWindowOn(uint8_t uiAlarmType);

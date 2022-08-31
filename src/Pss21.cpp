@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -419,14 +419,14 @@ uint16_t CPss21::ReportType(uint8_t *puiDestination, uint16_t uiLength)
 
 //-----------------------------------------------------------------------------------------------------
 void CPss21::SetBytesFromBits(uint8_t *uiDestination,
-                              uint8_t *uiSourse,
+                              uint8_t *uiSource,
                               uint16_t uiLength)
 {
     int16_t shift = 0;
 
     for (int16_t i = 0; i < uiLength; i++)
     {
-        uiDestination[i] = uiSourse[(i) / 8] & (1 << shift) ? 1 : 0;
+        uiDestination[i] = uiSource[(i) / 8] & (1 << shift) ? 1 : 0;
         /* gcc doesn't like: shift = (++shift) % 8; */
         shift++;
         shift %= 8;
@@ -1171,6 +1171,12 @@ void CPss21::DiscreteSignalsProcessing(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::BoardWindowsUpdate(void)
+{
+    CLightBoard::Set(m_axAlarmWindowControl);
+}
+
+//-----------------------------------------------------------------------------------------------------
 void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
 {
     for (uint8_t i = 0;
@@ -1185,7 +1191,7 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
         }
     };
 
-    CLightBoard::Set();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1208,7 +1214,7 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
         }
     };
 
-    CLightBoard::Set();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1226,7 +1232,7 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
         m_axAlarmWindowControl[i].SetActivityState(1);
     };
 
-    CLightBoard::Set();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1251,7 +1257,7 @@ void CPss21::ErrorWindowOn(uint8_t uiIndex)
         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
     }
 
-    CLightBoard::Set();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1267,7 +1273,7 @@ void CPss21::AllAlarmWindowOff(void)
         m_axAlarmWindowControl[i].SetActivityState(0);
     };
 
-    CLightBoard::Set();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------

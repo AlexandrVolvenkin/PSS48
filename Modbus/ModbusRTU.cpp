@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -298,18 +298,18 @@ int8_t CModbusRTU::FrameCheck(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
-int8_t CModbusRTU::FrameCheck(uint8_t *puiSourse, uint16_t uiLength)
+int8_t CModbusRTU::FrameCheck(uint8_t *puiSource, uint16_t uiLength)
 {
     if (uiLength < _MIN_MESSAGE_LENGTH)
     {
         return 0;
     }
 
-    uint16_t uiCrc = ((static_cast<uint16_t>(puiSourse[uiLength - 1]) << 8) |
-                      (static_cast<uint16_t>(puiSourse[uiLength - 2])));
-    uint16_t uiCrcTemp = usCrc16(puiSourse,
+    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 1]) << 8) |
+                      (static_cast<uint16_t>(puiSource[uiLength - 2])));
+    uint16_t uiCrcTemp = usCrc16(puiSource,
                                  (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH));
-    if (usCrc16(puiSourse,
+    if (usCrc16(puiSource,
                 (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
     {
         return 1;

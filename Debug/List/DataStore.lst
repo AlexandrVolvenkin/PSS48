@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:13:29
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           21/Aug/2022  21:01:00
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW107B.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW3542.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -28,7 +28,7 @@
 D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
       1          
       2          //-----------------------------------------------------------------------------------------------------
-      3          //  Sourse      : FileName.cpp
+      3          //  Source      : FileName.cpp
       4          //  Created     : 01.06.2022
       5          //  Author      : Alexandr Volvenkin
       6          //  email       : aav-36@mail.ru
@@ -695,7 +695,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
      84          
      85              uint16_t uiLength;
      86              uint16_t uiEncodedLength;
-     87              uint16_t uiSourseOffset;
+     87              uint16_t uiSourceOffset;
      88              uint8_t auiTempArray[256];
      89          
      90              // Блок существует?
@@ -719,7 +719,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
    \   00000028   F159               BREQ    ??ReadBlock_1
      95              {
      96                  // Получим адрес блока в EEPROM.
-     97                  uiSourseOffset = m_xBlocksControlData.
+     97                  uiSourceOffset = m_xBlocksControlData.
      98                                   axBlockPositionData[uiBlock].uiOffset;
      99                  // Получим размер блока.
     100                  uiLength = m_xBlocksControlData.
@@ -739,7 +739,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     110              }
     111          
     112              // Прочитаем закодированные данные.
-    113              CEeprom::Read(auiTempArray, uiSourseOffset, uiEncodedLength);
+    113              CEeprom::Read(auiTempArray, uiSourceOffset, uiEncodedLength);
    \   00000032   2F48               MOV     R20, R24
    \   00000034   2F51               MOV     R21, R17
    \   00000036   8124               LDD     R18, Z+4
@@ -818,7 +818,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     140          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    141          uint16_t CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+    141          uint16_t CDataStore::Write(uint8_t *puiSource, uint16_t uiLength, uint8_t uiBlock)
    \                     ??Write:
     142          {
    \   00000000   ........           CALL    ?PROLOGUE6_L09
@@ -843,14 +843,14 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     150              uint16_t uiEncodedByteCounter;
     151              uint8_t auiTempArray[256];
     152          
-    153              memcpy(auiTempArray, puiSourse, uiLength);
+    153              memcpy(auiTempArray, puiSource, uiLength);
    \                     ??Write_1:
    \   00000016   01A9               MOVW    R21:R20, R19:R18
    \   00000018   0198               MOVW    R19:R18, R17:R16
    \   0000001A   018E               MOVW    R17:R16, R29:R28
    \   0000001C   ........           CALL    memcpy
     154              // Вычислим контрольную сумму поступивших данных.
-    155              uint16_t uiCrc = usCrc16(puiSourse, uiLength);
+    155              uint16_t uiCrc = usCrc16(puiSource, uiLength);
    \   00000020   019C               MOVW    R19:R18, R25:R24
    \   00000022   018D               MOVW    R17:R16, R27:R26
    \   00000024   ........           CALL    ??usCrc16
@@ -965,7 +965,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
     191          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    192          bool CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+    192          bool CDataStore::WriteBlock(uint8_t *puiSource, uint16_t uiLength, uint8_t uiBlock)
    \                     ??WriteBlock:
     193          {
    \   00000000   9150....           LDS     R21, (??m_puiIntermediateBuff + 2)
@@ -973,7 +973,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\DataStore.cpp
    \   00000006   F449               BRNE    ??WriteBlock_1
     194              if (GetFsmState() == IDDLE)
     195              {
-    196                  if (Write(puiSourse,
+    196                  if (Write(puiSource,
     197                            uiLength,
     198                            uiBlock))
    \   00000008   ....               RCALL   ??Write

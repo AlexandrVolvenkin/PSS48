@@ -1,7 +1,7 @@
 
 //-----------------------------------------------------------------------------------------------------
 //  Based on    : https://github.com/Minho-Cha/8bit-Hamming-Code
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -107,8 +107,8 @@ public:
     static uint8_t deHamming(uint16_t hammingData);
     static uint8_t Recovery(uint16_t uiHammingData);
     static uint16_t CalculateEncodedDataLength(uint16_t uiLength);
-    static uint16_t BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiLength);
-    static uint16_t HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiEncodedLength);
+    static uint16_t BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSource, uint16_t uiLength);
+    static uint16_t HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSource, uint16_t uiEncodedLength);
 
     static void SetErrorCode(uint8_t uiErrorCode)
     {

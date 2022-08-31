@@ -39,21 +39,21 @@ __flash const unsigned short usCRCTable[] =
 };
 
 //-----------------------------------------------------------------------------------------------------
-uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength)
+uint16_t usCrc16(const unsigned char *puiSource, uint16_t uiLength)
 {
     unsigned char ucTemp;
     uint16_t usCrc = 0xFFFF;
 
 //    while (uiLength--)
 //    {
-//        ucTemp = *puiSourse++ ^ usCrc;
+//        ucTemp = *puiSource++ ^ usCrc;
 //        usCrc >>= 8;
 //        usCrc  ^= usCRCTable[ucTemp];
 //    }
 
     for (uint8_t i = 0; i < uiLength; i++)
     {
-        ucTemp = *puiSourse++ ^ usCrc;
+        ucTemp = *puiSource++ ^ usCrc;
         usCrc >>= 8;
         usCrc  ^= usCRCTable[ucTemp];
     }
@@ -63,14 +63,14 @@ uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength)
 
 
 ////--------------------------------------------------------------------
-//unsigned short usCrc16(unsigned char *puiSourse, unsigned short uiLength)
+//unsigned short usCrc16(unsigned char *puiSource, unsigned short uiLength)
 //{
 //    unsigned short usCrc = 0xFFFF;
 //    unsigned char ucCounter;
 //
 //    while (uiLength != 0)
 //    {
-//        usCrc = usCrc ^ (unsigned short)(*puiSourse++);
+//        usCrc = usCrc ^ (unsigned short)(*puiSource++);
 //        ucCounter = 8;
 //        while(ucCounter != 0)
 //        {
@@ -88,14 +88,14 @@ uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength)
 //}
 
 ////-----------------------------------------------------------------------------------------------------
-//int iCrc16Check(unsigned char *puiSourse, unsigned short uiLength)
+//int iCrc16Check(unsigned char *puiSource, unsigned short uiLength)
 //{
 //    unsigned short usCrc;
 //
-//    usCrc = (((unsigned short)(puiSourse[uiLength])) << 8) |
-//            (unsigned short)(puiSourse[uiLength + 1]);
+//    usCrc = (((unsigned short)(puiSource[uiLength])) << 8) |
+//            (unsigned short)(puiSource[uiLength + 1]);
 //
-//    if (usCrc16(puiSourse, uiLength) == usCrc)
+//    if (usCrc16(puiSource, uiLength) == usCrc)
 //    {
 //        return 0;
 //    }
@@ -108,7 +108,7 @@ uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength)
 //-----------------------------------------------------------------------------------------------------
 // вычисляет двухбайтовую контрольную сумму.
 unsigned short usCrcSummTwoByteCalculation(
-    unsigned char *puiSourse,
+    unsigned char *puiSource,
     unsigned int nuiNbyte)
 {
     unsigned short usData;
@@ -116,7 +116,7 @@ unsigned short usCrcSummTwoByteCalculation(
     usData = 0;
     do
     {
-        usData += (unsigned short)*puiSourse++;
+        usData += (unsigned short)*puiSource++;
         nuiNbyte--;
     }
     while (nuiNbyte);
@@ -126,7 +126,7 @@ unsigned short usCrcSummTwoByteCalculation(
 
 //-----------------------------------------------------------------------------------------------------
 // сравнивает двухбайтовую контрольную сумму.
-int iCrcSummTwoByteCompare(unsigned char *puiSourse,
+int iCrcSummTwoByteCompare(unsigned char *puiSource,
                            unsigned int nuiNbyte)
 {
     unsigned short usData;
@@ -134,15 +134,15 @@ int iCrcSummTwoByteCompare(unsigned char *puiSourse,
     usData = 0;
     do
     {
-        usData += (unsigned short)*puiSourse++;
+        usData += (unsigned short)*puiSource++;
         nuiNbyte--;
     }
     while (nuiNbyte);
 
-    if ((unsigned char)usData  == *puiSourse++)
+    if ((unsigned char)usData  == *puiSource++)
     {
 
-        if ((unsigned char)(usData >> 8)  == *puiSourse)
+        if ((unsigned char)(usData >> 8)  == *puiSource)
         {
             return 1;
         }
@@ -153,14 +153,14 @@ int iCrcSummTwoByteCompare(unsigned char *puiSourse,
 //-----------------------------------------------------------------------------------------------------
 // вычисляет однобайтовую контрольную сумму.
 uint8_t usCrcSummOneByteCalculation(
-    uint8_t *puiSourse,
+    uint8_t *puiSource,
     uint16_t nuiNbyte)
 {
     uint8_t uiData = 0;
 
     for (int8_t i = 0; i < nuiNbyte; i++)
     {
-        uiData += puiSourse[i];
+        uiData += puiSource[i];
     }
 
     return uiData;
@@ -168,7 +168,7 @@ uint8_t usCrcSummOneByteCalculation(
 
 //-----------------------------------------------------------------------------------------------------
 // сравнивает однобайтовую контрольную сумму.
-int iCrcSummOneByteCompare(unsigned char *puiSourse,
+int iCrcSummOneByteCompare(unsigned char *puiSource,
                            unsigned int nuiNbyte)
 {
     unsigned char uiData;
@@ -176,12 +176,12 @@ int iCrcSummOneByteCompare(unsigned char *puiSourse,
     uiData = 0;
     do
     {
-        uiData += *puiSourse++;
+        uiData += *puiSource++;
         nuiNbyte--;
     }
     while ((nuiNbyte) != 0);
 
-    if (uiData == *puiSourse)
+    if (uiData == *puiSource)
     {
         return 1;
     }

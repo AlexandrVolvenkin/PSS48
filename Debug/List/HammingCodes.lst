@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:07:23
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           21/Aug/2022  21:01:01
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW7A3A.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW3B7D.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -29,7 +29,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
       1          
       2          //-----------------------------------------------------------------------------------------------------
       3          //  Based on    : https://github.com/Minho-Cha/8bit-Hamming-Code
-      4          //  Sourse      : FileName.cpp
+      4          //  Source      : FileName.cpp
       5          //  Created     : 01.06.2022
       6          //  Author      : Alexandr Volvenkin
       7          //  email       : aav-36@mail.ru
@@ -404,7 +404,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     134          // Кодирует буфер в код Хемминга.
 
    \                                 In  segment CODE, align 2, keep-with-next
-    135          uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiLength)
+    135          uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSource, uint16_t uiLength)
    \                     ??BytesToHammingCodes:
     136          {
    \   00000000   ........           CALL    ?PROLOGUE14_L09
@@ -425,7 +425,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     137              uint16_t uiEncodedByteCounter = 0;
    \   0000000C   E080               LDI     R24, 0
    \   0000000E   E090               LDI     R25, 0
-    138              uint16_t uiSourseIndex = 0;
+    138              uint16_t uiSourceIndex = 0;
    \   00000010   2444               CLR     R4
    \   00000012   2455               CLR     R5
     139              bool bTailIsPresent = false;
@@ -456,15 +456,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     150              {
     151                  uint32_t uiData;
     152                  // Получим кодовое слово 12 бит.
-    153                  uiData = static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex]));
+    153                  uiData = static_cast<uint32_t>(enHamming(puiSource[uiSourceIndex]));
    \                     ??BytesToHammingCodes_3:
    \   0000002E   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_15:
    \   00000030   ....               RCALL   ?Subroutine6
     154                  // Следующий байт источника.
-    155                  uiSourseIndex++;
+    155                  uiSourceIndex++;
     156                  // Получим кодовое слово 12 бит.
-    157                  uiData |= (static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex])) << HAMMING_CODE_8_4_BIT_NUMBER);
+    157                  uiData |= (static_cast<uint32_t>(enHamming(puiSource[uiSourceIndex])) << HAMMING_CODE_8_4_BIT_NUMBER);
    \                     ??CrossCallReturnLabel_21:
    \   00000032   0168               MOVW    R13:R12, R17:R16
    \   00000034   E001               LDI     R16, 1
@@ -478,7 +478,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
    \                     ??CrossCallReturnLabel_3:
    \   00000042   291D               OR      R17, R13
     158                  // Следующий байт источника.
-    159                  uiSourseIndex++;
+    159                  uiSourceIndex++;
    \   00000044   E041               LDI     R20, 1
    \   00000046   0E44               ADD     R4, R20
    \   00000048   1E50               ADC     R5, R16
@@ -529,7 +529,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     178              {
     179                  uint32_t uiData;
     180                  // Получим кодовое слово 12 бит.
-    181                  uiData = static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex]));
+    181                  uiData = static_cast<uint32_t>(enHamming(puiSource[uiSourceIndex]));
    \   00000078   0C84               ADD     R8, R4
    \   0000007A   1C95               ADC     R9, R5
    \   0000007C   01F4               MOVW    R31:R30, R9:R8
@@ -609,7 +609,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     205          // Декодирует буфер с кодом Хемминга.
 
    \                                 In  segment CODE, align 2, keep-with-next
-    206          uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiEncodedLength)
+    206          uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSource, uint16_t uiEncodedLength)
    \                     ??HammingCodesToBytes:
     207          {
    \   00000000   ........           CALL    ?PROLOGUE16_L09
@@ -631,7 +631,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     208              uint16_t uiDecodedByteCounter = 0;
    \   0000000A   2466               CLR     R6
    \   0000000C   2477               CLR     R7
-    209              uint16_t uiSourseIndex = 0;
+    209              uint16_t uiSourceIndex = 0;
    \   0000000E   2444               CLR     R4
    \   00000010   2455               CLR     R5
     210          //    bool bTailIsPresent = false;
@@ -671,7 +671,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     229              {
     230                  uint32_t uiData;
     231          
-    232                  uiData = (static_cast<uint32_t>(puiSourse[uiSourseIndex]));
+    232                  uiData = (static_cast<uint32_t>(puiSource[uiSourceIndex]));
    \                     ??HammingCodesToBytes_4:
    \   00000030   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_17:
@@ -680,8 +680,8 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
    \   00000036   E0A0               LDI     R26, 0
    \   00000038   E0B0               LDI     R27, 0
     233                  // Следующий байт источника.
-    234                  uiSourseIndex++;
-    235                  uiData |= (static_cast<uint32_t>(puiSourse[uiSourseIndex]) << 8);
+    234                  uiSourceIndex++;
+    235                  uiData |= (static_cast<uint32_t>(puiSource[uiSourceIndex]) << 8);
    \   0000003A   E001               LDI     R16, 1
    \   0000003C   0E40               ADD     R4, R16
    \   0000003E   1E59               ADC     R5, R25
@@ -690,15 +690,15 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
    \   00000042   8110               LD      R17, Z
    \   00000044   2F91               MOV     R25, R17
     236                  // Следующий байт источника.
-    237                  uiSourseIndex++;
-    238                  uiData |= (static_cast<uint32_t>(puiSourse[uiSourseIndex]) << 16);
+    237                  uiSourceIndex++;
+    238                  uiData |= (static_cast<uint32_t>(puiSource[uiSourceIndex]) << 16);
    \   00000046   0E40               ADD     R4, R16
    \   00000048   1E5A               ADC     R5, R26
    \   0000004A   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_19:
    \   0000004C   81A0               LD      R26, Z
     239                  // Следующий байт источника.
-    240                  uiSourseIndex++;
+    240                  uiSourceIndex++;
    \   0000004E   0E40               ADD     R4, R16
    \   00000050   1E5B               ADC     R5, R27
     241          
@@ -745,10 +745,10 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\HammingCodes.cpp
     253          //    {
     254          //        uint16_t uiData;
     255          //
-    256          //        uiData = (static_cast<uint16_t>(puiSourse[uiSourseIndex]));
+    256          //        uiData = (static_cast<uint16_t>(puiSource[uiSourceIndex]));
     257          //        // Следующий байт источника.
-    258          //        uiSourseIndex++;
-    259          //        uiData |= (static_cast<uint16_t>(puiSourse[uiSourseIndex]) << 8);
+    258          //        uiSourceIndex++;
+    259          //        uiData |= (static_cast<uint16_t>(puiSource[uiSourceIndex]) << 8);
     260          //
     261          //        // Восстановим закодированный байт.
     262          //        puiDestination[uiDecodedByteCounter] = Recovery(uiData & 0x0FFF);

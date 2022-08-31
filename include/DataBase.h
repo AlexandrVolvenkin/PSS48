@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -24,7 +24,7 @@ public:
     static void SignatureCreate(void);
     static bool SignatureCheck(void);
     static uint16_t ReadBlock(uint8_t * , uint8_t );
-    static uint16_t WriteBlock(uint8_t *puiSourse, uint8_t uiBlock);
+    static uint16_t WriteBlock(uint8_t *puiSource, uint8_t uiBlock);
     static uint16_t GetBlockLength(uint8_t uiBlock);
     static uint8_t GetBlocksNumber(void)
     {

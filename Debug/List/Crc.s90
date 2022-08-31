@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:07:21
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2022  21:00:59
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Crc.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW71BC.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW330E.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\Crc.cpp --cpu=m128a -ms -o
 //        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -118,7 +118,7 @@ usCRCTable:
 //   41 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   42 uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength)
+//   42 uint16_t usCrc16(const unsigned char *puiSource, uint16_t uiLength)
 ??usCrc16:
 //   43 {
 //   44     unsigned char ucTemp;
@@ -128,7 +128,7 @@ usCRCTable:
 //   46 
 //   47 //    while (uiLength--)
 //   48 //    {
-//   49 //        ucTemp = *puiSourse++ ^ usCrc;
+//   49 //        ucTemp = *puiSource++ ^ usCrc;
 //   50 //        usCrc >>= 8;
 //   51 //        usCrc  ^= usCRCTable[ucTemp];
 //   52 //    }
@@ -137,7 +137,7 @@ usCRCTable:
         LDI     R20, 0
         RJMP    ??usCrc16_1
 //   55     {
-//   56         ucTemp = *puiSourse++ ^ usCrc;
+//   56         ucTemp = *puiSource++ ^ usCrc;
 ??usCrc16_2:
         MOVW    R31:R30, R17:R16
         LD      R21, Z+
@@ -175,14 +175,14 @@ usCRCTable:
 //   63 
 //   64 
 //   65 ////--------------------------------------------------------------------
-//   66 //unsigned short usCrc16(unsigned char *puiSourse, unsigned short uiLength)
+//   66 //unsigned short usCrc16(unsigned char *puiSource, unsigned short uiLength)
 //   67 //{
 //   68 //    unsigned short usCrc = 0xFFFF;
 //   69 //    unsigned char ucCounter;
 //   70 //
 //   71 //    while (uiLength != 0)
 //   72 //    {
-//   73 //        usCrc = usCrc ^ (unsigned short)(*puiSourse++);
+//   73 //        usCrc = usCrc ^ (unsigned short)(*puiSource++);
 //   74 //        ucCounter = 8;
 //   75 //        while(ucCounter != 0)
 //   76 //        {
@@ -200,14 +200,14 @@ usCRCTable:
 //   88 //}
 //   89 
 //   90 ////-----------------------------------------------------------------------------------------------------
-//   91 //int iCrc16Check(unsigned char *puiSourse, unsigned short uiLength)
+//   91 //int iCrc16Check(unsigned char *puiSource, unsigned short uiLength)
 //   92 //{
 //   93 //    unsigned short usCrc;
 //   94 //
-//   95 //    usCrc = (((unsigned short)(puiSourse[uiLength])) << 8) |
-//   96 //            (unsigned short)(puiSourse[uiLength + 1]);
+//   95 //    usCrc = (((unsigned short)(puiSource[uiLength])) << 8) |
+//   96 //            (unsigned short)(puiSource[uiLength + 1]);
 //   97 //
-//   98 //    if (usCrc16(puiSourse, uiLength) == usCrc)
+//   98 //    if (usCrc16(puiSource, uiLength) == usCrc)
 //   99 //    {
 //  100 //        return 0;
 //  101 //    }
@@ -223,7 +223,7 @@ usCRCTable:
         RSEG CODE:CODE:NOROOT(1)
 //  110 unsigned short usCrcSummTwoByteCalculation(
 ??usCrcSummTwoByteCalculation:
-//  111     unsigned char *puiSourse,
+//  111     unsigned char *puiSource,
 //  112     unsigned int nuiNbyte)
 //  113 {
 //  114     unsigned short usData;
@@ -232,7 +232,7 @@ usCRCTable:
         RCALL   ?Subroutine0
 //  117     do
 //  118     {
-//  119         usData += (unsigned short)*puiSourse++;
+//  119         usData += (unsigned short)*puiSource++;
 //  120         nuiNbyte--;
 //  121     }
 //  122     while (nuiNbyte);
@@ -246,7 +246,7 @@ usCRCTable:
 //  128 // сравнивает двухбайтовую контрольную сумму.
 
         RSEG CODE:CODE:NOROOT(1)
-//  129 int iCrcSummTwoByteCompare(unsigned char *puiSourse,
+//  129 int iCrcSummTwoByteCompare(unsigned char *puiSource,
 ??iCrcSummTwoByteCompare:
 //  130                            unsigned int nuiNbyte)
 //  131 {
@@ -256,19 +256,19 @@ usCRCTable:
         RCALL   ?Subroutine0
 //  135     do
 //  136     {
-//  137         usData += (unsigned short)*puiSourse++;
+//  137         usData += (unsigned short)*puiSource++;
 //  138         nuiNbyte--;
 //  139     }
 //  140     while (nuiNbyte);
 //  141 
-//  142     if ((unsigned char)usData  == *puiSourse++)
+//  142     if ((unsigned char)usData  == *puiSource++)
 ??CrossCallReturnLabel_1:
         LD      R19, Z
         CP      R22, R19
         BRNE    ??iCrcSummTwoByteCompare_1
 //  143     {
 //  144 
-//  145         if ((unsigned char)(usData >> 8)  == *puiSourse)
+//  145         if ((unsigned char)(usData >> 8)  == *puiSource)
         LDD     R16, Z+1
         CP      R23, R16
         BRNE    ??iCrcSummTwoByteCompare_1
@@ -313,7 +313,7 @@ usCRCTable:
         RSEG CODE:CODE:NOROOT(1)
 //  155 uint8_t usCrcSummOneByteCalculation(
 ??usCrcSummOneByteCalculation:
-//  156     uint8_t *puiSourse,
+//  156     uint8_t *puiSource,
 //  157     uint16_t nuiNbyte)
 //  158 {
 //  159     uint8_t uiData = 0;
@@ -323,7 +323,7 @@ usCRCTable:
         LDI     R20, 0
         RJMP    ??usCrcSummOneByteCalculation_1
 //  162     {
-//  163         uiData += puiSourse[i];
+//  163         uiData += puiSource[i];
 ??usCrcSummOneByteCalculation_2:
         MOV     R21, R20
         LSL     R21
@@ -352,7 +352,7 @@ usCRCTable:
 //  170 // сравнивает однобайтовую контрольную сумму.
 
         RSEG CODE:CODE:NOROOT(1)
-//  171 int iCrcSummOneByteCompare(unsigned char *puiSourse,
+//  171 int iCrcSummOneByteCompare(unsigned char *puiSource,
 ??iCrcSummOneByteCompare:
 //  172                            unsigned int nuiNbyte)
 //  173 {
@@ -362,7 +362,7 @@ usCRCTable:
         LDI     R20, 0
 //  177     do
 //  178     {
-//  179         uiData += *puiSourse++;
+//  179         uiData += *puiSource++;
 ??iCrcSummOneByteCompare_1:
         MOVW    R31:R30, R17:R16
         LD      R21, Z+
@@ -375,7 +375,7 @@ usCRCTable:
         SBCI    R19, 0
         BRNE    ??iCrcSummOneByteCompare_1
 //  183 
-//  184     if (uiData == *puiSourse)
+//  184     if (uiData == *puiSource)
         LD      R16, Z
         CP      R20, R16
         BRNE    ??iCrcSummOneByteCompare_2

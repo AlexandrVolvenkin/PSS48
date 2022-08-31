@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:13:35
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2022  21:01:07
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW25E7.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW5231.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
@@ -203,19 +203,20 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CNotifyerControl 45>` SYMBOL "CNotifyerControl"
-`?<Name CPreventiveAlarmWind 50>` SYMBOL "CPreventiveAlarmWindowNotifyerControl"
-`?<Name CEmergencyAlarmWindo 53>` SYMBOL "CEmergencyAlarmWindowNotifyerControl"
-`?<Name CStatusLedNotifyerCo 66>` SYMBOL "CStatusLedNotifyerControl"
-`?<Name CBuzzerNotifyerContr 69>` SYMBOL "CBuzzerNotifyerControl"
-??__vtbl            SYMBOL "__vtbl", `?<Name CNotifyerControl 45>`
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CPreventiveAlarmWind 50>`
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CEmergencyAlarmWindo 53>`
-??__vtbl_4          SYMBOL "__vtbl", `?<Name CStatusLedNotifyerCo 66>`
-??__vtbl_5          SYMBOL "__vtbl", `?<Name CBuzzerNotifyerContr 69>`
+`?<Name CNotifyerControl 44>` SYMBOL "CNotifyerControl"
+`?<Name CPreventiveAlarmWind 49>` SYMBOL "CPreventiveAlarmWindowNotifyerControl"
+`?<Name CEmergencyAlarmWindo 52>` SYMBOL "CEmergencyAlarmWindowNotifyerControl"
+`?<Name CStatusLedNotifyerCo 65>` SYMBOL "CStatusLedNotifyerControl"
+`?<Name CBuzzerNotifyerContr 68>` SYMBOL "CBuzzerNotifyerControl"
+??__vtbl            SYMBOL "__vtbl", `?<Name CNotifyerControl 44>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CPreventiveAlarmWind 49>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CEmergencyAlarmWindo 52>`
+??__vtbl_4          SYMBOL "__vtbl", `?<Name CStatusLedNotifyerCo 65>`
+??__vtbl_5          SYMBOL "__vtbl", `?<Name CBuzzerNotifyerContr 68>`
 
         EXTERN ??ActiveAlarmWindowOff
         EXTERN ??ActiveAlarmWindowOn
+        EXTERN ??BoardWindowsUpdate
         EXTERN ??CDfa
         EXTERN ??CTimer
         EXTERN ??HighOn
@@ -223,7 +224,6 @@
         EXTERN ??LowOn
         EXTERN ??Off
         EXTERN ??Set
-        EXTERN ??Set_1
         EXTERN `??operator delete`
         EXTERN `??operator new`
         EXTERN `?~CDfa`
@@ -232,7 +232,7 @@
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
-//    2 //  Sourse      : FileName.cpp
+//    2 //  Source      : FileName.cpp
 //    3 //  Created     : 01.06.2022
 //    4 //  Author      : Alexandr Volvenkin
 //    5 //  email       : aav-36@mail.ru
@@ -1905,8 +1905,8 @@ _A_PINF:
         LDS     R16, 98
         ORI     R16, 0x80
         STS     98, R16
-//  533     CLightBoard::Set();
-        JMP     ??Set_1
+//  533     CPss21::BoardWindowsUpdate();
+        JMP     ??BoardWindowsUpdate
         REQUIRE _A_PORTF
 //  534 }
 //  535 //-----------------------------------------------------------------------------------------------------

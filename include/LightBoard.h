@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -9,9 +9,7 @@
 #define CLIGHTBOARD_H
 
 #include <stdint.h>
-#include "Configuration.h"
 #include "AlarmWindow.h"
-#include "BoardLamp.h"
 #include "DM134.h"
 
 //-----------------------------------------------------------------------------------------------------
@@ -21,7 +19,7 @@ public:
 //    CLightBoard();
 //    virtual ~CLightBoard();
     static void Init(CAlarmWindow* pxAlarmWindowControl);
-    static void Set(void);
+    static void Set(CAlarmWindow* pxAlarmWindowControl);
 
 protected:
 private:
@@ -31,9 +29,9 @@ private:
     static const uint8_t m_uiLedDriversNumber = 4;
     static const uint8_t m_uiBoardLedNumber = m_uiLedDriverLedNumber * m_uiLedDriversNumber;
 
-//    static CDM134 m_xLedDriver;
+    // Массив управления драйверами светодиодов на панели.
     static uint8_t m_auiBoardLampsControl[m_uiBoardLedNumber];
-    static CAlarmWindow* m_pxAlarmWindowControl;
+    // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
     static __flash uint8_t m_auiLedMap[];
 };
 

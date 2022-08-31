@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  19:27:21
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2022  21:01:01
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EWB1F6.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW3E0E.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -42,7 +42,6 @@
         PUBLIC ??Set
         PUBLIC ??m_auiBoardLampsControl
         PUBLIC ??m_auiLedMap
-        PUBLIC ??m_pxAlarmWindowControl
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -143,14 +142,13 @@
 `?<Name CLightBoard 6>` SYMBOL "CLightBoard"
 ??m_auiBoardLampsControl SYMBOL "m_auiBoardLampsControl", `?<Name CLightBoard 6>`
 ??m_auiLedMap       SYMBOL "m_auiLedMap", `?<Name CLightBoard 6>`
-??m_pxAlarmWindowControl SYMBOL "m_pxAlarmWindowControl", `?<Name CLightBoard 6>`
 
         EXTERN ??Init_1
         EXTERN ??Set_1
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
-//    2 //  Sourse      : FileName.cpp
+//    2 //  Source      : FileName.cpp
 //    3 //  Created     : 01.06.2022
 //    4 //  Author      : Alexandr Volvenkin
 //    5 //  email       : aav-36@mail.ru
@@ -618,46 +616,38 @@ _A_PINE:
 // union <unnamed> volatile __io _A_PINF
 _A_PINF:
         DS8 1
-//   10 #include "Pss21.h"
-//   11 
-//   12 //-------------------------------------------------------------------------------------------------
-//   13 //CDM134 CLightBoard::m_xLedDriver;
+//   10 
+//   11 //-------------------------------------------------------------------------------------------------
+//   12 // Массив управления драйверами светодиодов на панели.
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-//   14 uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
+//   13 uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
 ??m_auiBoardLampsControl:
         DS8 64
-
-        RSEG NEAR_Z:DATA:ROOT(0)
-        REQUIRE `?<Segment init: NEAR_Z>`
-//   15 CAlarmWindow* CLightBoard::m_pxAlarmWindowControl;
-??m_pxAlarmWindowControl:
-        DS8 2
+//   14 // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
 
         RSEG NEAR_F:CODE:ROOT(0)
-        DC8 0, 0, 0, 0
-//   16 // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
-
-        RSEG NEAR_F:CODE:ROOT(0)
-//   17 __flash uint8_t CLightBoard::m_auiLedMap[] =
+//   15 __flash uint8_t CLightBoard::m_auiLedMap[] =
 ??m_auiLedMap:
         DC8 48, 60, 32, 45, 16, 28, 0, 13, 49, 61, 33, 44, 17, 29, 1, 12, 52
         DC8 62, 36, 43, 20, 30, 4, 11, 53, 63, 37, 42, 21, 31, 5, 10, 54, 57
         DC8 38, 41, 22, 25, 6, 9, 55, 56, 39, 40, 23, 24, 7, 8
-//   18 {
-//   19     // Индекс окна на панели сопоставлен с выходом драйвера управления светодиодом на схеме.
-//   20     // На схеме панели 4 драйвера по 16 выходов. Два драйвера на левой стороне(плата МЦП-21-24)
-//   21     // и два драйвера на правой стороне(плата МРИ-21-24).
-//   22     // Длина массива управления драйверами 16 * 4 = 64 выхода.
-//   23     // Последовательность адресации выходов драйверов в массиве:
-//   24     // (0-15) - DD1 плата МРИ-21-24, (16-31) - DD2 плата МРИ-21-24,
-//   25     // (32-47) - DD1 плата МЦП-21-24, (48-63) - DD2 плата МЦП-21-24.
+//   16 {
+//   17     // Индекс окна на панели сопоставлен с выходом драйвера управления светодиодом на схеме.
+//   18     // На схеме панели 4 драйвера по 16 выходов. Два драйвера на левой стороне(плата МЦП-21-24)
+//   19     // и два драйвера на правой стороне(плата МРИ-21-24).
+//   20     // Длина массива управления драйверами 16 * 4 = 64 выхода.
+//   21     // Последовательность адресации выходов драйверов в массиве:
+//   22     // (0-15) - DD1 плата МРИ-21-24, (16-31) - DD2 плата МРИ-21-24,
+//   23     // (32-47) - DD1 плата МЦП-21-24, (48-63) - DD2 плата МЦП-21-24.
+//   24     // Последовательное продвижение состояния светодиода в массиве управления идёт от
+//   25     // младшего адреса к старшему.
 //   26     // Последовательное продвижение состояния светодиода в сдвиговом регистре драйвера идёт от
 //   27     // младшего выхода к старшему. Поэтому, состояние светодиода по нулевому индексу в массиве управления,
 //   28     // после 64 сдвигов придёт на выход OUT15 драйвера DD1 платы МРИ-21-24, что соответстствует индексу окна 6.
-//   29     // Например: Индекс окна - 6 сопоставлен с выходом OUT15 драйвера DD1 плата МРИ-21-24.
-//   30     // Индекс окна - 7 сопоставлен с выходом OUT2 драйвера DD1 плата МРИ-21-24.
+//   29     // Например: Индекс окна - 7 сопоставлен с индексом 13 в массиве управления и выходом OUT2 драйвера DD1 плата МРИ-21-24.
+//   30     // Например: Индекс окна - 10 сопоставлен с индексом 33 в массиве управления и выходом OUT14 драйвера DD1 плата МЦП-21-24.
 //   31     // Левая часть.    // Правая часть.
 //   32     48, 60, 32, 45,    16, 28, 0, 13,
 //   33     49, 61, 33, 44,    17, 29, 1, 12,
@@ -685,11 +675,7 @@ _A_PINF:
 //   53 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
 ??Init:
 //   54 {
-//   55     m_pxAlarmWindowControl = pxAlarmWindowControl;
-        LDI     R30, LOW(??m_pxAlarmWindowControl)
-        LDI     R31, (??m_pxAlarmWindowControl) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
+//   55     // Включим панель.
 //   56     CPlatform::LedDriverEnable1On();
         LDS     R16, 98
         ANDI    R16, 0xFE
@@ -726,18 +712,21 @@ _A_PINF:
 //   68 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   69 void CLightBoard::Set(void)
+//   69 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 ??Set:
 //   70 {
         ST      -Y, R27
         ST      -Y, R26
+        MOVW    R23:R22, R17:R16
 //   71     for (uint8_t i = 0;
         LDI     R18, 0
         LDI     R19, 48
+        LDI     R20, 6
 //   72             i < ALARM_WINDOWS_NUMBER;
 //   73             i++)
 //   74     {
-//   75         if (m_pxAlarmWindowControl[i].GetActivityState())
+//   75         // Окно сигнализации активно?
+//   76         if (pxAlarmWindowControl[i].GetActivityState())
 ??Set_2:
         MOV     R30, R18
         LDI     R31, 0
@@ -750,44 +739,39 @@ _A_PINF:
         ADD     R30, R16
         ADC     R31, R17
         MOV     R16, R18
-        LDI     R20, 6
         LDI     R21, 0
         CALL    ?S_EC_MUL_L02
-        MOVW    R21:R20, R17:R16
-        LDI     R26, LOW(??m_pxAlarmWindowControl)
-        LDI     R27, (??m_pxAlarmWindowControl) >> 8
-        LD      R16, X+
-        LD      R17, X
-        ADD     R16, R20
-        ADC     R17, R21
-        MOVW    R27:R26, R17:R16
+        MOVW    R27:R26, R23:R22
+        ADD     R26, R16
+        ADC     R27, R17
         LD      R16, X
         TST     R16
         BREQ    ??Set_3
-//   76         {
-//   77             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
+//   77         {
+//   78             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
         LDI     R16, 1
-        RJMP    ??Set_4
-//   78         }
-//   79         else
-//   80         {
-//   81             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
-??Set_3:
-        LDI     R16, 0
-??Set_4:
         ST      Z, R16
-//   82         }
-//   83     };
+        RJMP    ??Set_4
+//   79         }
+//   80         else
+//   81         {
+//   82             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
+??Set_3:
+        ST      Z, R21
+//   83         }
+//   84     };
+??Set_4:
         INC     R18
         DEC     R19
         BRNE    ??Set_2
-//   84 
-//   85     CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+//   85 
+//   86     // Зажжём активные светодиоды.
+//   87     CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
         LDI     R18, 64
         LDI     R16, LOW(??m_auiBoardLampsControl)
         LDI     R17, (??m_auiBoardLampsControl) >> 8
         CALL    ??Set_1
-//   86 }
+//   88 }
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -814,13 +798,13 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 150 bytes in segment CODE
+// 134 bytes in segment CODE
 //   7 bytes in segment INITTAB
-//  52 bytes in segment NEAR_F
-//  66 bytes in segment NEAR_Z
+//  48 bytes in segment NEAR_F
+//  64 bytes in segment NEAR_Z
 // 
-// 202 bytes of CODE memory (+   7 bytes shared)
-//  66 bytes of DATA memory (+ 105 bytes shared)
+// 182 bytes of CODE memory (+   7 bytes shared)
+//  64 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 2

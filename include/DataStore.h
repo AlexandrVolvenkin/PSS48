@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -23,7 +23,7 @@ public:
     static void Init(void);
     static uint16_t ReadBlock(uint8_t * , uint8_t );
     static bool WriteBlock(uint8_t * , uint16_t , uint8_t );
-    static uint16_t Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock);
+    static uint16_t Write(uint8_t *puiSource, uint16_t uiLength, uint8_t uiBlock);
     static uint8_t Check(void);
     static bool CompareCurrentWithStoredCrc(void);
     static void CrcOfBlocksCrcCreate(void);

@@ -1,6 +1,6 @@
 
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -84,7 +84,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 
     uint16_t uiLength;
     uint16_t uiEncodedLength;
-    uint16_t uiSourseOffset;
+    uint16_t uiSourceOffset;
     uint8_t auiTempArray[256];
 
     // Блок существует?
@@ -94,7 +94,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
              axBlockPositionData[uiBlock].uiEncodedLength != 0))
     {
         // Получим адрес блока в EEPROM.
-        uiSourseOffset = m_xBlocksControlData.
+        uiSourceOffset = m_xBlocksControlData.
                          axBlockPositionData[uiBlock].uiOffset;
         // Получим размер блока.
         uiLength = m_xBlocksControlData.
@@ -110,7 +110,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
     }
 
     // Прочитаем закодированные данные.
-    CEeprom::Read(auiTempArray, uiSourseOffset, uiEncodedLength);
+    CEeprom::Read(auiTempArray, uiSourceOffset, uiEncodedLength);
 
     // Декодируем прочитанные данные.
     CHammingCodes::HammingCodesToBytes(auiTempArray, auiTempArray, uiEncodedLength);
@@ -138,7 +138,7 @@ uint16_t CDataStore::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
 }
 
 //-----------------------------------------------------------------------------------------------------
-uint16_t CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+uint16_t CDataStore::Write(uint8_t *puiSource, uint16_t uiLength, uint8_t uiBlock)
 {
     // Произошёл выход за границы буфера?
     if (uiBlock >= MAX_BLOCKS_NUMBER)
@@ -150,9 +150,9 @@ uint16_t CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBloc
     uint16_t uiEncodedByteCounter;
     uint8_t auiTempArray[256];
 
-    memcpy(auiTempArray, puiSourse, uiLength);
+    memcpy(auiTempArray, puiSource, uiLength);
     // Вычислим контрольную сумму поступивших данных.
-    uint16_t uiCrc = usCrc16(puiSourse, uiLength);
+    uint16_t uiCrc = usCrc16(puiSource, uiLength);
     auiTempArray[uiLength] = static_cast<uint8_t>(uiCrc);
     auiTempArray[uiLength + 1] = static_cast<uint8_t>(uiCrc >> 8);
 
@@ -189,11 +189,11 @@ uint16_t CDataStore::Write(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBloc
 }
 
 //-----------------------------------------------------------------------------------------------------
-bool CDataStore::WriteBlock(uint8_t *puiSourse, uint16_t uiLength, uint8_t uiBlock)
+bool CDataStore::WriteBlock(uint8_t *puiSource, uint16_t uiLength, uint8_t uiBlock)
 {
     if (GetFsmState() == IDDLE)
     {
-        if (Write(puiSourse,
+        if (Write(puiSource,
                   uiLength,
                   uiBlock))
         {

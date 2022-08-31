@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:07:27
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           21/Aug/2022  21:01:05
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW8806.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW492A.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp --cpu=m128a
 #        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -27,7 +27,7 @@
 
 D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
       1          //-----------------------------------------------------------------------------------------------------
-      2          //  Sourse      : FileName.cpp
+      2          //  Source      : FileName.cpp
       3          //  Created     : 01.06.2022
       4          //  Author      : Alexandr Volvenkin
       5          //  email       : aav-36@mail.ru
@@ -1440,7 +1440,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
     300          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    301          int8_t CModbusRTU::FrameCheck(uint8_t *puiSourse, uint16_t uiLength)
+    301          int8_t CModbusRTU::FrameCheck(uint8_t *puiSource, uint16_t uiLength)
    \                     ??FrameCheck_1:
     302          {
    \   00000000   ........           CALL    ?PROLOGUE6_L09
@@ -1456,22 +1456,22 @@ D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ModbusRTU.cpp
     305                  return 0;
     306              }
     307          
-    308              uint16_t uiCrc = ((static_cast<uint16_t>(puiSourse[uiLength - 1]) << 8) |
-    309                                (static_cast<uint16_t>(puiSourse[uiLength - 2])));
+    308              uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 1]) << 8) |
+    309                                (static_cast<uint16_t>(puiSource[uiLength - 2])));
    \   0000000E   01F9               MOVW    R31:R30, R19:R18
    \   00000010   0FE4               ADD     R30, R20
    \   00000012   1FF5               ADC     R31, R21
    \   00000014   9732               SBIW    R31:R30, 2
    \   00000016   81B1               LDD     R27, Z+1
    \   00000018   81A0               LD      R26, Z
-    310              uint16_t uiCrcTemp = usCrc16(puiSourse,
+    310              uint16_t uiCrcTemp = usCrc16(puiSource,
     311                                           (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH));
    \   0000001A   5042               SUBI    R20, 2
    \   0000001C   4050               SBCI    R21, 0
    \   0000001E   012A               MOVW    R5:R4, R21:R20
    \   00000020   019A               MOVW    R19:R18, R21:R20
    \   00000022   ....               RCALL   ?Subroutine11
-    312              if (usCrc16(puiSourse,
+    312              if (usCrc16(puiSource,
     313                          (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
    \                     ??CrossCallReturnLabel_34:
    \   00000024   0192               MOVW    R19:R18, R5:R4

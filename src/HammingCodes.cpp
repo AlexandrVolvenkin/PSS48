@@ -1,7 +1,7 @@
 
 //-----------------------------------------------------------------------------------------------------
 //  Based on    : https://github.com/Minho-Cha/8bit-Hamming-Code
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -132,10 +132,10 @@ uint16_t CHammingCodes::CalculateEncodedDataLength(uint16_t uiLength)
 
 //-----------------------------------------------------------------------------------------------------
 // Кодирует буфер в код Хемминга.
-uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiLength)
+uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* puiSource, uint16_t uiLength)
 {
     uint16_t uiEncodedByteCounter = 0;
-    uint16_t uiSourseIndex = 0;
+    uint16_t uiSourceIndex = 0;
     bool bTailIsPresent = false;
 
     // Количество байт данных нечётное?
@@ -150,13 +150,13 @@ uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* pu
     {
         uint32_t uiData;
         // Получим кодовое слово 12 бит.
-        uiData = static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex]));
+        uiData = static_cast<uint32_t>(enHamming(puiSource[uiSourceIndex]));
         // Следующий байт источника.
-        uiSourseIndex++;
+        uiSourceIndex++;
         // Получим кодовое слово 12 бит.
-        uiData |= (static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex])) << HAMMING_CODE_8_4_BIT_NUMBER);
+        uiData |= (static_cast<uint32_t>(enHamming(puiSource[uiSourceIndex])) << HAMMING_CODE_8_4_BIT_NUMBER);
         // Следующий байт источника.
-        uiSourseIndex++;
+        uiSourceIndex++;
 
         puiDestination[uiEncodedByteCounter] = static_cast<uint8_t>(uiData);
         // Адрес следующего байта для сохранения.
@@ -178,7 +178,7 @@ uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* pu
     {
         uint32_t uiData;
         // Получим кодовое слово 12 бит.
-        uiData = static_cast<uint32_t>(enHamming(puiSourse[uiSourseIndex]));
+        uiData = static_cast<uint32_t>(enHamming(puiSource[uiSourceIndex]));
         // Получим кодовое слово 12 бит.
         uiData |= (static_cast<uint32_t>(enHamming(0)) << HAMMING_CODE_8_4_BIT_NUMBER);
 
@@ -203,10 +203,10 @@ uint16_t CHammingCodes::BytesToHammingCodes(uint8_t* puiDestination, uint8_t* pu
 
 //-----------------------------------------------------------------------------------------------------
 // Декодирует буфер с кодом Хемминга.
-uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSourse, uint16_t uiEncodedLength)
+uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* puiSource, uint16_t uiEncodedLength)
 {
     uint16_t uiDecodedByteCounter = 0;
-    uint16_t uiSourseIndex = 0;
+    uint16_t uiSourceIndex = 0;
 //    bool bTailIsPresent = false;
 
     // uiEncodedLength = (uiLength * 1.5) (HammingCodes 8 + 4 на один байт приходится 12 закодированных бит - всегда кратно трём).
@@ -229,15 +229,15 @@ uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* pu
     {
         uint32_t uiData;
 
-        uiData = (static_cast<uint32_t>(puiSourse[uiSourseIndex]));
+        uiData = (static_cast<uint32_t>(puiSource[uiSourceIndex]));
         // Следующий байт источника.
-        uiSourseIndex++;
-        uiData |= (static_cast<uint32_t>(puiSourse[uiSourseIndex]) << 8);
+        uiSourceIndex++;
+        uiData |= (static_cast<uint32_t>(puiSource[uiSourceIndex]) << 8);
         // Следующий байт источника.
-        uiSourseIndex++;
-        uiData |= (static_cast<uint32_t>(puiSourse[uiSourseIndex]) << 16);
+        uiSourceIndex++;
+        uiData |= (static_cast<uint32_t>(puiSource[uiSourceIndex]) << 16);
         // Следующий байт источника.
-        uiSourseIndex++;
+        uiSourceIndex++;
 
         // Восстановим закодированный байт.
         puiDestination[uiDecodedByteCounter] = Recovery((static_cast<uint16_t>(uiData) & 0x0FFF));
@@ -253,10 +253,10 @@ uint16_t CHammingCodes::HammingCodesToBytes(uint8_t* puiDestination, uint8_t* pu
 //    {
 //        uint16_t uiData;
 //
-//        uiData = (static_cast<uint16_t>(puiSourse[uiSourseIndex]));
+//        uiData = (static_cast<uint16_t>(puiSource[uiSourceIndex]));
 //        // Следующий байт источника.
-//        uiSourseIndex++;
-//        uiData |= (static_cast<uint16_t>(puiSourse[uiSourseIndex]) << 8);
+//        uiSourceIndex++;
+//        uiData |= (static_cast<uint16_t>(puiSource[uiSourceIndex]) << 8);
 //
 //        // Восстановим закодированный байт.
 //        puiDestination[uiDecodedByteCounter] = Recovery(uiData & 0x0FFF);

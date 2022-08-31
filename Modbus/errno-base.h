@@ -16,7 +16,7 @@
 #define	EACCES		13	/* Permission denied */
 #define	EFAULT		14	/* Bad address */
 #define	ENOTBLK		15	/* Block device required */
-#define	EBUSY		16	/* Device or reSourse busy */
+#define	EBUSY		16	/* Device or reSource busy */
 #define	EEXIST		17	/* File exists */
 #define	EXDEV		18	/* Cross-device link */
 #define	ENODEV		19	/* No such device */
@@ -36,7 +36,7 @@
 #define	EDOM		33	/* Math argument out of domain of func */
 #define	ERANGE		34	/* Math result not representable */
 
-#define	EDEADLK		35	/* ReSourse deadlock would occur */
+#define	EDEADLK		35	/* ReSource deadlock would occur */
 #define	ENAMETOOLONG	36	/* File name too long */
 #define	ENOLCK		37	/* No record locks available */
 
@@ -75,7 +75,7 @@
 #define	ENOSTR		60	/* Device not a stream */
 #define	ENODATA		61	/* No data available */
 #define	ETIME		62	/* Timer expired */
-#define	ENOSR		63	/* Out of streams reSourses */
+#define	ENOSR		63	/* Out of streams reSources */
 #define	ENONET		64	/* Machine is not on the network */
 #define	ENOPKG		65	/* Package not installed */
 #define	EREMOTE		66	/* Object is remote */

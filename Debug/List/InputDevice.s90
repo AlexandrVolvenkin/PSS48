@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:07:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2022  21:01:01
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW7BC1.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW3CF5.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -66,7 +66,7 @@
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\InputDevice.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
-//    2 //  Sourse      : FileName.cpp
+//    2 //  Source      : FileName.cpp
 //    3 //  Created     : 01.06.2022
 //    4 //  Author      : Alexandr Volvenkin
 //    5 //  email       : aav-36@mail.ru
@@ -81,8 +81,8 @@
 //   14 //}
 //   15 //
 //   16 ////-----------------------------------------------------------------------------------------------------
-//   17 //CInputDevice::CInputDevice(uint8_t (*fpuiEventSourse)(void)) :
-//   18 //    m_fpuiEventSourse(fpuiEventSourse)
+//   17 //CInputDevice::CInputDevice(uint8_t (*fpuiEventSource)(void)) :
+//   18 //    m_fpuiEventSource(fpuiEventSource)
 //   19 //{
 //   20 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
 //   21 //    SetFsmState(KEY_EVENT_UNPRESSED);
@@ -95,9 +95,9 @@
 //   28 //}
 //   29 //
 //   30 ////-----------------------------------------------------------------------------------------------------
-//   31 //void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+//   31 //void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSource)(void))
 //   32 //{
-//   33 //    m_fpuiEventSourse = fpuiEventSourse;
+//   33 //    m_fpuiEventSource = fpuiEventSource;
 //   34 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
 //   35 //    SetFsmState(KEY_EVENT_UNPRESSED);
 //   36 //}
@@ -105,7 +105,7 @@
 //   38 ////-----------------------------------------------------------------------------------------------------
 //   39 //uint8_t CInputDevice::EventHappened(void)
 //   40 //{
-//   41 //    if (m_fpuiEventSourse())
+//   41 //    if (m_fpuiEventSource())
 //   42 //    {
 //   43 //        return 1;
 //   44 //    }
@@ -250,14 +250,14 @@
 //  155 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  156 CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSourse)(void))
+//  156 CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSource)(void))
 ??CMultiFunctionKey_1:
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
         MOVW    R25:R24, R19:R18
 //  157 {
         RCALL   ?Subroutine2
-//  158     m_fpuiEventSourse = fpuiEventSourse;
+//  158     m_fpuiEventSource = fpuiEventSource;
 ??CrossCallReturnLabel_4:
         MOVW    R31:R30, R27:R26
         STD     Z+5, R24
@@ -358,10 +358,10 @@
 //  170 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  171 void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSourse)(void))
+//  171 void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSource)(void))
 ??SetCapabilities:
 //  172 {
-//  173     m_fpuiEventSourse = fpuiEventSourse;
+//  173     m_fpuiEventSource = fpuiEventSource;
         MOVW    R31:R30, R17:R16
         STD     Z+5, R18
         STD     Z+6, R19
@@ -380,7 +380,7 @@
 ??EventHappened:
 //  180 {
         RCALL   ?Subroutine4
-//  181     if (m_fpuiEventSourse())
+//  181     if (m_fpuiEventSource())
 ??CrossCallReturnLabel_8:
         ADIW    R27:R26, 5
         LD      R30, X+

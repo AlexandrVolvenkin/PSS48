@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Aug/2022  18:13:33
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          31/Aug/2022  19:10:46
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW2134.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW86D5.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -167,7 +167,7 @@
 
 // D:\Projects\CautoProjects\PSS48\PSS48\src\ModuleMrXX.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
-//    2 //  Sourse      : FileName.cpp
+//    2 //  Source      : FileName.cpp
 //    3 //  Created     : 01.06.2022
 //    4 //  Author      : Alexandr Volvenkin
 //    5 //  email       : aav-36@mail.ru
@@ -907,7 +907,7 @@ _A_PINF:
 //   72 uint8_t CModuleMrXXDriver::WriteDataBase(void)
 ??WriteDataBase:
 //   73 {
-        RCALL   ?Subroutine8
+        RCALL   ?Subroutine9
 //   74     uint16_t usData;
 //   75     uint8_t *puiDestination;
 //   76 
@@ -984,7 +984,7 @@ _A_PINF:
 //  105     // модуль исправен?
 //  106     if (m_puiRxBuffer[COMMAND_BYTE_OFFSET] == MRXX_SET_DATA_BASE_COMMAND)
 ??CrossCallReturnLabel_5:
-        RCALL   ?Subroutine9
+        RCALL   ?Subroutine8
 ??CrossCallReturnLabel_26:
         LDD     R16, Z+1
         CPI     R16, 129
@@ -1290,7 +1290,7 @@ _A_PINF:
 //  243             if (m_puiRxBuffer[DATA_BYTE_OFFSET +
 //  244                               DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
 //  245                               TWO_BYTE_CRC_LENGTH] == DATA_EXCHANGE_OK)
-        RCALL   ?Subroutine9
+        RCALL   ?Subroutine8
 ??CrossCallReturnLabel_27:
         SBIW    R27:R26, 18
         LDD     R16, Z+9
@@ -1359,54 +1359,64 @@ _A_PINF:
 //  268         break;
 //  269 
 //  270     case DBASE_ERR:
-//  271         return 0;
+//  271         // модуль не признан неисправным?
+//  272         if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
 ??Exchange_12:
-        RJMP    ??Exchange_18
-//  272         break;
-//  273 
-//  274     default:
-//  275         break;
-//  276     };
-//  277 
-//  278     // модуль признан неисправным?
-//  279     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+29
+        CPI     R16, 10
+        BRCC    ??Exchange_13
+//  273         {
+//  274             // База данных повреждена. Попытаемся записать её повторно.
+//  275             SetFsmState(MRXX_FSM_STATE_WRITE_DATABASE);
+        LDI     R16, 0
+        STD     Z+11, R16
+//  276         }
+//  277         break;
+//  278 
+//  279     default:
+//  280         break;
+//  281     };
+//  282 
+//  283     // модуль не признан неисправным?
+//  284     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
 ??Exchange_13:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+29
         CPI     R16, 10
-        BRCC    ??Exchange_19
-//  280     {
-//  281         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
-//  282         m_uiBadAnswerCounter++;
+        BRCC    ??Exchange_18
+//  285     {
+//  286         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+//  287         m_uiBadAnswerCounter++;
         INC     R16
         STD     Z+29, R16
-//  283         return 0;
-        RJMP    ??Exchange_18
-//  284     }
-//  285     else
-//  286     {
-//  287         // модуль признан неисправным.
-//  288         *m_puiErrorCode = OMD_ERROR;
-??Exchange_19:
+//  288         return 0;
+        RJMP    ??Exchange_19
+//  289     }
+//  290     else
+//  291     {
+//  292         // модуль признан неисправным.
+//  293         *m_puiErrorCode = OMD_ERROR;
+??Exchange_18:
         ADIW    R27:R26, 5
         RCALL   ??Subroutine14_0
 ??CrossCallReturnLabel_25:
         SBIW    R27:R26, 6
         LDI     R16, 2
         ST      Z, R16
-//  289         SetErrorAlarmData(1);
+//  294         SetErrorAlarmData(1);
         MOVW    R31:R30, R27:R26
         LDD     R26, Z+7
         LDD     R27, Z+8
         LDI     R16, 1
         ST      X, R16
-//  290         return 0;
-??Exchange_18:
+//  295         return 0;
+??Exchange_19:
         LDI     R16, 0
-//  291     }
+//  296     }
 ??Exchange_17:
         RJMP    ?Subroutine11
-//  292 }
+//  297 }
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine10:
@@ -1417,7 +1427,7 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine9:
+?Subroutine8:
         ADIW    R27:R26, 17
         REQUIRE ??Subroutine14_0
         ;               // Fall through to label ??Subroutine14_0
@@ -1498,16 +1508,16 @@ _A_PINF:
         RJMP    $+2
         NOP
         RET
-//  293 
-//  294 //-----------------------------------------------------------------------------------------------------
+//  298 
+//  299 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  295 uint8_t CModuleMrXXDriver::DataExchange(void)
+//  300 uint8_t CModuleMrXXDriver::DataExchange(void)
 ??DataExchange:
-//  296 {
-        RCALL   ?Subroutine8
-//  297     uint8_t uiResult;
-//  298     switch (GetFsmState())
+//  301 {
+        RCALL   ?Subroutine9
+//  302     uint8_t uiResult;
+//  303     switch (GetFsmState())
 ??CrossCallReturnLabel_18:
         LDD     R17, Z+11
         TST     R17
@@ -1515,39 +1525,39 @@ _A_PINF:
         DEC     R17
         BREQ    ??DataExchange_2
         RJMP    ??DataExchange_3
-//  299     {
-//  300         // при старте база данных записывается из прибора в модуль реле.
-//  301     case MRXX_FSM_STATE_WRITE_DATABASE:
-//  302         uiResult = WriteDataBase();
+//  304     {
+//  305         // при старте база данных записывается из прибора в модуль реле.
+//  306     case MRXX_FSM_STATE_WRITE_DATABASE:
+//  307         uiResult = WriteDataBase();
 ??DataExchange_1:
         MOV     R17, R27
         RCALL   ??WriteDataBase
-//  303         // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
-//  304         SetFsmState(MRXX_FSM_STATE_TRANSFER);
+//  308         // после, автомат переходит в режим - обмен данными с модулем(MRXX_FSM_STATE_TRANSFER).
+//  309         SetFsmState(MRXX_FSM_STATE_TRANSFER);
         MOVW    R31:R30, R27:R26
         LDI     R17, 1
         STD     Z+11, R17
-//  305         break;
+//  310         break;
         RJMP    ??DataExchange_3
-//  306 
-//  307     case MRXX_FSM_STATE_TRANSFER:
-//  308         uiResult = Exchange();
+//  311 
+//  312     case MRXX_FSM_STATE_TRANSFER:
+//  313         uiResult = Exchange();
 ??DataExchange_2:
         MOV     R17, R27
         RCALL   ??Exchange
-//  309         break;
-//  310 
-//  311     default:
-//  312         break;
-//  313     };
-//  314 
-//  315     return uiResult;
+//  314         break;
+//  315 
+//  316     default:
+//  317         break;
+//  318     };
+//  319 
+//  320     return uiResult;
 ??DataExchange_3:
         RJMP    ?Subroutine12
-//  316 }
+//  321 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine8:
+?Subroutine9:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
@@ -1581,10 +1591,10 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 972 bytes in segment CODE
+// 982 bytes in segment CODE
 //  14 bytes in segment NEAR_F
 // 
-// 980 bytes of CODE memory (+   6 bytes shared)
+// 990 bytes of CODE memory (+   6 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

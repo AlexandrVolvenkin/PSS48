@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Aug/2022  18:13:36
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           21/Aug/2022  21:01:08
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW29BF.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW5619.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp --cpu=m128a -ms
 #        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -27,7 +27,7 @@
 
 D:\Projects\CautoProjects\PSS48\PSS48\src\Platform.cpp
       1          //-----------------------------------------------------------------------------------------------------
-      2          //  Sourse      : FileName.cpp
+      2          //  Source      : FileName.cpp
       3          //  Created     : 01.06.2022
       4          //  Author      : Alexandr Volvenkin
       5          //  email       : aav-36@mail.ru
@@ -1026,10 +1026,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000002   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-    182          int16_t CUart::Write(uint8_t *puiSourse, uint16_t uiLength)
+    182          int16_t CUart::Write(uint8_t *puiSource, uint16_t uiLength)
    \                     ??Write:
     183          {
-    184              m_puiTxBuffer = (uint8_t*)puiSourse;
+    184              m_puiTxBuffer = (uint8_t*)puiSource;
    \   00000000   01F8               MOVW    R31:R30, R17:R16
    \   00000002   8B22               STD     Z+18, R18
    \   00000004   8B33               STD     Z+19, R19
@@ -1514,14 +1514,14 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     337          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    338          uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSourse, uint16_t uiLength)
+    338          uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSource, uint16_t uiLength)
    \                     ??Read_1:
     339          {
    \   00000000   01F8               MOVW    R31:R30, R17:R16
    \   00000002   C007               RJMP    ??Read_9
     340              while (uiLength != 0)
     341              {
-    342                  *puiDestination++ = ReadByte(uiSourse++);
+    342                  *puiDestination++ = ReadByte(uiSource++);
    \                     ??Read_10:
    \   00000004   0189               MOVW    R17:R16, R19:R18
    \   00000006   ....               RCALL   ??ReadByte
@@ -1549,7 +1549,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     348          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    349          uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
+    349          uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
    \                     ??Write_1:
     350          {
    \   00000000   ....               RCALL   ?Subroutine17
@@ -1560,7 +1560,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000008   C005               RJMP    ??Write_2
     351              while (uiLength != 0)
     352              {
-    353                  WriteByte((uiDestination++), (*puiSourse++));
+    353                  WriteByte((uiDestination++), (*puiSource++));
    \                     ??Write_3:
    \   0000000A   912D               LD      R18, X+
    \   0000000C   018C               MOVW    R17:R16, R25:R24
@@ -1581,7 +1581,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     359          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    360          uint8_t CEeprom::ReadByte(uint16_t uiSourse)
+    360          uint8_t CEeprom::ReadByte(uint16_t uiSource)
    \                     ??ReadByte:
    \                     ??ReadByte_1:
     361          {
@@ -1595,7 +1595,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000004   CFFD               RJMP    ??ReadByte_1
     367              __disable_interrupt();
    \   00000006   94F8               CLI
-    368              EEAR = uiSourse;
+    368              EEAR = uiSource;
    \   00000008   BB1F               OUT     0x1F, R17
    \   0000000A   BB0E               OUT     0x1E, R16
     369              SetBit(EECR, EERE);
@@ -1655,7 +1655,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     393          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    394          void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSourse, uint16_t uiLength)
+    394          void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
    \                     ??WriteInterrupt:
     395          {
     396              SetAddress(uiDestination);
@@ -1663,7 +1663,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000002   ....               LDI     R31, (??m_puiBuffer) >> 8
    \   00000004   8302               STD     Z+2, R16
    \   00000006   8313               STD     Z+3, R17
-    397              SetBufferPointer(puiSourse);
+    397              SetBufferPointer(puiSource);
    \   00000008   8320               ST      Z, R18
    \   0000000A   8331               STD     Z+1, R19
     398              SetLength(uiLength);
@@ -2263,7 +2263,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     711          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    712          uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSourse, uint16_t uiLength)
+    712          uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
    \                     ??Read_2:
     713          {
    \   00000000   2F79               MOV     R23, R25
@@ -2275,7 +2275,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000008   E090               LDI     R25, 0
    \   0000000A   C008               RJMP    ??Read_11
     716              {
-    717                  puiDestination[i] = uiSourse[i];
+    717                  puiDestination[i] = uiSource[i];
    \                     ??Read_12:
    \   0000000C   01FA               MOVW    R31:R30, R21:R20
    \   0000000E   ....               RCALL   ?Subroutine20
@@ -2537,7 +2537,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     818          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    819          uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSourse, uint16_t uiLength)
+    819          uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
    \                     ??Exchange_1:
     820          {
    \   00000000   2F79               MOV     R23, R25
@@ -2557,7 +2557,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000010   E090               LDI     R25, 0
    \   00000012   C009               RJMP    ??Exchange_7
     827              {
-    828                  puiDestination[i] = Exchange(pucSourse[i]);
+    828                  puiDestination[i] = Exchange(pucSource[i]);
    \                     ??Exchange_8:
    \   00000014   01F9               MOVW    R31:R30, R19:R18
    \   00000016   ....               RCALL   ?Subroutine20
@@ -2907,7 +2907,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000000   E702               LDI     R16, 114
    \   00000002   BD03               OUT     0x23, R16
     982          
-    983              /* Setup clock Sourse and compare match behaviour. */
+    983              /* Setup clock Source and compare match behaviour. */
     984              ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
     985              TCCR2 = ucLowByte;
    \   00000004   E00B               LDI     R16, 11
@@ -2945,7 +2945,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    1013              before this is called so we need not worry here. */
    1014              OCR1A = ulCompareMatch;
    1015          
-   1016              /* Setup clock Sourse and compare match behaviour. */
+   1016              /* Setup clock Source and compare match behaviour. */
    1017              TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
    1018              ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
    1019              TCCR1B = ucLowByte;

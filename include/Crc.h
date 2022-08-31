@@ -10,14 +10,14 @@
 //-----------------------------------------------------------------------------
 
 
-unsigned short usCrcSummTwoByteCalculation(unsigned char *puiSourse, unsigned int nuiNbyte);
-int iCrcSummTwoByteCompare(unsigned char *puiSourse, unsigned int nuiNbyte);
+unsigned short usCrcSummTwoByteCalculation(unsigned char *puiSource, unsigned int nuiNbyte);
+int iCrcSummTwoByteCompare(unsigned char *puiSource, unsigned int nuiNbyte);
 uint8_t usCrcSummOneByteCalculation(
-    uint8_t *puiSourse,
+    uint8_t *puiSource,
     uint16_t nuiNbyte);
-int iCrcSummOneByteCompare(unsigned char *puiSourse, unsigned int nuiNbyte);
-//unsigned short usCrc16(unsigned char *puiSourse, unsigned short uiLength);
-int iCrc16Check(unsigned char *puiSourse, unsigned short uiLength);
-uint16_t usCrc16(const unsigned char *puiSourse, uint16_t uiLength);
+int iCrcSummOneByteCompare(unsigned char *puiSource, unsigned int nuiNbyte);
+//unsigned short usCrc16(unsigned char *puiSource, unsigned short uiLength);
+int iCrc16Check(unsigned char *puiSource, unsigned short uiLength);
+uint16_t usCrc16(const unsigned char *puiSource, uint16_t uiLength);
 
 #endif // CRC_H_INCLUDED

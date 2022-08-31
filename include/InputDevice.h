@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -73,7 +73,7 @@ enum
 //protected:
 //private:
 //    // указатель на функцию - источник события.
-//    uint8_t (*m_fpuiEventSourse)(void);
+//    uint8_t (*m_fpuiEventSource)(void);
 //    uint8_t m_uiEventCode;
 //    uint8_t m_uiPreliminaryEventCode;
 //    CTimer m_xTimer;
@@ -140,7 +140,7 @@ public:
 protected:
 private:
     // указатель на функцию - источник события.
-    uint8_t (*m_fpuiEventSourse)(void);
+    uint8_t (*m_fpuiEventSource)(void);
     uint8_t m_uiEventCode;
     uint8_t m_uiPreliminaryEventCode;
     CTimer m_xTimer;
