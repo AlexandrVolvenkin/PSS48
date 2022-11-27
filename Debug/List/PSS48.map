@@ -2,7 +2,7 @@
 #                                                                              #
 #      IAR Universal Linker V6.5.2.97                                          #
 #                                                                              #
-#           Link time     =  27/Nov/2022  11:24:41                             #
+#           Link time     =  27/Nov/2022  11:31:55                             #
 #           Target CPU    =  A90                                               #
 #           List file     =  D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\ #
 #                            PSS48.map                                         #
@@ -13,7 +13,7 @@
 #                            SS48.d90                                          #
 #                            Format: ubrof8                                    #
 #                            UBROF version 8.0.2                               #
-#           Command line  =  -f C:\Users\ghost\AppData\Local\Temp\EWEA38.tmp   #
+#           Command line  =  -f C:\Users\ghost\AppData\Local\Temp\EW8A5D.tmp   #
 #                            (D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\ #
 #                            Alarm.r90                                         #
 #                            D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\A #
@@ -143,7 +143,7 @@
                 *                                      *
                 ****************************************
 
-       Program entry at : CODE      000042FE  Relocatable, from module : ?C_STARTUP
+       Program entry at : CODE      00004304  Relocatable, from module : ?C_STARTUP
 
 
 
@@ -2302,7 +2302,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CDataBase::ReadBlock(uint8_t *, uint8_t)
-                                   00000CDE        ?Subroutine92 (Pss21)
+                                   00000CDE        ?Subroutine89 (Pss21)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
                calls direct
     -------------------------------------------------------------------------
@@ -2577,7 +2577,7 @@ CODE
   Segment part 129.           Intra module refs:   CDataStore::Check()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CDataStore::Fsm()       00000F9C        ?Subroutine56 (Pss21)
+           CDataStore::Fsm()       00000F9C        ?Subroutine55 (Pss21)
                                                    ?Subroutine9 (Pss21)
                                                    CDataBase::RestoreDefault() (DataBase)
                calls direct
@@ -2636,7 +2636,7 @@ CODE
            CEeprom::StartWrite()   000010EE 
     -------------------------------------------------------------------------
 INITTAB
-  Relative segment, address: CODE 00004994 - 0000499A (0x7 bytes), align: 0
+  Relative segment, address: CODE 0000499A - 000049A0 (0x7 bytes), align: 0
   Segment part 101.           Intra module refs:   CDataStore::m_auiBlocksCurrentCrc
                                                    CDataStore::m_xBlocksControlData
                                                    CHammingCodes::m_uiErrorCode (HammingCodes)
@@ -2680,20 +2680,20 @@ INITTAB
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?<Segment init: NEAR_Z>
-                                   00004994 
+                                   0000499A 
     -------------------------------------------------------------------------
 NEAR_ID
-  Relative segment, address: CODE 000049A2 - 000049A7 (0x6 bytes), align: 0
+  Relative segment, address: CODE 000049A8 - 000049AD (0x6 bytes), align: 0
   Segment part 105. ROOT      Intra module refs:   Segment part 104
     -------------------------------------------------------------------------
 INITTAB
-  Relative segment, address: CODE 0000499B - 000049A1 (0x7 bytes), align: 0
+  Relative segment, address: CODE 000049A1 - 000049A7 (0x7 bytes), align: 0
   Segment part 106.           Intra module refs:   Segment part 104
                                                    Segment part 110 (Pss21)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?<Segment init: NEAR_I>
-                                   0000499B 
+                                   000049A1 
     -------------------------------------------------------------------------
 DIFUNCT
   Relative segment, address: CODE 0000080A - 0000080B (0x2 bytes), align: 0
@@ -3240,7 +3240,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CMultiFunctionKey::KeyEventHappened(uint8_t)
-                                   00001628        ?Subroutine69 (Pss21)
+                                   00001628        ?Subroutine68 (Pss21)
                calls indirect
     -------------------------------------------------------------------------
 CODE
@@ -3353,7 +3353,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CLightBoard::Set(CAlarmWindow *)
-                                   00001758        ?Subroutine95 (Pss21)
+                                   00001758        ?Subroutine92 (Pss21)
                calls direct
 
     *************************************************************************
@@ -4644,7 +4644,7 @@ CODE
                                                    Segment part 193
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CModbusRTU::Fsm()       000023CA        ?Subroutine57 (Pss21)
+           CModbusRTU::Fsm()       000023CA        ?Subroutine56 (Pss21)
                calls direct
     -------------------------------------------------------------------------
 CODE
@@ -5364,7 +5364,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CNotifyerControl::Fsm()
-                                   00002C34        ?Subroutine94 (Pss21)
+                                   00002C34        ?Subroutine91 (Pss21)
                calls direct and indirect
     -------------------------------------------------------------------------
 CODE
@@ -5470,7 +5470,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t)
-                                   00002D52        ?Subroutine58 (Pss21)
+                                   00002D52        ?Subroutine57 (Pss21)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00002D6E - 00002D71 (0x4 bytes), align: 1
@@ -5562,7 +5562,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t)
-                                   00002D8A        ?Subroutine59 (Pss21)
+                                   00002D8A        ?Subroutine58 (Pss21)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00002DA8 - 00002DA9 (0x2 bytes), align: 1
@@ -5660,7 +5660,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CStatusLedNotifyerControl::AlarmSet(uint8_t)
-                                   00002DEA        ?Subroutine60 (Pss21)
+                                   00002DEA        ?Subroutine59 (Pss21)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00002E10 - 00002E19 (0xa bytes), align: 1
@@ -5737,7 +5737,7 @@ CODE
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CBuzzerNotifyerControl::AlarmSet(uint8_t)
-                                   00002E3C        ?Subroutine61 (Pss21)
+                                   00002E3C        ?Subroutine60 (Pss21)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00002E6A, align: 1
@@ -6814,7 +6814,7 @@ CODE
   Segment part 133.           Intra module refs:   __sti__routine()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine74           00003596 
+           ?Subroutine72           00003596 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 0000359A - 0000359D (0x4 bytes), align: 1
@@ -6925,7 +6925,7 @@ NEAR_Z
 NEAR_Z
   Relative segment, address: DATA 00000A2C - 00000B2B (0x100 bytes), align: 0
   Segment part 104. ROOT      Intra module refs:   ?Subroutine38
-                                                   ?Subroutine70
+                                                   ?Subroutine69
                                                    CPss21::ConfigurationInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -6963,14 +6963,14 @@ NEAR_Z
                                                    ?Subroutine39
                                                    ?Subroutine43
                                                    ?Subroutine5
-                                                   ?Subroutine53
+                                                   ?Subroutine52
+                                                   ?Subroutine57
                                                    ?Subroutine58
                                                    ?Subroutine59
                                                    ?Subroutine60
                                                    ?Subroutine61
-                                                   ?Subroutine62
-                                                   ?Subroutine64
-                                                   ?Subroutine66
+                                                   ?Subroutine63
+                                                   ?Subroutine65
                                                    ?Subroutine8
                                                    CPss21::ConfigurationInit()
                                                    CPss21::CreateDevices()
@@ -7076,7 +7076,7 @@ NEAR_Z
     -------------------------------------------------------------------------
 NEAR_Z
   Relative segment, address: DATA 00000CB3 - 00000CE3 (0x31 bytes), align: 0
-  Segment part 114. ROOT      Intra module refs:   ?Subroutine57
+  Segment part 114. ROOT      Intra module refs:   ?Subroutine56
                                                    CPss21::ModbusInit()
                                                    Segment part 111
                                                    __sti__routine()
@@ -7135,7 +7135,7 @@ NEAR_Z
     -------------------------------------------------------------------------
 NEAR_Z
   Relative segment, address: DATA 00000CFC - 00000DBB (0xc0 bytes), align: 0
-  Segment part 127. ROOT      Intra module refs:   ?Subroutine68
+  Segment part 127. ROOT      Intra module refs:   ?Subroutine67
                                                    CPss21::ConfigurationInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -7147,9 +7147,9 @@ NEAR_I
     -------------------------------------------------------------------------
 NEAR_Z
   Relative segment, address: DATA 00000DBC - 00000EDB (0x120 bytes), align: 0
-  Segment part 128. ROOT      Intra module refs:   ?Subroutine75
+  Segment part 128. ROOT      Intra module refs:   ?Subroutine73
                                                    CPss21::SetAlarmWindowType(uint8_t, uint8_t)
-                                                   Segment part 265
+                                                   Segment part 263
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_axAlarmWindowControl
@@ -7198,7 +7198,7 @@ CODE
                                                    Segment part 164
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine80           000035CA 
+           ?Subroutine78           000035CA 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000035CE - 000035D3 (0x6 bytes), align: 1
@@ -7243,11 +7243,11 @@ CODE
 CODE
   Relative segment, address: CODE 000035F2 - 000035F7 (0x6 bytes), align: 1
   Segment part 149.           Intra module refs:   ?Subroutine16
-                                                   ?Subroutine95
+                                                   ?Subroutine92
                                                    CPss21::Init()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine75           000035F2 
+           ?Subroutine73           000035F2 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000035F8 - 000035FD (0x6 bytes), align: 1
@@ -7272,7 +7272,7 @@ CODE
                                                    CPss21::ModulesInteraction(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine76           0000368A 
+           ?Subroutine74           0000368A 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00003690 - 00003695 (0x6 bytes), align: 1
@@ -7281,7 +7281,7 @@ CODE
                                                    __sti__routine()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine77           00003690 
+           ?Subroutine75           00003690 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00003696 - 0000369B (0x6 bytes), align: 1
@@ -7315,7 +7315,7 @@ CODE
                                                    CPss21::SearchModules()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine88           000036C6 
+           ?Subroutine85           000036C6 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000036CA - 000036DF (0x16 bytes), align: 1
@@ -7360,7 +7360,7 @@ CODE
                                                    CPss21::SearchModules()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine89           000037CE 
+           ?Subroutine86           000037CE 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000037D4 - 000037D5 (0x2 bytes), align: 1
@@ -7415,7 +7415,7 @@ CODE
            ?Subroutine19           000038CC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000038DC - 00003929 (0x4e bytes), align: 1
+  Relative segment, address: CODE 000038DC - 0000392B (0x50 bytes), align: 1
   Segment part 172.           Intra module refs:   CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -7424,150 +7424,150 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000392A - 0000392F (0x6 bytes), align: 1
+  Relative segment, address: CODE 0000392C - 00003931 (0x6 bytes), align: 1
   Segment part 173.           Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
                                                    CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine90           0000392A 
+           ?Subroutine87           0000392C 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003930 - 00003941 (0x12 bytes), align: 1
+  Relative segment, address: CODE 00003932 - 00003943 (0x12 bytes), align: 1
   Segment part 174.           Intra module refs:   CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SendToDevicesModbusReset()
-                                   00003930 
+                                   00003932 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003942 - 00003945 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003944 - 00003947 (0x4 bytes), align: 1
   Segment part 175.           Intra module refs:   ?Subroutine27
                                                    CPss21::SendToDevicesModbusReset()
                                                    CPss21::SendToDevicesReset()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine81           00003942 
+           ?Subroutine79           00003944 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003946 - 00003957 (0x12 bytes), align: 1
+  Relative segment, address: CODE 00003948 - 00003959 (0x12 bytes), align: 1
   Segment part 176.           Intra module refs:   CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SendToDevicesModbusReceipt()
-                                   00003946 
+                                   00003948 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003958 - 0000395F (0x8 bytes), align: 1
+  Relative segment, address: CODE 0000395A - 00003961 (0x8 bytes), align: 1
   Segment part 177.           Intra module refs:   CPss21::SendToDevicesModbusReceipt()
                                                    CPss21::SendToDevicesReceipt()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine26           00003958 
+           ?Subroutine26           0000395A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003960 - 00003965 (0x6 bytes), align: 1
+  Relative segment, address: CODE 00003962 - 00003967 (0x6 bytes), align: 1
   Segment part 178.           Intra module refs:   ?Subroutine26
                                                    CPss21::ModbusInit()
                                                    CPss21::ModulesInteraction(uint8_t)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003966 - 0000396F (0xa bytes), align: 1
+  Relative segment, address: CODE 00003968 - 00003971 (0xa bytes), align: 1
   Segment part 179.           Intra module refs:   ?Subroutine26
                                                    CPss21::CreateDevices()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine64           00003966 
+           ?Subroutine63           00003968 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003970 - 000039BF (0x50 bytes), align: 1
+  Relative segment, address: CODE 00003972 - 000039C1 (0x50 bytes), align: 1
   Segment part 180.           Intra module refs:   CPss21::ModbusDeviceControl(uint8_t, uint16_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
-                                   00003970        CModbus::WriteMultipleCoils(uint8_t *, uint8_t *, uint16_t) (modbus)
+                                   00003972        CModbus::WriteMultipleCoils(uint8_t *, uint8_t *, uint16_t) (modbus)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039C0 - 000039D1 (0x12 bytes), align: 1
+  Relative segment, address: CODE 000039C2 - 000039D3 (0x12 bytes), align: 1
   Segment part 181.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ModbusDeviceControl(uint8_t, uint16_t)
-                                   000039C0        CModbus::WriteSingleCoil(uint8_t *, uint8_t *, uint16_t) (modbus)
+                                   000039C2        CModbus::WriteSingleCoil(uint8_t *, uint8_t *, uint16_t) (modbus)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039D2 - 000039DB (0xa bytes), align: 1
+  Relative segment, address: CODE 000039D4 - 000039DD (0xa bytes), align: 1
   Segment part 182.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ModbusRtuLinkControlIsOn()
-                                   000039D2        CModbusRtuLinkControl::Fsm() (LinkControl)
+                                   000039D4        CModbusRtuLinkControl::Fsm() (LinkControl)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039DC - 000039DF (0x4 bytes), align: 1
+  Relative segment, address: CODE 000039DE - 000039E1 (0x4 bytes), align: 1
   Segment part 183.           Intra module refs:   ?Subroutine44
                                                    CPss21::ModbusRtuLinkControlInProgress()
                                                    CPss21::ModbusRtuLinkControlIsOn()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine82           000039DC 
+           ?Subroutine80           000039DE 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039E0 - 000039E9 (0xa bytes), align: 1
+  Relative segment, address: CODE 000039E2 - 000039EB (0xa bytes), align: 1
   Segment part 184.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::GetTimeoutModbusRtuLinkControl()
-                                   000039E0        CModbusRtuLinkControl::Fsm() (LinkControl)
+                                   000039E2        CModbusRtuLinkControl::Fsm() (LinkControl)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039EA - 000039ED (0x4 bytes), align: 1
-  Segment part 185.           Intra module refs:   ?Subroutine72
+  Relative segment, address: CODE 000039EC - 000039EF (0x4 bytes), align: 1
+  Segment part 185.           Intra module refs:   ?Subroutine71
                                                    CPss21::GetTimeoutModbusRtuLinkControl()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine91           000039EA 
+           ?Subroutine88           000039EC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039EE - 000039F7 (0xa bytes), align: 1
+  Relative segment, address: CODE 000039F0 - 000039F9 (0xa bytes), align: 1
   Segment part 186.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ModbusRtuLinkControlInProgress()
-                                   000039EE        CModbusRtuLinkControl::Fsm() (LinkControl)
+                                   000039F0        CModbusRtuLinkControl::Fsm() (LinkControl)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000039F8 - 00003A11 (0x1a bytes), align: 1
+  Relative segment, address: CODE 000039FA - 00003A13 (0x1a bytes), align: 1
   Segment part 187.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SetModeModbusRtuLinkControlInProgress(bool)
-                                   000039F8        CModbusRtuLinkControl::Fsm() (LinkControl)
+                                   000039FA        CModbusRtuLinkControl::Fsm() (LinkControl)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A12 - 00003A23 (0x12 bytes), align: 1
+  Relative segment, address: CODE 00003A14 - 00003A25 (0x12 bytes), align: 1
   Segment part 188.           Intra module refs:   ?Subroutine15
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SendToDevicesReceipt()
-                                   00003A12 
+                                   00003A14 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A24 - 00003A27 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003A26 - 00003A29 (0x4 bytes), align: 1
   Segment part 189.           Intra module refs:   CPss21::SendToDevicesModbusReceipt()
                                                    CPss21::SendToDevicesModbusReset()
                                                    CPss21::SendToDevicesReceipt()
                                                    CPss21::SendToDevicesReset()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine44           00003A24 
+           ?Subroutine44           00003A26 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A28 - 00003A2B (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003A2A - 00003A2D (0x4 bytes), align: 1
   Segment part 190.           Intra module refs:   CPss21::ModulesInteraction(uint8_t)
                                                    CPss21::SendToDevicesModbusReceipt()
                                                    CPss21::SendToDevicesModbusReset()
@@ -7575,310 +7575,295 @@ CODE
                                                    CPss21::SendToDevicesReset()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine36           00003A28 
+           ?Subroutine36           00003A2A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A2C - 00003A2F (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003A2E - 00003A31 (0x4 bytes), align: 1
   Segment part 191.           Intra module refs:   ?Subroutine31
                                                    ?Subroutine36
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine84           00003A2C 
+           ?Subroutine82           00003A2E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A30 - 00003A37 (0x8 bytes), align: 1
+  Relative segment, address: CODE 00003A32 - 00003A39 (0x8 bytes), align: 1
   Segment part 192.           Intra module refs:   CPss21::SendToDevicesModbusReceipt()
                                                    CPss21::SendToDevicesReceipt()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine27           00003A30 
+           ?Subroutine27           00003A32 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A38 - 00003A4B (0x14 bytes), align: 1
+  Relative segment, address: CODE 00003A3A - 00003A4D (0x14 bytes), align: 1
   Segment part 193.           Intra module refs:   ?Subroutine45
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SendToDevicesReset()
-                                   00003A38 
+                                   00003A3A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A4C - 00003A5B (0x10 bytes), align: 1
+  Relative segment, address: CODE 00003A4E - 00003A5D (0x10 bytes), align: 1
   Segment part 194.           Intra module refs:   CPss21::SendToDevicesModbusReset()
                                                    CPss21::SendToDevicesReset()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine43           00003A4C 
+           ?Subroutine43           00003A4E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003A5C - 00003ACD (0x72 bytes), align: 1
-  Segment part 195.           Intra module refs:   ?Subroutine71
+  Relative segment, address: CODE 00003A5E - 00003ACF (0x72 bytes), align: 1
+  Segment part 195.           Intra module refs:   ?Subroutine70
                                                    CPss21::ErrorMainCycle()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::KeyStateProcessing()
-                                   00003A5C 
+                                   00003A5E 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003ACE - 00003AD1 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003AD0 - 00003AD3 (0x4 bytes), align: 1
   Segment part 196.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine85           00003ACE 
+           ?Subroutine83           00003AD0 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AD2 - 00003AD3 (0x2 bytes), align: 1
+  Relative segment, address: CODE 00003AD4 - 00003AD5 (0x2 bytes), align: 1
   Segment part 197.           Intra module refs:   CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine46           00003AD2 
+           ?Subroutine46           00003AD4 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AD4 - 00003AD9 (0x6 bytes), align: 1
+  Relative segment, address: CODE 00003AD6 - 00003ADB (0x6 bytes), align: 1
   Segment part 198.           Intra module refs:   ?Subroutine46
                                                    CPss21::MainFsm()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003ADA - 00003ADD (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003ADC - 00003ADF (0x4 bytes), align: 1
   Segment part 199.           Intra module refs:   CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine45           00003ADA 
+           ?Subroutine45           00003ADC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003ADE - 00003ADF (0x2 bytes), align: 1
+  Relative segment, address: CODE 00003AE0 - 00003AE1 (0x2 bytes), align: 1
   Segment part 200.           Intra module refs:   CPss21::KeyStateProcessing()
                                                    CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine29           00003ADE 
+           ?Subroutine29           00003AE0 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AE0 - 00003AE3 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003AE2 - 00003AE5 (0x4 bytes), align: 1
   Segment part 201.           Intra module refs:   ?Subroutine29
                                                    CPss21::ModbusRtuLinkControlInProgress()
                                                    CPss21::ModbusRtuLinkControlIsOn()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine83           00003AE0 
+           ?Subroutine81           00003AE2 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AE4 - 00003AE7 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003AE6 - 00003AE9 (0x4 bytes), align: 1
   Segment part 202.           Intra module refs:   CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine15           00003AE4 
+           ?Subroutine15           00003AE6 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AE8 - 00003AEB (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003AEA - 00003AED (0x4 bytes), align: 1
   Segment part 203.           Intra module refs:   ?Subroutine15
                                                    CPss21::KeyStateProcessing()
                                                    CPss21::MainFsm()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AEC - 00003AF1 (0x6 bytes), align: 1
+  Relative segment, address: CODE 00003AEE - 00003AF3 (0x6 bytes), align: 1
   Segment part 204.           Intra module refs:   CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine13           00003AEC 
+           ?Subroutine13           00003AEE 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AF2 - 00003AF5 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003AF4 - 00003AF7 (0x4 bytes), align: 1
   Segment part 205.           Intra module refs:   CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine11           00003AF2 
+           ?Subroutine11           00003AF4 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AF6 - 00003AF9 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003AF8 - 00003AFB (0x4 bytes), align: 1
   Segment part 206.           Intra module refs:   ?Subroutine11
                                                    ?Subroutine13
                                                    ?Subroutine8
                                                    CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine69           00003AF6 
+           ?Subroutine68           00003AF8 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003AFA - 00003AFF (0x6 bytes), align: 1
+  Relative segment, address: CODE 00003AFC - 00003B01 (0x6 bytes), align: 1
   Segment part 207.           Intra module refs:   CPss21::KeyStateProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine8            00003AFA 
+           ?Subroutine8            00003AFC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003B00 - 00003B03 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003B02 - 00003B05 (0x4 bytes), align: 1
   Segment part 208.           Intra module refs:   ?Subroutine8
-                                                   Segment part 289
+                                                   Segment part 286
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine86           00003B00 
+           ?Subroutine84           00003B02 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003B04 - 00003B15 (0x12 bytes), align: 1
-  Segment part 209.           Intra module refs:   ?Subroutine55
+  Relative segment, address: CODE 00003B06 - 00003B17 (0x12 bytes), align: 1
+  Segment part 209.           Intra module refs:   ?Subroutine54
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ReceiptResetGlobalFlagsClear()
-                                   00003B04 
+                                   00003B06 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003B16 - 00003B37 (0x22 bytes), align: 1
+  Relative segment, address: CODE 00003B18 - 00003B39 (0x22 bytes), align: 1
   Segment part 210.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ModulesInteraction(uint8_t)
-                                   00003B16 
+                                   00003B18 
                calls indirect
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003B38 - 00003D07 (0x1d0 bytes), align: 1
+  Relative segment, address: CODE 00003B3A - 00003D23 (0x1ea bytes), align: 1
   Segment part 211.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ConfigurationInit()
-                                   00003B38 
+                                   00003B3A 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D08 - 00003D15 (0xe bytes), align: 1
+  Relative segment, address: CODE 00003D24 - 00003D27 (0x4 bytes), align: 1
   Segment part 212.           Intra module refs:   CPss21::ConfigurationInit()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine51           00003D08 
+           ?Subroutine48           00003D24 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D16 - 00003D19 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003D28 - 00003D29 (0x2 bytes), align: 1
   Segment part 213.           Intra module refs:   CPss21::ConfigurationInit()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine48           00003D16 
+           ?Subroutine47           00003D28 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D1A - 00003D1B (0x2 bytes), align: 1
-  Segment part 214.           Intra module refs:   CPss21::ConfigurationInit()
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine47           00003D1A 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 00003D1C - 00003D1F (0x4 bytes), align: 1
-  Segment part 215.           Intra module refs:   ?Subroutine47
+  Relative segment, address: CODE 00003D2A - 00003D2D (0x4 bytes), align: 1
+  Segment part 214.           Intra module refs:   ?Subroutine47
                                                    CPss21::ConfigurationInit()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine70           00003D1C 
+           ?Subroutine69           00003D2A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D20 - 00003D23 (0x4 bytes), align: 1
-  Segment part 216.           Intra module refs:   ?Subroutine41
-                                                   ?Subroutine70
+  Relative segment, address: CODE 00003D2E - 00003D31 (0x4 bytes), align: 1
+  Segment part 215.           Intra module refs:   ?Subroutine41
+                                                   ?Subroutine69
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine92           00003D20 
+           ?Subroutine89           00003D2E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D24 - 00003D27 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00003D32 - 00003D35 (0x4 bytes), align: 1
+  Segment part 216.           Intra module refs:   CPss21::ConfigurationInit()
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine41           00003D32 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 00003D36 - 00003D39 (0x4 bytes), align: 1
   Segment part 217.           Intra module refs:   CPss21::ConfigurationInit()
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine41           00003D24 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 00003D28 - 00003D2B (0x4 bytes), align: 1
-  Segment part 218.           Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
                                                    CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine40           00003D28 
+           ?Subroutine40           00003D36 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D2C - 00003D37 (0xc bytes), align: 1
-  Segment part 219.           Intra module refs:   CPss21::ConfigurationInit()
+  Relative segment, address: CODE 00003D3A - 00003D45 (0xc bytes), align: 1
+  Segment part 218.           Intra module refs:   CPss21::ConfigurationInit()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine38           00003D2C 
+           ?Subroutine38           00003D3A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D38 - 00003D3F (0x8 bytes), align: 1
-  Segment part 220.           Intra module refs:   CPss21::ConfigurationInit()
+  Relative segment, address: CODE 00003D46 - 00003D4D (0x8 bytes), align: 1
+  Segment part 219.           Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::ErrorAlarmsProcessing()
                                                    CPss21::ModulesInteraction(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine30           00003D38 
+           ?Subroutine30           00003D46 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D40 - 00003D45 (0x6 bytes), align: 1
-  Segment part 221.           Intra module refs:   CPss21::ConfigurationInit()
+  Relative segment, address: CODE 00003D4E - 00003D57 (0xa bytes), align: 1
+  Segment part 220.           Intra module refs:   CPss21::ConfigurationInit()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine25           00003D40 
+           ?Subroutine25           00003D4E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D46 - 00003D49 (0x4 bytes), align: 1
-  Segment part 222.           Intra module refs:   ?Subroutine25
-                                                   CPss21::GetDiscreteInputState(uint8_t)
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine87           00003D46 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 00003D4A - 00003D51 (0x8 bytes), align: 1
-  Segment part 223.           Intra module refs:   ?Subroutine25
+  Relative segment, address: CODE 00003D58 - 00003D5F (0x8 bytes), align: 1
+  Segment part 221.           Intra module refs:   ?Subroutine25
                                                    CPss21::AlarmsProcessing()
                                                    CPss21::ConfigurationInit()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine68           00003D4A 
+           ?Subroutine67           00003D58 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D52 - 00003D73 (0x22 bytes), align: 1
-  Segment part 224.           Intra module refs:   CPss21::DiscreteSignalsProcessing()
+  Relative segment, address: CODE 00003D60 - 00003D81 (0x22 bytes), align: 1
+  Segment part 222.           Intra module refs:   CPss21::DiscreteSignalsProcessing()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::DiscreteOutputControlClear()
-                                   00003D52 
+                                   00003D60 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D74 - 00003D79 (0x6 bytes), align: 1
-  Segment part 225.           Intra module refs:   CPss21::DiscreteOutputControlClear()
+  Relative segment, address: CODE 00003D82 - 00003D87 (0x6 bytes), align: 1
+  Segment part 223.           Intra module refs:   CPss21::DiscreteOutputControlClear()
                                                    CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
                                                    CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine34           00003D74 
+           ?Subroutine34           00003D82 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003D7A - 00003DCB (0x52 bytes), align: 1
-  Segment part 226.
+  Relative segment, address: CODE 00003D88 - 00003DDB (0x54 bytes), align: 1
+  Segment part 224.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
-                                   00003D7A        ?Subroutine40 (Alarm)
+                                   00003D88        ?Subroutine40 (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003DCC - 00003DDB (0x10 bytes), align: 1
-  Segment part 227.           Intra module refs:   CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
+  Relative segment, address: CODE 00003DDC - 00003DEB (0x10 bytes), align: 1
+  Segment part 225.           Intra module refs:   CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine42           00003DCC 
+           ?Subroutine42           00003DDC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003DDC - 00003DDF (0x4 bytes), align: 1
-  Segment part 228.           Intra module refs:   ?Subroutine42
+  Relative segment, address: CODE 00003DEC - 00003DEF (0x4 bytes), align: 1
+  Segment part 226.           Intra module refs:   ?Subroutine42
                                                    CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t)
-                                                   Segment part 231
+                                                   Segment part 229
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine67           00003DDC 
+           ?Subroutine66           00003DEC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003DE0 - 00003DE5 (0x6 bytes), align: 1
-  Segment part 229.           Intra module refs:   ?Subroutine28
+  Relative segment, address: CODE 00003DF0 - 00003DF5 (0x6 bytes), align: 1
+  Segment part 227.           Intra module refs:   ?Subroutine28
                                                    ?Subroutine29
                                                    ?Subroutine30
                                                    ?Subroutine31
@@ -7890,278 +7875,278 @@ CODE
                                                    CPss21::ReceiptResetGlobalFlagsClear()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine66           00003DE0 
+           ?Subroutine65           00003DF0 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003DE6 - 00003DEF (0xa bytes), align: 1
-  Segment part 230.           Intra module refs:   CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
+  Relative segment, address: CODE 00003DF6 - 00003DFF (0xa bytes), align: 1
+  Segment part 228.           Intra module refs:   CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine24           00003DE6 
+           ?Subroutine24           00003DF6 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003DF0 - 00003DF9 (0xa bytes), align: 1
-  Segment part 231.           Intra module refs:   ?Subroutine24
+  Relative segment, address: CODE 00003E00 - 00003E09 (0xa bytes), align: 1
+  Segment part 229.           Intra module refs:   ?Subroutine24
                                                    CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003DFA - 00003E0F (0x16 bytes), align: 1
-  Segment part 232.           Intra module refs:   CPss21::DiscreteSignalsProcessing()
+  Relative segment, address: CODE 00003E0A - 00003E1F (0x16 bytes), align: 1
+  Segment part 230.           Intra module refs:   CPss21::DiscreteSignalsProcessing()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AlarmsProcessing()
-                                   00003DFA 
+                                   00003E0A 
                calls indirect
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E10 - 00003E15 (0x6 bytes), align: 1
+  Relative segment, address: CODE 00003E20 - 00003E25 (0x6 bytes), align: 1
+  Segment part 231.           Intra module refs:   CPss21::AlarmsProcessing()
+                                                   CPss21::ErrorAlarmsProcessing()
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine76           00003E20 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 00003E26 - 00003E3D (0x18 bytes), align: 1
+  Segment part 232.           Intra module refs:   CPss21::DiscreteSignalsProcessing()
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           CPss21::ErrorAlarmsProcessing()
+                                   00003E26 
+               calls indirect
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 00003E3E - 00003E4F (0x12 bytes), align: 1
   Segment part 233.           Intra module refs:   CPss21::AlarmsProcessing()
                                                    CPss21::ErrorAlarmsProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine78           00003E10 
+           ?Subroutine37           00003E3E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E16 - 00003E2D (0x18 bytes), align: 1
-  Segment part 234.           Intra module refs:   CPss21::DiscreteSignalsProcessing()
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           CPss21::ErrorAlarmsProcessing()
-                                   00003E16 
-               calls indirect
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 00003E2E - 00003E3F (0x12 bytes), align: 1
-  Segment part 235.           Intra module refs:   CPss21::AlarmsProcessing()
-                                                   CPss21::ErrorAlarmsProcessing()
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine37           00003E2E 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 00003E40 - 00003E49 (0xa bytes), align: 1
-  Segment part 236.           Intra module refs:   ?Subroutine37
+  Relative segment, address: CODE 00003E50 - 00003E59 (0xa bytes), align: 1
+  Segment part 234.           Intra module refs:   ?Subroutine37
                                                    CPss21::ModulesInteraction(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine65           00003E40 
+           ?Subroutine64           00003E50 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E4A - 00003E5F (0x16 bytes), align: 1
-  Segment part 237.
+  Relative segment, address: CODE 00003E5A - 00003E65 (0xc bytes), align: 1
+  Segment part 235.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::GetDiscreteInputState(uint8_t)
-                                   00003E4A        ?Subroutine19 (Alarm)
+                                   00003E5A        ?Subroutine19 (Alarm)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E60 - 00003E65 (0x6 bytes), align: 1
-  Segment part 239.
+  Relative segment, address: CODE 00003E66 - 00003E6B (0x6 bytes), align: 1
+  Segment part 237.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::GetErrorAlarmState(uint8_t)
-                                   00003E60        ?Subroutine5 (Alarm)
+                                   00003E66        ?Subroutine5 (Alarm)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E66 - 00003E6F (0xa bytes), align: 1
-  Segment part 240.           Intra module refs:   CPss21::GetErrorAlarmState(uint8_t)
+  Relative segment, address: CODE 00003E6C - 00003E75 (0xa bytes), align: 1
+  Segment part 238.           Intra module refs:   CPss21::GetErrorAlarmState(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine39           00003E66 
+           ?Subroutine39           00003E6C 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E70 - 00003E85 (0x16 bytes), align: 1
-  Segment part 241.           Intra module refs:   Segment part 247
+  Relative segment, address: CODE 00003E76 - 00003E8B (0x16 bytes), align: 1
+  Segment part 239.           Intra module refs:   Segment part 245
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AlarmTypeSet(uint8_t)
-                                   00003E70 
+                                   00003E76 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E86 - 00003E8F (0xa bytes), align: 1
-  Segment part 242.
+  Relative segment, address: CODE 00003E8C - 00003E95 (0xa bytes), align: 1
+  Segment part 240.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AlarmTypeChange()
-                                   00003E86        ?Subroutine3 (Alarm)
+                                   00003E8C        ?Subroutine3 (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E90 - 00003E99 (0xa bytes), align: 1
-  Segment part 243.
+  Relative segment, address: CODE 00003E96 - 00003E9F (0xa bytes), align: 1
+  Segment part 241.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AlarmTypeErrorChange()
-                                   00003E90        CErrorAlarmDfa::Fsm() (Alarm)
+                                   00003E96        CErrorAlarmDfa::Fsm() (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003E9A - 00003EA1 (0x8 bytes), align: 1
-  Segment part 244.           Intra module refs:   CPss21::AlarmTypeChange()
+  Relative segment, address: CODE 00003EA0 - 00003EA7 (0x8 bytes), align: 1
+  Segment part 242.           Intra module refs:   CPss21::AlarmTypeChange()
                                                    CPss21::AlarmTypeErrorChange()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine31           00003E9A 
+           ?Subroutine31           00003EA0 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EA2 - 00003EA3 (0x2 bytes), align: 1
-  Segment part 245.
+  Relative segment, address: CODE 00003EA8 - 00003EA9 (0x2 bytes), align: 1
+  Segment part 243.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AlarmTypeReceipt()
-                                   00003EA2        ?Subroutine18 (Alarm)
+                                   00003EA8        ?Subroutine18 (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EA4 - 00003EA5 (0x2 bytes), align: 1
-  Segment part 246.           Intra module refs:   CPss21::AlarmTypeReceipt()
+  Relative segment, address: CODE 00003EAA - 00003EAB (0x2 bytes), align: 1
+  Segment part 244.           Intra module refs:   CPss21::AlarmTypeReceipt()
                                                    CPss21::AlarmTypeReset()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine93           00003EA4 
+           ?Subroutine90           00003EAA 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EA6 - 00003EA7 (0x2 bytes), align: 1
-  Segment part 247.           Intra module refs:   ?Subroutine93
+  Relative segment, address: CODE 00003EAC - 00003EAD (0x2 bytes), align: 1
+  Segment part 245.           Intra module refs:   ?Subroutine90
                                                    CPss21::AlarmTypeChange()
                                                    CPss21::MainFsm()
                                                    CPss21::RestoreContextNotifyerControl()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EA8 - 00003EAB (0x4 bytes), align: 1
-  Segment part 248.
+  Relative segment, address: CODE 00003EAE - 00003EB1 (0x4 bytes), align: 1
+  Segment part 246.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AlarmTypeReset()
-                                   00003EA8        ?Subroutine8 (Alarm)
+                                   00003EAE        ?Subroutine8 (Alarm)
                                                    CErrorAlarmDfa::Fsm() (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EAC - 00003EB5 (0xa bytes), align: 1
-  Segment part 249.           Intra module refs:   ?Subroutine93
+  Relative segment, address: CODE 00003EB2 - 00003EBB (0xa bytes), align: 1
+  Segment part 247.           Intra module refs:   ?Subroutine90
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine53           00003EAC 
+           ?Subroutine52           00003EB2 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EB6 - 00003ECB (0x16 bytes), align: 1
-  Segment part 250.           Intra module refs:   ?Subroutine71
+  Relative segment, address: CODE 00003EBC - 00003ED1 (0x16 bytes), align: 1
+  Segment part 248.           Intra module refs:   ?Subroutine70
                                                    CPss21::ErrorMainCycle()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::NotifyersControlProcessing()
-                                   00003EB6 
+                                   00003EBC 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003ECC - 00003ECF (0x4 bytes), align: 1
-  Segment part 251.           Intra module refs:   CPss21::NotifyersControlProcessing()
+  Relative segment, address: CODE 00003ED2 - 00003ED5 (0x4 bytes), align: 1
+  Segment part 249.           Intra module refs:   CPss21::NotifyersControlProcessing()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine94           00003ECC 
+           ?Subroutine91           00003ED2 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003ED0 - 00003EE1 (0x12 bytes), align: 1
-  Segment part 252.
+  Relative segment, address: CODE 00003ED6 - 00003EE7 (0x12 bytes), align: 1
+  Segment part 250.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SetAlarmWindowType(uint8_t, uint8_t)
-                                   00003ED0        ?Subroutine23 (Alarm)
+                                   00003ED6        ?Subroutine23 (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EE2 - 00003EF3 (0x12 bytes), align: 1
-  Segment part 253.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00003EE8 - 00003EF9 (0x12 bytes), align: 1
+  Segment part 251.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::SaveContextNotifyerControl()
-                                   00003EE2 
+                                   00003EE8 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003EF4 - 00003F09 (0x16 bytes), align: 1
-  Segment part 254.           Intra module refs:   ?Subroutine6
+  Relative segment, address: CODE 00003EFA - 00003F0F (0x16 bytes), align: 1
+  Segment part 252.           Intra module refs:   ?Subroutine6
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::RestoreContextNotifyerControl()
-                                   00003EF4 
+                                   00003EFA 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F0A - 00003F1B (0x12 bytes), align: 1
-  Segment part 255.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00003F10 - 00003F21 (0x12 bytes), align: 1
+  Segment part 253.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::DiscreteSignalsProcessing()
-                                   00003F0A 
+                                   00003F10 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F1C - 00003F1D (0x2 bytes), align: 1
-  Segment part 256.
+  Relative segment, address: CODE 00003F22 - 00003F23 (0x2 bytes), align: 1
+  Segment part 254.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::BoardWindowsUpdate()
-                                   00003F1C        CStatusLedNotifyerControl::NotifyerOff() (NotifyerControl)
+                                   00003F22        CStatusLedNotifyerControl::NotifyerOff() (NotifyerControl)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F1E - 00003F2D (0x10 bytes), align: 1
-  Segment part 257.
+  Relative segment, address: CODE 00003F24 - 00003F33 (0x10 bytes), align: 1
+  Segment part 255.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ActiveAlarmWindowOn(uint8_t)
-                                   00003F1E        Segment part 146 (NotifyerControl)
+                                   00003F24        Segment part 146 (NotifyerControl)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F2E - 00003F2F (0x2 bytes), align: 1
-  Segment part 258.           Intra module refs:   CPss21::ActiveAlarmWindowOff(uint8_t)
+  Relative segment, address: CODE 00003F34 - 00003F35 (0x2 bytes), align: 1
+  Segment part 256.           Intra module refs:   CPss21::ActiveAlarmWindowOff(uint8_t)
                                                    CPss21::ActiveAlarmWindowOn(uint8_t)
                                                    CPss21::AllAlarmWindowOn(uint8_t)
                                                    CPss21::ErrorWindowOn(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            00003F2E 
+           ?Subroutine1            00003F34 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F30 - 00003F37 (0x8 bytes), align: 1
-  Segment part 259.           Intra module refs:   ?Subroutine1
+  Relative segment, address: CODE 00003F36 - 00003F3D (0x8 bytes), align: 1
+  Segment part 257.           Intra module refs:   ?Subroutine1
                                                    CPss21::AllAlarmWindowOff()
                                                    CPss21::RestoreContextNotifyerControl()
                                                    CPss21::SaveContextNotifyerControl()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F38 - 00003F49 (0x12 bytes), align: 1
-  Segment part 260.
+  Relative segment, address: CODE 00003F3E - 00003F4F (0x12 bytes), align: 1
+  Segment part 258.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ActiveAlarmWindowOff(uint8_t)
-                                   00003F38        ?Subroutine31 (NotifyerControl)
+                                   00003F3E        ?Subroutine31 (NotifyerControl)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F4A - 00003F51 (0x8 bytes), align: 1
-  Segment part 261.           Intra module refs:   CPss21::ActiveAlarmWindowOff(uint8_t)
+  Relative segment, address: CODE 00003F50 - 00003F57 (0x8 bytes), align: 1
+  Segment part 259.           Intra module refs:   CPss21::ActiveAlarmWindowOff(uint8_t)
                                                    CPss21::ActiveAlarmWindowOn(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine20           00003F4A 
+           ?Subroutine20           00003F50 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F52 - 00003F5D (0xc bytes), align: 1
-  Segment part 262.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00003F58 - 00003F63 (0xc bytes), align: 1
+  Segment part 260.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AllAlarmWindowOn(uint8_t)
-                                   00003F52 
+                                   00003F58 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F5E - 00003F63 (0x6 bytes), align: 1
-  Segment part 263.           Intra module refs:   CPss21::ActiveAlarmWindowOff(uint8_t)
+  Relative segment, address: CODE 00003F64 - 00003F69 (0x6 bytes), align: 1
+  Segment part 261.           Intra module refs:   CPss21::ActiveAlarmWindowOff(uint8_t)
                                                    CPss21::ActiveAlarmWindowOn(uint8_t)
                                                    CPss21::AllAlarmWindowOff()
                                                    CPss21::AllAlarmWindowOn(uint8_t)
@@ -8169,63 +8154,52 @@ CODE
                                                    CPss21::ErrorWindowOn(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine95           00003F5E 
+           ?Subroutine92           00003F64 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F64 - 00003F65 (0x2 bytes), align: 1
-  Segment part 264.           Intra module refs:   ?Subroutine20
+  Relative segment, address: CODE 00003F6A - 00003F6B (0x2 bytes), align: 1
+  Segment part 262.           Intra module refs:   ?Subroutine20
                                                    CPss21::AllAlarmWindowOn(uint8_t)
                                                    CPss21::ErrorWindowOn(uint8_t)
                                                    CPss21::RestoreContextNotifyerControl()
                                                    CPss21::SaveContextNotifyerControl()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine63           00003F64 
+           ?Subroutine62           00003F6A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F66 - 00003F6D (0x8 bytes), align: 1
-  Segment part 265.           Intra module refs:   ?Subroutine21
-                                                   ?Subroutine63
+  Relative segment, address: CODE 00003F6C - 00003F79 (0xe bytes), align: 1
+  Segment part 263.           Intra module refs:   ?Subroutine21
+                                                   ?Subroutine62
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F6E - 00003F73 (0x6 bytes), align: 1
-  Segment part 266.           Intra module refs:   ?Subroutine63
-                                                   CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
-                                                   CPss21::GetDiscreteInputState(uint8_t)
-                                                   CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t)
-                                                   Segment part 265
+  Relative segment, address: CODE 00003F7A - 00003F7D (0x4 bytes), align: 1
+  Segment part 264.           Intra module refs:   CPss21::SetAlarmWindowType(uint8_t, uint8_t)
+                                                   Segment part 263
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine73           00003F6E 
+           ?Subroutine71           00003F7A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F74 - 00003F77 (0x4 bytes), align: 1
-  Segment part 267.           Intra module refs:   CPss21::SetAlarmWindowType(uint8_t, uint8_t)
-                                                   Segment part 265
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine72           00003F74 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 00003F78 - 00003F9D (0x26 bytes), align: 1
-  Segment part 268.           Intra module refs:   ?Subroutine14
+  Relative segment, address: CODE 00003F7E - 00003FA3 (0x26 bytes), align: 1
+  Segment part 265.           Intra module refs:   ?Subroutine14
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ErrorWindowOn(uint8_t)
-                                   00003F78        CErrorAlarmDfa::Fsm() (Alarm)
+                                   00003F7E        CErrorAlarmDfa::Fsm() (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003F9E - 00003F9F (0x2 bytes), align: 1
-  Segment part 269.           Intra module refs:   CPss21::AllAlarmWindowOn(uint8_t)
+  Relative segment, address: CODE 00003FA4 - 00003FA5 (0x2 bytes), align: 1
+  Segment part 266.           Intra module refs:   CPss21::AllAlarmWindowOn(uint8_t)
                                                    CPss21::RestoreContextNotifyerControl()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine50           00003F9E 
+           ?Subroutine50           00003FA4 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FA0 - 00003FA5 (0x6 bytes), align: 1
-  Segment part 270.           Intra module refs:   ?Subroutine50
+  Relative segment, address: CODE 00003FA6 - 00003FAB (0x6 bytes), align: 1
+  Segment part 267.           Intra module refs:   ?Subroutine50
                                                    CPss21::ActiveAlarmWindowOff(uint8_t)
                                                    CPss21::ActiveAlarmWindowOn(uint8_t)
                                                    CPss21::AllAlarmWindowOff()
@@ -8233,238 +8207,238 @@ CODE
                                                    CPss21::SaveContextNotifyerControl()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FA6 - 00003FB1 (0xc bytes), align: 1
-  Segment part 271.           Intra module refs:   ?Subroutine6
+  Relative segment, address: CODE 00003FAC - 00003FB7 (0xc bytes), align: 1
+  Segment part 268.           Intra module refs:   ?Subroutine6
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::AllAlarmWindowOff()
-                                   00003FA6        CErrorAlarmDfa::Fsm() (Alarm)
+                                   00003FAC        CErrorAlarmDfa::Fsm() (Alarm)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FB2 - 00003FB9 (0x8 bytes), align: 1
-  Segment part 272.           Intra module refs:   CPss21::AllAlarmWindowOff()
+  Relative segment, address: CODE 00003FB8 - 00003FBF (0x8 bytes), align: 1
+  Segment part 269.           Intra module refs:   CPss21::AllAlarmWindowOff()
                                                    CPss21::ErrorWindowOn(uint8_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine21           00003FB2 
+           ?Subroutine21           00003FB8 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FBA - 00003FBB (0x2 bytes), align: 1
-  Segment part 273.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00003FC0 - 00003FC1 (0x2 bytes), align: 1
+  Segment part 270.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::TestMainCycle()
-                                   00003FBA 
+                                   00003FC0 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FBC - 00003FBD (0x2 bytes), align: 1
-  Segment part 274.           Intra module refs:   CPss21::ErrorMainCycle()
+  Relative segment, address: CODE 00003FC2 - 00003FC3 (0x2 bytes), align: 1
+  Segment part 271.           Intra module refs:   CPss21::ErrorMainCycle()
                                                    CPss21::TestMainCycle()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine79           00003FBC 
+           ?Subroutine77           00003FC2 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FBE - 00003FC1 (0x4 bytes), align: 1
-  Segment part 275.           Intra module refs:   ?Subroutine79
+  Relative segment, address: CODE 00003FC4 - 00003FC7 (0x4 bytes), align: 1
+  Segment part 272.           Intra module refs:   ?Subroutine77
                                                    CPss21::LinkControlErrorMainCycle()
                                                    CPss21::MainFsm()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FC2 - 00003FE5 (0x24 bytes), align: 1
-  Segment part 276.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00003FC8 - 00003FEB (0x24 bytes), align: 1
+  Segment part 273.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::ErrorMainCycle()
-                                   00003FC2 
+                                   00003FC8 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FE6 - 00003FED (0x8 bytes), align: 1
-  Segment part 277.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
+  Relative segment, address: CODE 00003FEC - 00003FF3 (0x8 bytes), align: 1
+  Segment part 274.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::ErrorMainCycle()
-                                                   Segment part 283
+                                                   Segment part 280
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine60           00003FE6 
+           ?Subroutine59           00003FEC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FEE - 00003FF5 (0x8 bytes), align: 1
-  Segment part 278.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00003FF4 - 00003FFB (0x8 bytes), align: 1
+  Segment part 275.           Intra module refs:   CPss21::MainFsm()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::LinkControlErrorMainCycle()
-                                   00003FEE 
+                                   00003FF4 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FF6 - 00003FF7 (0x2 bytes), align: 1
-  Segment part 279.           Intra module refs:   ?Subroutine79
+  Relative segment, address: CODE 00003FFC - 00003FFD (0x2 bytes), align: 1
+  Segment part 276.           Intra module refs:   ?Subroutine77
                                                    CPss21::LinkControlErrorMainCycle()
                                                    CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine55           00003FF6 
+           ?Subroutine54           00003FFC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00003FF8 - 000040EF (0xf8 bytes), align: 1
-  Segment part 280.           Intra module refs:   Segment part 296
+  Relative segment, address: CODE 00003FFE - 000040F5 (0xf8 bytes), align: 1
+  Segment part 277.           Intra module refs:   Segment part 293
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::MainFsm()       00003FF8        main (main)
+           CPss21::MainFsm()       00003FFE        main (main)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000040F0 - 000040F3 (0x4 bytes), align: 1
-  Segment part 281.           Intra module refs:   CPss21::LinkControlErrorMainCycle()
+  Relative segment, address: CODE 000040F6 - 000040F9 (0x4 bytes), align: 1
+  Segment part 278.           Intra module refs:   CPss21::LinkControlErrorMainCycle()
                                                    CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine56           000040F0 
+           ?Subroutine55           000040F6 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000040F4 - 00004101 (0xe bytes), align: 1
-  Segment part 282.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 000040FA - 00004107 (0xe bytes), align: 1
+  Segment part 279.           Intra module refs:   CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine14           000040F4 
+           ?Subroutine14           000040FA 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004102 - 0000410F (0xe bytes), align: 1
-  Segment part 283.           Intra module refs:   ?Subroutine14
+  Relative segment, address: CODE 00004108 - 00004115 (0xe bytes), align: 1
+  Segment part 280.           Intra module refs:   ?Subroutine14
                                                    CPss21::AlarmTypeErrorChange()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004110 - 00004117 (0x8 bytes), align: 1
-  Segment part 284.           Intra module refs:   ?Subroutine14
+  Relative segment, address: CODE 00004116 - 0000411D (0x8 bytes), align: 1
+  Segment part 281.           Intra module refs:   ?Subroutine14
                                                    CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::ErrorMainCycle()
                                                    Segment part 203
-                                                   Segment part 283
+                                                   Segment part 280
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine61           00004110 
+           ?Subroutine60           00004116 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004118 - 0000411F (0x8 bytes), align: 1
-  Segment part 285.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
-                                                   Segment part 283
+  Relative segment, address: CODE 0000411E - 00004125 (0x8 bytes), align: 1
+  Segment part 282.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
+                                                   Segment part 280
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine59           00004118 
+           ?Subroutine58           0000411E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004120 - 00004127 (0x8 bytes), align: 1
-  Segment part 286.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
-                                                   Segment part 283
+  Relative segment, address: CODE 00004126 - 0000412D (0x8 bytes), align: 1
+  Segment part 283.           Intra module refs:   CPss21::AlarmTypeSet(uint8_t)
+                                                   Segment part 280
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine58           00004120 
+           ?Subroutine57           00004126 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004128 - 0000412F (0x8 bytes), align: 1
-  Segment part 287.           Intra module refs:   ?Subroutine5
+  Relative segment, address: CODE 0000412E - 00004135 (0x8 bytes), align: 1
+  Segment part 284.           Intra module refs:   ?Subroutine5
                                                    ?Subroutine7
                                                    CPss21::ErrorMainCycle()
                                                    CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine57           00004128 
+           ?Subroutine56           0000412E 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004130 - 00004133 (0x4 bytes), align: 1
-  Segment part 288.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00004136 - 00004139 (0x4 bytes), align: 1
+  Segment part 285.           Intra module refs:   CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine9            00004130 
+           ?Subroutine9            00004136 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004134 - 0000413B (0x8 bytes), align: 1
-  Segment part 289.           Intra module refs:   ?Subroutine9
+  Relative segment, address: CODE 0000413A - 00004141 (0x8 bytes), align: 1
+  Segment part 286.           Intra module refs:   ?Subroutine9
                                                    CPss21::MainFsm()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000413C - 00004141 (0x6 bytes), align: 1
-  Segment part 290.           Intra module refs:   CPss21::MainFsm()
-                                                   Segment part 289
-                                                   Segment part 293
+  Relative segment, address: CODE 00004142 - 00004147 (0x6 bytes), align: 1
+  Segment part 287.           Intra module refs:   CPss21::MainFsm()
+                                                   Segment part 286
+                                                   Segment part 290
                                                    __sti__routine()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine62           0000413C 
+           ?Subroutine61           00004142 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004142 - 00004145 (0x4 bytes), align: 1
-  Segment part 291.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 00004148 - 0000414B (0x4 bytes), align: 1
+  Segment part 288.           Intra module refs:   CPss21::MainFsm()
                                                    CPss21::TestMainCycle()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine7            00004142 
+           ?Subroutine7            00004148 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004146 - 0000414D (0x8 bytes), align: 1
-  Segment part 292.           Intra module refs:   CPss21::MainFsm()
+  Relative segment, address: CODE 0000414C - 00004153 (0x8 bytes), align: 1
+  Segment part 289.           Intra module refs:   CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine6            00004146 
+           ?Subroutine6            0000414C 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000414E - 00004153 (0x6 bytes), align: 1
-  Segment part 293.           Intra module refs:   ?Subroutine6
+  Relative segment, address: CODE 00004154 - 00004159 (0x6 bytes), align: 1
+  Segment part 290.           Intra module refs:   ?Subroutine6
                                                    CPss21::MainFsm()
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004154 - 0000415D (0xa bytes), align: 1
-  Segment part 294.           Intra module refs:   CPss21::LinkControlErrorMainCycle()
+  Relative segment, address: CODE 0000415A - 00004163 (0xa bytes), align: 1
+  Segment part 291.           Intra module refs:   CPss21::LinkControlErrorMainCycle()
                                                    CPss21::MainFsm()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine5            00004154 
+           ?Subroutine5            0000415A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000415E - 00004161 (0x4 bytes), align: 1
-  Segment part 295.           Intra module refs:   ?Subroutine5
+  Relative segment, address: CODE 00004164 - 00004167 (0x4 bytes), align: 1
+  Segment part 292.           Intra module refs:   ?Subroutine5
                                                    ?Subroutine7
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine71           0000415E 
+           ?Subroutine70           00004164 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004162 - 0000416D (0xc bytes), align: 1
-  Segment part 297.           Intra module refs:   __sti__routine()
+  Relative segment, address: CODE 00004168 - 00004173 (0xc bytes), align: 1
+  Segment part 294.           Intra module refs:   __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPlatform::KeyOneState()
-                                   00004162 
+                                   00004168 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000416E - 00004179 (0xc bytes), align: 1
-  Segment part 298.           Intra module refs:   __sti__routine()
+  Relative segment, address: CODE 00004174 - 0000417F (0xc bytes), align: 1
+  Segment part 295.           Intra module refs:   __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPlatform::KeyTwoState()
-                                   0000416E 
+                                   00004174 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000417A - 00004185 (0xc bytes), align: 1
-  Segment part 299.           Intra module refs:   __sti__routine()
+  Relative segment, address: CODE 00004180 - 0000418B (0xc bytes), align: 1
+  Segment part 296.           Intra module refs:   __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPlatform::KeyThreeState()
-                                   0000417A 
+                                   00004180 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004186 - 00004193 (0xe bytes), align: 1
-  Segment part 300.           Intra module refs:   __sti__routine()
+  Relative segment, address: CODE 0000418C - 00004199 (0xe bytes), align: 1
+  Segment part 297.           Intra module refs:   __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPlatform::ExternalKeyState()
-                                   00004186 
+                                   0000418C 
     -------------------------------------------------------------------------
 NEAR_ID
-  Relative segment, address: CODE 000049A8 - 000049FB (0x54 bytes), align: 0
+  Relative segment, address: CODE 000049AE - 00004A01 (0x54 bytes), align: 0
   Segment part 111. ROOT      Intra module refs:   Segment part 110
     -------------------------------------------------------------------------
 DIFUNCT
@@ -8473,7 +8447,7 @@ DIFUNCT
     -------------------------------------------------------------------------
 SWITCH
   Relative segment, address: CODE 000007E4 - 00000809 (0x26 bytes), align: 1
-  Segment part 296.           Intra module refs:   CPss21::MainFsm()
+  Segment part 293.           Intra module refs:   CPss21::MainFsm()
 
     *************************************************************************
 
@@ -8483,30 +8457,30 @@ SWITCH
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004194 - 0000419F (0xc bytes), align: 1
+  Relative segment, address: CODE 0000419A - 000041A5 (0xc bytes), align: 1
   Segment part 100.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CTimer::CTimer()        00004194        ?Subroutine0 (Event)
+           CTimer::CTimer()        0000419A        ?Subroutine0 (Event)
                                                    ?Subroutine2 (InputDevice)
                                                    CLinkControl::CLinkControl() (LinkControl)
                                                    CNotifyerControl::CNotifyerControl() (NotifyerControl)
                                                    __sti__routine() (DataStore)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041A0 - 000041AB (0xc bytes), align: 1
+  Relative segment, address: CODE 000041A6 - 000041B1 (0xc bytes), align: 1
   Segment part 102.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CTimer::CTimer(uint16_t)
-                                   000041A0        __sti__routine() (Pss21)
+                                   000041A6        __sti__routine() (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041AC - 000041BB (0x10 bytes), align: 1
+  Relative segment, address: CODE 000041B2 - 000041C1 (0x10 bytes), align: 1
   Segment part 105.           Intra module refs:   CTimer::__vtbl
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CTimer::~CTimer()       000041AC        <Unnamed 0> (DataStore)
+           CTimer::~CTimer()       000041B2        <Unnamed 0> (DataStore)
                                                    <Unnamed 4> (Pss21)
                                                    CEventUniteLogicAnd::~CEventUniteLogicAnd() (Event)
                                                    CLinkControl::~CLinkControl() (LinkControl)
@@ -8515,53 +8489,53 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041BC, align: 1
+  Relative segment, address: CODE 000041C2, align: 1
   Segment part 106.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CTimer::Set(uint16_t)   000041BC        ?Subroutine0 (InputDevice)
+           CTimer::Set(uint16_t)   000041C2        ?Subroutine0 (InputDevice)
                                                    ?Subroutine15 (NotifyerControl)
                                                    ?Subroutine8 (DataStore)
                                                    ?Subroutine8 (NotifyerControl)
                                                    CEventUniteLogicAnd::IsHappened(uint8_t, uint8_t) (Event)
                                                    CModbusRtuLinkControl::Fsm() (LinkControl)
                                                    CMultiFunctionKey::Fsm() (InputDevice)
-                                                   Segment part 293 (Pss21)
+                                                   Segment part 290 (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041BC - 000041CF (0x14 bytes), align: 1
+  Relative segment, address: CODE 000041C2 - 000041D5 (0x14 bytes), align: 1
   Segment part 107.           Intra module refs:   CTimer::CTimer(uint16_t)
                                                    CTimer::Set(uint16_t)
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            000041BC 
+           ?Subroutine0            000041C2 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041D0 - 000041D7 (0x8 bytes), align: 1
+  Relative segment, address: CODE 000041D6 - 000041DD (0x8 bytes), align: 1
   Segment part 108.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CTimer::Reset()         000041D0        CPss21::MainFsm() (Pss21)
+           CTimer::Reset()         000041D6        CPss21::MainFsm() (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041D8 - 000041F3 (0x1c bytes), align: 1
+  Relative segment, address: CODE 000041DE - 000041F9 (0x1c bytes), align: 1
   Segment part 109.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CTimer::IsOverflow()    000041D8        ?Subroutine1 (InputDevice)
+           CTimer::IsOverflow()    000041DE        ?Subroutine1 (InputDevice)
                                                    ?Subroutine3 (DataStore)
                                                    ?Subroutine5 (NotifyerControl)
                                                    CEventUniteLogicAnd::IsHappened(uint8_t, uint8_t) (Event)
                                                    CModbusRtuLinkControl::Fsm() (LinkControl)
-                                                   Segment part 289 (Pss21)
+                                                   Segment part 286 (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000041F4 - 000041FF (0xc bytes), align: 1
+  Relative segment, address: CODE 000041FA - 00004205 (0xc bytes), align: 1
   Segment part 110.           Intra module refs:   CTimer::IsOverflow()
                                                    CTimer::Reset()
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            000041F4 
+           ?Subroutine2            000041FA 
     -------------------------------------------------------------------------
 NEAR_F
   Relative segment, address: CODE 0000074E - 0000074F (0x2 bytes), align: 0
@@ -8579,30 +8553,30 @@ NEAR_F
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004200, align: 1
+  Relative segment, address: CODE 00004206, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           _exit                   00004200        ?cstartup_call_main (?C_STARTUP)
+           _exit                   00004206        ?cstartup_call_main (?C_STARTUP)
                                                    exit (?exit)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004200 - 00004203 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00004206 - 00004209 (0x4 bytes), align: 1
   Segment part 1.             Intra module refs:   __cstart_call_dtors
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004204 - 00004207 (0x4 bytes), align: 1
+  Relative segment, address: CODE 0000420A - 0000420D (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __cstart_call_dtors     00004204        __record_needed_destruction (?cppinit)
+           __cstart_call_dtors     0000420A        __record_needed_destruction (?cppinit)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004208 - 0000420B (0x4 bytes), align: 1
+  Relative segment, address: CODE 0000420E - 00004211 (0x4 bytes), align: 1
   Segment part 4.             Intra module refs:   Segment part 1
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000420C - 0000420F (0x4 bytes), align: 1
+  Relative segment, address: CODE 00004212 - 00004215 (0x4 bytes), align: 1
   Segment part 5.             Intra module refs:   _exit
 
     -------------------------------------------------------------------------
@@ -8611,11 +8585,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004210 - 00004217 (0x8 bytes), align: 1
+  Relative segment, address: CODE 00004216 - 0000421D (0x8 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           abort                   00004210        _Nomemory() (?nomemory)
+           abort                   00004216        _Nomemory() (?nomemory)
                                                    __near_get_array_size(void *, __near_size_t) (?vec_newdel)
                                                    __pure_virtual_called (?xpurevirtual)
                                                    __record_needed_destruction (?cppinit)
@@ -8627,11 +8601,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004218 - 00004279 (0x62 bytes), align: 1
+  Relative segment, address: CODE 0000421E - 0000427F (0x62 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __call_ctors            00004218        ?call_ctors (?C_STARTUP)
+           __call_ctors            0000421E        ?call_ctors (?C_STARTUP)
                calls indirect
     -------------------------------------------------------------------------
 NEAR_Z
@@ -8641,30 +8615,30 @@ NEAR_Z
                                                    __record_needed_destruction
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000427A - 000042AD (0x34 bytes), align: 1
+  Relative segment, address: CODE 00004280 - 000042B3 (0x34 bytes), align: 1
   Segment part 6.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            __record_needed_destruction
-                                   0000427A        ?Subroutine74 (Pss21)
+                                   00004280        ?Subroutine72 (Pss21)
                                                    __sti__routine() (DataStore)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000042AE - 000042B3 (0x6 bytes), align: 1
+  Relative segment, address: CODE 000042B4 - 000042B9 (0x6 bytes), align: 1
   Segment part 7.             Intra module refs:   __call_dtors
                                                    __record_needed_destruction
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000042B4 - 000042F3 (0x40 bytes), align: 1
+  Relative segment, address: CODE 000042BA - 000042F9 (0x40 bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __call_dtors            000042B4        __cstart_call_dtors (?_exit)
+           __call_dtors            000042BA        __cstart_call_dtors (?_exit)
                calls indirect
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000042F4 - 000042FD (0xa bytes), align: 1
+  Relative segment, address: CODE 000042FA - 00004303 (0xa bytes), align: 1
   Segment part 10.            Intra module refs:   __call_dtors
                                                    __record_needed_destruction
 
@@ -8686,47 +8660,47 @@ INTVEC
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000042FE, align: 1
+  Relative segment, address: CODE 00004304, align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __program_start         000042FE        Absolute parts (?ABS_ENTRY_MOD)
-           ?C_STARTUP              000042FE        ?RESET (?RESET)
-           __RESTART               000042FE 
+           __program_start         00004304        Absolute parts (?ABS_ENTRY_MOD)
+           ?C_STARTUP              00004304        ?RESET (?RESET)
+           __RESTART               00004304 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000042FE - 00004309 (0xc bytes), align: 1
+  Relative segment, address: CODE 00004304 - 0000430F (0xc bytes), align: 1
   Segment part 5.             Intra module refs:   Segment part 2
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000430A - 0000430D (0x4 bytes), align: 1
+  Relative segment, address: CODE 00004310 - 00004313 (0x4 bytes), align: 1
   Segment part 7.             Intra module refs:   Segment part 5
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?call_low_level_init    0000430A 
+           ?call_low_level_init    00004310 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000430E - 00004315 (0x8 bytes), align: 1
+  Relative segment, address: CODE 00004314 - 0000431B (0x8 bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?need_segment_init      0000430E        ?<Segment init: NEAR_I> (DataStore)
+           ?need_segment_init      00004314        ?<Segment init: NEAR_I> (DataStore)
                                                    ?<Segment init: NEAR_Z> (DataStore)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004316 - 00004325 (0x10 bytes), align: 1
+  Relative segment, address: CODE 0000431C - 0000432B (0x10 bytes), align: 1
   Segment part 10.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?call_ctors             00004316        Segment part 108 (DataStore)
+           ?call_ctors             0000431C        Segment part 108 (DataStore)
                                                    Segment part 131 (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004326 - 00004331 (0xc bytes), align: 1
+  Relative segment, address: CODE 0000432C - 00004337 (0xc bytes), align: 1
   Segment part 11.            Intra module refs:   ?call_low_level_init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?cstartup_call_main     00004326 
+           ?cstartup_call_main     0000432C 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?delop_0
@@ -8734,12 +8708,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004332 - 0000433D (0xc bytes), align: 1
+  Relative segment, address: CODE 00004338 - 00004343 (0xc bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            operator delete(void *)
-                                   00004332        ?Subroutine0 (Dfa)
+                                   00004338        ?Subroutine0 (Dfa)
                                                    ?Subroutine21 (NotifyerControl)
                                                    ?Subroutine29 (Alarm)
                                                    ?Subroutine8 (Platform)
@@ -8763,11 +8737,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 0000433E - 00004341 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00004344 - 00004347 (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           exit                    0000433E        ?cstartup_call_main (?C_STARTUP)
+           exit                    00004344        ?cstartup_call_main (?C_STARTUP)
                calls direct
 
     -------------------------------------------------------------------------
@@ -8776,11 +8750,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004342 - 00004351 (0x10 bytes), align: 1
+  Relative segment, address: CODE 00004348 - 00004357 (0x10 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?S_EC_MUL_L02           00004342        ?Subroutine91 (Pss21)
+           ?S_EC_MUL_L02           00004348        ?Subroutine88 (Pss21)
                                                    CLightBoard::Set(CAlarmWindow *) (LightBoard)
                                                    CModuleMrXXDriver::Allocate(TMemoryAllocationConext &) (ModuleMrXX)
                                                    Segment part 17 (?vec_newdel)
@@ -8791,15 +8765,15 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004352 - 0000435B (0xa bytes), align: 1
+  Relative segment, address: CODE 00004358 - 00004361 (0xa bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?S_SHL_L02              00004356        ?Subroutine10 (DataStore)
+           ?S_SHL_L02              0000435C        ?Subroutine10 (DataStore)
                                                    ?Subroutine22 (Platform)
                                                    ?Subroutine5 (ModuleMrXX)
+                                                   ?Subroutine66 (Pss21)
                                                    ?Subroutine66 (modbus)
-                                                   ?Subroutine67 (Pss21)
                                                    ?Subroutine7 (ModuleMrXX)
                                                    CHammingCodes::fixError(uint16_t, uint8_t) (HammingCodes)
                                                    CMvsn21Driver::DataExchange() (Mvsn21)
@@ -8810,11 +8784,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 0000435C - 00004365 (0xa bytes), align: 1
+  Relative segment, address: CODE 00004362 - 0000436B (0xa bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?US_SHR_L02             00004360        ?Subroutine0 (modbus)
+           ?US_SHR_L02             00004366        ?Subroutine0 (modbus)
                                                    CHammingCodes::deHamming(uint16_t) (HammingCodes)
                                                    CHammingCodes::getEvenParityforRx(uint16_t) (HammingCodes)
 
@@ -8824,11 +8798,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004366 - 0000436F (0xa bytes), align: 1
+  Relative segment, address: CODE 0000436C - 00004375 (0xa bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?SS_SHR_L02             0000436A        CHammingCodes::getEvenParityforTx(uint8_t) (HammingCodes)
+           ?SS_SHR_L02             00004370        CHammingCodes::getEvenParityforTx(uint8_t) (HammingCodes)
                                                    CPss21::ConfigurationInit() (Pss21)
 
     -------------------------------------------------------------------------
@@ -8837,16 +8811,16 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004370 - 00004375 (0x6 bytes), align: 1
+  Relative segment, address: CODE 00004376 - 0000437B (0x6 bytes), align: 1
   Segment part 1.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?US_DIVMOD_L02          00004370        ?SS_DIVMOD_L02 (?SS_DIVMOD_L02)
+           ?US_DIVMOD_L02          00004376        ?SS_DIVMOD_L02 (?SS_DIVMOD_L02)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int) (?vec_newdel)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004376 - 00004395 (0x20 bytes), align: 1
+  Relative segment, address: CODE 0000437C - 0000439B (0x20 bytes), align: 1
   Segment part 3.             Intra module refs:   ?US_DIVMOD_L02
 
     -------------------------------------------------------------------------
@@ -8855,25 +8829,25 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004396 - 000043B5 (0x20 bytes), align: 1
+  Relative segment, address: CODE 0000439C - 000043BB (0x20 bytes), align: 1
   Segment part 1.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?SS_DIVMOD_L02          00004396        CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t) (Pss21)
+           ?SS_DIVMOD_L02          0000439C        CPss21::SetBytesFromBits(uint8_t *, uint8_t *, uint16_t) (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000043B6 - 000043BD (0x8 bytes), align: 1
+  Relative segment, address: CODE 000043BC - 000043C3 (0x8 bytes), align: 1
   Segment part 2.             Intra module refs:   ?SS_DIVMOD_L02
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?NEG_P                  000043B6 
+           ?NEG_P                  000043BC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000043BE - 000043C5 (0x8 bytes), align: 1
+  Relative segment, address: CODE 000043C4 - 000043CB (0x8 bytes), align: 1
   Segment part 3.             Intra module refs:   ?SS_DIVMOD_L02
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?NEG_Q                  000043BE 
+           ?NEG_Q                  000043C4 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?L_SHL_L03
@@ -8881,11 +8855,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000043C6 - 000043D3 (0xe bytes), align: 1
+  Relative segment, address: CODE 000043CC - 000043D9 (0xe bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?L_SHL_L03              000043CE        ?Subroutine1 (HammingCodes)
+           ?L_SHL_L03              000043D4        ?Subroutine1 (HammingCodes)
                                                    CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
                                                    CUart::Init(uint32_t, uint8_t, uint8_t, uint8_t, uint8_t *, uint8_t *) (Platform)
 
@@ -8895,11 +8869,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000043D4 - 000043E1 (0xe bytes), align: 1
+  Relative segment, address: CODE 000043DA - 000043E7 (0xe bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?UL_SHR_L03             000043DC        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+           ?UL_SHR_L03             000043E2        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CPss21::ModbusInit() (Pss21)
 
     -------------------------------------------------------------------------
@@ -8908,16 +8882,16 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000043E2 - 000043E9 (0x8 bytes), align: 1
+  Relative segment, address: CODE 000043E8 - 000043EF (0x8 bytes), align: 1
   Segment part 1.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?UL_DIVMOD_L03          000043E2        ?Subroutine3 (Platform)
+           ?UL_DIVMOD_L03          000043E8        ?Subroutine3 (Platform)
                                                    CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
                                                    CPss21::ModbusInit() (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000043EA - 0000441F (0x36 bytes), align: 1
+  Relative segment, address: CODE 000043F0 - 00004425 (0x36 bytes), align: 1
   Segment part 3.             Intra module refs:   ?UL_DIVMOD_L03
 
     -------------------------------------------------------------------------
@@ -8926,35 +8900,35 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004420 - 0000442B (0xc bytes), align: 1
+  Relative segment, address: CODE 00004426 - 00004431 (0xc bytes), align: 1
   Segment part 2.             Intra module refs:   ?CV_SWITCH_L06
            LOCAL                   ADDRESS         
            =====                   =======         
-           GET_INFO_C              00004420 
+           GET_INFO_C              00004426 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000442C - 00004433 (0x8 bytes), align: 1
+  Relative segment, address: CODE 00004432 - 00004439 (0x8 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?CV_SWITCH_L06          0000442C        CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
+           ?CV_SWITCH_L06          00004432        CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    CModbusRTU::Fsm() (ModbusRTU)
                                                    CNotifyerControl::Fsm() (NotifyerControl)
                                                    CPss21::MainFsm() (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004434 - 00004439 (0x6 bytes), align: 1
+  Relative segment, address: CODE 0000443A - 0000443F (0x6 bytes), align: 1
   Segment part 5.             Intra module refs:   ?CV_SWITCH_L06
            LOCAL                   ADDRESS         
            =====                   =======         
-           P_0_S                   00004434 
+           P_0_S                   0000443A 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000443A - 000044A5 (0x6c bytes), align: 1
+  Relative segment, address: CODE 00004440 - 000044AB (0x6c bytes), align: 1
   Segment part 7.             Intra module refs:   P_0_S
            LOCAL                   ADDRESS         
            =====                   =======         
-           CHECK_LOW_LIMIT         0000443A 
+           CHECK_LOW_LIMIT         00004440 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?PROLOGUE_L09
@@ -8962,85 +8936,85 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044A6 - 000044A7 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044AC - 000044AD (0x2 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE16_L09         000044A6        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+           ?PROLOGUE16_L09         000044AC        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044A8 - 000044A9 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044AE - 000044AF (0x2 bytes), align: 1
   Segment part 1.             Intra module refs:   ?PROLOGUE16_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE15_L09         000044A8 
+           ?PROLOGUE15_L09         000044AE 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044AA - 000044AB (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044B0 - 000044B1 (0x2 bytes), align: 1
   Segment part 2.             Intra module refs:   ?PROLOGUE15_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE14_L09         000044AA        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+           ?PROLOGUE14_L09         000044B0        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int) (?vec_newdel)
                                                    __near_array_new_general(void *, __near_size_t, __near_size_t, void *, __near_constructor_ptr, __near_destructor_ptr, __near_new_ptr, __near_delete_ptr, int, int) (?vec_newdel)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044AC - 000044AD (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044B2 - 000044B3 (0x2 bytes), align: 1
   Segment part 3.             Intra module refs:   ?PROLOGUE14_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE13_L09         000044AC 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 000044AE - 000044AF (0x2 bytes), align: 1
-  Segment part 4.             Intra module refs:   ?PROLOGUE13_L09
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           ?PROLOGUE12_L09         000044AE        CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 000044B0 - 000044B1 (0x2 bytes), align: 1
-  Segment part 5.             Intra module refs:   ?PROLOGUE12_L09
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           ?PROLOGUE11_L09         000044B0        __call_ctors (?cppinit)
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 000044B2 - 000044B3 (0x2 bytes), align: 1
-  Segment part 6.             Intra module refs:   ?PROLOGUE11_L09
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           ?PROLOGUE10_L09         000044B2        ?Subroutine25 (modbus)
+           ?PROLOGUE13_L09         000044B2 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044B4 - 000044B5 (0x2 bytes), align: 1
-  Segment part 7.             Intra module refs:   ?PROLOGUE10_L09
+  Segment part 4.             Intra module refs:   ?PROLOGUE13_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE9_L09          000044B4 
+           ?PROLOGUE12_L09         000044B4        CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044B6 - 000044B7 (0x2 bytes), align: 1
-  Segment part 8.             Intra module refs:   ?PROLOGUE9_L09
+  Segment part 5.             Intra module refs:   ?PROLOGUE12_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE8_L09          000044B6        ?Subroutine27 (modbus)
-                                                   CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
+           ?PROLOGUE11_L09         000044B6        __call_ctors (?cppinit)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044B8 - 000044B9 (0x2 bytes), align: 1
-  Segment part 9.             Intra module refs:   ?PROLOGUE8_L09
+  Segment part 6.             Intra module refs:   ?PROLOGUE11_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE7_L09          000044B8        CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
+           ?PROLOGUE10_L09         000044B8        ?Subroutine25 (modbus)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044BA - 000044BB (0x2 bytes), align: 1
+  Segment part 7.             Intra module refs:   ?PROLOGUE10_L09
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?PROLOGUE9_L09          000044BA 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 000044BC - 000044BD (0x2 bytes), align: 1
+  Segment part 8.             Intra module refs:   ?PROLOGUE9_L09
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?PROLOGUE8_L09          000044BC        ?Subroutine27 (modbus)
+                                                   CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 000044BE - 000044BF (0x2 bytes), align: 1
+  Segment part 9.             Intra module refs:   ?PROLOGUE8_L09
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?PROLOGUE7_L09          000044BE        CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 000044C0 - 000044C1 (0x2 bytes), align: 1
   Segment part 10.            Intra module refs:   ?PROLOGUE7_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE6_L09          000044BA        ?Subroutine37 (modbus)
+           ?PROLOGUE6_L09          000044C0        ?Subroutine37 (modbus)
                                                    CDataStore::Check() (DataStore)
                                                    CDataStore::Write(uint8_t *, uint16_t, uint8_t) (DataStore)
                                                    CFlash::ReadBlock(uint8_t *, uint8_t) (Platform)
@@ -9048,20 +9022,20 @@ CODE
                                                    CModbusRTU::FrameCheck(uint8_t *, uint16_t) (ModbusRTU)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044BC - 000044BD (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044C2 - 000044C3 (0x2 bytes), align: 1
   Segment part 11.            Intra module refs:   ?PROLOGUE6_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE5_L09          000044BC        ?Subroutine16 (Alarm)
+           ?PROLOGUE5_L09          000044C2        ?Subroutine16 (Alarm)
                                                    CPss21::CreateDevices() (Pss21)
                                                    CPss21::SearchModules() (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044BE - 000044BF (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044C4 - 000044C5 (0x2 bytes), align: 1
   Segment part 12.            Intra module refs:   ?PROLOGUE5_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE4_L09          000044BE        ?Subroutine17 (ModbusRTU)
+           ?PROLOGUE4_L09          000044C4        ?Subroutine17 (ModbusRTU)
                                                    ?Subroutine17 (Platform)
                                                    ?Subroutine2 (Event)
                                                    ?Subroutine23 (NotifyerControl)
@@ -9079,11 +9053,11 @@ CODE
                                                    malloc (?xxmemxmalloc)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044C0 - 000044C1 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044C6 - 000044C7 (0x2 bytes), align: 1
   Segment part 13.            Intra module refs:   ?PROLOGUE4_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE3_L09          000044C0        ?Subroutine28 (Alarm)
+           ?PROLOGUE3_L09          000044C6        ?Subroutine28 (Alarm)
                                                    CEvent::~CEvent() (Event)
                                                    CModbus::~CModbus() (modbus)
                                                    CModbusRTU::~CModbusRTU() (ModbusRTU)
@@ -9092,21 +9066,21 @@ CODE
                                                    CMvsn21Driver::~CMvsn21Driver() (Mvsn21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044C2 - 000044C3 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044C8 - 000044C9 (0x2 bytes), align: 1
   Segment part 14.            Intra module refs:   ?PROLOGUE3_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE2_L09          000044C2 
+           ?PROLOGUE2_L09          000044C8 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044C4 - 000044C5 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044CA - 000044CB (0x2 bytes), align: 1
   Segment part 15.            Intra module refs:   ?PROLOGUE2_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?PROLOGUE1_L09          000044C4 
+           ?PROLOGUE1_L09          000044CA 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044C6 - 000044C7 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044CC - 000044CD (0x2 bytes), align: 1
   Segment part 16.            Intra module refs:   ?PROLOGUE1_L09
 
     -------------------------------------------------------------------------
@@ -9115,119 +9089,119 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044C8 - 000044C9 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044CE - 000044CF (0x2 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B16_L09       000044C8        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+           ?EPILOGUE_B16_L09       000044CE        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044CA - 000044CB (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044D0 - 000044D1 (0x2 bytes), align: 1
   Segment part 1.             Intra module refs:   ?EPILOGUE_B16_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B15_L09       000044CA 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 000044CC - 000044CD (0x2 bytes), align: 1
-  Segment part 2.             Intra module refs:   ?EPILOGUE_B15_L09
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           ?EPILOGUE_B14_L09       000044CC        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
-                                                   Segment part 15 (?vec_newdel)
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 000044CE - 000044CF (0x2 bytes), align: 1
-  Segment part 3.             Intra module refs:   ?EPILOGUE_B14_L09
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           ?EPILOGUE_B13_L09       000044CE 
-    -------------------------------------------------------------------------
-CODE
-  Relative segment, address: CODE 000044D0 - 000044D1 (0x2 bytes), align: 1
-  Segment part 4.             Intra module refs:   ?EPILOGUE_B13_L09
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           ?EPILOGUE_B12_L09       000044D0        CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
+           ?EPILOGUE_B15_L09       000044D0 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044D2 - 000044D3 (0x2 bytes), align: 1
-  Segment part 5.             Intra module refs:   ?EPILOGUE_B12_L09
+  Segment part 2.             Intra module refs:   ?EPILOGUE_B15_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B11_L09       000044D2        __call_ctors (?cppinit)
+           ?EPILOGUE_B14_L09       000044D2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                                   Segment part 15 (?vec_newdel)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044D4 - 000044D5 (0x2 bytes), align: 1
-  Segment part 6.             Intra module refs:   ?EPILOGUE_B11_L09
+  Segment part 3.             Intra module refs:   ?EPILOGUE_B14_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B10_L09       000044D4        Segment part 164 (modbus)
+           ?EPILOGUE_B13_L09       000044D4 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044D6 - 000044D7 (0x2 bytes), align: 1
-  Segment part 7.             Intra module refs:   ?EPILOGUE_B10_L09
+  Segment part 4.             Intra module refs:   ?EPILOGUE_B13_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B9_L09        000044D6 
+           ?EPILOGUE_B12_L09       000044D6        CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044D8 - 000044D9 (0x2 bytes), align: 1
-  Segment part 8.             Intra module refs:   ?EPILOGUE_B9_L09
+  Segment part 5.             Intra module refs:   ?EPILOGUE_B12_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B8_L09        000044D8        CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
-                                                   Segment part 119 (modbus)
+           ?EPILOGUE_B11_L09       000044D8        __call_ctors (?cppinit)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044DA - 000044DB (0x2 bytes), align: 1
-  Segment part 9.             Intra module refs:   ?EPILOGUE_B8_L09
+  Segment part 6.             Intra module refs:   ?EPILOGUE_B11_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B7_L09        000044DA        CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
+           ?EPILOGUE_B10_L09       000044DA        Segment part 164 (modbus)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 000044DC - 000044DD (0x2 bytes), align: 1
+  Segment part 7.             Intra module refs:   ?EPILOGUE_B10_L09
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?EPILOGUE_B9_L09        000044DC 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 000044DE - 000044DF (0x2 bytes), align: 1
+  Segment part 8.             Intra module refs:   ?EPILOGUE_B9_L09
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?EPILOGUE_B8_L09        000044DE        CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
+                                                   Segment part 119 (modbus)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 000044E0 - 000044E1 (0x2 bytes), align: 1
+  Segment part 9.             Intra module refs:   ?EPILOGUE_B8_L09
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?EPILOGUE_B7_L09        000044E0        CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE 000044E2 - 000044E3 (0x2 bytes), align: 1
   Segment part 10.            Intra module refs:   ?EPILOGUE_B7_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B6_L09        000044DC        ?Subroutine14 (DataStore)
+           ?EPILOGUE_B6_L09        000044E2        ?Subroutine14 (DataStore)
                                                    ?Subroutine41 (ModbusRTU)
                                                    CFlash::ReadBlock(uint8_t *, uint8_t) (Platform)
                                                    Segment part 176 (modbus)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044DE - 000044DF (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044E4 - 000044E5 (0x2 bytes), align: 1
   Segment part 11.            Intra module refs:   ?EPILOGUE_B6_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B5_L09        000044DE        ?Subroutine39 (Alarm)
-                                                   ?Subroutine89 (Pss21)
+           ?EPILOGUE_B5_L09        000044E4        ?Subroutine39 (Alarm)
+                                                   ?Subroutine86 (Pss21)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044E0 - 000044E1 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044E6 - 000044E7 (0x2 bytes), align: 1
   Segment part 12.            Intra module refs:   ?EPILOGUE_B5_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B4_L09        000044E0        ?Subroutine0 (Mvsn21)
+           ?EPILOGUE_B4_L09        000044E6        ?Subroutine0 (Mvsn21)
                                                    ?Subroutine11 (ModuleMrXX)
                                                    ?Subroutine12 (InputDevice)
                                                    ?Subroutine38 (Platform)
                                                    ?Subroutine53 (ModbusRTU)
                                                    ?Subroutine62 (modbus)
                                                    ?Subroutine7 (Event)
-                                                   ?Subroutine90 (Pss21)
+                                                   ?Subroutine87 (Pss21)
                                                    CLinkControl::~CLinkControl() (LinkControl)
                                                    Segment part 159 (NotifyerControl)
                                                    Segment part 6 (?xxmemxmalloc)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044E2 - 000044E3 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044E8 - 000044E9 (0x2 bytes), align: 1
   Segment part 13.            Intra module refs:   ?EPILOGUE_B4_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B3_L09        000044E2        CEvent::~CEvent() (Event)
+           ?EPILOGUE_B3_L09        000044E8        CEvent::~CEvent() (Event)
                                                    CModbus::~CModbus() (modbus)
                                                    CModbusRTU::~CModbusRTU() (ModbusRTU)
                                                    CModbusRtuLinkControl::~CModbusRtuLinkControl() (LinkControl)
@@ -9236,25 +9210,25 @@ CODE
                                                    Segment part 146 (Alarm)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044E4 - 000044E5 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044EA - 000044EB (0x2 bytes), align: 1
   Segment part 14.            Intra module refs:   ?EPILOGUE_B3_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B2_L09        000044E4 
+           ?EPILOGUE_B2_L09        000044EA 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044E6 - 000044E7 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000044EC - 000044ED (0x2 bytes), align: 1
   Segment part 15.            Intra module refs:   ?EPILOGUE_B2_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B1_L09        000044E6 
+           ?EPILOGUE_B1_L09        000044EC 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000044E8 - 000044F1 (0xa bytes), align: 1
+  Relative segment, address: CODE 000044EE - 000044F7 (0xa bytes), align: 1
   Segment part 16.            Intra module refs:   ?EPILOGUE_B1_L09
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?EPILOGUE_B0_L09        000044E8 
+           ?EPILOGUE_B0_L09        000044EE 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?REGISTER_CGREGR4_L10
@@ -9262,12 +9236,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R4_is_cg_reg
-                                   000044F2        CAlarmDfa::Fsm() (Alarm)
+                                   000044F8        CAlarmDfa::Fsm() (Alarm)
                                                    CDataStore::Check() (DataStore)
                                                    CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
                                                    CDataStore::Write(uint8_t *, uint16_t, uint8_t) (DataStore)
@@ -9305,12 +9279,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R5_is_cg_reg
-                                   000044F2        CDataStore::Check() (DataStore)
+                                   000044F8        CDataStore::Check() (DataStore)
                                                    CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
                                                    CDataStore::Write(uint8_t *, uint16_t, uint8_t) (DataStore)
                                                    CFlash::ReadBlock(uint8_t *, uint8_t) (Platform)
@@ -9343,12 +9317,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R6_is_cg_reg
-                                   000044F2        CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
+                                   000044F8        CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
                                                    CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::ByteToBitPack(uint16_t, uint16_t, uint8_t *, uint8_t *, uint16_t) (modbus)
@@ -9374,12 +9348,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R7_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    CModbus::ReadCoils(uint8_t *, uint8_t *, uint16_t) (modbus)
@@ -9402,12 +9376,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R8_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::ByteToBitPack(uint16_t, uint16_t, uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
@@ -9424,12 +9398,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R9_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::ByteToBitPack(uint16_t, uint16_t, uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
@@ -9445,12 +9419,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R10_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
@@ -9464,12 +9438,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R11_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    CModbus::Reply(uint8_t *, uint8_t *, uint16_t) (modbus)
@@ -9482,12 +9456,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R12_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
                                                    __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int) (?vec_newdel)
@@ -9499,12 +9473,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R13_is_cg_reg
-                                   000044F2        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::BytesToHammingCodes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int) (?vec_newdel)
                                                    __near_array_new_general(void *, __near_size_t, __near_size_t, void *, __near_constructor_ptr, __near_destructor_ptr, __near_new_ptr, __near_delete_ptr, int, int) (?vec_newdel)
@@ -9515,12 +9489,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R14_is_cg_reg
-                                   000044F2        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
 
     -------------------------------------------------------------------------
@@ -9529,12 +9503,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2, align: 1
+  Relative segment, address: CODE 000044F8, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ?Register_R15_is_cg_reg
-                                   000044F2        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
+                                   000044F8        CHammingCodes::HammingCodesToBytes(uint8_t *, uint8_t *, uint16_t) (HammingCodes)
                                                    CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
 
     -------------------------------------------------------------------------
@@ -9543,11 +9517,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F2 - 000044F5 (0x4 bytes), align: 1
+  Relative segment, address: CODE 000044F8 - 000044FB (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __low_level_init        000044F2        ?call_low_level_init (?C_STARTUP)
+           __low_level_init        000044F8        ?call_low_level_init (?C_STARTUP)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?memcpy
@@ -9555,11 +9529,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000044F6 - 00004515 (0x20 bytes), align: 1
+  Relative segment, address: CODE 000044FC - 0000451B (0x20 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memcpy                  000044F6        ?Subroutine48 (Pss21)
+           memcpy                  000044FC        ?Subroutine48 (Pss21)
                                                    ?Subroutine48 (modbus)
                                                    CDataStore::ReadBlock(uint8_t *, uint8_t) (DataStore)
                                                    CDataStore::Write(uint8_t *, uint16_t, uint8_t) (DataStore)
@@ -9570,12 +9544,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004516 - 00004527 (0x12 bytes), align: 1
+  Relative segment, address: CODE 0000451C - 0000452D (0x12 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memset                  00004516        ?Subroutine5 (ModbusRTU)
-                                                   ?Subroutine88 (Pss21)
+           memset                  0000451C        ?Subroutine5 (ModbusRTU)
+                                                   ?Subroutine85 (Pss21)
                                                    CDataStore::Init() (DataStore)
                                                    CModbusRTU::Init(CUart *, uint32_t, char, uint8_t, uint8_t, uint8_t *, uint8_t *, uint8_t *, uint8_t *, uint16_t *, uint16_t *, uint16_t, uint16_t, uint16_t, uint16_t) (ModbusRTU)
 
@@ -9597,12 +9571,12 @@ NEAR_Z
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004528 - 0000455B (0x34 bytes), align: 1
+  Relative segment, address: CODE 0000452E - 00004561 (0x34 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            operator new(unsigned int)
-                                   00004528        ?Subroutine27 (Alarm)
+                                   0000452E        ?Subroutine27 (Alarm)
                                                    ?Subroutine6 (ModuleMrXX)
                                                    CMvsn21Driver::new CMvsn21Driver(uint8_t) (Mvsn21)
                calls direct and indirect
@@ -9613,11 +9587,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 0000455C - 0000455F (0x4 bytes), align: 1
+  Relative segment, address: CODE 00004562 - 00004565 (0x4 bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           _Nomemory()             0000455C        operator new(unsigned int) (?newop_0)
+           _Nomemory()             00004562        operator new(unsigned int) (?newop_0)
                calls direct
 
     -------------------------------------------------------------------------
@@ -9626,25 +9600,25 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004560 - 0000456B (0xc bytes), align: 1
+  Relative segment, address: CODE 00004566 - 00004571 (0xc bytes), align: 1
   Segment part 3.             Intra module refs:   __segment_init
            LOCAL                   ADDRESS         
            =====                   =======         
-           __memclr                00004560 
+           __memclr                00004566 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000456C - 0000457F (0x14 bytes), align: 1
+  Relative segment, address: CODE 00004572 - 00004585 (0x14 bytes), align: 1
   Segment part 4.             Intra module refs:   __segment_init
            LOCAL                   ADDRESS         
            =====                   =======         
-           __flashcpy              0000456C 
+           __flashcpy              00004572 
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004580 - 000045D5 (0x56 bytes), align: 1
+  Relative segment, address: CODE 00004586 - 000045DB (0x56 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __segment_init          00004580        ?need_segment_init (?C_STARTUP)
+           __segment_init          00004586        ?need_segment_init (?C_STARTUP)
                calls direct
 
     -------------------------------------------------------------------------
@@ -9653,100 +9627,100 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 000045D6 - 000045E5 (0x10 bytes), align: 1
+  Relative segment, address: CODE 000045DC - 000045EB (0x10 bytes), align: 1
   Segment part 9.             Intra module refs:   __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int)
            LOCAL                   ADDRESS         
            =====                   =======         
            __near_free_array(void *, __near_size_t, __near_delete_ptr, int)
-                                   000045D6 
+                                   000045DC 
                calls indirect
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000045E6 - 0000460F (0x2a bytes), align: 1
+  Relative segment, address: CODE 000045EC - 00004615 (0x2a bytes), align: 1
   Segment part 11.            Intra module refs:   __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int)
            LOCAL                   ADDRESS         
            =====                   =======         
            __near_get_array_size(void *, __near_size_t)
-                                   000045E6 
+                                   000045EC 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004610 - 0000469B (0x8c bytes), align: 1
+  Relative segment, address: CODE 00004616 - 000046A1 (0x8c bytes), align: 1
   Segment part 14.            Intra module refs:   Segment part 24
            LOCAL                   ADDRESS         
            =====                   =======         
            __near_array_new_general(void *, __near_size_t, __near_size_t, void *, __near_constructor_ptr, __near_destructor_ptr, __near_new_ptr, __near_delete_ptr, int, int)
-                                   00004610 
+                                   00004616 
                calls direct and indirect
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000469C - 0000469F (0x4 bytes), align: 1
+  Relative segment, address: CODE 000046A2 - 000046A5 (0x4 bytes), align: 1
   Segment part 15.            Intra module refs:   __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int)
                                                    __near_array_new_general(void *, __near_size_t, __near_size_t, void *, __near_constructor_ptr, __near_destructor_ptr, __near_new_ptr, __near_delete_ptr, int, int)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046A0 - 000046A5 (0x6 bytes), align: 1
+  Relative segment, address: CODE 000046A6 - 000046AB (0x6 bytes), align: 1
   Segment part 16.            Intra module refs:   __near_array_new_general(void *, __near_size_t, __near_size_t, void *, __near_constructor_ptr, __near_destructor_ptr, __near_new_ptr, __near_delete_ptr, int, int)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046A6 - 000046A9 (0x4 bytes), align: 1
+  Relative segment, address: CODE 000046AC - 000046AF (0x4 bytes), align: 1
   Segment part 17.            Intra module refs:   __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int)
                                                    __near_array_new_general(void *, __near_size_t, __near_size_t, void *, __near_constructor_ptr, __near_destructor_ptr, __near_new_ptr, __near_delete_ptr, int, int)
                                                    __near_get_array_size(void *, __near_size_t)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046AA - 000046AB (0x2 bytes), align: 1
+  Relative segment, address: CODE 000046B0 - 000046B1 (0x2 bytes), align: 1
   Segment part 24.            Intra module refs:   __near_vec_construct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046AC - 000046B5 (0xa bytes), align: 1
+  Relative segment, address: CODE 000046B2 - 000046BB (0xa bytes), align: 1
   Segment part 27.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __near_vec_construct    000046AC        __sti__routine() (Pss21)
+           __near_vec_construct    000046B2        __sti__routine() (Pss21)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046B6 - 000046BF (0xa bytes), align: 1
+  Relative segment, address: CODE 000046BC - 000046C5 (0xa bytes), align: 1
   Segment part 28.            Intra module refs:   __near_vec_construct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046C0 - 000046C1 (0x2 bytes), align: 1
+  Relative segment, address: CODE 000046C6 - 000046C7 (0x2 bytes), align: 1
   Segment part 29.            Intra module refs:   __near_vec_construct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046C2 - 000046C5 (0x4 bytes), align: 1
+  Relative segment, address: CODE 000046C8 - 000046CB (0x4 bytes), align: 1
   Segment part 30.            Intra module refs:   Segment part 29
                                                    Segment part 39
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000046C6 - 0000473D (0x78 bytes), align: 1
+  Relative segment, address: CODE 000046CC - 00004743 (0x78 bytes), align: 1
   Segment part 32.            Intra module refs:   __near_vec_destroy
            LOCAL                   ADDRESS         
            =====                   =======         
            __near_array_delete_general(void *, __near_size_t, __near_size_t, __near_destructor_ptr, __near_delete_ptr, int)
-                                   000046C6 
+                                   000046CC 
                calls direct and indirect
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000473E - 00004741 (0x4 bytes), align: 1
+  Relative segment, address: CODE 00004744 - 00004747 (0x4 bytes), align: 1
   Segment part 36.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __near_vec_destroy      0000473E        <Unnamed 10> (Pss21)
+           __near_vec_destroy      00004744        <Unnamed 10> (Pss21)
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004742 - 00004743 (0x2 bytes), align: 1
+  Relative segment, address: CODE 00004748 - 00004749 (0x2 bytes), align: 1
   Segment part 37.            Intra module refs:   __near_vec_destroy
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004744 - 00004745 (0x2 bytes), align: 1
+  Relative segment, address: CODE 0000474A - 0000474B (0x2 bytes), align: 1
   Segment part 38.            Intra module refs:   Segment part 29
                                                    Segment part 37
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004746 - 00004749 (0x4 bytes), align: 1
+  Relative segment, address: CODE 0000474C - 0000474F (0x4 bytes), align: 1
   Segment part 39.            Intra module refs:   Segment part 38
 
     -------------------------------------------------------------------------
@@ -9755,11 +9729,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 0000474A - 00004773 (0x2a bytes), align: 1
+  Relative segment, address: CODE 00004750 - 00004779 (0x2a bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __near_GetMemChunk      0000474A        __near_findmem (?xxmemxmalloc)
+           __near_GetMemChunk      00004750        __near_findmem (?xxmemxmalloc)
     -------------------------------------------------------------------------
 NEAR_Z
   Relative segment, address: DATA 00000EE2 - 00000EE3 (0x2 bytes), align: 0
@@ -9771,11 +9745,11 @@ NEAR_Z
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004774 - 00004777 (0x4 bytes), align: 1
+  Relative segment, address: CODE 0000477A - 0000477D (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __pure_virtual_called   00004774        CModbus::__vtbl (modbus)
+           __pure_virtual_called   0000477A        CModbus::__vtbl (modbus)
                                                    CNotifyerControl::__vtbl (NotifyerControl)
                calls direct
 
@@ -9785,11 +9759,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 00004778 - 00004779 (0x2 bytes), align: 1
+  Relative segment, address: CODE 0000477E - 0000477F (0x2 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __exit                  00004778        Segment part 5 (?_exit)
+           __exit                  0000477E        Segment part 5 (?_exit)
                                                    abort (?abort)
 
     -------------------------------------------------------------------------
@@ -9798,15 +9772,15 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 CODE
-  Relative segment, address: CODE 0000477A - 0000484F (0xd6 bytes), align: 1
+  Relative segment, address: CODE 00004780 - 00004855 (0xd6 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           free                    0000477A        __near_findmem (?xxmemxmalloc)
+           free                    00004780        __near_findmem (?xxmemxmalloc)
                                                    operator delete(void *) (?delop_0)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 00004850 - 00004859 (0xa bytes), align: 1
+  Relative segment, address: CODE 00004856 - 0000485F (0xa bytes), align: 1
   Segment part 4.             Intra module refs:   free
 
     -------------------------------------------------------------------------
@@ -9823,38 +9797,38 @@ NEAR_Z
            __near_Aldata           00000EE4        free (?xxmemxfree)
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 0000485A - 000048D1 (0x78 bytes), align: 1
+  Relative segment, address: CODE 00004860 - 000048D7 (0x78 bytes), align: 1
   Segment part 5.             Intra module refs:   malloc
            LOCAL                   ADDRESS         
            =====                   =======         
-           __near_findmem          0000485A 
+           __near_findmem          00004860 
                calls direct
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000048D2 - 000048D7 (0x6 bytes), align: 1
+  Relative segment, address: CODE 000048D8 - 000048DD (0x6 bytes), align: 1
   Segment part 6.             Intra module refs:   __near_findmem
                                                    malloc
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000048D8 - 000048E1 (0xa bytes), align: 1
+  Relative segment, address: CODE 000048DE - 000048E7 (0xa bytes), align: 1
   Segment part 7.             Intra module refs:   __near_findmem
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000048E2 - 000048E9 (0x8 bytes), align: 1
+  Relative segment, address: CODE 000048E8 - 000048EF (0x8 bytes), align: 1
   Segment part 8.             Intra module refs:   __near_findmem
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000048EA - 000048F1 (0x8 bytes), align: 1
+  Relative segment, address: CODE 000048F0 - 000048F7 (0x8 bytes), align: 1
   Segment part 9.             Intra module refs:   Segment part 8
                                                    __near_findmem
                                                    malloc
     -------------------------------------------------------------------------
 CODE
-  Relative segment, address: CODE 000048F2 - 00004993 (0xa2 bytes), align: 1
+  Relative segment, address: CODE 000048F8 - 00004999 (0xa2 bytes), align: 1
   Segment part 10.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           malloc                  000048F2        operator new(unsigned int) (?newop_0)
+           malloc                  000048F8        operator new(unsigned int) (?newop_0)
                calls direct
 
     *************************************************************************
@@ -9889,9 +9863,9 @@ INTVEC               CODE          00000000 - 00000083          84   com    1
 NEAR_F               CODE          0000008C - 0000074F         6C4   rel    0
 SWITCH               CODE          00000750 - 00000809          BA   rel    1
 DIFUNCT              CODE          0000080A - 0000080D           4   rel    0
-CODE                 CODE          0000080E - 00004993        4186   rel    1
-INITTAB              CODE          00004994 - 000049A1           E   rel    0
-NEAR_ID              CODE          000049A2 - 000049FB          5A   rel    0
+CODE                 CODE          0000080E - 00004999        418C   rel    1
+INITTAB              CODE          0000499A - 000049A7           E   rel    0
+NEAR_ID              CODE          000049A8 - 00004A01          5A   rel    0
 ABSOLUTE             DATA               0000001C                     rel    0
                      DATA               0000001D                   
                      DATA               0000001E                   
@@ -9920,7 +9894,7 @@ NEAR_Z               DATA          0000079A - 00000EE7         74E   rel    0
                 *                                      *
                 ****************************************
 
- 18 932 bytes of CODE memory (+              8 range fill )
+ 18 938 bytes of CODE memory (+              8 range fill )
   3 560 bytes of DATA memory (+ 105 absolute )
 
 Errors: none

@@ -864,8 +864,8 @@ void CPss21::ConfigurationInit(void)
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-//        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
-        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
+        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
+//        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
     };
 
     // ¬осстановим  состо€ние устройства.
@@ -1053,7 +1053,7 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
         else
         {
             // ѕолучим состо€ние дискретного сигнала - состо€ние €чеек(coils Modbus).
-            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
         }
 }
 

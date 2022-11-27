@@ -865,6 +865,7 @@ void CPss21::ConfigurationInit(void)
             i++)
     {
         m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
+//        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
     };
 
     // Восстановим  состояние устройства.
@@ -1031,29 +1032,29 @@ void CPss21::ErrorAlarmsProcessing(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 {
-    // Не вышли за границы массива ?
-    if ((uiIndex >= 0) &&
-            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
-    {
-        // Получим состояние дискретного сигнала - дискретные входы модулей.
-        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-    }
-    else
-    {
-        // Получим состояние дискретного сигнала - дискретные входы модулей, вход 0.
-        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
-    }
+//    // Не вышли за границы массива дискретных сигналов?
+//    if ((uiIndex >= 0) &&
+//            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
+//    {
+//        // Получим состояние дискретного сигнала - дискретные входы модулей.
+//        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+//    }
+//    else
+//    {
+//        // Получим состояние дискретного сигнала - дискретные входы модулей, вход 0.
+//        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
+//    }
 
-//        if (uiIndex < DISCRETE_INPUTS_NUMBER)
-//        {
-//            // Получим состояние дискретного сигнала - дискретные входы модулей.
-//            return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-//        }
-//        else
-//        {
-//            // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-//            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
-//        }
+        if (uiIndex < DISCRETE_INPUTS_NUMBER)
+        {
+            // Получим состояние дискретного сигнала - дискретные входы модулей.
+            return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+        }
+        else
+        {
+            // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+        }
 }
 
 //-----------------------------------------------------------------------------------------------------
