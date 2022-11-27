@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------------------------------
-//  Sourse      : FileName.cpp
+//  Source      : FileName.cpp
 //  Created     : 01.06.2022
 //  Author      : Alexandr Volvenkin
 //  email       : aav-36@mail.ru
@@ -419,14 +419,14 @@ uint16_t CPss21::ReportType(uint8_t *puiDestination, uint16_t uiLength)
 
 //-----------------------------------------------------------------------------------------------------
 void CPss21::SetBytesFromBits(uint8_t *uiDestination,
-                              uint8_t *uiSourse,
+                              uint8_t *uiSource,
                               uint16_t uiLength)
 {
     int16_t shift = 0;
 
     for (int16_t i = 0; i < uiLength; i++)
     {
-        uiDestination[i] = uiSourse[(i) / 8] & (1 << shift) ? 1 : 0;
+        uiDestination[i] = uiSource[(i) / 8] & (1 << shift) ? 1 : 0;
         /* gcc doesn't like: shift = (++shift) % 8; */
         shift++;
         shift %= 8;
@@ -1031,16 +1031,29 @@ void CPss21::ErrorAlarmsProcessing(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 {
-    if (uiIndex < DISCRETE_INPUTS_NUMBER)
+    // Не вышли за границы массива ?
+    if ((uiIndex >= 0) &&
+            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
     {
         // Получим состояние дискретного сигнала - дискретные входы модулей.
         return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
     }
     else
     {
-        // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-        return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+        // Получим состояние дискретного сигнала - дискретные входы модулей, вход 0.
+        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
     }
+
+//        if (uiIndex < DISCRETE_INPUTS_NUMBER)
+//        {
+//            // Получим состояние дискретного сигнала - дискретные входы модулей.
+//            return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+//        }
+//        else
+//        {
+//            // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+//            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+//        }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1171,7 +1184,7 @@ void CPss21::DiscreteSignalsProcessing(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CPss21::AllAlarmWindowsUpdate(void)
+void CPss21::BoardWindowsUpdate(void)
 {
     CLightBoard::Set(m_axAlarmWindowControl);
 }
@@ -1191,7 +1204,7 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
         }
     };
 
-    AllAlarmWindowsUpdate();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1214,7 +1227,7 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
         }
     };
 
-    AllAlarmWindowsUpdate();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1232,7 +1245,7 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
         m_axAlarmWindowControl[i].SetActivityState(1);
     };
 
-    AllAlarmWindowsUpdate();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1257,7 +1270,7 @@ void CPss21::ErrorWindowOn(uint8_t uiIndex)
         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
     }
 
-    AllAlarmWindowsUpdate();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1273,7 +1286,7 @@ void CPss21::AllAlarmWindowOff(void)
         m_axAlarmWindowControl[i].SetActivityState(0);
     };
 
-    AllAlarmWindowsUpdate();
+    BoardWindowsUpdate();
 }
 
 //-----------------------------------------------------------------------------------------------------

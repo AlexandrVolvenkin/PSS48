@@ -1031,16 +1031,29 @@ void CPss21::ErrorAlarmsProcessing(void)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 {
-    if (uiIndex < DISCRETE_INPUTS_NUMBER)
+    // Ќе вышли за границы массива дискретных сигналов?
+    if ((uiIndex >= 0) &&
+            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
     {
         // ѕолучим состо€ние дискретного сигнала - дискретные входы модулей.
         return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
     }
     else
     {
-        // ѕолучим состо€ние дискретного сигнала - состо€ние €чеек(coils Modbus).
-        return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+        // ѕолучим состо€ние дискретного сигнала - дискретные входы модулей, вход 0.
+        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
     }
+
+//        if (uiIndex < DISCRETE_INPUTS_NUMBER)
+//        {
+//            // ѕолучим состо€ние дискретного сигнала - дискретные входы модулей.
+//            return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+//        }
+//        else
+//        {
+//            // ѕолучим состо€ние дискретного сигнала - состо€ние €чеек(coils Modbus).
+//            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+//        }
 }
 
 //-----------------------------------------------------------------------------------------------------

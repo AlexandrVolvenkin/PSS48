@@ -301,7 +301,7 @@ void CMultiFunctionKey::Fsm(void)
         break;
 
     case KEY_EVENT_UNPRESSED_WAITING:
-        // кнопка нажата?
+        // кнопка не нажата?
         if (!(EventHappened()))
         {
             SetFsmState(KEY_EVENT_UNPRESSED);
