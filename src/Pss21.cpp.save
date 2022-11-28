@@ -1053,7 +1053,7 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
         else
         {
             // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + uiIndex];
+            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
         }
 }
 
@@ -1203,6 +1203,8 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
             // Актмвизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[i].SetActivityState(1);
         }
+
+        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
     };
 
     BoardWindowsUpdate();
@@ -1230,7 +1232,7 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
 
     BoardWindowsUpdate();
 }
-
+INDICATION
 //-----------------------------------------------------------------------------------------------------
 void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
 {

@@ -1203,6 +1203,8 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
             // Актмвизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[i].SetActivityState(1);
         }
+
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
     };
 
     BoardWindowsUpdate();
@@ -1226,6 +1228,8 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
             m_axAlarmWindowControl[i].SetActivityState(0);
         }
+
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
     };
 
     BoardWindowsUpdate();
