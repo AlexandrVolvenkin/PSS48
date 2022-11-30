@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------------------------------------
 #include "LightBoard.h"
 #include "Platform.h"
+#include "Pss21.h"
 
 //-------------------------------------------------------------------------------------------------
 // Массив управления драйверами светодиодов на панели.
@@ -81,6 +82,8 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
         {
             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
         }
+
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = pxAlarmWindowControl[i].GetActivityState();
     };
 
     // Зажжём активные светодиоды.

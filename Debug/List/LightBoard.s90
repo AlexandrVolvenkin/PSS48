@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Nov/2022  02:07:27
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/Nov/2022  11:59:05
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW78F0.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW7E8B.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\LightBoard.cpp --cpu=m128a
 //        -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -616,117 +616,121 @@ _A_PINE:
 // union <unnamed> volatile __io _A_PINF
 _A_PINF:
         DS8 1
-//   10 
-//   11 //-------------------------------------------------------------------------------------------------
-//   12 // Массив управления драйверами светодиодов на панели.
+//   10 #include "Pss21.h"
+//   11 
+//   12 //-------------------------------------------------------------------------------------------------
+//   13 // Массив управления драйверами светодиодов на панели.
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-//   13 uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
+//   14 uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
 ??m_auiBoardLampsControl:
         DS8 64
-//   14 // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
 
         RSEG NEAR_F:CODE:ROOT(0)
-//   15 __flash uint8_t CLightBoard::m_auiLedMap[] =
+        DC8 0, 0, 0, 0
+//   15 // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
+
+        RSEG NEAR_F:CODE:ROOT(0)
+//   16 __flash uint8_t CLightBoard::m_auiLedMap[] =
 ??m_auiLedMap:
         DC8 48, 60, 32, 45, 16, 28, 0, 13, 49, 61, 33, 44, 17, 29, 1, 12, 52
         DC8 62, 36, 43, 20, 30, 4, 11, 53, 63, 37, 42, 21, 31, 5, 10, 54, 57
         DC8 38, 41, 22, 25, 6, 9, 55, 56, 39, 40, 23, 24, 7, 8
-//   16 {
-//   17     // Индекс окна на панели сопоставлен с выходом драйвера управления светодиодом на схеме.
-//   18     // На схеме панели 4 драйвера по 16 выходов. Два драйвера на левой стороне(плата МЦП-21-24)
-//   19     // и два драйвера на правой стороне(плата МРИ-21-24).
-//   20     // Длина массива управления драйверами 16 * 4 = 64 выхода.
-//   21     // Последовательность адресации выходов драйверов в массиве:
-//   22     // (0-15) - DD1 плата МРИ-21-24, (16-31) - DD2 плата МРИ-21-24,
-//   23     // (32-47) - DD1 плата МЦП-21-24, (48-63) - DD2 плата МЦП-21-24.
-//   24     // Последовательное продвижение состояния светодиода в массиве управления идёт от
-//   25     // младшего адреса к старшему.
-//   26     // Последовательное продвижение состояния светодиода в сдвиговом регистре драйвера идёт от
-//   27     // младшего выхода к старшему. Поэтому, состояние светодиода по нулевому индексу в массиве управления,
-//   28     // после 64 сдвигов придёт на выход OUT15 драйвера DD1 платы МРИ-21-24, что соответстствует индексу окна 6.
-//   29     // Например: Индекс окна - 7 сопоставлен с индексом 13 в массиве управления и выходом OUT2 драйвера DD1 плата МРИ-21-24.
-//   30     // Например: Индекс окна - 10 сопоставлен с индексом 33 в массиве управления и выходом OUT14 драйвера DD1 плата МЦП-21-24.
-//   31     // Левая часть.    // Правая часть.
-//   32     48, 60, 32, 45,    16, 28, 0, 13,
-//   33     49, 61, 33, 44,    17, 29, 1, 12,
-//   34     52, 62, 36, 43,    20, 30, 4, 11,
-//   35     53, 63, 37, 42,    21, 31, 5, 10,
-//   36     54, 57, 38, 41,    22, 25, 6,  9,
-//   37     55, 56, 39, 40,    23, 24, 7,  8,
-//   38 };
-//   39 
-//   40 ////-----------------------------------------------------------------------------------------------------
-//   41 //CLightBoard::CLightBoard()
-//   42 //{
-//   43 ////    Init();
-//   44 //}
-//   45 //
-//   46 ////-----------------------------------------------------------------------------------------------------
-//   47 //CLightBoard::~CLightBoard()
-//   48 //{
-//   49 //
-//   50 //}
-//   51 
-//   52 //-----------------------------------------------------------------------------------------------------
+//   17 {
+//   18     // Индекс окна на панели сопоставлен с выходом драйвера управления светодиодом на схеме.
+//   19     // На схеме панели 4 драйвера по 16 выходов. Два драйвера на левой стороне(плата МЦП-21-24)
+//   20     // и два драйвера на правой стороне(плата МРИ-21-24).
+//   21     // Длина массива управления драйверами 16 * 4 = 64 выхода.
+//   22     // Последовательность адресации выходов драйверов в массиве:
+//   23     // (0-15) - DD1 плата МРИ-21-24, (16-31) - DD2 плата МРИ-21-24,
+//   24     // (32-47) - DD1 плата МЦП-21-24, (48-63) - DD2 плата МЦП-21-24.
+//   25     // Последовательное продвижение состояния светодиода в массиве управления идёт от
+//   26     // младшего адреса к старшему.
+//   27     // Последовательное продвижение состояния светодиода в сдвиговом регистре драйвера идёт от
+//   28     // младшего выхода к старшему. Поэтому, состояние светодиода по нулевому индексу в массиве управления,
+//   29     // после 64 сдвигов придёт на выход OUT15 драйвера DD1 платы МРИ-21-24, что соответстствует индексу окна 6.
+//   30     // Например: Индекс окна - 7 сопоставлен с индексом 13 в массиве управления и выходом OUT2 драйвера DD1 плата МРИ-21-24.
+//   31     // Например: Индекс окна - 10 сопоставлен с индексом 33 в массиве управления и выходом OUT14 драйвера DD1 плата МЦП-21-24.
+//   32     // Левая часть.    // Правая часть.
+//   33     48, 60, 32, 45,    16, 28, 0, 13,
+//   34     49, 61, 33, 44,    17, 29, 1, 12,
+//   35     52, 62, 36, 43,    20, 30, 4, 11,
+//   36     53, 63, 37, 42,    21, 31, 5, 10,
+//   37     54, 57, 38, 41,    22, 25, 6,  9,
+//   38     55, 56, 39, 40,    23, 24, 7,  8,
+//   39 };
+//   40 
+//   41 ////-----------------------------------------------------------------------------------------------------
+//   42 //CLightBoard::CLightBoard()
+//   43 //{
+//   44 ////    Init();
+//   45 //}
+//   46 //
+//   47 ////-----------------------------------------------------------------------------------------------------
+//   48 //CLightBoard::~CLightBoard()
+//   49 //{
+//   50 //
+//   51 //}
+//   52 
+//   53 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   53 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
+//   54 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
 ??Init:
-//   54 {
-//   55     // Включим панель.
-//   56     CPlatform::LedDriverEnable1On();
+//   55 {
+//   56     // Включим панель.
+//   57     CPlatform::LedDriverEnable1On();
         LDS     R16, 98
         ANDI    R16, 0xFE
         STS     98, R16
-//   57     CPlatform::LedDriverEnable2On();
+//   58     CPlatform::LedDriverEnable2On();
         LDS     R16, 98
         ANDI    R16, 0xDF
         STS     98, R16
-//   58     CPlatform::LedDriverEnable3On();
+//   59     CPlatform::LedDriverEnable3On();
         CBI     0x03, 0x06
-//   59     CPlatform::LedDriverEnable4On();
+//   60     CPlatform::LedDriverEnable4On();
         CBI     0x03, 0x07
-//   60     CPlatform::LedDriverEnable1SetPinOutput();
+//   61     CPlatform::LedDriverEnable1SetPinOutput();
         LDS     R16, 97
         ORI     R16, 0x01
         STS     97, R16
-//   61     CPlatform::LedDriverEnable2SetPinOutput();
+//   62     CPlatform::LedDriverEnable2SetPinOutput();
         LDS     R16, 97
         ORI     R16, 0x20
         STS     97, R16
-//   62     CPlatform::LedDriverEnable3SetPinOutput();
+//   63     CPlatform::LedDriverEnable3SetPinOutput();
         SBI     0x02, 0x06
-//   63     CPlatform::LedDriverEnable4SetPinOutput();
+//   64     CPlatform::LedDriverEnable4SetPinOutput();
         SBI     0x02, 0x07
-//   64 
-//   65     CDM134::Init();
+//   65 
+//   66     CDM134::Init();
         JMP     ??Init_1
         REQUIRE _A_DDRF
         REQUIRE _A_PORTF
         REQUIRE _A_DDRE
         REQUIRE _A_PORTE
-//   66 }
-//   67 
-//   68 //-----------------------------------------------------------------------------------------------------
+//   67 }
+//   68 
+//   69 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   69 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
+//   70 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 ??Set:
-//   70 {
+//   71 {
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R23:R22, R17:R16
-//   71     for (uint8_t i = 0;
+//   72     for (uint8_t i = 0;
         LDI     R18, 0
         LDI     R19, 48
         LDI     R20, 6
-//   72             i < ALARM_WINDOWS_NUMBER;
-//   73             i++)
-//   74     {
-//   75         // Окно сигнализации активно?
-//   76         if (pxAlarmWindowControl[i].GetActivityState())
+//   73             i < ALARM_WINDOWS_NUMBER;
+//   74             i++)
+//   75     {
+//   76         // Окно сигнализации активно?
+//   77         if (pxAlarmWindowControl[i].GetActivityState())
 ??Set_2:
         MOV     R30, R18
         LDI     R31, 0
@@ -747,31 +751,33 @@ _A_PINF:
         LD      R16, X
         TST     R16
         BREQ    ??Set_3
-//   77         {
-//   78             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
+//   78         {
+//   79             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
         LDI     R16, 1
         ST      Z, R16
         RJMP    ??Set_4
-//   79         }
-//   80         else
-//   81         {
-//   82             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
+//   80         }
+//   81         else
+//   82         {
+//   83             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
 ??Set_3:
         ST      Z, R21
-//   83         }
-//   84     };
+//   84         }
+//   85 
+//   86 //        CPss21::m_aucRtuHoldingRegistersArray[i] = pxAlarmWindowControl[i].GetActivityState();
+//   87     };
 ??Set_4:
         INC     R18
         DEC     R19
         BRNE    ??Set_2
-//   85 
-//   86     // Зажжём активные светодиоды.
-//   87     CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+//   88 
+//   89     // Зажжём активные светодиоды.
+//   90     CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
         LDI     R18, 64
         LDI     R16, LOW(??m_auiBoardLampsControl)
         LDI     R17, (??m_auiBoardLampsControl) >> 8
         CALL    ??Set_1
-//   88 }
+//   91 }
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -800,10 +806,10 @@ __?EEARH:
 // 105 bytes in segment ABSOLUTE
 // 134 bytes in segment CODE
 //   7 bytes in segment INITTAB
-//  48 bytes in segment NEAR_F
+//  52 bytes in segment NEAR_F
 //  64 bytes in segment NEAR_Z
 // 
-// 182 bytes of CODE memory (+   7 bytes shared)
+// 186 bytes of CODE memory (+   7 bytes shared)
 //  64 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

@@ -259,18 +259,22 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
         {
             // Установим связанные дискретный выходы - новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-            // чем тип общей сигнализации?
-            if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
-                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
-            {
-                // Установим тип общей сигнализацию.
-                CPss21::SetCommonAlarmType(ALARM_TYPE());
-                // Изменим тип общей сигнализацию.
-                CPss21::AlarmTypeChange();
-            }
+//            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//            // чем тип общей сигнализации?
+//            if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+//                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+//            {
+//                // Установим тип общей сигнализацию.
+//                CPss21::SetCommonAlarmType(ALARM_TYPE());
+//                // Изменим тип общей сигнализацию.
+//                CPss21::AlarmTypeChange();
+//            }
+
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+            // Актмвизируем окно сигнализации, для отображения извещателем.
+            CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+            CPss21::BoardWindowsUpdate();
             SetFsmState(NOT_ACTIVE_STATE_WAITING);
         }
         break;
@@ -279,10 +283,13 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
         // Дискретный сигнал не активен?
         if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
         {
-            // Переведём автоматы сигнализаций в состояние - сброшено.
-            CPss21::AlarmTypeReset();
+//            // Переведём автоматы сигнализаций в состояние - сброшено.
+//            CPss21::AlarmTypeReset();
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+            // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+            CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+            CPss21::BoardWindowsUpdate();
             SetFsmState(ACTIVE_STATE_WAITING);
         }
         else
