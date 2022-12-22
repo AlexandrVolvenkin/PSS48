@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/Nov/2022  11:59:11
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           22/Dec/2022  16:55:20
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW92AE.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EWD185.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
@@ -1466,55 +1466,61 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
     349          {
     350              CPss21::ActiveAlarmWindowOff(PREVENTIVE);
    \   00000000   E002               LDI     R16, 2
-   \   00000002                      REQUIRE ?Subroutine33
-   \   00000002                      ;               // Fall through to label ?Subroutine33
-    351          }
+   \   00000002   ....               RJMP    ?Subroutine33
+    351              CPss21::BoardWindowsUpdate();
+    352          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine33:
-   \   00000000   ........           JMP     ??ActiveAlarmWindowOff
-    352          //-----------------------------------------------------------------------------------------------------
-    353          
+   \   00000000   ........           CALL    ??ActiveAlarmWindowOff
+   \   00000004                      REQUIRE ??Subroutine39_0
+   \   00000004                      ;               // Fall through to label ??Subroutine39_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine39_0:
+   \   00000000   ........           JMP     ??BoardWindowsUpdate
+    353          //-----------------------------------------------------------------------------------------------------
     354          
     355          
     356          
     357          
     358          
-    359          //-----------------------------------------------------------------------------------------------------
+    359          
+    360          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    360          CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+    361          CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
    \                     ??CEmergencyAlarmWindowNotifyerControl:
    \   00000000   ....               RCALL   ?Subroutine2
-    361          {
+    362          {
    \                     ??CrossCallReturnLabel_34:
    \   00000002   ....               LDI     R16, LOW(??__vtbl_2)
    \   00000004   ....               LDI     R17, (??__vtbl_2) >> 8
    \   00000006                      REQUIRE ?Subroutine1
    \   00000006                      ;               // Fall through to label ?Subroutine1
-    362              SetFsmState(STOP);
-    363              SetSavedFsmState(STOP);
-    364          }
-    365          
+    363              SetFsmState(STOP);
+    364              SetSavedFsmState(STOP);
+    365          }
+    366          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    366          CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
+    367          CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
    \                     `?~CEmergencyAlarmWindowNotifyerControl`:
    \   00000000   ....               RJMP    ?Subroutine31
-    367          {
-    368              SetFsmState(STOP);
-    369          }
-    370          
-    371          //-----------------------------------------------------------------------------------------------------
+    368          {
+    369              SetFsmState(STOP);
+    370          }
+    371          
+    372          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    372          void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    373          void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_1:
-    373          {
-    374              // Сохраним текущее состояние автомата.
-    375              SetSavedFsmState(GetFsmState());
+    374          {
+    375              // Сохраним текущее состояние автомата.
+    376              SetSavedFsmState(GetFsmState());
    \   00000000   ....               RCALL   ?Subroutine13
-    376              switch (uiAlarmType)
+    377              switch (uiAlarmType)
    \                     ??CrossCallReturnLabel_19:
    \   00000002   F049               BREQ    ??AlarmSet_8
    \   00000004   952A               DEC     R18
@@ -1524,105 +1530,104 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   0000000C   952A               DEC     R18
    \   0000000E   F029               BREQ    ??AlarmSet_10
    \   00000010   9508               RET
-    377              {
-    378              case NORMAL:
-    379                  SetFsmState(STOP);
-    380                  break;
-    381          
-    382              case INDICATION:
-    383                  SetFsmState(INDICATION_SIGNAL_START);
+    378              {
+    379              case NORMAL:
+    380                  SetFsmState(STOP);
+    381                  break;
+    382          
+    383              case INDICATION:
+    384                  SetFsmState(INDICATION_SIGNAL_START);
    \                     ??AlarmSet_9:
    \   00000012   E001               LDI     R16, 1
    \   00000014   C001               RJMP    ??AlarmSet_11
-    384                  break;
-    385          
-    386              case PREVENTIVE:
-    387                  SetFsmState(STOP);
+    385                  break;
+    386          
+    387              case PREVENTIVE:
+    388                  SetFsmState(STOP);
    \                     ??AlarmSet_8:
    \   00000016   E205               LDI     R16, 37
    \                     ??AlarmSet_11:
    \   00000018   ....               RJMP    ?Subroutine30
-    388                  break;
-    389          
-    390              case EMERGENCY:
-    391                  SetFsmState(ALARM_SIGNAL_START);
+    389                  break;
+    390          
+    391              case EMERGENCY:
+    392                  SetFsmState(ALARM_SIGNAL_START);
    \                     ??AlarmSet_10:
    \   0000001A   E00D               LDI     R16, 13
    \   0000001C   CFFD               RJMP    ??AlarmSet_11
-    392                  break;
-    393          
-    394              case IND_PREVENTIVE:
-    395                  break;
-    396          
-    397              case IND_EMERGENCY:
-    398                  break;
-    399          
-    400              case ERROR:
-    401                  break;
-    402          
-    403              case BEEP_SIGNAL:
-    404                  break;
-    405          
-    406              default:
-    407                  break;
-    408              }
-    409          }
-    410          
+    393                  break;
+    394          
+    395              case IND_PREVENTIVE:
+    396                  break;
+    397          
+    398              case IND_EMERGENCY:
+    399                  break;
+    400          
+    401              case ERROR:
+    402                  break;
+    403          
+    404              case BEEP_SIGNAL:
+    405                  break;
+    406          
+    407              default:
+    408                  break;
+    409              }
+    410          }
     411          
-    412          //-----------------------------------------------------------------------------------------------------
+    412          
+    413          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    413          void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
+    414          void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_1:
-    414          {
-    415          
-    416          }
+    415          {
+    416          
+    417          }
    \   00000000   9508               RET
-    417          
-    418          //-----------------------------------------------------------------------------------------------------
+    418          
+    419          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    419          void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
+    420          void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_1:
-    420          {
-    421              CPss21::ActiveAlarmWindowOn(INDICATION);
+    421          {
+    422              CPss21::ActiveAlarmWindowOn(INDICATION);
    \   00000000   ....               RJMP    ?Subroutine32
-    422          }
-    423          
-    424          //-----------------------------------------------------------------------------------------------------
+    423          }
+    424          
+    425          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    425          void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
+    426          void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_1:
-    426          {
-    427          
-    428          }
+    427          {
+    428          
+    429          }
    \   00000000   9508               RET
-    429          
-    430          //-----------------------------------------------------------------------------------------------------
+    430          
+    431          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    431          void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
+    432          void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_1:
-    432          {
-    433              CPss21::ActiveAlarmWindowOn(EMERGENCY);
+    433          {
+    434              CPss21::ActiveAlarmWindowOn(EMERGENCY);
    \   00000000   E003               LDI     R16, 3
    \   00000002   ....               RJMP    ??Subroutine37_0
-    434          }
-    435          
-    436          //-----------------------------------------------------------------------------------------------------
+    435          }
+    436          
+    437          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    437          void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
+    438          void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_1:
-    438          {
-    439              CPss21::ActiveAlarmWindowOff(EMERGENCY);
+    439          {
+    440              CPss21::ActiveAlarmWindowOff(EMERGENCY);
    \   00000000   E003               LDI     R16, 3
    \   00000002   ....               RJMP    ?Subroutine33
-    440          }
-    441          //-----------------------------------------------------------------------------------------------------
-    442          
-    443          
+    441              CPss21::BoardWindowsUpdate();
+    442          }
+    443          //-----------------------------------------------------------------------------------------------------
     444          
     445          
     446          
@@ -1630,45 +1635,47 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
     448          
     449          
     450          
-    451          //-----------------------------------------------------------------------------------------------------
+    451          
     452          
+    453          //-----------------------------------------------------------------------------------------------------
+    454          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    453          CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+    455          CStatusLedNotifyerControl::CStatusLedNotifyerControl()
    \                     ??CStatusLedNotifyerControl:
    \   00000000   ....               RCALL   ?Subroutine2
-    454          {
+    456          {
    \                     ??CrossCallReturnLabel_33:
    \   00000002   ....               LDI     R16, LOW(??__vtbl_4)
    \   00000004   ....               LDI     R17, (??__vtbl_4) >> 8
    \   00000006   ....               RCALL   ?Subroutine20
-    455              SetFsmState(NORMAL_SIGNAL_START);
+    457              SetFsmState(NORMAL_SIGNAL_START);
    \                     ??CrossCallReturnLabel_28:
    \   00000008   E108               LDI     R16, 24
    \   0000000A   ....               RJMP    ?Subroutine35
-    456              SetSavedFsmState(NORMAL_SIGNAL_START);
-    457          }
-    458          
+    458              SetSavedFsmState(NORMAL_SIGNAL_START);
+    459          }
+    460          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    459          CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+    461          CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
    \                     `?~CStatusLedNotifyerControl`:
    \   00000000                      REQUIRE ?Subroutine31
    \   00000000                      ;               // Fall through to label ?Subroutine31
-    460          {
-    461              SetFsmState(STOP);
-    462          }
-    463          
-    464          //-----------------------------------------------------------------------------------------------------
+    462          {
+    463              SetFsmState(STOP);
+    464          }
+    465          
+    466          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    465          void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    467          void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_2:
-    466          {
-    467              // Сохраним текущее состояние автомата.
-    468              SetSavedFsmState(GetFsmState());
+    468          {
+    469              // Сохраним текущее состояние автомата.
+    470              SetSavedFsmState(GetFsmState());
    \   00000000   ....               RCALL   ?Subroutine13
-    469              switch (uiAlarmType)
+    471              switch (uiAlarmType)
    \                     ??CrossCallReturnLabel_20:
    \   00000002   F049               BREQ    ??AlarmSet_12
    \   00000004   952A               DEC     R18
@@ -1680,154 +1687,154 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   00000010   5023               SUBI    R18, 3
    \   00000012   F039               BREQ    ??AlarmSet_15
    \   00000014   9508               RET
-    470              {
-    471              case NORMAL:
-    472                  SetFsmState(NORMAL_SIGNAL_START);
-    473                  break;
-    474          
-    475              case INDICATION:
-    476                  SetFsmState(NORMAL_SIGNAL_START);
+    472              {
+    473              case NORMAL:
+    474                  SetFsmState(NORMAL_SIGNAL_START);
+    475                  break;
+    476          
+    477              case INDICATION:
+    478                  SetFsmState(NORMAL_SIGNAL_START);
    \                     ??AlarmSet_12:
    \   00000016   E108               LDI     R16, 24
    \                     ??AlarmSet_16:
    \   00000018   ....               RJMP    ?Subroutine30
-    477                  break;
-    478          
-    479              case PREVENTIVE:
-    480                  SetFsmState(WARNING_SIGNAL_START);
+    479                  break;
+    480          
+    481              case PREVENTIVE:
+    482                  SetFsmState(WARNING_SIGNAL_START);
    \                     ??AlarmSet_13:
    \   0000001A   E007               LDI     R16, 7
    \   0000001C   CFFD               RJMP    ??AlarmSet_16
-    481                  break;
-    482          
-    483              case EMERGENCY:
-    484                  SetFsmState(ALARM_SIGNAL_START);
+    483                  break;
+    484          
+    485              case EMERGENCY:
+    486                  SetFsmState(ALARM_SIGNAL_START);
    \                     ??AlarmSet_14:
    \   0000001E   E00D               LDI     R16, 13
    \   00000020   CFFB               RJMP    ??AlarmSet_16
-    485                  break;
-    486          
-    487              case IND_PREVENTIVE:
-    488                  break;
-    489          
-    490              case IND_EMERGENCY:
-    491                  break;
-    492          
-    493              case ERROR:
-    494                  SetFsmState(ERROR_SIGNAL_START);
+    487                  break;
+    488          
+    489              case IND_PREVENTIVE:
+    490                  break;
+    491          
+    492              case IND_EMERGENCY:
+    493                  break;
+    494          
+    495              case ERROR:
+    496                  SetFsmState(ERROR_SIGNAL_START);
    \                     ??AlarmSet_15:
    \   00000022   E103               LDI     R16, 19
    \   00000024   CFF9               RJMP    ??AlarmSet_16
-    495                  break;
-    496          
-    497              case BEEP_SIGNAL:
-    498                  break;
-    499          
-    500              default:
-    501                  break;
-    502              }
-    503          }
-    504          
-    505          //-----------------------------------------------------------------------------------------------------
+    497                  break;
+    498          
+    499              case BEEP_SIGNAL:
+    500                  break;
+    501          
+    502              default:
+    503                  break;
+    504              }
+    505          }
+    506          
+    507          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    506          void CStatusLedNotifyerControl::NotifyerNormalOn(void)
+    508          void CStatusLedNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_2:
-    507          {
-    508              CPlatform::StatusLedOn();
+    509          {
+    510              CPlatform::StatusLedOn();
    \   00000000   ....               RJMP    ?Subroutine14
    \   00000002                      REQUIRE _A_PORTF
-    509          }
-    510          
-    511          //-----------------------------------------------------------------------------------------------------
+    511          }
+    512          
+    513          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    512          void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
+    514          void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_2:
-    513          {
-    514          
-    515          }
-   \   00000000   9508               RET
+    515          {
     516          
-    517          //-----------------------------------------------------------------------------------------------------
+    517          }
+   \   00000000   9508               RET
+    518          
+    519          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    518          void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
+    520          void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_2:
-    519          {
-    520              CPlatform::StatusLedOn();
+    521          {
+    522              CPlatform::StatusLedOn();
    \   00000000                      REQUIRE ?Subroutine14
    \   00000000                      REQUIRE _A_PORTF
    \   00000000                      ;               // Fall through to label ?Subroutine14
-    521          }
-    522          
-    523          //-----------------------------------------------------------------------------------------------------
+    523          }
+    524          
+    525          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    524          void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
+    526          void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_2:
-    525          {
-    526              CPlatform::StatusLedOn();
+    527          {
+    528              CPlatform::StatusLedOn();
    \   00000000   ....               RJMP    ?Subroutine14
    \   00000002                      REQUIRE _A_PORTF
-    527          }
-    528          
-    529          //-----------------------------------------------------------------------------------------------------
+    529          }
+    530          
+    531          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    530          void CStatusLedNotifyerControl::NotifyerOff(void)
+    532          void CStatusLedNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_2:
-    531          {
-    532              CPlatform::StatusLedOff();
+    533          {
+    534              CPlatform::StatusLedOff();
    \   00000000   91000062           LDS     R16, 98
    \   00000004   6800               ORI     R16, 0x80
    \   00000006   93000062           STS     98, R16
-    533              CPss21::BoardWindowsUpdate();
-   \   0000000A   ........           JMP     ??BoardWindowsUpdate
-   \   0000000E                      REQUIRE _A_PORTF
-    534          }
-    535          //-----------------------------------------------------------------------------------------------------
-    536          
-    537          
+    535              CPss21::BoardWindowsUpdate();
+   \   0000000A   ....               RJMP    ??Subroutine39_0
+   \   0000000C                      REQUIRE _A_PORTF
+    536          }
+    537          //-----------------------------------------------------------------------------------------------------
     538          
     539          
     540          
     541          
-    542          //-----------------------------------------------------------------------------------------------------
+    542          
     543          
+    544          //-----------------------------------------------------------------------------------------------------
+    545          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    544          CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+    546          CBuzzerNotifyerControl::CBuzzerNotifyerControl()
    \                     ??CBuzzerNotifyerControl:
    \   00000000   ....               RCALL   ?Subroutine2
-    545          {
+    547          {
    \                     ??CrossCallReturnLabel_32:
    \   00000002   ....               LDI     R16, LOW(??__vtbl_5)
    \   00000004   ....               LDI     R17, (??__vtbl_5) >> 8
    \   00000006   ....               RJMP    ?Subroutine1
-    546              SetFsmState(STOP);
-    547              SetSavedFsmState(STOP);
-    548          }
-    549          
+    548              SetFsmState(STOP);
+    549              SetSavedFsmState(STOP);
+    550          }
+    551          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    550          CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
+    552          CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
    \                     `?~CBuzzerNotifyerControl`:
    \   00000000   ....               RJMP    ?Subroutine31
-    551          {
-    552              SetFsmState(STOP);
-    553          }
-    554          
-    555          //-----------------------------------------------------------------------------------------------------
+    553          {
+    554              SetFsmState(STOP);
+    555          }
+    556          
+    557          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    556          void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    558          void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_3:
-    557          {
-    558              // Сохраним текущее состояние автомата.
-    559              SetSavedFsmState(GetFsmState());
+    559          {
+    560              // Сохраним текущее состояние автомата.
+    561              SetSavedFsmState(GetFsmState());
    \   00000000   ....               RCALL   ?Subroutine13
-    560              switch (uiAlarmType)
+    562              switch (uiAlarmType)
    \                     ??CrossCallReturnLabel_21:
    \   00000002   F059               BREQ    ??AlarmSet_17
    \   00000004   952A               DEC     R18
@@ -1841,112 +1848,114 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   00000014   952A               DEC     R18
    \   00000016   F049               BREQ    ??AlarmSet_21
    \   00000018   9508               RET
-    561              {
-    562              case NORMAL:
-    563                  SetFsmState(STOP);
-    564                  break;
-    565          
-    566              case INDICATION:
-    567                  SetFsmState(STOP);
+    563              {
+    564              case NORMAL:
+    565                  SetFsmState(STOP);
+    566                  break;
+    567          
+    568              case INDICATION:
+    569                  SetFsmState(STOP);
    \                     ??AlarmSet_17:
    \   0000001A   E205               LDI     R16, 37
    \                     ??AlarmSet_22:
    \   0000001C   ....               RJMP    ?Subroutine30
-    568                  break;
-    569          
-    570              case PREVENTIVE:
-    571                  SetFsmState(WARNING_SIGNAL_START);
+    570                  break;
+    571          
+    572              case PREVENTIVE:
+    573                  SetFsmState(WARNING_SIGNAL_START);
    \                     ??AlarmSet_18:
    \   0000001E   E007               LDI     R16, 7
    \   00000020   CFFD               RJMP    ??AlarmSet_22
-    572                  break;
-    573          
-    574              case EMERGENCY:
-    575                  SetFsmState(ALARM_SIGNAL_START);
+    574                  break;
+    575          
+    576              case EMERGENCY:
+    577                  SetFsmState(ALARM_SIGNAL_START);
    \                     ??AlarmSet_19:
    \   00000022   E00D               LDI     R16, 13
    \   00000024   CFFB               RJMP    ??AlarmSet_22
-    576                  break;
-    577          
-    578              case IND_PREVENTIVE:
-    579                  break;
-    580          
-    581              case IND_EMERGENCY:
-    582                  break;
-    583          
-    584              case ERROR:
-    585                  SetFsmState(ERROR_SIGNAL_START);
+    578                  break;
+    579          
+    580              case IND_PREVENTIVE:
+    581                  break;
+    582          
+    583              case IND_EMERGENCY:
+    584                  break;
+    585          
+    586              case ERROR:
+    587                  SetFsmState(ERROR_SIGNAL_START);
    \                     ??AlarmSet_20:
    \   00000026   E103               LDI     R16, 19
    \   00000028   CFF9               RJMP    ??AlarmSet_22
-    586                  break;
-    587          
-    588              case BEEP_SIGNAL:
-    589                  SetFsmState(BEEP_SIGNAL_START);
+    588                  break;
+    589          
+    590              case BEEP_SIGNAL:
+    591                  SetFsmState(BEEP_SIGNAL_START);
    \                     ??AlarmSet_21:
    \   0000002A   E10E               LDI     R16, 30
    \   0000002C   CFF7               RJMP    ??AlarmSet_22
-    590                  break;
-    591          
-    592              default:
-    593                  break;
-    594              }
-    595          }
-    596          
-    597          //-----------------------------------------------------------------------------------------------------
+    592                  break;
+    593          
+    594              default:
+    595                  break;
+    596              }
+    597          }
+    598          
+    599          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    598          void CBuzzerNotifyerControl::NotifyerNormalOn(void)
+    600          void CBuzzerNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_3:
-    599          {
-    600              CBuzzer::Off();
+    601          {
+    602              CBuzzer::Off();
    \   00000000                      REQUIRE ?Subroutine34
    \   00000000                      ;               // Fall through to label ?Subroutine34
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine34:
    \   00000000   ........           JMP     ??Off
-    601          }
-    602          
-    603          //-----------------------------------------------------------------------------------------------------
+    603          }
+    604          
+    605          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    604          void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
+    606          void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_3:
-    605          {
-    606              CBuzzer::Off();
+    607          {
+    608              CBuzzer::Off();
    \   00000000   ....               RJMP    ?Subroutine34
-    607          }
-    608          
-    609          //-----------------------------------------------------------------------------------------------------
+    609          }
+    610          
+    611          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    610          void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
+    612          void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_3:
-    611          {
-    612              CBuzzer::LowOn();
+    613          {
+    614              CBuzzer::LowOn();
    \   00000000   ........           JMP     ??LowOn
-    613          }
-    614          
-    615          //-----------------------------------------------------------------------------------------------------
+    615          }
+    616          
+    617          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    616          void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
+    618          void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_3:
-    617          {
-    618              CBuzzer::HighOn();
+    619          {
+    620              CBuzzer::HighOn();
    \   00000000   ........           JMP     ??HighOn
-    619          }
-    620          
-    621          //-----------------------------------------------------------------------------------------------------
+    621          }
+    622          
+    623          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    622          void CBuzzerNotifyerControl::NotifyerOff(void)
+    624          void CBuzzerNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_3:
-    623          {
-    624              CBuzzer::Off();
-   \   00000000   ....               RJMP    ?Subroutine34
-    625          }
+    625          {
+    626              CBuzzer::Off();
+   \   00000000   ........           CALL    ??Off
+    627              CPss21::BoardWindowsUpdate();
+   \   00000004   ....               RJMP    ??Subroutine39_0
+    628          }
 
    \                                 In  segment SWITCH, align 2, keep-with-next
    \                     `?<Jumptable for Fsm>_0`:
@@ -2062,9 +2071,9 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
    \   00000004   770F               ANDI    R16, 0x7F
    \   00000006   93000062           STS     98, R16
    \   0000000A   9508               RET
-    626          
-    627          
-    628          
+    629          
+    630          
+    631          
 
    Maximum stack usage in bytes:
 
@@ -2081,6 +2090,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
         0      2   -> CBuzzer::Off()
       0      2   CBuzzerNotifyerControl::NotifyerOff()
         0      2   -> CBuzzer::Off()
+        0      2   -> CPss21::BoardWindowsUpdate()
       0      2   CBuzzerNotifyerControl::NotifyerPreventiveOn()
         0      2   -> CBuzzer::LowOn()
       0      2   CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
@@ -2103,6 +2113,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
       0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn()
       0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerOff()
         0      2   -> CPss21::ActiveAlarmWindowOff(uint8_t)
+        0      2   -> CPss21::BoardWindowsUpdate()
       0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn()
       0      2   CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
       0      2   CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
@@ -2151,6 +2162,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
       0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn()
       0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerOff()
         0      2   -> CPss21::ActiveAlarmWindowOff(uint8_t)
+        0      2   -> CPss21::BoardWindowsUpdate()
       0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn()
         0      2   -> CPss21::ActiveAlarmWindowOn(uint8_t)
       0      2   CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
@@ -2186,6 +2198,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        8  ??Subroutine36_0
        4  ??Subroutine37_0
        4  ??Subroutine38_0
+       4  ??Subroutine39_0
       24  ?Subroutine0
        4  ?Subroutine1
        6  ?Subroutine10
@@ -2222,7 +2235,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        4  CBuzzerNotifyerControl::NotifyerEmergencyOn()
        2  CBuzzerNotifyerControl::NotifyerIndicationOn()
        0  CBuzzerNotifyerControl::NotifyerNormalOn()
-       2  CBuzzerNotifyerControl::NotifyerOff()
+       6  CBuzzerNotifyerControl::NotifyerOff()
        4  CBuzzerNotifyerControl::NotifyerPreventiveOn()
        8  CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
        2  CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
@@ -2264,7 +2277,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        2  CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn()
        2  CPreventiveAlarmWindowNotifyerControl::NotifyerIndicationOn()
        2  CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn()
-       2  CPreventiveAlarmWindowNotifyerControl::NotifyerOff()
+       4  CPreventiveAlarmWindowNotifyerControl::NotifyerOff()
        4  CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn()
        6  CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
        6  CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
@@ -2275,7 +2288,7 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
        2  CStatusLedNotifyerControl::NotifyerEmergencyOn()
        2  CStatusLedNotifyerControl::NotifyerIndicationOn()
        2  CStatusLedNotifyerControl::NotifyerNormalOn()
-      14  CStatusLedNotifyerControl::NotifyerOff()
+      12  CStatusLedNotifyerControl::NotifyerOff()
        0  CStatusLedNotifyerControl::NotifyerPreventiveOn()
        8  CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
        0  CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
@@ -2375,11 +2388,11 @@ D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 
  
  105 bytes in segment ABSOLUTE
- 896 bytes in segment CODE
+ 904 bytes in segment CODE
  184 bytes in segment NEAR_F
   58 bytes in segment SWITCH
  
- 826 bytes of CODE memory (+ 312 bytes shared)
+ 834 bytes of CODE memory (+ 312 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

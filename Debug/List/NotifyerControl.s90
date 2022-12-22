@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/Nov/2022  11:59:11
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          22/Dec/2022  16:55:20
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW92AE.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWD185.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CautoProjects\PSS48\PSS48\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
@@ -1084,21 +1084,22 @@ _A_PINF:
 //  348 void CPreventiveAlarmWindowNotifyerControl::NotifyerOff(void)
 //  349 {
 //  350     CPss21::ActiveAlarmWindowOff(PREVENTIVE);
-//  351 }
-//  352 //-----------------------------------------------------------------------------------------------------
-//  353 
+//  351     CPss21::BoardWindowsUpdate();
+//  352 }
+//  353 //-----------------------------------------------------------------------------------------------------
 //  354 
 //  355 
 //  356 
 //  357 
 //  358 
-//  359 //-----------------------------------------------------------------------------------------------------
+//  359 
+//  360 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  360 CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+//  361 CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
 ??CEmergencyAlarmWindowNotifyerControl:
         RCALL   ?Subroutine2
-//  361 {
+//  362 {
 ??CrossCallReturnLabel_34:
         LDI     R16, LOW(??__vtbl_2)
         LDI     R17, (??__vtbl_2) >> 8
@@ -1108,7 +1109,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine1:
         RCALL   ?Subroutine20
-//  362     SetFsmState(STOP);
+//  363     SetFsmState(STOP);
 ??CrossCallReturnLabel_29:
         LDI     R16, 37
         REQUIRE ?Subroutine35
@@ -1117,7 +1118,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine35:
         ST      X, R16
-//  363     SetSavedFsmState(STOP);
+//  364     SetSavedFsmState(STOP);
         RJMP    ?Subroutine22
 
         RSEG CODE:CODE:NOROOT(1)
@@ -1145,86 +1146,85 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         RET
-//  364 }
-//  365 
-//  366 CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
-//  367 {
-//  368     SetFsmState(STOP);
-//  369 }
-//  370 
-//  371 //-----------------------------------------------------------------------------------------------------
-//  372 void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
-//  373 {
-//  374     // Сохраним текущее состояние автомата.
-//  375     SetSavedFsmState(GetFsmState());
-//  376     switch (uiAlarmType)
-//  377     {
-//  378     case NORMAL:
-//  379         SetFsmState(STOP);
-//  380         break;
-//  381 
-//  382     case INDICATION:
-//  383         SetFsmState(INDICATION_SIGNAL_START);
-//  384         break;
-//  385 
-//  386     case PREVENTIVE:
-//  387         SetFsmState(STOP);
-//  388         break;
-//  389 
-//  390     case EMERGENCY:
-//  391         SetFsmState(ALARM_SIGNAL_START);
-//  392         break;
-//  393 
-//  394     case IND_PREVENTIVE:
-//  395         break;
-//  396 
-//  397     case IND_EMERGENCY:
-//  398         break;
-//  399 
-//  400     case ERROR:
-//  401         break;
-//  402 
-//  403     case BEEP_SIGNAL:
-//  404         break;
-//  405 
-//  406     default:
-//  407         break;
-//  408     }
-//  409 }
-//  410 
+//  365 }
+//  366 
+//  367 CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
+//  368 {
+//  369     SetFsmState(STOP);
+//  370 }
+//  371 
+//  372 //-----------------------------------------------------------------------------------------------------
+//  373 void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+//  374 {
+//  375     // Сохраним текущее состояние автомата.
+//  376     SetSavedFsmState(GetFsmState());
+//  377     switch (uiAlarmType)
+//  378     {
+//  379     case NORMAL:
+//  380         SetFsmState(STOP);
+//  381         break;
+//  382 
+//  383     case INDICATION:
+//  384         SetFsmState(INDICATION_SIGNAL_START);
+//  385         break;
+//  386 
+//  387     case PREVENTIVE:
+//  388         SetFsmState(STOP);
+//  389         break;
+//  390 
+//  391     case EMERGENCY:
+//  392         SetFsmState(ALARM_SIGNAL_START);
+//  393         break;
+//  394 
+//  395     case IND_PREVENTIVE:
+//  396         break;
+//  397 
+//  398     case IND_EMERGENCY:
+//  399         break;
+//  400 
+//  401     case ERROR:
+//  402         break;
+//  403 
+//  404     case BEEP_SIGNAL:
+//  405         break;
+//  406 
+//  407     default:
+//  408         break;
+//  409     }
+//  410 }
 //  411 
-//  412 //-----------------------------------------------------------------------------------------------------
-//  413 void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
-//  414 {
-//  415 
-//  416 }
-//  417 
-//  418 //-----------------------------------------------------------------------------------------------------
-//  419 void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
-//  420 {
-//  421     CPss21::ActiveAlarmWindowOn(INDICATION);
-//  422 }
-//  423 
-//  424 //-----------------------------------------------------------------------------------------------------
-//  425 void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
-//  426 {
-//  427 
-//  428 }
-//  429 
-//  430 //-----------------------------------------------------------------------------------------------------
-//  431 void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
-//  432 {
-//  433     CPss21::ActiveAlarmWindowOn(EMERGENCY);
-//  434 }
-//  435 
-//  436 //-----------------------------------------------------------------------------------------------------
-//  437 void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
-//  438 {
-//  439     CPss21::ActiveAlarmWindowOff(EMERGENCY);
-//  440 }
-//  441 //-----------------------------------------------------------------------------------------------------
-//  442 
-//  443 
+//  412 
+//  413 //-----------------------------------------------------------------------------------------------------
+//  414 void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
+//  415 {
+//  416 
+//  417 }
+//  418 
+//  419 //-----------------------------------------------------------------------------------------------------
+//  420 void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
+//  421 {
+//  422     CPss21::ActiveAlarmWindowOn(INDICATION);
+//  423 }
+//  424 
+//  425 //-----------------------------------------------------------------------------------------------------
+//  426 void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
+//  427 {
+//  428 
+//  429 }
+//  430 
+//  431 //-----------------------------------------------------------------------------------------------------
+//  432 void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
+//  433 {
+//  434     CPss21::ActiveAlarmWindowOn(EMERGENCY);
+//  435 }
+//  436 
+//  437 //-----------------------------------------------------------------------------------------------------
+//  438 void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
+//  439 {
+//  440     CPss21::ActiveAlarmWindowOff(EMERGENCY);
+//  441     CPss21::BoardWindowsUpdate();
+//  442 }
+//  443 //-----------------------------------------------------------------------------------------------------
 //  444 
 //  445 
 //  446 
@@ -1232,24 +1232,26 @@ _A_PINF:
 //  448 
 //  449 
 //  450 
-//  451 //-----------------------------------------------------------------------------------------------------
+//  451 
 //  452 
+//  453 //-----------------------------------------------------------------------------------------------------
+//  454 
 
         RSEG CODE:CODE:NOROOT(1)
-//  453 CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+//  455 CStatusLedNotifyerControl::CStatusLedNotifyerControl()
 ??CStatusLedNotifyerControl:
         RCALL   ?Subroutine2
-//  454 {
+//  456 {
 ??CrossCallReturnLabel_33:
         LDI     R16, LOW(??__vtbl_4)
         LDI     R17, (??__vtbl_4) >> 8
         RCALL   ?Subroutine20
-//  455     SetFsmState(NORMAL_SIGNAL_START);
+//  457     SetFsmState(NORMAL_SIGNAL_START);
 ??CrossCallReturnLabel_28:
         LDI     R16, 24
         RJMP    ?Subroutine35
-//  456     SetSavedFsmState(NORMAL_SIGNAL_START);
-//  457 }
+//  458     SetSavedFsmState(NORMAL_SIGNAL_START);
+//  459 }
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine22:
@@ -1655,12 +1657,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 ??NotifyerOff:
         LDI     R16, 2
-        REQUIRE ?Subroutine33
-        ;               // Fall through to label ?Subroutine33
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine33:
-        JMP     ??ActiveAlarmWindowOff
+        RJMP    ?Subroutine33
 
         RSEG CODE:CODE:NOROOT(1)
 `?~CEmergencyAlarmWindowNotifyerControl`:
@@ -1710,20 +1707,20 @@ _A_PINF:
 ??NotifyerOff_1:
         LDI     R16, 3
         RJMP    ?Subroutine33
-//  458 
+//  460 
 
         RSEG CODE:CODE:NOROOT(1)
-//  459 CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+//  461 CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
 `?~CStatusLedNotifyerControl`:
         REQUIRE ?Subroutine31
         ;               // Fall through to label ?Subroutine31
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine31:
-//  460 {
+//  462 {
         RCALL   ?Subroutine0
-//  461     SetFsmState(STOP);
-//  462 }
+//  463     SetFsmState(STOP);
+//  464 }
 ??CrossCallReturnLabel_36:
         REQUIRE ??Subroutine38_0
         ;               // Fall through to label ??Subroutine38_0
@@ -1764,17 +1761,17 @@ _A_PINF:
         CALL    `??operator delete`
 ??Subroutine21_0:
         RET
-//  463 
-//  464 //-----------------------------------------------------------------------------------------------------
+//  465 
+//  466 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  465 void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+//  467 void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
 ??AlarmSet_2:
-//  466 {
-//  467     // Сохраним текущее состояние автомата.
-//  468     SetSavedFsmState(GetFsmState());
+//  468 {
+//  469     // Сохраним текущее состояние автомата.
+//  470     SetSavedFsmState(GetFsmState());
         RCALL   ?Subroutine13
-//  469     switch (uiAlarmType)
+//  471     switch (uiAlarmType)
 ??CrossCallReturnLabel_20:
         BREQ    ??AlarmSet_12
         DEC     R18
@@ -1786,53 +1783,53 @@ _A_PINF:
         SUBI    R18, 3
         BREQ    ??AlarmSet_15
         RET
-//  470     {
-//  471     case NORMAL:
-//  472         SetFsmState(NORMAL_SIGNAL_START);
-//  473         break;
-//  474 
-//  475     case INDICATION:
-//  476         SetFsmState(NORMAL_SIGNAL_START);
+//  472     {
+//  473     case NORMAL:
+//  474         SetFsmState(NORMAL_SIGNAL_START);
+//  475         break;
+//  476 
+//  477     case INDICATION:
+//  478         SetFsmState(NORMAL_SIGNAL_START);
 ??AlarmSet_12:
         LDI     R16, 24
 ??AlarmSet_16:
         RJMP    ?Subroutine30
-//  477         break;
-//  478 
-//  479     case PREVENTIVE:
-//  480         SetFsmState(WARNING_SIGNAL_START);
+//  479         break;
+//  480 
+//  481     case PREVENTIVE:
+//  482         SetFsmState(WARNING_SIGNAL_START);
 ??AlarmSet_13:
         LDI     R16, 7
         RJMP    ??AlarmSet_16
-//  481         break;
-//  482 
-//  483     case EMERGENCY:
-//  484         SetFsmState(ALARM_SIGNAL_START);
+//  483         break;
+//  484 
+//  485     case EMERGENCY:
+//  486         SetFsmState(ALARM_SIGNAL_START);
 ??AlarmSet_14:
         LDI     R16, 13
         RJMP    ??AlarmSet_16
-//  485         break;
-//  486 
-//  487     case IND_PREVENTIVE:
-//  488         break;
-//  489 
-//  490     case IND_EMERGENCY:
-//  491         break;
-//  492 
-//  493     case ERROR:
-//  494         SetFsmState(ERROR_SIGNAL_START);
+//  487         break;
+//  488 
+//  489     case IND_PREVENTIVE:
+//  490         break;
+//  491 
+//  492     case IND_EMERGENCY:
+//  493         break;
+//  494 
+//  495     case ERROR:
+//  496         SetFsmState(ERROR_SIGNAL_START);
 ??AlarmSet_15:
         LDI     R16, 19
         RJMP    ??AlarmSet_16
-//  495         break;
-//  496 
-//  497     case BEEP_SIGNAL:
-//  498         break;
-//  499 
-//  500     default:
-//  501         break;
-//  502     }
-//  503 }
+//  497         break;
+//  498 
+//  499     case BEEP_SIGNAL:
+//  500         break;
+//  501 
+//  502     default:
+//  503         break;
+//  504     }
+//  505 }
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine13:
@@ -1841,35 +1838,35 @@ _A_PINF:
         STD     Z+3, R19
         TST     R18
         RET
-//  504 
-//  505 //-----------------------------------------------------------------------------------------------------
+//  506 
+//  507 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  506 void CStatusLedNotifyerControl::NotifyerNormalOn(void)
+//  508 void CStatusLedNotifyerControl::NotifyerNormalOn(void)
 ??NotifyerNormalOn_2:
-//  507 {
-//  508     CPlatform::StatusLedOn();
+//  509 {
+//  510     CPlatform::StatusLedOn();
         RJMP    ?Subroutine14
         REQUIRE _A_PORTF
-//  509 }
-//  510 
-//  511 //-----------------------------------------------------------------------------------------------------
+//  511 }
+//  512 
+//  513 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  512 void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
+//  514 void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
 ??NotifyerIndicationOn_2:
-//  513 {
-//  514 
-//  515 }
-        RET
+//  515 {
 //  516 
-//  517 //-----------------------------------------------------------------------------------------------------
+//  517 }
+        RET
+//  518 
+//  519 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  518 void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
+//  520 void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
 ??NotifyerPreventiveOn_2:
-//  519 {
-//  520     CPlatform::StatusLedOn();
+//  521 {
+//  522     CPlatform::StatusLedOn();
         REQUIRE ?Subroutine14
         REQUIRE _A_PORTF
         ;               // Fall through to label ?Subroutine14
@@ -1880,67 +1877,77 @@ _A_PINF:
         ANDI    R16, 0x7F
         STS     98, R16
         RET
-//  521 }
-//  522 
-//  523 //-----------------------------------------------------------------------------------------------------
+//  523 }
+//  524 
+//  525 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  524 void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
+//  526 void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
 ??NotifyerEmergencyOn_2:
-//  525 {
-//  526     CPlatform::StatusLedOn();
+//  527 {
+//  528     CPlatform::StatusLedOn();
         RJMP    ?Subroutine14
         REQUIRE _A_PORTF
-//  527 }
-//  528 
-//  529 //-----------------------------------------------------------------------------------------------------
+//  529 }
+//  530 
+//  531 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  530 void CStatusLedNotifyerControl::NotifyerOff(void)
+//  532 void CStatusLedNotifyerControl::NotifyerOff(void)
 ??NotifyerOff_2:
-//  531 {
-//  532     CPlatform::StatusLedOff();
+//  533 {
+//  534     CPlatform::StatusLedOff();
         LDS     R16, 98
         ORI     R16, 0x80
         STS     98, R16
-//  533     CPss21::BoardWindowsUpdate();
-        JMP     ??BoardWindowsUpdate
+//  535     CPss21::BoardWindowsUpdate();
+        RJMP    ??Subroutine39_0
         REQUIRE _A_PORTF
-//  534 }
-//  535 //-----------------------------------------------------------------------------------------------------
-//  536 
-//  537 
+//  536 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine33:
+        CALL    ??ActiveAlarmWindowOff
+        REQUIRE ??Subroutine39_0
+        ;               // Fall through to label ??Subroutine39_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine39_0:
+        JMP     ??BoardWindowsUpdate
+//  537 //-----------------------------------------------------------------------------------------------------
 //  538 
 //  539 
 //  540 
 //  541 
-//  542 //-----------------------------------------------------------------------------------------------------
+//  542 
 //  543 
-//  544 CBuzzerNotifyerControl::CBuzzerNotifyerControl()
-//  545 {
-//  546     SetFsmState(STOP);
-//  547     SetSavedFsmState(STOP);
-//  548 }
-//  549 
+//  544 //-----------------------------------------------------------------------------------------------------
+//  545 
+//  546 CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+//  547 {
+//  548     SetFsmState(STOP);
+//  549     SetSavedFsmState(STOP);
+//  550 }
+//  551 
 
         RSEG CODE:CODE:NOROOT(1)
-//  550 CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
+//  552 CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
 `?~CBuzzerNotifyerControl`:
         RJMP    ?Subroutine31
-//  551 {
-//  552     SetFsmState(STOP);
-//  553 }
-//  554 
-//  555 //-----------------------------------------------------------------------------------------------------
+//  553 {
+//  554     SetFsmState(STOP);
+//  555 }
+//  556 
+//  557 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  556 void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+//  558 void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
 ??AlarmSet_3:
-//  557 {
-//  558     // Сохраним текущее состояние автомата.
-//  559     SetSavedFsmState(GetFsmState());
+//  559 {
+//  560     // Сохраним текущее состояние автомата.
+//  561     SetSavedFsmState(GetFsmState());
         RCALL   ?Subroutine13
-//  560     switch (uiAlarmType)
+//  562     switch (uiAlarmType)
 ??CrossCallReturnLabel_21:
         BREQ    ??AlarmSet_17
         DEC     R18
@@ -1954,112 +1961,114 @@ _A_PINF:
         DEC     R18
         BREQ    ??AlarmSet_21
         RET
-//  561     {
-//  562     case NORMAL:
-//  563         SetFsmState(STOP);
-//  564         break;
-//  565 
-//  566     case INDICATION:
-//  567         SetFsmState(STOP);
+//  563     {
+//  564     case NORMAL:
+//  565         SetFsmState(STOP);
+//  566         break;
+//  567 
+//  568     case INDICATION:
+//  569         SetFsmState(STOP);
 ??AlarmSet_17:
         LDI     R16, 37
 ??AlarmSet_22:
         RJMP    ?Subroutine30
-//  568         break;
-//  569 
-//  570     case PREVENTIVE:
-//  571         SetFsmState(WARNING_SIGNAL_START);
+//  570         break;
+//  571 
+//  572     case PREVENTIVE:
+//  573         SetFsmState(WARNING_SIGNAL_START);
 ??AlarmSet_18:
         LDI     R16, 7
         RJMP    ??AlarmSet_22
-//  572         break;
-//  573 
-//  574     case EMERGENCY:
-//  575         SetFsmState(ALARM_SIGNAL_START);
+//  574         break;
+//  575 
+//  576     case EMERGENCY:
+//  577         SetFsmState(ALARM_SIGNAL_START);
 ??AlarmSet_19:
         LDI     R16, 13
         RJMP    ??AlarmSet_22
-//  576         break;
-//  577 
-//  578     case IND_PREVENTIVE:
-//  579         break;
-//  580 
-//  581     case IND_EMERGENCY:
-//  582         break;
-//  583 
-//  584     case ERROR:
-//  585         SetFsmState(ERROR_SIGNAL_START);
+//  578         break;
+//  579 
+//  580     case IND_PREVENTIVE:
+//  581         break;
+//  582 
+//  583     case IND_EMERGENCY:
+//  584         break;
+//  585 
+//  586     case ERROR:
+//  587         SetFsmState(ERROR_SIGNAL_START);
 ??AlarmSet_20:
         LDI     R16, 19
         RJMP    ??AlarmSet_22
-//  586         break;
-//  587 
-//  588     case BEEP_SIGNAL:
-//  589         SetFsmState(BEEP_SIGNAL_START);
+//  588         break;
+//  589 
+//  590     case BEEP_SIGNAL:
+//  591         SetFsmState(BEEP_SIGNAL_START);
 ??AlarmSet_21:
         LDI     R16, 30
         RJMP    ??AlarmSet_22
-//  590         break;
-//  591 
-//  592     default:
-//  593         break;
-//  594     }
-//  595 }
-//  596 
-//  597 //-----------------------------------------------------------------------------------------------------
+//  592         break;
+//  593 
+//  594     default:
+//  595         break;
+//  596     }
+//  597 }
+//  598 
+//  599 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  598 void CBuzzerNotifyerControl::NotifyerNormalOn(void)
+//  600 void CBuzzerNotifyerControl::NotifyerNormalOn(void)
 ??NotifyerNormalOn_3:
-//  599 {
-//  600     CBuzzer::Off();
+//  601 {
+//  602     CBuzzer::Off();
         REQUIRE ?Subroutine34
         ;               // Fall through to label ?Subroutine34
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine34:
         JMP     ??Off
-//  601 }
-//  602 
-//  603 //-----------------------------------------------------------------------------------------------------
+//  603 }
+//  604 
+//  605 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  604 void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
+//  606 void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
 ??NotifyerIndicationOn_3:
-//  605 {
-//  606     CBuzzer::Off();
+//  607 {
+//  608     CBuzzer::Off();
         RJMP    ?Subroutine34
-//  607 }
-//  608 
-//  609 //-----------------------------------------------------------------------------------------------------
+//  609 }
+//  610 
+//  611 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  610 void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
+//  612 void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
 ??NotifyerPreventiveOn_3:
-//  611 {
-//  612     CBuzzer::LowOn();
+//  613 {
+//  614     CBuzzer::LowOn();
         JMP     ??LowOn
-//  613 }
-//  614 
-//  615 //-----------------------------------------------------------------------------------------------------
+//  615 }
+//  616 
+//  617 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  616 void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
+//  618 void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
 ??NotifyerEmergencyOn_3:
-//  617 {
-//  618     CBuzzer::HighOn();
+//  619 {
+//  620     CBuzzer::HighOn();
         JMP     ??HighOn
-//  619 }
-//  620 
-//  621 //-----------------------------------------------------------------------------------------------------
+//  621 }
+//  622 
+//  623 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  622 void CBuzzerNotifyerControl::NotifyerOff(void)
+//  624 void CBuzzerNotifyerControl::NotifyerOff(void)
 ??NotifyerOff_3:
-//  623 {
-//  624     CBuzzer::Off();
-        RJMP    ?Subroutine34
-//  625 }
+//  625 {
+//  626     CBuzzer::Off();
+        CALL    ??Off
+//  627     CPss21::BoardWindowsUpdate();
+        RJMP    ??Subroutine39_0
+//  628 }
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint16_t CNotifyerControl::NORMAL_SIGNAL_ON_TIME()
@@ -2336,16 +2345,16 @@ __?EEARH:
         DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
 
         END
-//  626 
-//  627 
-//  628 
+//  629 
+//  630 
+//  631 
 // 
 // 105 bytes in segment ABSOLUTE
-// 896 bytes in segment CODE
+// 904 bytes in segment CODE
 // 184 bytes in segment NEAR_F
 //  58 bytes in segment SWITCH
 // 
-// 826 bytes of CODE memory (+ 312 bytes shared)
+// 834 bytes of CODE memory (+ 312 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

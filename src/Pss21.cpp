@@ -154,6 +154,7 @@ void CPss21::Init(void)
     SetErrorCode(0);
     // Сбросим все ошибки.
     memset(CPss21::m_auiErrorAlarmDataArray, 0, HANDLED_ERROR_NUMBER);
+    CPss21::AllAlarmWindowOff();
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1045,16 +1046,16 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 //        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
 //    }
 
-        if (uiIndex < DISCRETE_INPUTS_NUMBER)
-        {
-            // Получим состояние дискретного сигнала - дискретные входы модулей.
-            return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-        }
-        else
-        {
-            // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-            return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
-        }
+    if (uiIndex < DISCRETE_INPUTS_NUMBER)
+    {
+        // Получим состояние дискретного сигнала - дискретные входы модулей.
+        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+    }
+    else
+    {
+        // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+        return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------

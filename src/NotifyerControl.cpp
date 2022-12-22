@@ -348,6 +348,7 @@ void CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
 void CPreventiveAlarmWindowNotifyerControl::NotifyerOff(void)
 {
     CPss21::ActiveAlarmWindowOff(PREVENTIVE);
+    CPss21::BoardWindowsUpdate();
 }
 //-----------------------------------------------------------------------------------------------------
 
@@ -437,6 +438,7 @@ void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
 void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
 {
     CPss21::ActiveAlarmWindowOff(EMERGENCY);
+    CPss21::BoardWindowsUpdate();
 }
 //-----------------------------------------------------------------------------------------------------
 
@@ -622,6 +624,7 @@ void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
 void CBuzzerNotifyerControl::NotifyerOff(void)
 {
     CBuzzer::Off();
+    CPss21::BoardWindowsUpdate();
 }
 
 
