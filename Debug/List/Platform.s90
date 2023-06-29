@@ -1,0 +1,3385 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:58:40
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Platform.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW96EB.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Platform.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+//        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Platform.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Platform
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?EPILOGUE_B6_L09
+        EXTERN ?EPILOGUE_B8_L09
+        EXTERN ?L_SHL_L03
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?PROLOGUE6_L09
+        EXTERN ?PROLOGUE8_L09
+        EXTERN ?Register_R4_is_cg_reg
+        EXTERN ?Register_R5_is_cg_reg
+        EXTERN ?Register_R6_is_cg_reg
+        EXTERN ?Register_R7_is_cg_reg
+        EXTERN ?S_SHL_L02
+        EXTERN ?UL_DIVMOD_L03
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC ??BuzzerTimerFrequencySet
+        PUBLIC ??BuzzerTimerStop
+        PUBLIC ??CEeprom
+        PUBLIC ??CPlatform
+        PUBLIC ??CSpi
+        PUBLIC ??CUart
+        PUBLIC ??CUart_1
+        PUBLIC ??Close
+        PUBLIC ??Disable
+        PUBLIC ??Disable_1
+        PUBLIC ??EEPROM_EE_READY
+        PUBWEAK `??EEPROM_EE_READY::??INTVEC 88`
+        PUBLIC ??Enable
+        PUBLIC ??Enable_1
+        PUBLIC ??Exchange
+        PUBLIC ??Exchange_1
+        PUBLIC ??Init
+        PUBLIC ??Init_1
+        PUBLIC ??Init_2
+        PUBLIC ??Open
+        PUBLIC ??Read
+        PUBLIC ??ReadBlock
+        PUBLIC ??ReadByte
+        PUBLIC ??Read_1
+        PUBLIC ??Read_2
+        PUBLIC ??Read_3
+        PUBLIC ??ReadyInterruptHandler
+        PUBLIC ??RecvInterruptHandler
+        PUBLIC ??Reset
+        PUBLIC ??Rs485RtsOff
+        PUBLIC ??Rs485RtsOn
+        PUBLIC ??SIG_UART1_DATA
+        PUBWEAK `??SIG_UART1_DATA::??INTVEC 124`
+        PUBLIC ??SIG_UART1_RECV
+        PUBWEAK `??SIG_UART1_RECV::??INTVEC 120`
+        PUBLIC ??SIG_UART1_TXC
+        PUBWEAK `??SIG_UART1_TXC::??INTVEC 128`
+        PUBLIC ??SystemTickInit
+        PUBLIC ??SystemTickInterrupt
+        PUBWEAK `??SystemTickInterrupt::??INTVEC 36`
+        PUBLIC ??TransmitDisable
+        PUBLIC ??TransmitEnable
+        PUBLIC ??TxcInterruptHandler
+        PUBLIC ??UdreInterruptHandler
+        PUBLIC ??Write
+        PUBLIC ??WriteByte
+        PUBLIC ??WriteInterrupt
+        PUBLIC ??Write_1
+        PUBWEAK ??__vtbl
+        PUBWEAK ??__vtbl_1
+        PUBWEAK ??__vtbl_2
+        PUBWEAK ??__vtbl_6
+        PUBLIC ??axDataBaseBlocksPositionData
+        PUBLIC ??delay_mins
+        PUBLIC ??delay_ms
+        PUBLIC ??delay_s
+        PUBLIC ??m_bBufferIsWrited
+        PUBLIC ??m_nuiBufferByteCounter
+        PUBLIC ??m_puiBuffer
+        PUBLIC ??m_pxUart1
+        PUBLIC ??m_uiAddress
+        PUBLIC ??m_uiLength
+        PUBLIC ??m_uiSystemTick
+        PUBLIC ??m_uiWatchDogStepID
+        PUBLIC `??new CEeprom`
+        PUBLIC `??new CPlatform`
+        PUBLIC `??new CSpi`
+        PUBLIC `??new CUart`
+        PUBLIC `??new CUart_1`
+        PUBLIC ??xMainDataBase
+        PUBLIC `?~CEeprom`
+        PUBLIC `?~CPlatform`
+        PUBLIC `?~CSpi`
+        PUBLIC `?~CUart`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CPss21 0>`  SYMBOL "CPss21"
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 0>`
+??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 0>`
+`?<Name CPlatform 10>` SYMBOL "CPlatform"
+`?<Name CEeprom 18>` SYMBOL "CEeprom"
+`?<Name CSpi 23>`   SYMBOL "CSpi"
+`?<Name CUart 26>`  SYMBOL "CUart"
+
+`??EEPROM_EE_READY::??INTVEC 88` SYMBOL "??INTVEC 88", ??EEPROM_EE_READY
+`?<Name CFlash 77>` SYMBOL "CFlash"
+
+`??SIG_UART1_DATA::??INTVEC 124` SYMBOL "??INTVEC 124", ??SIG_UART1_DATA
+
+`??SIG_UART1_RECV::??INTVEC 120` SYMBOL "??INTVEC 120", ??SIG_UART1_RECV
+
+`??SIG_UART1_TXC::??INTVEC 128` SYMBOL "??INTVEC 128", ??SIG_UART1_TXC
+
+`??SystemTickInterrupt::??INTVEC 36` SYMBOL "??INTVEC 36", ??SystemTickInterrupt
+??__vtbl            SYMBOL "__vtbl", `?<Name CUart 26>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CEeprom 18>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CPlatform 10>`
+??__vtbl_6          SYMBOL "__vtbl", `?<Name CSpi 23>`
+??axDataBaseBlocksPositionData SYMBOL "axDataBaseBlocksPositionData", `?<Name CFlash 77>`
+??m_bBufferIsWrited SYMBOL "m_bBufferIsWrited", `?<Name CEeprom 18>`
+??m_nuiBufferByteCounter SYMBOL "m_nuiBufferByteCounter", `?<Name CEeprom 18>`
+??m_puiBuffer       SYMBOL "m_puiBuffer", `?<Name CEeprom 18>`
+??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 10>`
+??m_uiAddress       SYMBOL "m_uiAddress", `?<Name CEeprom 18>`
+??m_uiLength        SYMBOL "m_uiLength", `?<Name CEeprom 18>`
+??m_uiSystemTick    SYMBOL "m_uiSystemTick", `?<Name CPlatform 10>`
+??m_uiWatchDogStepID SYMBOL "m_uiWatchDogStepID", `?<Name CPlatform 10>`
+??xMainDataBase     SYMBOL "xMainDataBase", `?<Name CFlash 77>`
+
+        EXTERN ??m_uiErrorCode
+        EXTERN ??m_xModbusSettings
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN ??usCrc16
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Platform.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include <cstddef>
+//    9 
+//   10 #include "Platform.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//   11 #include "Pss21.h"
+//   12 #include "Crc.h"
+//   13 
+//   14 
+//   15 // ATMega128a
+//   16 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   17 CUart::CUart()
+??CUart:
+//   18 {
+        LDI     R18, LOW(??__vtbl)
+        LDI     R19, (??__vtbl) >> 8
+        MOVW    R31:R30, R17:R16
+        STD     Z+45, R18
+        STD     Z+46, R19
+//   19 
+//   20 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CUart &CUart::new CUart()
+`??new CUart`:
+        LDI     R16, 47
+        RCALL   ??Subroutine42_0
+??CrossCallReturnLabel_50:
+        BREQ    `??new CUart_2`
+        RJMP    ??CUart
+`??new CUart_2`:
+        RJMP    ?Subroutine5
+//   21 
+//   22 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   23 CUart::CUart(volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
+??CUart_1:
+//   24              volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
+//   25              volatile uint8_t *ucsrc, volatile uint8_t *udr,
+//   26              volatile uint8_t *rs485DirectionPort, volatile uint8_t rs485DirectionPin,
+//   27              volatile uint8_t *rs485OutputPort, volatile uint8_t rs485OutputPin) :
+        MOV     R1, R27
+        MOV     R2, R26
+        MOVW    R31:R30, R17:R16
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        STD     Z+45, R16
+        STD     Z+46, R17
+//   28     m_UBRRH(ubrrh), m_UBRRL(ubrrl), m_UCSRA(ucsra),
+        ST      Z, R18
+        STD     Z+1, R19
+        STD     Z+2, R20
+        STD     Z+3, R21
+        STD     Z+4, R22
+        STD     Z+5, R23
+//   29     m_UCSRB(ucsrb), m_UCSRC(ucsrc), m_UDR(udr),
+        LD      R16, Y
+        LDD     R17, Y+1
+        STD     Z+6, R16
+        STD     Z+7, R17
+        LDD     R16, Y+2
+        LDD     R17, Y+3
+        STD     Z+8, R16
+        STD     Z+9, R17
+        LDD     R16, Y+4
+        LDD     R17, Y+5
+        STD     Z+10, R16
+        STD     Z+11, R17
+//   30     m_rs485DirectionPort(rs485DirectionPort), m_rs485DirectionPin(rs485DirectionPin), m_rs485OutputPort(rs485OutputPort), m_rs485OutputPin(rs485OutputPin)
+        LDD     R16, Y+6
+        LDD     R17, Y+7
+        STD     Z+12, R16
+        STD     Z+13, R17
+        LDD     R16, Y+8
+        STD     Z+14, R16
+        LDD     R16, Y+9
+        LDD     R17, Y+10
+        STD     Z+15, R16
+        STD     Z+16, R17
+        LDD     R16, Y+11
+        STD     Z+17, R16
+//   31 {
+//   32     if (m_rs485DirectionPort)
+        LDD     R26, Z+12
+        LDD     R27, Z+13
+        MOV     R16, R26
+        OR      R16, R27
+        BREQ    ??CrossCallReturnLabel_0
+//   33     {
+//   34         uint8_t uiData = m_rs485DirectionPin;
+        LDD     R20, Z+14
+//   35         *m_rs485DirectionPort |= _BV(uiData);
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_28:
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+//   36         uiData = m_rs485OutputPin;
+        RCALL   ?Subroutine2
+//   37         *m_rs485OutputPort &= ~(_BV(uiData));
+//   38     }
+//   39 }
+??CrossCallReturnLabel_0:
+        MOVW    R17:R16, R31:R30
+        MOV     R26, R2
+        MOV     R27, R1
+        ADIW    R29:R28, 12
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CUart &CUart::new CUart(uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t volatile *, uint8_t, uint8_t volatile *, uint8_t)
+`??new CUart_1`:
+        CALL    ?PROLOGUE8_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        REQUIRE ?Register_R6_is_cg_reg
+        REQUIRE ?Register_R7_is_cg_reg
+        MOVW    R27:R26, R17:R16
+        MOVW    R7:R6, R19:R18
+        MOVW    R5:R4, R21:R20
+        MOVW    R25:R24, R23:R22
+        LDI     R16, 47
+        RCALL   ??Subroutine42_0
+??CrossCallReturnLabel_51:
+        BREQ    `??new CUart_3`
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_45:
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_46:
+        RCALL   ??Subroutine41_0
+??CrossCallReturnLabel_43:
+        RCALL   ??Subroutine41_0
+??CrossCallReturnLabel_44:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R23:R22, R5:R4
+        MOVW    R21:R20, R7:R6
+        MOVW    R19:R18, R27:R26
+        RCALL   ??CUart_1
+        RJMP    ??CrossCallReturnLabel_36
+`??new CUart_3`:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_36:
+        LDI     R30, 18
+        JMP     ?EPILOGUE_B8_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine9:
+        LDD     R18, Y+17
+        ST      -Y, R18
+        REQUIRE ??Subroutine41_0
+        ;               // Fall through to label ??Subroutine41_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine41_0:
+        LDD     R18, Y+16
+        LDD     R19, Y+17
+        ST      -Y, R19
+        ST      -Y, R18
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEeprom &CEeprom::new CEeprom()
+`??new CEeprom`:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_47:
+        BREQ    `??new CEeprom_1`
+        RJMP    ?Subroutine1
+`??new CEeprom_1`:
+        RJMP    ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R16, 2
+        REQUIRE ??Subroutine42_0
+        ;               // Fall through to label ??Subroutine42_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine42_0:
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CSpi &CSpi::new CSpi()
+`??new CSpi`:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_48:
+        BREQ    `??new CSpi_1`
+        RJMP    ?Subroutine36
+`??new CSpi_1`:
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        LDI     R16, 0
+        REQUIRE ?Subroutine30
+        ;               // Fall through to label ?Subroutine30
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine30:
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CPlatform &CPlatform::new CPlatform()
+`??new CPlatform`:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_49:
+        BREQ    `??new CPlatform_1`
+        RJMP    ?Subroutine37
+`??new CPlatform_1`:
+        RJMP    ?Subroutine5
+//   40 
+//   41 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   42 CUart::~CUart()
+`?~CUart`:
+        RJMP    ?Subroutine8
+//   43 {
+//   44 
+//   45 }
+//   46 
+//   47 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   48 void CUart::Init(uint32_t ulBaudRate,
+??Init:
+//   49                  uint8_t ucParity,
+//   50                  uint8_t uiDataBits,
+//   51                  uint8_t ucStopBit,
+//   52                  uint8_t *puiRxBuffer,
+//   53                  uint8_t *puiTxBuffer)
+//   54 {
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//   55 //    m_puiRxBuffer = puiRxBuffer;
+//   56 //    m_puiTxBuffer = puiTxBuffer;
+//   57 
+//   58     /* Set the baud rate */
+//   59     uint16_t uiBaudRateTemp = static_cast<uint16_t>((F_CPU / (ulBaudRate * 16UL) - 1));
+        MOVW    R17:R16, R21:R20
+        MOVW    R19:R18, R23:R22
+        LDI     R20, 4
+        CALL    ?L_SHL_L03
+        MOVW    R21:R20, R17:R16
+        MOVW    R23:R22, R19:R18
+        RCALL   ?Subroutine3
+//   60 //    uint16_t uiBaudRateTemp = static_cast<uint16_t>(CPss21::m_xModbusSettings.BaudRate);//(F_CPU / (ulBaudRate * 16UL) - 1);//
+//   61     *m_UBRRL = static_cast<uint8_t>(uiBaudRateTemp);
+??CrossCallReturnLabel_2:
+        ADIW    R27:R26, 2
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 3
+        ST      Z, R16
+//   62     *m_UBRRH = static_cast<uint8_t>(uiBaudRateTemp >> 8);
+        MOVW    R31:R30, R27:R26
+        LD      R16, Z
+        LDD     R31, Z+1
+        MOV     R30, R16
+        ST      Z, R17
+//   63 
+//   64     *m_UCSRC = (CPss21::m_xModbusSettings.LinkParam &	// 2 стоп-бита, 8 бит данных
+//   65                 (BIT(UPM11)|BIT(UPM10)|BIT(USBS1))) |
+//   66                (BIT(UCSZ11)|BIT(UCSZ10));
+        LDS     R16, (??m_xModbusSettings + 2)
+        ANDI    R16, 0x38
+        ORI     R16, 0x06
+        MOVW    R31:R30, R27:R26
+        LDD     R26, Z+8
+        LDD     R27, Z+9
+        ST      X, R16
+//   67 
+//   68 //    /* Set data bits (7, 8 bits) */
+//   69 //    switch (uiDataBits)
+//   70 //    {
+//   71 //    case 8:
+//   72 //        *m_UCSRC |= (1 << UCSZ00) | (1 << UCSZ01);
+//   73 //        break;
+//   74 //    case 7:
+//   75 //        *m_UCSRC |= (1 << UCSZ01);
+//   76 //        break;
+//   77 //    }
+//   78 //
+//   79 //    /* Set parity */
+//   80 //    if (ucParity == 'N')
+//   81 //    {
+//   82 //        /* None */
+//   83 //    }
+//   84 //    else if (ucParity == 'E')
+//   85 //    {
+//   86 //        /* Even */
+//   87 //        *m_UCSRC |= (1 << UPM01);
+//   88 //    }
+//   89 //    else
+//   90 //    {
+//   91 //        /* Odd */
+//   92 //        *m_UCSRC |= (1 << UPM01) | (1 << UPM00);
+//   93 //    }
+//   94 //
+//   95 //    /* Stop bit (1 or 2) */
+//   96 //    if (ucStopBit == 1)
+//   97 //    {
+//   98 //        *m_UCSRC &= ~(1 << USBS0);
+//   99 //    }
+//  100 //    else if (ucStopBit == 2) /* 2 */
+//  101 //    {
+//  102 //        *m_UCSRC |= (1 << USBS0);
+//  103 //    }
+//  104 }
+        LD      R26, Y+
+        LD      R27, Y+
+        ADIW    R29:R28, 5
+        RET
+//  105 
+//  106 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  107 void CUart::Reset(void)
+??Reset:
+//  108 {
+//  109     m_nuiRxBuffByteCounter = 0;
+        MOVW    R31:R30, R17:R16
+        LDI     R18, 0
+        STD     Z+24, R18
+        STD     Z+25, R18
+//  110     m_bfByteIsReceived = 0;
+        STD     Z+42, R18
+//  111     m_bfFrameIsSended = 0;
+        STD     Z+43, R18
+//  112     m_bfRxBuffOverflow = 0;
+        STD     Z+44, R18
+//  113 }
+        RET
+//  114 
+//  115 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  116 void CUart::Open(void)
+??Open:
+//  117 {
+        RCALL   ?Subroutine6
+//  118     *m_UCSRA |= (1 << RXC0) | (1 << TXC0);
+??CrossCallReturnLabel_52:
+        ORI     R18, 0xC0
+        RCALL   ?Subroutine12
+//  119     *m_UCSRB |= (1 << RXEN0) | (1 << TXEN0);
+??CrossCallReturnLabel_8:
+        ORI     R16, 0x18
+        RJMP    ?Subroutine14
+//  120 }
+//  121 
+//  122 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  123 void CUart::Close(void)
+??Close:
+//  124 {
+        RCALL   ?Subroutine4
+//  125     *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
+??CrossCallReturnLabel_54:
+        ANDI    R18, 0x6F
+        ST      X, R18
+//  126     *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0));
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_17:
+        LD      R18, X
+        ANDI    R18, 0xB7
+        RCALL   ?Subroutine12
+//  127     *m_UCSRB &= ~((1 << UDRIE0));
+??CrossCallReturnLabel_9:
+        ANDI    R16, 0xDF
+        REQUIRE ?Subroutine14
+        ;               // Fall through to label ?Subroutine14
+//  128 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine14:
+        ST      X, R16
+        REQUIRE ?Subroutine27
+        ;               // Fall through to label ?Subroutine27
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine27:
+        MOV     R26, R20
+        MOV     R27, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        MOV     R19, R27
+        MOV     R20, R26
+        REQUIRE ?Subroutine31
+        REQUIRE ??Subroutine43_0
+        ;               // Fall through to label ??Subroutine43_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine43_0:
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        REQUIRE ?Subroutine31
+        ;               // Fall through to label ?Subroutine31
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine31:
+        LD      R18, X
+        RET
+//  129 
+//  130 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  131 void CUart::Enable(void)
+??Enable:
+//  132 {
+        RCALL   ?Subroutine6
+//  133     *m_UCSRA |= (1 << RXC0);
+??CrossCallReturnLabel_53:
+        ORI     R18, 0x80
+        RCALL   ?Subroutine12
+//  134     *m_UCSRB |= (1 << RXEN0) | (1 << RXCIE0);
+??CrossCallReturnLabel_10:
+        ORI     R16, 0x90
+        RJMP    ?Subroutine14
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine12:
+        ST      X, R18
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        LD      R16, X
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        MOV     R19, R27
+        MOV     R20, R26
+        MOVW    R31:R30, R17:R16
+        LDD     R26, Z+4
+        LDD     R27, Z+5
+        RJMP    ?Subroutine31
+//  135 }
+//  136 
+//  137 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  138 void CUart::Disable(void)
+??Disable:
+//  139 {
+        MOVW    R19:R18, R27:R26
+//  140     *m_UCSRB &= ~((1 << RXEN0) | (1 << RXCIE0));
+        MOVW    R31:R30, R17:R16
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_18:
+        LD      R16, X
+        ANDI    R16, 0x6F
+        ST      X, R16
+//  141 }
+        REQUIRE ?Subroutine32
+        ;               // Fall through to label ?Subroutine32
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine32:
+        MOVW    R27:R26, R19:R18
+        RET
+//  142 
+//  143 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  144 void CUart::Rs485RtsOn(void)
+??Rs485RtsOn:
+//  145 {
+        MOVW    R19:R18, R27:R26
+        MOVW    R31:R30, R17:R16
+//  146     uint8_t uiData = m_rs485OutputPin;
+        LDD     R20, Z+17
+//  147     *m_rs485OutputPort |= (1 << uiData);
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_29:
+        LDD     R26, Z+15
+        LDD     R27, Z+16
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+//  148 }
+        RJMP    ?Subroutine32
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine22:
+        LDI     R16, 1
+        LDI     R17, 0
+        JMP     ?S_SHL_L02
+//  149 
+//  150 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  151 void CUart::Rs485RtsOff(void)
+??Rs485RtsOff:
+//  152 {
+        MOVW    R19:R18, R27:R26
+        MOVW    R31:R30, R17:R16
+//  153     uint8_t uiData = m_rs485OutputPin;
+        RCALL   ?Subroutine2
+//  154     *m_rs485OutputPort &= ~(1 << uiData);
+//  155 }
+??CrossCallReturnLabel_1:
+        RJMP    ?Subroutine32
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        LDD     R20, Z+17
+        RCALL   ?Subroutine22
+??CrossCallReturnLabel_30:
+        COM     R16
+        LDD     R26, Z+15
+        LDD     R27, Z+16
+        LD      R17, X
+        AND     R17, R16
+        ST      X, R17
+        RET
+//  156 
+//  157 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  158 void CUart::TransmitEnable(void)
+??TransmitEnable:
+//  159 {
+        MOV     R21, R27
+        MOV     R22, R26
+        MOVW    R27:R26, R17:R16
+//  160     if (m_rs485DirectionPort)
+        MOVW    R31:R30, R17:R16
+        LDD     R16, Z+12
+        LDD     R17, Z+13
+        OR      R16, R17
+        BREQ    ??TransmitEnable_1
+//  161     {
+//  162         Rs485RtsOn();
+        MOVW    R17:R16, R27:R26
+        RCALL   ??Rs485RtsOn
+//  163     }
+//  164 
+//  165     *m_UCSRA |= (1 << TXC0) | (1 << UDRE0);
+??TransmitEnable_1:
+        ADIW    R27:R26, 4
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 5
+        LD      R16, Z
+        ORI     R16, 0x60
+        ST      Z, R16
+//  166     *m_UCSRB |= (1 << TXEN0) | (1 << UDRIE0);
+        MOVW    R31:R30, R27:R26
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_19:
+        LD      R16, X
+        ORI     R16, 0x28
+        ST      X, R16
+//  167 
+//  168 }
+        REQUIRE ?Subroutine28
+        ;               // Fall through to label ?Subroutine28
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine28:
+        MOV     R26, R22
+        MOV     R27, R21
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine16:
+        LDD     R26, Z+6
+        LDD     R27, Z+7
+        RET
+//  169 
+//  170 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  171 void CUart::TransmitDisable(void)
+??TransmitDisable:
+//  172 {
+        MOV     R21, R27
+        MOV     R22, R26
+//  173     *m_UCSRB &= ~((1 << TXEN0) | (1 << TXCIE0) | (1 << UDRIE0));
+        RCALL   ??Subroutine43_0
+??CrossCallReturnLabel_56:
+        ANDI    R18, 0x97
+        ST      X, R18
+//  174 
+//  175     if (m_rs485DirectionPort)
+        LDD     R18, Z+12
+        LDD     R19, Z+13
+        OR      R18, R19
+        BREQ    ??TransmitDisable_1
+//  176     {
+//  177         Rs485RtsOff();
+        RCALL   ??Rs485RtsOff
+//  178     }
+//  179 }
+??TransmitDisable_1:
+        RJMP    ?Subroutine28
+//  180 
+//  181 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  182 int16_t CUart::Write(uint8_t *puiSource, uint16_t uiLength)
+??Write:
+//  183 {
+//  184     m_puiTxBuffer = (uint8_t*)puiSource;
+        MOVW    R31:R30, R17:R16
+        STD     Z+18, R18
+        STD     Z+19, R19
+//  185     m_nuiTxBuffByteCounter = uiLength;
+        STD     Z+20, R20
+        STD     Z+21, R21
+//  186 
+//  187     return 1;
+        LDI     R16, 1
+        RJMP    ?Subroutine30
+//  188 }
+//  189 
+//  190 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  191 int16_t CUart::Read(uint8_t *puiDestination, uint16_t uiLength)
+??Read:
+//  192 {
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_21:
+        MOVW    R31:R30, R17:R16
+//  193     m_bfByteIsReceived = 0;
+        LDI     R16, 0
+        STD     Z+42, R16
+//  194 
+//  195     if (m_bfRxBuffOverflow)
+        LDD     R16, Z+44
+        TST     R16
+        BRNE    ??Read_4
+//  196     {
+//  197         return -1;
+//  198     }
+//  199 
+//  200     if (uiLength <= m_nuiRxBuffByteCounter)
+        LDD     R16, Z+24
+        LDD     R17, Z+25
+        CP      R16, R20
+        CPC     R17, R21
+        BRCS    ??Read_5
+//  201     {
+//  202         return -1;
+??Read_4:
+        LDI     R16, 255
+        LDI     R17, 255
+        RJMP    ??CrossCallReturnLabel_37
+//  203     }
+//  204     else if (m_nuiRxBuffByteCounter)
+??Read_5:
+        OR      R16, R17
+        BREQ    ??Read_6
+//  205     {
+//  206         CPlatform::InterruptDisable();
+        CLI
+//  207 
+//  208         for (int16_t i = 0; i < m_nuiRxBuffByteCounter; i++)
+        LDI     R24, 0
+        LDI     R25, 0
+        RJMP    ??Read_7
+//  209         {
+//  210             puiDestination[i] = m_auiIntermediateBuff[i];
+??Read_8:
+        MOVW    R27:R26, R31:R30
+        ADD     R26, R24
+        ADC     R27, R25
+        ADIW    R27:R26, 26
+        LD      R16, X
+        MOVW    R27:R26, R19:R18
+        ADD     R26, R24
+        ADC     R27, R25
+        ST      X, R16
+//  211         }
+        ADIW    R25:R24, 1
+??Read_7:
+        LDD     R16, Z+24
+        LDD     R17, Z+25
+        CP      R24, R16
+        CPC     R25, R17
+        BRCS    ??Read_8
+//  212 
+//  213         uint8_t uiCounter = m_nuiRxBuffByteCounter;
+//  214         m_nuiRxBuffByteCounter = 0;
+        LDI     R17, 0
+        STD     Z+24, R17
+        STD     Z+25, R17
+//  215 
+//  216         CPlatform::InterruptEnable();
+        SEI
+//  217 
+//  218         return uiCounter;
+//  219     }
+        RJMP    ??CrossCallReturnLabel_37
+//  220     else if (0 == m_nuiRxBuffByteCounter)
+//  221     {
+//  222         return 0;
+//  223     }
+//  224     return 0;
+??Read_6:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_37:
+        REQUIRE ?Subroutine38
+        ;               // Fall through to label ?Subroutine38
+//  225 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine38:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  226 
+//  227 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  228 void CUart::UdreInterruptHandler(void)
+??UdreInterruptHandler:
+//  229 {
+        MOVW    R21:R20, R27:R26
+//  230     if (m_nuiTxBuffByteCounter == 0)
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+20
+        LDD     R19, Z+21
+        OR      R18, R19
+        BRNE    ??UdreInterruptHandler_1
+//  231     {
+//  232         *m_UCSRB &= ~((1 << UDRIE0));
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_20:
+        LD      R18, X
+        ANDI    R18, 0xDF
+        ST      X, R18
+//  233         *m_UCSRA |= (1 << TXC0);
+        LDD     R26, Z+4
+        LDD     R27, Z+5
+        LD      R18, X
+        ORI     R18, 0x40
+        RCALL   ?Subroutine12
+//  234         *m_UCSRB |= (1 << TXCIE0);
+??CrossCallReturnLabel_11:
+        ORI     R16, 0x40
+        ST      X, R16
+//  235         return;
+        RJMP    ??UdreInterruptHandler_2
+//  236     }
+//  237     *m_UDR = *m_puiTxBuffer++;
+??UdreInterruptHandler_1:
+        LDD     R26, Z+18
+        LDD     R27, Z+19
+        LD      R18, X+
+        STD     Z+18, R26
+        STD     Z+19, R27
+        LDD     R26, Z+10
+        LDD     R27, Z+11
+        ST      X, R18
+//  238     m_nuiTxBuffByteCounter--;
+        LDD     R16, Z+20
+        LDD     R17, Z+21
+        SUBI    R16, 1
+        SBCI    R17, 0
+        STD     Z+20, R16
+        STD     Z+21, R17
+//  239 }
+??UdreInterruptHandler_2:
+        REQUIRE ?Subroutine33
+        ;               // Fall through to label ?Subroutine33
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine33:
+        MOVW    R27:R26, R21:R20
+        RET
+//  240 
+//  241 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  242 void CUart::TxcInterruptHandler(void)
+??TxcInterruptHandler:
+//  243 {
+        RCALL   ?Subroutine4
+//  244     *m_UCSRB &= ~((1 << TXCIE0));
+??CrossCallReturnLabel_55:
+        ANDI    R18, 0xBF
+        ST      X, R18
+//  245     m_bfFrameIsSended = 1;
+        LDI     R16, 1
+        STD     Z+43, R16
+//  246     return;
+        RJMP    ?Subroutine27
+//  247 }
+//  248 
+//  249 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  250 void CUart::RecvInterruptHandler(void)
+??RecvInterruptHandler:
+//  251 {
+        RCALL   ?Subroutine17
+//  252     // промежуточный буфер приёма переполнен?
+//  253     if (m_nuiRxBuffByteCounter >=
+//  254             UART_INTERMEDIATE_BUFF_LENGTH)
+??CrossCallReturnLabel_22:
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+24
+        LDD     R19, Z+25
+        CPI     R18, 16
+        LDI     R20, 0
+        CPC     R19, R20
+        BRCS    ??RecvInterruptHandler_1
+//  255     {
+//  256         m_bfRxBuffOverflow = 1;
+        LDI     R18, 1
+        STD     Z+44, R18
+//  257         m_bfByteIsReceived = 1;
+        STD     Z+42, R18
+        RJMP    ??RecvInterruptHandler_2
+//  258     }
+//  259     else
+//  260     {
+//  261         m_auiIntermediateBuff[m_nuiRxBuffByteCounter++] = *m_UDR;
+??RecvInterruptHandler_1:
+        MOVW    R25:R24, R19:R18
+        ADIW    R25:R24, 1
+        STD     Z+24, R24
+        STD     Z+25, R25
+        LDD     R26, Z+10
+        LDD     R27, Z+11
+        LD      R20, X
+        ADD     R30, R18
+        ADC     R31, R19
+        STD     Z+26, R20
+//  262         m_bfByteIsReceived = 1;
+        MOVW    R31:R30, R17:R16
+        LDI     R16, 1
+        STD     Z+42, R16
+//  263     }
+//  264 }
+??RecvInterruptHandler_2:
+        RJMP    ?Subroutine38
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine17:
+        JMP     ?PROLOGUE4_L09
+//  265 
+//  266 ////-----------------------------------------------------------------------------------------------------
+//  267 //// Прерывание по пустому регистру данных UDR
+//  268 //#pragma vector = USART0_UDRE_vect
+//  269 //__interrupt void SIG_UART0_DATA(void)
+//  270 //{
+//  271 //    CPlatform::m_pxUart0 -> UdreInterruptHandler();
+//  272 //}
+//  273 //
+//  274 ////-----------------------------------------------------------------------------------------------------
+//  275 //// Прерывание по завершению передачи UART
+//  276 //#pragma vector = USART0_TX_vect
+//  277 //__interrupt void SIG_UART0_TXC(void)
+//  278 //{
+//  279 //    CPlatform::m_pxUart0 -> TxcInterruptHandler();
+//  280 //}
+//  281 //
+//  282 ////-----------------------------------------------------------------------------------------------------
+//  283 //// Прерывание по завершению приема UART
+//  284 //#pragma vector = USART0_RX_vect
+//  285 //__interrupt void SIG_UART0_RECV(void)
+//  286 //{
+//  287 //    CPlatform::m_pxUart0 -> RecvInterruptHandler();
+//  288 //}
+//  289 
+//  290 //-----------------------------------------------------------------------------------------------------
+//  291 // Прерывание по пустому регистру данных UDR
+//  292 #pragma vector = USART1_UDRE_vect
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SIG_UART1_DATA, "interrupt"
+//  293 __interrupt void SIG_UART1_DATA(void)
+??SIG_UART1_DATA:
+//  294 {
+        RCALL   ?Subroutine11
+//  295     CPlatform::m_pxUart1 -> UdreInterruptHandler();
+??CrossCallReturnLabel_6:
+        RCALL   ?Subroutine24
+??CrossCallReturnLabel_31:
+        RCALL   ??UdreInterruptHandler
+//  296 }
+        REQUIRE ?Subroutine39
+        ;               // Fall through to label ?Subroutine39
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine39:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_41:
+        RETI
+//  297 
+//  298 //-----------------------------------------------------------------------------------------------------
+//  299 // Прерывание по завершению передачи UART
+//  300 #pragma vector = USART1_TX_vect
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SIG_UART1_TXC, "interrupt"
+//  301 __interrupt void SIG_UART1_TXC(void)
+??SIG_UART1_TXC:
+//  302 {
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_32:
+        RCALL   ?Subroutine10
+//  303     CPlatform::m_pxUart1 -> TxcInterruptHandler();
+??CrossCallReturnLabel_5:
+        RCALL   ??TxcInterruptHandler
+//  304 }
+        RCALL   ?Subroutine19
+??CrossCallReturnLabel_38:
+        REQUIRE ?Subroutine40
+        ;               // Fall through to label ?Subroutine40
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine40:
+        RCALL   ?Subroutine26
+??CrossCallReturnLabel_42:
+        RETI
+//  305 
+//  306 //-----------------------------------------------------------------------------------------------------
+//  307 // Прерывание по завершению приема UART
+//  308 #pragma vector = USART1_RX_vect
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SIG_UART1_RECV, "interrupt"
+//  309 __interrupt void SIG_UART1_RECV(void)
+??SIG_UART1_RECV:
+//  310 {
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_33:
+        ST      -Y, R0
+        RCALL   ?Subroutine10
+//  311     CPlatform::m_pxUart1 -> RecvInterruptHandler();
+??CrossCallReturnLabel_4:
+        RCALL   ??RecvInterruptHandler
+//  312 }
+        RCALL   ?Subroutine19
+??CrossCallReturnLabel_39:
+        LD      R0, Y+
+        RJMP    ?Subroutine40
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine19:
+        OUT     0x3B, R22
+        OUT     0x3F, R21
+        REQUIRE ?Subroutine23
+        ;               // Fall through to label ?Subroutine23
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine23:
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        LD      R19, Y+
+        LD      R20, Y+
+        LD      R21, Y+
+        LD      R22, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine10:
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_58:
+        IN      R21, 0x3F
+        IN      R22, 0x3B
+        REQUIRE ?Subroutine24
+        ;               // Fall through to label ?Subroutine24
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine24:
+        LDS     R16, ??m_pxUart1
+        LDS     R17, (??m_pxUart1 + 1)
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine21:
+        ST      -Y, R22
+        ST      -Y, R21
+        ST      -Y, R20
+        ST      -Y, R19
+        REQUIRE ??Subroutine44_0
+        ;               // Fall through to label ??Subroutine44_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine44_0:
+        ST      -Y, R18
+        ST      -Y, R17
+        ST      -Y, R16
+        RET
+//  313 
+//  314 //-----------------------------------------------------------------------------------------------------
+//  315 
+//  316 
+//  317 
+//  318 //----------------------------------------- EEPROM ----------------------------------------------------------------
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  319 uint8_t* CEeprom::m_puiBuffer;
+??m_puiBuffer:
+        DS8 2
+//  320 uint16_t CEeprom::m_uiAddress;
+??m_uiAddress:
+        DS8 2
+//  321 uint16_t CEeprom::m_nuiBufferByteCounter;
+??m_nuiBufferByteCounter:
+        DS8 2
+//  322 uint16_t CEeprom::m_uiLength;
+??m_uiLength:
+        DS8 2
+//  323 bool CEeprom::m_bBufferIsWrited;
+??m_bBufferIsWrited:
+        DS8 1
+//  324 
+//  325 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  326 CEeprom::CEeprom()
+??CEeprom:
+        REQUIRE ?Subroutine1
+        ;               // Fall through to label ?Subroutine1
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+//  327 {
+        LDI     R18, LOW(??__vtbl_1)
+        LDI     R19, (??__vtbl_1) >> 8
+        REQUIRE ??Subroutine45_0
+        ;               // Fall through to label ??Subroutine45_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine45_0:
+        MOVW    R31:R30, R17:R16
+        ST      Z, R18
+        STD     Z+1, R19
+        RET
+//  328 
+//  329 }
+//  330 
+//  331 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  332 CEeprom::~CEeprom()
+`?~CEeprom`:
+        RJMP    ?Subroutine8
+
+        RSEG CODE:CODE:NOROOT(1)
+??ReadByte:
+??ReadByte_1:
+        WDR
+        SBIC    0x1C, 0x01
+        RJMP    ??ReadByte_1
+        CLI
+        OUT     0x1F, R17
+        OUT     0x1E, R16
+        SBI     0x1C, 0x00
+        SEI
+        IN      R16, 0x1D
+        RET
+        REQUIRE _A_EECR
+        REQUIRE _A_EEAR
+        REQUIRE _A_EEDR
+//  333 {
+//  334 
+//  335 }
+//  336 
+//  337 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  338 uint8_t CEeprom::Read(uint8_t *puiDestination, uint16_t uiSource, uint16_t uiLength)
+??Read_1:
+//  339 {
+        MOVW    R31:R30, R17:R16
+        RJMP    ??Read_9
+//  340     while (uiLength != 0)
+//  341     {
+//  342         *puiDestination++ = ReadByte(uiSource++);
+??Read_10:
+        MOVW    R17:R16, R19:R18
+        RCALL   ??ReadByte
+        SUBI    R18, 255
+        SBCI    R19, 255
+        ST      Z+, R16
+//  343         uiLength--;
+        SUBI    R20, 1
+        SBCI    R21, 0
+//  344     }
+??Read_9:
+        MOV     R16, R20
+        OR      R16, R21
+        BRNE    ??Read_10
+//  345     return 1;
+        REQUIRE ?Subroutine34
+        ;               // Fall through to label ?Subroutine34
+//  346 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine34:
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??WriteByte:
+        MOVW    R21:R20, R17:R16
+        RCALL   ??ReadByte
+        CP      R16, R18
+        BREQ    ??WriteByte_1
+??WriteByte_2:
+        WDR
+        SBIC    0x1C, 0x01
+        RJMP    ??WriteByte_2
+        CLI
+        OUT     0x1F, R21
+        OUT     0x1E, R20
+        OUT     0x1D, R18
+        SBI     0x1C, 0x02
+        SBI     0x1C, 0x01
+        SEI
+??WriteByte_1:
+        RET
+        REQUIRE _A_EECR
+        REQUIRE _A_EEAR
+        REQUIRE _A_EEDR
+//  347 
+//  348 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  349 uint8_t CEeprom::Write(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
+??Write_1:
+//  350 {
+        RCALL   ?Subroutine17
+??CrossCallReturnLabel_23:
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOVW    R31:R30, R21:R20
+        RJMP    ??Write_2
+//  351     while (uiLength != 0)
+//  352     {
+//  353         WriteByte((uiDestination++), (*puiSource++));
+??Write_3:
+        LD      R18, X+
+        MOVW    R17:R16, R25:R24
+        RCALL   ??WriteByte
+        ADIW    R25:R24, 1
+//  354         uiLength--;
+        SBIW    R31:R30, 1
+//  355     }
+??Write_2:
+        MOV     R16, R30
+        OR      R16, R31
+        BRNE    ??Write_3
+//  356     return 1;
+        LDI     R16, 1
+        RJMP    ?Subroutine38
+//  357 }
+//  358 
+//  359 //-----------------------------------------------------------------------------------------------------
+//  360 uint8_t CEeprom::ReadByte(uint16_t uiSource)
+//  361 {
+//  362     __watchdog_reset();
+//  363     while (BitIsSet(EECR, EEWE))
+//  364     {
+//  365         __watchdog_reset();
+//  366     }
+//  367     __disable_interrupt();
+//  368     EEAR = uiSource;
+//  369     SetBit(EECR, EERE);
+//  370     __enable_interrupt();
+//  371     return EEDR;
+//  372 }
+//  373 
+//  374 //-----------------------------------------------------------------------------------------------------
+//  375 void CEeprom::WriteByte(uint16_t uiDestination, uint8_t uiData)
+//  376 {
+//  377     if (ReadByte(uiDestination) != uiData)
+//  378     {
+//  379         __watchdog_reset();
+//  380         while (BitIsSet(EECR, EEWE))
+//  381         {
+//  382             __watchdog_reset();
+//  383         }
+//  384         __disable_interrupt();
+//  385         EEAR = uiDestination;
+//  386         EEDR = uiData;
+//  387         EECR |= (1<<EEMWE);
+//  388         EECR |= (1<<EEWE);
+//  389         __enable_interrupt();
+//  390     }
+//  391 }
+//  392 
+//  393 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  394 void CEeprom::WriteInterrupt(uint16_t uiDestination, uint8_t *puiSource, uint16_t uiLength)
+??WriteInterrupt:
+//  395 {
+//  396     SetAddress(uiDestination);
+        LDI     R30, LOW(??m_puiBuffer)
+        LDI     R31, (??m_puiBuffer) >> 8
+        STD     Z+2, R16
+        STD     Z+3, R17
+//  397     SetBufferPointer(puiSource);
+        ST      Z, R18
+        STD     Z+1, R19
+//  398     SetLength(uiLength);
+        STD     Z+6, R20
+        STD     Z+7, R21
+//  399     SetBufferByteCounter(0);
+        LDI     R16, 0
+        STD     Z+4, R16
+        STD     Z+5, R16
+//  400 }
+        RET
+//  401 
+//  402 //-----------------------------------------------------------------------------------------------------
+//  403 // Прерывание по завершению записи.
+
+        RSEG CODE:CODE:NOROOT(1)
+//  404 void CEeprom::ReadyInterruptHandler(void)
+??ReadyInterruptHandler:
+//  405 {
+        MOVW    R21:R20, R27:R26
+//  406     if (GetBufferByteCounter() < GetLength())
+        LDI     R30, LOW(??m_puiBuffer)
+        LDI     R31, (??m_puiBuffer) >> 8
+        LDD     R18, Z+4
+        LDD     R19, Z+5
+        LDD     R16, Z+6
+        LDD     R17, Z+7
+        CP      R18, R16
+        CPC     R19, R17
+        BRCC    ??ReadyInterruptHandler_1
+//  407     {
+//  408         EEAR = GetAddress();
+        LDD     R16, Z+2
+        LDD     R17, Z+3
+        OUT     0x1F, R17
+        OUT     0x1E, R16
+//  409         SetAddress(GetAddress() + 1);
+        LDD     R16, Z+2
+        LDD     R17, Z+3
+        SUBI    R16, 255
+        SBCI    R17, 255
+        STD     Z+2, R16
+        STD     Z+3, R17
+//  410         EECR |= BIT(EERE);
+        SBI     0x1C, 0x00
+//  411 
+//  412         if (EEDR != GetBufferPointer()[GetBufferByteCounter()])
+        LD      R26, Z
+        LDD     R27, Z+1
+        ADD     R26, R18
+        ADC     R27, R19
+        LD      R16, X
+        IN      R17, 0x1D
+        CP      R17, R16
+        BREQ    ??ReadyInterruptHandler_2
+//  413         {
+//  414             EEDR = GetBufferPointer()[GetBufferByteCounter()];
+        OUT     0x1D, R16
+//  415             EECR |= BIT(EEMWE);
+        SBI     0x1C, 0x02
+//  416             EECR |= BIT(EEWE);
+        SBI     0x1C, 0x01
+//  417         }
+//  418 
+//  419         SetBufferByteCounter(GetBufferByteCounter() + 1);
+??ReadyInterruptHandler_2:
+        LDD     R16, Z+4
+        LDD     R17, Z+5
+        SUBI    R16, 255
+        SBCI    R17, 255
+        STD     Z+4, R16
+        STD     Z+5, R17
+//  420     }
+        RJMP    ??ReadyInterruptHandler_3
+//  421     else
+//  422     {
+//  423         ReadyInterruptDisaable();
+??ReadyInterruptHandler_1:
+        CBI     0x1C, 0x03
+//  424         EEAR   = 0x0000;			// Обнуляем для безопасности
+        LDI     R16, 0
+        OUT     0x1F, R16
+        OUT     0x1E, R16
+//  425         SetBufferIsWrited(true);
+        LDI     R16, 1
+        STD     Z+8, R16
+//  426     }
+//  427 }
+??ReadyInterruptHandler_3:
+        RJMP    ?Subroutine33
+        REQUIRE _A_EEAR
+        REQUIRE _A_EECR
+        REQUIRE _A_EEDR
+//  428 
+//  429 //-----------------------------------------------------------------------------------------------------
+//  430 // Прерывание по завершению записи.
+//  431 #pragma vector = EE_READY_vect
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??EEPROM_EE_READY, "interrupt"
+//  432 __interrupt void EEPROM_EE_READY(void)
+??EEPROM_EE_READY:
+//  433 {
+        RCALL   ?Subroutine11
+//  434     CEeprom::ReadyInterruptHandler();
+??CrossCallReturnLabel_7:
+        RCALL   ??ReadyInterruptHandler
+//  435 }
+        RJMP    ?Subroutine39
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine18:
+        OUT     0x3B, R23
+        OUT     0x3F, R22
+        RCALL   ?Subroutine23
+??CrossCallReturnLabel_40:
+        LD      R23, Y+
+        REQUIRE ?Subroutine26
+        ;               // Fall through to label ?Subroutine26
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine26:
+        LD      R30, Y+
+        LD      R31, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine11:
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_35:
+        ST      -Y, R23
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_59:
+        IN      R22, 0x3F
+        IN      R23, 0x3B
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine25:
+        ST      -Y, R31
+        ST      -Y, R30
+        RET
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CUart::__vtbl[1]
+??__vtbl:
+        DC16 `?~CUart`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CEeprom::__vtbl[1]
+??__vtbl_1:
+        DC16 `?~CEeprom`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CPlatform::__vtbl[1]
+??__vtbl_2:
+        DC16 `?~CPlatform`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CSpi::__vtbl[1]
+??__vtbl_6:
+        DC16 `?~CSpi`/2
+//  436 
+//  437 //-----------------------------------------------------------------------------------------------------
+//  438 
+//  439 
+//  440 
+//  441 
+//  442 
+//  443 
+//  444 
+//  445 
+//  446 //-----------------------------------------------------------------------------------------------------
+//  447 // Основной блок БД прибора
+
+        RSEG NEAR_F:CODE:ROOT(0)
+//  448 TDataBase __flash CFlash::xMainDataBase =
+//  449 {
+//  450     {
+//  451         2,1,48,false,false,false,0,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0 }
+//  452     },0x0A6F,
+//  453 
+//  454 //    {
+//  455 //        2,1,48,false,false,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+//  456 //    },0x0A6F,
+//  457 
+//  458     {
+//  459         1,47,BIT(USBS1),0x73,BIT(CS02)|BIT(CS01),0x00,0x00
+//  460     },0x1B17,
+//  461 
+//  462     {
+//  463         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  464         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+//  465     },0xF0BE,
+//  466 
+//  467     {
+//  468         0, 1, 2, 3, 4, 5, 6, 7,
+//  469         8, 9, 10, 11, 12, 13, 14, 15,
+//  470         16, 17, 18, 19, 20, 21, 22, 23,
+//  471         24, 25, 26, 27, 28, 29, 30, 31,
+//  472         32, 33, 34, 35, 36, 37, 38, 39,
+//  473         40, 41, 42, 43, 44, 45, 46, 47,
+//  474         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  475         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  476         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  477         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  478         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  479         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  480         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  481         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  482         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+//  483         0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
+//  484     },0x5AF9,
+//  485 
+//  486     {
+//  487         0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
+//  488         0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
+//  489         0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,
+//  490         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+//  491         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+//  492         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+//  493         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+//  494         0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02
+//  495     },0x4139,
+//  496 
+//  497     {
+//  498         { 0x3E,0x3E,0x3E,0x3E,0x3C,0x3C,0x3C,0x3C },
+//  499         { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF },
+//  500         { 0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF }
+//  501     },0x6F4B,
+//  502 
+//  503     {
+//  504         0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,
+//  505         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  506         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  507         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  508         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  509         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  510         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  511         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  512         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  513         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  514         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  515         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  516         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  517         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  518         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  519         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//  520     },0xE899,
+//  521 
+//  522     {
+//  523         1,
+//  524         {
+//  525             {
+//  526                 1,0x02,0x0010,0x20
+//  527             },
+//  528             {
+//  529                 0,0,0,0
+//  530             },
+//  531             {
+//  532                 0,0,0,0
+//  533             },
+//  534             {
+//  535                 0,0,0,0
+//  536             },
+//  537             {
+//  538                 0,0,0,0
+//  539             },
+//  540             {
+//  541                 0,0,0,0
+//  542             },
+//  543             {
+//  544                 0,0,0,0
+//  545             },
+//  546             {
+//  547                 0,0,0,0
+//  548             },
+//  549             {
+//  550                 0,0,0,0
+//  551             },
+//  552             {
+//  553                 0,0,0,0
+//  554             },
+//  555             {
+//  556                 0,0,0,0
+//  557             },
+//  558             {
+//  559                 0,0,0,0
+//  560             },
+//  561             {
+//  562                 0,0,0,0
+//  563             },
+//  564             {
+//  565                 0,0,0,0
+//  566             },
+//  567             {
+//  568                 0,0,0,0
+//  569             },
+//  570             {
+//  571                 0,0,0,0
+//  572             }
+//  573         }
+//  574     },0xE223,
+//  575 
+//  576     {
+//  577         1,
+//  578         {
+//  579             {
+//  580                 1,0x05,0x0000,0xFF
+//  581             },
+//  582             {
+//  583                 0,0,0,0
+//  584             },
+//  585             {
+//  586                 0,0,0,0
+//  587             },
+//  588             {
+//  589                 0,0,0,0
+//  590             },
+//  591             {
+//  592                 0,0,0,0
+//  593             },
+//  594             {
+//  595                 0,0,0,0
+//  596             },
+//  597             {
+//  598                 0,0,0,0
+//  599             },
+//  600             {
+//  601                 0,0,0,0
+//  602             },
+//  603             {
+//  604                 0,0,0,0
+//  605             },
+//  606             {
+//  607                 0,0,0,0
+//  608             },
+//  609             {
+//  610                 0,0,0,0
+//  611             },
+//  612             {
+//  613                 0,0,0,0
+//  614             },
+//  615             {
+//  616                 0,0,0,0
+//  617             },
+//  618             {
+//  619                 0,0,0,0
+//  620             },
+//  621             {
+//  622                 0,0,0,0
+//  623             },
+//  624             {
+//  625                 0,0,0,0
+//  626             }
+//  627         }
+//  628     },0x9C7B,
+//  629 
+//  630     {
+//  631         1,
+//  632         {
+//  633             {
+//  634                 1,0x05,0x0001,0xFF
+//  635             },
+//  636             {
+//  637                 0,0,0,0
+//  638             },
+//  639             {
+//  640                 0,0,0,0
+//  641             },
+//  642             {
+//  643                 0,0,0,0
+//  644             },
+//  645             {
+//  646                 0,0,0,0
+//  647             },
+//  648             {
+//  649                 0,0,0,0
+//  650             },
+//  651             {
+//  652                 0,0,0,0
+//  653             },
+//  654             {
+//  655                 0,0,0,0
+//  656             },
+//  657             {
+//  658                 0,0,0,0
+//  659             },
+//  660             {
+//  661                 0,0,0,0
+//  662             },
+//  663             {
+//  664                 0,0,0,0
+//  665             },
+//  666             {
+//  667                 0,0,0,0
+//  668             },
+//  669             {
+//  670                 0,0,0,0
+//  671             },
+//  672             {
+//  673                 0,0,0,0
+//  674             },
+//  675             {
+//  676                 0,0,0,0
+//  677             },
+//  678             {
+//  679                 0,0,0,0
+//  680             }
+//  681         }
+//  682     },0x6CFB,
+//  683 
+//  684     false, {0,0,0,0,0,0,0},0x0B40,
+//  685 };
+//  686 
+//  687 //-----------------------------------------------------------------------------------------------------
+//  688 TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
+??axDataBaseBlocksPositionData:
+        DC8 0, 20
+        DC16 0
+        DC8 1, 7
+        DC16 22
+        DC8 2, 16
+        DC16 31
+        DC8 3, 128
+        DC16 49
+        DC8 4, 64
+        DC16 179
+        DC8 5, 24
+        DC16 245
+        DC8 6, 128
+        DC16 271
+        DC8 7, 81
+        DC16 401
+        DC8 8, 81
+        DC16 484
+        DC8 9, 81
+        DC16 567
+        DC8 10, 8
+        DC16 650
+??xMainDataBase:
+        DC8 2, 1, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC16 2671
+        DC8 1, 47, 8, 115, 6, 0, 0
+        DC16 6935
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC16 61630
+        DC8 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+        DC8 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+        DC8 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC16 23289
+        DC8 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+        DC8 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+        DC8 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+        DC16 16697
+        DC8 62, 62, 62, 62, 60, 60, 60, 60, 255, 255, 255, 255, 255, 255, 255
+        DC8 255, 255, 255, 255, 255, 255, 255, 255, 255
+        DC16 28491
+        DC8 1, 2, 4, 8, 16, 32, 64, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC16 59545
+        DC8 1, 1, 2
+        DC16 16
+        DC8 32, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0
+        DC16 57891
+        DC8 1, 1, 5
+        DC16 0
+        DC8 255, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0
+        DC16 40059
+        DC8 1, 1, 5
+        DC16 1
+        DC8 255, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0, 0, 0
+        DC16 0
+        DC8 0
+        DC16 27899
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+        DC16 2880
+//  689 {
+//  690     { 0, sizeof(xMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
+//  691     { 1, sizeof(xMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
+//  692     { 2, sizeof(xMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
+//  693     { 3, sizeof(xMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
+//  694     { 4, sizeof(xMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
+//  695     { 5, sizeof(xMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
+//  696     { 6, sizeof(xMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
+//  697     { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
+//  698     { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
+//  699     { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
+//  700     { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+//  701 };
+//  702 
+//  703 //----------------------------------------- Flash ----------------------------------------------------------------
+//  704 //CFlash::CFlash()
+//  705 //{
+//  706 //
+//  707 //}
+//  708 //
+//  709 ////-----------------------------------------------------------------------------------------------------
+//  710 //CFlash::~CFlash()
+//  711 //{
+//  712 //
+//  713 //}
+//  714 
+//  715 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  716 uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
+??Read_2:
+//  717 {
+        MOV     R23, R25
+        MOV     R2, R24
+        MOV     R0, R18
+//  718     // Скопируем данные из флеш в буфер Ram.
+//  719     for (uint16_t i = 0; i < uiLength; i++)
+        LDI     R24, 0
+        LDI     R25, 0
+        RJMP    ??Read_11
+//  720     {
+//  721         puiDestination[i] = uiSource[i];
+??Read_12:
+        MOVW    R31:R30, R21:R20
+        RCALL   ?Subroutine20
+//  722     }
+??CrossCallReturnLabel_24:
+        OUT     0x3B, R22
+        ELPM    R18, Z
+        MOVW    R31:R30, R17:R16
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_25:
+        ST      Z, R18
+        ADIW    R25:R24, 1
+??Read_11:
+        CP      R24, R0
+        CPC     R25, R19
+        BRCS    ??Read_12
+//  723     return 1;
+        LDI     R16, 1
+        MOV     R24, R2
+        REQUIRE ?Subroutine35
+        ;               // Fall through to label ?Subroutine35
+//  724 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine35:
+        MOV     R25, R23
+        RET
+//  725 
+//  726 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  727 uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+??ReadBlock:
+//  728 {
+        CALL    ?PROLOGUE6_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        MOVW    R25:R24, R17:R16
+//  729     // Прочитаем блок из флеш вместе с Crc.
+//  730     Read(puiDestination,
+//  731          GetBlockPointer(uiBlock),
+//  732          (GetBlockLength(uiBlock) + CRC_LENGTH));
+        LDI     R16, 4
+        MUL     R18, R16
+        LDI     R26, LOW(??axDataBaseBlocksPositionData)
+        LDI     R27, (??axDataBaseBlocksPositionData) >> 8
+        ADD     R26, R0
+        ADC     R27, R1
+        RCALL   ?Subroutine15
+??CrossCallReturnLabel_15:
+        SUBI    R18, 254
+        SBCI    R19, 255
+        LDI     R20, LOW((??axDataBaseBlocksPositionData + 44))
+        LDI     R21, HIGH((??axDataBaseBlocksPositionData + 44))
+        LDI     R22, 0
+        MOVW    R31:R30, R27:R26
+        ADIW    R31:R30, 2
+        LPM     R16, Z+
+        LPM     R17, Z
+        ADD     R20, R16
+        ADC     R21, R17
+        MOVW    R17:R16, R25:R24
+        RCALL   ??Read_2
+//  733 
+//  734     // Получим контрольную сумму блока во флеш.
+//  735     uint16_t uiCrc = static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock)]);
+//  736     uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
+        RCALL   ?Subroutine15
+??CrossCallReturnLabel_16:
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R18
+        ADC     R31, R19
+        LD      R4, Z
+        LDD     R5, Z+1
+//  737     // Вычислим контрольную сумму блока.
+//  738     // Блок не повреждён?
+//  739     if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
+        MOVW    R17:R16, R25:R24
+        CALL    ??usCrc16
+        CP      R4, R16
+        CPC     R5, R17
+        BRNE    ??ReadBlock_1
+//  740     {
+//  741         return GetBlockLength(uiBlock);
+        MOVW    R31:R30, R27:R26
+        ADIW    R31:R30, 1
+        LPM     R16, Z
+        RJMP    ??ReadBlock_2
+//  742     }
+//  743     else
+//  744     {
+//  745         CPss21::SetErrorCode(DB_ERROR);
+??ReadBlock_1:
+        LDI     R16, 4
+        STS     ??m_uiErrorCode, R16
+//  746         // Нет данных.
+//  747         return 0;
+        LDI     R16, 0
+??ReadBlock_2:
+        LDI     R17, 0
+        LDI     R30, 6
+        JMP     ?EPILOGUE_B6_L09
+//  748     }
+//  749 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine15:
+        MOVW    R31:R30, R27:R26
+        ADIW    R31:R30, 1
+        LPM     R18, Z
+        LDI     R19, 0
+        RET
+//  750 
+//  751 //-----------------------------------------------------------------------------------------------------
+//  752 
+//  753 
+//  754 
+//  755 
+//  756 
+//  757 
+//  758 
+//  759 
+//  760 //----------------------------------------- CSpi ----------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  761 CSpi::CSpi()
+??CSpi:
+        REQUIRE ?Subroutine36
+        ;               // Fall through to label ?Subroutine36
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine36:
+//  762 {
+        LDI     R18, LOW(??__vtbl_6)
+        LDI     R19, (??__vtbl_6) >> 8
+        RJMP    ??Subroutine45_0
+//  763 
+//  764 }
+//  765 
+//  766 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  767 CSpi::~CSpi()
+`?~CSpi`:
+        REQUIRE ?Subroutine8
+        ;               // Fall through to label ?Subroutine8
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine8:
+//  768 {
+        MOV     R20, R16
+        OR      R20, R17
+        BREQ    ??Subroutine8_0
+        BST     R18, 0
+        BRTC    ??Subroutine8_0
+//  769 
+//  770 }
+        CALL    `??operator delete`
+??Subroutine8_0:
+        RET
+//  771 
+//  772 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  773 void CSpi::Init(void)
+??Init_1:
+//  774 {
+//  775     // Master mode.
+//  776 //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
+//  777     SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
+        LDI     R16, 19
+        OUT     0x0D, R16
+//  778 
+//  779     DDRB |= (Bit(MOSI) | Bit(SCK));
+        IN      R16, 0x17
+        ORI     R16, 0x06
+        OUT     0x17, R16
+//  780     PORTB |= (Bit(MOSI) | Bit(SCK));
+        IN      R16, 0x18
+        ORI     R16, 0x06
+        OUT     0x18, R16
+//  781 };
+        RET
+        REQUIRE _A_SPCR
+        REQUIRE _A_DDRB
+        REQUIRE _A_PORTB
+//  782 
+//  783 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  784 void CSpi::Enable(void)
+??Enable_1:
+//  785 {
+//  786     // разрешим SPI.
+//  787     SPCR  |= BIT(SPE);
+        SBI     0x0D, 0x06
+//  788 }
+        RET
+        REQUIRE _A_SPCR
+//  789 
+//  790 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  791 void CSpi::Disable(void)
+??Disable_1:
+//  792 {
+//  793     SPCR &= ~BIT(SPE);
+        CBI     0x0D, 0x06
+//  794 }
+        RET
+        REQUIRE _A_SPCR
+//  795 
+//  796 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  797 uint8_t CSpi::Exchange(uint8_t uiData)
+??Exchange:
+//  798 {
+//  799     SPDR = uiData;
+        OUT     0x0F, R16
+//  800 
+//  801     uint8_t uiGuardCounter = 0;
+        LDI     R16, 200
+        RJMP    ??Exchange_2
+//  802 
+//  803     while(!(SPSR & BIT(SPIF)))		// Ожидание конца передачи
+//  804     {
+//  805         CPlatform::WatchdogReset();
+//  806 
+//  807         if (uiGuardCounter < 200)
+//  808         {
+//  809             uiGuardCounter++;
+??Exchange_3:
+        DEC     R16
+//  810         }
+??Exchange_2:
+        SBIC    0x0E, 0x07
+        RJMP    ??Exchange_4
+        WDR
+        TST     R16
+        BRNE    ??Exchange_3
+//  811         else
+//  812         {
+//  813             return  SPDR;
+        RJMP    ??Exchange_5
+//  814         }
+//  815     };
+//  816 
+//  817     delay_us(100);
+??Exchange_4:
+        LDI     R16, 233
+        DEC     R16
+        BRNE    $-2
+        NOP
+//  818 
+//  819     return  SPDR;
+??Exchange_5:
+        IN      R16, 0x0F
+        RET
+        REQUIRE _A_SPDR
+        REQUIRE _A_SPSR
+//  820 }
+//  821 
+//  822 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  823 uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
+??Exchange_1:
+//  824 {
+        MOV     R23, R25
+        MOV     R0, R24
+        MOV     R22, R16
+//  825     if (uiLength > BUFFER_LENGTH)
+        CPI     R20, 65
+        LDI     R16, 0
+        CPC     R21, R16
+        BRCC    ??Exchange_6
+//  826     {
+//  827         return 0;
+//  828     }
+//  829 
+//  830     for (uint16_t i = 0; i < uiLength; i++)
+        LDI     R24, 0
+        LDI     R25, 0
+        RJMP    ??Exchange_7
+//  831     {
+//  832         puiDestination[i] = Exchange(pucSource[i]);
+??Exchange_8:
+        MOVW    R31:R30, R19:R18
+        RCALL   ?Subroutine20
+//  833     }
+??CrossCallReturnLabel_26:
+        LD      R16, Z
+        RCALL   ??Exchange
+        MOV     R30, R22
+        MOV     R31, R17
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_27:
+        ST      Z, R16
+        ADIW    R25:R24, 1
+??Exchange_7:
+        CP      R24, R20
+        CPC     R25, R21
+        BRCS    ??Exchange_8
+//  834     return 1;
+        LDI     R16, 1
+??Exchange_6:
+        MOV     R24, R0
+        RJMP    ?Subroutine35
+//  835 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine20:
+        ADD     R30, R24
+        ADC     R31, R25
+        RET
+//  836 
+//  837 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  838 uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t uiLength)
+??Read_3:
+//  839 {
+//  840 
+//  841     return 1;
+        RJMP    ?Subroutine34
+//  842 }
+//  843 //-----------------------------------------------------------------------------------------------------
+//  844 
+//  845 
+//  846 
+//  847 
+//  848 
+//  849 
+//  850 
+//  851 //-----------------------------------------------------------------------------------------------------
+//  852 // delay
+
+        RSEG CODE:CODE:NOROOT(1)
+//  853 void delay_ms(uint16_t millisecs)
+??delay_ms:
+//  854 {
+        RJMP    ??delay_ms_1
+//  855     while(millisecs--)
+//  856     {
+//  857         delay_us(1000);
+??delay_ms_2:
+        LDI     R18, 213
+        LDI     R19, 6
+        SUBI    R18, 1
+        SBCI    R19, 0
+        BRNE    $-4
+        RJMP    $+2
+        NOP
+//  858     }
+??delay_ms_1:
+        RCALL   ?Subroutine13
+??CrossCallReturnLabel_12:
+        BRNE    ??delay_ms_2
+//  859 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+//  860 void delay_s(uint16_t secs)
+??delay_s:
+//  861 {
+        RJMP    ??delay_s_1
+//  862     while(secs--)
+//  863     {
+//  864         __delay_cycles(F_CPU);
+??delay_s_2:
+        LDI     R20, 255
+        LDI     R21, 127
+        LDI     R22, 22
+        SUBI    R20, 1
+        SBCI    R21, 0
+        SBCI    R22, 0
+        BRNE    $-6
+        RJMP    $+2
+        NOP
+//  865     }
+??delay_s_1:
+        RCALL   ?Subroutine13
+??CrossCallReturnLabel_13:
+        BRNE    ??delay_s_2
+//  866 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine13:
+        MOVW    R19:R18, R17:R16
+        SUBI    R16, 1
+        SBCI    R17, 0
+        OR      R18, R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+//  867 void delay_mins(uint16_t minutes)
+??delay_mins:
+//  868 {
+        RJMP    ??delay_mins_1
+//  869     while(minutes--)
+//  870     {
+//  871         __delay_cycles(60*F_CPU);
+??delay_mins_2:
+        LDI     R20, 255
+        LDI     R21, 255
+        LDI     R22, 100
+        LDI     R23, 4
+        SUBI    R20, 1
+        SBCI    R21, 0
+        SBCI    R22, 0
+        SBCI    R23, 0
+        BRNE    $-8
+        RJMP    $+2
+        NOP
+//  872     }
+??delay_mins_1:
+        RCALL   ?Subroutine13
+??CrossCallReturnLabel_14:
+        BRNE    ??delay_mins_2
+//  873 }
+        RET
+//  874 
+//  875 //-----------------------------------------------------------------------------------------------------
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  876 uint16_t CPlatform::m_uiSystemTick;
+??m_uiSystemTick:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  877 uint8_t CPlatform::m_uiWatchDogStepID;
+??m_uiWatchDogStepID:
+        DS8 1
+//  878 //CUart* CPlatform::m_pxUart0;
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  879 CUart* CPlatform::m_pxUart1;
+??m_pxUart1:
+        DS8 2
+//  880 
+//  881 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  882 CPlatform::CPlatform()
+??CPlatform:
+        REQUIRE ?Subroutine37
+        ;               // Fall through to label ?Subroutine37
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine37:
+//  883 {
+        LDI     R18, LOW(??__vtbl_2)
+        LDI     R19, (??__vtbl_2) >> 8
+        RJMP    ??Subroutine45_0
+//  884 
+//  885 }
+//  886 
+//  887 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  888 CPlatform::~CPlatform()
+`?~CPlatform`:
+        RJMP    ?Subroutine8
+
+        RSEG CODE:CODE:NOROOT(1)
+??SystemTickInit:
+        LDI     R16, 114
+        OUT     0x23, R16
+        LDI     R16, 11
+        OUT     0x25, R16
+        IN      R16, 0x37
+        ORI     R16, 0x80
+        OUT     0x37, R16
+        RET
+        REQUIRE _A_OCR2
+        REQUIRE _A_TCCR2
+        REQUIRE _A_TIMSK
+//  889 {
+//  890 
+//  891 }
+//  892 
+//  893 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  894 void CPlatform::Init(void)
+??Init_2:
+//  895 {
+//  896     SystemTickInit();
+        RCALL   ??SystemTickInit
+//  897     StatusLedSetPinOutput();
+        LDS     R16, 97
+        ORI     R16, 0x80
+        STS     97, R16
+//  898     TxLedSetPinOutput();
+        LDS     R16, 97
+        ORI     R16, 0x40
+        STS     97, R16
+//  899     TxLedOff();
+        LDS     R16, 98
+        ORI     R16, 0x40
+        STS     98, R16
+//  900     KeyOneSetPinInput();
+        CBI     0x14, 0x02
+//  901     KeyTwoSetPinInput();
+        CBI     0x14, 0x01
+//  902     KeyThreeSetPinInput();
+        CBI     0x14, 0x00
+//  903     ExternalKeySetPinInput();
+        LDS     R16, 100
+        ANDI    R16, 0xFE
+        STS     100, R16
+//  904     CPlatform::InterruptEnable();
+        SEI
+//  905 }
+        RET
+        REQUIRE _A_DDRF
+        REQUIRE _A_PORTF
+        REQUIRE _A_DDRC
+        REQUIRE _A_DDRG
+//  906 
+//  907 // Сирена
+//  908 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  909 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+??BuzzerTimerFrequencySet:
+//  910 {
+//  911     unsigned short usCompareMatch;
+//  912 
+//  913     // half-period time.
+//  914     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+        MOVW    R21:R20, R17:R16
+        LDI     R22, 0
+        LDI     R23, 0
+        LSL     R20
+        ROL     R21
+        ROL     R22
+        RCALL   ?Subroutine3
+//  915     // Срабатывает по Top совпадению значения в ICR3.
+//  916     // Если Top по совпадению значения в OCR3A, то нельзя использовать COM3A вывод.
+//  917     ICR3 = usCompareMatch * 2;
+??CrossCallReturnLabel_3:
+        MOVW    R19:R18, R17:R16
+        LSL     R18
+        ROL     R19
+        STS     (_A_ICR3 + 1), R19
+        STS     _A_ICR3, R18
+//  918     OCR3A = usCompareMatch;
+        STS     (_A_OCR3A + 1), R17
+        STS     _A_OCR3A, R16
+//  919     OCR3B = usCompareMatch;
+        STS     (_A_OCR3B + 1), R17
+        STS     _A_OCR3B, R16
+//  920 
+//  921     // Fast PWM Mode Top OCRn, prescaller - 1,
+//  922     // Clear OC3B on compare match (set output to low level).
+//  923     // Set OC3A on compare match (set output to high level).
+//  924     TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
+        LDI     R16, 226
+        STS     _A_TCCR3A, R16
+//  925     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+        LDI     R16, 25
+        REQUIRE ?Subroutine29
+        REQUIRE _A_ICR3
+        REQUIRE _A_OCR3A
+        REQUIRE _A_OCR3B
+        REQUIRE _A_TCCR3A
+        REQUIRE _A_TCCR3B
+        ;               // Fall through to label ?Subroutine29
+//  926 };
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine29:
+        STS     _A_TCCR3B, R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
+        LDI     R16, 0
+        LDI     R17, 128
+        LDI     R18, 112
+        LDI     R19, 0
+        CALL    ?UL_DIVMOD_L03
+        SUBI    R16, 1
+        SBCI    R17, 0
+        RET
+//  927 
+//  928 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  929 void CPlatform::BuzzerTimerStop(void)
+??BuzzerTimerStop:
+//  930 {
+//  931     // timer off.
+//  932     TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
+        LDS     R16, _A_TCCR3A
+        ANDI    R16, 0x1D
+        STS     _A_TCCR3A, R16
+//  933     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+        LDS     R16, _A_TCCR3B
+        ANDI    R16, 0xE6
+        RJMP    ?Subroutine29
+        REQUIRE _A_TCCR3A
+        REQUIRE _A_TCCR3B
+//  934 };
+//  935 
+//  936 //-----------------------------------------------------------------------------------------------------
+//  937 void CPlatform::SystemTickInit(void)
+//  938 {
+//  939 #define MAIN_TIMER_TICK_RATE_HZ 1000
+//  940 
+//  941 //#define TIMER1_INTERRUPT
+//  942 #define TIMER2_INTERRUPT
+//  943 
+//  944 
+//  945 #ifdef TIMER2_INTERRUPT
+//  946     /* Hardware constants for timer 2. */
+//  947 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM21) )
+//  948 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS21) | _BV(CS20)) )
+//  949 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+//  950 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE2) )
+//  951 #endif //TIMER2_INTERRUPT
+//  952 
+//  953 #ifdef TIMER1_INTERRUPT
+//  954     /* Hardware constants for timer 1. */
+//  955 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM12) )
+//  956 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS11) | _BV(CS10)) )
+//  957 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+//  958 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE1A) )
+//  959 #endif //TIMER1_INTERRUPT
+//  960 
+//  961 #ifdef TIMER2_INTERRUPT
+//  962 
+//  963     /*
+//  964      * Setup timer 2 compare match A to generate a tick interrupt.
+//  965      */
+//  966 //  TMR2 mega128a
+//  967     unsigned long ulCompareMatch;
+//  968     unsigned char ucLowByte;
+//  969 
+//  970     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+//  971     selected for the configCPU_CLOCK_HZ clock. */
+//  972 
+//  973 //ulCompareMatch  = (configCPU_CLOCK_HZ / prescaller) / period
+//  974 
+//  975     ulCompareMatch = F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+//  976 
+//  977     /* We only have 16 bits so have to scale to get our required tick rate. */
+//  978     ulCompareMatch /= portCLOCK_PRESCALER;
+//  979 
+//  980     /* Adjust for correct value. */
+//  981     ulCompareMatch -= ( unsigned long ) 1;
+//  982 
+//  983     /* Setup compare match value for compare match A.  Interrupts are disabled
+//  984     before this is called so we need not worry here. */
+//  985     OCR2 = ulCompareMatch;
+//  986 
+//  987     /* Setup clock Source and compare match behaviour. */
+//  988     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+//  989     TCCR2 = ucLowByte;
+//  990 
+//  991     /* Enable the interrupt - this is okay as interrupt are currently globally
+//  992     disabled. */
+//  993     ucLowByte = TIMSK;
+//  994     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+//  995     TIMSK = ucLowByte;
+//  996 
+//  997 #endif //TIMER2_INTERRUPT
+//  998 
+//  999 #ifdef TIMER1_INTERRUPT
+// 1000 
+// 1001 // mega128a
+// 1002     unsigned long ulCompareMatch;
+// 1003     unsigned char ucLowByte;
+// 1004 
+// 1005     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+// 1006     selected for the configCPU_CLOCK_HZ clock. */
+// 1007 
+// 1008     ulCompareMatch = CPlatform::F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+// 1009 
+// 1010     /* We only have 16 bits so have to scale to get our required tick rate. */
+// 1011     ulCompareMatch /= portCLOCK_PRESCALER;
+// 1012 
+// 1013     /* Adjust for correct value. */
+// 1014     ulCompareMatch -= ( unsigned long ) 1;
+// 1015 
+// 1016     /* Setup compare match value for compare match A.  Interrupts are disabled
+// 1017     before this is called so we need not worry here. */
+// 1018     OCR1A = ulCompareMatch;
+// 1019 
+// 1020     /* Setup clock Source and compare match behaviour. */
+// 1021     TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
+// 1022     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+// 1023     TCCR1B = ucLowByte;
+// 1024 
+// 1025     /* Enable the interrupt - this is okay as interrupt are currently globally
+// 1026     disabled. */
+// 1027     ucLowByte = TIMSK;
+// 1028     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+// 1029     TIMSK = ucLowByte;
+// 1030 
+// 1031 #endif //TIMER1_INTERRUPT
+// 1032 
+// 1033 }
+// 1034 
+// 1035 //-----------------------------------------------------------------------------------------------------
+// 1036 #ifdef TIMER1_INTERRUPT
+// 1037 // Прерывание TIMER1_COMPA_vect
+// 1038 __interrupt void SystemTickInterrupt(void)
+// 1039 {
+// 1040     CPlatform::IncrementSystemTick();
+// 1041 }
+// 1042 #endif //TIMER1_INTERRUPT
+// 1043 //-----------------------------------------------------------------------------------------------------
+// 1044 #ifdef TIMER2_INTERRUPT
+// 1045 // Прерывание TIMER2_COMP_vect
+// 1046 #pragma vector = TIMER2_COMP_vect	// Прерывание по совпадению TMR2 с OCR2
+
+        RSEG CODE:CODE:NOROOT(1)
+        CALL_GRAPH_ROOT ??SystemTickInterrupt, "interrupt"
+// 1047 __interrupt void SystemTickInterrupt(void)
+??SystemTickInterrupt:
+// 1048 {
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_34:
+        RCALL   ??Subroutine44_0
+??CrossCallReturnLabel_57:
+        IN      R18, 0x3F
+// 1049     CPlatform::IncrementSystemTick();
+        LDI     R30, LOW(??m_uiSystemTick)
+        LDI     R31, (??m_uiSystemTick) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        SUBI    R16, 255
+        SBCI    R17, 255
+        ST      Z, R16
+        STD     Z+1, R17
+// 1050 }
+        OUT     0x3F, R18
+        LD      R16, Y+
+        LD      R17, Y+
+        LD      R18, Y+
+        RJMP    ?Subroutine40
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 36
+`??SystemTickInterrupt::??INTVEC 36`:
+        JMP     ??SystemTickInterrupt
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 88
+`??EEPROM_EE_READY::??INTVEC 88`:
+        JMP     ??EEPROM_EE_READY
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 120
+`??SIG_UART1_RECV::??INTVEC 120`:
+        JMP     ??SIG_UART1_RECV
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 124
+`??SIG_UART1_DATA::??INTVEC 124`:
+        JMP     ??SIG_UART1_DATA
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 128
+`??SIG_UART1_TXC::??INTVEC 128`:
+        JMP     ??SIG_UART1_TXC
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DC16    SFE(NEAR_Z) - SFB(NEAR_Z)
+        DC16    SFB(NEAR_Z)
+        DP      0
+        REQUIRE ?need_segment_init
+
+        END
+// 1051 #endif //TIMER2_INTERRUPT
+// 1052 
+// 1053 
+// 1054 
+// 
+//   105 bytes in segment ABSOLUTE
+// 1 722 bytes in segment CODE
+//     7 bytes in segment INITTAB
+//    20 bytes in segment INTVEC
+//   734 bytes in segment NEAR_F
+//    14 bytes in segment NEAR_Z
+// 
+// 2 448 bytes of CODE memory (+  35 bytes shared)
+//    14 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 8

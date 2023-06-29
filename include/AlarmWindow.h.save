@@ -1,0 +1,62 @@
+//-----------------------------------------------------------------------------------------------------
+//  Sourse      : FileName.cpp
+//  Created     : 01.06.2022
+//  Author      : Alexandr Volvenkin
+//  email       : aav-36@mail.ru
+//  GitHub      : https://github.com/AlexandrVolvenkin
+//-----------------------------------------------------------------------------------------------------
+#ifndef CALARMWINDOW_H
+#define CALARMWINDOW_H
+
+#include <stdint.h>
+
+#include "Configuration.h"
+
+//-----------------------------------------------------------------------------------------------------
+class CAlarmWindow
+{
+public:
+    CAlarmWindow();
+    virtual ~CAlarmWindow();
+    void SetActivityState(uint8_t uiData)
+    {
+        m_uiActivityState = uiData;
+    };
+    uint8_t GetActivityState(void)
+    {
+        return m_uiActivityState;
+    };
+//    void SetIsReceipted(uint8_t uiData)
+//    {
+//        m_uiIsReceipted = (uiData & 0x01);
+//    };
+//    uint8_t GetIsReceipted(void)
+//    {
+//        return (m_uiIsReceipted & 0x01);
+//    };
+//    void SetIsReseted(uint8_t uiData)
+//    {
+//        m_uiIsReseted = (uiData & 0x01);
+//    };
+//    uint8_t GetIsReseted(void)
+//    {
+//        return (m_uiIsReseted & 0x01);
+//    };
+//    void SetAlarmType(uint8_t uiData)
+//    {
+//        m_uiAlarmType = uiData;
+//    };
+//    uint8_t GetAlarmType(void)
+//    {
+//        return m_uiAlarmType;
+//    };
+
+protected:
+private:
+    uint8_t m_uiActivityState;
+    // Тип сигнализации.
+    uint8_t m_uiAlarmType;
+};
+
+//-----------------------------------------------------------------------------------------------------
+#endif // CALARMWINDOW_H

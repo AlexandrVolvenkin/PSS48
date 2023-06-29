@@ -1,0 +1,477 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           29/Jun/2023  11:58:39
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Crc.cpp
+#    Command line =  
+#        -f C:\Users\Admin\AppData\Local\Temp\EW9257.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Crc.cpp
+#        --cpu=m128a -ms -o
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+#        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Crc.lst
+#    Object file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj\Crc.r90
+#
+###############################################################################
+
+D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Crc.cpp
+      1          #include <stdint.h>
+      2          #include "Crc.h"
+      3          
+      4          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment NEAR_F, align 1, keep-with-next, root
+      5          __flash const unsigned short usCRCTable[] =
+   \                     usCRCTable:
+   \   00000000   0000C0C1C181       DC16 0, 49345, 49537, 320, 49921, 960, 640, 49729, 50689, 1728, 1920
+   \              0140C30103C0
+   \              0280C241C601
+   \              06C00780    
+   \   00000016   C7410500C5C1       DC16 51009, 1280, 50625, 50305, 1088, 52225, 3264, 3456, 52545, 3840
+   \              C4810440CC01
+   \              0CC00D80CD41
+   \              0F00        
+   \   0000002A   CFC1CE810E40       DC16 53185, 52865, 3648, 2560, 51905, 52097, 2880, 51457, 2496, 2176
+   \              0A00CAC1CB81
+   \              0B40C90109C0
+   \              0880        
+   \   0000003E   C841D80118C0       DC16 51265, 55297, 6336, 6528, 55617, 6912, 56257, 55937, 6720, 7680
+   \              1980D9411B00
+   \              DBC1DA811A40
+   \              1E00        
+   \   00000052   DEC1DF811F40       DC16 57025, 57217, 8000, 56577, 7616, 7296, 56385, 5120, 54465, 54657
+   \              DD011DC01C80
+   \              DC411400D4C1
+   \              D581        
+   \   00000066   1540D70117C0       DC16 5440, 55041, 6080, 5760, 54849, 53761, 4800, 4992, 54081, 4352
+   \              1680D641D201
+   \              12C01380D341
+   \              1100        
+   \   0000007A   D1C1D0811040       DC16 53697, 53377, 4160, 61441, 12480, 12672, 61761, 13056, 62401
+   \              F00130C03180
+   \              F1413300F3C1
+   \   0000008C   F28132403600       DC16 62081, 12864, 13824, 63169, 63361, 14144, 62721, 13760, 13440
+   \              F6C1F7813740
+   \              F50135C03480
+   \   0000009E   F4413C00FCC1       DC16 62529, 15360, 64705, 64897, 15680, 65281, 16320, 16000, 65089
+   \              FD813D40FF01
+   \              3FC03E80FE41
+   \   000000B0   FA013AC03B80       DC16 64001, 15040, 15232, 64321, 14592, 63937, 63617, 14400, 10240
+   \              FB413900F9C1
+   \              F88138402800
+   \   000000C2   E8C1E9812940       DC16 59585, 59777, 10560, 60161, 11200, 10880, 59969, 60929, 11968
+   \              EB012BC02A80
+   \              EA41EE012EC0
+   \   000000D4   2F80EF412D00       DC16 12160, 61249, 11520, 60865, 60545, 11328, 58369, 9408, 9600, 58689
+   \              EDC1EC812C40
+   \              E40124C02580
+   \              E541        
+   \   000000E8   2700E7C1E681       DC16 9984, 59329, 59009, 9792, 8704, 58049, 58241, 9024, 57601, 8640
+   \              26402200E2C1
+   \              E3812340E101
+   \              21C0        
+   \   000000FC   2080E041A001       DC16 8320, 57409, 40961, 24768, 24960, 41281, 25344, 41921, 41601
+   \              60C06180A141
+   \              6300A3C1A281
+   \   0000010E   62406600A6C1       DC16 25152, 26112, 42689, 42881, 26432, 42241, 26048, 25728, 42049
+   \              A7816740A501
+   \              65C06480A441
+   \   00000120   6C00ACC1AD81       DC16 27648, 44225, 44417, 27968, 44801, 28608, 28288, 44609, 43521
+   \              6D40AF016FC0
+   \              6E80AE41AA01
+   \   00000132   6AC06B80AB41       DC16 27328, 27520, 43841, 26880, 43457, 43137, 26688, 30720, 47297
+   \              6900A9C1A881
+   \              68407800B8C1
+   \   00000144   B9817940BB01       DC16 47489, 31040, 47873, 31680, 31360, 47681, 48641, 32448, 32640
+   \              7BC07A80BA41
+   \              BE017EC07F80
+   \   00000156   BF417D00BDC1       DC16 48961, 32000, 48577, 48257, 31808, 46081, 29888, 30080, 46401
+   \              BC817C40B401
+   \              74C07580B541
+   \   00000168   7700B7C1B681       DC16 30464, 47041, 46721, 30272, 29184, 45761, 45953, 29504, 45313
+   \              76407200B2C1
+   \              B3817340B101
+   \   0000017A   71C07080B041       DC16 29120, 28800, 45121, 20480, 37057, 37249, 20800, 37633, 21440
+   \              500090C19181
+   \              5140930153C0
+   \   0000018C   528092419601       DC16 21120, 37441, 38401, 22208, 22400, 38721, 21760, 38337, 38017
+   \              56C057809741
+   \              550095C19481
+   \   0000019E   54409C015CC0       DC16 21568, 39937, 23744, 23936, 40257, 24320, 40897, 40577, 24128
+   \              5D809D415F00
+   \              9FC19E815E40
+   \   000001B0   5A009AC19B81       DC16 23040, 39617, 39809, 23360, 39169, 22976, 22656, 38977, 34817
+   \              5B40990159C0
+   \              588098418801
+   \   000001C2   48C049808941       DC16 18624, 18816, 35137, 19200, 35777, 35457, 19008, 19968, 36545
+   \              4B008BC18A81
+   \              4A404E008EC1
+   \   000001D4   8F814F408D01       DC16 36737, 20288, 36097, 19904, 19584, 35905, 17408, 33985, 34177
+   \              4DC04C808C41
+   \              440084C18581
+   \   000001E6   4540870147C0       DC16 17728, 34561, 18368, 18048, 34369, 33281, 17088, 17280, 33601
+   \              468086418201
+   \              42C043808341
+   \   000001F8   410081C18081       DC16 16640, 33217, 32897, 16448
+   \              4040        
+      6          {
+      7              0X0000, 0XC0C1, 0XC181, 0X0140, 0XC301, 0X03C0, 0X0280, 0XC241,
+      8              0XC601, 0X06C0, 0X0780, 0XC741, 0X0500, 0XC5C1, 0XC481, 0X0440,
+      9              0XCC01, 0X0CC0, 0X0D80, 0XCD41, 0X0F00, 0XCFC1, 0XCE81, 0X0E40,
+     10              0X0A00, 0XCAC1, 0XCB81, 0X0B40, 0XC901, 0X09C0, 0X0880, 0XC841,
+     11              0XD801, 0X18C0, 0X1980, 0XD941, 0X1B00, 0XDBC1, 0XDA81, 0X1A40,
+     12              0X1E00, 0XDEC1, 0XDF81, 0X1F40, 0XDD01, 0X1DC0, 0X1C80, 0XDC41,
+     13              0X1400, 0XD4C1, 0XD581, 0X1540, 0XD701, 0X17C0, 0X1680, 0XD641,
+     14              0XD201, 0X12C0, 0X1380, 0XD341, 0X1100, 0XD1C1, 0XD081, 0X1040,
+     15              0XF001, 0X30C0, 0X3180, 0XF141, 0X3300, 0XF3C1, 0XF281, 0X3240,
+     16              0X3600, 0XF6C1, 0XF781, 0X3740, 0XF501, 0X35C0, 0X3480, 0XF441,
+     17              0X3C00, 0XFCC1, 0XFD81, 0X3D40, 0XFF01, 0X3FC0, 0X3E80, 0XFE41,
+     18              0XFA01, 0X3AC0, 0X3B80, 0XFB41, 0X3900, 0XF9C1, 0XF881, 0X3840,
+     19              0X2800, 0XE8C1, 0XE981, 0X2940, 0XEB01, 0X2BC0, 0X2A80, 0XEA41,
+     20              0XEE01, 0X2EC0, 0X2F80, 0XEF41, 0X2D00, 0XEDC1, 0XEC81, 0X2C40,
+     21              0XE401, 0X24C0, 0X2580, 0XE541, 0X2700, 0XE7C1, 0XE681, 0X2640,
+     22              0X2200, 0XE2C1, 0XE381, 0X2340, 0XE101, 0X21C0, 0X2080, 0XE041,
+     23              0XA001, 0X60C0, 0X6180, 0XA141, 0X6300, 0XA3C1, 0XA281, 0X6240,
+     24              0X6600, 0XA6C1, 0XA781, 0X6740, 0XA501, 0X65C0, 0X6480, 0XA441,
+     25              0X6C00, 0XACC1, 0XAD81, 0X6D40, 0XAF01, 0X6FC0, 0X6E80, 0XAE41,
+     26              0XAA01, 0X6AC0, 0X6B80, 0XAB41, 0X6900, 0XA9C1, 0XA881, 0X6840,
+     27              0X7800, 0XB8C1, 0XB981, 0X7940, 0XBB01, 0X7BC0, 0X7A80, 0XBA41,
+     28              0XBE01, 0X7EC0, 0X7F80, 0XBF41, 0X7D00, 0XBDC1, 0XBC81, 0X7C40,
+     29              0XB401, 0X74C0, 0X7580, 0XB541, 0X7700, 0XB7C1, 0XB681, 0X7640,
+     30              0X7200, 0XB2C1, 0XB381, 0X7340, 0XB101, 0X71C0, 0X7080, 0XB041,
+     31              0X5000, 0X90C1, 0X9181, 0X5140, 0X9301, 0X53C0, 0X5280, 0X9241,
+     32              0X9601, 0X56C0, 0X5780, 0X9741, 0X5500, 0X95C1, 0X9481, 0X5440,
+     33              0X9C01, 0X5CC0, 0X5D80, 0X9D41, 0X5F00, 0X9FC1, 0X9E81, 0X5E40,
+     34              0X5A00, 0X9AC1, 0X9B81, 0X5B40, 0X9901, 0X59C0, 0X5880, 0X9841,
+     35              0X8801, 0X48C0, 0X4980, 0X8941, 0X4B00, 0X8BC1, 0X8A81, 0X4A40,
+     36              0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
+     37              0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641,
+     38              0X8201, 0X42C0, 0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040
+     39          };
+     40          
+     41          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     42          uint16_t usCrc16(const unsigned char *puiSource, uint16_t uiLength)
+   \                     ??usCrc16:
+     43          {
+     44              unsigned char ucTemp;
+     45              uint16_t usCrc = 0xFFFF;
+   \   00000000   EF6F               LDI     R22, 255
+   \   00000002   EF7F               LDI     R23, 255
+     46          
+     47          //    while (uiLength--)
+     48          //    {
+     49          //        ucTemp = *puiSource++ ^ usCrc;
+     50          //        usCrc >>= 8;
+     51          //        usCrc  ^= usCRCTable[ucTemp];
+     52          //    }
+     53          
+     54              for (uint8_t i = 0; i < uiLength; i++)
+   \   00000004   E040               LDI     R20, 0
+   \   00000006   C00F               RJMP    ??usCrc16_1
+     55              {
+     56                  ucTemp = *puiSource++ ^ usCrc;
+   \                     ??usCrc16_2:
+   \   00000008   01F8               MOVW    R31:R30, R17:R16
+   \   0000000A   9151               LD      R21, Z+
+   \   0000000C   018F               MOVW    R17:R16, R31:R30
+   \   0000000E   2756               EOR     R21, R22
+     57                  usCrc >>= 8;
+     58                  usCrc  ^= usCRCTable[ucTemp];
+   \   00000010   E0E2               LDI     R30, 2
+   \   00000012   9F5E               MUL     R21, R30
+   \   00000014   01F0               MOVW    R31:R30, R1:R0
+   \   00000016   ....               SUBI    R30, LOW((-(usCRCTable) & 0xFFFF))
+   \   00000018   ....               SBCI    R31, (-(usCRCTable) & 0xFFFF) >> 8
+   \   0000001A   9005               LPM     R0, Z+
+   \   0000001C   9014               LPM     R1, Z
+   \   0000001E   2570               EOR     R23, R0
+   \   00000020   2F67               MOV     R22, R23
+   \   00000022   2D71               MOV     R23, R1
+     59              }
+   \   00000024   9543               INC     R20
+   \                     ??usCrc16_1:
+   \   00000026   E050               LDI     R21, 0
+   \   00000028   1742               CP      R20, R18
+   \   0000002A   0753               CPC     R21, R19
+   \   0000002C   F368               BRCS    ??usCrc16_2
+     60          
+     61              return usCrc;
+   \   0000002E                      REQUIRE ?Subroutine1
+   \   0000002E                      ;               // Fall through to label ?Subroutine1
+     62          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   018B               MOVW    R17:R16, R23:R22
+   \   00000002   9508               RET
+     63          
+     64          
+     65          ////--------------------------------------------------------------------
+     66          //unsigned short usCrc16(unsigned char *puiSource, unsigned short uiLength)
+     67          //{
+     68          //    unsigned short usCrc = 0xFFFF;
+     69          //    unsigned char ucCounter;
+     70          //
+     71          //    while (uiLength != 0)
+     72          //    {
+     73          //        usCrc = usCrc ^ (unsigned short)(*puiSource++);
+     74          //        ucCounter = 8;
+     75          //        while(ucCounter != 0)
+     76          //        {
+     77          //            if (usCrc & 0x0001)
+     78          //            {
+     79          //                usCrc = usCrc >> 1 ^ 0xA001;
+     80          //            }
+     81          //            else usCrc = usCrc >> 1;
+     82          //            ucCounter--;
+     83          //        }
+     84          //        uiLength--;
+     85          //    }
+     86          //    usCrc = usCrc>>8 ^ usCrc<<8;
+     87          //    return usCrc;
+     88          //}
+     89          
+     90          ////-----------------------------------------------------------------------------------------------------
+     91          //int iCrc16Check(unsigned char *puiSource, unsigned short uiLength)
+     92          //{
+     93          //    unsigned short usCrc;
+     94          //
+     95          //    usCrc = (((unsigned short)(puiSource[uiLength])) << 8) |
+     96          //            (unsigned short)(puiSource[uiLength + 1]);
+     97          //
+     98          //    if (usCrc16(puiSource, uiLength) == usCrc)
+     99          //    {
+    100          //        return 0;
+    101          //    }
+    102          //    else
+    103          //    {
+    104          //        return -1;
+    105          //    }
+    106          //}
+    107          
+    108          //-----------------------------------------------------------------------------------------------------
+    109          // вычисляет двухбайтовую контрольную сумму.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    110          unsigned short usCrcSummTwoByteCalculation(
+   \                     ??usCrcSummTwoByteCalculation:
+    111              unsigned char *puiSource,
+    112              unsigned int nuiNbyte)
+    113          {
+    114              unsigned short usData;
+    115          
+    116              usData = 0;
+   \   00000000   ....               RCALL   ?Subroutine0
+    117              do
+    118              {
+    119                  usData += (unsigned short)*puiSource++;
+    120                  nuiNbyte--;
+    121              }
+    122              while (nuiNbyte);
+    123          
+    124              return usData;
+   \                     ??CrossCallReturnLabel_0:
+   \   00000002   ....               RJMP    ?Subroutine1
+    125          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   E060               LDI     R22, 0
+   \   00000002   E070               LDI     R23, 0
+   \   00000004   E050               LDI     R21, 0
+   \                     ??Subroutine0_0:
+   \   00000006   01F8               MOVW    R31:R30, R17:R16
+   \   00000008   9141               LD      R20, Z+
+   \   0000000A   018F               MOVW    R17:R16, R31:R30
+   \   0000000C   0F64               ADD     R22, R20
+   \   0000000E   1F75               ADC     R23, R21
+   \   00000010   5021               SUBI    R18, 1
+   \   00000012   4030               SBCI    R19, 0
+   \   00000014   F7C1               BRNE    ??Subroutine0_0
+   \   00000016   9508               RET
+    126          
+    127          //-----------------------------------------------------------------------------------------------------
+    128          // сравнивает двухбайтовую контрольную сумму.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    129          int iCrcSummTwoByteCompare(unsigned char *puiSource,
+   \                     ??iCrcSummTwoByteCompare:
+    130                                     unsigned int nuiNbyte)
+    131          {
+    132              unsigned short usData;
+    133          
+    134              usData = 0;
+   \   00000000   ....               RCALL   ?Subroutine0
+    135              do
+    136              {
+    137                  usData += (unsigned short)*puiSource++;
+    138                  nuiNbyte--;
+    139              }
+    140              while (nuiNbyte);
+    141          
+    142              if ((unsigned char)usData  == *puiSource++)
+   \                     ??CrossCallReturnLabel_1:
+   \   00000002   8130               LD      R19, Z
+   \   00000004   1763               CP      R22, R19
+   \   00000006   F429               BRNE    ??iCrcSummTwoByteCompare_1
+    143              {
+    144          
+    145                  if ((unsigned char)(usData >> 8)  == *puiSource)
+   \   00000008   8101               LDD     R16, Z+1
+   \   0000000A   1770               CP      R23, R16
+   \   0000000C   F411               BRNE    ??iCrcSummTwoByteCompare_1
+    146                  {
+    147                      return 1;
+   \   0000000E   E001               LDI     R16, 1
+   \   00000010   C001               RJMP    ??iCrcSummTwoByteCompare_2
+    148                  }
+    149              }
+    150              return 0;
+   \                     ??iCrcSummTwoByteCompare_1:
+   \   00000012   E000               LDI     R16, 0
+   \                     ??iCrcSummTwoByteCompare_2:
+   \   00000014                      REQUIRE ?Subroutine2
+   \   00000014                      ;               // Fall through to label ?Subroutine2
+    151          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine2:
+   \   00000000   E010               LDI     R17, 0
+   \   00000002   9508               RET
+    152          
+    153          //-----------------------------------------------------------------------------------------------------
+    154          // вычисляет однобайтовую контрольную сумму.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    155          uint8_t usCrcSummOneByteCalculation(
+   \                     ??usCrcSummOneByteCalculation:
+    156              uint8_t *puiSource,
+    157              uint16_t nuiNbyte)
+    158          {
+    159              uint8_t uiData = 0;
+   \   00000000   E060               LDI     R22, 0
+    160          
+    161              for (int8_t i = 0; i < nuiNbyte; i++)
+   \   00000002   E040               LDI     R20, 0
+   \   00000004   C009               RJMP    ??usCrcSummOneByteCalculation_1
+    162              {
+    163                  uiData += puiSource[i];
+   \                     ??usCrcSummOneByteCalculation_2:
+   \   00000006   2F54               MOV     R21, R20
+   \   00000008   0F55               LSL     R21
+   \   0000000A   0B55               SBC     R21, R21
+   \   0000000C   01F8               MOVW    R31:R30, R17:R16
+   \   0000000E   0FE4               ADD     R30, R20
+   \   00000010   1FF5               ADC     R31, R21
+   \   00000012   8150               LD      R21, Z
+   \   00000014   0F65               ADD     R22, R21
+    164              }
+   \   00000016   9543               INC     R20
+   \                     ??usCrcSummOneByteCalculation_1:
+   \   00000018   2F54               MOV     R21, R20
+   \   0000001A   0F55               LSL     R21
+   \   0000001C   0B55               SBC     R21, R21
+   \   0000001E   1742               CP      R20, R18
+   \   00000020   0753               CPC     R21, R19
+   \   00000022   F388               BRCS    ??usCrcSummOneByteCalculation_2
+    165          
+    166              return uiData;
+   \   00000024   2F06               MOV     R16, R22
+   \   00000026   9508               RET
+    167          }
+    168          
+    169          //-----------------------------------------------------------------------------------------------------
+    170          // сравнивает однобайтовую контрольную сумму.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    171          int iCrcSummOneByteCompare(unsigned char *puiSource,
+   \                     ??iCrcSummOneByteCompare:
+    172                                     unsigned int nuiNbyte)
+    173          {
+    174              unsigned char uiData;
+    175          
+    176              uiData = 0;
+   \   00000000   E040               LDI     R20, 0
+    177              do
+    178              {
+    179                  uiData += *puiSource++;
+   \                     ??iCrcSummOneByteCompare_1:
+   \   00000002   01F8               MOVW    R31:R30, R17:R16
+   \   00000004   9151               LD      R21, Z+
+   \   00000006   018F               MOVW    R17:R16, R31:R30
+   \   00000008   0F45               ADD     R20, R21
+    180                  nuiNbyte--;
+    181              }
+    182              while ((nuiNbyte) != 0);
+   \   0000000A   5021               SUBI    R18, 1
+   \   0000000C   4030               SBCI    R19, 0
+   \   0000000E   F7C9               BRNE    ??iCrcSummOneByteCompare_1
+    183          
+    184              if (uiData == *puiSource)
+   \   00000010   8100               LD      R16, Z
+   \   00000012   1740               CP      R20, R16
+   \   00000014   F411               BRNE    ??iCrcSummOneByteCompare_2
+    185              {
+    186                  return 1;
+   \   00000016   E001               LDI     R16, 1
+   \   00000018   C001               RJMP    ??iCrcSummOneByteCompare_3
+    187              }
+    188              else
+    189              {
+    190                  return 0;
+   \                     ??iCrcSummOneByteCompare_2:
+   \   0000001A   E000               LDI     R16, 0
+    191              }
+   \                     ??iCrcSummOneByteCompare_3:
+   \   0000001C   ....               RJMP    ?Subroutine2
+    192          }
+    193          
+
+   Maximum stack usage in bytes:
+
+   RSTACK Function
+   ------ --------
+      2   iCrcSummOneByteCompare(unsigned char *, unsigned int)
+      2   iCrcSummTwoByteCompare(unsigned char *, unsigned int)
+      2   usCrc16(unsigned char const *, uint16_t)
+      2   usCrcSummOneByteCalculation(uint8_t *, uint16_t)
+      2   usCrcSummTwoByteCalculation(unsigned char *, unsigned int)
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      24  ?Subroutine0
+       4  ?Subroutine1
+       4  ?Subroutine2
+      30  iCrcSummOneByteCompare(unsigned char *, unsigned int)
+      20  iCrcSummTwoByteCompare(unsigned char *, unsigned int)
+     512  usCRCTable
+      46  usCrc16(unsigned char const *, uint16_t)
+      40  usCrcSummOneByteCalculation(uint8_t *, uint16_t)
+       4  usCrcSummTwoByteCalculation(unsigned char *, unsigned int)
+
+ 
+ 172 bytes in segment CODE
+ 512 bytes in segment NEAR_F
+ 
+ 684 bytes of CODE memory
+
+Errors: none
+Warnings: none

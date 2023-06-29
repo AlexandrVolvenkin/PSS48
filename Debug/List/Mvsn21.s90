@@ -1,0 +1,1045 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:58:40
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Mvsn21.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW95D0.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Mvsn21.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+//        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Mvsn21.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Mvsn21
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B3_L09
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE3_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?S_SHL_L02
+
+        PUBLIC ??Allocate
+        PUBLIC ??CMvsn21Driver
+        PUBLIC ??DataExchange
+        PUBWEAK ??__vtbl_3
+        PUBLIC ??__vtbl_CDfa
+        PUBLIC `??new CMvsn21Driver`
+        PUBLIC `?~CMvsn21Driver`
+        PUBLIC `?~CMvsn21Driver for CDfaLite/-11/`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CMvsn21Driver 30>` SYMBOL "CMvsn21Driver"
+??__vtbl_3          SYMBOL "__vtbl", `?<Name CMvsn21Driver 30>`
+??__vtbl_CDfa       SYMBOL "__vtbl_CDfa", `?<Name CMvsn21Driver 30>`
+
+        EXTERN ??CDfa
+        EXTERN ??ConnectDevice
+        EXTERN ??DisconnectDevice
+        EXTERN ??Exchange
+        EXTERN ??Fsm
+        EXTERN ??iCrcSummOneByteCompare
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDfa`
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Mvsn21.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "Mvsn21.h"
+//    9 #include "Platform.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//   10 //#include "Config.h"
+//   11 #include "Pss21.h"
+//   12 #include "Crc.h"
+//   13 
+//   14 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   15 CMvsn21Driver::CMvsn21Driver(uint8_t uiType)
+??CMvsn21Driver:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+//   16 {
+        SUBI    R16, 245
+        SBCI    R17, 255
+        CALL    ??CDfa
+        LDI     R16, LOW(??__vtbl_3)
+        LDI     R17, (??__vtbl_3) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+9, R16
+        STD     Z+10, R17
+        LDI     R16, LOW(??__vtbl_CDfa)
+        LDI     R17, (??__vtbl_CDfa) >> 8
+        STD     Z+12, R16
+        STD     Z+13, R17
+//   17     m_uiType = uiType;
+        ST      X, R24
+//   18 }
+        MOVW    R17:R16, R27:R26
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CMvsn21Driver &CMvsn21Driver::new CMvsn21Driver(uint8_t)
+`??new CMvsn21Driver`:
+        ST      -Y, R24
+        MOV     R24, R16
+        LDI     R16, 24
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CMvsn21Driver_1`
+        MOV     R18, R24
+        RCALL   ??CMvsn21Driver
+        RJMP    `??new CMvsn21Driver_2`
+`??new CMvsn21Driver_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+`??new CMvsn21Driver_2`:
+        LD      R24, Y+
+        RET
+//   19 
+//   20 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   21 CMvsn21Driver::~CMvsn21Driver()
+`?~CMvsn21Driver`:
+//   22 {
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
+        MOV     R26, R18
+        OR      R16, R25
+        BREQ    `?~CMvsn21Driver_1`
+//   23 
+//   24 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOV     R16, R24
+        SUBI    R16, 245
+        SBCI    R17, 255
+        CALL    `?~CDfa`
+        BST     R26, 0
+        BRTC    `?~CMvsn21Driver_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CMvsn21Driver_1`:
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CMvsn21Driver::~CMvsn21Driver for CDfaLite/-11/()
+`?~CMvsn21Driver for CDfaLite/-11/`:
+        SUBI    R16, 11
+        SBCI    R17, 0
+        RJMP    `?~CMvsn21Driver`
+//   25 
+//   26 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   27 void CMvsn21Driver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
+??Allocate:
+//   28 {
+        MOVW    R23:R22, R27:R26
+        MOVW    R27:R26, R17:R16
+//   29     m_uiAddress = xMemoryAllocationConext.uiAddress;
+        MOVW    R31:R30, R19:R18
+        LD      R16, Z
+        MOVW    R31:R30, R27:R26
+        STD     Z+16, R16
+//   30     m_puiRxBuffer = xMemoryAllocationConext.puiRxBuffer;
+        MOVW    R31:R30, R19:R18
+        LDD     R16, Z+1
+        LDD     R17, Z+2
+        MOVW    R31:R30, R27:R26
+        STD     Z+17, R16
+        STD     Z+18, R17
+//   31     m_puiTxBuffer = xMemoryAllocationConext.puiTxBuffer;
+        MOVW    R31:R30, R19:R18
+        LDD     R16, Z+3
+        LDD     R17, Z+4
+        MOVW    R31:R30, R27:R26
+        STD     Z+19, R16
+        STD     Z+20, R17
+//   32     m_puiErrorCode = xMemoryAllocationConext.puiErrorCode;
+        MOVW    R31:R30, R19:R18
+        LDD     R16, Z+5
+        LDD     R17, Z+6
+        MOVW    R31:R30, R27:R26
+        STD     Z+5, R16
+        STD     Z+6, R17
+//   33     // Получим указатель на место в массиве дискретных входов для текущего модуля.
+//   34     m_puiDiscreteInputs =
+//   35         &xMemoryAllocationConext.
+//   36         puiDiscreteInputs[xMemoryAllocationConext.uiUsedDiscreteInputs];
+        MOVW    R31:R30, R19:R18
+        LDD     R20, Z+7
+        LDD     R21, Z+8
+        LDD     R16, Z+9
+        LDI     R17, 0
+        ADD     R20, R16
+        ADC     R21, R17
+        MOVW    R31:R30, R27:R26
+        STD     Z+21, R20
+        STD     Z+22, R21
+//   37     // Увеличим общий объём выделенной памяти.
+//   38     xMemoryAllocationConext.
+//   39     uiUsedDiscreteInputs +=
+//   40         MVSN21_DISCRETE_INPUTS_NUMBER;
+        MOVW    R31:R30, R19:R18
+        LDD     R16, Z+9
+        SUBI    R16, 232
+        STD     Z+9, R16
+//   41 
+//   42     // Получим указатель на место в массиве состояний ошибок для текущего модуля.
+//   43     m_puiErrorAlarmDataArray =
+//   44         &xMemoryAllocationConext.
+//   45         puiErrorAlarmDataArray[DISCRETE_INPUT_MODULE_FAILURE];
+        LDD     R16, Z+19
+        LDD     R17, Z+20
+        MOVW    R31:R30, R27:R26
+        STD     Z+7, R16
+        STD     Z+8, R17
+//   46 
+//   47     m_uiBadAnswerCounter = 0;
+        LDI     R16, 0
+        STD     Z+23, R16
+//   48 }
+        MOVW    R27:R26, R23:R22
+        RET
+//   49 
+//   50 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   51 uint8_t CMvsn21Driver::DataExchange(void)
+??DataExchange:
+//   52 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+//   53     m_puiTxBuffer[0] = DATA_EXCHANGE_COMMAND;
+        ADIW    R27:R26, 19
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 20
+        LDI     R16, 66
+        ST      Z, R16
+//   54 
+//   55     CPss21::ConnectDevice(m_uiAddress);
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+16
+        CALL    ??ConnectDevice
+//   56     delay_us(500);
+        LDI     R16, 106
+        LDI     R17, 3
+        SUBI    R16, 1
+        SBCI    R17, 0
+        BRNE    $-4
+        RJMP    $+2
+        NOP
+//   57     CSpi::Exchange(m_puiRxBuffer,
+//   58                    m_puiTxBuffer,
+//   59                    (PRIAMBLE_LENGTH +
+//   60                     DATA_EXCHANGE_COMMAND_ANSWER_LENGTH +
+//   61                     ONE_BYTE_CRC_LENGTH));
+        LDI     R20, 9
+        LDI     R21, 0
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+19
+        LDD     R19, Z+20
+        LDD     R16, Z+17
+        LDD     R17, Z+18
+        CALL    ??Exchange
+//   62     CPss21::DisconnectDevice();
+        CALL    ??DisconnectDevice
+//   63 
+//   64     // что ответил модуль?
+//   65     switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+17
+        LDD     R17, Z+18
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+1
+        CPI     R18, 66
+        BRNE    ??DataExchange_1
+//   66     {
+//   67     case DATA_READY:
+//   68         // данные не повреждены?
+//   69         if ((iCrcSummOneByteCompare(&m_puiRxBuffer[COMMAND_BYTE_OFFSET],
+//   70                                     (COMMAND_BYTE_LENGTH +
+//   71                                      DATA_EXCHANGE_COMMAND_ANSWER_LENGTH)) > 0))
+        LDI     R18, 7
+        LDI     R19, 0
+        SUBI    R16, 255
+        SBCI    R17, 255
+        CALL    ??iCrcSummOneByteCompare
+        CPI     R16, 1
+        SBCI    R17, 0
+        BRLT    ??DataExchange_1
+//   72         {
+//   73             m_uiBadAnswerCounter = 0;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+23, R16
+//   74             SetErrorAlarmData(0);
+        ADIW    R27:R26, 7
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 8
+        ST      Z, R16
+//   75             // отправим полученные от модуля данные в рабочий массив прибора.
+//   76             uint8_t *puiDestination = m_puiDiscreteInputs;
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+21
+        LDD     R19, Z+22
+//   77             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+        LDI     R24, 0
+        LDI     R23, 6
+//   78             {
+//   79                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
+??DataExchange_2:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+17
+        LDD     R17, Z+18
+        LDI     R25, 0
+        ADD     R16, R24
+        ADC     R17, R25
+        MOVW    R31:R30, R17:R16
+        LDD     R0, Z+2
+//   80 
+//   81                 for (uint8_t j = 0; j < DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY; j++)
+        LDI     R22, 0
+        LDI     R21, 8
+        RJMP    ??DataExchange_3
+//   82                 {
+//   83                     // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
+//   84                     // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
+//   85                     // бит нечётный?
+//   86                     if (j & 0x01)
+??DataExchange_4:
+        BST     R22, 0
+        BRTS    ??DataExchange_5
+//   87                     {
+//   88                         //                            // бит достоверен? 0 - достоверно, 1 - недостоверно.
+//   89 //                            *puiDestination2++ = ((uiData & (1 << j)) ? 1 : 0);
+//   90                     }
+//   91                     else
+//   92                     {
+//   93                         //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
+//   94                         if ((uiData & (1 << j)))
+??DataExchange_3:
+        LDI     R16, 1
+        LDI     R17, 0
+        MOV     R20, R22
+        CALL    ?S_SHL_L02
+        MOV     R17, R0
+        AND     R17, R16
+        MOVW    R31:R30, R19:R18
+        BREQ    ??DataExchange_6
+//   95                         {
+//   96                             *puiDestination++ = 1;
+        LDI     R16, 1
+        ST      Z+, R16
+        RJMP    ??DataExchange_7
+//   97                         }
+//   98                         else
+//   99                         {
+//  100                             *puiDestination++ = 0;
+??DataExchange_6:
+        ST      Z+, R25
+??DataExchange_7:
+        MOVW    R19:R18, R31:R30
+//  101                         }
+//  102                     }
+//  103                 }
+??DataExchange_5:
+        INC     R22
+        DEC     R21
+        BRNE    ??DataExchange_4
+//  104             }
+        INC     R24
+        DEC     R23
+        BRNE    ??DataExchange_2
+//  105             return 1;
+        LDI     R16, 1
+        RJMP    ??DataExchange_8
+//  106         }
+//  107         break;
+//  108 
+//  109     case DATA_NOT_READY:
+//  110         break;
+//  111 
+//  112     default:
+//  113         break;
+//  114     };
+//  115 
+//  116     // модуль не признан неисправным?
+//  117     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+??DataExchange_1:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+23
+        CPI     R16, 20
+        BRCC    ??DataExchange_9
+//  118     {
+//  119         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+//  120         m_uiBadAnswerCounter++;
+        INC     R16
+        STD     Z+23, R16
+//  121         return 0;
+        RJMP    ??DataExchange_10
+//  122     }
+//  123     else
+//  124     {
+//  125         // модуль признан неисправным.
+//  126         *m_puiErrorCode = IMD_ERROR;
+??DataExchange_9:
+        ADIW    R27:R26, 5
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 6
+        LDI     R16, 1
+        ST      Z, R16
+//  127         SetErrorAlarmData(1);
+        MOVW    R31:R30, R27:R26
+        LDD     R26, Z+7
+        LDD     R27, Z+8
+        ST      X, R16
+//  128         return 0;
+??DataExchange_10:
+        LDI     R16, 0
+//  129     }
+??DataExchange_8:
+        RJMP    ?Subroutine0
+//  130 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CMvsn21Driver::__vtbl[3]
+??__vtbl_3:
+        DC16 ??Allocate/2, ??DataExchange/2, `?~CMvsn21Driver`/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CMvsn21Driver::__vtbl_CDfa[2]
+??__vtbl_CDfa:
+        DC16 `?~CMvsn21Driver for CDfaLite/-11/`/2, ??Fsm/2
+
+        END
+// 
+// 105 bytes in segment ABSOLUTE
+// 446 bytes in segment CODE
+//  32 bytes in segment NEAR_F
+// 
+// 472 bytes of CODE memory (+   6 bytes shared)
+//   0 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 7

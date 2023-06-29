@@ -1,0 +1,2123 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           29/Jun/2023  11:58:39
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Alarm.cpp
+#    Command line =  
+#        -f C:\Users\Admin\AppData\Local\Temp\EW9254.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Alarm.cpp
+#        --cpu=m128a -ms -o
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+#        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Alarm.lst
+#    Object file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj\Alarm.r90
+#
+###############################################################################
+
+D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Alarm.cpp
+      1          //-----------------------------------------------------------------------------------------------------
+      2          //  Source      : FileName.cpp
+      3          //  Created     : 01.06.2022
+      4          //  Author      : Alexandr Volvenkin
+      5          //  email       : aav-36@mail.ru
+      6          //  GitHub      : https://github.com/AlexandrVolvenkin
+      7          //-----------------------------------------------------------------------------------------------------
+      8          #include "Dfa.h"
+      9          #include "Platform.h"
+
+   \                                 In  segment ABSOLUTE, at 0x9d, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9b, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x99, root
+   \   union <unnamed> volatile __io _A_UBRR1L
+   \                     _A_UBRR1L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_UBRR1H
+   \                     _A_UBRR1H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x95, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_UBRR0H
+   \                     _A_UBRR0H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8b, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x7d, root
+   \   union <unnamed> volatile __io _A_ETIMSK
+   \                     _A_ETIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ETIFR
+   \                     _A_ETIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x73, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x72, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6d, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6c, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x68, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x65, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x64, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x63, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x62, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5c, root
+   \   union <unnamed> volatile __io _A_XDIV
+   \                     _A_XDIV:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x59, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x58, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x56, root
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUCSR
+   \                     _A_MCUCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x52, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCR0
+   \                     _A_OCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4f, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x48, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x45, root
+   \   union <unnamed> volatile __io _A_TCCR2
+   \                     _A_TCCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_OCR2
+   \                     _A_OCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x42, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_SFIOR
+   \                     _A_SFIOR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3b, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3a, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x39, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_UBRR0L
+   \                     _A_UBRR0L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+      static __flash TDataBase CFlash::xMainDataBase;
+                               ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Platform.h",366  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+
+      static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
+                                                ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Platform.h",367  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+     10          #include "Pss21.h"
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CAlarmDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CAlarmDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CNormalAlarmDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_1:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CNormalAlarmDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_1:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CPreventiveAlarmLowLevelDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_2:
+   \   00000000   E002               LDI     R16, 2
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CPreventiveAlarmLowLevelDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_2:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CPreventiveAlarmHighLevelDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_3:
+   \   00000000   E002               LDI     R16, 2
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CPreventiveAlarmHighLevelDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_3:
+   \   00000000   E001               LDI     R16, 1
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CEmergencyAlarmLowLevelDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_4:
+   \   00000000   E003               LDI     R16, 3
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CEmergencyAlarmLowLevelDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_4:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CEmergencyAlarmHighLevelDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_5:
+   \   00000000   E003               LDI     R16, 3
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CEmergencyAlarmHighLevelDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_5:
+   \   00000000   E001               LDI     R16, 1
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CIndicationAlarmLowLevelDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_6:
+   \   00000000   E001               LDI     R16, 1
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CIndicationAlarmLowLevelDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_6:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CIndicationAlarmHighLevelDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_7:
+   \   00000000   E001               LDI     R16, 1
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CIndicationAlarmHighLevelDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_7:
+   \   00000000   E001               LDI     R16, 1
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CErrorAlarmDfa::ALARM_TYPE()
+   \                     ??ALARM_TYPE_8:
+   \   00000000   E006               LDI     R16, 6
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CErrorAlarmDfa::ACTIVE_LEVEL()
+   \                     ??ACTIVE_LEVEL_8:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+
+      virtual bool IsSolved(void) {};
+                                   ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",20  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CTaskInterface::IsSolved"
+
+      virtual bool IsSourceStateActive(void) {};
+                                              ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",23  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CTaskInterface::IsSourceStateActive"
+
+      bool IsSolved(void) {};
+                           ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",58  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::IsSolved"
+
+      virtual bool IsSourceStateActive(void) {};
+                                              ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",61  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::IsSourceStateActive"
+
+      virtual uint16_t KEY_PRESSED_TIME(void) {};
+                                               ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",63  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::KEY_PRESSED_TIME"
+     11          
+     12          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     13          CAlarmDfa::CAlarmDfa()
+   \                     ??CAlarmDfa:
+   \   00000000   ....               RCALL   ?Subroutine8
+     14          {
+   \                     ??CrossCallReturnLabel_7:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_1)
+   \   00000004   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   00000006   ....               RCALL   ?Subroutine22
+     15              //ctor
+     16          }
+   \                     ??CrossCallReturnLabel_20:
+   \   00000008   ....               RJMP    ??Subroutine40_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine22:
+   \   00000000   01FD               MOVW    R31:R30, R27:R26
+   \   00000002   8301               STD     Z+1, R16
+   \   00000004   8312               STD     Z+2, R17
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine40_0:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002   91A9               LD      R26, Y+
+   \   00000004   91B9               LD      R27, Y+
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine25:
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine8:
+   \   00000000   ....               RCALL   ?Subroutine25
+   \                     ??CrossCallReturnLabel_30:
+   \   00000002   ........           JMP     ??CDfaLite
+     17          
+     18          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     19          CAlarmDfa::~CAlarmDfa()
+   \                     `?~CAlarmDfa`:
+   \   00000000   ....               RJMP    ?Subroutine36
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine36:
+     20          {
+   \   00000000   ....               RCALL   ?Subroutine16
+     21              //dtor
+     22          }
+   \                     ??CrossCallReturnLabel_73:
+   \   00000002                      REQUIRE ??Subroutine41_0
+   \   00000002                      ;               // Fall through to label ??Subroutine41_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine41_0:
+   \   00000000   ........           JMP     ?EPILOGUE_B3_L09
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine34:
+   \   00000000   E0E3               LDI     R30, 3
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine30:
+   \   00000000   E020               LDI     R18, 0
+   \   00000002   E030               LDI     R19, 0
+   \   00000004   2F08               MOV     R16, R24
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine28:
+   \   00000000   FBA0               BST     R26, 0
+   \   00000002   F41E               BRTC    ??Subroutine28_0
+   \   00000004   018C               MOVW    R17:R16, R25:R24
+   \   00000006   ........           CALL    `??operator delete`
+   \                     ??Subroutine28_0:
+   \   0000000A   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine27:
+   \   00000000   ........           CALL    ?PROLOGUE3_L09
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   2FA2               MOV     R26, R18
+   \   00000008   2B01               OR      R16, R17
+   \   0000000A   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine16:
+   \   00000000   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_65:
+   \   00000002   F021               BREQ    ??CrossCallReturnLabel_69
+   \   00000004   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_71:
+   \   00000006   ........           CALL    `?~CDfaLite`
+   \   0000000A   ....               RCALL   ?Subroutine28
+   \                     ??CrossCallReturnLabel_69:
+   \   0000000C   ....               RJMP    ?Subroutine34
+     23          
+     24          //-----------------------------------------------------------------------------------------------------
+     25          // Автомат обработки сигнализации дискретного сигнала.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     26          void CAlarmDfa::Fsm(void)
+   \                     ??Fsm:
+     27          {
+   \   00000000   ....               RCALL   ?Subroutine18
+   \                     ??CrossCallReturnLabel_15:
+   \   00000002                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000002   ....               RCALL   ?Subroutine9
+     28              switch (GetFsmState())
+   \                     ??CrossCallReturnLabel_8:
+   \   00000004   F049               BREQ    ??Fsm_3
+   \   00000006   950A               DEC     R16
+   \   00000008   F0B9               BREQ    ??Fsm_4
+   \   0000000A   950A               DEC     R16
+   \   0000000C   F101               BREQ    ??Fsm_5
+   \   0000000E   950A               DEC     R16
+   \   00000010   F141               BREQ    ??Fsm_6
+   \   00000012   950A               DEC     R16
+   \   00000014   F151               BREQ    ??Fsm_7
+   \   00000016   C031               RJMP    ??Fsm_8
+     29              {
+     30              case START:
+     31                  break;
+     32          
+     33              case ACTIVE_STATE_WAITING:
+     34                  // Дискретный сигнал активен?
+     35                  if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+   \                     ??Fsm_3:
+   \   00000018   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_54:
+   \   0000001A   F179               BREQ    ??Fsm_8
+     36                  {
+     37                      // Установим связанные дискретный выходы - новое нарушение.
+     38                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+   \   0000001C   ....               RCALL   ?Subroutine13
+     39                      // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+     40                      // чем тип общей сигнализации?
+     41                      if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+     42                              (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+   \                     ??CrossCallReturnLabel_59:
+   \   0000001E   9100....           LDS     R16, ??m_uiCommonAlarmType
+   \   00000022   3003               CPI     R16, 3
+   \   00000024   F029               BREQ    ??Fsm_9
+   \   00000026   ....               RCALL   ?Subroutine7
+   \                     ??CrossCallReturnLabel_4:
+   \   00000028   F418               BRCC    ??Fsm_9
+     43                      {
+     44                          // Установим тип общей сигнализацию.
+     45                          CPss21::SetCommonAlarmType(ALARM_TYPE());
+   \   0000002A   ....               RCALL   ?Subroutine11
+     46                          // Изменим тип общей сигнализацию.
+     47                          CPss21::AlarmTypeChange();
+   \                     ??CrossCallReturnLabel_11:
+   \   0000002C   ........           CALL    ??AlarmTypeChange
+     48                      }
+     49                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+     50                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+   \                     ??Fsm_9:
+   \   00000030   ....               RCALL   ?Subroutine12
+   \                     ??CrossCallReturnLabel_13:
+   \   00000032   ....               RCALL   ?Subroutine23
+     51                      SetFsmState(RECEIPT_OR_RESET_WAITING);
+   \                     ??CrossCallReturnLabel_26:
+   \   00000034   E002               LDI     R16, 2
+   \   00000036   C020               RJMP    ??Fsm_10
+     52                  }
+     53                  break;
+     54          
+     55              case RECEIPT_OR_RESET_WAITING:
+     56                  // Дискретный сигнал активен?
+     57                  if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+   \                     ??Fsm_4:
+   \   00000038   ....               RCALL   ?Subroutine1
+     58                  {
+     59                      // Установим связанные дискретный выходы - не новое нарушение.
+     60                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+     61                  }
+     62          
+     63                  // Событие сброшено?
+     64                  if (CPss21::GetDiscreteSignalsReset())
+   \                     ??CrossCallReturnLabel_0:
+   \   0000003A   F011               BREQ    ??Fsm_11
+     65                  {
+     66                      // Переведём автоматы сигнализаций в состояние - квитировано.
+     67                      CPss21::AlarmTypeReceipt();
+   \   0000003C   ....               RCALL   ?Subroutine6
+     68                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+     69                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+     70                      SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+   \                     ??CrossCallReturnLabel_24:
+   \   0000003E   C00B               RJMP    ??Fsm_12
+     71                  }
+     72                  // Событие квитировано?
+     73                  else if (CPss21::GetDiscreteSignalsReceipt())
+   \                     ??Fsm_11:
+   \   00000040   9100....           LDS     R16, ??m_uiDiscreteSignalsReceipt
+   \   00000044   2300               TST     R16
+   \   00000046   F0C9               BREQ    ??Fsm_8
+     74                  {
+     75                      // Переведём автоматы сигнализаций в состояние - квитировано.
+     76                      CPss21::AlarmTypeReceipt();
+   \   00000048   ....               RCALL   ?Subroutine6
+     77                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+     78                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+     79                      SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
+   \                     ??CrossCallReturnLabel_25:
+   \   0000004A   E003               LDI     R16, 3
+   \   0000004C   C015               RJMP    ??Fsm_10
+     80                  }
+     81                  break;
+     82          
+     83              case RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING:
+     84                  // Событие сброшено?
+     85                  if (CPss21::GetDiscreteSignalsReset())
+   \                     ??Fsm_5:
+   \   0000004E   9100....           LDS     R16, ??m_uiDiscreteSignalsReset
+   \   00000052   2300               TST     R16
+   \   00000054   F011               BREQ    ??Fsm_13
+     86                  {
+     87                      SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+   \                     ??Fsm_12:
+   \   00000056   E004               LDI     R16, 4
+   \   00000058   C00F               RJMP    ??Fsm_10
+     88                  }
+     89                  // Дискретный сигнал не активен?
+     90                  else if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+   \                     ??Fsm_13:
+   \   0000005A   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_55:
+   \   0000005C   F421               BRNE    ??Fsm_14
+     91                  {
+     92                      SetFsmState(RECEIPTED_RESET_WAITING);
+     93                  }
+     94                  else
+     95                  {
+     96                      // Установим связанные дискретный выходы - не новое нарушение.
+     97                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+   \   0000005E   E005               LDI     R16, 5
+   \   00000060   C00B               RJMP    ??Fsm_10
+     98                  }
+     99                  break;
+    100          
+    101              case RESETED_NOT_ACTIVE_STATE_WAITING:
+    102                  // Дискретный сигнал не активен?
+    103                  if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+   \                     ??Fsm_6:
+   \   00000062   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_56:
+   \   00000064   F021               BREQ    ??Fsm_15
+    104                  {
+    105                      // Переведём автоматы сигнализаций в состояние - сброшено.
+    106                      CPss21::AlarmTypeReset();
+    107                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+    108                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+    109                      SetFsmState(ACTIVE_STATE_WAITING);
+    110                  }
+    111                  else
+    112                  {
+    113                      // Установим связанные дискретный выходы - не новое нарушение.
+    114                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+   \                     ??Fsm_14:
+   \   00000066   ....               RCALL   ?Subroutine14
+   \                     ??CrossCallReturnLabel_63:
+   \   00000068   C008               RJMP    ??Fsm_8
+    115                  }
+    116                  break;
+    117          
+    118              case RECEIPTED_RESET_WAITING:
+    119                  // Дискретный сигнал активен?
+    120                  if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+   \                     ??Fsm_7:
+   \   0000006A   ....               RCALL   ?Subroutine1
+    121                  {
+    122                      // Установим связанные дискретный выходы - не новое нарушение.
+    123                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+    124                  }
+    125          
+    126                  // Событие сброшено?
+    127                  if (CPss21::GetDiscreteSignalsReset())
+   \                     ??CrossCallReturnLabel_1:
+   \   0000006C   F031               BREQ    ??Fsm_8
+    128                  {
+    129                      // Переведём автоматы сигнализаций в состояние - сброшено.
+    130                      CPss21::AlarmTypeReset();
+   \                     ??Fsm_15:
+   \   0000006E   ........           CALL    ??AlarmTypeReset
+    131                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+    132                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+   \   00000072   E010               LDI     R17, 0
+   \   00000074   ....               RCALL   ?Subroutine23
+    133                      SetFsmState(ACTIVE_STATE_WAITING);
+   \                     ??CrossCallReturnLabel_27:
+   \   00000076   E001               LDI     R16, 1
+   \                     ??Fsm_10:
+   \   00000078   930C               ST      X, R16
+    134                  }
+    135                  break;
+    136          
+    137              default:
+    138                  break;
+    139              }
+    140          }
+   \                     ??Fsm_8:
+   \   0000007A                      REQUIRE ?Subroutine37
+   \   0000007A                      ;               // Fall through to label ?Subroutine37
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine37:
+   \   00000000   E0E5               LDI     R30, 5
+   \   00000002   ........           JMP     ?EPILOGUE_B5_L09
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine6:
+   \   00000000   ........           CALL    ??AlarmTypeReceipt
+   \   00000004   E011               LDI     R17, 1
+   \   00000006                      REQUIRE ?Subroutine23
+   \   00000006                      ;               // Fall through to label ?Subroutine23
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine23:
+   \   00000000   01FD               MOVW    R31:R30, R27:R26
+   \   00000002   8103               LDD     R16, Z+3
+   \   00000004   ........           JMP     ??SetAlarmWindowType
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_53:
+   \   00000002   F011               BREQ    ??CrossCallReturnLabel_61
+   \   00000004   E020               LDI     R18, 0
+   \   00000006   ....               RCALL   ?Subroutine21
+   \                     ??CrossCallReturnLabel_61:
+   \   00000008   9100....           LDS     R16, ??m_uiDiscreteSignalsReset
+   \   0000000C   2300               TST     R16
+   \   0000000E   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine18:
+   \   00000000   ........           JMP     ?PROLOGUE5_L09
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine14:
+   \   00000000   E020               LDI     R18, 0
+   \   00000002   9614               ADIW    R27:R26, 4
+   \   00000004   018D               MOVW    R17:R16, R27:R26
+   \   00000006                      REQUIRE ?Subroutine38
+   \   00000006                      ;               // Fall through to label ?Subroutine38
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine38:
+   \   00000000   ........           JMP     ??DiscreteOutputsSet
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine13:
+   \   00000000   E021               LDI     R18, 1
+   \   00000002                      REQUIRE ?Subroutine21
+   \   00000002                      ;               // Fall through to label ?Subroutine21
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine21:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002   5F0C               SUBI    R16, 252
+   \   00000004   4F1F               SBCI    R17, 255
+   \   00000006   ....               RJMP    ?Subroutine38
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine12:
+   \   00000000   ....               RCALL   ?Subroutine20
+   \                     ??CrossCallReturnLabel_18:
+   \   00000002   2F10               MOV     R17, R16
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine9:
+   \   00000000   01D8               MOVW    R27:R26, R17:R16
+   \   00000002   910C               LD      R16, X
+   \   00000004   950A               DEC     R16
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine19:
+   \   00000000   ....               RCALL   ?Subroutine32
+   \                     ??CrossCallReturnLabel_44:
+   \   00000002   8105               LDD     R16, Z+5
+   \   00000004   ........           CALL    ??GetDiscreteInputState
+   \   00000008   2E40               MOV     R4, R16
+   \   0000000A   018D               MOVW    R17:R16, R27:R26
+   \   0000000C   01FC               MOVW    R31:R30, R25:R24
+   \   0000000E   ....               RCALL   ?Subroutine31
+   \                     ??CrossCallReturnLabel_42:
+   \   00000010                      REQUIRE ?Subroutine35
+   \   00000010                      ;               // Fall through to label ?Subroutine35
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine35:
+   \   00000000   2640               EOR     R4, R16
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine11:
+   \   00000000   ....               RCALL   ?Subroutine20
+   \                     ??CrossCallReturnLabel_19:
+   \   00000002   9300....           STS     ??m_uiCommonAlarmType, R16
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine20:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002   9611               ADIW    R27:R26, 1
+   \   00000004   91ED               LD      R30, X+
+   \   00000006   91FC               LD      R31, X
+   \   00000008   9712               SBIW    R27:R26, 2
+   \   0000000A   9634               ADIW    R31:R30, 4
+   \   0000000C   ....               RJMP    ?Subroutine31
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine7:
+   \   00000000   9180....           LDS     R24, ??m_uiCommonAlarmType
+   \   00000004   018D               MOVW    R17:R16, R27:R26
+   \   00000006   01FD               MOVW    R31:R30, R27:R26
+   \   00000008   8121               LDD     R18, Z+1
+   \   0000000A   81F2               LDD     R31, Z+2
+   \   0000000C   2FE2               MOV     R30, R18
+   \   0000000E   9634               ADIW    R31:R30, 4
+   \   00000010   ....               RCALL   ?Subroutine31
+   \                     ??CrossCallReturnLabel_40:
+   \   00000012   1780               CP      R24, R16
+   \   00000014   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine32:
+   \   00000000   01FD               MOVW    R31:R30, R27:R26
+   \   00000002   8181               LDD     R24, Z+1
+   \   00000004   8192               LDD     R25, Z+2
+   \   00000006   9606               ADIW    R25:R24, 6
+   \   00000008   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine31:
+   \   00000000   9125               LPM     R18, Z+
+   \   00000002   91F4               LPM     R31, Z
+   \   00000004   2FE2               MOV     R30, R18
+   \   00000006   9409               IJMP
+    141          //-----------------------------------------------------------------------------------------------------
+    142          
+    143          
+    144          
+    145          
+    146          
+    147          
+    148          
+    149          
+    150          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    151          CNormalAlarmDfa::CNormalAlarmDfa()
+   \                     ??CNormalAlarmDfa:
+   \   00000000   ....               RCALL   ?Subroutine3
+    152          {
+   \                     ??CrossCallReturnLabel_50:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_2)
+   \   00000004   ....               LDI     R17, (??__vtbl_2) >> 8
+   \   00000006   ....               RCALL   ?Subroutine22
+    153              SetFsmState(START);
+   \                     ??CrossCallReturnLabel_21:
+   \   00000008   E000               LDI     R16, 0
+   \   0000000A   ....               RJMP    ?Subroutine24
+    154          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine3:
+   \   00000000   ....               RCALL   ?Subroutine25
+   \                     ??CrossCallReturnLabel_29:
+   \   00000002                      REQUIRE ?Subroutine33
+   \   00000002                      ;               // Fall through to label ?Subroutine33
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine33:
+   \   00000000   ....               RJMP    ??CAlarmDfa
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine24:
+   \   00000000   930C               ST      X, R16
+   \   00000002                      REQUIRE ??Subroutine40_0
+   \   00000002                      ;               // Fall through to label ??Subroutine40_0
+    155          
+    156          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    157          CNormalAlarmDfa::~CNormalAlarmDfa()
+   \                     `?~CNormalAlarmDfa`:
+   \   00000000   ....               RJMP    ?Subroutine39
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine39:
+    158          {
+   \   00000000   ....               RCALL   ?Subroutine15
+    159              //dtor
+    160          }
+   \                     ??CrossCallReturnLabel_74:
+   \   00000002   ....               RJMP    ??Subroutine41_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine15:
+   \   00000000   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_66:
+   \   00000002   F019               BREQ    ??CrossCallReturnLabel_67
+   \   00000004   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_72:
+   \   00000006   ....               RCALL   `?~CAlarmDfa`
+   \   00000008   ....               RCALL   ?Subroutine28
+   \                     ??CrossCallReturnLabel_67:
+   \   0000000A                      REQUIRE ?Subroutine34
+   \   0000000A                      ;               // Fall through to label ?Subroutine34
+    161          
+    162          //-----------------------------------------------------------------------------------------------------
+    163          
+    164          
+    165          
+    166          
+    167          
+    168          
+    169          
+    170          
+    171          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    172          CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
+   \                     ??CPreventiveAlarmLowLevelDfa:
+   \   00000000   ....               RCALL   ?Subroutine3
+    173          {
+   \                     ??CrossCallReturnLabel_49:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_3)
+   \   00000004   ....               LDI     R17, (??__vtbl_3) >> 8
+   \   00000006   ....               RJMP    ?Subroutine0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   ....               RCALL   ?Subroutine22
+    174              SetFsmState(ACTIVE_STATE_WAITING);
+   \                     ??CrossCallReturnLabel_22:
+   \   00000002   E001               LDI     R16, 1
+   \   00000004                      REQUIRE ?Subroutine24
+   \   00000004                      ;               // Fall through to label ?Subroutine24
+    175          }
+    176          
+    177          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    178          CPreventiveAlarmLowLevelDfa::~CPreventiveAlarmLowLevelDfa()
+   \                     `?~CPreventiveAlarmLowLevelDfa`:
+   \   00000000   ....               RJMP    ?Subroutine39
+    179          {
+    180              //dtor
+    181          }
+    182          
+    183          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    184          CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
+   \                     ??CPreventiveAlarmHighLevelDfa:
+   \   00000000   ....               RCALL   ?Subroutine3
+    185          {
+   \                     ??CrossCallReturnLabel_48:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_4)
+   \   00000004   ....               LDI     R17, (??__vtbl_4) >> 8
+   \   00000006   ....               RJMP    ?Subroutine0
+    186              SetFsmState(ACTIVE_STATE_WAITING);
+    187          }
+    188          
+    189          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    190          CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
+   \                     `?~CPreventiveAlarmHighLevelDfa`:
+   \   00000000   ....               RJMP    ?Subroutine39
+    191          {
+    192              //dtor
+    193          }
+    194          //-----------------------------------------------------------------------------------------------------
+    195          
+    196          
+    197          
+    198          
+    199          
+    200          
+    201          
+    202          
+    203          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    204          CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
+   \                     ??CEmergencyAlarmLowLevelDfa:
+   \   00000000   ....               RCALL   ?Subroutine3
+    205          {
+   \                     ??CrossCallReturnLabel_47:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_5)
+   \   00000004   ....               LDI     R17, (??__vtbl_5) >> 8
+   \   00000006   ....               RJMP    ?Subroutine0
+    206              SetFsmState(ACTIVE_STATE_WAITING);
+    207          }
+    208          
+    209          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    210          CEmergencyAlarmLowLevelDfa::~CEmergencyAlarmLowLevelDfa()
+   \                     `?~CEmergencyAlarmLowLevelDfa`:
+   \   00000000                      REQUIRE ?Subroutine39
+   \   00000000                      ;               // Fall through to label ?Subroutine39
+    211          {
+    212              //dtor
+    213          }
+    214          
+    215          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    216          CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
+   \                     ??CEmergencyAlarmHighLevelDfa:
+   \   00000000   ....               RCALL   ?Subroutine3
+    217          {
+   \                     ??CrossCallReturnLabel_46:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_6)
+   \   00000004   ....               LDI     R17, (??__vtbl_6) >> 8
+   \   00000006                      REQUIRE ?Subroutine0
+   \   00000006                      ;               // Fall through to label ?Subroutine0
+    218              SetFsmState(ACTIVE_STATE_WAITING);
+    219          }
+    220          
+    221          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    222          CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
+   \                     `?~CEmergencyAlarmHighLevelDfa`:
+   \   00000000   ....               RJMP    ?Subroutine39
+    223          {
+    224              //dtor
+    225          }
+    226          //-----------------------------------------------------------------------------------------------------
+    227          
+    228          
+    229          
+    230          
+    231          
+    232          
+    233          
+    234          
+    235          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    236          CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+   \                     ??CIndicationAlarmLowLevelDfa:
+   \   00000000   ....               RCALL   ?Subroutine3
+    237          {
+   \                     ??CrossCallReturnLabel_45:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_7)
+   \   00000004   ....               LDI     R17, (??__vtbl_7) >> 8
+   \   00000006   ....               RJMP    ?Subroutine0
+    238              SetFsmState(ACTIVE_STATE_WAITING);
+    239          }
+    240          
+    241          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    242          CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
+   \                     `?~CIndicationAlarmLowLevelDfa`:
+   \   00000000   ....               RJMP    ?Subroutine39
+    243          {
+    244              //dtor
+    245          }
+    246          
+    247          //-----------------------------------------------------------------------------------------------------
+    248          // Автомат обработки сигнализации дискретного сигнала.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    249          void CIndicationAlarmLowLevelDfa::Fsm(void)
+   \                     ??Fsm_1:
+    250          {
+   \   00000000   ....               RCALL   ?Subroutine18
+   \                     ??CrossCallReturnLabel_16:
+   \   00000002                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000002   ....               RCALL   ?Subroutine9
+    251              switch (GetFsmState())
+   \                     ??CrossCallReturnLabel_9:
+   \   00000004   F019               BREQ    ??Fsm_16
+   \   00000006   5005               SUBI    R16, 5
+   \   00000008   F061               BREQ    ??Fsm_17
+   \   0000000A   C016               RJMP    ??Fsm_18
+    252              {
+    253              case START:
+    254                  break;
+    255          
+    256              case ACTIVE_STATE_WAITING:
+    257                  // Дискретный сигнал активен?
+    258                  if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+   \                     ??Fsm_16:
+   \   0000000C   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_57:
+   \   0000000E   F0A1               BREQ    ??Fsm_18
+    259                  {
+    260                      // Установим связанные дискретный выходы - новое нарушение.
+    261                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+   \   00000010   ....               RCALL   ?Subroutine13
+    262          //            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+    263          //            // чем тип общей сигнализации?
+    264          //            if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+    265          //                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+    266          //            {
+    267          //                // Установим тип общей сигнализацию.
+    268          //                CPss21::SetCommonAlarmType(ALARM_TYPE());
+    269          //                // Изменим тип общей сигнализацию.
+    270          //                CPss21::AlarmTypeChange();
+    271          //            }
+    272          
+    273                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+    274                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+   \                     ??CrossCallReturnLabel_60:
+   \   00000012   ....               RCALL   ?Subroutine12
+   \                     ??CrossCallReturnLabel_14:
+   \   00000014   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_2:
+   \   00000016   E001               LDI     R16, 1
+   \   00000018   8300               ST      Z, R16
+    275                      // Актмвизируем окно сигнализации, для отображения извещателем.
+    276                      CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+    277                      CPss21::BoardWindowsUpdate();
+   \   0000001A   ........           CALL    ??BoardWindowsUpdate
+    278                      SetFsmState(NOT_ACTIVE_STATE_WAITING);
+   \   0000001E   E006               LDI     R16, 6
+   \   00000020   C00A               RJMP    ??Fsm_19
+    279                  }
+    280                  break;
+    281          
+    282              case NOT_ACTIVE_STATE_WAITING:
+    283                  // Дискретный сигнал не активен?
+    284                  if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+   \                     ??Fsm_17:
+   \   00000022   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_58:
+   \   00000024   F011               BREQ    ??Fsm_20
+    285                  {
+    286          //            // Переведём автоматы сигнализаций в состояние - сброшено.
+    287          //            CPss21::AlarmTypeReset();
+    288                      // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+    289                      CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+    290                      // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+    291                      CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+    292                      CPss21::BoardWindowsUpdate();
+    293                      SetFsmState(ACTIVE_STATE_WAITING);
+    294                  }
+    295                  else
+    296                  {
+    297                      // Установим связанные дискретный выходы - не новое нарушение.
+    298                      CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+   \   00000026   ....               RCALL   ?Subroutine14
+   \                     ??CrossCallReturnLabel_62:
+   \   00000028   C007               RJMP    ??Fsm_18
+   \                     ??Fsm_20:
+   \   0000002A   E010               LDI     R17, 0
+   \   0000002C   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_3:
+   \   0000002E   8350               ST      Z, R21
+   \   00000030   ........           CALL    ??BoardWindowsUpdate
+   \   00000034   E001               LDI     R16, 1
+   \                     ??Fsm_19:
+   \   00000036   930C               ST      X, R16
+    299                  }
+    300                  break;
+    301          
+    302              default:
+    303                  break;
+    304              }
+    305          }
+   \                     ??Fsm_18:
+   \   00000038   ....               RJMP    ?Subroutine37
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine5:
+   \   00000000   ....               RCALL   ?Subroutine23
+   \                     ??CrossCallReturnLabel_23:
+   \   00000002   01FD               MOVW    R31:R30, R27:R26
+   \   00000004   8103               LDD     R16, Z+3
+   \   00000006   E010               LDI     R17, 0
+   \   00000008   E046               LDI     R20, 6
+   \   0000000A   E050               LDI     R21, 0
+   \   0000000C   ........           CALL    ?S_EC_MUL_L02
+   \   00000010   01F8               MOVW    R31:R30, R17:R16
+   \   00000012   ....               SUBI    R30, LOW((-(??m_axAlarmWindowControl) & 0xFFFF))
+   \   00000014   ....               SBCI    R31, (-(??m_axAlarmWindowControl) & 0xFFFF) >> 8
+   \   00000016   9508               RET
+    306          //-----------------------------------------------------------------------------------------------------
+    307          
+    308          
+    309          
+    310          
+    311          
+    312          
+    313          
+    314          
+    315          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    316          CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
+   \                     ??CIndicationAlarmHighLevelDfa:
+   \   00000000   ....               RCALL   ?Subroutine25
+    317          {
+   \                     ??CrossCallReturnLabel_28:
+   \   00000002   ....               RCALL   ??CIndicationAlarmLowLevelDfa
+   \   00000004   ....               LDI     R16, LOW(??__vtbl_8)
+   \   00000006   ....               LDI     R17, (??__vtbl_8) >> 8
+   \   00000008   ....               RJMP    ?Subroutine0
+    318              SetFsmState(ACTIVE_STATE_WAITING);
+    319          }
+    320          
+    321          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    322          CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
+   \                     `?~CIndicationAlarmHighLevelDfa`:
+    323          {
+   \   00000000   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_64:
+   \   00000002   F019               BREQ    ??CrossCallReturnLabel_68
+    324              //dtor
+    325          }
+   \   00000004   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_70:
+   \   00000006   ....               RCALL   `?~CIndicationAlarmLowLevelDfa`
+   \   00000008   ....               RCALL   ?Subroutine28
+   \                     ??CrossCallReturnLabel_68:
+   \   0000000A   E0E3               LDI     R30, 3
+   \   0000000C   ....               RJMP    ??Subroutine41_0
+    326          //-----------------------------------------------------------------------------------------------------
+    327          
+    328          
+    329          
+    330          
+    331          
+    332          
+    333          
+    334          
+    335          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    336          CErrorAlarmDfa::CErrorAlarmDfa()
+   \                     ??CErrorAlarmDfa:
+   \   00000000   ....               RCALL   ?Subroutine8
+    337          {
+   \                     ??CrossCallReturnLabel_6:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_9)
+   \   00000004   ....               LDI     R17, (??__vtbl_9) >> 8
+   \   00000006   ....               RJMP    ?Subroutine0
+    338              SetFsmState(ACTIVE_STATE_WAITING);
+    339          }
+    340          
+    341          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    342          CErrorAlarmDfa::~CErrorAlarmDfa()
+   \                     `?~CErrorAlarmDfa`:
+   \   00000000   ....               RJMP    ?Subroutine36
+    343          {
+    344              //dtor
+    345          }
+    346          
+    347          //-----------------------------------------------------------------------------------------------------
+    348          // Автомат обработки системных ошибок.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    349          void CErrorAlarmDfa::Fsm(void)
+   \                     ??Fsm_2:
+    350          {
+   \   00000000   ....               RCALL   ?Subroutine18
+   \                     ??CrossCallReturnLabel_17:
+   \   00000002                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000002   ....               RCALL   ?Subroutine9
+    351              switch (GetFsmState())
+   \                     ??CrossCallReturnLabel_10:
+   \   00000004   F029               BREQ    ??Fsm_21
+   \   00000006   950A               DEC     R16
+   \   00000008   F0A1               BREQ    ??Fsm_22
+   \   0000000A   950A               DEC     R16
+   \   0000000C   F0D1               BREQ    ??Fsm_23
+   \   0000000E   C021               RJMP    ??Fsm_24
+    352              {
+    353              case START:
+    354                  break;
+    355          
+    356              case ACTIVE_STATE_WAITING:
+    357                  // Дискретный сигнал активен?
+    358                  if (CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+   \                     ??Fsm_21:
+   \   00000010   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_51:
+   \   00000012   F0F9               BREQ    ??Fsm_24
+    359                  {
+    360                      // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+    361                      // чем тип общей сигнализации?
+    362                      if ((CPss21::GetCommonAlarmType() != ERROR) &&
+    363                              (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+   \   00000014   9100....           LDS     R16, ??m_uiCommonAlarmType
+   \   00000018   3006               CPI     R16, 6
+   \   0000001A   F029               BREQ    ??Fsm_25
+   \   0000001C   ....               RCALL   ?Subroutine7
+   \                     ??CrossCallReturnLabel_5:
+   \   0000001E   F418               BRCC    ??Fsm_25
+    364                      {
+    365                          // Установим тип общей сигнализацию.
+    366                          CPss21::SetCommonAlarmType(ALARM_TYPE());
+   \   00000020   ....               RCALL   ?Subroutine11
+    367          
+    368                          // Изменим тип общей сигнализацию.
+    369                          CPss21::AlarmTypeErrorChange();
+   \                     ??CrossCallReturnLabel_12:
+   \   00000022   ........           CALL    ??AlarmTypeErrorChange
+    370                      }
+    371          
+    372          //            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+    373                      CPss21::ErrorWindowOn(GetAlarmWindowIndex());
+   \                     ??Fsm_25:
+   \   00000026   01FD               MOVW    R31:R30, R27:R26
+   \   00000028   8103               LDD     R16, Z+3
+   \   0000002A   ........           CALL    ??ErrorWindowOn
+    374                      SetFsmState(RECEIPT_WAITING);
+   \   0000002E   E002               LDI     R16, 2
+   \   00000030   C00F               RJMP    ??Fsm_26
+    375                  }
+    376                  break;
+    377          
+    378              case RECEIPT_WAITING:
+    379                  // Событие квитировано?
+    380                  if (CPss21::GetDiscreteSignalsReceipt())
+   \                     ??Fsm_22:
+   \   00000032   9100....           LDS     R16, ??m_uiDiscreteSignalsReceipt
+   \   00000036   2300               TST     R16
+   \   00000038   F061               BREQ    ??Fsm_24
+    381                  {
+    382                      // Переведём автоматы сигнализаций в состояние - квитировано.
+    383                      CPss21::AlarmTypeReceipt();
+   \   0000003A   ........           CALL    ??AlarmTypeReceipt
+    384                      SetFsmState(RECEIPTED_NOT_ACTIVE_STATE_WAITING);
+   \   0000003E   E003               LDI     R16, 3
+   \   00000040   C007               RJMP    ??Fsm_26
+    385                  }
+    386                  break;
+    387          
+    388              case RECEIPTED_NOT_ACTIVE_STATE_WAITING:
+    389                  // Дискретный сигнал не активен?
+    390                  if (!(CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+   \                     ??Fsm_23:
+   \   00000042   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_52:
+   \   00000044   F431               BRNE    ??Fsm_24
+    391                  {
+    392                      // Переведём автоматы сигнализаций в состояние - сброшено.
+    393                      CPss21::AlarmTypeReset();
+   \   00000046   ........           CALL    ??AlarmTypeReset
+    394                      CPss21::AllAlarmWindowOff();
+   \   0000004A   ........           CALL    ??AllAlarmWindowOff
+    395                      SetFsmState(ACTIVE_STATE_WAITING);
+   \   0000004E   E001               LDI     R16, 1
+   \                     ??Fsm_26:
+   \   00000050   930C               ST      X, R16
+    396                  }
+    397                  break;
+    398          
+    399              default:
+    400                  break;
+    401              }
+    402          }
+   \                     ??Fsm_24:
+   \   00000052   ....               RJMP    ?Subroutine37
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine4:
+   \   00000000   ....               RCALL   ?Subroutine32
+   \                     ??CrossCallReturnLabel_43:
+   \   00000002   8104               LDD     R16, Z+4
+   \   00000004   ........           CALL    ??GetErrorAlarmState
+   \   00000008   2E40               MOV     R4, R16
+   \   0000000A   018D               MOVW    R17:R16, R27:R26
+   \   0000000C   01FC               MOVW    R31:R30, R25:R24
+   \   0000000E   ....               RCALL   ?Subroutine31
+   \                     ??CrossCallReturnLabel_41:
+   \   00000010   ....               RJMP    ?Subroutine35
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CAlarmDfa &CAlarmDfa::new CAlarmDfa()
+   \                     `??new CAlarmDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_38:
+   \   00000002   F009               BREQ    `??new CAlarmDfa_1`
+   \   00000004   ....               RJMP    ?Subroutine33
+   \                     `??new CAlarmDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CNormalAlarmDfa &CNormalAlarmDfa::new CNormalAlarmDfa()
+   \                     `??new CNormalAlarmDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_37:
+   \   00000002   F009               BREQ    `??new CNormalAlarmDfa_1`
+   \   00000004   ....               RJMP    ??CNormalAlarmDfa
+   \                     `??new CNormalAlarmDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CPreventiveAlarmLowLevelDfa &CPreventiveAlarmLowLevelDfa::new CPreventiveAlarmLowLevelDfa()
+   \                     `??new CPreventiveAlarmLowLevelDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_36:
+   \   00000002   F009               BREQ    `??new CPreventiveAlarmLowLevelDfa_1`
+   \   00000004   ....               RJMP    ??CPreventiveAlarmLowLevelDfa
+   \                     `??new CPreventiveAlarmLowLevelDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CPreventiveAlarmHighLevelDfa &CPreventiveAlarmHighLevelDfa::new CPreventiveAlarmHighLevelDfa()
+   \                     `??new CPreventiveAlarmHighLevelDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_35:
+   \   00000002   F009               BREQ    `??new CPreventiveAlarmHighLevelDfa_1`
+   \   00000004   ....               RJMP    ??CPreventiveAlarmHighLevelDfa
+   \                     `??new CPreventiveAlarmHighLevelDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CEmergencyAlarmLowLevelDfa &CEmergencyAlarmLowLevelDfa::new CEmergencyAlarmLowLevelDfa()
+   \                     `??new CEmergencyAlarmLowLevelDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_34:
+   \   00000002   F009               BREQ    `??new CEmergencyAlarmLowLevelDfa_1`
+   \   00000004   ....               RJMP    ??CEmergencyAlarmLowLevelDfa
+   \                     `??new CEmergencyAlarmLowLevelDfa_1`:
+   \   00000006                      REQUIRE ?Subroutine17
+   \   00000006                      ;               // Fall through to label ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine17:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine10:
+   \   00000000   E006               LDI     R16, 6
+   \   00000002                      REQUIRE ?Subroutine26
+   \   00000002                      ;               // Fall through to label ?Subroutine26
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine26:
+   \   00000000   E010               LDI     R17, 0
+   \   00000002   ........           CALL    `??operator new`
+   \   00000006   2F20               MOV     R18, R16
+   \   00000008   2B21               OR      R18, R17
+   \   0000000A   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CEmergencyAlarmHighLevelDfa &CEmergencyAlarmHighLevelDfa::new CEmergencyAlarmHighLevelDfa()
+   \                     `??new CEmergencyAlarmHighLevelDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_33:
+   \   00000002   F009               BREQ    `??new CEmergencyAlarmHighLevelDfa_1`
+   \   00000004   ....               RJMP    ??CEmergencyAlarmHighLevelDfa
+   \                     `??new CEmergencyAlarmHighLevelDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CIndicationAlarmLowLevelDfa &CIndicationAlarmLowLevelDfa::new CIndicationAlarmLowLevelDfa()
+   \                     `??new CIndicationAlarmLowLevelDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_32:
+   \   00000002   F009               BREQ    `??new CIndicationAlarmLowLevelDfa_1`
+   \   00000004   ....               RJMP    ??CIndicationAlarmLowLevelDfa
+   \                     `??new CIndicationAlarmLowLevelDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CIndicationAlarmHighLevelDfa &CIndicationAlarmHighLevelDfa::new CIndicationAlarmHighLevelDfa()
+   \                     `??new CIndicationAlarmHighLevelDfa`:
+   \   00000000   ....               RCALL   ?Subroutine10
+   \                     ??CrossCallReturnLabel_31:
+   \   00000002   F009               BREQ    `??new CIndicationAlarmHighLevelDfa_1`
+   \   00000004   ....               RJMP    ??CIndicationAlarmHighLevelDfa
+   \                     `??new CIndicationAlarmHighLevelDfa_1`:
+   \   00000006   ....               RJMP    ?Subroutine17
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CErrorAlarmDfa &CErrorAlarmDfa::new CErrorAlarmDfa()
+   \                     `??new CErrorAlarmDfa`:
+   \   00000000   E005               LDI     R16, 5
+   \   00000002   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_39:
+   \   00000004   F009               BREQ    `??new CErrorAlarmDfa_1`
+   \   00000006   ....               RJMP    ??CErrorAlarmDfa
+   \                     `??new CErrorAlarmDfa_1`:
+   \   00000008   ....               RJMP    ?Subroutine17
+    403          //-----------------------------------------------------------------------------------------------------
+    404          
+    405          
+    406          
+    407          
+    408          
+    409          
+    410          
+    411          
+    412          
+    413          ////-----------------------------------------------------------------------------------------------------
+    414          //CInputModuleErrorAlarmDfa::CInputModuleErrorAlarmDfa()
+    415          //{
+    416          //    SetFsmState(START);
+    417          //}
+    418          //
+    419          ////-----------------------------------------------------------------------------------------------------
+    420          //CInputModuleErrorAlarmDfa::~CInputModuleErrorAlarmDfa()
+    421          //{
+    422          //    //dtor
+    423          //}
+    424          //
+    425          ////-----------------------------------------------------------------------------------------------------
+    426          //
+    427          //
+    428          //
+    429          //
+    430          //
+    431          //
+    432          //
+    433          //
+    434          ////-----------------------------------------------------------------------------------------------------
+    435          //COutpuModuleErrorAlarmDfa::COutpuModuleErrorAlarmDfa()
+    436          //{
+    437          //    SetFsmState(START);
+    438          //}
+    439          //
+    440          ////-----------------------------------------------------------------------------------------------------
+    441          //COutpuModuleErrorAlarmDfa::~COutpuModuleErrorAlarmDfa()
+    442          //{
+    443          //    //dtor
+    444          //}
+    445          //
+    446          ////-----------------------------------------------------------------------------------------------------
+    447          
+    448          
+    449          
+    450          
+    451          
+    452          
+    453          
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CAlarmDfa::ACTIVE_LEVEL()
+      0      2   CAlarmDfa::ALARM_TYPE()
+      2      2   CAlarmDfa::CAlarmDfa()
+        2      2   -> CDfaLite::CDfaLite()
+      5      2   CAlarmDfa::Fsm()
+        5      4   -- Indirect call
+        5      6   -- Indirect call
+        5      2   -> CPss21::AlarmTypeChange()
+        5      4   -> CPss21::AlarmTypeReceipt()
+        5      2   -> CPss21::AlarmTypeReset()
+        5      2   -> CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
+        5      4   -> CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
+        5      4   -> CPss21::GetDiscreteInputState(uint8_t)
+        5      6   -> CPss21::GetDiscreteInputState(uint8_t)
+        5      2   -> CPss21::SetAlarmWindowType(uint8_t, uint8_t)
+      0      2   CAlarmDfa::new CAlarmDfa()
+        0      2   -> CAlarmDfa::CAlarmDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CAlarmDfa::~CAlarmDfa()
+        3      4   -> CDfaLite::~CDfaLite()
+        3      6   -> operator delete(void *)
+      0      2   CEmergencyAlarmHighLevelDfa::ACTIVE_LEVEL()
+      0      2   CEmergencyAlarmHighLevelDfa::ALARM_TYPE()
+      2      2   CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
+        2      2   -> CAlarmDfa::CAlarmDfa()
+      0      2   CEmergencyAlarmHighLevelDfa::new CEmergencyAlarmHighLevelDfa()
+        0      2   -> CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
+        3      4   -> CAlarmDfa::~CAlarmDfa()
+        3      6   -> operator delete(void *)
+      0      2   CEmergencyAlarmLowLevelDfa::ACTIVE_LEVEL()
+      0      2   CEmergencyAlarmLowLevelDfa::ALARM_TYPE()
+      2      2   CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
+        2      2   -> CAlarmDfa::CAlarmDfa()
+      0      2   CEmergencyAlarmLowLevelDfa::new CEmergencyAlarmLowLevelDfa()
+        0      2   -> CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
+        0      4   -> operator new(unsigned int)
+      0      0   CEmergencyAlarmLowLevelDfa::~CEmergencyAlarmLowLevelDfa()
+        3      4   -> CAlarmDfa::~CAlarmDfa()
+        3      6   -> operator delete(void *)
+      0      2   CErrorAlarmDfa::ACTIVE_LEVEL()
+      0      2   CErrorAlarmDfa::ALARM_TYPE()
+      2      2   CErrorAlarmDfa::CErrorAlarmDfa()
+        2      2   -> CDfaLite::CDfaLite()
+      5      2   CErrorAlarmDfa::Fsm()
+        5      4   -- Indirect call
+        5      2   -> CPss21::AlarmTypeErrorChange()
+        5      2   -> CPss21::AlarmTypeReceipt()
+        5      2   -> CPss21::AlarmTypeReset()
+        5      2   -> CPss21::AllAlarmWindowOff()
+        5      2   -> CPss21::ErrorWindowOn(uint8_t)
+        5      4   -> CPss21::GetErrorAlarmState(uint8_t)
+      0      2   CErrorAlarmDfa::new CErrorAlarmDfa()
+        0      2   -> CErrorAlarmDfa::CErrorAlarmDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CErrorAlarmDfa::~CErrorAlarmDfa()
+        3      4   -> CDfaLite::~CDfaLite()
+        3      6   -> operator delete(void *)
+      0      2   CIndicationAlarmHighLevelDfa::ACTIVE_LEVEL()
+      0      2   CIndicationAlarmHighLevelDfa::ALARM_TYPE()
+      2      2   CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
+        2      2   -> CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+      0      2   CIndicationAlarmHighLevelDfa::new CIndicationAlarmHighLevelDfa()
+        0      2   -> CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
+        0      4   -> operator new(unsigned int)
+      3      2   CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
+        3      2   -> CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
+        3      4   -> operator delete(void *)
+      0      2   CIndicationAlarmLowLevelDfa::ACTIVE_LEVEL()
+      0      2   CIndicationAlarmLowLevelDfa::ALARM_TYPE()
+      2      2   CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+        2      2   -> CAlarmDfa::CAlarmDfa()
+      5      2   CIndicationAlarmLowLevelDfa::Fsm()
+        5      4   -- Indirect call
+        5      2   -> CPss21::BoardWindowsUpdate()
+        5      2   -> CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
+        5      4   -> CPss21::GetDiscreteInputState(uint8_t)
+        5      4   -> CPss21::SetAlarmWindowType(uint8_t, uint8_t)
+        5      4 ?S_EC_MUL_L02
+      0      2   CIndicationAlarmLowLevelDfa::new CIndicationAlarmLowLevelDfa()
+        0      2   -> CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
+        3      4   -> CAlarmDfa::~CAlarmDfa()
+        3      6   -> operator delete(void *)
+      0      2   CNormalAlarmDfa::ACTIVE_LEVEL()
+      0      2   CNormalAlarmDfa::ALARM_TYPE()
+      2      2   CNormalAlarmDfa::CNormalAlarmDfa()
+        2      2   -> CAlarmDfa::CAlarmDfa()
+      0      2   CNormalAlarmDfa::new CNormalAlarmDfa()
+        0      2   -> CNormalAlarmDfa::CNormalAlarmDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CNormalAlarmDfa::~CNormalAlarmDfa()
+        3      4   -> CAlarmDfa::~CAlarmDfa()
+        3      6   -> operator delete(void *)
+      0      2   CPreventiveAlarmHighLevelDfa::ACTIVE_LEVEL()
+      0      2   CPreventiveAlarmHighLevelDfa::ALARM_TYPE()
+      2      2   CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
+        2      2   -> CAlarmDfa::CAlarmDfa()
+      0      2   CPreventiveAlarmHighLevelDfa::new CPreventiveAlarmHighLevelDfa()
+        0      2   -> CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
+        3      4   -> CAlarmDfa::~CAlarmDfa()
+        3      6   -> operator delete(void *)
+      0      2   CPreventiveAlarmLowLevelDfa::ACTIVE_LEVEL()
+      0      2   CPreventiveAlarmLowLevelDfa::ALARM_TYPE()
+      2      2   CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
+        2      2   -> CAlarmDfa::CAlarmDfa()
+      0      2   CPreventiveAlarmLowLevelDfa::new CPreventiveAlarmLowLevelDfa()
+        0      2   -> CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
+        0      4   -> operator new(unsigned int)
+      0      2   CPreventiveAlarmLowLevelDfa::~CPreventiveAlarmLowLevelDfa()
+        3      4   -> CAlarmDfa::~CAlarmDfa()
+        3      6   -> operator delete(void *)
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       8  ??Subroutine40_0
+       4  ??Subroutine41_0
+       4  ?Subroutine0
+      16  ?Subroutine1
+       2  ?Subroutine10
+       8  ?Subroutine11
+       6  ?Subroutine12
+       2  ?Subroutine13
+       6  ?Subroutine14
+      10  ?Subroutine15
+      14  ?Subroutine16
+       6  ?Subroutine17
+       4  ?Subroutine18
+      16  ?Subroutine19
+      14  ?Subroutine20
+       8  ?Subroutine21
+       8  ?Subroutine22
+       8  ?Subroutine23
+       2  ?Subroutine24
+       8  ?Subroutine25
+      12  ?Subroutine26
+      12  ?Subroutine27
+      12  ?Subroutine28
+       2  ?Subroutine3
+       8  ?Subroutine30
+       8  ?Subroutine31
+      10  ?Subroutine32
+       2  ?Subroutine33
+       4  ?Subroutine34
+       4  ?Subroutine35
+       2  ?Subroutine36
+       6  ?Subroutine37
+       4  ?Subroutine38
+       4  ?Subroutine39
+      18  ?Subroutine4
+      24  ?Subroutine5
+       6  ?Subroutine6
+      22  ?Subroutine7
+       6  ?Subroutine8
+       8  ?Subroutine9
+       4  CAlarmDfa::ACTIVE_LEVEL()
+       4  CAlarmDfa::ALARM_TYPE()
+      10  CAlarmDfa::CAlarmDfa()
+     122  CAlarmDfa::Fsm()
+       8  CAlarmDfa::new CAlarmDfa()
+       2  CAlarmDfa::~CAlarmDfa()
+       4  CEmergencyAlarmHighLevelDfa::ACTIVE_LEVEL()
+       4  CEmergencyAlarmHighLevelDfa::ALARM_TYPE()
+       6  CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
+       8  CEmergencyAlarmHighLevelDfa::new CEmergencyAlarmHighLevelDfa()
+       2  CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
+       4  CEmergencyAlarmLowLevelDfa::ACTIVE_LEVEL()
+       4  CEmergencyAlarmLowLevelDfa::ALARM_TYPE()
+       8  CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
+       6  CEmergencyAlarmLowLevelDfa::new CEmergencyAlarmLowLevelDfa()
+       0  CEmergencyAlarmLowLevelDfa::~CEmergencyAlarmLowLevelDfa()
+       4  CErrorAlarmDfa::ACTIVE_LEVEL()
+       4  CErrorAlarmDfa::ALARM_TYPE()
+       8  CErrorAlarmDfa::CErrorAlarmDfa()
+      84  CErrorAlarmDfa::Fsm()
+      10  CErrorAlarmDfa::new CErrorAlarmDfa()
+       2  CErrorAlarmDfa::~CErrorAlarmDfa()
+       4  CIndicationAlarmHighLevelDfa::ACTIVE_LEVEL()
+       4  CIndicationAlarmHighLevelDfa::ALARM_TYPE()
+      10  CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
+       8  CIndicationAlarmHighLevelDfa::new CIndicationAlarmHighLevelDfa()
+      14  CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
+       4  CIndicationAlarmLowLevelDfa::ACTIVE_LEVEL()
+       4  CIndicationAlarmLowLevelDfa::ALARM_TYPE()
+       8  CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+      58  CIndicationAlarmLowLevelDfa::Fsm()
+       8  CIndicationAlarmLowLevelDfa::new CIndicationAlarmLowLevelDfa()
+       2  CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
+       4  CNormalAlarmDfa::ACTIVE_LEVEL()
+       4  CNormalAlarmDfa::ALARM_TYPE()
+      12  CNormalAlarmDfa::CNormalAlarmDfa()
+       8  CNormalAlarmDfa::new CNormalAlarmDfa()
+       2  CNormalAlarmDfa::~CNormalAlarmDfa()
+       4  CPreventiveAlarmHighLevelDfa::ACTIVE_LEVEL()
+       4  CPreventiveAlarmHighLevelDfa::ALARM_TYPE()
+       8  CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
+       8  CPreventiveAlarmHighLevelDfa::new CPreventiveAlarmHighLevelDfa()
+       2  CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
+       4  CPreventiveAlarmLowLevelDfa::ACTIVE_LEVEL()
+       4  CPreventiveAlarmLowLevelDfa::ALARM_TYPE()
+       8  CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
+       8  CPreventiveAlarmLowLevelDfa::new CPreventiveAlarmLowLevelDfa()
+       2  CPreventiveAlarmLowLevelDfa::~CPreventiveAlarmLowLevelDfa()
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_ETIFR
+       1  _A_ETIMSK
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUCSR
+       1  _A_OCDR
+       1  _A_OCR0
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SFIOR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR
+       1  _A_TIMSK
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       1  _A_UBRR0H
+       1  _A_UBRR0L
+       1  _A_UBRR1H
+       1  _A_UBRR1L
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XDIV
+       1  _A_XMCRA
+       1  _A_XMCRB
+      94  -- Other
+
+ 
+ 105 bytes in segment ABSOLUTE
+ 842 bytes in segment CODE
+  94 bytes in segment NEAR_F
+ 
+ 792 bytes of CODE memory (+ 144 bytes shared)
+   0 bytes of DATA memory (+ 105 bytes shared)
+
+Errors: none
+Warnings: 7

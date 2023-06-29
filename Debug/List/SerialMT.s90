@@ -1,0 +1,415 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          28/Jun/2022  20:22:41
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EW39C5.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp
+//        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj
+//        -lA D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\SerialMT.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME SerialMT
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__SystemLibrary", "DLib"
+        RTMODEL "__cpu", "3"
+        RTMODEL "__cpu_name", "ATmega128A"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "true"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__no_rampd", "enabled"
+        RTMODEL "__rt_version", "3"
+        RTMODEL "__vtable_memory", "__nearflash"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE4_L09
+
+        PUBLIC ??Init
+        PUBLIC ??InsertMessage
+        PUBLIC ??Reply
+        PUBLIC ??SendMessage
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_Y Y DATA
+          CFI StackFrame CFA_SP SP DATA
+          CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+          CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+          CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+          CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+          CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+          CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+          CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+          CFI ResourceParts SP SPH, SPL
+          CFI ResourceParts Y R29, R28
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign 1
+          CFI ReturnAddress ?Ret CODE
+          CFI CFA_Y Y+0
+          CFI CFA_SP SP+2
+          CFI ?RetPad 0
+          CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+          CFI ?RetLow Frame(CFA_SP, 0)
+          CFI ?Ret Concat
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 SameValue
+          CFI R5 SameValue
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI R8 SameValue
+          CFI R9 SameValue
+          CFI R10 SameValue
+          CFI R11 SameValue
+          CFI R12 SameValue
+          CFI R13 SameValue
+          CFI R14 SameValue
+          CFI R15 SameValue
+          CFI R16 Undefined
+          CFI R17 Undefined
+          CFI R18 Undefined
+          CFI R19 Undefined
+          CFI R20 Undefined
+          CFI R21 Undefined
+          CFI R22 Undefined
+          CFI R23 Undefined
+          CFI R24 SameValue
+          CFI R25 SameValue
+          CFI R26 SameValue
+          CFI R27 SameValue
+          CFI R28 Undefined
+          CFI R29 Undefined
+          CFI R30 Undefined
+          CFI R31 Undefined
+          CFI ?RetHighByteMask SameValue
+          CFI SPH Undefined
+          CFI SPL Undefined
+          CFI EndCommon cfiCommon0
+        
+        EXTERN memcpy
+
+// D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Sourse      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 // SerialMT - serial multi trans.
+//    9 //-----------------------------------------------------------------------------------------------------
+//   10 #include <cstring>
+//   11 
+//   12 #include "SerialMT.h"
+//   13 #include "Crc.h"
+//   14 
+//   15 
+//   16 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   17 void CSerialMT::Init(void)
+??Init:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function ??Init
+          CFI NoCalls
+//   18 {
+//   19 
+//   20 }
+        RET
+          CFI EndBlock cfiBlock0
+//   21 
+//   22 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   23 uint8_t CSerialMT::InsertMessage(TMessageContext &xMessageContext)
+??InsertMessage:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI Function ??InsertMessage
+//   24 {
+        CALL    ?PROLOGUE4_L09
+          CFI R27 Frame(CFA_Y, -1)
+          CFI R26 Frame(CFA_Y, -2)
+          CFI R25 Frame(CFA_Y, -3)
+          CFI R24 Frame(CFA_Y, -4)
+          CFI CFA_Y Y+4
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+//   25     // Отправляем первое сообщение?
+//   26     if (1)
+//   27     {
+//   28         m_uiMessageLength = 0;
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+2, R16
+        LDI     R16, 0
+        STD     Z+3, R16
+//   29         m_puiCurrentMessage = m_puiTxBuffer;
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+10
+        LDD     R17, Z+11
+        MOVW    R31:R30, R27:R26
+        STD     Z+6, R16
+        STD     Z+7, R17
+//   30     }
+//   31 
+//   32     // Для сообщения есть место?
+//   33     if ((m_uiMessageLength + xMessageContext.uiLength) <= MESSAGE_BAG_MAX_LENGTH)
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+2
+        LDD     R17, Z+3
+        MOVW    R31:R30, R25:R24
+        LDD     R18, Z+4
+        LDI     R19, 0
+        ADD     R16, R18
+        ADC     R17, R19
+        CPI     R16, 252
+        LDI     R18, 0
+        CPC     R17, R18
+        BRCS    $+2+2
+        RJMP    ??InsertMessage_1
+//   34     {
+//   35         m_puiCurrentMessage[m_uiMessageLength++] = xMessageContext.uiAddress;
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        MOVW    R17:R16, R19:R18
+        SUBI    R16, 255
+        SBCI    R17, 255
+        MOVW    R31:R30, R27:R26
+        STD     Z+2, R16
+        STD     Z+3, R17
+        MOVW    R31:R30, R25:R24
+        LD      R20, Z
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+6
+        LDD     R17, Z+7
+        ADD     R16, R18
+        ADC     R17, R19
+        MOVW    R31:R30, R17:R16
+        ST      Z, R20
+//   36         m_puiCurrentMessage[m_uiMessageLength++] = xMessageContext.uiFunctionCode;
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        MOVW    R17:R16, R19:R18
+        SUBI    R16, 255
+        SBCI    R17, 255
+        MOVW    R31:R30, R27:R26
+        STD     Z+2, R16
+        STD     Z+3, R17
+        MOVW    R31:R30, R25:R24
+        LDD     R20, Z+1
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+6
+        LDD     R17, Z+7
+        ADD     R16, R18
+        ADC     R17, R19
+        MOVW    R31:R30, R17:R16
+        ST      Z, R20
+//   37         m_puiCurrentMessage[m_uiMessageLength++] = xMessageContext.uiLength;
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        MOVW    R17:R16, R19:R18
+        SUBI    R16, 255
+        SBCI    R17, 255
+        MOVW    R31:R30, R27:R26
+        STD     Z+2, R16
+        STD     Z+3, R17
+        MOVW    R31:R30, R25:R24
+        LDD     R20, Z+4
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+6
+        LDD     R17, Z+7
+        ADD     R16, R18
+        ADC     R17, R19
+        MOVW    R31:R30, R17:R16
+        ST      Z, R20
+//   38         memcpy(&m_puiCurrentMessage[m_uiMessageLength],
+//   39                xMessageContext.puiMessage,
+//   40                xMessageContext.uiLength);
+        MOVW    R31:R30, R25:R24
+        LDD     R20, Z+4
+        LDI     R21, 0
+        MOVW    R31:R30, R25:R24
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+6
+        LDD     R17, Z+7
+        MOVW    R31:R30, R27:R26
+        LDD     R22, Z+2
+        LDD     R23, Z+3
+        ADD     R16, R22
+        ADC     R17, R23
+          CFI FunCall memcpy
+        CALL    memcpy
+//   41         m_uiMessageLength += xMessageContext.uiLength;
+        MOVW    R31:R30, R25:R24
+        LDD     R16, Z+4
+        LDI     R17, 0
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        ADD     R18, R16
+        ADC     R19, R17
+        STD     Z+2, R18
+        STD     Z+3, R19
+//   42         return 1;
+        LDI     R16, 1
+        RJMP    ??InsertMessage_2
+//   43     }
+//   44     else
+//   45     {
+//   46         return 0;
+??InsertMessage_1:
+        LDI     R16, 0
+??InsertMessage_2:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//   47     }
+//   48 }
+          CFI EndBlock cfiBlock1
+//   49 
+//   50 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   51 uint8_t CSerialMT::SendMessage(void)
+??SendMessage:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function ??SendMessage
+          CFI NoCalls
+//   52 {
+        MOVW    R19:R18, R17:R16
+//   53 
+//   54     if (0)
+//   55     {
+//   56 
+//   57         return 1;
+//   58     }
+//   59     else
+//   60     {
+//   61         return 0;
+        LDI     R16, 0
+        RET
+//   62     }
+//   63 }
+          CFI EndBlock cfiBlock2
+//   64 
+//   65 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   66 int16_t CSerialMT::Reply(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiFrameLength)
+??Reply:
+          CFI Block cfiBlock3 Using cfiCommon0
+          CFI Function ??Reply
+          CFI NoCalls
+//   67 {
+        ST      -Y, R25
+          CFI R25 Frame(CFA_Y, -1)
+          CFI CFA_Y Y+1
+        ST      -Y, R24
+          CFI R24 Frame(CFA_Y, -2)
+          CFI CFA_Y Y+2
+        MOVW    R1:R0, R23:R22
+//   68     uint16_t uiOffset = HEADER_LENGTH;
+        LDI     R22, 3
+        LDI     R23, 0
+//   69     int8_t uiSlave = puiRequest[uiOffset - 1];
+        MOVW    R31:R30, R19:R18
+        ADD     R30, R22
+        ADC     R31, R23
+        SBIW    R31:R30, 1
+        LD      R3, Z
+//   70     int8_t uiFunctionCode = puiRequest[uiOffset];
+        MOVW    R31:R30, R19:R18
+        ADD     R30, R22
+        ADC     R31, R23
+        LD      R2, Z
+//   71     uint16_t uiLength = uiFrameLength;
+        MOVW    R25:R24, R1:R0
+//   72 
+//   73     switch (uiFunctionCode)
+        MOV     R30, R2
+        MOV     R31, R30
+        LSL     R31
+        SBC     R31, R31
+        SUBI    R30, 1
+        BREQ    ??Reply_1
+        DEC     R30
+//   74     {
+//   75     case 1:
+//   76         break;
+//   77 
+//   78     case 2:
+//   79         break;
+//   80 
+//   81     default:
+//   82         break;
+//   83     }
+//   84 
+//   85 }
+??Reply_1:
+        LD      R24, Y+
+          CFI R24 SameValue
+          CFI CFA_Y Y+1
+        LD      R25, Y+
+          CFI R25 SameValue
+          CFI CFA_Y Y+0
+        RET
+          CFI EndBlock cfiBlock3
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+//   86 
+// 
+// 286 bytes in segment CODE
+// 
+// 286 bytes of CODE memory
+//
+//Errors: none
+//Warnings: 4

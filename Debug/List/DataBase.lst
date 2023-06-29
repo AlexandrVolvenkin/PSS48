@@ -1,0 +1,1038 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           29/Jun/2023  11:58:39
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\DataBase.cpp
+#    Command line =  
+#        -f C:\Users\Admin\AppData\Local\Temp\EW92D5.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\DataBase.cpp
+#        --cpu=m128a -ms -o
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+#        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\DataBase.lst
+#    Object file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj\DataBase.r90
+#
+###############################################################################
+
+D:\Projects\CurrentProjects\CautoProjects\PSS48\src\DataBase.cpp
+      1          //-----------------------------------------------------------------------------------------------------
+      2          //  Source      : FileName.cpp
+      3          //  Created     : 01.06.2022
+      4          //  Author      : Alexandr Volvenkin
+      5          //  email       : aav-36@mail.ru
+      6          //  GitHub      : https://github.com/AlexandrVolvenkin
+      7          //-----------------------------------------------------------------------------------------------------
+      8          #include "DataBase.h"
+
+   \                                 In  segment ABSOLUTE, at 0x9d, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9b, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x99, root
+   \   union <unnamed> volatile __io _A_UBRR1L
+   \                     _A_UBRR1L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_UBRR1H
+   \                     _A_UBRR1H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x95, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_UBRR0H
+   \                     _A_UBRR0H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8b, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x7d, root
+   \   union <unnamed> volatile __io _A_ETIMSK
+   \                     _A_ETIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ETIFR
+   \                     _A_ETIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x73, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x72, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6d, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6c, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x68, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x65, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x64, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x63, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x62, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5c, root
+   \   union <unnamed> volatile __io _A_XDIV
+   \                     _A_XDIV:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x59, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x58, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x56, root
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUCSR
+   \                     _A_MCUCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x52, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCR0
+   \                     _A_OCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4f, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x48, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x45, root
+   \   union <unnamed> volatile __io _A_TCCR2
+   \                     _A_TCCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_OCR2
+   \                     _A_OCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x42, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_SFIOR
+   \                     _A_SFIOR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3b, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3a, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x39, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_UBRR0L
+   \                     _A_UBRR0L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+      static __flash TDataBase CFlash::xMainDataBase;
+                               ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Platform.h",366  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+
+      static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
+                                                ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Platform.h",367  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+      9          #include "Platform.h"
+     10          #include "Pss21.h"
+
+      virtual bool IsSolved(void) {};
+                                   ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",20  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CTaskInterface::IsSolved"
+
+      virtual bool IsSourceStateActive(void) {};
+                                              ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",23  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CTaskInterface::IsSourceStateActive"
+
+      bool IsSolved(void) {};
+                           ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",58  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::IsSolved"
+
+      virtual bool IsSourceStateActive(void) {};
+                                              ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",61  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::IsSourceStateActive"
+
+      virtual uint16_t KEY_PRESSED_TIME(void) {};
+                                               ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",63  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::KEY_PRESSED_TIME"
+     11          #include "DataStore.h"
+     12          #include <cstddef>
+     13          
+     14          
+     15          ////-----------------------------------------------------------------------------------------------------
+     16          //CDataBase::CDataBase()
+     17          //{
+     18          ////    m_pxDataStore = new CDataStore();
+     19          //}
+     20          //
+     21          ////-----------------------------------------------------------------------------------------------------
+     22          //CDataBase::~CDataBase()
+     23          //{
+     24          ////    delete m_pxDataStore;
+     25          //}
+     26          
+     27          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     28          uint8_t CDataBase::RestoreDefault(void)
+   \                     ??RestoreDefault:
+     29          {
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
+     30              // Восстановим БД по умолчанию.
+     31              CDataStore::Init();
+   \   00000004   ........           CALL    ??Init
+     32          
+     33              enum
+     34              {
+     35                  IDDLE = 0,
+     36                  BLOCK_WRITE_START,
+     37                  BLOCK_WRITE_END_WAITING,
+     38                  BLOCK_ERROR,
+     39                  ALL_BLOCKS_WRITED,
+     40              };
+     41          
+     42              uint8_t uiBlockCounter = 0;
+   \   00000008   E090               LDI     R25, 0
+     43              uint8_t uiFsmState = BLOCK_WRITE_START;
+   \   0000000A   E081               LDI     R24, 1
+   \   0000000C   C02A               RJMP    ??RestoreDefault_1
+     44          
+     45              while (1)
+     46              {
+     47                  switch (uiFsmState)
+     48                  {
+     49                  case BLOCK_WRITE_START:
+     50                      // Записаны не все блоки?
+     51                      if (uiBlockCounter < GetBlocksNumber())
+     52                      {
+     53                          // Скопируем данные из флеш во временный буфер,
+     54                          uint16_t uiLength = CDataStore::ReadBlockFlash(CPss21::m_auiIntermediateBuff, uiBlockCounter);
+     55                          // Блок не повреждён?
+     56                          if (uiLength)
+     57                          {
+     58                              // Поместим данные в хранилище.
+     59                              // Блок БД принят к записи?
+     60                              if (CDataStore::WriteBlock(CPss21::m_auiIntermediateBuff,
+     61                                                         uiLength,
+     62                                                         uiBlockCounter + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER))
+     63                              {
+     64                                  uiFsmState = BLOCK_WRITE_END_WAITING;
+     65                              }
+     66                              // При записи блока БД произошла ошибка?
+     67                              else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+   \                     ??RestoreDefault_2:
+   \   0000000E   9100....           LDS     R16, ??m_uiFsmEvent
+   \   00000012   3004               CPI     R16, 4
+   \   00000014   F499               BRNE    ??RestoreDefault_3
+   \   00000016   C009               RJMP    ??RestoreDefault_4
+     68                              {
+     69                                  uiFsmState = BLOCK_ERROR;
+     70                              }
+     71                          }
+     72                          else
+     73                          {
+     74                              uiFsmState = BLOCK_ERROR;
+     75                          }
+     76                      }
+     77                      else
+     78                      {
+     79                          uiFsmState = ALL_BLOCKS_WRITED;
+     80                      }
+     81          
+     82                      break;
+     83          
+     84                  case BLOCK_WRITE_END_WAITING:
+     85                      // Блок записан успешно?
+     86                      if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
+   \                     ??RestoreDefault_5:
+   \   00000018   9100....           LDS     R16, ??m_uiFsmEvent
+   \   0000001C   3003               CPI     R16, 3
+   \   0000001E   F419               BRNE    ??RestoreDefault_6
+     87                      {
+     88                          uiBlockCounter++;
+   \   00000020   9593               INC     R25
+     89                          uiFsmState = BLOCK_WRITE_START;
+   \   00000022   E081               LDI     R24, 1
+   \   00000024   C00B               RJMP    ??RestoreDefault_3
+     90                      }
+     91                      // При записи блока БД произошла ошибка?
+     92                      else if (CDataStore::GetFsmEvent() == CDataStore::WRITE_ERROR_FSM_EVENT)
+   \                     ??RestoreDefault_6:
+   \   00000026   3004               CPI     R16, 4
+   \   00000028   F449               BRNE    ??RestoreDefault_3
+     93                      {
+     94                          uiFsmState = BLOCK_ERROR;
+   \                     ??RestoreDefault_4:
+   \   0000002A   E083               LDI     R24, 3
+   \   0000002C   C007               RJMP    ??RestoreDefault_3
+     95                      }
+     96                      break;
+     97          
+     98                  case ALL_BLOCKS_WRITED:
+     99                      return 1;
+   \                     ??RestoreDefault_7:
+   \   0000002E   E001               LDI     R16, 1
+   \                     ??RestoreDefault_8:
+   \   00000030   9189               LD      R24, Y+
+   \   00000032   9199               LD      R25, Y+
+   \   00000034   9508               RET
+    100                      break;
+    101          
+    102                  case BLOCK_ERROR:
+    103                      return 0;
+   \                     ??RestoreDefault_9:
+   \   00000036   E000               LDI     R16, 0
+   \   00000038   CFFB               RJMP    ??RestoreDefault_8
+   \                     ??RestoreDefault_10:
+   \   0000003A   E084               LDI     R24, 4
+    104                      break;
+    105          
+    106                  default:
+    107                      break;
+    108                  }
+    109          
+    110                  CDataStore::Fsm();
+   \                     ??RestoreDefault_3:
+   \   0000003C   ........           CALL    ??Fsm
+    111          
+    112                  delay_ms(10);
+   \   00000040   E00A               LDI     R16, 10
+   \   00000042   E010               LDI     R17, 0
+   \   00000044   ........           CALL    ??delay_ms
+    113          
+    114                  CPlatform::WatchdogReset();
+   \   00000048   95A8               WDR
+   \   0000004A   2F08               MOV     R16, R24
+   \   0000004C   950A               DEC     R16
+   \   0000004E   F039               BREQ    ??RestoreDefault_11
+   \   00000050   950A               DEC     R16
+   \   00000052   F311               BREQ    ??RestoreDefault_5
+   \   00000054   950A               DEC     R16
+   \   00000056   F379               BREQ    ??RestoreDefault_9
+   \   00000058   950A               DEC     R16
+   \   0000005A   F349               BREQ    ??RestoreDefault_7
+   \   0000005C   CFEF               RJMP    ??RestoreDefault_3
+   \                     ??RestoreDefault_11:
+   \   0000005E   309B               CPI     R25, 11
+   \   00000060   F760               BRCC    ??RestoreDefault_10
+   \                     ??RestoreDefault_1:
+   \   00000062   2F29               MOV     R18, R25
+   \   00000064   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   00000066   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   00000068   ........           CALL    ??ReadBlockFlash
+   \   0000006C   0198               MOVW    R19:R18, R17:R16
+   \   0000006E   2B03               OR      R16, R19
+   \   00000070   F2E1               BREQ    ??RestoreDefault_4
+   \   00000072   2F49               MOV     R20, R25
+   \   00000074   9543               INC     R20
+   \   00000076   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   00000078   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   0000007A   ........           CALL    ??WriteBlock_1
+   \   0000007E   2300               TST     R16
+   \   00000080   F231               BREQ    ??RestoreDefault_2
+   \   00000082   E082               LDI     R24, 2
+   \   00000084   CFDB               RJMP    ??RestoreDefault_3
+    115              }
+    116          }
+    117          
+    118          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    119          bool CDataBase::IntegrityCheck(void)
+   \                     ??IntegrityCheck:
+    120          {
+    121              // Crc блока совпадает с его Crc сохранённом в служебном блоке?
+    122              return CDataStore::CompareCurrentWithStoredCrc();
+   \   00000000   ........           JMP     ??CompareCurrentWithStoredCrc
+    123          }
+    124          
+    125          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    126          void CDataBase::SignatureCreate(void)
+   \                     ??SignatureCreate:
+    127          {
+    128              // Создадим Crc из Crc всех блоков.
+    129              CDataStore::CrcOfBlocksCrcCreate();
+   \   00000000   ........           JMP     ??CrcOfBlocksCrcCreate
+    130          }
+    131          
+    132          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    133          bool CDataBase::SignatureCheck(void)
+   \                     ??SignatureCheck:
+    134          {
+    135              // Crc из Crc всех блоков совпадает?
+    136              return CDataStore::CrcOfBlocksCrcCheck();
+   \   00000000   ........           JMP     ??CrcOfBlocksCrcCheck
+    137          }
+    138          
+    139          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    140          uint8_t CDataBase::Check(void)
+   \                     ??Check:
+    141          {
+    142              CPss21::SetErrorCode(NO_ERROR);
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9300....           STS     ??m_uiErrorCode, R16
+    143              // Блоки базы данных не повреждены?
+    144              if (CDataStore::Check())
+   \   00000006   ........           CALL    ??Check_1
+   \   0000000A   2300               TST     R16
+   \   0000000C   F071               BREQ    ??Check_2
+    145              {
+    146                  // Все блоки принадлежат текущей базе данных?
+    147                  if (IntegrityCheck())
+   \   0000000E   ........           CALL    ??CompareCurrentWithStoredCrc
+   \   00000012   2300               TST     R16
+   \   00000014   F051               BREQ    ??Check_2
+    148                  {
+    149                      // База данных подтверждена пользователем?
+    150                      if (SignatureCheck())
+   \   00000016   ........           CALL    ??CrcOfBlocksCrcCheck
+   \   0000001A   2300               TST     R16
+   \   0000001C   F011               BREQ    ??Check_3
+    151                      {
+    152                          return 1;
+   \   0000001E   E001               LDI     R16, 1
+   \   00000020   9508               RET
+    153                      }
+    154                      else
+    155                      {
+    156                          CPss21::SetErrorCode(DB_ERROR);
+   \                     ??Check_3:
+   \   00000022   E004               LDI     R16, 4
+   \   00000024   9300....           STS     ??m_uiErrorCode, R16
+    157                          return 0;
+   \   00000028   C004               RJMP    ??Check_4
+    158                      }
+    159                  }
+    160                  else
+    161                  {
+    162                      CPss21::SetErrorCode(DB_ERROR);
+    163                      // Восстановим БД по умолчанию.
+    164                      // БД по умолчанию восстановлена успешно?
+    165                      RestoreDefault();
+    166                      return 0;
+    167                  }
+    168              }
+    169              else
+    170              {
+    171                  CPss21::SetErrorCode(DB_ERROR);
+   \                     ??Check_2:
+   \   0000002A   E004               LDI     R16, 4
+   \   0000002C   9300....           STS     ??m_uiErrorCode, R16
+    172                  // Восстановим БД по умолчанию.
+    173                  // БД по умолчанию восстановлена успешно?
+    174                  RestoreDefault();
+   \   00000030   ....               RCALL   ??RestoreDefault
+    175                  return 0;
+   \                     ??Check_4:
+   \   00000032   E000               LDI     R16, 0
+   \   00000034   9508               RET
+    176              }
+    177          }
+    178          
+    179          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    180          uint16_t CDataBase::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+   \                     ??ReadBlock:
+    181          {
+    182              return CDataStore::ReadBlock(puiDestination,
+    183                                           uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
+   \   00000000   9523               INC     R18
+   \   00000002   ........           JMP     ??ReadBlock_1
+    184          }
+    185          
+    186          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   E010               LDI     R17, 0
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    187          uint16_t CDataBase::WriteBlock(uint8_t *puiSource, uint8_t uiBlock)
+   \                     ??WriteBlock:
+    188          {
+   \   00000000   01B8               MOVW    R23:R22, R17:R16
+    189              return CDataStore::WriteBlock(puiSource,
+    190                                            GetBlockLength(uiBlock),
+    191                                            uiBlock + (CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER));
+   \   00000002   2F02               MOV     R16, R18
+   \   00000004   ....               RCALL   ??GetBlockLength
+   \   00000006   9523               INC     R18
+   \   00000008   2F42               MOV     R20, R18
+   \   0000000A   0198               MOVW    R19:R18, R17:R16
+   \   0000000C   018B               MOVW    R17:R16, R23:R22
+   \   0000000E   ........           CALL    ??WriteBlock_1
+   \   00000012   ....               RJMP    ?Subroutine0
+    192          }
+    193          
+    194          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    195          uint16_t CDataBase::GetBlockLength(uint8_t uiBlock)
+   \                     ??GetBlockLength:
+    196          {
+    197              // Блок существует?
+    198              if (uiBlock < GetBlocksNumber())
+   \   00000000   300B               CPI     R16, 11
+   \   00000002   F440               BRCC    ??GetBlockLength_1
+    199              {
+    200                  return CDataStore::GetBlockLength(uiBlock + CDataStore::BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
+   \   00000004   9503               INC     R16
+   \   00000006   E018               LDI     R17, 8
+   \   00000008   9F01               MUL     R16, R17
+   \   0000000A   01F0               MOVW    R31:R30, R1:R0
+   \   0000000C   ....               SUBI    R30, LOW((-(??m_xBlocksControlData) & 0xFFFF))
+   \   0000000E   ....               SBCI    R31, (-(??m_xBlocksControlData) & 0xFFFF) >> 8
+   \   00000010   8106               LDD     R16, Z+6
+   \   00000012   C001               RJMP    ??GetBlockLength_2
+    201              }
+    202              else
+    203              {
+    204                  return 0;
+   \                     ??GetBlockLength_1:
+   \   00000014   E000               LDI     R16, 0
+    205              }
+   \                     ??GetBlockLength_2:
+   \   00000016                      REQUIRE ?Subroutine0
+   \   00000016                      ;               // Fall through to label ?Subroutine0
+    206          }
+    207          
+    208          //-----------------------------------------------------------------------------------------------------
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CDataBase::Check()
+        0      2   -> CDataBase::RestoreDefault()
+        0      2   -> CDataStore::Check()
+        0      2   -> CDataStore::CompareCurrentWithStoredCrc()
+        0      2   -> CDataStore::CrcOfBlocksCrcCheck()
+      0      2   CDataBase::GetBlockLength(uint8_t)
+      0      2   CDataBase::IntegrityCheck()
+        0      2   -> CDataStore::CompareCurrentWithStoredCrc()
+      0      2   CDataBase::ReadBlock(uint8_t *, uint8_t)
+        0      2   -> CDataStore::ReadBlock(uint8_t *, uint8_t)
+      2      2   CDataBase::RestoreDefault()
+        2      2   -> CDataStore::Fsm()
+        2      2   -> CDataStore::Init()
+        2      2   -> CDataStore::ReadBlockFlash(uint8_t *, uint8_t)
+        2      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+        2      2   -> delay_ms(uint16_t)
+      0      2   CDataBase::SignatureCheck()
+        0      2   -> CDataStore::CrcOfBlocksCrcCheck()
+      0      2   CDataBase::SignatureCreate()
+        0      2   -> CDataStore::CrcOfBlocksCrcCreate()
+      0      2   CDataBase::WriteBlock(uint8_t *, uint8_t)
+        0      2   -> CDataBase::GetBlockLength(uint8_t)
+        0      2   -> CDataStore::WriteBlock(uint8_t *, uint16_t, uint8_t)
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ?Subroutine0
+      54  CDataBase::Check()
+      22  CDataBase::GetBlockLength(uint8_t)
+       4  CDataBase::IntegrityCheck()
+       6  CDataBase::ReadBlock(uint8_t *, uint8_t)
+     134  CDataBase::RestoreDefault()
+       4  CDataBase::SignatureCheck()
+       4  CDataBase::SignatureCreate()
+      20  CDataBase::WriteBlock(uint8_t *, uint8_t)
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_ETIFR
+       1  _A_ETIMSK
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUCSR
+       1  _A_OCDR
+       1  _A_OCR0
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SFIOR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR
+       1  _A_TIMSK
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       1  _A_UBRR0H
+       1  _A_UBRR0L
+       1  _A_UBRR1H
+       1  _A_UBRR1L
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XDIV
+       1  _A_XMCRA
+       1  _A_XMCRB
+      22  -- Other
+
+ 
+ 105 bytes in segment ABSOLUTE
+ 252 bytes in segment CODE
+  22 bytes in segment NEAR_F
+ 
+ 274 bytes of CODE memory
+   0 bytes of DATA memory (+ 105 bytes shared)
+
+Errors: none
+Warnings: 7

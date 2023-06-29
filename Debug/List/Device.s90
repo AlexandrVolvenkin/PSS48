@@ -1,0 +1,79 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          06/Jul/2022  09:49:15
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  D:\Projects\CautoProjects\PSS48\PSS48\src\Device.cpp
+//    Command line =  
+//        -f C:\Users\ghost\AppData\Local\Temp\EW36DA.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CautoProjects\PSS48\PSS48\src\Device.cpp --cpu=m128a -ms
+//        -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lA
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+//        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+//        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+//        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\Device.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Device
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__SystemLibrary", "DLib"
+        RTMODEL "__cpu", "3"
+        RTMODEL "__cpu_name", "ATmega128A"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "true"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__no_rampd", "enabled"
+        RTMODEL "__rt_version", "3"
+        RTMODEL "__vtable_memory", "__nearflash"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+
+        END
+// D:\Projects\CautoProjects\PSS48\PSS48\src\Device.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Sourse      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "Device.h"
+//    9 #include "Driver.h"
+// 
+// 8 bytes in segment NEAR_F
+// 
+// 8 bytes of CODE memory
+//
+//Errors: none
+//Warnings: none

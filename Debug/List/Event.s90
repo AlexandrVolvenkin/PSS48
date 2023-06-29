@@ -1,0 +1,492 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:58:39
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Event.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW93C4.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Event.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+//        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Event.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Event
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B3_L09
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE3_L09
+        EXTERN ?PROLOGUE4_L09
+
+        PUBLIC ??CEvent
+        PUBLIC ??CEventUniteLogicAnd
+        PUBLIC ??CEventUniteLogicAnd_1
+        PUBLIC ??IsHappened
+        PUBWEAK ??__vtbl
+        PUBWEAK ??__vtbl_1
+        PUBLIC `??new CEvent`
+        PUBLIC `??new CEventUniteLogicAnd`
+        PUBLIC `??new CEventUniteLogicAnd_1`
+        PUBLIC `?~CEvent`
+        PUBLIC `?~CEventUniteLogicAnd`
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CEvent 31>` SYMBOL "CEvent"
+`?<Name CEventUniteLogicAnd 34>` SYMBOL "CEventUniteLogicAnd"
+??__vtbl            SYMBOL "__vtbl", `?<Name CEvent 31>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CEventUniteLogicAnd 34>`
+
+        EXTERN ??CDfa
+        EXTERN ??CTimer
+        EXTERN ??Fsm
+        EXTERN ??IsOverflow
+        EXTERN ??Set
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDfa`
+        EXTERN `?~CTimer`
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Event.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "Event.h"
+//    9 
+//   10 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   11 CEvent::CEvent()
+??CEvent:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//   12 {
+        CALL    ??CDfa
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+//   13 
+//   14 }
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEvent &CEvent::new CEvent()
+`??new CEvent`:
+        LDI     R16, 5
+        RCALL   ??Subroutine8_0
+??CrossCallReturnLabel_9:
+        BREQ    `??new CEvent_1`
+        RJMP    ??CEvent
+`??new CEvent_1`:
+        REQUIRE ?Subroutine6
+        ;               // Fall through to label ?Subroutine6
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//   15 
+//   16 //-----------------------------------------------------------------------------------------------------
+//   17 CEvent::~CEvent()
+//   18 {
+//   19 
+//   20 }
+//   21 //-----------------------------------------------------------------------------------------------------
+//   22 
+//   23 
+//   24 
+//   25 
+//   26 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   27 CEventUniteLogicAnd::CEventUniteLogicAnd()
+??CEventUniteLogicAnd:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//   28 {
+        RCALL   ?Subroutine0
+//   29     SetFsmState(START);
+??CrossCallReturnLabel_1:
+        LDI     R16, 0
+        ST      X, R16
+//   30 }
+        RJMP    ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd()
+`??new CEventUniteLogicAnd`:
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_7:
+        BREQ    `??new CEventUniteLogicAnd_2`
+        RJMP    ??CEventUniteLogicAnd
+`??new CEventUniteLogicAnd_2`:
+        RJMP    ?Subroutine6
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        LDI     R16, 14
+        REQUIRE ??Subroutine8_0
+        ;               // Fall through to label ??Subroutine8_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine8_0:
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??CEventUniteLogicAnd_1:
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_2:
+        MOVW    R25:R24, R19:R18
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_0:
+        MOVW    R31:R30, R27:R26
+        STD     Z+11, R24
+        STD     Z+12, R25
+        LDI     R16, 0
+        ST      X, R16
+        MOVW    R17:R16, R27:R26
+        REQUIRE ?Subroutine7
+        ;               // Fall through to label ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        RCALL   ??CEvent
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_6:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_13:
+        JMP     ??CTimer
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        MOVW    R17:R16, R27:R26
+        REQUIRE ??Subroutine9_0
+        ;               // Fall through to label ??Subroutine9_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine9_0:
+        SUBI    R16, 251
+        SBCI    R17, 255
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd(uint16_t)
+`??new CEventUniteLogicAnd_1`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_8:
+        BREQ    `??new CEventUniteLogicAnd_3`
+        MOVW    R19:R18, R25:R24
+        RCALL   ??CEventUniteLogicAnd_1
+        RJMP    `??new CEventUniteLogicAnd_4`
+`??new CEventUniteLogicAnd_3`:
+        LDI     R16, 0
+        LDI     R17, 0
+`??new CEventUniteLogicAnd_4`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+`?~CEvent`:
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
+        MOV     R26, R18
+        OR      R16, R17
+        BREQ    `?~CEvent_1`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOV     R16, R24
+        CALL    `?~CDfa`
+        BST     R26, 0
+        BRTC    `?~CEvent_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CEvent_1`:
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
+//   31 
+//   32 //-----------------------------------------------------------------------------------------------------
+//   33 CEventUniteLogicAnd::CEventUniteLogicAnd(uint16_t uiTime) :
+//   34     m_uiTime(uiTime)
+//   35 {
+//   36     SetFsmState(START);
+//   37 }
+//   38 
+//   39 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   40 CEventUniteLogicAnd::~CEventUniteLogicAnd()
+`?~CEventUniteLogicAnd`:
+//   41 {
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_3:
+        MOV     R24, R18
+        OR      R16, R27
+        BREQ    `?~CEventUniteLogicAnd_1`
+        RCALL   ?Subroutine3
+//   42 
+//   43 }
+??CrossCallReturnLabel_5:
+        LDI     R18, 2
+        LDI     R19, 0
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_12:
+        CALL    `?~CTimer`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R27:R26
+        RCALL   `?~CEvent`
+        BST     R24, 0
+        BRTC    `?~CEventUniteLogicAnd_1`
+        MOVW    R17:R16, R27:R26
+        CALL    `??operator delete`
+`?~CEventUniteLogicAnd_1`:
+        RJMP    ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
+        LDI     R16, LOW(??__vtbl_1)
+        LDI     R17, (??__vtbl_1) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        RET
+//   44 
+//   45 //-----------------------------------------------------------------------------------------------------
+//   46 // Объединяет события произошедшие совместно в течении UNITED_WAITING_TIME.
+
+        RSEG CODE:CODE:NOROOT(1)
+//   47 uint8_t CEventUniteLogicAnd::IsHappened(uint8_t uiEventOne, uint8_t uiEventTwo)
+??IsHappened:
+//   48 {
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_4:
+        MOV     R25, R18
+        MOV     R24, R19
+//   49     switch (GetFsmState())
+        LD      R16, X
+        TST     R16
+        BREQ    ??IsHappened_1
+        DEC     R16
+        BREQ    ??IsHappened_2
+        DEC     R16
+        BREQ    ??IsHappened_3
+        RJMP    ??IsHappened_4
+//   50     {
+//   51     case START:
+//   52         m_uiEventsState = 0;
+??IsHappened_1:
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
+        STD     Z+13, R16
+//   53         SetFsmState(EVENT_WAITING);
+        LDI     R16, 1
+        RJMP    ??IsHappened_5
+//   54         return 0;
+//   55         break;
+//   56 
+//   57     case EVENT_WAITING:
+//   58         // Произошло первое событие?
+//   59         if (uiEventOne)
+??IsHappened_2:
+        TST     R18
+        BREQ    ??IsHappened_6
+//   60         {
+//   61             m_uiEventsState |= 0x01;
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+13
+        ORI     R16, 0x01
+        STD     Z+13, R16
+//   62         }
+//   63         // Произошло второе событие?
+//   64         if (uiEventTwo)
+??IsHappened_6:
+        TST     R19
+        BREQ    ??IsHappened_7
+//   65         {
+//   66             m_uiEventsState |= 0x02;
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+13
+        ORI     R16, 0x02
+        STD     Z+13, R16
+//   67         }
+//   68         // Установим задержку ожидания второго события.
+//   69         m_xTimer.Set(m_uiTime);
+??IsHappened_7:
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+11
+        LDD     R19, Z+12
+        MOV     R16, R26
+        RCALL   ??Subroutine9_0
+??CrossCallReturnLabel_10:
+        CALL    ??Set
+//   70         SetFsmState(EVENT_UNITE_WAITING);
+        LDI     R16, 2
+??IsHappened_5:
+        ST      X, R16
+//   71         return 0;
+        RJMP    ??IsHappened_4
+//   72         break;
+//   73 
+//   74     case EVENT_UNITE_WAITING:
+//   75         // Закончилось время объединения событий?
+//   76         if (m_xTimer.IsOverflow())
+??IsHappened_3:
+        MOV     R16, R26
+        RCALL   ??Subroutine9_0
+??CrossCallReturnLabel_11:
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??IsHappened_8
+//   77         {
+//   78             SetFsmState(START);
+        LDI     R16, 0
+        ST      X, R16
+//   79             return 0;
+        RJMP    ??IsHappened_9
+//   80         }
+//   81         else
+//   82         {
+//   83             // Произошло первое событие?
+//   84             if (uiEventOne)
+??IsHappened_8:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+13
+        TST     R25
+        BREQ    ??IsHappened_10
+//   85             {
+//   86                 m_uiEventsState |= 0x01;
+        ORI     R16, 0x01
+//   87             }
+//   88             // Произошло второе событие?
+//   89             if (uiEventTwo)
+??IsHappened_10:
+        TST     R24
+        BREQ    ??IsHappened_11
+//   90             {
+//   91                 m_uiEventsState |= 0x02;
+        ORI     R16, 0x02
+??IsHappened_11:
+        STD     Z+13, R16
+//   92             }
+//   93             // Произошли все объединяемые события?
+//   94             if (m_uiEventsState == 0x03)
+        CPI     R16, 3
+        LDI     R16, 0
+        BRNE    ??IsHappened_9
+//   95             {
+//   96                 SetFsmState(START);
+        ST      X, R16
+//   97                 return 1;
+        LDI     R16, 1
+        RJMP    ??IsHappened_9
+//   98             }
+//   99             else
+//  100             {
+//  101                 return 0;
+//  102             }
+//  103         }
+//  104         break;
+//  105 
+//  106     default:
+//  107         return 0;
+??IsHappened_4:
+        LDI     R16, 0
+//  108         break;
+//  109     }
+??IsHappened_9:
+        RJMP    ?Subroutine7
+//  110 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CEvent::__vtbl[2]
+??__vtbl:
+        DC16 `?~CEvent`/2, ??Fsm/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CEventUniteLogicAnd::__vtbl[2]
+??__vtbl_1:
+        DC16 `?~CEventUniteLogicAnd`/2, ??Fsm/2
+
+        END
+// 
+// 372 bytes in segment CODE
+//   8 bytes in segment NEAR_F
+// 
+// 372 bytes of CODE memory (+ 8 bytes shared)
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,317 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           03/May/2022  21:04:36
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp
+#    Command line =  
+#        -f C:\Users\ghost\AppData\Local\Temp\EW3C7C.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp
+#        --cpu=m128a -ms -o D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj -lC
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -lA
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CautoProjects\PSS48\PSS48\include\ -I
+#        D:\Projects\CautoProjects\PSS48\PSS48\Modbus\ --eeprom_size 4096
+#        --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\List\SerialMT.lst
+#    Object file  =  
+#        D:\Projects\CautoProjects\PSS48\PSS48\Debug\Obj\SerialMT.r90
+#
+###############################################################################
+
+D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp
+      1          //-----------------------------------------------------------------------------------------------------
+      2          //  Sourse      : FileName.cpp
+      3          //  Created     : 01.06.2022
+      4          //  Author      : Alexandr Volvenkin
+      5          //  email       : aav-36@mail.ru
+      6          //  GitHub      : https://github.com/AlexandrVolvenkin
+      7          //-----------------------------------------------------------------------------------------------------
+      8          // SerialMT - serial multi trans.
+      9          //-----------------------------------------------------------------------------------------------------
+     10          #include <cstring>
+     11          
+     12          #include "SerialMT.h"
+
+      };
+       ^
+"D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.h",51  Warning[Pe375]: 
+          declaration requires a typedef name
+     13          #include "Crc.h"
+     14          
+     15          
+     16          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     17          void CSerialMT::Init(void)
+   \                     ??Init:
+     18          {
+     19          
+     20          }
+   \   00000000   9508               RET
+     21          
+     22          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     23          uint8_t CSerialMT::InsertMessage(TMessageContext &xMessageContext)
+   \                     ??InsertMessage:
+     24          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
+     25              // Отправляем первое сообщение?
+     26              if (1)
+     27              {
+     28                  m_uiMessageLength = 0;
+   \   00000008   01FD               MOVW    R31:R30, R27:R26
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   8302               STD     Z+2, R16
+   \   0000000E   E000               LDI     R16, 0
+   \   00000010   8303               STD     Z+3, R16
+     29                  m_puiCurrentMessage = m_puiTxBuffer;
+   \   00000012   01FD               MOVW    R31:R30, R27:R26
+   \   00000014   8502               LDD     R16, Z+10
+   \   00000016   8513               LDD     R17, Z+11
+   \   00000018   01FD               MOVW    R31:R30, R27:R26
+   \   0000001A   8306               STD     Z+6, R16
+   \   0000001C   8317               STD     Z+7, R17
+     30              }
+     31          
+     32              // Для сообщения есть место?
+     33              if ((m_uiMessageLength + xMessageContext.uiLength) <= MESSAGE_BAG_MAX_LENGTH)
+   \   0000001E   01FD               MOVW    R31:R30, R27:R26
+   \   00000020   8102               LDD     R16, Z+2
+   \   00000022   8113               LDD     R17, Z+3
+   \   00000024   01FC               MOVW    R31:R30, R25:R24
+   \   00000026   8124               LDD     R18, Z+4
+   \   00000028   E030               LDI     R19, 0
+   \   0000002A   0F02               ADD     R16, R18
+   \   0000002C   1F13               ADC     R17, R19
+   \   0000002E   3F0C               CPI     R16, 252
+   \   00000030   E020               LDI     R18, 0
+   \   00000032   0712               CPC     R17, R18
+   \   00000034   F008               BRCS    $+2+2
+   \   00000036   C052               RJMP    ??InsertMessage_1
+     34              {
+     35                  m_puiCurrentMessage[m_uiMessageLength++] = xMessageContext.uiAddress;
+   \   00000038   01FD               MOVW    R31:R30, R27:R26
+   \   0000003A   8122               LDD     R18, Z+2
+   \   0000003C   8133               LDD     R19, Z+3
+   \   0000003E   0189               MOVW    R17:R16, R19:R18
+   \   00000040   5F0F               SUBI    R16, 255
+   \   00000042   4F1F               SBCI    R17, 255
+   \   00000044   01FD               MOVW    R31:R30, R27:R26
+   \   00000046   8302               STD     Z+2, R16
+   \   00000048   8313               STD     Z+3, R17
+   \   0000004A   01FC               MOVW    R31:R30, R25:R24
+   \   0000004C   8140               LD      R20, Z
+   \   0000004E   01FD               MOVW    R31:R30, R27:R26
+   \   00000050   8106               LDD     R16, Z+6
+   \   00000052   8117               LDD     R17, Z+7
+   \   00000054   0F02               ADD     R16, R18
+   \   00000056   1F13               ADC     R17, R19
+   \   00000058   01F8               MOVW    R31:R30, R17:R16
+   \   0000005A   8340               ST      Z, R20
+     36                  m_puiCurrentMessage[m_uiMessageLength++] = xMessageContext.uiFunctionCode;
+   \   0000005C   01FD               MOVW    R31:R30, R27:R26
+   \   0000005E   8122               LDD     R18, Z+2
+   \   00000060   8133               LDD     R19, Z+3
+   \   00000062   0189               MOVW    R17:R16, R19:R18
+   \   00000064   5F0F               SUBI    R16, 255
+   \   00000066   4F1F               SBCI    R17, 255
+   \   00000068   01FD               MOVW    R31:R30, R27:R26
+   \   0000006A   8302               STD     Z+2, R16
+   \   0000006C   8313               STD     Z+3, R17
+   \   0000006E   01FC               MOVW    R31:R30, R25:R24
+   \   00000070   8141               LDD     R20, Z+1
+   \   00000072   01FD               MOVW    R31:R30, R27:R26
+   \   00000074   8106               LDD     R16, Z+6
+   \   00000076   8117               LDD     R17, Z+7
+   \   00000078   0F02               ADD     R16, R18
+   \   0000007A   1F13               ADC     R17, R19
+   \   0000007C   01F8               MOVW    R31:R30, R17:R16
+   \   0000007E   8340               ST      Z, R20
+     37                  m_puiCurrentMessage[m_uiMessageLength++] = xMessageContext.uiLength;
+   \   00000080   01FD               MOVW    R31:R30, R27:R26
+   \   00000082   8122               LDD     R18, Z+2
+   \   00000084   8133               LDD     R19, Z+3
+   \   00000086   0189               MOVW    R17:R16, R19:R18
+   \   00000088   5F0F               SUBI    R16, 255
+   \   0000008A   4F1F               SBCI    R17, 255
+   \   0000008C   01FD               MOVW    R31:R30, R27:R26
+   \   0000008E   8302               STD     Z+2, R16
+   \   00000090   8313               STD     Z+3, R17
+   \   00000092   01FC               MOVW    R31:R30, R25:R24
+   \   00000094   8144               LDD     R20, Z+4
+   \   00000096   01FD               MOVW    R31:R30, R27:R26
+   \   00000098   8106               LDD     R16, Z+6
+   \   0000009A   8117               LDD     R17, Z+7
+   \   0000009C   0F02               ADD     R16, R18
+   \   0000009E   1F13               ADC     R17, R19
+   \   000000A0   01F8               MOVW    R31:R30, R17:R16
+   \   000000A2   8340               ST      Z, R20
+     38                  memcpy(&m_puiCurrentMessage[m_uiMessageLength],
+     39                         xMessageContext.puiMessage,
+     40                         xMessageContext.uiLength);
+   \   000000A4   01FC               MOVW    R31:R30, R25:R24
+   \   000000A6   8144               LDD     R20, Z+4
+   \   000000A8   E050               LDI     R21, 0
+   \   000000AA   01FC               MOVW    R31:R30, R25:R24
+   \   000000AC   8122               LDD     R18, Z+2
+   \   000000AE   8133               LDD     R19, Z+3
+   \   000000B0   01FD               MOVW    R31:R30, R27:R26
+   \   000000B2   8106               LDD     R16, Z+6
+   \   000000B4   8117               LDD     R17, Z+7
+   \   000000B6   01FD               MOVW    R31:R30, R27:R26
+   \   000000B8   8162               LDD     R22, Z+2
+   \   000000BA   8173               LDD     R23, Z+3
+   \   000000BC   0F06               ADD     R16, R22
+   \   000000BE   1F17               ADC     R17, R23
+   \   000000C0   ........           CALL    memcpy
+     41                  m_uiMessageLength += xMessageContext.uiLength;
+   \   000000C4   01FC               MOVW    R31:R30, R25:R24
+   \   000000C6   8104               LDD     R16, Z+4
+   \   000000C8   E010               LDI     R17, 0
+   \   000000CA   01FD               MOVW    R31:R30, R27:R26
+   \   000000CC   8122               LDD     R18, Z+2
+   \   000000CE   8133               LDD     R19, Z+3
+   \   000000D0   0F20               ADD     R18, R16
+   \   000000D2   1F31               ADC     R19, R17
+   \   000000D4   8322               STD     Z+2, R18
+   \   000000D6   8333               STD     Z+3, R19
+     42                  return 1;
+   \   000000D8   E001               LDI     R16, 1
+   \   000000DA   C001               RJMP    ??InsertMessage_2
+     43              }
+     44              else
+     45              {
+     46                  return 0;
+   \                     ??InsertMessage_1:
+   \   000000DC   E000               LDI     R16, 0
+   \                     ??InsertMessage_2:
+   \   000000DE   E0E4               LDI     R30, 4
+   \   000000E0   ........           JMP     ?EPILOGUE_B4_L09
+     47              }
+     48          }
+     49          
+     50          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     51          uint8_t CSerialMT::SendMessage(void)
+   \                     ??SendMessage:
+     52          {
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+     53          
+     54              if (0)
+     55              {
+     56          
+     57                  return 1;
+     58              }
+     59              else
+     60              {
+     61                  return 0;
+   \   00000002   E000               LDI     R16, 0
+   \   00000004   9508               RET
+     62              }
+     63          }
+     64          
+     65          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     66          int16_t CSerialMT::Reply(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiFrameLength)
+   \                     ??Reply:
+     67          {
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
+   \   00000004   010B               MOVW    R1:R0, R23:R22
+     68              uint16_t uiOffset = HEADER_LENGTH;
+   \   00000006   E063               LDI     R22, 3
+   \   00000008   E070               LDI     R23, 0
+     69              int8_t uiSlave = puiRequest[uiOffset - 1];
+   \   0000000A   01F9               MOVW    R31:R30, R19:R18
+   \   0000000C   0FE6               ADD     R30, R22
+   \   0000000E   1FF7               ADC     R31, R23
+   \   00000010   9731               SBIW    R31:R30, 1
+   \   00000012   8030               LD      R3, Z
+     70              int8_t uiFunctionCode = puiRequest[uiOffset];
+   \   00000014   01F9               MOVW    R31:R30, R19:R18
+   \   00000016   0FE6               ADD     R30, R22
+   \   00000018   1FF7               ADC     R31, R23
+   \   0000001A   8020               LD      R2, Z
+     71              uint16_t uiLength = uiFrameLength;
+   \   0000001C   01C0               MOVW    R25:R24, R1:R0
+     72          
+     73              switch (uiFunctionCode)
+   \   0000001E   2DE2               MOV     R30, R2
+   \   00000020   2FFE               MOV     R31, R30
+   \   00000022   0FFF               LSL     R31
+   \   00000024   0BFF               SBC     R31, R31
+   \   00000026   50E1               SUBI    R30, 1
+   \   00000028   F009               BREQ    ??Reply_1
+   \   0000002A   95EA               DEC     R30
+     74              {
+     75              case 1:
+     76                  break;
+     77          
+     78              case 2:
+     79                  break;
+     80          
+     81              default:
+     82                  break;
+     83              }
+     84          
+     85          }
+                 ^
+Warning[Pe940]: missing return statement at end of non-void function
+          "CSerialMT::Reply"
+
+      int8_t uiSlave = puiRequest[uiOffset - 1];
+             ^
+"D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp",69  Warning[Pe177]: 
+          variable "uiSlave" was declared but never referenced
+
+      uint16_t uiLength = uiFrameLength;
+               ^
+"D:\Projects\CautoProjects\PSS48\PSS48\SerialMT\SerialMT.cpp",71  Warning[Pe177]: 
+          variable "uiLength" was declared but never referenced
+   \                     ??Reply_1:
+   \   0000002C   9189               LD      R24, Y+
+   \   0000002E   9199               LD      R25, Y+
+   \   00000030   9508               RET
+     86          
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CSerialMT::Init()
+      4      2   CSerialMT::InsertMessage(CSerialMT::TMessageContext &)
+        4      2   -> memcpy
+      2      2   CSerialMT::Reply(uint8_t *, uint8_t *, uint16_t)
+      0      2   CSerialMT::SendMessage()
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       2  CSerialMT::Init()
+     228  CSerialMT::InsertMessage(CSerialMT::TMessageContext &)
+      50  CSerialMT::Reply(uint8_t *, uint8_t *, uint16_t)
+       6  CSerialMT::SendMessage()
+
+ 
+ 286 bytes in segment CODE
+ 
+ 286 bytes of CODE memory
+
+Errors: none
+Warnings: 4

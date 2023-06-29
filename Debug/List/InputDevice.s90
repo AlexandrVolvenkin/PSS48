@@ -1,0 +1,1583 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:58:39
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\InputDevice.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW9452.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\InputDevice.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+//        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\InputDevice.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME InputDevice
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE4_L09
+
+        PUBLIC ??CMultiFunctionKey
+        PUBLIC ??CMultiFunctionKey_1
+        PUBLIC ??EventHappened
+        PUBLIC ??Fsm
+        PUBLIC ??KeyEventHappened
+        PUBLIC ??SetCapabilities
+        PUBWEAK ??__vtbl
+        PUBLIC `??new CMultiFunctionKey`
+        PUBLIC `??new CMultiFunctionKey_1`
+        PUBLIC `?~CMultiFunctionKey`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CMultiFunctionKey 29>` SYMBOL "CMultiFunctionKey"
+??__vtbl            SYMBOL "__vtbl", `?<Name CMultiFunctionKey 29>`
+
+        EXTERN ??CDfa
+        EXTERN ??CTimer
+        EXTERN ??IsOverflow
+        EXTERN ??Set
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDfa`
+        EXTERN `?~CTimer`
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48\src\InputDevice.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "InputDevice.h"
+//    9 #include "Platform.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//   10 
+//   11 ////-----------------------------------------------------------------------------------------------------
+//   12 //CInputDevice::CInputDevice()
+//   13 //{
+//   14 //
+//   15 //}
+//   16 //
+//   17 ////-----------------------------------------------------------------------------------------------------
+//   18 //CInputDevice::CInputDevice(uint8_t (*fpuiEventSource)(void)) :
+//   19 //    m_fpuiEventSource(fpuiEventSource)
+//   20 //{
+//   21 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
+//   22 //    SetFsmState(KEY_EVENT_UNPRESSED);
+//   23 //}
+//   24 //
+//   25 ////-----------------------------------------------------------------------------------------------------
+//   26 //CInputDevice::~CInputDevice()
+//   27 //{
+//   28 //
+//   29 //}
+//   30 //
+//   31 ////-----------------------------------------------------------------------------------------------------
+//   32 //void CInputDevice::SetCapabilities(uint8_t (*fpuiEventSource)(void))
+//   33 //{
+//   34 //    m_fpuiEventSource = fpuiEventSource;
+//   35 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
+//   36 //    SetFsmState(KEY_EVENT_UNPRESSED);
+//   37 //}
+//   38 //
+//   39 ////-----------------------------------------------------------------------------------------------------
+//   40 //uint8_t CInputDevice::EventHappened(void)
+//   41 //{
+//   42 //    if (m_fpuiEventSource())
+//   43 //    {
+//   44 //        return 1;
+//   45 //    }
+//   46 //    else
+//   47 //    {
+//   48 //        return 0;
+//   49 //    }
+//   50 //
+//   51 //}
+//   52 //
+//   53 ////-----------------------------------------------------------------------------------------------------
+//   54 //uint8_t CInputDevice::KeyEventHappened(uint8_t uiCode)
+//   55 //{
+//   56 //    Fsm();
+//   57 //
+//   58 //    if (m_uiEventCode == uiCode)
+//   59 //    {
+//   60 //        m_uiEventCode = KEY_EVENT_UNPRESSED;
+//   61 //        m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+//   62 //        return 1;
+//   63 //    }
+//   64 //    else
+//   65 //    {
+//   66 //        return 0;
+//   67 //    }
+//   68 //
+//   69 //}
+//   70 //
+//   71 ////-----------------------------------------------------------------------------------------------------
+//   72 //void CInputDevice::Fsm(void)
+//   73 //{
+//   74 //    // какое событие обрабатываем?
+//   75 //    switch (GetFsmState())
+//   76 //    {
+//   77 //    case KEY_EVENT_UNPRESSED:
+//   78 //        SetFsmState(KEY_EVENT_WAITING_PRESSED);
+//   79 //        break;
+//   80 //
+//   81 //    case KEY_EVENT_WAITING_PRESSED:
+//   82 //        // кнопка нажата?
+//   83 //        if (EventHappened())
+//   84 //        {
+//   85 //            m_xTimer.Set(KEY_PRESSED_TIME_PUSH());
+//   86 //            SetFsmState(KEY_EVENT_PRESSED_PUSH);
+//   87 //        }
+//   88 //        break;
+//   89 //    case KEY_EVENT_PRESSED_PUSH:
+//   90 //        // кнопка нажата?
+//   91 //        if (EventHappened())
+//   92 //        {
+//   93 //            if (m_xTimer.IsOverflow())
+//   94 //            {
+//   95 //                m_xTimer.Set(KEY_PRESSED_TIME_HOLD());
+//   96 //                m_uiEventCode = KEY_EVENT_PRESSED_PUSH;
+//   97 //                SetFsmState(KEY_EVENT_PRESSED_HOLD);
+//   98 //
+//   99 //            }
+//  100 //        }
+//  101 //        else
+//  102 //        {
+//  103 //            SetFsmState(KEY_EVENT_UNPRESSED);
+//  104 //        }
+//  105 //        break;
+//  106 //    case KEY_EVENT_PRESSED_HOLD:
+//  107 //        // кнопка нажата?
+//  108 //        if (EventHappened())
+//  109 //        {
+//  110 //            if (m_xTimer.IsOverflow())
+//  111 //            {
+//  112 //                m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
+//  113 //                m_uiEventCode = KEY_EVENT_PRESSED_HOLD;
+//  114 //                SetFsmState(KEY_EVENT_PRESSED_REPEAT);
+//  115 //
+//  116 //            }
+//  117 //        }
+//  118 //        else
+//  119 //        {
+//  120 //            SetFsmState(KEY_EVENT_UNPRESSED);
+//  121 //        }
+//  122 //        break;
+//  123 //
+//  124 //    case KEY_EVENT_PRESSED_REPEAT:
+//  125 //        // кнопка нажата?
+//  126 //        if (EventHappened())
+//  127 //        {
+//  128 //            if (m_xTimer.IsOverflow())
+//  129 //            {
+//  130 //                m_xTimer.Set(KEY_PRESSED_HOLD_REPEAT_TIME());
+//  131 //                m_uiEventCode = KEY_EVENT_PRESSED_REPEAT;
+//  132 //            }
+//  133 //        }
+//  134 //        else
+//  135 //        {
+//  136 //            SetFsmState(KEY_EVENT_UNPRESSED);
+//  137 //        }
+//  138 //        break;
+//  139 //    default:
+//  140 //        break;
+//  141 //    }
+//  142 //}
+//  143 ////-----------------------------------------------------------------------------------------------------
+//  144 
+//  145 
+//  146 
+//  147 
+//  148 
+//  149 
+//  150 ////-----------------------------------------------------------------------------------------------------
+//  151 //CRegularButton::CRegularButton()
+//  152 //{
+//  153 //
+//  154 //}
+//  155 //
+//  156 ////-----------------------------------------------------------------------------------------------------
+//  157 //CRegularButton::~CRegularButton()
+//  158 //{
+//  159 //
+//  160 //}
+//  161 //
+//  162 ////-----------------------------------------------------------------------------------------------------
+//  163 //bool CRegularButton::IsPressed(void)
+//  164 //{
+//  165 //
+//  166 //
+//  167 //}
+//  168 //
+//  169 ////-----------------------------------------------------------------------------------------------------
+//  170 //void CRegularButton::Fsm(void)
+//  171 //{
+//  172 //    // какое событие обрабатываем?
+//  173 //    switch (GetFsmState())
+//  174 //    {
+//  175 //    case KEY_STATE_UNPRESSED:
+//  176 //        m_uiEventCode = m_uiPreliminaryEventCode;
+//  177 //        SetFsmState(KEY_STATE_WAITING_PRESSED);
+//  178 //        break;
+//  179 //
+//  180 //    case KEY_STATE_WAITING_PRESSED:
+//  181 //        // кнопка нажата?
+//  182 //        if (IsActiveState())
+//  183 //        {
+//  184 //            m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
+//  185 //            SetFsmState(KEY_STATE_PRESSED_RECEIPT);
+//  186 //        }
+//  187 //        break;
+//  188 //    case KEY_STATE_PRESSED_RECEIPT:
+//  189 //        // кнопка нажата?
+//  190 //        if (IsActiveState())
+//  191 //        {
+//  192 //            if (m_xTimer.IsOverflow())
+//  193 //            {
+//  194 //                m_xTimer.Set(KEY_PRESSED_TIME_RESET());
+//  195 //                m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
+//  196 //                m_uiEventCode = m_uiPreliminaryEventCode;
+//  197 //                SetFsmState(KEY_STATE_PRESSED_RESET);
+//  198 //            }
+//  199 //        }
+//  200 //        else
+//  201 //        {
+//  202 //            m_uiEventCode = m_uiPreliminaryEventCode;
+//  203 //            SetFsmState(KEY_STATE_UNPRESSED);
+//  204 //        }
+//  205 //        break;
+//  206 //    case KEY_STATE_PRESSED_RESET:
+//  207 //        // кнопка нажата?
+//  208 //        if (IsActiveState())
+//  209 //        {
+//  210 //            if (m_xTimer.IsOverflow())
+//  211 //            {
+//  212 //                m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
+//  213 //                m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
+//  214 //                SetFsmState(KEY_STATE_PRESSED_CHECK);
+//  215 //
+//  216 //            }
+//  217 //        }
+//  218 //        else
+//  219 //        {
+//  220 //            m_uiEventCode = m_uiPreliminaryEventCode;
+//  221 //            SetFsmState(KEY_STATE_UNPRESSED);
+//  222 //        }
+//  223 //        break;
+//  224 //
+//  225 //    case KEY_STATE_PRESSED_CHECK:
+//  226 //        // кнопка нажата?
+//  227 //        if (IsActiveState())
+//  228 //        {
+//  229 //            if (m_xTimer.IsOverflow())
+//  230 //            {
+//  231 //                m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
+//  232 //                m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
+//  233 //                SetFsmState(KEY_STATE_PRESSED_SET_DEFAULT);
+//  234 //
+//  235 //            }
+//  236 //        }
+//  237 //        else
+//  238 //        {
+//  239 //            m_uiEventCode = m_uiPreliminaryEventCode;
+//  240 //            SetFsmState(KEY_STATE_UNPRESSED);
+//  241 //        }
+//  242 //        break;
+//  243 //
+//  244 //    case KEY_STATE_PRESSED_SET_DEFAULT:
+//  245 //        // кнопка нажата?
+//  246 //        if (IsActiveState())
+//  247 //        {
+//  248 //            if (m_xTimer.IsOverflow())
+//  249 //            {
+//  250 //                m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
+//  251 //                m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_SET_DEFAULT;
+//  252 //                m_uiEventCode = m_uiPreliminaryEventCode;
+//  253 //                SetFsmState(KEY_STATE_UNPRESSED_WAITING);
+//  254 //
+//  255 //            }
+//  256 //        }
+//  257 //        else
+//  258 //        {
+//  259 //            SetFsmState(KEY_STATE_UNPRESSED);
+//  260 //        }
+//  261 //        break;
+//  262 //
+//  263 //    case KEY_STATE_UNPRESSED_WAITING:
+//  264 //        // кнопка не нажата?
+//  265 //        if (!(IsActiveState()))
+//  266 //        {
+//  267 //            SetFsmState(KEY_STATE_UNPRESSED);
+//  268 //        }
+//  269 //        break;
+//  270 //
+//  271 //
+//  272 //    default:
+//  273 //        break;
+//  274 //    }
+//  275 //}
+//  276 ////-----------------------------------------------------------------------------------------------------
+//  277 //
+//  278 //
+//  279 //
+//  280 //
+//  281 //
+//  282 //
+//  283 ////-----------------------------------------------------------------------------------------------------
+//  284 //CReceiptKey::CReceiptKey()
+//  285 //{
+//  286 //    m_fpuiEventSource = CPlatform::KeyOneState;
+//  287 //    m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+//  288 //    m_uiEventCode = KEY_EVENT_UNPRESSED;
+//  289 //    SetFsmState(KEY_STATE_UNPRESSED);
+//  290 //}
+//  291 //
+//  292 ////-----------------------------------------------------------------------------------------------------
+//  293 //CReceiptKey::~CReceiptKey()
+//  294 //{
+//  295 //
+//  296 //}
+//  297 //
+//  298 ////-----------------------------------------------------------------------------------------------------
+//  299 //bool CReceiptKey::IsReceipt(void)
+//  300 //{
+//  301 //
+//  302 //
+//  303 //}
+//  304 //
+//  305 ////-----------------------------------------------------------------------------------------------------
+//  306 //void CReceiptKey::Fsm(void)
+//  307 //{
+//  308 //
+//  309 //
+//  310 //}
+//  311 ////-----------------------------------------------------------------------------------------------------
+//  312 //
+//  313 //
+//  314 //
+//  315 //
+//  316 //
+//  317 //
+//  318 ////-----------------------------------------------------------------------------------------------------
+//  319 //CResetKey::CResetKey()
+//  320 //{
+//  321 //    m_fpuiEventSource = CPlatform::KeyTwoState;
+//  322 //}
+//  323 //
+//  324 ////-----------------------------------------------------------------------------------------------------
+//  325 //CResetKey::~CResetKey()
+//  326 //{
+//  327 //
+//  328 //}
+//  329 //
+//  330 ////-----------------------------------------------------------------------------------------------------
+//  331 //bool CResetKey::IsReset(void)
+//  332 //{
+//  333 //
+//  334 //
+//  335 //}
+//  336 //
+//  337 ////-----------------------------------------------------------------------------------------------------
+//  338 //void CResetKey::Fsm(void)
+//  339 //{
+//  340 //
+//  341 //
+//  342 //}
+//  343 ////-----------------------------------------------------------------------------------------------------
+//  344 //
+//  345 //
+//  346 //
+//  347 //
+//  348 //
+//  349 //
+//  350 ////-----------------------------------------------------------------------------------------------------
+//  351 //CCheckKey::CCheckKey()
+//  352 //{
+//  353 //    m_fpuiEventSource = CPlatform::KeyThreeState;
+//  354 //}
+//  355 //
+//  356 ////-----------------------------------------------------------------------------------------------------
+//  357 //CCheckKey::~CCheckKey()
+//  358 //{
+//  359 //
+//  360 //}
+//  361 //
+//  362 ////-----------------------------------------------------------------------------------------------------
+//  363 //bool CCheckKey::IsSetDefault(void)
+//  364 //{
+//  365 //
+//  366 //
+//  367 //}
+//  368 //
+//  369 ////-----------------------------------------------------------------------------------------------------
+//  370 //void CCheckKey::Fsm(void)
+//  371 //{
+//  372 //
+//  373 //
+//  374 //}
+//  375 ////-----------------------------------------------------------------------------------------------------
+//  376 //
+//  377 //
+//  378 //
+//  379 //
+//  380 //
+//  381 //
+//  382 //
+//  383 ////-----------------------------------------------------------------------------------------------------
+//  384 //CSetDefaultKey::CSetDefaultKey()
+//  385 //{
+//  386 //    m_fpuiEventSource = CPlatform::ExternalKeyState;
+//  387 //}
+//  388 //
+//  389 ////-----------------------------------------------------------------------------------------------------
+//  390 //CSetDefaultKey::~CSetDefaultKey()
+//  391 //{
+//  392 //
+//  393 //}
+//  394 //
+//  395 ////-----------------------------------------------------------------------------------------------------
+//  396 //bool CSetDefaultKey::IsSetDefault(void)
+//  397 //{
+//  398 //
+//  399 //
+//  400 //}
+//  401 //
+//  402 ////-----------------------------------------------------------------------------------------------------
+//  403 //void CSetDefaultKey::Fsm(void)
+//  404 //{
+//  405 //
+//  406 //
+//  407 //}
+//  408 ////-----------------------------------------------------------------------------------------------------
+//  409 
+//  410 
+//  411 
+//  412 
+//  413 
+//  414 
+//  415 
+//  416 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  417 CMultiFunctionKey::CMultiFunctionKey()
+??CMultiFunctionKey:
+        RCALL   ?Subroutine4
+//  418 {
+??CrossCallReturnLabel_9:
+        RCALL   ?Subroutine2
+//  419 
+//  420 }
+??CrossCallReturnLabel_5:
+        MOVW    R17:R16, R27:R26
+        REQUIRE ?Subroutine11
+        ;               // Fall through to label ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine11:
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey()
+`??new CMultiFunctionKey`:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_6:
+        BREQ    `??new CMultiFunctionKey_2`
+        RJMP    ??CMultiFunctionKey
+`??new CMultiFunctionKey_2`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+//  421 
+//  422 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  423 CMultiFunctionKey::CMultiFunctionKey(uint8_t (*fpuiEventSource)(void))
+??CMultiFunctionKey_1:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R25:R24, R19:R18
+//  424 {
+        RCALL   ?Subroutine2
+//  425     m_fpuiEventSource = fpuiEventSource;
+??CrossCallReturnLabel_4:
+        MOVW    R31:R30, R27:R26
+        STD     Z+5, R24
+        STD     Z+6, R25
+//  426     m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+        LDI     R16, 0
+        RCALL   ?Subroutine7
+//  427     m_uiEventCode = KEY_EVENT_UNPRESSED;
+//  428     SetFsmState(KEY_EVENT_UNPRESSED);
+??CrossCallReturnLabel_13:
+        ST      X, R16
+//  429 }
+        MOVW    R17:R16, R27:R26
+        REQUIRE ?Subroutine13
+        ;               // Fall through to label ?Subroutine13
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine13:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        CALL    ??CDfa
+        RCALL   ?Subroutine10
+??CrossCallReturnLabel_23:
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_19:
+        JMP     ??CTimer
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
+`??new CMultiFunctionKey_1`:
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_7:
+        BREQ    `??new CMultiFunctionKey_3`
+        MOVW    R19:R18, R25:R24
+        RCALL   ??CMultiFunctionKey_1
+        RJMP    `??new CMultiFunctionKey_4`
+`??new CMultiFunctionKey_3`:
+        LDI     R16, 0
+        LDI     R17, 0
+`??new CMultiFunctionKey_4`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
+        LDI     R16, 15
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        RET
+//  430 
+//  431 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  432 CMultiFunctionKey::~CMultiFunctionKey()
+`?~CMultiFunctionKey`:
+//  433 {
+        RCALL   ?Subroutine6
+??CrossCallReturnLabel_11:
+        OR      R16, R27
+        BREQ    `?~CMultiFunctionKey_1`
+        RCALL   ?Subroutine10
+//  434 
+//  435 }
+??CrossCallReturnLabel_22:
+        LDI     R18, 2
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_20:
+        CALL    `?~CTimer`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R27:R26
+        CALL    `?~CDfa`
+        BST     R24, 0
+        BRTC    `?~CMultiFunctionKey_1`
+        MOVW    R17:R16, R27:R26
+        CALL    `??operator delete`
+`?~CMultiFunctionKey_1`:
+        RJMP    ?Subroutine13
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine10:
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        RET
+//  436 
+//  437 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  438 void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSource)(void))
+??SetCapabilities:
+//  439 {
+//  440     m_fpuiEventSource = fpuiEventSource;
+        MOVW    R31:R30, R17:R16
+        STD     Z+5, R18
+        STD     Z+6, R19
+//  441     m_uiEventCode = KEY_EVENT_UNPRESSED;
+        LDI     R18, 0
+        STD     Z+7, R18
+//  442     SetFsmState(KEY_EVENT_UNPRESSED);
+        ST      Z, R18
+//  443 }
+        RET
+//  444 
+//  445 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  446 uint8_t CMultiFunctionKey::EventHappened(void)
+??EventHappened:
+//  447 {
+        RCALL   ?Subroutine4
+//  448     if (m_fpuiEventSource())
+??CrossCallReturnLabel_8:
+        ADIW    R27:R26, 5
+        LD      R30, X+
+        LD      R31, X
+        ICALL
+        TST     R16
+        BREQ    ??EventHappened_1
+//  449     {
+//  450         return 1;
+        LDI     R16, 1
+        RJMP    ??EventHappened_2
+//  451     }
+//  452     else
+//  453     {
+//  454         return 0;
+??EventHappened_1:
+        LDI     R16, 0
+//  455     }
+??EventHappened_2:
+        RJMP    ?Subroutine11
+//  456 
+//  457 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        RET
+//  458 
+//  459 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  460 uint8_t CMultiFunctionKey::KeyEventHappened(uint8_t uiCode)
+??KeyEventHappened:
+//  461 {
+        RCALL   ?Subroutine6
+//  462     Fsm();
+??CrossCallReturnLabel_12:
+        MOVW    R31:R30, R17:R16
+        LDD     R18, Z+1
+        LDD     R31, Z+2
+        MOV     R30, R18
+        ADIW    R31:R30, 2
+        LPM     R18, Z+
+        LPM     R31, Z
+        MOV     R30, R18
+        ICALL
+//  463 
+//  464     if (m_uiEventCode == uiCode)
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+7
+        CP      R16, R24
+        LDI     R16, 0
+        BRNE    ??KeyEventHappened_1
+//  465     {
+//  466         m_uiEventCode = KEY_EVENT_UNPRESSED;
+        STD     Z+7, R16
+//  467         m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
+        STD     Z+8, R16
+//  468         return 1;
+        LDI     R16, 1
+//  469     }
+//  470     else
+//  471     {
+//  472         return 0;
+??KeyEventHappened_1:
+        RJMP    ?Subroutine13
+//  473     }
+//  474 
+//  475 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+        RET
+//  476 
+//  477 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  478 void CMultiFunctionKey::Fsm(void)
+??Fsm:
+//  479 {
+        RCALL   ?Subroutine4
+//  480     // какое событие обрабатываем?
+//  481     switch (GetFsmState())
+??CrossCallReturnLabel_10:
+        LD      R16, X
+        TST     R16
+        BREQ    ??Fsm_1
+        DEC     R16
+        BREQ    ??Fsm_2
+        DEC     R16
+        BREQ    ??Fsm_3
+        DEC     R16
+        BREQ    ??Fsm_4
+        DEC     R16
+        BREQ    ??Fsm_5
+        DEC     R16
+        BREQ    ??Fsm_6
+        SUBI    R16, 2
+        BREQ    ??Fsm_7
+        RJMP    ??Fsm_8
+//  482     {
+//  483     case KEY_EVENT_UNPRESSED:
+//  484         m_uiEventCode = m_uiPreliminaryEventCode;
+??Fsm_1:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        STD     Z+7, R16
+//  485         SetFsmState(KEY_EVENT_WAITING_PRESSED);
+        LDI     R16, 1
+        RJMP    ??Fsm_9
+//  486         break;
+//  487 
+//  488     case KEY_EVENT_WAITING_PRESSED:
+//  489         // кнопка нажата?
+//  490         if (EventHappened())
+??Fsm_2:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_28:
+        BREQ    ??Fsm_8
+//  491         {
+//  492             m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
+        LDI     R18, 100
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_21:
+        CALL    ??Set
+//  493             SetFsmState(KEY_EVENT_PRESSED_RECEIPT);
+        LDI     R16, 2
+        RJMP    ??Fsm_9
+//  494         }
+//  495         break;
+//  496     case KEY_EVENT_PRESSED_RECEIPT:
+//  497         // кнопка нажата?
+//  498         if (EventHappened())
+??Fsm_3:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_29:
+        BREQ    ??Fsm_10
+//  499         {
+//  500             if (m_xTimer.IsOverflow())
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_24:
+        BREQ    ??Fsm_8
+//  501             {
+//  502                 m_xTimer.Set(KEY_PRESSED_TIME_RESET());
+        LDI     R18, 220
+        LDI     R19, 5
+        RCALL   ?Subroutine0
+//  503                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
+??CrossCallReturnLabel_0:
+        LDI     R16, 2
+        RCALL   ?Subroutine7
+//  504                 m_uiEventCode = m_uiPreliminaryEventCode;
+//  505                 SetFsmState(KEY_EVENT_PRESSED_RESET);
+??CrossCallReturnLabel_14:
+        LDI     R16, 3
+        RJMP    ??Fsm_9
+//  506             }
+//  507         }
+//  508         else
+//  509         {
+//  510             m_uiEventCode = m_uiPreliminaryEventCode;
+//  511             SetFsmState(KEY_EVENT_UNPRESSED);
+//  512         }
+//  513         break;
+//  514     case KEY_EVENT_PRESSED_RESET:
+//  515         // кнопка нажата?
+//  516         if (EventHappened())
+??Fsm_4:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_30:
+        BREQ    ??Fsm_10
+//  517         {
+//  518             if (m_xTimer.IsOverflow())
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_25:
+        BREQ    ??Fsm_8
+//  519             {
+//  520                 m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
+        LDI     R18, 184
+        LDI     R19, 11
+        RCALL   ?Subroutine0
+//  521                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
+??CrossCallReturnLabel_1:
+        LDI     R16, 3
+        RCALL   ?Subroutine7
+//  522                 m_uiEventCode = m_uiPreliminaryEventCode;
+//  523                 SetFsmState(KEY_EVENT_PRESSED_CHECK);
+??CrossCallReturnLabel_15:
+        LDI     R16, 4
+        RJMP    ??Fsm_9
+//  524 
+//  525             }
+//  526         }
+//  527         else
+//  528         {
+//  529             m_uiEventCode = m_uiPreliminaryEventCode;
+//  530             SetFsmState(KEY_EVENT_UNPRESSED);
+//  531         }
+//  532         break;
+//  533 
+//  534     case KEY_EVENT_PRESSED_CHECK:
+//  535         // кнопка нажата?
+//  536         if (EventHappened())
+??Fsm_5:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_31:
+        BREQ    ??Fsm_10
+//  537         {
+//  538             if (m_xTimer.IsOverflow())
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_26:
+        BREQ    ??Fsm_8
+//  539             {
+//  540                 m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
+//  541                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
+//  542                 m_uiEventCode = m_uiPreliminaryEventCode;
+//  543 //                SetFsmState(KEY_EVENT_PRESSED_SET_DEFAULT);
+//  544                 SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
+//  545 
+//  546             }
+//  547         }
+        LDI     R18, 136
+        LDI     R19, 19
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_2:
+        LDI     R16, 4
+        RJMP    ??Fsm_11
+//  548         else
+//  549         {
+//  550             m_uiEventCode = m_uiPreliminaryEventCode;
+??Fsm_10:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+8
+        STD     Z+7, R16
+//  551             SetFsmState(KEY_EVENT_UNPRESSED);
+        RJMP    ??Fsm_12
+//  552         }
+//  553         break;
+//  554 
+//  555     case KEY_EVENT_PRESSED_SET_DEFAULT:
+//  556         // кнопка нажата?
+//  557         if (EventHappened())
+??Fsm_6:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_32:
+        BREQ    ??Fsm_12
+//  558         {
+//  559             if (m_xTimer.IsOverflow())
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_27:
+        BREQ    ??Fsm_8
+//  560             {
+//  561                 m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
+        LDI     R18, 50
+        LDI     R19, 0
+        RCALL   ?Subroutine0
+//  562                 m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_SET_DEFAULT;
+??CrossCallReturnLabel_3:
+        LDI     R16, 5
+??Fsm_11:
+        RCALL   ?Subroutine7
+//  563                 m_uiEventCode = m_uiPreliminaryEventCode;
+//  564                 SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
+??CrossCallReturnLabel_16:
+        LDI     R16, 7
+        RJMP    ??Fsm_9
+//  565 
+//  566             }
+//  567         }
+//  568         else
+//  569         {
+//  570             SetFsmState(KEY_EVENT_UNPRESSED);
+//  571         }
+//  572         break;
+//  573 
+//  574     case KEY_EVENT_UNPRESSED_WAITING:
+//  575         // кнопка не нажата?
+//  576         if (!(EventHappened()))
+??Fsm_7:
+        RCALL   ?Subroutine5
+??CrossCallReturnLabel_33:
+        BRNE    ??Fsm_8
+//  577         {
+//  578             SetFsmState(KEY_EVENT_UNPRESSED);
+??Fsm_12:
+        LDI     R16, 0
+??Fsm_9:
+        ST      X, R16
+//  579         }
+//  580         break;
+//  581 
+//  582 
+//  583     default:
+//  584         break;
+//  585     }
+//  586 }
+??Fsm_8:
+        RJMP    ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine8:
+        LDI     R19, 0
+        REQUIRE ?Subroutine9
+        ;               // Fall through to label ?Subroutine9
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine9:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 247
+        SBCI    R17, 255
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        STD     Z+8, R16
+        STD     Z+7, R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        MOV     R16, R26
+        RCALL   ??EventHappened
+        REQUIRE ?Subroutine12
+        ;               // Fall through to label ?Subroutine12
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine12:
+        TST     R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_18:
+        CALL    ??IsOverflow
+        RJMP    ?Subroutine12
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        RCALL   ?Subroutine9
+??CrossCallReturnLabel_17:
+        CALL    ??Set
+        MOVW    R31:R30, R27:R26
+        RET
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CMultiFunctionKey::__vtbl[2]
+??__vtbl:
+        DC16 `?~CMultiFunctionKey`/2, ??Fsm/2
+
+        END
+// 
+// 105 bytes in segment ABSOLUTE
+// 452 bytes in segment CODE
+//   4 bytes in segment NEAR_F
+// 
+// 452 bytes of CODE memory (+   4 bytes shared)
+//   0 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 2

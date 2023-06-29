@@ -1,0 +1,1057 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:58:39
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\LinkControl.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW9493.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\LinkControl.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+//        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\LinkControl.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME LinkControl
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B3_L09
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE3_L09
+        EXTERN ?PROLOGUE4_L09
+
+        PUBLIC ??CLinkControl
+        PUBLIC ??CModbusRtuLinkControl
+        PUBLIC ??Fsm_1
+        PUBWEAK ??__vtbl
+        PUBWEAK ??__vtbl_4
+        PUBLIC `??new CLinkControl`
+        PUBLIC `??new CModbusRtuLinkControl`
+        PUBLIC `?~CLinkControl`
+        PUBLIC `?~CModbusRtuLinkControl`
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CPss21 19>` SYMBOL "CPss21"
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 19>`
+??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 19>`
+`?<Name CLinkControl 42>` SYMBOL "CLinkControl"
+`?<Name CModbusRtuLinkContro 46>` SYMBOL "CModbusRtuLinkControl"
+??__vtbl            SYMBOL "__vtbl", `?<Name CLinkControl 42>`
+??__vtbl_4          SYMBOL "__vtbl", `?<Name CModbusRtuLinkContro 46>`
+
+        EXTERN ??CDfa
+        EXTERN ??CTimer
+        EXTERN ??Fsm
+        EXTERN ??GetTimeoutModbusRtuLinkControl
+        EXTERN ??IsOverflow
+        EXTERN ??ModbusRtuLinkControlInProgress
+        EXTERN ??ModbusRtuLinkControlIsOn
+        EXTERN ??Set
+        EXTERN ??SetModeModbusRtuLinkControlInProgress
+        EXTERN ??m_uiErrorCode
+        EXTERN ??m_uiFsmState
+        EXTERN `??operator delete`
+        EXTERN `??operator new`
+        EXTERN `?~CDfa`
+        EXTERN `?~CTimer`
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48\src\LinkControl.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "LinkControl.h"
+//    9 #include "Pss21.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//   10 
+//   11 //-----------------------------------------------------------------------------------------------------
+//   12 
+
+        RSEG CODE:CODE:NOROOT(1)
+//   13 CLinkControl::CLinkControl()
+??CLinkControl:
+        RCALL   ?Subroutine1
+//   14 {
+??CrossCallReturnLabel_2:
+        CALL    ??CDfa
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_5:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_7:
+        CALL    ??CTimer
+//   15 
+//   16 }
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        MOVW    R17:R16, R27:R26
+        REQUIRE ??Subroutine7_0
+        ;               // Fall through to label ??Subroutine7_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine7_0:
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CLinkControl &CLinkControl::new CLinkControl()
+`??new CLinkControl`:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_0:
+        BREQ    `??new CLinkControl_1`
+        RJMP    ??CLinkControl
+`??new CLinkControl_1`:
+        REQUIRE ?Subroutine6
+        ;               // Fall through to label ?Subroutine6
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??CModbusRtuLinkControl:
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_3:
+        RCALL   ??CLinkControl
+        LDI     R16, LOW(??__vtbl_4)
+        LDI     R17, (??__vtbl_4) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_10:
+        LDI     R16, 1
+        ST      X, R16
+        RJMP    ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CModbusRtuLinkControl &CModbusRtuLinkControl::new CModbusRtuLinkControl()
+`??new CModbusRtuLinkControl`:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_1:
+        BREQ    `??new CModbusRtuLinkControl_1`
+        RJMP    ??CModbusRtuLinkControl
+`??new CModbusRtuLinkControl_1`:
+        RJMP    ?Subroutine6
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        LDI     R16, 11
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        RET
+//   17 
+
+        RSEG CODE:CODE:NOROOT(1)
+//   18 CLinkControl::~CLinkControl()
+`?~CLinkControl`:
+//   19 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R24, R18
+        OR      R16, R27
+        BREQ    `?~CLinkControl_1`
+        RCALL   ?Subroutine2
+//   20 
+//   21 }
+??CrossCallReturnLabel_6:
+        LDI     R18, 2
+        LDI     R19, 0
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_8:
+        CALL    `?~CTimer`
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R27:R26
+        CALL    `?~CDfa`
+        BST     R24, 0
+        BRTC    `?~CLinkControl_1`
+        MOVW    R17:R16, R27:R26
+        CALL    `??operator delete`
+`?~CLinkControl_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 251
+        SBCI    R17, 255
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        LDI     R16, LOW(??__vtbl)
+        LDI     R17, (??__vtbl) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        RET
+//   22 
+//   23 //-----------------------------------------------------------------------------------------------------
+//   24 
+//   25 
+//   26 
+//   27 
+//   28 
+//   29 
+//   30 //-----------------------------------------------------------------------------------------------------
+//   31 
+//   32 CModbusRtuLinkControl::CModbusRtuLinkControl()
+//   33 {
+//   34     SetFsmEvent(NO_EVENT_FSM_EVENT);
+//   35     SetFsmState(LINK_CONTROL_IS_ON_CHECK);
+//   36 }
+//   37 
+
+        RSEG CODE:CODE:NOROOT(1)
+//   38 CModbusRtuLinkControl::~CModbusRtuLinkControl()
+`?~CModbusRtuLinkControl`:
+//   39 {
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
+        MOV     R26, R18
+        OR      R16, R17
+        BREQ    `?~CModbusRtuLinkControl_1`
+//   40 
+//   41 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOV     R16, R24
+        RCALL   `?~CLinkControl`
+        BST     R26, 0
+        BRTC    `?~CModbusRtuLinkControl_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CModbusRtuLinkControl_1`:
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
+//   42 
+//   43 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   44 void CModbusRtuLinkControl::Fsm(void)
+??Fsm_1:
+//   45 {
+        RCALL   ?Subroutine1
+//   46     switch (GetFsmState())
+??CrossCallReturnLabel_4:
+        LD      R16, X
+        DEC     R16
+        BREQ    ??Fsm_2
+        DEC     R16
+        BREQ    ??Fsm_3
+        DEC     R16
+        BREQ    ??Fsm_4
+        DEC     R16
+        BREQ    ??Fsm_5
+        RJMP    ??Fsm_6
+//   47     {
+//   48     case IDDLE:
+//   49         break;
+//   50 
+//   51     case LINK_CONTROL_IS_ON_CHECK:
+//   52         // Режим контроля связи вклюен?
+//   53         if (CPss21::ModbusRtuLinkControlIsOn())
+??Fsm_2:
+        CALL    ??ModbusRtuLinkControlIsOn
+        TST     R16
+        BREQ    ??Fsm_7
+//   54         {
+//   55             // Режим контроля связи в рабочем процессе?
+//   56             if (CPss21::ModbusRtuLinkControlInProgress())
+        CALL    ??ModbusRtuLinkControlInProgress
+        TST     R16
+        BRNE    ??Fsm_8
+//   57             {
+//   58                 // Установим время ожидания следующего сеанса связи.
+//   59                 GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
+//   60                 SetFsmState(NEXT_LINK_SESSION_WAITING);
+//   61             }
+//   62             else
+//   63             {
+//   64                 SetFsmState(LINK_CONTROL_IN_PROGRESS_ON_WAITING);
+        RJMP    ??Fsm_9
+//   65             }
+//   66         }
+//   67         else
+//   68         {
+//   69             SetFsmState(IDDLE);
+??Fsm_7:
+        LDI     R16, 0
+        RJMP    ??Fsm_10
+//   70         }
+//   71         break;
+//   72 
+//   73     case LINK_CONTROL_IN_PROGRESS_ON_WAITING:
+//   74         // Состоялся сеанс связи?
+//   75         if (GetFsmEvent() == LINK_SESSION_HAPPENED_FSM_EVENT)
+??Fsm_3:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+4
+        CPI     R16, 1
+        BRNE    ??Fsm_6
+//   76         {
+//   77             SetFsmEvent(NO_EVENT_FSM_EVENT);
+        RCALL   ?Subroutine4
+//   78             // Запустим рабоий процесс режима контроля связи.
+//   79             CPss21::SetModeModbusRtuLinkControlInProgress(true);
+??CrossCallReturnLabel_11:
+        LDI     R16, 1
+        CALL    ??SetModeModbusRtuLinkControlInProgress
+//   80             // Установим время ожидания следующего сеанса связи.
+//   81             GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
+        RJMP    ??Fsm_8
+//   82             SetFsmState(NEXT_LINK_SESSION_WAITING);
+//   83         }
+//   84         break;
+//   85 
+//   86     case NEXT_LINK_SESSION_WAITING:
+//   87         // Состоялся сеанс связи?
+//   88         if (GetFsmEvent() == LINK_SESSION_HAPPENED_FSM_EVENT)
+??Fsm_4:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+4
+        CPI     R16, 1
+        BRNE    ??Fsm_11
+//   89         {
+//   90             SetFsmEvent(NO_EVENT_FSM_EVENT);
+        RCALL   ?Subroutine4
+//   91             // Установим время ожидания следующего сеанса связи.
+//   92             GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
+??CrossCallReturnLabel_12:
+        CALL    ??GetTimeoutModbusRtuLinkControl
+//   93         }
+        MOVW    R19:R18, R17:R16
+        ADIW    R27:R26, 5
+        MOVW    R17:R16, R27:R26
+        CALL    ??Set
+        RJMP    ??Fsm_6
+//   94         else
+//   95         {
+//   96             // Время ожидания следующего сеанса связи закончилось?
+//   97             if (GetTimerPointer() -> IsOverflow())
+??Fsm_11:
+        MOV     R16, R26
+        SUBI    R16, 251
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_6
+//   98             {
+//   99                 CPss21::SetErrorCode(MBS_ERROR);
+        LDI     R16, 5
+        STS     ??m_uiErrorCode, R16
+//  100                 SetFsmState(RECEIPT_OR_NEXT_LINK_SESSION_WAITING);
+        LDI     R16, 4
+        RJMP    ??Fsm_10
+//  101             }
+//  102         }
+//  103 
+//  104         break;
+//  105 
+//  106     case RECEIPT_OR_NEXT_LINK_SESSION_WAITING:
+//  107         switch (GetFsmEvent())
+??Fsm_5:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+4
+        DEC     R16
+        BREQ    ??Fsm_12
+        DEC     R16
+        BREQ    ??Fsm_13
+        RJMP    ??Fsm_6
+//  108         {
+//  109         case LINK_SESSION_HAPPENED_FSM_EVENT:
+//  110             SetFsmEvent(NO_EVENT_FSM_EVENT);
+??Fsm_12:
+        RCALL   ?Subroutine4
+//  111             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
+??CrossCallReturnLabel_13:
+        LDI     R16, 12
+        STS     ??m_uiFsmState, R16
+//  112             // Установим время ожидания следующего сеанса связи.
+//  113             GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
+??Fsm_8:
+        CALL    ??GetTimeoutModbusRtuLinkControl
+        MOVW    R19:R18, R17:R16
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_9:
+        CALL    ??Set
+//  114             SetFsmState(NEXT_LINK_SESSION_WAITING);
+        LDI     R16, 3
+        RJMP    ??Fsm_10
+//  115             break;
+//  116 
+//  117         case RECEIPT_HAPPENED_FSM_EVENT:
+//  118             SetFsmEvent(NO_EVENT_FSM_EVENT);
+??Fsm_13:
+        RCALL   ?Subroutine4
+//  119             // Остановим рабоий процесс режима контроля связи.
+//  120             CPss21::SetModeModbusRtuLinkControlInProgress(false);
+??CrossCallReturnLabel_14:
+        CALL    ??SetModeModbusRtuLinkControlInProgress
+//  121             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
+        LDI     R16, 12
+        STS     ??m_uiFsmState, R16
+//  122             SetFsmState(LINK_CONTROL_IN_PROGRESS_ON_WAITING);
+??Fsm_9:
+        LDI     R16, 2
+??Fsm_10:
+        ST      X, R16
+//  123             break;
+//  124 
+//  125         default:
+//  126             break;
+//  127         }
+//  128         break;
+//  129 
+//  130     default:
+//  131         break;
+//  132     }
+//  133 }
+??Fsm_6:
+        RJMP    ??Subroutine7_0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        LDI     R16, 0
+        STD     Z+4, R16
+        RET
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CLinkControl::__vtbl[2]
+??__vtbl:
+        DC16 `?~CLinkControl`/2, ??Fsm/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CModbusRtuLinkControl::__vtbl[2]
+??__vtbl_4:
+        DC16 `?~CModbusRtuLinkControl`/2, ??Fsm_1/2
+
+        END
+//  134 
+//  135 
+// 
+// 105 bytes in segment ABSOLUTE
+// 366 bytes in segment CODE
+//  30 bytes in segment NEAR_F
+// 
+// 388 bytes of CODE memory (+   8 bytes shared)
+//   0 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 7

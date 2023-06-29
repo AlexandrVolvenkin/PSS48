@@ -1,0 +1,5286 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:58:41
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Pss21.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW97B8.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Pss21.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+//        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Pss21.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME Pss21
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?CV_SWITCH_L06
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?EPILOGUE_B5_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?PROLOGUE5_L09
+        EXTERN ?Register_R4_is_cg_reg
+        EXTERN ?SS_DIVMOD_L02
+        EXTERN ?SS_SHR_L02
+        EXTERN ?S_EC_MUL_L02
+        EXTERN ?S_SHL_L02
+        EXTERN ?UL_DIVMOD_L03
+        EXTERN ?UL_SHR_L03
+        EXTERN ?call_ctors
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_I>`
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC ??ActiveAlarmWindowOff
+        PUBLIC ??ActiveAlarmWindowOn
+        PUBLIC ??AddressBusInit
+        PUBLIC ??AlarmTypeChange
+        PUBLIC ??AlarmTypeErrorChange
+        PUBLIC ??AlarmTypeReceipt
+        PUBLIC ??AlarmTypeReset
+        PUBLIC ??AlarmTypeSet
+        PUBLIC ??AlarmsProcessing
+        PUBLIC ??AllAlarmWindowOff
+        PUBLIC ??AllAlarmWindowOn
+        PUBLIC ??BoardWindowsUpdate
+        PUBLIC ??ConfigurationInit
+        PUBLIC ??ConnectDevice
+        PUBLIC ??CreateDevices
+        PUBLIC ??DestroyDevices
+        PUBLIC ??DisconnectDevice
+        PUBLIC ??DiscreteOutputControlClear
+        PUBLIC ??DiscreteOutputsSet
+        PUBLIC ??DiscreteSignalsProcessing
+        PUBLIC ??ErrorAlarmsProcessing
+        PUBLIC ??ErrorMainCycle
+        PUBLIC ??ErrorWindowOn
+        PUBWEAK ??ExternalKeyState
+        PUBLIC ??GetDiscreteInputState
+        PUBLIC ??GetErrorAlarmState
+        PUBLIC ??GetTimeoutModbusRtuLinkControl
+        PUBLIC ??Init
+        PUBLIC ??InitAllocationContext
+        PUBWEAK ??KeyOneState
+        PUBLIC ??KeyStateProcessing
+        PUBWEAK ??KeyThreeState
+        PUBWEAK ??KeyTwoState
+        PUBLIC ??LinkControlErrorMainCycle
+        PUBLIC ??MainFsm
+        PUBLIC ??ModbusDefaultInit
+        PUBLIC ??ModbusDeviceControl
+        PUBLIC ??ModbusDeviceControl_1
+        PUBLIC ??ModbusInit
+        PUBLIC ??ModbusRtuLinkControlInProgress
+        PUBLIC ??ModbusRtuLinkControlIsOn
+        PUBLIC ??ModulesInteraction
+        PUBLIC ??NotifyersControlProcessing
+        PUBLIC ??ReceiptResetGlobalFlagsClear
+        PUBLIC ??ReportType
+        PUBLIC ??RestoreContextNotifyerControl
+        PUBLIC ??SaveContextNotifyerControl
+        PUBLIC ??SearchModules
+        PUBLIC ??SendToDevicesModbusReceipt
+        PUBLIC ??SendToDevicesModbusReset
+        PUBLIC ??SendToDevicesReceipt
+        PUBLIC ??SendToDevicesReset
+        PUBLIC ??SetAlarmWindowType
+        PUBLIC ??SetBytesFromBits
+        PUBLIC ??SetErrorAlarmState
+        PUBLIC ??SetModeModbusRtuLinkControlInProgress
+        PUBLIC ??TestMainCycle
+        PUBLIC ??m_apxAlarmDfa
+        PUBLIC ??m_apxDrivers
+        PUBLIC ??m_apxErrorAlarmDfa
+        PUBLIC ??m_aucRtuDiscreteDataArray
+        PUBLIC ??m_aucRtuHoldingRegistersArray
+        PUBLIC ??m_aucRtuInputRegistersArray
+        PUBLIC ??m_auiErrorAlarmDataArray
+        PUBLIC ??m_auiErrorLedOn
+        PUBLIC ??m_auiIntermediateBuff
+        PUBLIC ??m_auiReceiveMessageBuff
+        PUBLIC ??m_auiSpiRxBuffer
+        PUBLIC ??m_auiSpiTxBuffer
+        PUBLIC ??m_axAlarmWindowControl
+        PUBLIC ??m_axDiscreteOutputControl
+        PUBLIC ??m_uiCommonAlarmType
+        PUBLIC ??m_uiCommonAlarmTypePrevious
+        PUBLIC ??m_uiDiscreteSignalsReceipt
+        PUBLIC ??m_uiDiscreteSignalsReset
+        PUBLIC ??m_uiErrorCode
+        PUBLIC ??m_uiExternalReceipt
+        PUBLIC ??m_uiExternalReset
+        PUBLIC ??m_uiFsmState
+        PUBLIC ??m_uiModbusReceipt
+        PUBLIC ??m_uiModbusReset
+        PUBLIC ??m_uiModuleIndex
+        PUBLIC ??m_uiPanelReceipt
+        PUBLIC ??m_uiPanelReset
+        PUBLIC ??m_uiType
+        PUBLIC ??m_xBuzzerNotifyerControl
+        PUBLIC ??m_xCheckKey
+        PUBLIC ??m_xDeviceConfigSearch
+        PUBLIC ??m_xDeviceConfiguration
+        PUBLIC ??m_xDeviceState
+        PUBLIC ??m_xDiscreteOutputDataBase
+        PUBLIC ??m_xEmergencyAlarmWindowNotifyerControl
+        PUBLIC ??m_xEventUniteLogicAndOne
+        PUBLIC ??m_xExternalKey
+        PUBLIC ??m_xMainCycleTimer
+        PUBLIC ??m_xModbusRtuLinkControl
+        PUBLIC ??m_xModbusRtuOne
+        PUBLIC ??m_xModbusSettings
+        PUBLIC ??m_xPreventiveAlarmWindowNotifyerControl
+        PUBLIC ??m_xReceiptKey
+        PUBLIC ??m_xResetKey
+        PUBLIC ??m_xStatusLedNotifyerControl
+        PUBLIC ??m_xUart1
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CPlatform 130>` SYMBOL "CPlatform"
+??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 130>`
+`?<Name CPss21 244>` SYMBOL "CPss21"
+??m_apxAlarmDfa     SYMBOL "m_apxAlarmDfa", `?<Name CPss21 244>`
+??m_apxDrivers      SYMBOL "m_apxDrivers", `?<Name CPss21 244>`
+??m_apxErrorAlarmDfa SYMBOL "m_apxErrorAlarmDfa", `?<Name CPss21 244>`
+??m_aucRtuDiscreteDataArray SYMBOL "m_aucRtuDiscreteDataArray", `?<Name CPss21 244>`
+??m_aucRtuHoldingRegistersArray SYMBOL "m_aucRtuHoldingRegistersArray", `?<Name CPss21 244>`
+??m_aucRtuInputRegistersArray SYMBOL "m_aucRtuInputRegistersArray", `?<Name CPss21 244>`
+??m_auiErrorAlarmDataArray SYMBOL "m_auiErrorAlarmDataArray", `?<Name CPss21 244>`
+??m_auiErrorLedOn   SYMBOL "m_auiErrorLedOn", `?<Name CPss21 244>`
+??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 244>`
+??m_auiReceiveMessageBuff SYMBOL "m_auiReceiveMessageBuff", `?<Name CPss21 244>`
+??m_auiSpiRxBuffer  SYMBOL "m_auiSpiRxBuffer", `?<Name CPss21 244>`
+??m_auiSpiTxBuffer  SYMBOL "m_auiSpiTxBuffer", `?<Name CPss21 244>`
+??m_axAlarmWindowControl SYMBOL "m_axAlarmWindowControl", `?<Name CPss21 244>`
+??m_axDiscreteOutputControl SYMBOL "m_axDiscreteOutputControl", `?<Name CPss21 244>`
+??m_uiCommonAlarmType SYMBOL "m_uiCommonAlarmType", `?<Name CPss21 244>`
+??m_uiCommonAlarmTypePrevious SYMBOL "m_uiCommonAlarmTypePrevious", `?<Name CPss21 244>`
+??m_uiDiscreteSignalsReceipt SYMBOL "m_uiDiscreteSignalsReceipt", `?<Name CPss21 244>`
+??m_uiDiscreteSignalsReset SYMBOL "m_uiDiscreteSignalsReset", `?<Name CPss21 244>`
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 244>`
+??m_uiExternalReceipt SYMBOL "m_uiExternalReceipt", `?<Name CPss21 244>`
+??m_uiExternalReset SYMBOL "m_uiExternalReset", `?<Name CPss21 244>`
+??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 244>`
+??m_uiModbusReceipt SYMBOL "m_uiModbusReceipt", `?<Name CPss21 244>`
+??m_uiModbusReset   SYMBOL "m_uiModbusReset", `?<Name CPss21 244>`
+??m_uiModuleIndex   SYMBOL "m_uiModuleIndex", `?<Name CPss21 244>`
+??m_uiPanelReceipt  SYMBOL "m_uiPanelReceipt", `?<Name CPss21 244>`
+??m_uiPanelReset    SYMBOL "m_uiPanelReset", `?<Name CPss21 244>`
+??m_uiType          SYMBOL "m_uiType", `?<Name CPss21 244>`
+??m_xBuzzerNotifyerControl SYMBOL "m_xBuzzerNotifyerControl", `?<Name CPss21 244>`
+??m_xCheckKey       SYMBOL "m_xCheckKey", `?<Name CPss21 244>`
+??m_xDeviceConfigSearch SYMBOL "m_xDeviceConfigSearch", `?<Name CPss21 244>`
+??m_xDeviceConfiguration SYMBOL "m_xDeviceConfiguration", `?<Name CPss21 244>`
+??m_xDeviceState    SYMBOL "m_xDeviceState", `?<Name CPss21 244>`
+??m_xDiscreteOutputDataBase SYMBOL "m_xDiscreteOutputDataBase", `?<Name CPss21 244>`
+??m_xEmergencyAlarmWindowNotifyerControl SYMBOL "m_xEmergencyAlarmWindowNotifyerControl", `?<Name CPss21 244>`
+??m_xEventUniteLogicAndOne SYMBOL "m_xEventUniteLogicAndOne", `?<Name CPss21 244>`
+??m_xExternalKey    SYMBOL "m_xExternalKey", `?<Name CPss21 244>`
+??m_xMainCycleTimer SYMBOL "m_xMainCycleTimer", `?<Name CPss21 244>`
+??m_xModbusRtuLinkControl SYMBOL "m_xModbusRtuLinkControl", `?<Name CPss21 244>`
+??m_xModbusRtuOne   SYMBOL "m_xModbusRtuOne", `?<Name CPss21 244>`
+??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 244>`
+??m_xPreventiveAlarmWindowNotifyerControl SYMBOL "m_xPreventiveAlarmWindowNotifyerControl", `?<Name CPss21 244>`
+??m_xReceiptKey     SYMBOL "m_xReceiptKey", `?<Name CPss21 244>`
+??m_xResetKey       SYMBOL "m_xResetKey", `?<Name CPss21 244>`
+??m_xStatusLedNotifyerControl SYMBOL "m_xStatusLedNotifyerControl", `?<Name CPss21 244>`
+??m_xUart1          SYMBOL "m_xUart1", `?<Name CPss21 244>`
+
+        EXTERN ??AlarmSet
+        EXTERN ??AlarmSet_1
+        EXTERN ??AlarmSet_2
+        EXTERN ??AlarmSet_3
+        EXTERN ??CAlarmWindow
+        EXTERN ??CBuzzerNotifyerControl
+        EXTERN ??CEmergencyAlarmWindowNotifyerControl
+        EXTERN ??CEventUniteLogicAnd
+        EXTERN ??CModbusRTU
+        EXTERN ??CModbusRtuLinkControl
+        EXTERN ??CMultiFunctionKey
+        EXTERN ??CPreventiveAlarmWindowNotifyerControl
+        EXTERN ??CStatusLedNotifyerControl
+        EXTERN ??CTimer
+        EXTERN ??CUart
+        EXTERN ??Check
+        EXTERN ??Disable
+        EXTERN ??Enable
+        EXTERN ??Exchange
+        EXTERN ??Fsm
+        EXTERN ??Fsm_1
+        EXTERN ??Fsm_2
+        EXTERN ??Fsm_3
+        EXTERN ??Init_1
+        EXTERN ??Init_2
+        EXTERN ??Init_3
+        EXTERN ??Init_4
+        EXTERN ??Init_5
+        EXTERN ??IsHappened
+        EXTERN ??IsOverflow
+        EXTERN ??KeyEventHappened
+        EXTERN ??ReadBlock
+        EXTERN ??Reset
+        EXTERN ??Set
+        EXTERN ??Set_1
+        EXTERN ??SignatureCreate
+        EXTERN ??SlaveSet
+        EXTERN ??WriteBlock
+        EXTERN ??delay_ms
+        EXTERN ??iCrcSummOneByteCompare
+        EXTERN ??m_pxUart1
+        EXTERN `??new CEmergencyAlarmHighLevelDfa`
+        EXTERN `??new CEmergencyAlarmLowLevelDfa`
+        EXTERN `??new CErrorAlarmDfa`
+        EXTERN `??new CIndicationAlarmHighLevelDfa`
+        EXTERN `??new CIndicationAlarmLowLevelDfa`
+        EXTERN `??new CModuleMrXXDriver`
+        EXTERN `??new CMvsn21Driver`
+        EXTERN `??new CNormalAlarmDfa`
+        EXTERN `??new CPreventiveAlarmHighLevelDfa`
+        EXTERN `??new CPreventiveAlarmLowLevelDfa`
+        EXTERN `?~CAlarmWindow`
+        EXTERN `?~CBuzzerNotifyerControl`
+        EXTERN `?~CEmergencyAlarmWindowNotifyerControl`
+        EXTERN `?~CEventUniteLogicAnd`
+        EXTERN `?~CModbusRTU`
+        EXTERN `?~CModbusRtuLinkControl`
+        EXTERN `?~CMultiFunctionKey`
+        EXTERN `?~CPreventiveAlarmWindowNotifyerControl`
+        EXTERN `?~CStatusLedNotifyerControl`
+        EXTERN `?~CTimer`
+        EXTERN `?~CUart`
+        EXTERN __near_vec_construct
+        EXTERN __near_vec_destroy
+        EXTERN __record_needed_destruction
+        EXTERN memcpy
+        EXTERN memset
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Pss21.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "Pss21.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//    9 #include "Platform.h"
+//   10 #include "InputDevice.h"
+//   11 #include "Mvsn21.h"
+//   12 #include "ModuleMrXX.h"
+//   13 #include "Crc.h"
+//   14 #include "ModbusRTU.h"
+//   15 #include "DataBase.h"
+//   16 #include "DataTypes.h"
+//   17 #include "Alarm.h"
+//   18 #include "NotifyerControl.h"
+//   19 #include "Buzzer.h"
+//   20 #include "Event.h"
+//   21 #include "Dfa.h"
+//   22 
+//   23 
+//   24 //uint8_t CPss21::m_aucRtuCoilsArray[];
+//   25 //uint8_t CPss21::m_aucRtuDiscreteInputsArray[];
+//   26 uint16_t CPss21::m_aucRtuHoldingRegistersArray[];
+//   27 uint16_t CPss21::m_aucRtuInputRegistersArray[];
+//   28 uint8_t CPss21::m_aucRtuDiscreteDataArray[];
+//   29 uint8_t CPss21::m_auiReceiveMessageBuff[];
+//   30 //uint8_t CPss21::m_auiTransmitMessageBuff[];
+//   31 uint8_t CPss21::m_auiIntermediateBuff[];
+//   32 uint8_t CPss21::m_auiSpiRxBuffer[];
+//   33 uint8_t CPss21::m_auiSpiTxBuffer[];
+//   34 
+//   35 uint8_t CPss21::m_uiFsmState;
+//   36 uint8_t CPss21::m_uiType;
+//   37 //CDriver* CPss21::m_pxDriver;
+//   38 //CDevice* CPss21::m_apxDevices[];
+//   39 CDriver* CPss21::m_apxDrivers[];
+//   40 
+
+        RSEG CODE:CODE:NOROOT(1)
+// static __intrinsic __version_3 void __sti__routine()
+??__sti__routine:
+//   41 CUart CPss21::m_xUart1(&UBRR1H, &UBRR1L, &UCSR1A, &UCSR1B, &UCSR1C, &UDR1, &DDRC, DDC7, &PORTC, PC7);
+        LDI     R16, 7
+        ST      -Y, R16
+        LDI     R16, LOW(53)
+        LDI     R17, (53) >> 8
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_99:
+        LDI     R16, 7
+        ST      -Y, R16
+        LDI     R16, LOW(52)
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_100:
+        LDI     R16, LOW(156)
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_101:
+        LDI     R16, LOW(157)
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_102:
+        LDI     R16, LOW(154)
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_103:
+        LDI     R22, LOW(155)
+        LDI     R23, (53) >> 8
+        LDI     R20, LOW(153)
+        LDI     R21, (53) >> 8
+        LDI     R18, LOW(152)
+        LDI     R19, (53) >> 8
+        LDI     R16, LOW(??m_xUart1)
+        LDI     R17, (??m_xUart1) >> 8
+        CALL    ??CUart
+        LDI     R16, LOW(?_0)
+        LDI     R17, (?_0) >> 8
+        RCALL   ?Subroutine73
+//   42 CModbusRTU CPss21::m_xModbusRtuOne;
+??CrossCallReturnLabel_86:
+        RCALL   ??Subroutine94_0
+??CrossCallReturnLabel_157:
+        LDI     R16, LOW(??m_xModbusRtuOne)
+        LDI     R17, (??m_xModbusRtuOne) >> 8
+        CALL    ??CModbusRTU
+        LDI     R16, LOW((?_0 + 6))
+        LDI     R17, HIGH((?_0 + 6))
+        RCALL   ?Subroutine73
+//   43 
+//   44 //CDataBase CPss21::m_xDataBase;
+//   45 //CDataBase* CPss21::m_pxDataBase;
+//   46 //CDataStore CPss21::m_xDataStore;
+//   47 
+//   48 CMultiFunctionKey CPss21::m_xReceiptKey(CPlatform::KeyOneState);
+??CrossCallReturnLabel_87:
+        LDI     R18, LOW(??KeyOneState/2)
+        LDI     R19, (??KeyOneState/2) >> 8
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 65))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 65))
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_5:
+        LDI     R16, LOW((?_0 + 12))
+        LDI     R17, HIGH((?_0 + 12))
+        RCALL   ?Subroutine73
+//   49 CMultiFunctionKey CPss21::m_xResetKey(CPlatform::KeyTwoState);
+??CrossCallReturnLabel_88:
+        LDI     R18, LOW(??KeyTwoState/2)
+        LDI     R19, (??KeyTwoState/2) >> 8
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 80))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 80))
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_4:
+        LDI     R16, LOW((?_0 + 18))
+        LDI     R17, HIGH((?_0 + 18))
+        RCALL   ?Subroutine73
+//   50 CMultiFunctionKey CPss21::m_xCheckKey(CPlatform::KeyThreeState);
+??CrossCallReturnLabel_89:
+        LDI     R18, LOW(??KeyThreeState/2)
+        LDI     R19, (??KeyThreeState/2) >> 8
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 95))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 95))
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_3:
+        LDI     R16, LOW((?_0 + 24))
+        LDI     R17, HIGH((?_0 + 24))
+        RCALL   ?Subroutine73
+//   51 CMultiFunctionKey CPss21::m_xExternalKey(CPlatform::ExternalKeyState);
+??CrossCallReturnLabel_90:
+        LDI     R18, LOW(??ExternalKeyState/2)
+        LDI     R19, (??ExternalKeyState/2) >> 8
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 110))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 110))
+        RCALL   ?Subroutine12
+??CrossCallReturnLabel_2:
+        LDI     R16, LOW((?_0 + 30))
+        LDI     R17, HIGH((?_0 + 30))
+        RCALL   ?Subroutine73
+//   52 
+//   53 //CIsReceiptButtonPressed CPss21::m_xIsReceiptButtonPressed;
+//   54 
+//   55 uint8_t CPss21::m_uiPanelReceipt;
+//   56 uint8_t CPss21::m_uiPanelReset;
+//   57 uint8_t CPss21::m_uiExternalReceipt;
+//   58 uint8_t CPss21::m_uiExternalReset;
+//   59 uint8_t CPss21::m_uiModbusReceipt;
+//   60 uint8_t CPss21::m_uiModbusReset;
+//   61 uint8_t CPss21::m_uiDiscreteSignalsReceipt;
+//   62 uint8_t CPss21::m_uiDiscreteSignalsReset;
+//   63 uint8_t CPss21::m_uiErrorCode;
+//   64 uint8_t CPss21::m_uiModuleIndex;
+//   65 CEventUniteLogicAnd CPss21::m_xEventUniteLogicAndOne(500);
+??CrossCallReturnLabel_91:
+        LDI     R18, 244
+        LDI     R19, 1
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 125))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 125))
+        CALL    ??CEventUniteLogicAnd
+        LDI     R16, LOW((?_0 + 36))
+        LDI     R17, HIGH((?_0 + 36))
+        RCALL   ?Subroutine73
+//   66 CTimer CPss21::m_xMainCycleTimer(MAIN_CYCLE_PERIOD_TIME);
+??CrossCallReturnLabel_92:
+        LDI     R18, 100
+        LDI     R19, 0
+        RCALL   ?Subroutine61
+??CrossCallReturnLabel_228:
+        CALL    ??CTimer
+        LDI     R16, LOW((?_0 + 42))
+        LDI     R17, HIGH((?_0 + 42))
+        RCALL   ?Subroutine73
+//   67 //CTimer CPss21::m_xPeripheryTimer(PERIPHERY_SCAN_TIME);
+//   68 
+//   69 CPreventiveAlarmWindowNotifyerControl CPss21::m_xPreventiveAlarmWindowNotifyerControl;
+??CrossCallReturnLabel_93:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 145))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 145))
+        CALL    ??CPreventiveAlarmWindowNotifyerControl
+        LDI     R16, LOW((?_0 + 48))
+        LDI     R17, HIGH((?_0 + 48))
+        RCALL   ?Subroutine73
+//   70 CEmergencyAlarmWindowNotifyerControl CPss21::m_xEmergencyAlarmWindowNotifyerControl;
+??CrossCallReturnLabel_94:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 157))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 157))
+        CALL    ??CEmergencyAlarmWindowNotifyerControl
+        LDI     R16, LOW((?_0 + 54))
+        LDI     R17, HIGH((?_0 + 54))
+        RCALL   ?Subroutine73
+//   71 CStatusLedNotifyerControl CPss21::m_xStatusLedNotifyerControl;
+??CrossCallReturnLabel_95:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 169))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 169))
+        CALL    ??CStatusLedNotifyerControl
+        LDI     R16, LOW((?_0 + 60))
+        LDI     R17, HIGH((?_0 + 60))
+        RCALL   ?Subroutine73
+//   72 CBuzzerNotifyerControl CPss21::m_xBuzzerNotifyerControl;
+??CrossCallReturnLabel_96:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 181))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 181))
+        CALL    ??CBuzzerNotifyerControl
+        LDI     R16, LOW((?_0 + 66))
+        LDI     R17, HIGH((?_0 + 66))
+        RCALL   ?Subroutine73
+//   73 CModbusRtuLinkControl CPss21::m_xModbusRtuLinkControl;
+??CrossCallReturnLabel_97:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 29))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 29))
+        CALL    ??CModbusRtuLinkControl
+        LDI     R16, LOW((?_0 + 72))
+        LDI     R17, HIGH((?_0 + 72))
+        RCALL   ?Subroutine73
+//   74 
+//   75 uint8_t CPss21::m_uiCommonAlarmType;
+//   76 uint8_t CPss21::m_uiCommonAlarmTypePrevious;
+//   77 //CLightBoard CPss21::m_xLightBoard;
+//   78 TConfigDataPackOne CPss21::m_xDeviceConfigSearch;
+//   79 TDevConfig CPss21::m_xDeviceConfiguration;
+//   80 TDeviceState CPss21::m_xDeviceState;
+//   81 TMBusSetting CPss21::m_xModbusSettings;
+//   82 CAlarmDfa *CPss21::m_apxAlarmDfa[];
+//   83 
+//   84 CErrorAlarmDfa *CPss21::m_apxErrorAlarmDfa[];
+//   85 uint8_t CPss21::m_auiErrorAlarmDataArray[];
+//   86 
+//   87 TDiscreteOutputControl CPss21::m_axDiscreteOutputControl[];
+//   88 TOutputData CPss21::m_xDiscreteOutputDataBase;
+//   89 CAlarmWindow CPss21::m_axAlarmWindowControl[];
+??CrossCallReturnLabel_98:
+        LDI     R22, LOW(??CAlarmWindow/2)
+        LDI     R23, (??CAlarmWindow/2) >> 8
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_127:
+        CALL    __near_vec_construct
+        LDI     R16, LOW((?_0 + 78))
+        LDI     R17, HIGH((?_0 + 78))
+        REQUIRE ?Subroutine73
+        REQUIRE _A_UBRR1H
+        REQUIRE _A_UBRR1L
+        REQUIRE _A_UCSR1A
+        REQUIRE _A_UCSR1B
+        REQUIRE _A_UCSR1C
+        REQUIRE _A_UDR1
+        REQUIRE _A_DDRC
+        REQUIRE _A_PORTC
+        ;               // Fall through to label ?Subroutine73
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine73:
+        JMP     __record_needed_destruction
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine12:
+        JMP     ??CMultiFunctionKey
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 0>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_145:
+        JMP     `?~CUart`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 1>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_146:
+        JMP     `?~CModbusRTU`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 2>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_147:
+        JMP     `?~CMultiFunctionKey`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 3>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_148:
+        JMP     `?~CEventUniteLogicAnd`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 4>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_149:
+        JMP     `?~CTimer`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 5>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_150:
+        JMP     `?~CPreventiveAlarmWindowNotifyerControl`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 6>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_151:
+        JMP     `?~CEmergencyAlarmWindowNotifyerControl`
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_xModbusSettings:
+        DS8 7
+??m_xDeviceState:
+        DS8 8
+??m_aucRtuHoldingRegistersArray:
+        DS8 16
+??m_aucRtuInputRegistersArray:
+        DS8 16
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_aucRtuDiscreteDataArray:
+        DS8 120
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_auiReceiveMessageBuff:
+        DS8 256
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_auiIntermediateBuff:
+        DS8 256
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_auiSpiRxBuffer:
+        DS8 64
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_auiSpiTxBuffer:
+        DS8 64
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_xDeviceConfigSearch:
+        DS8 9
+??m_xDeviceConfiguration:
+        DS8 20
+??m_xModbusRtuLinkControl:
+        DS8 11
+??m_apxDrivers:
+        DS8 6
+??m_apxErrorAlarmDfa:
+        DS8 4
+??m_uiFsmState:
+        DS8 1
+??m_uiPanelReceipt:
+        DS8 1
+??m_uiPanelReset:
+        DS8 1
+??m_uiExternalReceipt:
+        DS8 1
+??m_uiExternalReset:
+        DS8 1
+??m_uiModbusReceipt:
+        DS8 1
+??m_uiModbusReset:
+        DS8 1
+??m_uiDiscreteSignalsReceipt:
+        DS8 1
+??m_uiDiscreteSignalsReset:
+        DS8 1
+??m_uiErrorCode:
+        DS8 1
+??m_uiModuleIndex:
+        DS8 1
+??m_uiCommonAlarmType:
+        DS8 1
+??m_uiCommonAlarmTypePrevious:
+        DS8 1
+??m_auiErrorAlarmDataArray:
+        DS8 2
+??m_xReceiptKey:
+        DS8 15
+??m_xResetKey:
+        DS8 15
+??m_xCheckKey:
+        DS8 15
+??m_xExternalKey:
+        DS8 15
+??m_xEventUniteLogicAndOne:
+        DS8 14
+??m_xMainCycleTimer:
+        DS8 6
+??m_xPreventiveAlarmWindowNotifyerControl:
+        DS8 12
+??m_xEmergencyAlarmWindowNotifyerControl:
+        DS8 12
+??m_xStatusLedNotifyerControl:
+        DS8 12
+??m_xBuzzerNotifyerControl:
+        DS8 12
+??m_xDiscreteOutputDataBase:
+        DS8 24
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_uiType:
+        DS8 1
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_xUart1:
+        DS8 47
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_1:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_xModbusRtuOne:
+        DS8 49
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_3:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_5:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_7:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_9:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_11:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_13:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_15:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_17:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_19:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_21:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_23:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_25:
+        DS8 2
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_apxAlarmDfa:
+        DS8 192
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_axDiscreteOutputControl:
+        DS8 16
+
+        RSEG NEAR_I:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_I>`
+?_0:
+        DS8 6
+        REQUIRE `?<Initializer for >`
+        DS8 6
+        REQUIRE `?<Initializer for >_1`
+        DS8 6
+        REQUIRE `?<Initializer for >_2`
+        DS8 6
+        REQUIRE `?<Initializer for >_3`
+        DS8 6
+        REQUIRE `?<Initializer for >_4`
+        DS8 6
+        REQUIRE `?<Initializer for >_5`
+        DS8 6
+        REQUIRE `?<Initializer for >_6`
+        DS8 6
+        REQUIRE `?<Initializer for >_7`
+        DS8 6
+        REQUIRE `?<Initializer for >_8`
+        DS8 6
+        REQUIRE `?<Initializer for >_9`
+        DS8 6
+        REQUIRE `?<Initializer for >_10`
+        DS8 6
+        REQUIRE `?<Initializer for >_11`
+        DS8 6
+        REQUIRE `?<Initializer for >_12`
+        DS8 6
+        REQUIRE `?<Initializer for >_13`
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??m_axAlarmWindowControl:
+        DS8 288
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+?_27:
+        DS8 2
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+//   90 
+
+        RSEG NEAR_F:CODE:ROOT(0)
+//   91 __flash uint8_t CPss21::m_auiErrorLedOn[] =
+??m_auiErrorLedOn:
+        DC8 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
+        DC8 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
+        DC8 1, 1
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine18:
+        LDI     R18, 2
+        REQUIRE ?Subroutine79
+        ;               // Fall through to label ?Subroutine79
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine79:
+        LDI     R19, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 7>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_152:
+        JMP     `?~CStatusLedNotifyerControl`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 8>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_153:
+        JMP     `?~CBuzzerNotifyerControl`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 9>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_154:
+        JMP     `?~CModbusRtuLinkControl`
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 10>`:
+        LDI     R22, LOW(`?<Unnamed 11>`/2)
+        LDI     R23, (`?<Unnamed 11>`/2) >> 8
+        RCALL   ?Subroutine16
+??CrossCallReturnLabel_128:
+        JMP     __near_vec_destroy
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine16:
+        LDI     R20, 6
+        LDI     R21, 0
+        LDI     R18, 48
+        LDI     R19, 0
+        REQUIRE ?Subroutine74
+        ;               // Fall through to label ?Subroutine74
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine74:
+        LDI     R16, LOW(??m_axAlarmWindowControl)
+        LDI     R17, (??m_axAlarmWindowControl) >> 8
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+`?<Unnamed 11>`:
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_155:
+        JMP     `?~CAlarmWindow`
+//   92 {
+//   93     1, 1, 1, 1,    1, 1, 1, 1,
+//   94     1, 0, 0, 0,    0, 0, 0, 1,
+//   95     1, 0, 0, 0,    0, 0, 0, 1,
+//   96     1, 0, 0, 0,    0, 0, 0, 1,
+//   97     1, 0, 0, 0,    0, 0, 0, 1,
+//   98     1, 1, 1, 1,    1, 1, 1, 1,
+//   99 };
+//  100 
+//  101 ////-----------------------------------------------------------------------------------------------------
+//  102 //CPss21::CPss21(uint8_t uiType, CDriver* pxDriver)// :
+//  103 ////    m_uiType(uiType),
+//  104 ////    m_pxDriver(pxDriver)
+//  105 //{
+//  106 //
+//  107 //}
+//  108 //
+//  109 ////-----------------------------------------------------------------------------------------------------
+//  110 //CPss21::~CPss21()
+//  111 //{
+//  112 //
+//  113 //}
+//  114 
+//  115 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  116 void CPss21::ModbusInit(void)
+??ModbusInit:
+//  117 {
+        ST      -Y, R27
+        ST      -Y, R26
+//  118     CPlatform::m_pxUart1 = &m_xUart1;
+        LDI     R16, LOW(??m_xUart1)
+        LDI     R17, (??m_xUart1) >> 8
+        LDI     R30, LOW(??m_pxUart1)
+        LDI     R31, (??m_pxUart1) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+//  119     m_xModbusRtuOne.Init(CPlatform::m_pxUart1,
+//  120                          static_cast<uint32_t>((F_CPU / ((CPss21::m_xModbusSettings.BaudRate) + 1)) / 16UL),
+//  121                          'N',
+//  122                          8,
+//  123                          1,
+//  124                          CPss21::m_auiReceiveMessageBuff,
+//  125                          CPss21::m_auiReceiveMessageBuff,//reinterpret_cast<uint8_t*>(CPss21::m_aucRtuHoldingRegistersArray),//m_auiTransmitMessageBuff,//
+//  126                          CPss21::m_aucRtuDiscreteDataArray,//CPss21::m_aucRtuCoilsArray,
+//  127                          CPss21::m_aucRtuDiscreteDataArray,//CPss21::m_aucRtuDiscreteInputsArray,
+//  128                          CPss21::m_aucRtuHoldingRegistersArray,
+//  129                          CPss21::m_aucRtuInputRegistersArray,
+//  130                          DISCRETE_DATA_ARRAY_LENGTH,
+//  131                          DISCRETE_DATA_ARRAY_LENGTH,
+//  132                          HOLDING_REGISTERS_ARRAY_LENGTH,
+//  133                          INPUT_REGISTERS_ARRAY_LENGTH);
+        LDI     R16, 8
+        LDI     R17, 0
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_106:
+        LDI     R16, 120
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_107:
+        LDI     R16, LOW((??m_xModbusSettings + 31))
+        LDI     R17, HIGH((??m_xModbusSettings + 31))
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_104:
+        LDI     R16, LOW((??m_xModbusSettings + 15))
+        LDI     R17, HIGH((??m_xModbusSettings + 15))
+        RCALL   ?Subroutine76
+??CrossCallReturnLabel_105:
+        LDI     R16, LOW(??m_aucRtuDiscreteDataArray)
+        LDI     R17, (??m_aucRtuDiscreteDataArray) >> 8
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_108:
+        LDI     R16, LOW(??m_auiReceiveMessageBuff)
+        LDI     R17, (??m_auiReceiveMessageBuff) >> 8
+        RCALL   ?Subroutine2
+??CrossCallReturnLabel_109:
+        LDI     R16, 1
+        ST      -Y, R16
+        LDI     R16, 8
+        ST      -Y, R16
+        LDI     R16, 78
+        ST      -Y, R16
+        LDS     R20, (??m_xModbusSettings + 1)
+        LDI     R21, 0
+        SUBI    R20, 255
+        SBCI    R21, 255
+        MOV     R22, R21
+        LSL     R22
+        SBC     R22, R22
+        MOV     R23, R22
+        LDI     R16, 0
+        LDI     R17, 128
+        LDI     R18, 112
+        LDI     R19, 0
+        CALL    ?UL_DIVMOD_L03
+        LDI     R20, 4
+        CALL    ?UL_SHR_L03
+        MOVW    R21:R20, R17:R16
+        MOVW    R23:R22, R19:R18
+        LDI     R18, LOW(??m_xUart1)
+        LDI     R19, (??m_xUart1) >> 8
+        LDI     R16, LOW(??m_xModbusRtuOne)
+        LDI     R17, (??m_xModbusRtuOne) >> 8
+        CALL    ??Init_1
+//  134     m_xModbusRtuOne.SlaveSet(CPss21::m_xModbusSettings.NetAddress);
+        LDS     R18, ??m_xModbusSettings
+        LDI     R30, LOW(??m_xModbusRtuOne)
+        LDI     R31, (??m_xModbusRtuOne) >> 8
+        LDD     R16, Z+13
+        LDD     R17, Z+14
+        CALL    ??SlaveSet
+//  135     m_xModbusRtuOne.SetFsmState(CModbus::START_REQUEST);
+        LDI     R26, LOW((??m_xModbusRtuOne + 13))
+        LDI     R27, HIGH((??m_xModbusRtuOne + 13))
+        RCALL   ??Subroutine95_0
+??CrossCallReturnLabel_162:
+        LDI     R16, 2
+        ST      Z, R16
+//  136 }
+        REQUIRE ?Subroutine75
+        ;               // Fall through to label ?Subroutine75
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine75:
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine76:
+        ST      -Y, R17
+        ST      -Y, R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine2:
+        ST      -Y, R17
+        ST      -Y, R16
+        RJMP    ?Subroutine76
+//  137 
+//  138 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  139 void CPss21::ModbusDefaultInit(void)
+??ModbusDefaultInit:
+//  140 {
+//  141     CPss21::m_xModbusSettings.NetAddress = 1;
+        LDI     R30, LOW(??m_xModbusSettings)
+        LDI     R31, (??m_xModbusSettings) >> 8
+        RCALL   ?Subroutine27
+//  142     // 9600 baud.
+//  143     CPss21::m_xModbusSettings.BaudRate = 47;
+??CrossCallReturnLabel_14:
+        LDI     R16, 47
+        STD     Z+1, R16
+//  144     // Два стоп бита.
+//  145     CPss21::m_xModbusSettings.LinkParam = 0x08;
+        LDI     R16, 8
+        STD     Z+2, R16
+//  146 
+//  147     ModbusInit();
+        RJMP    ??ModbusInit
+//  148 }
+
+        RSEG CODE:CODE:NOROOT(1)
+??AllAlarmWindowOff:
+        RCALL   ??Subroutine100_0
+??CrossCallReturnLabel_195:
+        MOV     R16, R18
+        RCALL   ?Subroutine20
+??CrossCallReturnLabel_10:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_18:
+        BRNE    ??CrossCallReturnLabel_195
+        RJMP    ?Subroutine87
+//  149 
+//  150 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  151 void CPss21::Init(void)
+??Init:
+//  152 {
+//  153     CLightBoard::Init(m_axAlarmWindowControl);
+        RCALL   ?Subroutine74
+??CrossCallReturnLabel_126:
+        CALL    ??Init_2
+        RCALL   ?Subroutine26
+//  154     m_uiCommonAlarmType = NORMAL;
+//  155     m_uiCommonAlarmTypePrevious = NORMAL;
+//  156     SetErrorCode(0);
+??CrossCallReturnLabel_84:
+        STS     (??m_xDeviceConfigSearch + 59), R16
+//  157     // Сбросим все ошибки.
+//  158     memset(CPss21::m_auiErrorAlarmDataArray, 0, HANDLED_ERROR_NUMBER);
+        LDI     R20, 2
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_158:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 63))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 63))
+        RCALL   ?Subroutine32
+//  159     CPss21::AllAlarmWindowOff();
+??CrossCallReturnLabel_30:
+        RJMP    ??AllAlarmWindowOff
+//  160 }
+//  161 
+//  162 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  163 void CPss21::AddressBusInit(void)
+??AddressBusInit:
+//  164 {
+//  165     CPlatform::SpiSlaveSelectAddress0SetPinOutput();
+        SBI     0x11, 0x07
+//  166     CPlatform::SpiSlaveSelectAddress1SetPinOutput();
+        SBI     0x11, 0x06
+//  167     CPlatform::SpiSlaveSelectAddress2SetPinOutput();
+        SBI     0x11, 0x05
+//  168     CPlatform::SpiSlaveSelectAddress3SetPinOutput();
+        SBI     0x11, 0x04
+//  169     CPlatform::SpiSlaveSelectEnableSetPinOutput();
+        SBI     0x11, 0x01
+//  170     CPlatform::SpiSlaveSelectAddress0On();
+        SBI     0x12, 0x07
+//  171     CPlatform::SpiSlaveSelectAddress1On();
+        SBI     0x12, 0x06
+//  172     CPlatform::SpiSlaveSelectAddress2On();
+        SBI     0x12, 0x05
+//  173     CPlatform::SpiSlaveSelectAddress3On();
+        SBI     0x12, 0x04
+//  174     CPlatform::SpiSlaveSelectEnableOff();
+        CBI     0x12, 0x01
+//  175 };
+        RET
+        REQUIRE _A_DDRD
+        REQUIRE _A_PORTD
+//  176 
+//  177 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  178 void CPss21::ConnectDevice(uint8_t uiAddress)
+??ConnectDevice:
+//  179 {
+//  180     uiAddress &= 0x0F;
+//  181 
+//  182     if (uiAddress &  BIT(0))
+        BST     R16, 0
+        BRTC    ??ConnectDevice_1
+//  183     {
+//  184         CPlatform::SpiSlaveSelectAddress0Off();
+        CBI     0x12, 0x07
+//  185     }
+        RJMP    ??ConnectDevice_2
+//  186     else
+//  187     {
+//  188         CPlatform::SpiSlaveSelectAddress0On();
+??ConnectDevice_1:
+        SBI     0x12, 0x07
+//  189     }
+//  190     if (uiAddress &  BIT(1))
+??ConnectDevice_2:
+        BST     R16, 1
+        BRTC    ??ConnectDevice_3
+//  191     {
+//  192         CPlatform::SpiSlaveSelectAddress1Off();
+        CBI     0x12, 0x06
+//  193     }
+        RJMP    ??ConnectDevice_4
+//  194     else
+//  195     {
+//  196         CPlatform::SpiSlaveSelectAddress1On();
+??ConnectDevice_3:
+        SBI     0x12, 0x06
+//  197     }
+//  198     if (uiAddress &  BIT(2))
+??ConnectDevice_4:
+        BST     R16, 2
+        BRTC    ??ConnectDevice_5
+//  199     {
+//  200         CPlatform::SpiSlaveSelectAddress2Off();
+        CBI     0x12, 0x05
+//  201     }
+        RJMP    ??ConnectDevice_6
+//  202     else
+//  203     {
+//  204         CPlatform::SpiSlaveSelectAddress2On();
+??ConnectDevice_5:
+        SBI     0x12, 0x05
+//  205     }
+//  206     if (uiAddress &  BIT(3))
+??ConnectDevice_6:
+        BST     R16, 3
+        BRTC    ??ConnectDevice_7
+//  207     {
+//  208         CPlatform::SpiSlaveSelectAddress3Off();
+        CBI     0x12, 0x04
+//  209     }
+        RJMP    ??ConnectDevice_8
+//  210     else
+//  211     {
+//  212         CPlatform::SpiSlaveSelectAddress3On();
+??ConnectDevice_7:
+        SBI     0x12, 0x04
+//  213     }
+//  214 
+//  215     CPlatform::SpiSlaveSelectEnableOn();
+??ConnectDevice_8:
+        SBI     0x12, 0x01
+//  216     CSpi::Enable();
+        JMP     ??Enable
+        REQUIRE _A_PORTD
+//  217 };
+//  218 
+//  219 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  220 void CPss21::DisconnectDevice(void)
+??DisconnectDevice:
+//  221 {
+//  222     CSpi::Disable();
+        CALL    ??Disable
+//  223     CPlatform::SpiSlaveSelectEnableOff();
+        CBI     0x12, 0x01
+//  224     CPlatform::SpiSlaveSelectAddress0Off();
+        CBI     0x12, 0x07
+//  225     CPlatform::SpiSlaveSelectAddress1Off();
+        CBI     0x12, 0x06
+//  226     CPlatform::SpiSlaveSelectAddress2Off();
+        CBI     0x12, 0x05
+//  227     CPlatform::SpiSlaveSelectAddress3Off();
+        CBI     0x12, 0x04
+//  228 };
+        RET
+        REQUIRE _A_PORTD
+//  229 
+//  230 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  231 void CPss21::SearchModules(void)
+??SearchModules:
+//  232 {
+        CALL    ?PROLOGUE5_L09
+        REQUIRE ?Register_R4_is_cg_reg
+//  233     delay_ms(500);
+        LDI     R16, 244
+        LDI     R17, 1
+        CALL    ??delay_ms
+//  234     CPlatform::WatchdogReset();
+        WDR
+//  235 
+//  236     memset(reinterpret_cast<uint8_t*>(&m_xDeviceConfigSearch),
+//  237            0,
+//  238            sizeof(struct TConfigDataPackOne));
+        LDI     R20, 9
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_159:
+        LDI     R16, LOW(??m_xDeviceConfigSearch)
+        LDI     R17, (??m_xDeviceConfigSearch) >> 8
+        RCALL   ?Subroutine32
+//  239 
+//  240     // опросим интерфейс SPI. какие модули присутствуют?
+//  241     for (uint8_t i = 0; i < SPI_MAX_BUS_ADDRESS; i++)
+??CrossCallReturnLabel_29:
+        LDI     R24, 0
+        LDI     R25, 16
+        LDI     R26, LOW(??m_xDeviceConfigSearch)
+        LDI     R27, (??m_xDeviceConfigSearch) >> 8
+//  242     {
+//  243         // если модуль не ответил MODULE_REQUEST_QUANTITY раз,
+//  244         // то его нет или он неисправен.
+//  245         for (uint8_t j = 0; j < MODULE_REQUEST_QUANTITY; j++)
+??SearchModules_1:
+        LDI     R16, 5
+        MOV     R4, R16
+//  246         {
+//  247             CPlatform::WatchdogReset();
+??SearchModules_2:
+        WDR
+//  248             delay_ms(5);
+//  249 
+//  250             m_auiSpiTxBuffer[0] = GET_MODULE_TYPE_COMMAND;
+//  251             ConnectDevice(i);
+//  252             delay_us(500);
+//  253             CSpi::Exchange(m_auiSpiRxBuffer,
+//  254                            m_auiSpiTxBuffer,
+//  255                            GET_MODULE_TYPE_REQUEST_LENGTH);
+//  256             DisconnectDevice();
+//  257 
+//  258             // модуль отвечает?
+//  259             if (m_auiSpiRxBuffer[SPI_COMMAND_BYTE_OFFSET] ==
+//  260                     GET_MODULE_TYPE_COMMAND)
+//  261             {
+//  262                 // обмен данными прошёл без ошибок?
+//  263                 if (iCrcSummOneByteCompare(&m_auiSpiRxBuffer[SPI_COMMAND_BYTE_OFFSET], 2))
+//  264                 {
+//  265                     // сохраним тип модуля в массиве для упорядочивания следования модулей при поиске на SPI.
+//  266                     m_xDeviceConfigSearch.axModulesContext[m_xDeviceConfigSearch.uiModulesQuantity].uiType =
+//  267                         m_auiSpiRxBuffer[MODULE_TYPE_OFFSET];
+//  268                     // сохраним адрес модуля в массиве для упорядочивания следования модулей при поиске на SPI.
+//  269                     m_xDeviceConfigSearch.axModulesContext[m_xDeviceConfigSearch.uiModulesQuantity].uiAddress = i;
+//  270                     // модуль присутствует. увеличим значение переменной -
+//  271                     // фактическое количество модулей в системе.
+//  272                     (m_xDeviceConfigSearch.uiModulesQuantity)++;
+//  273 
+//  274                     if (m_xDeviceConfigSearch.uiModulesQuantity >=
+//  275                             INTERNAL_MODULE_QUANTITY)
+//  276                     {
+//  277                         return;
+//  278                     }
+//  279                     // перейдём к опросу следующего адреса.
+//  280                     break;
+//  281                 }
+//  282             }
+//  283         }
+//  284     }
+        LDI     R16, 5
+        LDI     R17, 0
+        CALL    ??delay_ms
+        LDI     R16, 145
+        STS     ??m_auiSpiTxBuffer, R16
+        MOV     R16, R24
+        RCALL   ?Subroutine31
+??CrossCallReturnLabel_25:
+        LDI     R20, 4
+        RCALL   ?Subroutine19
+??CrossCallReturnLabel_9:
+        LDS     R16, (??m_auiSpiRxBuffer + 1)
+        CPI     R16, 145
+        BRNE    ??SearchModules_3
+        RCALL   ?Subroutine18
+??CrossCallReturnLabel_156:
+        LDI     R16, LOW((??m_auiSpiRxBuffer + 1))
+        LDI     R17, HIGH((??m_auiSpiRxBuffer + 1))
+        CALL    ??iCrcSummOneByteCompare
+        OR      R16, R17
+        BREQ    ??SearchModules_3
+        LDS     R16, (??m_auiSpiRxBuffer + 2)
+        LDS     R17, ??m_xDeviceConfigSearch
+        LDI     R18, 2
+        MUL     R17, R18
+        MOVW    R31:R30, R27:R26
+        RCALL   ??Subroutine98_0
+??CrossCallReturnLabel_180:
+        STD     Z+1, R16
+        LDS     R16, ??m_xDeviceConfigSearch
+        MUL     R16, R18
+        MOVW    R31:R30, R27:R26
+        RCALL   ??Subroutine98_0
+??CrossCallReturnLabel_181:
+        STD     Z+2, R24
+        LD      R16, X
+        INC     R16
+        ST      X, R16
+        CPI     R16, 3
+        BRCS    ??SearchModules_4
+        RJMP    ??SearchModules_5
+??SearchModules_3:
+        DEC     R4
+        BRNE    ??SearchModules_2
+??SearchModules_4:
+        INC     R24
+        DEC     R25
+        BRNE    ??SearchModules_1
+//  285 
+//  286     if(m_xDeviceConfiguration.FixConfig)
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+12
+        SBRS    R16, 0
+        RJMP    ??SearchModules_5
+//  287     {
+//  288         // Предыдущая сохранённая и текущая конфигурации не совпадают?
+//  289         if((m_xDeviceConfiguration.ICount != m_xDeviceConfigSearch.uiDiscreteInputQuantity) ||
+//  290                 (m_xDeviceConfiguration.OCount != m_xDeviceConfigSearch.uiDiscreteOutputQuantity))
+        LDD     R16, Z+9
+        LDD     R17, Z+8
+        CP      R16, R17
+        BRNE    ??SearchModules_6
+        LDD     R16, Z+10
+        LDD     R17, Z+7
+        CP      R16, R17
+        BREQ    ??SearchModules_5
+//  291         {
+//  292             SetErrorCode(CFG_ERROR);
+??SearchModules_6:
+        LDI     R16, 3
+        STD     Z+59, R16
+//  293         }
+//  294     }
+//  295 };
+??SearchModules_5:
+        REQUIRE ?Subroutine88
+        ;               // Fall through to label ?Subroutine88
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine88:
+        LDI     R30, 5
+        JMP     ?EPILOGUE_B5_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
+        LDI     R21, 0
+        REQUIRE ??Subroutine94_0
+        ;               // Fall through to label ??Subroutine94_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine94_0:
+        LDI     R18, 0
+        RJMP    ?Subroutine79
+//  296 
+//  297 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  298 void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationConext)
+??InitAllocationContext:
+//  299 {
+//  300     // Подготовим к отправке текущие адреса объектов системы используемых драйверами устройств.
+//  301 
+//  302     xMemoryAllocationConext.puiRxBuffer = m_auiSpiRxBuffer;
+        LDI     R18, LOW(??m_auiSpiRxBuffer)
+        LDI     R19, (??m_auiSpiRxBuffer) >> 8
+        MOVW    R31:R30, R17:R16
+        STD     Z+1, R18
+        STD     Z+2, R19
+//  303     xMemoryAllocationConext.puiTxBuffer = m_auiSpiTxBuffer;
+        LDI     R18, LOW(??m_auiSpiTxBuffer)
+        LDI     R19, (??m_auiSpiTxBuffer) >> 8
+        STD     Z+3, R18
+        STD     Z+4, R19
+//  304     xMemoryAllocationConext.puiErrorCode = &m_uiErrorCode;
+        LDI     R18, LOW((??m_xDeviceConfigSearch + 59))
+        LDI     R19, HIGH((??m_xDeviceConfigSearch + 59))
+        STD     Z+5, R18
+        STD     Z+6, R19
+//  305 
+//  306     // Обнулим общий объём выделенной памяти.
+//  307     xMemoryAllocationConext.uiUsedDiscreteInputs = 0;
+        LDI     R18, 0
+        STD     Z+9, R18
+//  308     // Подключим буфер для хранения состояний дискретных входов.
+//  309     xMemoryAllocationConext.puiDiscreteInputs =
+//  310         &m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
+        LDI     R18, LOW((??m_aucRtuDiscreteDataArray + 16))
+        LDI     R19, HIGH((??m_aucRtuDiscreteDataArray + 16))
+        STD     Z+7, R18
+        STD     Z+8, R19
+//  311 
+//  312     // Обнулим общий объём выделенной памяти.
+//  313     xMemoryAllocationConext.uiUsedDiscreteOutputState = 0;
+        LDI     R18, 0
+        STD     Z+12, R18
+//  314     // Подключим буфер для хранения состояний дискретных выходов.
+//  315     xMemoryAllocationConext.puiDiscreteOutputState =
+//  316         &m_aucRtuDiscreteDataArray[DISCRETE_OUTPUT_BIT_ARRAY_OFFSET];
+        LDI     R18, LOW((??m_aucRtuDiscreteDataArray + 112))
+        LDI     R19, HIGH((??m_aucRtuDiscreteDataArray + 112))
+        STD     Z+10, R18
+        STD     Z+11, R19
+//  317 
+//  318     // Обнулим общий объём выделенной памяти.
+//  319     xMemoryAllocationConext.uiUsedDiscreteOutputs = 0;
+        LDI     R18, 0
+        STD     Z+15, R18
+//  320     // Подключим буфер для управления дискретными выходами.
+//  321     xMemoryAllocationConext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
+        LDI     R18, LOW(??m_axDiscreteOutputControl)
+        LDI     R19, (??m_axDiscreteOutputControl) >> 8
+        STD     Z+13, R18
+        STD     Z+14, R19
+//  322 
+//  323     // Обнулим общий объём выделенной памяти.
+//  324     xMemoryAllocationConext.uiUsedDiscreteOutputDataBase = 0;
+        LDI     R18, 0
+        STD     Z+18, R18
+//  325     // Подключим буфер с базой данных модулей дискретных выходов.
+//  326     xMemoryAllocationConext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
+        LDI     R18, LOW((??m_xDeviceConfigSearch + 193))
+        LDI     R19, HIGH((??m_xDeviceConfigSearch + 193))
+        STD     Z+16, R18
+        STD     Z+17, R19
+//  327 
+//  328     // Обнулим общий объём выделенной памяти.
+//  329     xMemoryAllocationConext.uiUsedErrorAlarmDataArray = 0;
+        LDI     R18, 0
+        STD     Z+21, R18
+//  330     // Подключим буфер для хранения состояний ошибок.
+//  331     xMemoryAllocationConext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
+        LDI     R18, LOW((??m_xDeviceConfigSearch + 63))
+        LDI     R19, HIGH((??m_xDeviceConfigSearch + 63))
+        STD     Z+19, R18
+        STD     Z+20, R19
+//  332 };
+        RET
+//  333 
+//  334 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  335 void CPss21::CreateDevices(void)
+??CreateDevices:
+//  336 {
+        CALL    ?PROLOGUE5_L09
+        REQUIRE ?Register_R4_is_cg_reg
+        SBIW    R29:R28, 22
+//  337     TMemoryAllocationConext xMemoryAllocationConext;
+//  338     InitAllocationContext(xMemoryAllocationConext);
+        MOVW    R17:R16, R29:R28
+        RCALL   ??InitAllocationContext
+//  339 
+//  340     for (uint8_t i = 0;
+        CLR     R4
+        RJMP    ??CreateDevices_1
+//  341             i < (m_xDeviceConfigSearch.uiModulesQuantity);
+//  342             i++)
+//  343     {
+//  344         CPlatform::WatchdogReset();
+//  345 
+//  346         uint8_t uiType = m_xDeviceConfigSearch.axModulesContext[i].uiType;
+//  347         switch (uiType)
+//  348         {
+//  349         case MODULE_TYPE_MVSN:
+//  350 //        case MODULE_TYPE_MVDI:
+//  351 //        case MODULE_TYPE_MVDS9:
+//  352             if (m_xDeviceConfigSearch.uiDiscreteInputQuantity <
+//  353                     DISCRETE_INPUT_MODULE_MAX_NUMBER)
+//  354             {
+//  355 //            m_apxDevices[i] = new CMvsn21;
+//  356 //            m_apxDevices[i] -> m_pxDriver = new CMvsn21Driver(uiType);
+//  357                 m_apxDrivers[i] = new CMvsn21Driver(uiType);
+//  358                 xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+//  359 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
+//  360                 m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+//  361                 m_xDeviceConfigSearch.uiDiscreteInputQuantity += 1;
+//  362             }
+//  363             break;
+//  364 
+//  365         case MODULE_TYPE_MVDO5:
+//  366             break;
+//  367 
+//  368         case MODULE_TYPE_MR53:
+//  369         case MODULE_TYPE_MR54:
+//  370             if (m_xDeviceConfigSearch.uiDiscreteOutputQuantity <
+//  371                     DISCRETE_OUTPUT_MODULE_MAX_NUMBER)
+??CreateDevices_2:
+        LDS     R17, (??m_xDeviceConfigSearch + 7)
+        TST     R17
+        BRNE    ??CreateDevices_3
+//  372             {
+//  373 //            m_apxDevices[i] = new CModuleMrXX;
+//  374 //            m_apxDevices[i] -> m_pxDriver = new CModuleMrXXDriver(uiType);
+//  375                 m_apxDrivers[i] = new CModuleMrXXDriver(uiType);
+        CALL    `??new CModuleMrXXDriver`
+        RCALL   ?Subroutine34
+//  376                 xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+//  377 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
+//  378                 m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+//  379                 m_xDeviceConfigSearch.uiDiscreteOutputQuantity += 1;
+//  380             }
+??CrossCallReturnLabel_36:
+        LDD     R16, Z+7
+        INC     R16
+        STD     Z+7, R16
+??CreateDevices_3:
+        INC     R4
+??CreateDevices_1:
+        LDS     R16, ??m_xDeviceConfigSearch
+        CP      R4, R16
+        BRCC    ??CreateDevices_4
+        WDR
+        LDI     R16, 2
+        MUL     R4, R16
+        RCALL   ?Subroutine63
+??CrossCallReturnLabel_64:
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+1
+        MOV     R17, R16
+        DEC     R17
+        BREQ    ??CreateDevices_5
+        SUBI    R17, 2
+        BREQ    ??CreateDevices_2
+        DEC     R17
+        BREQ    ??CreateDevices_2
+        RJMP    ??CreateDevices_3
+??CreateDevices_5:
+        LDS     R16, (??m_xDeviceConfigSearch + 8)
+        CPI     R16, 2
+        BRCC    ??CreateDevices_3
+        LDI     R16, 1
+        CALL    `??new CMvsn21Driver`
+        RCALL   ?Subroutine34
+//  381             break;
+//  382 
+//  383         case MODULE_TYPE_MVI:
+//  384             break;
+//  385 
+//  386         default:
+//  387             break;
+//  388         }
+//  389     }
+??CrossCallReturnLabel_35:
+        LDD     R16, Z+8
+        INC     R16
+        STD     Z+8, R16
+        RJMP    ??CreateDevices_3
+//  390 };
+??CreateDevices_4:
+        ADIW    R29:R28, 22
+        RJMP    ?Subroutine88
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine34:
+        MOV     R20, R16
+        MOVW    R31:R30, R27:R26
+        STD     Z+40, R16
+        STD     Z+41, R17
+        LDD     R16, Z+2
+        ST      Y, R16
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R20
+        MOV     R30, R20
+        MOV     R31, R17
+        LDD     R20, Z+9
+        LDD     R31, Z+10
+        MOV     R30, R20
+        LPM     R20, Z+
+        LPM     R31, Z
+        MOV     R30, R20
+        ICALL
+        RJMP    ?Subroutine65
+//  391 
+//  392 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  393 void CPss21::DestroyDevices(uint8_t uiLength)
+??DestroyDevices:
+//  394 {
+//  395     for (uint16_t i = 0; i < uiLength; i++)
+        LDI     R30, 0
+        LDI     R31, 0
+        LDI     R17, 0
+        RJMP    ??DestroyDevices_1
+??DestroyDevices_2:
+        ADIW    R31:R30, 1
+??DestroyDevices_1:
+        CP      R30, R16
+        CPC     R31, R17
+        BRCS    ??DestroyDevices_2
+//  396     {
+//  397 //        delete m_apxDevices[i];
+//  398 //        delete m_apxDrivers[i];
+//  399     }
+//  400 };
+        RET
+//  401 
+//  402 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  403 uint16_t CPss21::ReportType(uint8_t *puiDestination, uint16_t uiLength)
+??ReportType:
+//  404 {
+//  405     memset(m_auiSpiTxBuffer, 0, 6);
+        LDI     R20, 6
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_160:
+        LDI     R16, LOW(??m_auiSpiTxBuffer)
+        LDI     R17, (??m_auiSpiTxBuffer) >> 8
+        RCALL   ?Subroutine32
+//  406     uint8_t uiLengthLocal = 0;
+//  407     m_auiSpiTxBuffer[uiLengthLocal++] = GET_MODULE_TYPE_COMMAND;
+??CrossCallReturnLabel_28:
+        LDI     R30, LOW(??m_auiSpiTxBuffer)
+        LDI     R31, (??m_auiSpiTxBuffer) >> 8
+        LDI     R16, 145
+        ST      Z, R16
+//  408     m_auiSpiTxBuffer[uiLengthLocal++] = 0;
+        LDI     R16, 0
+        STD     Z+1, R16
+//  409     m_auiSpiTxBuffer[uiLengthLocal++] = 0;
+        STD     Z+2, R16
+//  410     m_auiSpiTxBuffer[uiLengthLocal++] = 0;
+        STD     Z+3, R16
+//  411     m_auiSpiTxBuffer[uiLengthLocal++] = 0;
+        STD     Z+4, R16
+//  412 
+//  413     ConnectDevice(0);
+        RCALL   ?Subroutine31
+//  414     delay_us(500);
+//  415     CSpi::Exchange(m_auiSpiRxBuffer,
+//  416                    m_auiSpiTxBuffer,
+//  417                    uiLengthLocal);
+??CrossCallReturnLabel_26:
+        LDI     R20, 5
+        RCALL   ?Subroutine19
+//  418     DisconnectDevice();
+//  419 
+//  420     return 1;
+??CrossCallReturnLabel_8:
+        LDI     R16, 1
+        LDI     R17, 0
+        RET
+//  421 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine32:
+        JMP     memset
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine31:
+        RCALL   ??ConnectDevice
+        LDI     R16, 106
+        LDI     R17, 3
+        SUBI    R16, 1
+        SBCI    R17, 0
+        BRNE    $-4
+        RJMP    $+2
+        NOP
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine19:
+        LDI     R21, 0
+        LDI     R18, LOW(??m_auiSpiTxBuffer)
+        LDI     R19, (??m_auiSpiTxBuffer) >> 8
+        LDI     R16, LOW(??m_auiSpiRxBuffer)
+        LDI     R17, (??m_auiSpiRxBuffer) >> 8
+        CALL    ??Exchange
+        RJMP    ??DisconnectDevice
+//  422 
+//  423 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  424 void CPss21::SetBytesFromBits(uint8_t *uiDestination,
+??SetBytesFromBits:
+//  425                               uint8_t *uiSource,
+//  426                               uint16_t uiLength)
+//  427 {
+        RCALL   ?Subroutine42
+??CrossCallReturnLabel_43:
+        MOVW    R23:R22, R17:R16
+        MOVW    R3:R2, R21:R20
+//  428     int16_t shift = 0;
+        LDI     R26, 0
+        LDI     R27, 0
+//  429 
+//  430     for (int16_t i = 0; i < uiLength; i++)
+        RCALL   ?Subroutine33
+??CrossCallReturnLabel_31:
+        RJMP    ??SetBytesFromBits_1
+//  431     {
+//  432         uiDestination[i] = uiSource[(i) / 8] & (1 << shift) ? 1 : 0;
+??SetBytesFromBits_2:
+        LDI     R16, 0
+??SetBytesFromBits_3:
+        MOVW    R31:R30, R23:R22
+        ADD     R30, R24
+        ADC     R31, R25
+        ST      Z, R16
+//  433         /* gcc doesn't like: shift = (++shift) % 8; */
+//  434         shift++;
+//  435         shift %= 8;
+        ADIW    R27:R26, 1
+        LDI     R20, 8
+        LDI     R21, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ?SS_DIVMOD_L02
+        LDI     R20, 3
+        RCALL   ?Subroutine66
+??CrossCallReturnLabel_188:
+        SUB     R26, R16
+        SBC     R27, R17
+        ADIW    R25:R24, 1
+??SetBytesFromBits_1:
+        CP      R24, R2
+        CPC     R25, R3
+        BRCC    ??SetBytesFromBits_4
+        LDI     R20, 8
+        LDI     R21, 0
+        MOVW    R17:R16, R25:R24
+        CALL    ?SS_DIVMOD_L02
+        MOVW    R31:R30, R19:R18
+        ADD     R30, R16
+        ADC     R31, R17
+        LD      R21, Z
+        MOV     R20, R26
+        RCALL   ??Subroutine99_0
+//  436     }
+??CrossCallReturnLabel_185:
+        BREQ    ??SetBytesFromBits_2
+        LDI     R16, 1
+        RJMP    ??SetBytesFromBits_3
+//  437 }
+??SetBytesFromBits_4:
+        REQUIRE ?Subroutine89
+        ;               // Fall through to label ?Subroutine89
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine89:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??SendToDevicesModbusReset:
+        RCALL   ?Subroutine46
+??CrossCallReturnLabel_113:
+        RJMP    ??SendToDevicesModbusReset_1
+??SendToDevicesModbusReset_2:
+        RCALL   ?Subroutine45
+??CrossCallReturnLabel_48:
+        ADIW    R27:R26, 4
+        LDI     R17, 1
+        ST      X, R17
+        INC     R16
+??SendToDevicesModbusReset_1:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_117:
+        BRCS    ??SendToDevicesModbusReset_2
+        REQUIRE ?Subroutine80
+        ;               // Fall through to label ?Subroutine80
+//  438 
+//  439 //-----------------------------------------------------------------------------------------------------
+//  440 void CPss21::ModbusDeviceControl(uint8_t* puiData, uint16_t uiLength, uint16_t uiAddress)
+//  441 {
+//  442     // Команда - "Квитирование"?
+//  443     if (uiAddress == MODBUS_RECEIPT_ADDRESS)
+//  444     {
+//  445         if (*puiData)
+//  446         {
+//  447             CPss21::SetModbusReceipt(1);
+//  448             SetDiscreteSignalsReceipt(1);
+//  449             SendToDevicesModbusReceipt();
+//  450         }
+//  451     }
+//  452     // Команда - "Сброс"?
+//  453     else if (uiAddress == MODBUS_RESET_ADDRESS)
+//  454     {
+//  455         if (*puiData)
+//  456         {
+//  457             CPss21::SetModbusReset(1);
+//  458             SetDiscreteSignalsReset(1);
+//  459             SendToDevicesModbusReset();
+//  460         }
+//  461     }
+//  462     // Изменение состояния окон сигнализации?
+//  463     else if ((uiAddress >= ALARM_WINDOWS_BIT_ARRAY_OFFSET) &&
+//  464              (uiAddress < (ALARM_WINDOWS_BIT_ARRAY_OFFSET +
+//  465                            ALARM_WINDOWS_ARRAY_LENGTH)))
+//  466     {
+//  467         SetBytesFromBits(&m_aucRtuDiscreteDataArray[uiAddress],
+//  468                          puiData,
+//  469                          uiLength);
+//  470         // Сообщим автомату о состоявшемся сеансе связи.
+//  471         m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::LINK_SESSION_HAPPENED_FSM_EVENT);
+//  472     }
+//  473 ////    // Изменение состояния окон сигнализации?
+//  474 //    else if ((uiAddress >= DISCRETE_INPUTS_BIT_ARRAY_OFFSET) &&//debag//
+//  475 //             (uiAddress < (ALARM_WINDOWS_BIT_ARRAY_OFFSET +
+//  476 //                           ALARM_WINDOWS_ARRAY_LENGTH)))
+//  477 //    {
+//  478 //        SetBytesFromBits(&m_aucRtuDiscreteDataArray[uiAddress],
+//  479 //                         puiData,
+//  480 //                         uiLength);
+//  481 //        // Сообщим автомату о состоявшемся сеансе связи.
+//  482 //        m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::LINK_SESSION_HAPPENED_FSM_EVENT);
+//  483 //    }
+//  484 }
+//  485 
+//  486 //-----------------------------------------------------------------------------------------------------
+//  487 void CPss21::ModbusDeviceControl(uint8_t uiData, uint16_t uiAddress)
+//  488 {
+//  489     ModbusDeviceControl(&uiData, 1, uiAddress);
+//  490 }
+//  491 
+//  492 //-----------------------------------------------------------------------------------------------------
+//  493 bool CPss21::ModbusRtuLinkControlIsOn(void)
+//  494 {
+//  495     if (m_xDeviceConfiguration.MBTimeout != 0)
+//  496     {
+//  497         return true;
+//  498     }
+//  499     else
+//  500     {
+//  501         return false;
+//  502     }
+//  503 }
+//  504 
+//  505 //-----------------------------------------------------------------------------------------------------
+//  506 uint16_t CPss21::GetTimeoutModbusRtuLinkControl(void)
+//  507 {
+//  508     return (m_xDeviceConfiguration.MBTimeout * 1000);
+//  509 }
+//  510 
+//  511 //-----------------------------------------------------------------------------------------------------
+//  512 bool CPss21::ModbusRtuLinkControlInProgress(void)
+//  513 {
+//  514     if (m_xDeviceState.ModbusRtuLinkControlInProgress)
+//  515     {
+//  516         return true;
+//  517     }
+//  518     else
+//  519     {
+//  520         return false;
+//  521     }
+//  522 }
+//  523 
+//  524 //-----------------------------------------------------------------------------------------------------
+//  525 void CPss21::SetModeModbusRtuLinkControlInProgress(bool bData)
+//  526 {
+//  527     m_xDeviceState.ModbusRtuLinkControlInProgress = bData;
+//  528     // Сохраним текущую конфигурацию.
+//  529     CDataBase::WriteBlock(reinterpret_cast<uint8_t*>(&m_xDeviceState),
+//  530                           TDataBase::DEVICE_STATE);
+//  531     // База данных изменена при записи блока.
+//  532     // Поставим подтверждающую подпись.
+//  533     CDataBase::SignatureCreate();
+//  534 }
+//  535 
+//  536 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine80:
+//  537 void CPss21::SendToDevicesReceipt(void)
+//  538 {
+//  539     for (uint8_t i = 0;
+//  540             i < (m_xDeviceConfigSearch.uiModulesQuantity);
+//  541             i++)
+//  542     {
+//  543         m_apxDrivers[i] -> SetReceipt(1);
+//  544     }
+//  545 
+//  546     // Сообщим автомату о состоявшемся квитировании.
+//  547     m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::RECEIPT_HAPPENED_FSM_EVENT);
+//  548 }
+//  549 
+//  550 //-----------------------------------------------------------------------------------------------------
+//  551 void CPss21::SendToDevicesReset(void)
+//  552 {
+//  553     for (uint8_t i = 0;
+//  554             i < (m_xDeviceConfigSearch.uiModulesQuantity);
+//  555             i++)
+//  556     {
+//  557         m_apxDrivers[i] -> SetReset(1);
+//  558     }
+//  559 }
+        MOVW    R27:R26, R19:R18
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??SendToDevicesModbusReceipt:
+        RCALL   ?Subroutine46
+??CrossCallReturnLabel_114:
+        RJMP    ??SendToDevicesModbusReceipt_1
+??SendToDevicesModbusReceipt_2:
+        RCALL   ?Subroutine28
+??CrossCallReturnLabel_164:
+        LDI     R17, 1
+        STD     Z+3, R17
+        INC     R16
+??SendToDevicesModbusReceipt_1:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_118:
+        BRCS    ??SendToDevicesModbusReceipt_2
+        RJMP    ?Subroutine29
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine28:
+        LDI     R17, 2
+        MUL     R16, R17
+        RCALL   ?Subroutine63
+??CrossCallReturnLabel_65:
+        ADIW    R27:R26, 40
+        REQUIRE ??Subroutine95_0
+        ;               // Fall through to label ??Subroutine95_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine95_0:
+        LD      R30, X+
+        LD      R31, X
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine63:
+        LDI     R26, LOW(??m_xDeviceConfigSearch)
+        LDI     R27, (??m_xDeviceConfigSearch) >> 8
+        ADD     R26, R0
+        ADC     R27, R1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??ModbusDeviceControl:
+        MOVW    R23:R22, R21:R20
+        OR      R20, R23
+        BRNE    ??ModbusDeviceControl_2
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        TST     R16
+        BREQ    ??ModbusDeviceControl_3
+        RCALL   ?Subroutine65
+??CrossCallReturnLabel_68:
+        LDI     R16, 1
+        STD     Z+55, R16
+        STD     Z+57, R16
+        RJMP    ??SendToDevicesModbusReceipt
+??ModbusDeviceControl_2:
+        CPI     R22, 1
+        LDI     R20, 0
+        CPC     R21, R20
+        BRNE    ??ModbusDeviceControl_4
+        MOVW    R31:R30, R17:R16
+        LD      R16, Z
+        TST     R16
+        BREQ    ??ModbusDeviceControl_3
+        RCALL   ?Subroutine65
+??CrossCallReturnLabel_69:
+        LDI     R16, 1
+        STD     Z+56, R16
+        STD     Z+58, R16
+        RJMP    ??SendToDevicesModbusReset
+??ModbusDeviceControl_4:
+        MOV     R30, R22
+        MOV     R31, R21
+        SUBI    R30, 64
+        SBCI    R31, 0
+        SBIW    R31:R30, 48
+        BRCC    ??ModbusDeviceControl_3
+        MOVW    R21:R20, R19:R18
+        MOVW    R19:R18, R17:R16
+        LDI     R16, LOW(??m_aucRtuDiscreteDataArray)
+        LDI     R17, (??m_aucRtuDiscreteDataArray) >> 8
+        ADD     R16, R22
+        ADC     R17, R23
+        RCALL   ??SetBytesFromBits
+        LDI     R16, 1
+        STS     (??m_xDeviceConfigSearch + 33), R16
+??ModbusDeviceControl_3:
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??ModbusDeviceControl_1:
+        SBIW    R29:R28, 1
+        ST      Y, R16
+        MOVW    R21:R20, R19:R18
+        LDI     R18, 1
+        LDI     R19, 0
+        MOVW    R17:R16, R29:R28
+        RCALL   ??ModbusDeviceControl
+        ADIW    R29:R28, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??ModbusRtuLinkControlIsOn:
+        LDS     R16, (??m_xDeviceConfigSearch + 14)
+        TST     R16
+        BREQ    ??ModbusRtuLinkControlIsOn_1
+        RJMP    ?Subroutine82
+??ModbusRtuLinkControlIsOn_1:
+        RJMP    ?Subroutine81
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine82:
+        LDI     R16, 1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine81:
+        LDI     R16, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??GetTimeoutModbusRtuLinkControl:
+        LDS     R16, (??m_xDeviceConfigSearch + 14)
+        LDI     R17, 0
+        LDI     R20, 232
+        LDI     R21, 3
+        REQUIRE ?Subroutine90
+        ;               // Fall through to label ?Subroutine90
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine90:
+        JMP     ?S_EC_MUL_L02
+
+        RSEG CODE:CODE:NOROOT(1)
+??ModbusRtuLinkControlInProgress:
+        LDS     R16, (??m_xModbusSettings + 7)
+        SBRC    R16, 0
+        RJMP    ?Subroutine82
+??ModbusRtuLinkControlInProgress_1:
+        RJMP    ?Subroutine81
+
+        RSEG CODE:CODE:NOROOT(1)
+??SetModeModbusRtuLinkControlInProgress:
+        LDI     R30, LOW(??m_xModbusSettings)
+        LDI     R31, (??m_xModbusSettings) >> 8
+        BST     R16, 0
+        LDD     R16, Z+7
+        BLD     R16, 0
+        STD     Z+7, R16
+        LDI     R18, 10
+        LDI     R16, LOW((??m_xModbusSettings + 7))
+        LDI     R17, HIGH((??m_xModbusSettings + 7))
+        CALL    ??WriteBlock
+        JMP     ??SignatureCreate
+
+        RSEG CODE:CODE:NOROOT(1)
+??SendToDevicesReceipt:
+        RCALL   ?Subroutine46
+??CrossCallReturnLabel_115:
+        RJMP    ??SendToDevicesReceipt_1
+??SendToDevicesReceipt_2:
+        RCALL   ?Subroutine28
+??CrossCallReturnLabel_165:
+        LDI     R17, 1
+        STD     Z+1, R17
+        INC     R16
+??SendToDevicesReceipt_1:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_119:
+        BRCS    ??SendToDevicesReceipt_2
+        RJMP    ?Subroutine29
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine46:
+        MOVW    R19:R18, R27:R26
+        RJMP    ?Subroutine81
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine35:
+        LDS     R17, ??m_xDeviceConfigSearch
+        REQUIRE ?Subroutine83
+        ;               // Fall through to label ?Subroutine83
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine83:
+        CP      R16, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine29:
+        LDI     R16, 2
+        STS     (??m_xDeviceConfigSearch + 33), R16
+        RJMP    ?Subroutine80
+
+        RSEG CODE:CODE:NOROOT(1)
+??SendToDevicesReset:
+        RCALL   ?Subroutine46
+??CrossCallReturnLabel_116:
+        RJMP    ??SendToDevicesReset_1
+??SendToDevicesReset_2:
+        RCALL   ?Subroutine45
+??CrossCallReturnLabel_49:
+        ADIW    R27:R26, 2
+        LDI     R17, 1
+        ST      X, R17
+        INC     R16
+??SendToDevicesReset_1:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_120:
+        BRCS    ??SendToDevicesReset_2
+        RJMP    ?Subroutine80
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine45:
+        LDI     R17, 2
+        MUL     R16, R17
+        MOVW    R31:R30, R1:R0
+        SUBI    R30, LOW((-(??m_xDeviceConfigSearch) & 0xFFFF))
+        SBCI    R31, (-(??m_xDeviceConfigSearch) & 0xFFFF) >> 8
+        LDD     R26, Z+40
+        LDD     R27, Z+41
+        RET
+//  560 
+//  561 //-----------------------------------------------------------------------------------------------------
+//  562 void CPss21::SendToDevicesModbusReceipt(void)
+//  563 {
+//  564     for (uint8_t i = 0;
+//  565             i < (m_xDeviceConfigSearch.uiModulesQuantity);
+//  566             i++)
+//  567     {
+//  568         m_apxDrivers[i] -> SetModbusReceipt(1);
+//  569     }
+//  570 
+//  571     // Сообщим автомату о состоявшемся квитировании.
+//  572     m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::RECEIPT_HAPPENED_FSM_EVENT);
+//  573 }
+//  574 
+//  575 //-----------------------------------------------------------------------------------------------------
+//  576 void CPss21::SendToDevicesModbusReset(void)
+//  577 {
+//  578     for (uint8_t i = 0;
+//  579             i < (m_xDeviceConfigSearch.uiModulesQuantity);
+//  580             i++)
+//  581     {
+//  582         m_apxDrivers[i] -> SetModbusReset(1);
+//  583     }
+//  584 }
+//  585 
+//  586 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  587 void CPss21::KeyStateProcessing(void)
+??KeyStateProcessing:
+//  588 {
+        ST      -Y, R24
+        LDI     R18, 2
+        RCALL   ?Subroutine11
+??CrossCallReturnLabel_78:
+        TST     R16
+        BREQ    ??CrossCallReturnLabel_178
+//  589 //    m_xIsReceiptButtonPressed.Fsm();
+//  590 
+//  591 //    m_xReceiptKey.Fsm();
+//  592 //    m_xResetKey.Fsm();
+//  593 //    m_xCheckKey.Fsm();
+//  594 //    m_xExternalKey.Fsm();
+//  595 
+//  596 //    if (m_xIsReceiptButtonPressed.IsSolved())
+//  597 //    {
+//  598 //        SetPanelReceipt(1);
+//  599 //        SetDiscreteSignalsReceipt(1);
+//  600 //        SendToDevicesReceipt();
+//  601 //        m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//  602 //    }
+//  603     if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+//  604     {
+//  605         SetPanelReceipt(1);
+        LDI     R16, 1
+        STS     (??m_xDeviceConfigSearch + 51), R16
+//  606         SetDiscreteSignalsReceipt(1);
+        RCALL   ?Subroutine15
+//  607         SendToDevicesReceipt();
+//  608         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//  609     }
+//  610 
+//  611     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+??CrossCallReturnLabel_178:
+        LDI     R18, 2
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 80))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 80))
+        RCALL   ?Subroutine68
+??CrossCallReturnLabel_80:
+        TST     R16
+        BREQ    ??CrossCallReturnLabel_172
+//  612     {
+//  613         SetPanelReset(1);
+        LDI     R16, 1
+        STS     (??m_xDeviceConfigSearch + 52), R16
+//  614         SetDiscreteSignalsReset(1);
+        RCALL   ?Subroutine49
+//  615         SendToDevicesReset();
+//  616         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+??CrossCallReturnLabel_51:
+        RCALL   ??Subroutine97_0
+//  617     }
+//  618 
+//  619     if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+??CrossCallReturnLabel_172:
+        LDI     R18, 2
+        RCALL   ?Subroutine13
+??CrossCallReturnLabel_6:
+        TST     R16
+        BREQ    ??CrossCallReturnLabel_173
+//  620     {
+//  621         // Включим режим тестирования.
+//  622         SetFsmState(TEST_START);
+        RCALL   ?Subroutine47
+//  623         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+??CrossCallReturnLabel_170:
+        RCALL   ??Subroutine97_0
+//  624     }
+//  625 
+//  626     // Функция внешней кнопки - только сброс?
+//  627     if(m_xDeviceConfiguration.ExtUnsetOnly)
+??CrossCallReturnLabel_173:
+        LDS     R16, (??m_xDeviceConfigSearch + 12)
+        LDI     R18, 2
+        SBRC    R16, 2
+        RJMP    ??KeyStateProcessing_1
+//  628     {
+//  629         if (m_xExternalKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_RECEIPT))
+//  630         {
+//  631             SetExternalReset(1);
+//  632             SetDiscreteSignalsReset(1);
+//  633             SendToDevicesReset();
+//  634             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//  635         }
+//  636 
+//  637         if (m_xExternalKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_CHECK))
+//  638         {
+//  639             // Включим режим тестирования.
+//  640             SetFsmState(TEST_START);
+//  641             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//  642         }
+//  643     }
+//  644     else
+//  645     {
+//  646         if (m_xExternalKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_RECEIPT))
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_221:
+        BREQ    ??CrossCallReturnLabel_179
+//  647         {
+//  648             SetExternalReceipt(1);
+        LDI     R16, 1
+        STS     (??m_xDeviceConfigSearch + 53), R16
+//  649             SetDiscreteSignalsReceipt(1);
+        RCALL   ?Subroutine15
+//  650             SendToDevicesReceipt();
+//  651             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//  652         }
+//  653 
+//  654         if (m_xExternalKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_RESET))
+??CrossCallReturnLabel_179:
+        LDI     R18, 3
+??KeyStateProcessing_1:
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_222:
+        BREQ    ??CrossCallReturnLabel_174
+//  655         {
+//  656             SetExternalReset(1);
+        LDI     R16, 1
+        STS     (??m_xDeviceConfigSearch + 54), R16
+//  657             SetDiscreteSignalsReset(1);
+        RCALL   ?Subroutine49
+//  658             SendToDevicesReset();
+//  659             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+??CrossCallReturnLabel_50:
+        RCALL   ??Subroutine97_0
+//  660         }
+//  661 
+//  662         if (m_xExternalKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_CHECK))
+??CrossCallReturnLabel_174:
+        LDI     R18, 4
+        RCALL   ?Subroutine8
+??CrossCallReturnLabel_223:
+        BREQ    ??CrossCallReturnLabel_175
+//  663         {
+//  664             // Включим режим тестирования.
+//  665             SetFsmState(TEST_START);
+        RCALL   ?Subroutine47
+//  666             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+??CrossCallReturnLabel_171:
+        RCALL   ??Subroutine97_0
+//  667         }
+//  668     }
+//  669 
+//  670     // Кнопки "Квитирование" и "Контроль" нажаты дольше 7 секунд?
+//  671     if (m_xEventUniteLogicAndOne.IsHappened((m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_SET_DEFAULT)),
+//  672                                             (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_SET_DEFAULT))))
+??CrossCallReturnLabel_175:
+        LDI     R18, 5
+        RCALL   ?Subroutine13
+??CrossCallReturnLabel_7:
+        MOV     R24, R16
+        LDI     R18, 5
+        RCALL   ?Subroutine11
+??CrossCallReturnLabel_79:
+        MOV     R18, R16
+        MOV     R19, R24
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 125))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 125))
+        CALL    ??IsHappened
+        TST     R16
+        BREQ    ??CrossCallReturnLabel_176
+//  673     {
+//  674         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
+//  675         CPss21::ModbusDefaultInit();
+        RCALL   ??ModbusDefaultInit
+//  676         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+        RCALL   ??Subroutine97_0
+//  677     }
+//  678 }
+??CrossCallReturnLabel_176:
+        REQUIRE ?Subroutine84
+        ;               // Fall through to label ?Subroutine84
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine84:
+        LD      R24, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine49:
+        STS     (??m_xDeviceConfigSearch + 58), R16
+        RJMP    ??SendToDevicesReset
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine47:
+        LDI     R16, 6
+        REQUIRE ??Subroutine96_0
+        ;               // Fall through to label ??Subroutine96_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine96_0:
+        STS     (??m_xDeviceConfigSearch + 50), R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine15:
+        STS     (??m_xDeviceConfigSearch + 57), R16
+        RCALL   ??SendToDevicesReceipt
+        REQUIRE ??Subroutine97_0
+        ;               // Fall through to label ??Subroutine97_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine97_0:
+        LDI     R18, 7
+        RJMP    ?Subroutine60
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine13:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 95))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 95))
+        RJMP    ?Subroutine68
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine11:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 65))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 65))
+        REQUIRE ?Subroutine68
+        ;               // Fall through to label ?Subroutine68
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine68:
+        JMP     ??KeyEventHappened
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine8:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 110))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 110))
+        RCALL   ?Subroutine68
+??CrossCallReturnLabel_77:
+        REQUIRE ?Subroutine85
+        ;               // Fall through to label ?Subroutine85
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine85:
+        TST     R16
+        RET
+//  679 
+//  680 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  681 void CPss21::ReceiptResetGlobalFlagsClear(void)
+??ReceiptResetGlobalFlagsClear:
+//  682 {
+//  683     SetPanelReceipt(0);
+        RCALL   ?Subroutine65
+??CrossCallReturnLabel_70:
+        LDI     R16, 0
+        STD     Z+51, R16
+//  684     SetExternalReceipt(0);
+        STD     Z+53, R16
+//  685     SetModbusReceipt(0);
+        STD     Z+55, R16
+//  686     SetPanelReset(0);
+        STD     Z+52, R16
+//  687     SetExternalReset(0);
+        STD     Z+54, R16
+//  688     SetModbusReset(0);
+        STD     Z+56, R16
+//  689 }
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine65:
+        LDI     R30, LOW(??m_xDeviceConfigSearch)
+        LDI     R31, (??m_xDeviceConfigSearch) >> 8
+        RET
+//  690 
+//  691 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  692 uint8_t CPss21::ModulesInteraction(uint8_t uiModuleIndex)
+??ModulesInteraction:
+//  693 {
+        ST      -Y, R27
+        ST      -Y, R26
+//  694     if (uiModuleIndex < (m_xDeviceConfigSearch.uiModulesQuantity))
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_121:
+        BRCC    ??ModulesInteraction_1
+        LDI     R17, 2
+        MUL     R16, R17
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_182:
+        LDD     R26, Z+40
+        LDD     R27, Z+41
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 9
+        RCALL   ??Subroutine95_0
+??CrossCallReturnLabel_163:
+        RCALL   ?Subroutine64
+//  695     {
+//  696         m_apxDrivers[uiModuleIndex] -> DataExchange();
+//  697         return 0;
+??CrossCallReturnLabel_67:
+        LDI     R16, 0
+        RJMP    ??ModulesInteraction_2
+//  698     }
+//  699     else
+//  700     {
+//  701         return 1;
+??ModulesInteraction_1:
+        LDI     R16, 1
+//  702     }
+??ModulesInteraction_2:
+        RJMP    ?Subroutine75
+//  703 };
+//  704 
+//  705 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  706 void CPss21::ConfigurationInit(void)
+??ConfigurationInit:
+//  707 {
+        RCALL   ?Subroutine42
+//  708     uint8_t* puiTempBuffer = m_auiIntermediateBuff;
+??CrossCallReturnLabel_44:
+        LDI     R26, LOW(??m_auiIntermediateBuff)
+        LDI     R27, (??m_auiIntermediateBuff) >> 8
+//  709     uint8_t* puiAlarmDfaInit = m_auiReceiveMessageBuff;
+//  710 
+//  711     memset(puiAlarmDfaInit, 0, DISCRETE_SIGNALS_NUMBER);
+        LDI     R20, 96
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_161:
+        LDI     R16, LOW(??m_auiReceiveMessageBuff)
+        LDI     R17, (??m_auiReceiveMessageBuff) >> 8
+        RCALL   ?Subroutine32
+//  712 
+//  713     // Установим конфигурацию устройства.
+//  714     // Считаем во временный буфер блок БД - "Конфигурация устройства".
+//  715     CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEV_CONFIG);
+??CrossCallReturnLabel_27:
+        LDI     R18, 0
+        RCALL   ?Subroutine43
+//  716     memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceConfiguration),
+//  717            puiTempBuffer,
+//  718            sizeof(struct TDevConfig));
+??CrossCallReturnLabel_133:
+        LDI     R20, 20
+        LDI     R21, 0
+        MOVW    R19:R18, R27:R26
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 9))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 9))
+        RCALL   ?Subroutine51
+//  719 
+//  720     // Установим параметры интерфейса ModBus.
+//  721     // Считаем во временный буфер блок БД - "Параметры интерфейса ModBus".
+//  722     CDataBase::ReadBlock(puiTempBuffer, TDataBase::MODBUS_SET);
+??CrossCallReturnLabel_55:
+        LDI     R18, 1
+        RCALL   ?Subroutine43
+//  723     memcpy(reinterpret_cast<uint8_t*>(&m_xModbusSettings),
+//  724            puiTempBuffer,
+//  725            sizeof(struct TMBusSetting));
+??CrossCallReturnLabel_132:
+        LDI     R20, 7
+        LDI     R21, 0
+        MOVW    R19:R18, R27:R26
+        LDI     R16, LOW(??m_xModbusSettings)
+        LDI     R17, (??m_xModbusSettings) >> 8
+        RCALL   ?Subroutine51
+//  726 
+//  727     // Считаем во временный буфер блок БД - "БД модулей вывода".
+//  728     CDataBase::ReadBlock(puiTempBuffer, TDataBase::OUT_BASE);
+??CrossCallReturnLabel_54:
+        LDI     R18, 5
+        RCALL   ?Subroutine43
+//  729     memcpy(reinterpret_cast<uint8_t*>(&m_xDiscreteOutputDataBase),
+//  730            puiTempBuffer,
+//  731            sizeof(struct TOutputData));
+??CrossCallReturnLabel_131:
+        LDI     R20, 24
+        LDI     R21, 0
+        MOVW    R19:R18, R27:R26
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 193))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 193))
+        RCALL   ?Subroutine51
+//  732 
+//  733     // Установим уровень дискретного сигнала интерпретируемый как активный.
+//  734     // Считаем во временный буфер блок БД - "Уровень дискретного сигнала интерпретируемый как активный".
+//  735     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ACTIVITY_LEVEL);
+??CrossCallReturnLabel_53:
+        LDI     R18, 2
+        RCALL   ?Subroutine43
+//  736     for (uint8_t i = 0;
+??CrossCallReturnLabel_130:
+        LDI     R18, 0
+//  737             i < DISCRETE_INPUTS_NUMBER;
+//  738         )
+//  739     {
+//  740         uint8_t uiData = *puiTempBuffer;
+??ConfigurationInit_1:
+        LD      R22, X+
+//  741         for (uint8_t j = 0;
+        LDI     R21, 0
+        LDI     R19, 8
+//  742                 j < 8;
+//  743                 j++)
+//  744         {
+//  745             // Установим уровень текущего дискретного сигнала интерпретируемый как активный.
+//  746             if (((uiData >> j) & 0x01))
+??ConfigurationInit_2:
+        LDI     R17, 0
+        LDI     R30, LOW(??m_auiReceiveMessageBuff)
+        LDI     R31, (??m_auiReceiveMessageBuff) >> 8
+        ADD     R30, R18
+        ADC     R31, R17
+        MOV     R16, R22
+        MOV     R20, R21
+        CALL    ?SS_SHR_L02
+        ANDI    R16, 0x01
+        BREQ    ??ConfigurationInit_3
+//  747             {
+//  748                 puiAlarmDfaInit[i] = 0x80;
+        LDI     R16, 128
+        RJMP    ??ConfigurationInit_4
+//  749             }
+//  750             else
+//  751             {
+//  752                 puiAlarmDfaInit[i] = 0;
+??ConfigurationInit_3:
+        LDI     R16, 0
+??ConfigurationInit_4:
+        ST      Z, R16
+//  753             }
+//  754             i++;
+        INC     R18
+//  755         }
+        INC     R21
+        DEC     R19
+        BRNE    ??ConfigurationInit_2
+//  756         puiTempBuffer++;
+//  757     }
+        CPI     R18, 48
+        BRCS    ??ConfigurationInit_1
+//  758 
+//  759     puiTempBuffer = m_auiIntermediateBuff;
+//  760     // Привяжем окна сигнализации к дискретным сигналам.
+//  761     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
+//  762     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
+        RCALL   ?Subroutine48
+//  763     for (uint8_t i = 0;
+??CrossCallReturnLabel_134:
+        LDI     R18, 0
+        LDI     R16, 96
+//  764             i < DISCRETE_SIGNALS_NUMBER;
+//  765             i++)
+//  766     {
+//  767         // Привяжем окно сигнализации к текущему дискретному сигналу.
+//  768         puiAlarmDfaInit[i] |= (puiTempBuffer[i] & ~(0x80));
+??ConfigurationInit_5:
+        MOV     R30, R18
+        LDI     R31, 0
+        SUBI    R30, LOW((-(??m_auiIntermediateBuff) & 0xFFFF))
+        SBCI    R31, (-(??m_auiIntermediateBuff) & 0xFFFF) >> 8
+        LD      R17, Z
+        ANDI    R17, 0x7F
+        MOV     R30, R18
+        LDI     R31, 0
+        SUBI    R30, LOW((-(??m_auiReceiveMessageBuff) & 0xFFFF))
+        SBCI    R31, (-(??m_auiReceiveMessageBuff) & 0xFFFF) >> 8
+        LD      R19, Z
+        OR      R19, R17
+        ST      Z, R19
+//  769     }
+        INC     R18
+        DEC     R16
+        BRNE    ??ConfigurationInit_5
+//  770 
+//  771     // Считаем во временный буфер блок БД - "Тип сигнализации привязанный к окну".
+//  772     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_TYPE);
+        LDI     R18, 4
+        RCALL   ?Subroutine69
+//  773     for (uint8_t i = 0;
+??CrossCallReturnLabel_136:
+        LDI     R18, 0
+        LDI     R17, 96
+//  774             i < DISCRETE_SIGNALS_NUMBER;
+//  775             i++)
+//  776     {
+//  777         uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0x80));
+??ConfigurationInit_6:
+        LDI     R19, 0
+        LDI     R30, LOW(??m_auiReceiveMessageBuff)
+        LDI     R31, (??m_auiReceiveMessageBuff) >> 8
+        ADD     R30, R18
+        ADC     R31, R19
+        LD      R19, Z
+        MOV     R16, R19
+        ANDI    R16, 0x7F
+//  778         // Для текущего дискретного сигнала запрограммирована сигнализация?
+//  779         if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
+        CPI     R16, 48
+        ANDI    R19, 0x80
+        BRCC    ??ConfigurationInit_7
+//  780         {
+//  781             // Очистим индекс привязанного окна, больше не нужен.
+//  782             // Оставим уровень дискретного сигнала интерпретируемый как активный.
+//  783             puiAlarmDfaInit[i] &= 0x80;
+//  784             // Установим тип сигнализации по привязанному окну.
+//  785             puiAlarmDfaInit[i] |= puiTempBuffer[uiWindowIndex];
+        LDI     R27, 0
+        SUBI    R16, LOW((-(??m_auiIntermediateBuff) & 0xFFFF))
+        MOV     R26, R16
+        SBCI    R27, (-(??m_auiIntermediateBuff) & 0xFFFF) >> 8
+        LD      R16, X
+        OR      R19, R16
+//  786         }
+//  787         else
+//  788         {
+//  789             // Очистим индекс привязанного окна, больше не нужен.
+//  790             // Оставим уровень дискретного сигнала интерпретируемый как активный.
+//  791             puiAlarmDfaInit[i] &= 0x80;
+??ConfigurationInit_7:
+        ST      Z, R19
+//  792         }
+//  793     }
+        INC     R18
+        DEC     R17
+        BRNE    ??ConfigurationInit_6
+//  794 
+//  795     // Создадим объекты автоматов обработки сигнализаций дискретных сигналов.
+//  796     for (uint8_t i = 0;
+        LDI     R24, 0
+        LDI     R25, 96
+//  797             i < DISCRETE_SIGNALS_NUMBER;
+//  798             i++)
+//  799     {
+//  800         // Какой тип сигнализации связан с дискретным сигналом?
+//  801         switch (puiAlarmDfaInit[i] & 0x03)
+??ConfigurationInit_8:
+        LDI     R16, 2
+        MUL     R24, R16
+        LDI     R26, LOW(??m_apxAlarmDfa)
+        LDI     R27, (??m_apxAlarmDfa) >> 8
+        ADD     R26, R0
+        ADC     R27, R1
+        LDI     R17, 0
+        LDI     R30, LOW(??m_auiReceiveMessageBuff)
+        LDI     R31, (??m_auiReceiveMessageBuff) >> 8
+        ADD     R30, R24
+        ADC     R31, R17
+        LD      R16, Z
+        ANDI    R16, 0x03
+        BREQ    ??ConfigurationInit_9
+        DEC     R16
+        BREQ    ??ConfigurationInit_10
+        DEC     R16
+        BREQ    ??ConfigurationInit_11
+        DEC     R16
+        BREQ    ??ConfigurationInit_12
+        RJMP    ??ConfigurationInit_9
+//  802         {
+//  803         case NORMAL:
+//  804             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  805             break;
+//  806 
+//  807         case INDICATION:
+//  808             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
+//  809             if (puiAlarmDfaInit[i] & 0x80)
+??ConfigurationInit_10:
+        LD      R16, Z
+        SBRS    R16, 7
+        RJMP    ??ConfigurationInit_13
+//  810             {
+//  811                 m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
+        CALL    `??new CIndicationAlarmHighLevelDfa`
+        RJMP    ??ConfigurationInit_14
+//  812             }
+//  813             else
+//  814             {
+//  815                 m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
+??ConfigurationInit_13:
+        CALL    `??new CIndicationAlarmLowLevelDfa`
+        RJMP    ??ConfigurationInit_14
+//  816             }
+//  817             break;
+//  818 
+//  819         case PREVENTIVE:
+//  820             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
+//  821             if (puiAlarmDfaInit[i] & 0x80)
+??ConfigurationInit_11:
+        LD      R16, Z
+        SBRS    R16, 7
+        RJMP    ??ConfigurationInit_15
+//  822             {
+//  823                 m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
+        CALL    `??new CPreventiveAlarmHighLevelDfa`
+        RJMP    ??ConfigurationInit_14
+//  824             }
+//  825             else
+//  826             {
+//  827                 m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
+??ConfigurationInit_15:
+        CALL    `??new CPreventiveAlarmLowLevelDfa`
+        RJMP    ??ConfigurationInit_14
+//  828             }
+//  829             break;
+//  830 
+//  831         case EMERGENCY:
+//  832             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
+//  833             if (puiAlarmDfaInit[i] & 0x80)
+??ConfigurationInit_12:
+        LD      R16, Z
+        SBRS    R16, 7
+        RJMP    ??ConfigurationInit_16
+//  834             {
+//  835                 m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelDfa;
+        CALL    `??new CEmergencyAlarmHighLevelDfa`
+        RJMP    ??ConfigurationInit_14
+//  836             }
+//  837             else
+//  838             {
+//  839                 m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelDfa;
+??ConfigurationInit_16:
+        CALL    `??new CEmergencyAlarmLowLevelDfa`
+        RJMP    ??ConfigurationInit_14
+//  840             }
+//  841             break;
+//  842 
+//  843         case IND_PREVENTIVE:
+//  844             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  845             break;
+//  846 
+//  847         case IND_EMERGENCY:
+//  848             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  849             break;
+//  850 
+//  851         default:
+//  852             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+??ConfigurationInit_9:
+        CALL    `??new CNormalAlarmDfa`
+??ConfigurationInit_14:
+        ST      X+, R16
+        ST      X, R17
+//  853             break;
+//  854         }
+//  855     }
+        INC     R24
+        DEC     R25
+        BRNE    ??ConfigurationInit_8
+//  856 
+//  857     // Привяжем окна сигнализации к созданным объектам сигнализаций дискретных сигналов.
+//  858     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
+//  859     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
+        RCALL   ?Subroutine48
+//  860     for (uint8_t i = 0;
+??CrossCallReturnLabel_135:
+        LDI     R20, 0
+        LDI     R18, 96
+//  861             i < DISCRETE_SIGNALS_NUMBER;
+//  862             i++)
+//  863     {
+//  864         // Для текущего дискретного сигнала запрограммирована сигнализация?
+//  865         if (puiTempBuffer[i] < ALARM_WINDOWS_NUMBER)
+??ConfigurationInit_17:
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_124:
+        LDD     R17, Z+1
+        RCALL   ?Subroutine37
+??CrossCallReturnLabel_37:
+        CPI     R19, 48
+        MOVW    R31:R30, R17:R16
+        BRCC    ??ConfigurationInit_18
+//  866         {
+//  867             // Привяжем окно сигнализации к текущему дискретному сигналу.
+//  868             m_apxAlarmDfa[i] ->
+//  869             SetAlarmWindowIndex(puiTempBuffer[i]);
+        STD     Z+3, R19
+//  870         }
+        RJMP    ??ConfigurationInit_19
+//  871         else
+//  872         {
+//  873             m_apxAlarmDfa[i] ->
+//  874             SetAlarmWindowIndex(0);
+??ConfigurationInit_18:
+        LDI     R16, 0
+        STD     Z+3, R16
+//  875         }
+//  876     }
+??ConfigurationInit_19:
+        INC     R20
+        DEC     R18
+        BRNE    ??ConfigurationInit_17
+//  877 
+//  878     // Считаем во временный буфер блок БД - "Выходные реле, сопоставленные физическим входам".
+//  879     CDataBase::ReadBlock(puiTempBuffer, TDataBase::RELAY);
+        LDI     R18, 6
+        RCALL   ?Subroutine69
+//  880     // Получим связанные выходы на МР.
+//  881     for (uint8_t i = 0;
+??CrossCallReturnLabel_137:
+        LDI     R20, 0
+        LDI     R18, 96
+//  882             i < DISCRETE_SIGNALS_NUMBER;
+//  883             i++)
+//  884     {
+//  885         *(m_apxAlarmDfa[i] -> GetLinkedDiscreteOutputsPointer()) = puiTempBuffer[i];
+??ConfigurationInit_20:
+        RCALL   ?Subroutine37
+??CrossCallReturnLabel_38:
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_125:
+        LDD     R31, Z+1
+        MOV     R30, R16
+        STD     Z+4, R19
+        INC     R20
+        DEC     R18
+        BRNE    ??ConfigurationInit_20
+//  886     };
+//  887 
+//  888     // Получим индексы источников состояния дискретных сигналов - дискретные входы модулей.
+//  889     for (uint8_t i = 0;
+        LDI     R17, 0
+        LDI     R16, 48
+        LDI     R18, 2
+//  890             i < DISCRETE_INPUTS_NUMBER;
+//  891             i++)
+//  892     {
+//  893         m_apxAlarmDfa[i] -> SetDiscreteStateIndex(i);
+??ConfigurationInit_21:
+        MUL     R17, R18
+        RCALL   ?Subroutine67
+??CrossCallReturnLabel_74:
+        LD      R26, Z
+        LDD     R27, Z+1
+        ADIW    R27:R26, 5
+        ST      X, R17
+//  894     };
+        INC     R17
+        DEC     R16
+        BRNE    ??ConfigurationInit_21
+//  895     // Получим индексы источников состояния дискретных сигналов - состояние ячеек(coils Modbus).
+//  896     for (uint8_t i = 0;
+        LDI     R17, 0
+        LDI     R16, 48
+        LDI     R19, 2
+//  897             i < ALARM_WINDOWS_NUMBER;
+//  898             i++)
+//  899     {
+//  900         m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
+??ConfigurationInit_22:
+        MOV     R18, R17
+        SUBI    R18, 208
+        MUL     R17, R19
+        MOVW    R31:R30, R1:R0
+        SUBI    R30, LOW((-(??m_apxAlarmDfa + 96) & 0xFFFF))
+        SBCI    R31, HIGH((-(??m_apxAlarmDfa + 96) & 0xFFFF))
+        LD      R26, Z
+        LDD     R27, Z+1
+        ADIW    R27:R26, 5
+        ST      X, R18
+//  901 //        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
+//  902     };
+        INC     R17
+        DEC     R16
+        BRNE    ??ConfigurationInit_22
+//  903 
+//  904     // Восстановим  состояние устройства.
+//  905     // Считаем во временный буфер блок БД - "Состояние устройства хранимое в EEPROM".
+//  906     CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEVICE_STATE);
+        LDI     R18, 10
+        RCALL   ?Subroutine69
+//  907     memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceState),
+//  908            puiTempBuffer,
+//  909            sizeof(struct TDeviceState));
+??CrossCallReturnLabel_138:
+        LDI     R20, 8
+        LDI     R21, 0
+        LDI     R18, LOW(??m_auiIntermediateBuff)
+        LDI     R19, (??m_auiIntermediateBuff) >> 8
+        LDI     R16, LOW((??m_xModbusSettings + 7))
+        LDI     R17, HIGH((??m_xModbusSettings + 7))
+        RCALL   ?Subroutine51
+//  910 
+//  911 //    // Создадим автоматы обработки ошибок.
+//  912 //    uint8_t uiIndex = 0;
+//  913 //
+//  914 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//  915 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  916 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(IMD_ERROR);
+//  917 //    // Установим индекс источника состояния ошибки.
+//  918 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(IMD_ERROR);
+//  919 //    uiIndex++;
+//  920 //
+//  921 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//  922 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  923 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(OMD_ERROR);
+//  924 //    // Установим индекс источника состояния ошибки.
+//  925 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(OMD_ERROR);
+//  926 //    uiIndex++;
+//  927 //
+//  928 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//  929 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  930 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(CFG_ERROR);
+//  931 //    // Установим индекс источника состояния ошибки.
+//  932 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(CFG_ERROR);
+//  933 //    uiIndex++;
+//  934 //
+//  935 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//  936 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  937 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(DB_ERROR);
+//  938 //    // Установим индекс источника состояния ошибки.
+//  939 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(DB_ERROR);
+//  940 //    uiIndex++;
+//  941 //
+//  942 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+//  943 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  944 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(MBS_ERROR);
+//  945 //    // Установим индекс источника состояния ошибки.
+//  946 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
+//  947 //    uiIndex++;
+//  948 
+//  949     // Создадим автоматы обработки ошибок.
+//  950     for (uint8_t i = 0;
+??CrossCallReturnLabel_52:
+        LDI     R25, 0
+        LDI     R24, 2
+//  951             i < HANDLED_ERROR_NUMBER;
+//  952             i++)
+//  953     {
+//  954         m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
+??ConfigurationInit_23:
+        CALL    `??new CErrorAlarmDfa`
+        LDI     R18, 2
+        MUL     R25, R18
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_183:
+        STD     Z+46, R16
+        STD     Z+47, R17
+//  955         // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  956         m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
+        MOVW    R27:R26, R17:R16
+        ADIW    R27:R26, 3
+        ST      X, R25
+//  957         // Установим индекс источника состояния ошибки.
+//  958         m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
+        LDD     R16, Z+46
+        LDD     R31, Z+47
+        MOV     R30, R16
+        STD     Z+4, R25
+//  959     };
+        INC     R25
+        DEC     R24
+        BRNE    ??ConfigurationInit_23
+//  960 }
+        RJMP    ?Subroutine89
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine51:
+        JMP     memcpy
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine48:
+        LDI     R18, 3
+        REQUIRE ?Subroutine69
+        ;               // Fall through to label ?Subroutine69
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine69:
+        LDI     R16, LOW(??m_auiIntermediateBuff)
+        LDI     R17, (??m_auiIntermediateBuff) >> 8
+        REQUIRE ?Subroutine91
+        ;               // Fall through to label ?Subroutine91
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine91:
+        JMP     ??ReadBlock
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine43:
+        MOVW    R17:R16, R27:R26
+        RJMP    ?Subroutine91
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine42:
+        JMP     ?PROLOGUE4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine37:
+        LDI     R31, 0
+        MOV     R30, R20
+        SUBI    R30, LOW((-(??m_auiIntermediateBuff) & 0xFFFF))
+        SBCI    R31, (-(??m_auiIntermediateBuff) & 0xFFFF) >> 8
+        LD      R19, Z
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine36:
+        RCALL   ?Subroutine65
+??CrossCallReturnLabel_72:
+        REQUIRE ??Subroutine98_0
+        ;               // Fall through to label ??Subroutine98_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine98_0:
+        ADD     R30, R0
+        ADC     R31, R1
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine25:
+        LDI     R16, 2
+        MUL     R20, R16
+        RCALL   ?Subroutine67
+??CrossCallReturnLabel_76:
+        REQUIRE ?Subroutine86
+        ;               // Fall through to label ?Subroutine86
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine86:
+        LD      R16, Z
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine67:
+        MOVW    R31:R30, R1:R0
+        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+        RET
+//  961 
+//  962 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  963 void CPss21::DiscreteOutputControlClear(void)
+??DiscreteOutputControlClear:
+//  964 {
+        MOVW    R21:R20, R25:R24
+//  965     // Приведение буферов управления модулями дискретных выходов(реле) в исходное состояние.
+//  966     for (int j = 0;
+//  967             j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
+//  968             j++)
+//  969     {
+//  970         // цикл выбора реле.
+//  971         for (int k = 0;
+        RCALL   ?Subroutine33
+??CrossCallReturnLabel_32:
+        LDI     R16, 8
+        LDI     R17, 0
+//  972                 k < MR_DISCRETE_OUTPUT_NUMBER;
+//  973                 k++)
+//  974         {
+//  975             // Сбросим флаг - новое нарушение.
+//  976             m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiNewActivation = 0;
+??DiscreteOutputControlClear_1:
+        MOVW    R19:R18, R25:R24
+        LSL     R18
+        ROL     R19
+        LDI     R30, LOW(??m_axDiscreteOutputControl)
+        LDI     R31, (??m_axDiscreteOutputControl) >> 8
+        ADD     R30, R18
+        ADC     R31, R19
+        ST      Z, R17
+//  977             // Сбросим флаг - требование включения реле.
+//  978             m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 0;
+        STD     Z+1, R17
+//  979         }
+        ADIW    R25:R24, 1
+        DEC     R16
+        BRNE    ??DiscreteOutputControlClear_1
+//  980     }
+//  981 }
+        MOVW    R25:R24, R21:R20
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine33:
+        LDI     R24, 0
+        LDI     R25, 0
+        RET
+//  982 
+//  983 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  984 void CPss21::DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNewViolation)
+??DiscreteOutputsSet:
+//  985 {
+        RCALL   ?Subroutine42
+??CrossCallReturnLabel_45:
+        MOVW    R23:R22, R17:R16
+//  986     // Дискретный сигнал был активен на предыдущем шаге?
+//  987     if (!uiNewViolation)
+        TST     R18
+        LDI     R26, 0
+        LDI     R27, 0
+        LDI     R19, 1
+        BRNE    ??DiscreteOutputsSet_1
+//  988     {
+//  989         // Не новое нарушение.
+//  990         // установим флаги - требования включения, для запрограммированных реле,
+//  991         // в буфере выходов требований включения реле - блокировка.
+//  992         // цикл выбора модуля.
+//  993         for (int j = 0;
+//  994                 j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
+//  995                 j++)
+//  996         {
+//  997             // цикл выбора реле.
+//  998             for (int k = 0;
+??DiscreteOutputsSet_2:
+        RCALL   ?Subroutine33
+??CrossCallReturnLabel_33:
+        LDI     R18, 8
+//  999                     k < MR_DISCRETE_OUTPUT_NUMBER;
+// 1000                     k++)
+// 1001             {
+// 1002                 // Текущий - (j, k) дискретный выход(реле) привязан?
+// 1003                 if (puiLinkedDiscreteOutputs[j] & (0x01 << k))
+??DiscreteOutputsSet_3:
+        RCALL   ?Subroutine24
+??CrossCallReturnLabel_186:
+        BREQ    ??DiscreteOutputsSet_4
+// 1004                 {
+// 1005                     // установим флаг - требование включения реле.
+// 1006                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 1;
+        RCALL   ?Subroutine44
+// 1007                 }
+// 1008             }
+??CrossCallReturnLabel_46:
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(??m_axDiscreteOutputControl) & 0xFFFF))
+        SBCI    R31, (-(??m_axDiscreteOutputControl) & 0xFFFF) >> 8
+        LDI     R16, 1
+        STD     Z+1, R16
+??DiscreteOutputsSet_4:
+        ADIW    R25:R24, 1
+        DEC     R18
+        BRNE    ??DiscreteOutputsSet_3
+// 1009         }
+        ADIW    R27:R26, 1
+        DEC     R19
+        BREQ    ??DiscreteOutputsSet_5
+        RJMP    ??DiscreteOutputsSet_2
+// 1010     }
+// 1011     else
+// 1012     {
+// 1013         // новое нарушение.
+// 1014         // установим флаги - новое нарушение, для запрограммированных реле
+// 1015         // в буфере выходов управления реле - новое нарушение.
+// 1016         // установим флаги - требования включения, для запрограммированных реле,
+// 1017         // в буфере выходов требований включения реле - блокировка.
+// 1018         // цикл выбора модуля.
+// 1019         for (int j = 0;
+// 1020                 j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
+// 1021                 j++)
+// 1022         {
+// 1023             // цикл выбора реле.
+// 1024             for (int k = 0;
+??DiscreteOutputsSet_1:
+        RCALL   ?Subroutine33
+??CrossCallReturnLabel_34:
+        LDI     R18, 8
+// 1025                     k < MR_DISCRETE_OUTPUT_NUMBER;
+// 1026                     k++)
+// 1027             {
+// 1028                 // Текущий - (j, k) дискретный выход(реле) привязан?
+// 1029                 if (puiLinkedDiscreteOutputs[j] & (0x01 << k))
+??DiscreteOutputsSet_6:
+        RCALL   ?Subroutine24
+??CrossCallReturnLabel_187:
+        BREQ    ??DiscreteOutputsSet_7
+// 1030                 {
+// 1031                     // установим флаг - новое нарушение.
+// 1032                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiNewActivation = 1;
+        RCALL   ?Subroutine44
+??CrossCallReturnLabel_47:
+        LDI     R30, LOW(??m_axDiscreteOutputControl)
+        LDI     R31, (??m_axDiscreteOutputControl) >> 8
+        ADD     R30, R16
+        ADC     R31, R17
+        RCALL   ?Subroutine27
+// 1033                     // установим флаг - требование включения реле.
+// 1034                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 1;
+??CrossCallReturnLabel_15:
+        STD     Z+1, R16
+// 1035                 }
+// 1036             }
+??DiscreteOutputsSet_7:
+        ADIW    R25:R24, 1
+        DEC     R18
+        BRNE    ??DiscreteOutputsSet_6
+// 1037         }
+        ADIW    R27:R26, 1
+        DEC     R19
+        BRNE    ??DiscreteOutputsSet_1
+// 1038     }
+// 1039 }
+??DiscreteOutputsSet_5:
+        RJMP    ?Subroutine89
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine44:
+        LDI     R20, 3
+        MOVW    R17:R16, R27:R26
+        RCALL   ?Subroutine66
+??CrossCallReturnLabel_189:
+        ADD     R16, R24
+        ADC     R17, R25
+        LSL     R16
+        ROL     R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine66:
+        JMP     ?S_SHL_L02
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine24:
+        MOVW    R31:R30, R23:R22
+        ADD     R30, R26
+        ADC     R31, R27
+        LD      R21, Z
+        MOV     R20, R24
+        REQUIRE ??Subroutine99_0
+        ;               // Fall through to label ??Subroutine99_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine99_0:
+        LDI     R16, 1
+        LDI     R17, 0
+        RCALL   ?Subroutine66
+??CrossCallReturnLabel_190:
+        AND     R21, R16
+        RET
+// 1040 
+// 1041 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1042 void CPss21::AlarmsProcessing(void)
+??AlarmsProcessing:
+// 1043 {
+        ST      -Y, R25
+        ST      -Y, R24
+// 1044     // Обработаем все дискретные сигналы.
+// 1045     for (uint8_t i = 0;
+        LDI     R25, 0
+        LDI     R24, 96
+// 1046             i < DISCRETE_SIGNALS_NUMBER;
+// 1047             i++)
+// 1048     {
+// 1049         m_apxAlarmDfa[i] -> Fsm();
+??AlarmsProcessing_1:
+        LDI     R16, 2
+        MUL     R25, R16
+        RCALL   ?Subroutine67
+// 1050     }
+??CrossCallReturnLabel_75:
+        LD      R18, Z
+        LDD     R19, Z+1
+        RCALL   ?Subroutine38
+??CrossCallReturnLabel_39:
+        BRNE    ??AlarmsProcessing_1
+// 1051 }
+        REQUIRE ?Subroutine77
+        ;               // Fall through to label ?Subroutine77
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine77:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+// 1052 
+// 1053 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1054 void CPss21::ErrorAlarmsProcessing(void)
+??ErrorAlarmsProcessing:
+// 1055 {
+        ST      -Y, R25
+        ST      -Y, R24
+// 1056     // Обработаем все дискретные сигналы.
+// 1057     for (uint8_t i = 0;
+        LDI     R25, 0
+        LDI     R24, 2
+??ErrorAlarmsProcessing_1:
+        LDI     R16, 2
+        MUL     R25, R16
+        RCALL   ?Subroutine36
+// 1058             i < HANDLED_ERROR_NUMBER;
+// 1059             i++)
+// 1060     {
+// 1061         m_apxErrorAlarmDfa[i] -> Fsm();
+// 1062     }
+??CrossCallReturnLabel_184:
+        LDD     R18, Z+46
+        LDD     R19, Z+47
+        RCALL   ?Subroutine38
+??CrossCallReturnLabel_40:
+        BRNE    ??ErrorAlarmsProcessing_1
+// 1063 }
+        RJMP    ?Subroutine77
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine38:
+        MOVW    R17:R16, R19:R18
+        MOVW    R31:R30, R19:R18
+        LDD     R18, Z+1
+        LDD     R31, Z+2
+        MOV     R30, R18
+        RCALL   ?Subroutine64
+??CrossCallReturnLabel_66:
+        INC     R25
+        DEC     R24
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine64:
+        ADIW    R31:R30, 2
+        LPM     R18, Z+
+        LPM     R31, Z
+        MOV     R30, R18
+        IJMP
+// 1064 
+// 1065 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1066 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
+??GetDiscreteInputState:
+// 1067 {
+// 1068 //    // Не вышли за границы массива дискретных сигналов?
+// 1069 //    if ((uiIndex >= 0) &&
+// 1070 //            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
+// 1071 //    {
+// 1072 //        // Получим состояние дискретного сигнала - дискретные входы модулей.
+// 1073 //        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+// 1074 //    }
+// 1075 //    else
+// 1076 //    {
+// 1077 //        // Получим состояние дискретного сигнала - дискретные входы модулей, вход 0.
+// 1078 //        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
+// 1079 //    }
+// 1080 
+// 1081     if (uiIndex < DISCRETE_INPUTS_NUMBER)
+// 1082     {
+// 1083         // Получим состояние дискретного сигнала - дискретные входы модулей.
+// 1084         return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+// 1085     }
+// 1086     else
+// 1087     {
+// 1088         // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+// 1089         return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
+        LDI     R31, 0
+        MOV     R30, R16
+        SUBI    R30, LOW((-(??m_aucRtuDiscreteDataArray) & 0xFFFF))
+        SBCI    R31, (-(??m_aucRtuDiscreteDataArray) & 0xFFFF) >> 8
+        LDD     R16, Z+16
+        RET
+// 1090     }
+// 1091 }
+// 1092 
+// 1093 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1094 void CPss21::SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData)
+??SetErrorAlarmState:
+// 1095 {
+// 1096     // Установим состояние источника ошибки.
+// 1097     m_auiErrorAlarmDataArray[uiIndex] = uiData;
+        RCALL   ?Subroutine41
+??CrossCallReturnLabel_41:
+        ST      Z, R17
+// 1098 }
+        RET
+// 1099 
+// 1100 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1101 uint8_t CPss21::GetErrorAlarmState(uint8_t uiIndex)
+??GetErrorAlarmState:
+// 1102 {
+// 1103     // Получим состояние источника ошибки.
+// 1104     return m_auiErrorAlarmDataArray[uiIndex];
+        RCALL   ?Subroutine41
+??CrossCallReturnLabel_42:
+        RJMP    ?Subroutine86
+// 1105 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine41:
+        LDI     R31, 0
+        MOV     R30, R16
+        SUBI    R30, LOW((-(??m_xDeviceConfigSearch + 63) & 0xFFFF))
+        SBCI    R31, HIGH((-(??m_xDeviceConfigSearch + 63) & 0xFFFF))
+        RET
+// 1106 
+// 1107 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1108 void CPss21::AlarmTypeSet(uint8_t uiAlarmType)
+??AlarmTypeSet:
+// 1109 {
+        ST      -Y, R24
+        MOV     R24, R16
+// 1110     m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(uiAlarmType);
+        MOV     R18, R16
+        RCALL   ?Subroutine57
+// 1111     m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(uiAlarmType);
+??CrossCallReturnLabel_207:
+        MOV     R18, R24
+        RCALL   ?Subroutine58
+// 1112     m_xStatusLedNotifyerControl.AlarmSet(uiAlarmType);
+??CrossCallReturnLabel_209:
+        MOV     R18, R24
+        RCALL   ?Subroutine59
+// 1113     m_xBuzzerNotifyerControl.AlarmSet(uiAlarmType);
+??CrossCallReturnLabel_211:
+        MOV     R18, R24
+        RCALL   ?Subroutine60
+// 1114 }
+??CrossCallReturnLabel_216:
+        RJMP    ?Subroutine84
+// 1115 
+// 1116 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1117 void CPss21::AlarmTypeChange(void)
+??AlarmTypeChange:
+// 1118 {
+// 1119     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+        RCALL   ?Subroutine39
+??CrossCallReturnLabel_122:
+        BREQ    ??CrossCallReturnLabel_141
+// 1120     {
+// 1121         m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+        STD     Z+62, R16
+// 1122         AlarmTypeSet(m_uiCommonAlarmType);
+        RCALL   ?Subroutine92
+// 1123     }
+// 1124 }
+??CrossCallReturnLabel_141:
+        RET
+// 1125 
+// 1126 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1127 void CPss21::AlarmTypeErrorChange(void)
+??AlarmTypeErrorChange:
+// 1128 {
+// 1129     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+        RCALL   ?Subroutine39
+??CrossCallReturnLabel_123:
+        BREQ    ??CrossCallReturnLabel_215
+// 1130     {
+// 1131         m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+        STD     Z+62, R16
+// 1132 
+// 1133         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        RCALL   ??Subroutine103_0
+// 1134         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1135         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+// 1136         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+// 1137     }
+// 1138 }
+??CrossCallReturnLabel_215:
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine39:
+        RCALL   ?Subroutine65
+??CrossCallReturnLabel_73:
+        LDD     R16, Z+61
+        LDD     R17, Z+62
+        RJMP    ?Subroutine83
+// 1139 
+// 1140 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1141 void CPss21::AlarmTypeReceipt(void)
+??AlarmTypeReceipt:
+// 1142 {
+// 1143     m_uiCommonAlarmType = INDICATION;
+        LDI     R16, 1
+        RCALL   ?Subroutine71
+// 1144     m_uiCommonAlarmTypePrevious = INDICATION;
+// 1145     AlarmTypeSet(INDICATION);
+??CrossCallReturnLabel_83:
+        REQUIRE ?Subroutine92
+        ;               // Fall through to label ?Subroutine92
+// 1146 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine92:
+        RJMP    ??AlarmTypeSet
+// 1147 
+// 1148 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1149 void CPss21::AlarmTypeReset(void)
+??AlarmTypeReset:
+// 1150 {
+// 1151     m_uiCommonAlarmType = NORMAL;
+        RCALL   ?Subroutine26
+// 1152     m_uiCommonAlarmTypePrevious = NORMAL;
+// 1153     AlarmTypeSet(NORMAL);
+??CrossCallReturnLabel_85:
+        RJMP    ?Subroutine92
+// 1154 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine26:
+        LDI     R16, 0
+        REQUIRE ?Subroutine71
+        ;               // Fall through to label ?Subroutine71
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine71:
+        STS     (??m_xDeviceConfigSearch + 61), R16
+        STS     (??m_xDeviceConfigSearch + 62), R16
+        RET
+// 1155 
+// 1156 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1157 void CPss21::NotifyersControlProcessing(void)
+??NotifyersControlProcessing:
+// 1158 {
+// 1159     m_xPreventiveAlarmWindowNotifyerControl.Fsm();
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 145))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 145))
+        RCALL   ?Subroutine93
+// 1160     m_xEmergencyAlarmWindowNotifyerControl.Fsm();
+??CrossCallReturnLabel_144:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 157))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 157))
+        RCALL   ?Subroutine93
+// 1161     m_xStatusLedNotifyerControl.Fsm();
+??CrossCallReturnLabel_143:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 169))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 169))
+        RCALL   ?Subroutine93
+// 1162     m_xBuzzerNotifyerControl.Fsm();
+??CrossCallReturnLabel_142:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 181))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 181))
+        REQUIRE ?Subroutine93
+        ;               // Fall through to label ?Subroutine93
+// 1163 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine93:
+        JMP     ??Fsm
+// 1164 
+// 1165 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1166 void CPss21::SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType)
+??SetAlarmWindowType:
+// 1167 {
+        MOV     R18, R17
+// 1168     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmType(uiAlarmType);
+        LDI     R17, 0
+        LDI     R20, 6
+        RCALL   ?Subroutine72
+??CrossCallReturnLabel_204:
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(??m_axAlarmWindowControl) & 0xFFFF))
+        SBCI    R31, (-(??m_axAlarmWindowControl) & 0xFFFF) >> 8
+        STD     Z+2, R18
+// 1169 }
+        RET
+// 1170 
+// 1171 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1172 void CPss21::SaveContextNotifyerControl(void)
+??SaveContextNotifyerControl:
+// 1173 {
+// 1174 //    // Сохраним текущее состояние автоматов управления извещателями.
+// 1175 //    m_xPreventiveAlarmWindowNotifyerControl.SetSavedFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetFsmState());
+// 1176 //    m_xEmergencyAlarmWindowNotifyerControl.SetSavedFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetFsmState());
+// 1177 //    m_xStatusLedNotifyerControl.SetSavedFsmState(m_xStatusLedNotifyerControl.GetFsmState());
+// 1178 //    m_xBuzzerNotifyerControl.SetSavedFsmState(m_xBuzzerNotifyerControl.GetFsmState());
+// 1179 
+// 1180     // Сохраним текущее состояние извещателей - окон сигнализации.
+// 1181     for (uint8_t i = 0;
+        RCALL   ??Subroutine100_0
+// 1182             i < ALARM_WINDOWS_NUMBER;
+// 1183             i++)
+// 1184     {
+// 1185         m_axAlarmWindowControl[i].SetSavedAlarmType(m_axAlarmWindowControl[i].GetAlarmType());
+??CrossCallReturnLabel_196:
+        RCALL   ?Subroutine62
+??CrossCallReturnLabel_199:
+        LDD     R16, Z+2
+        STD     Z+3, R16
+// 1186         m_axAlarmWindowControl[i].SetSavedActivityState(m_axAlarmWindowControl[i].GetActivityState());
+        LD      R16, Z
+        STD     Z+1, R16
+// 1187     };
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_19:
+        BRNE    ??CrossCallReturnLabel_196
+// 1188 }
+        RET
+// 1189 
+// 1190 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1191 void CPss21::RestoreContextNotifyerControl(void)
+??RestoreContextNotifyerControl:
+// 1192 {
+// 1193 //    // Восстановим предыдущее состояние автоматов управления извещателями.
+// 1194 //    m_xPreventiveAlarmWindowNotifyerControl.SetFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetSavedFsmState());
+// 1195 //    m_xEmergencyAlarmWindowNotifyerControl.SetFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetSavedFsmState());
+// 1196 //    m_xStatusLedNotifyerControl.SetFsmState(m_xStatusLedNotifyerControl.GetSavedFsmState());
+// 1197 //    m_xBuzzerNotifyerControl.SetFsmState(m_xBuzzerNotifyerControl.GetSavedFsmState());
+// 1198     AlarmTypeSet(GetCommonAlarmType());
+        LDS     R16, (??m_xDeviceConfigSearch + 61)
+        RCALL   ?Subroutine92
+// 1199 
+// 1200     // Восстановим предыдущее состояние извещателей - окон сигнализации.
+// 1201     for (uint8_t i = 0;
+??CrossCallReturnLabel_140:
+        RCALL   ??Subroutine100_0
+// 1202             i < ALARM_WINDOWS_NUMBER;
+// 1203             i++)
+// 1204     {
+// 1205         m_axAlarmWindowControl[i].SetAlarmType(m_axAlarmWindowControl[i].GetSavedAlarmType());
+??CrossCallReturnLabel_197:
+        RCALL   ?Subroutine62
+??CrossCallReturnLabel_200:
+        LDD     R16, Z+3
+        STD     Z+2, R16
+// 1206         m_axAlarmWindowControl[i].SetActivityState(m_axAlarmWindowControl[i].GetSavedActivityState());
+        LDD     R16, Z+1
+        ST      Z, R16
+// 1207     };
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_20:
+        BRNE    ??CrossCallReturnLabel_197
+// 1208 }
+        RET
+// 1209 
+// 1210 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1211 void CPss21::DiscreteSignalsProcessing(void)
+??DiscreteSignalsProcessing:
+// 1212 {
+// 1213     DiscreteOutputControlClear();
+        RCALL   ??DiscreteOutputControlClear
+// 1214     AlarmsProcessing();
+        RCALL   ??AlarmsProcessing
+// 1215     ErrorAlarmsProcessing();
+        RCALL   ??ErrorAlarmsProcessing
+// 1216     SetDiscreteSignalsReceipt(0);
+        LDI     R16, 0
+        STS     (??m_xDeviceConfigSearch + 57), R16
+// 1217     SetDiscreteSignalsReset(0);
+        STS     (??m_xDeviceConfigSearch + 58), R16
+// 1218 }
+        RET
+// 1219 
+// 1220 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1221 void CPss21::BoardWindowsUpdate(void)
+??BoardWindowsUpdate:
+// 1222 {
+// 1223     CLightBoard::Set(m_axAlarmWindowControl);
+        RJMP    ?Subroutine87
+// 1224 }
+// 1225 
+// 1226 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1227 void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
+??ActiveAlarmWindowOn:
+// 1228 {
+        RCALL   ?Subroutine1
+// 1229     for (uint8_t i = 0;
+// 1230             i < ALARM_WINDOWS_NUMBER;
+// 1231             i++)
+// 1232     {
+// 1233         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+// 1234         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
+??CrossCallReturnLabel_191:
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_12:
+        BRNE    ??CrossCallReturnLabel_16
+// 1235         {
+// 1236             // Актмвизируем окно сигнализации, для отображения извещателем.
+// 1237             m_axAlarmWindowControl[i].SetActivityState(1);
+        RCALL   ?Subroutine27
+// 1238         }
+// 1239 
+// 1240 //        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
+// 1241     };
+??CrossCallReturnLabel_16:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_21:
+        BRNE    ??CrossCallReturnLabel_191
+// 1242 
+// 1243     BoardWindowsUpdate();
+        RJMP    ?Subroutine87
+// 1244 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine30:
+        INC     R18
+        DEC     R19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine27:
+        LDI     R16, 1
+        ST      Z, R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine1:
+        MOV     R22, R16
+        REQUIRE ??Subroutine100_0
+        ;               // Fall through to label ??Subroutine100_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine100_0:
+        LDI     R18, 0
+        LDI     R19, 48
+        LDI     R20, 6
+        RET
+// 1245 
+// 1246 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1247 void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
+??ActiveAlarmWindowOff:
+// 1248 {
+        RCALL   ?Subroutine1
+// 1249     for (uint8_t i = 0;
+// 1250             i < ALARM_WINDOWS_NUMBER;
+// 1251             i++)
+// 1252     {
+// 1253         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+// 1254         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
+??CrossCallReturnLabel_192:
+        RCALL   ?Subroutine21
+??CrossCallReturnLabel_13:
+        BREQ    ??ActiveAlarmWindowOff_1
+// 1255         {
+// 1256             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1257             m_axAlarmWindowControl[i].SetActivityState(0);
+// 1258         }
+// 1259         else if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
+        TST     R16
+        BRNE    ??ActiveAlarmWindowOff_2
+// 1260         {
+// 1261             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1262             m_axAlarmWindowControl[i].SetActivityState(0);
+??ActiveAlarmWindowOff_1:
+        ST      Z, R21
+// 1263         }
+// 1264 
+// 1265 //        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
+// 1266     };
+??ActiveAlarmWindowOff_2:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_22:
+        BRNE    ??CrossCallReturnLabel_192
+// 1267 
+// 1268     BoardWindowsUpdate();
+        REQUIRE ?Subroutine87
+        ;               // Fall through to label ?Subroutine87
+// 1269 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine87:
+        RCALL   ?Subroutine74
+??CrossCallReturnLabel_129:
+        JMP     ??Set
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine21:
+        RCALL   ?Subroutine62
+??CrossCallReturnLabel_203:
+        LDD     R16, Z+2
+        CP      R16, R22
+        RET
+// 1270 
+// 1271 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1272 void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
+??AllAlarmWindowOn:
+// 1273 {
+        RCALL   ?Subroutine1
+// 1274 //    CAlarmWindow axAlarmWindowControl[ALARM_WINDOWS_NUMBER];
+// 1275 
+// 1276     for (uint8_t i = 0;
+// 1277             i < ALARM_WINDOWS_NUMBER;
+// 1278             i++)
+// 1279     {
+// 1280         // Актмвизируем окно сигнализации, для отображения извещателем.
+// 1281         m_axAlarmWindowControl[i].SetAlarmType(uiAlarmType);
+??CrossCallReturnLabel_193:
+        RCALL   ?Subroutine62
+??CrossCallReturnLabel_201:
+        STD     Z+2, R22
+// 1282         // Актмвизируем окно сигнализации, для отображения извещателем.
+// 1283         m_axAlarmWindowControl[i].SetActivityState(1);
+        RCALL   ?Subroutine27
+// 1284     };
+??CrossCallReturnLabel_17:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_23:
+        BRNE    ??CrossCallReturnLabel_193
+// 1285 
+// 1286     BoardWindowsUpdate();
+        RJMP    ?Subroutine87
+// 1287 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine62:
+        MOV     R16, R18
+        REQUIRE ??Subroutine101_0
+        ;               // Fall through to label ??Subroutine101_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine101_0:
+        LDI     R17, 0
+        RCALL   ?Subroutine72
+??CrossCallReturnLabel_205:
+        LDI     R30, LOW(??m_axAlarmWindowControl)
+        LDI     R31, (??m_axAlarmWindowControl) >> 8
+        ADD     R30, R16
+        ADC     R31, R17
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine72:
+        LDI     R21, 0
+        RJMP    ?Subroutine90
+// 1288 
+// 1289 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1290 void CPss21::ErrorWindowOn(uint8_t uiIndex)
+??ErrorWindowOn:
+// 1291 {
+        RCALL   ?Subroutine1
+// 1292     // Актмвируем окна сигнализации - ошибка.
+// 1293     for (uint8_t i = 0;
+// 1294             i < ALARM_WINDOWS_NUMBER;
+// 1295             i++)
+// 1296     {
+// 1297         if (m_auiErrorLedOn[i])
+??CrossCallReturnLabel_194:
+        MOV     R30, R18
+        LDI     R31, 0
+        SUBI    R30, LOW((-(??m_auiErrorLedOn) & 0xFFFF))
+        SBCI    R31, (-(??m_auiErrorLedOn) & 0xFFFF) >> 8
+        LPM     R16, Z
+        TST     R16
+        BREQ    ??ErrorWindowOn_1
+// 1298         {
+// 1299             // Актмвизируем окно сигнализации, для отображения извещателем.
+// 1300             m_axAlarmWindowControl[i].SetAlarmType(INDICATION);
+        RCALL   ?Subroutine62
+??CrossCallReturnLabel_202:
+        LDI     R16, 1
+        STD     Z+2, R16
+// 1301             m_axAlarmWindowControl[i].SetActivityState(1);
+        ST      Z, R16
+// 1302         }
+// 1303     };
+??ErrorWindowOn_1:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_24:
+        BRNE    ??CrossCallReturnLabel_194
+// 1304 
+// 1305     if (uiIndex < ALARM_WINDOWS_NUMBER)
+        CPI     R22, 48
+        BRCC    ??CrossCallReturnLabel_11
+// 1306     {
+// 1307         m_axAlarmWindowControl[uiIndex].SetAlarmType(NORMAL);
+        MOV     R16, R22
+        RCALL   ?Subroutine20
+// 1308         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
+// 1309     }
+// 1310 
+// 1311     BoardWindowsUpdate();
+??CrossCallReturnLabel_11:
+        RJMP    ?Subroutine87
+// 1312 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine20:
+        RCALL   ??Subroutine101_0
+??CrossCallReturnLabel_198:
+        STD     Z+2, R21
+// 1313 
+// 1314 //-----------------------------------------------------------------------------------------------------
+// 1315 void CPss21::AllAlarmWindowOff(void)
+// 1316 {
+// 1317     for (uint8_t i = 0;
+// 1318             i < ALARM_WINDOWS_NUMBER;
+// 1319             i++)
+// 1320     {
+// 1321         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1322         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
+// 1323         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1324         m_axAlarmWindowControl[i].SetActivityState(0);
+        ST      Z, R21
+        RET
+// 1325     };
+// 1326 
+// 1327     BoardWindowsUpdate();
+// 1328 }
+// 1329 
+// 1330 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1331 void CPss21::TestMainCycle(void)
+??TestMainCycle:
+// 1332 {
+// 1333     CPss21::m_xModbusRtuOne.Fsm();
+        RCALL   ?Subroutine7
+// 1334 
+// 1335     CPss21::KeyStateProcessing();
+// 1336 
+// 1337     NotifyersControlProcessing();
+// 1338 
+// 1339     CPss21::ReceiptResetGlobalFlagsClear();
+??CrossCallReturnLabel_0:
+        REQUIRE ?Subroutine78
+        ;               // Fall through to label ?Subroutine78
+// 1340 
+// 1341     CPlatform::WatchdogReset();
+// 1342 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine78:
+        RCALL   ?Subroutine52
+??CrossCallReturnLabel_112:
+        REQUIRE ??Subroutine102_0
+        ;               // Fall through to label ??Subroutine102_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine102_0:
+        WDR
+        RET
+// 1343 
+// 1344 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1345 void CPss21::ErrorMainCycle(void)
+??ErrorMainCycle:
+// 1346 {
+// 1347     CPss21::m_xModbusRtuOne.Fsm();
+        RCALL   ?Subroutine56
+// 1348 
+// 1349     CPss21::KeyStateProcessing();
+??CrossCallReturnLabel_61:
+        RCALL   ??KeyStateProcessing
+// 1350 
+// 1351     // Есть команда - "квитировать"?
+// 1352     if ((GetPanelReceipt()) ||
+// 1353             (GetExternalReceipt()) ||
+// 1354             (GetModbusReceipt()))
+        RCALL   ?Subroutine65
+??CrossCallReturnLabel_71:
+        LDD     R16, Z+51
+        TST     R16
+        BRNE    ??ErrorMainCycle_1
+        LDD     R16, Z+53
+        TST     R16
+        BRNE    ??ErrorMainCycle_1
+        LDD     R16, Z+55
+        TST     R16
+        BREQ    ??CrossCallReturnLabel_217
+// 1355     {
+// 1356 //        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1357 //        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1358         m_xStatusLedNotifyerControl.AlarmSet(NORMAL);
+??ErrorMainCycle_1:
+        LDI     R18, 0
+        RCALL   ?Subroutine59
+// 1359         m_xBuzzerNotifyerControl.AlarmSet(NORMAL);
+??CrossCallReturnLabel_212:
+        LDI     R18, 0
+        RCALL   ?Subroutine60
+// 1360     }
+// 1361 
+// 1362     NotifyersControlProcessing();
+??CrossCallReturnLabel_217:
+        RCALL   ??NotifyersControlProcessing
+// 1363 
+// 1364     CPss21::ReceiptResetGlobalFlagsClear();
+        RJMP    ?Subroutine78
+// 1365 
+// 1366     CPlatform::WatchdogReset();
+// 1367 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine59:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 169))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 169))
+        JMP     ??AlarmSet_3
+// 1368 
+// 1369 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1370 void CPss21::LinkControlErrorMainCycle(void)
+??LinkControlErrorMainCycle:
+// 1371 {
+// 1372     CPss21::m_xModbusRtuOne.Fsm();
+        RCALL   ?Subroutine5
+// 1373     CPss21::m_xModbusRtuLinkControl.Fsm();
+// 1374 
+// 1375     CPss21::KeyStateProcessing();
+// 1376 
+// 1377     NotifyersControlProcessing();
+// 1378 
+// 1379     CPss21::ReceiptResetGlobalFlagsClear();
+??CrossCallReturnLabel_81:
+        RCALL   ?Subroutine52
+// 1380 
+// 1381     CDataStore::Fsm();
+??CrossCallReturnLabel_111:
+        RCALL   ?Subroutine55
+// 1382 
+// 1383     CPlatform::WatchdogReset();
+??CrossCallReturnLabel_58:
+        RJMP    ??Subroutine102_0
+// 1384 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine52:
+        RJMP    ??ReceiptResetGlobalFlagsClear
+// 1385 
+// 1386 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+// 1387 void CPss21::MainFsm(void)
+??MainFsm:
+// 1388 {
+        LDS     R16, (??m_xDeviceConfigSearch + 50)
+        LDI     R30, LOW(`?<Jumptable for MainFsm>_0`)
+        LDI     R31, (`?<Jumptable for MainFsm>_0`) >> 16
+        OUT     0x3B, R31
+        LDI     R31, HIGH(`?<Jumptable for MainFsm>_0`)
+        JMP     ?CV_SWITCH_L06
+// 1389     switch (GetFsmState())
+// 1390     {
+// 1391     case START:
+// 1392         CPlatform::WatchdogEnable();
+??MainFsm_1:
+        WDR
+        IN      R16, 0x21
+        ORI     R16, 0x18
+        OUT     0x21, R16
+        IN      R16, 0x21
+        ORI     R16, 0x07
+        OUT     0x21, R16
+// 1393         CPlatform::Init();
+        CALL    ??Init_3
+// 1394         CPss21::Init();
+        RCALL   ??Init
+// 1395         CBuzzer::Init();
+        CALL    ??Init_4
+// 1396         if (!(CDataBase::Check()))
+        CALL    ??Check
+        TST     R16
+        BREQ    ??MainFsm_2
+// 1397         {
+// 1398             SetFsmState(ERROR_START);
+// 1399         }
+// 1400         else
+// 1401         {
+// 1402             CPss21::ConfigurationInit();
+        RCALL   ??ConfigurationInit
+// 1403             CPss21::ModbusInit();
+        RCALL   ??ModbusInit
+// 1404             CSpi::Init();
+        CALL    ??Init_5
+// 1405             CPss21::AddressBusInit();
+        RCALL   ??AddressBusInit
+// 1406             CPss21::SearchModules();
+        RCALL   ??SearchModules
+// 1407             CPss21::CreateDevices();
+        RCALL   ??CreateDevices
+// 1408             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+        RCALL   ??Subroutine97_0
+// 1409             SetFsmState(MAIN_CYCLE_START_WAITING);
+??CrossCallReturnLabel_177:
+        RJMP    ??CrossCallReturnLabel_110
+// 1410         }
+// 1411         break;
+// 1412 
+// 1413     case RESTART:
+// 1414         break;
+// 1415 
+// 1416     case MAIN_CYCLE_START_WAITING:
+// 1417         CPss21::m_xModbusRtuOne.Fsm();
+??MainFsm_3:
+        RCALL   ?Subroutine7
+// 1418 
+// 1419         CPss21::KeyStateProcessing();
+// 1420 
+// 1421         NotifyersControlProcessing();
+// 1422 
+// 1423         CDataStore::Fsm();
+??CrossCallReturnLabel_1:
+        RCALL   ?Subroutine9
+// 1424 
+// 1425         if (CPss21::m_xMainCycleTimer.IsOverflow())
+??CrossCallReturnLabel_218:
+        BRNE    $+2+2
+        RJMP    ??CrossCallReturnLabel_56
+// 1426         {
+// 1427             CPss21::m_xMainCycleTimer.Reset();
+        RCALL   ?Subroutine61
+??CrossCallReturnLabel_229:
+        CALL    ??Reset
+// 1428             CPlatform::WatchdogReset();
+        WDR
+// 1429             SetModuleIndex(0);
+        LDI     R16, 0
+        STS     (??m_xDeviceConfigSearch + 60), R16
+// 1430             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+        LDI     R16, 3
+        RJMP    ??MainFsm_4
+// 1431         }
+// 1432 
+// 1433         break;
+// 1434 
+// 1435     case MAIN_CYCLE_MODULES_INTERACTION:
+// 1436         CPss21::m_xModbusRtuOne.Fsm();
+??MainFsm_5:
+        RCALL   ?Subroutine5
+// 1437         CPss21::m_xModbusRtuLinkControl.Fsm();
+// 1438 
+// 1439         CPss21::KeyStateProcessing();
+// 1440 
+// 1441         NotifyersControlProcessing();
+// 1442 
+// 1443         CDataStore::Fsm();
+??CrossCallReturnLabel_82:
+        RCALL   ?Subroutine55
+// 1444 
+// 1445         if (CPss21::ModulesInteraction(GetModuleIndex()))
+??CrossCallReturnLabel_57:
+        LDS     R16, (??m_xDeviceConfigSearch + 60)
+        RCALL   ??ModulesInteraction
+        TST     R16
+        BREQ    ??MainFsm_6
+// 1446         {
+// 1447             SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+        LDI     R16, 4
+        RCALL   ??Subroutine96_0
+// 1448         }
+??CrossCallReturnLabel_166:
+        RJMP    ??MainFsm_7
+// 1449         else
+// 1450         {
+// 1451             SetModuleIndex(GetModuleIndex() + 1);
+??MainFsm_6:
+        LDI     R30, LOW((??m_xDeviceConfigSearch + 60))
+        LDI     R31, HIGH((??m_xDeviceConfigSearch + 60))
+        LD      R16, Z
+        INC     R16
+        ST      Z, R16
+// 1452         }
+// 1453 
+// 1454         switch (GetErrorCode())
+??MainFsm_7:
+        LDS     R16, (??m_xDeviceConfigSearch + 59)
+        SUBI    R16, 3
+        BREQ    ??MainFsm_2
+        DEC     R16
+        BREQ    ??MainFsm_2
+        DEC     R16
+        BREQ    ??MainFsm_8
+        RET
+// 1455         {
+// 1456 //        case IMD_ERROR:
+// 1457 //        case OMD_ERROR:
+// 1458         case CFG_ERROR:
+// 1459         case DB_ERROR:
+// 1460             SetFsmState(ERROR_START);
+??MainFsm_2:
+        LDI     R16, 8
+??MainFsm_4:
+        RJMP    ??Subroutine96_0
+// 1461             break;
+// 1462 
+// 1463         case MBS_ERROR:
+// 1464             SetFsmState(LINK_CONTROL_ERROR_START);
+??MainFsm_8:
+        LDI     R16, 10
+        RJMP    ??MainFsm_4
+// 1465             break;
+// 1466 
+// 1467         default:
+// 1468             break;
+// 1469         }
+// 1470         break;
+// 1471 
+// 1472     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
+// 1473         CPss21::DiscreteSignalsProcessing();
+??MainFsm_9:
+        RCALL   ??DiscreteSignalsProcessing
+// 1474         SetFsmState(MAIN_CYCLE_END);
+        LDI     R16, 5
+        RJMP    ??MainFsm_4
+// 1475         break;
+// 1476 
+// 1477     case MAIN_CYCLE_END:
+// 1478         CPss21::ReceiptResetGlobalFlagsClear();
+??MainFsm_10:
+        RCALL   ?Subroutine52
+// 1479         SetFsmState(MAIN_CYCLE_START_WAITING);
+??CrossCallReturnLabel_110:
+        LDI     R16, 2
+        RJMP    ??MainFsm_4
+// 1480         break;
+// 1481 
+// 1482 //-----------------------------------------------------------------------------------------------------
+// 1483     case TEST_START:
+// 1484         SaveContextNotifyerControl();
+??MainFsm_11:
+        RCALL   ??SaveContextNotifyerControl
+// 1485         AlarmTypeSet(PREVENTIVE);
+        LDI     R16, 2
+        RCALL   ?Subroutine92
+// 1486         CPss21::AllAlarmWindowOn(PREVENTIVE);
+??CrossCallReturnLabel_139:
+        LDI     R16, 2
+        RCALL   ??AllAlarmWindowOn
+// 1487         CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+        LDI     R18, 136
+        LDI     R19, 19
+        RCALL   ??Subroutine105_0
+// 1488         SetFsmState(TEST_ON);
+??CrossCallReturnLabel_225:
+        LDI     R16, 7
+        RJMP    ??MainFsm_12
+// 1489 
+// 1490         CPlatform::WatchdogReset();
+// 1491         break;
+// 1492 
+// 1493     case TEST_ON:
+// 1494         if (CPss21::m_xMainCycleTimer.IsOverflow())
+??MainFsm_13:
+        RCALL   ??Subroutine104_0
+??CrossCallReturnLabel_220:
+        BREQ    ??CrossCallReturnLabel_167
+// 1495         {
+// 1496             CPss21::AllAlarmWindowOff();
+        RCALL   ?Subroutine6
+// 1497             RestoreContextNotifyerControl();
+// 1498             CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1499             SetFsmState(MAIN_CYCLE_START_WAITING);
+??CrossCallReturnLabel_227:
+        LDI     R16, 2
+        RCALL   ??Subroutine96_0
+// 1500         }
+// 1501 
+// 1502         TestMainCycle();
+??CrossCallReturnLabel_167:
+        RJMP    ??TestMainCycle
+// 1503         break;
+// 1504 
+// 1505 //-----------------------------------------------------------------------------------------------------
+// 1506     case ERROR_START:
+// 1507         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
+// 1508         ModbusDefaultInit();
+??MainFsm_14:
+        RCALL   ??ModbusDefaultInit
+// 1509         ErrorWindowOn(GetErrorCode() - 1);
+        RCALL   ?Subroutine14
+// 1510         SetErrorCode(0);
+// 1511 
+// 1512         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1513         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1514         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+// 1515         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+// 1516 
+// 1517         SetFsmState(ERROR_ON);
+??CrossCallReturnLabel_213:
+        LDI     R16, 9
+??MainFsm_12:
+        RCALL   ??Subroutine96_0
+// 1518 
+// 1519         CPlatform::WatchdogReset();
+??CrossCallReturnLabel_168:
+        RJMP    ??Subroutine102_0
+// 1520         break;
+// 1521 
+// 1522     case ERROR_ON:
+// 1523         ErrorMainCycle();
+??MainFsm_15:
+        RJMP    ??ErrorMainCycle
+// 1524         break;
+// 1525 
+// 1526 //-----------------------------------------------------------------------------------------------------
+// 1527     case LINK_CONTROL_ERROR_START:
+// 1528         SaveContextNotifyerControl();
+??MainFsm_16:
+        RCALL   ??SaveContextNotifyerControl
+// 1529         ErrorWindowOn(GetErrorCode() - 1);
+        RCALL   ?Subroutine14
+// 1530         SetErrorCode(0);
+// 1531 
+// 1532         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1533         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1534         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+// 1535         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+// 1536 
+// 1537         CPlatform::WatchdogReset();
+??CrossCallReturnLabel_214:
+        WDR
+// 1538         SetFsmState(LINK_CONTROL_ERROR_ON);
+        LDI     R16, 11
+        RJMP    ??MainFsm_4
+// 1539         break;
+// 1540 
+// 1541     case LINK_CONTROL_ERROR_ON:
+// 1542         LinkControlErrorMainCycle();
+??MainFsm_17:
+        RJMP    ??LinkControlErrorMainCycle
+// 1543         break;
+// 1544 
+// 1545     case LINK_CONTROL_ERROR_OFF:
+// 1546         CPss21::AllAlarmWindowOff();
+??MainFsm_18:
+        RCALL   ?Subroutine6
+// 1547         RestoreContextNotifyerControl();
+// 1548         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1549 
+// 1550         CPlatform::WatchdogReset();
+??CrossCallReturnLabel_226:
+        WDR
+// 1551         SetFsmState(MAIN_CYCLE_START_WAITING);
+        RJMP    ??CrossCallReturnLabel_110
+// 1552         break;
+// 1553 
+// 1554 //-----------------------------------------------------------------------------------------------------
+// 1555     case PROGRAMMING_START:
+// 1556         // После приёма последнего блока базы данных произойдёт перезагрузка
+// 1557         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
+// 1558         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);
+??MainFsm_19:
+        LDI     R18, 232
+        LDI     R19, 3
+        RCALL   ??Subroutine105_0
+// 1559         SetFsmState(PROGRAMMING_ON);
+??CrossCallReturnLabel_224:
+        LDI     R16, 14
+        RJMP    ??MainFsm_12
+// 1560 
+// 1561         CPlatform::WatchdogReset();
+// 1562         break;
+// 1563 
+// 1564     case PROGRAMMING_ON:
+// 1565         CPss21::m_xModbusRtuOne.Fsm();
+??MainFsm_20:
+        RCALL   ?Subroutine56
+// 1566 
+// 1567         CDataStore::Fsm();
+??CrossCallReturnLabel_62:
+        RCALL   ?Subroutine9
+// 1568 
+// 1569         if (CPss21::m_xMainCycleTimer.IsOverflow())
+??CrossCallReturnLabel_219:
+        BREQ    ??CrossCallReturnLabel_168
+// 1570         {
+// 1571             SetFsmState(REBOOT);
+        LDI     R16, 15
+        RCALL   ??Subroutine96_0
+// 1572         }
+// 1573 
+// 1574         CPlatform::WatchdogReset();
+??CrossCallReturnLabel_169:
+        RJMP    ??CrossCallReturnLabel_168
+// 1575         break;
+// 1576 
+// 1577     case REBOOT:
+// 1578         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
+// 1579         CPss21::m_xModbusRtuOne.Fsm();
+??MainFsm_21:
+        RCALL   ?Subroutine56
+// 1580 
+// 1581         CDataStore::Fsm();
+??CrossCallReturnLabel_63:
+        RCALL   ?Subroutine55
+// 1582         break;
+// 1583 
+// 1584 //-----------------------------------------------------------------------------------------------------
+// 1585     default:
+// 1586         break;
+// 1587     }
+// 1588 }
+??CrossCallReturnLabel_56:
+        RET
+        REQUIRE _A_WDTCR
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine55:
+        JMP     ??Fsm_3
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine14:
+        LDS     R16, (??m_xDeviceConfigSearch + 59)
+        DEC     R16
+        RCALL   ??ErrorWindowOn
+        LDI     R16, 0
+        STS     (??m_xDeviceConfigSearch + 59), R16
+        REQUIRE ?Subroutine60
+        REQUIRE ??Subroutine103_0
+        ;               // Fall through to label ??Subroutine103_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine103_0:
+        LDI     R18, 1
+        RCALL   ?Subroutine57
+??CrossCallReturnLabel_206:
+        LDI     R18, 1
+        RCALL   ?Subroutine58
+??CrossCallReturnLabel_208:
+        LDI     R18, 6
+        RCALL   ?Subroutine59
+??CrossCallReturnLabel_210:
+        LDI     R18, 6
+        REQUIRE ?Subroutine60
+        ;               // Fall through to label ?Subroutine60
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine60:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 181))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 181))
+        JMP     ??AlarmSet
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine58:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 157))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 157))
+        JMP     ??AlarmSet_2
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine57:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 145))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 145))
+        JMP     ??AlarmSet_1
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine56:
+        LDI     R16, LOW(??m_xModbusRtuOne)
+        LDI     R17, (??m_xModbusRtuOne) >> 8
+        JMP     ??Fsm_1
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine9:
+        CALL    ??Fsm_3
+        REQUIRE ??Subroutine104_0
+        ;               // Fall through to label ??Subroutine104_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine104_0:
+        RCALL   ?Subroutine61
+??CrossCallReturnLabel_230:
+        CALL    ??IsOverflow
+        RJMP    ?Subroutine85
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine61:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 139))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 139))
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        RCALL   ?Subroutine56
+??CrossCallReturnLabel_60:
+        RJMP    ?Subroutine70
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine6:
+        RCALL   ??AllAlarmWindowOff
+        RCALL   ??RestoreContextNotifyerControl
+        LDI     R18, 100
+        LDI     R19, 0
+        REQUIRE ??Subroutine105_0
+        ;               // Fall through to label ??Subroutine105_0
+
+        RSEG CODE:CODE:NOROOT(1)
+??Subroutine105_0:
+        RCALL   ?Subroutine61
+??CrossCallReturnLabel_231:
+        JMP     ??Set_1
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        RCALL   ?Subroutine56
+??CrossCallReturnLabel_59:
+        LDI     R16, LOW((??m_xDeviceConfigSearch + 29))
+        LDI     R17, HIGH((??m_xDeviceConfigSearch + 29))
+        CALL    ??Fsm_2
+        REQUIRE ?Subroutine70
+        ;               // Fall through to label ?Subroutine70
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine70:
+        RCALL   ??KeyStateProcessing
+        RJMP    ??NotifyersControlProcessing
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPlatform::KeyOneState()
+??KeyOneState:
+        LDI     R16, 0
+        SBIC    0x13, 0x02
+        LDI     R16, 1
+??KeyOneState_1:
+        LDI     R17, 1
+        EOR     R16, R17
+        RET
+        REQUIRE _A_PINC
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPlatform::KeyTwoState()
+??KeyTwoState:
+        LDI     R16, 0
+        SBIC    0x13, 0x01
+        LDI     R16, 1
+??KeyTwoState_1:
+        LDI     R17, 1
+        EOR     R16, R17
+        RET
+        REQUIRE _A_PINC
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPlatform::KeyThreeState()
+??KeyThreeState:
+        LDI     R16, 0
+        SBIC    0x13, 0x00
+        LDI     R16, 1
+??KeyThreeState_1:
+        LDI     R17, 1
+        EOR     R16, R17
+        RET
+        REQUIRE _A_PINC
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint8_t CPlatform::ExternalKeyState()
+??ExternalKeyState:
+        LDS     R17, _A_PING
+        ANDI    R17, 0x01
+        MOV     R16, R17
+        LDI     R17, 1
+        EOR     R16, R17
+        RET
+        REQUIRE _A_PING
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DC16    SFE(NEAR_Z) - SFB(NEAR_Z)
+        DC16    SFB(NEAR_Z)
+        DP      0
+        REQUIRE ?need_segment_init
+
+        RSEG NEAR_ID:CODE:ROOT(0)
+`?<Initializer for >`:
+        DC16 ?_1, ??m_xUart1, `?<Unnamed 0>`/2
+`?<Initializer for >_1`:
+        DC16 ?_3, ??m_xModbusRtuOne, `?<Unnamed 1>`/2
+`?<Initializer for >_2`:
+        DC16 ?_5, ??m_xReceiptKey, `?<Unnamed 2>`/2
+`?<Initializer for >_3`:
+        DC16 ?_7, ??m_xResetKey, `?<Unnamed 2>`/2
+`?<Initializer for >_4`:
+        DC16 ?_9, ??m_xCheckKey, `?<Unnamed 2>`/2
+`?<Initializer for >_5`:
+        DC16 ?_11, ??m_xExternalKey, `?<Unnamed 2>`/2
+`?<Initializer for >_6`:
+        DC16 ?_13, ??m_xEventUniteLogicAndOne, `?<Unnamed 3>`/2
+`?<Initializer for >_7`:
+        DC16 ?_15, ??m_xMainCycleTimer, `?<Unnamed 4>`/2
+`?<Initializer for >_8`:
+        DC16 ?_17, ??m_xPreventiveAlarmWindowNotifyerControl, `?<Unnamed 5>`/2
+`?<Initializer for >_9`:
+        DC16 ?_19, ??m_xEmergencyAlarmWindowNotifyerControl, `?<Unnamed 6>`/2
+`?<Initializer for >_10`:
+        DC16 ?_21, ??m_xStatusLedNotifyerControl, `?<Unnamed 7>`/2
+`?<Initializer for >_11`:
+        DC16 ?_23, ??m_xBuzzerNotifyerControl, `?<Unnamed 8>`/2
+`?<Initializer for >_12`:
+        DC16 ?_25, ??m_xModbusRtuLinkControl, `?<Unnamed 9>`/2
+`?<Initializer for >_13`:
+        DC16 ?_27, 0H, `?<Unnamed 10>`/2
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_I>`:
+        DC16    SFE(NEAR_I) - SFB(NEAR_I)
+        DC16    SFB(NEAR_I)
+        DP      SFB(NEAR_ID)
+        REQUIRE ?need_segment_init
+
+        RSEG DIFUNCT:CODE:ROOT(0)
+        REQUIRE ?call_ctors
+        DW      ??__sti__routine/2
+
+        RSEG SWITCH:CODE:NOROOT(1)
+`?<Jumptable for MainFsm>_0`:
+        DB      0
+        DB      0
+        DW      (??CrossCallReturnLabel_56) /2
+        DW      16
+        DW      (??MainFsm_1) /2
+        DW      (??CrossCallReturnLabel_56) /2
+        DW      (??MainFsm_3) /2
+        DW      (??MainFsm_5) /2
+        DW      (??MainFsm_9) /2
+        DW      (??MainFsm_10) /2
+        DW      (??MainFsm_11) /2
+        DW      (??MainFsm_13) /2
+        DW      (??MainFsm_14) /2
+        DW      (??MainFsm_15) /2
+        DW      (??MainFsm_16) /2
+        DW      (??MainFsm_17) /2
+        DW      (??MainFsm_18) /2
+        DW      (??MainFsm_19) /2
+        DW      (??MainFsm_20) /2
+        DW      (??MainFsm_21) /2
+
+        END
+// 1589 
+// 
+//   105 bytes in segment ABSOLUTE
+// 3 410 bytes in segment CODE
+//     2 bytes in segment DIFUNCT
+//    14 bytes in segment INITTAB
+//    70 bytes in segment NEAR_F
+//    84 bytes in segment NEAR_I
+//    84 bytes in segment NEAR_ID
+// 1 645 bytes in segment NEAR_Z
+//    38 bytes in segment SWITCH
+// 
+// 3 554 bytes of CODE memory (+  64 bytes shared)
+// 1 729 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 7

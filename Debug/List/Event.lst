@@ -1,0 +1,481 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           29/Jun/2023  11:58:39
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Event.cpp
+#    Command line =  
+#        -f C:\Users\Admin\AppData\Local\Temp\EW93C4.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Event.cpp
+#        --cpu=m128a -ms -o
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+#        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\Event.lst
+#    Object file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj\Event.r90
+#
+###############################################################################
+
+D:\Projects\CurrentProjects\CautoProjects\PSS48\src\Event.cpp
+      1          //-----------------------------------------------------------------------------------------------------
+      2          //  Source      : FileName.cpp
+      3          //  Created     : 01.06.2022
+      4          //  Author      : Alexandr Volvenkin
+      5          //  email       : aav-36@mail.ru
+      6          //  GitHub      : https://github.com/AlexandrVolvenkin
+      7          //-----------------------------------------------------------------------------------------------------
+      8          #include "Event.h"
+      9          
+     10          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     11          CEvent::CEvent()
+   \                     ??CEvent:
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+     12          {
+   \   00000006   ........           CALL    ??CDfa
+   \   0000000A   ....               LDI     R16, LOW(??__vtbl)
+   \   0000000C   ....               LDI     R17, (??__vtbl) >> 8
+   \   0000000E   01FD               MOVW    R31:R30, R27:R26
+   \   00000010   8301               STD     Z+1, R16
+   \   00000012   8312               STD     Z+2, R17
+     13          
+     14          }
+   \   00000014                      REQUIRE ?Subroutine5
+   \   00000014                      ;               // Fall through to label ?Subroutine5
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine5:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002   91A9               LD      R26, Y+
+   \   00000004   91B9               LD      R27, Y+
+   \   00000006   9508               RET
+     15          
+     16          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     17          CEvent::~CEvent()
+   \                     `?~CEvent`:
+     18          {
+   \   00000000   ........           CALL    ?PROLOGUE3_L09
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   2FA2               MOV     R26, R18
+   \   00000008   2B01               OR      R16, R17
+   \   0000000A   F051               BREQ    `?~CEvent_1`
+     19          
+     20          }
+   \   0000000C   E020               LDI     R18, 0
+   \   0000000E   E030               LDI     R19, 0
+   \   00000010   2F08               MOV     R16, R24
+   \   00000012   ........           CALL    `?~CDfa`
+   \   00000016   FBA0               BST     R26, 0
+   \   00000018   F41E               BRTC    `?~CEvent_1`
+   \   0000001A   018C               MOVW    R17:R16, R25:R24
+   \   0000001C   ........           CALL    `??operator delete`
+   \                     `?~CEvent_1`:
+   \   00000020   E0E3               LDI     R30, 3
+   \   00000022   ........           JMP     ?EPILOGUE_B3_L09
+     21          //-----------------------------------------------------------------------------------------------------
+     22          
+     23          
+     24          
+     25          
+     26          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     27          CEventUniteLogicAnd::CEventUniteLogicAnd()
+   \                     ??CEventUniteLogicAnd:
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+     28          {
+   \   00000006   ....               RCALL   ?Subroutine0
+     29              SetFsmState(START);
+   \                     ??CrossCallReturnLabel_1:
+   \   00000008   E000               LDI     R16, 0
+   \   0000000A   930C               ST      X, R16
+     30          }
+   \   0000000C   ....               RJMP    ?Subroutine5
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   ....               RCALL   ??CEvent
+   \   00000002   ....               RCALL   ?Subroutine3
+   \                     ??CrossCallReturnLabel_6:
+   \   00000004   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_13:
+   \   00000006   ........           JMP     ??CTimer
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine4:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002                      REQUIRE ??Subroutine9_0
+   \   00000002                      ;               // Fall through to label ??Subroutine9_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine9_0:
+   \   00000000   5F0B               SUBI    R16, 251
+   \   00000002   4F1F               SBCI    R17, 255
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine3:
+   \   00000000   ....               LDI     R16, LOW(??__vtbl_1)
+   \   00000002   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   00000004   01FD               MOVW    R31:R30, R27:R26
+   \   00000006   8301               STD     Z+1, R16
+   \   00000008   8312               STD     Z+2, R17
+   \   0000000A   9508               RET
+     31          
+     32          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     33          CEventUniteLogicAnd::CEventUniteLogicAnd(uint16_t uiTime) :
+   \                     ??CEventUniteLogicAnd_1:
+   \   00000000   ....               RCALL   ?Subroutine2
+   \                     ??CrossCallReturnLabel_2:
+   \   00000002   01C9               MOVW    R25:R24, R19:R18
+     34              m_uiTime(uiTime)
+     35          {
+   \   00000004   ....               RCALL   ?Subroutine0
+   \                     ??CrossCallReturnLabel_0:
+   \   00000006   01FD               MOVW    R31:R30, R27:R26
+   \   00000008   8783               STD     Z+11, R24
+   \   0000000A   8794               STD     Z+12, R25
+     36              SetFsmState(START);
+   \   0000000C   E000               LDI     R16, 0
+   \   0000000E   930C               ST      X, R16
+     37          }
+   \   00000010   018D               MOVW    R17:R16, R27:R26
+   \   00000012                      REQUIRE ?Subroutine7
+   \   00000012                      ;               // Fall through to label ?Subroutine7
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine7:
+   \   00000000   E0E4               LDI     R30, 4
+   \   00000002   ........           JMP     ?EPILOGUE_B4_L09
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine2:
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   9508               RET
+     38          
+     39          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     40          CEventUniteLogicAnd::~CEventUniteLogicAnd()
+   \                     `?~CEventUniteLogicAnd`:
+     41          {
+   \   00000000   ....               RCALL   ?Subroutine2
+   \                     ??CrossCallReturnLabel_3:
+   \   00000002   2F82               MOV     R24, R18
+   \   00000004   2B0B               OR      R16, R27
+   \   00000006   F079               BREQ    `?~CEventUniteLogicAnd_1`
+   \   00000008   ....               RCALL   ?Subroutine3
+     42          
+     43          }
+   \                     ??CrossCallReturnLabel_5:
+   \   0000000A   E022               LDI     R18, 2
+   \   0000000C   E030               LDI     R19, 0
+   \   0000000E   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_12:
+   \   00000010   ........           CALL    `?~CTimer`
+   \   00000014   E020               LDI     R18, 0
+   \   00000016   E030               LDI     R19, 0
+   \   00000018   018D               MOVW    R17:R16, R27:R26
+   \   0000001A   ....               RCALL   `?~CEvent`
+   \   0000001C   FB80               BST     R24, 0
+   \   0000001E   F41E               BRTC    `?~CEventUniteLogicAnd_1`
+   \   00000020   018D               MOVW    R17:R16, R27:R26
+   \   00000022   ........           CALL    `??operator delete`
+   \                     `?~CEventUniteLogicAnd_1`:
+   \   00000026   ....               RJMP    ?Subroutine7
+     44          
+     45          //-----------------------------------------------------------------------------------------------------
+     46          // Объединяет события произошедшие совместно в течении UNITED_WAITING_TIME.
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     47          uint8_t CEventUniteLogicAnd::IsHappened(uint8_t uiEventOne, uint8_t uiEventTwo)
+   \                     ??IsHappened:
+     48          {
+   \   00000000   ....               RCALL   ?Subroutine2
+   \                     ??CrossCallReturnLabel_4:
+   \   00000002   2F92               MOV     R25, R18
+   \   00000004   2F83               MOV     R24, R19
+     49              switch (GetFsmState())
+   \   00000006   910C               LD      R16, X
+   \   00000008   2300               TST     R16
+   \   0000000A   F029               BREQ    ??IsHappened_1
+   \   0000000C   950A               DEC     R16
+   \   0000000E   F041               BREQ    ??IsHappened_2
+   \   00000010   950A               DEC     R16
+   \   00000012   F0E1               BREQ    ??IsHappened_3
+   \   00000014   C033               RJMP    ??IsHappened_4
+     50              {
+     51              case START:
+     52                  m_uiEventsState = 0;
+   \                     ??IsHappened_1:
+   \   00000016   01FD               MOVW    R31:R30, R27:R26
+   \   00000018   E000               LDI     R16, 0
+   \   0000001A   8705               STD     Z+13, R16
+     53                  SetFsmState(EVENT_WAITING);
+   \   0000001C   E001               LDI     R16, 1
+   \   0000001E   C014               RJMP    ??IsHappened_5
+     54                  return 0;
+     55                  break;
+     56          
+     57              case EVENT_WAITING:
+     58                  // Произошло первое событие?
+     59                  if (uiEventOne)
+   \                     ??IsHappened_2:
+   \   00000020   2322               TST     R18
+   \   00000022   F021               BREQ    ??IsHappened_6
+     60                  {
+     61                      m_uiEventsState |= 0x01;
+   \   00000024   01FD               MOVW    R31:R30, R27:R26
+   \   00000026   8505               LDD     R16, Z+13
+   \   00000028   6001               ORI     R16, 0x01
+   \   0000002A   8705               STD     Z+13, R16
+     62                  }
+     63                  // Произошло второе событие?
+     64                  if (uiEventTwo)
+   \                     ??IsHappened_6:
+   \   0000002C   2333               TST     R19
+   \   0000002E   F021               BREQ    ??IsHappened_7
+     65                  {
+     66                      m_uiEventsState |= 0x02;
+   \   00000030   01FD               MOVW    R31:R30, R27:R26
+   \   00000032   8505               LDD     R16, Z+13
+   \   00000034   6002               ORI     R16, 0x02
+   \   00000036   8705               STD     Z+13, R16
+     67                  }
+     68                  // Установим задержку ожидания второго события.
+     69                  m_xTimer.Set(m_uiTime);
+   \                     ??IsHappened_7:
+   \   00000038   01FD               MOVW    R31:R30, R27:R26
+   \   0000003A   8523               LDD     R18, Z+11
+   \   0000003C   8534               LDD     R19, Z+12
+   \   0000003E   2F0A               MOV     R16, R26
+   \   00000040   ....               RCALL   ??Subroutine9_0
+   \                     ??CrossCallReturnLabel_10:
+   \   00000042   ........           CALL    ??Set
+     70                  SetFsmState(EVENT_UNITE_WAITING);
+   \   00000046   E002               LDI     R16, 2
+   \                     ??IsHappened_5:
+   \   00000048   930C               ST      X, R16
+     71                  return 0;
+   \   0000004A   C018               RJMP    ??IsHappened_4
+     72                  break;
+     73          
+     74              case EVENT_UNITE_WAITING:
+     75                  // Закончилось время объединения событий?
+     76                  if (m_xTimer.IsOverflow())
+   \                     ??IsHappened_3:
+   \   0000004C   2F0A               MOV     R16, R26
+   \   0000004E   ....               RCALL   ??Subroutine9_0
+   \                     ??CrossCallReturnLabel_11:
+   \   00000050   ........           CALL    ??IsOverflow
+   \   00000054   2300               TST     R16
+   \   00000056   F019               BREQ    ??IsHappened_8
+     77                  {
+     78                      SetFsmState(START);
+   \   00000058   E000               LDI     R16, 0
+   \   0000005A   930C               ST      X, R16
+     79                      return 0;
+   \   0000005C   C010               RJMP    ??IsHappened_9
+     80                  }
+     81                  else
+     82                  {
+     83                      // Произошло первое событие?
+     84                      if (uiEventOne)
+   \                     ??IsHappened_8:
+   \   0000005E   01FD               MOVW    R31:R30, R27:R26
+   \   00000060   8505               LDD     R16, Z+13
+   \   00000062   2399               TST     R25
+   \   00000064   F009               BREQ    ??IsHappened_10
+     85                      {
+     86                          m_uiEventsState |= 0x01;
+   \   00000066   6001               ORI     R16, 0x01
+     87                      }
+     88                      // Произошло второе событие?
+     89                      if (uiEventTwo)
+   \                     ??IsHappened_10:
+   \   00000068   2388               TST     R24
+   \   0000006A   F009               BREQ    ??IsHappened_11
+     90                      {
+     91                          m_uiEventsState |= 0x02;
+   \   0000006C   6002               ORI     R16, 0x02
+   \                     ??IsHappened_11:
+   \   0000006E   8705               STD     Z+13, R16
+     92                      }
+     93                      // Произошли все объединяемые события?
+     94                      if (m_uiEventsState == 0x03)
+   \   00000070   3003               CPI     R16, 3
+   \   00000072   E000               LDI     R16, 0
+   \   00000074   F421               BRNE    ??IsHappened_9
+     95                      {
+     96                          SetFsmState(START);
+   \   00000076   930C               ST      X, R16
+     97                          return 1;
+   \   00000078   E001               LDI     R16, 1
+   \   0000007A   C001               RJMP    ??IsHappened_9
+     98                      }
+     99                      else
+    100                      {
+    101                          return 0;
+    102                      }
+    103                  }
+    104                  break;
+    105          
+    106              default:
+    107                  return 0;
+   \                     ??IsHappened_4:
+   \   0000007C   E000               LDI     R16, 0
+    108                  break;
+    109              }
+   \                     ??IsHappened_9:
+   \   0000007E   ....               RJMP    ?Subroutine7
+    110          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CEvent &CEvent::new CEvent()
+   \                     `??new CEvent`:
+   \   00000000   E005               LDI     R16, 5
+   \   00000002   ....               RCALL   ??Subroutine8_0
+   \                     ??CrossCallReturnLabel_9:
+   \   00000004   F009               BREQ    `??new CEvent_1`
+   \   00000006   ....               RJMP    ??CEvent
+   \                     `??new CEvent_1`:
+   \   00000008                      REQUIRE ?Subroutine6
+   \   00000008                      ;               // Fall through to label ?Subroutine6
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine6:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd()
+   \                     `??new CEventUniteLogicAnd`:
+   \   00000000   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_7:
+   \   00000002   F009               BREQ    `??new CEventUniteLogicAnd_2`
+   \   00000004   ....               RJMP    ??CEventUniteLogicAnd
+   \                     `??new CEventUniteLogicAnd_2`:
+   \   00000006   ....               RJMP    ?Subroutine6
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   E00E               LDI     R16, 14
+   \   00000002                      REQUIRE ??Subroutine8_0
+   \   00000002                      ;               // Fall through to label ??Subroutine8_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine8_0:
+   \   00000000   E010               LDI     R17, 0
+   \   00000002   ........           CALL    `??operator new`
+   \   00000006   2F20               MOV     R18, R16
+   \   00000008   2B21               OR      R18, R17
+   \   0000000A   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CEventUniteLogicAnd &CEventUniteLogicAnd::new CEventUniteLogicAnd(uint16_t)
+   \                     `??new CEventUniteLogicAnd_1`:
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   938A               ST      -Y, R24
+   \   00000004   01C8               MOVW    R25:R24, R17:R16
+   \   00000006   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_8:
+   \   00000008   F019               BREQ    `??new CEventUniteLogicAnd_3`
+   \   0000000A   019C               MOVW    R19:R18, R25:R24
+   \   0000000C   ....               RCALL   ??CEventUniteLogicAnd_1
+   \   0000000E   C002               RJMP    `??new CEventUniteLogicAnd_4`
+   \                     `??new CEventUniteLogicAnd_3`:
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   E010               LDI     R17, 0
+   \                     `??new CEventUniteLogicAnd_4`:
+   \   00000014   9189               LD      R24, Y+
+   \   00000016   9199               LD      R25, Y+
+   \   00000018   9508               RET
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      2      2   CEvent::CEvent()
+        2      2   -> CDfa::CDfa()
+      0      2   CEvent::new CEvent()
+        0      2   -> CEvent::CEvent()
+        0      4   -> operator new(unsigned int)
+      3      2   CEvent::~CEvent()
+        3      2   -> CDfa::~CDfa()
+        3      2   -> operator delete(void *)
+      2      2   CEventUniteLogicAnd::CEventUniteLogicAnd()
+        2      4   -> CEvent::CEvent()
+        2      2   -> CTimer::CTimer()
+      4      2   CEventUniteLogicAnd::CEventUniteLogicAnd(uint16_t)
+        4      4   -> CEvent::CEvent()
+        4      2   -> CTimer::CTimer()
+      4      2   CEventUniteLogicAnd::IsHappened(uint8_t, uint8_t)
+        4      2   -> CTimer::IsOverflow()
+        4      2   -> CTimer::Set(uint16_t)
+      0      2   CEventUniteLogicAnd::new CEventUniteLogicAnd()
+        0      2   -> CEventUniteLogicAnd::CEventUniteLogicAnd()
+        0      4   -> operator new(unsigned int)
+      2      2   CEventUniteLogicAnd::new CEventUniteLogicAnd(uint16_t)
+        2      2   -> CEventUniteLogicAnd::CEventUniteLogicAnd(uint16_t)
+        2      4   -> operator new(unsigned int)
+      4      2   CEventUniteLogicAnd::~CEventUniteLogicAnd()
+        4      2   -> CEvent::~CEvent()
+        4      2   -> CTimer::~CTimer()
+        4      2   -> operator delete(void *)
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      12  ??Subroutine8_0
+       6  ??Subroutine9_0
+      10  ?Subroutine0
+       2  ?Subroutine1
+       8  ?Subroutine2
+      12  ?Subroutine3
+       2  ?Subroutine4
+       8  ?Subroutine5
+       6  ?Subroutine6
+       6  ?Subroutine7
+      20  CEvent::CEvent()
+       8  CEvent::new CEvent()
+      38  CEvent::~CEvent()
+      14  CEventUniteLogicAnd::CEventUniteLogicAnd()
+      18  CEventUniteLogicAnd::CEventUniteLogicAnd(uint16_t)
+     128  CEventUniteLogicAnd::IsHappened(uint8_t, uint8_t)
+       8  CEventUniteLogicAnd::new CEventUniteLogicAnd()
+      26  CEventUniteLogicAnd::new CEventUniteLogicAnd(uint16_t)
+      40  CEventUniteLogicAnd::~CEventUniteLogicAnd()
+       8  -- Other
+
+ 
+ 372 bytes in segment CODE
+   8 bytes in segment NEAR_F
+ 
+ 372 bytes of CODE memory (+ 8 bytes shared)
+
+Errors: none
+Warnings: none

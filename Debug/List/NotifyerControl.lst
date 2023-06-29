@@ -1,0 +1,2430 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           29/Jun/2023  11:58:40
+# Copyright 1996-2018 IAR Systems AB.
+#
+#    Source file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\NotifyerControl.cpp
+#    Command line =  
+#        -f C:\Users\Admin\AppData\Local\Temp\EW96CB.tmp
+#        (--string_literals_in_flash
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\src\NotifyerControl.cpp
+#        --cpu=m128a -ms -o
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj -lC
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -lB
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List -y
+#        --initializers_in_flash --root_variables --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\include\ -I
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Modbus\ --eeprom_size
+#        4096 --dlib --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz --eec++)
+#    Locale       =  Russian_RUS.1251
+#    List file    =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\List\NotifyerControl.lst
+#    Object file  =  
+#        D:\Projects\CurrentProjects\CautoProjects\PSS48\Debug\Obj\NotifyerControl.r90
+#
+###############################################################################
+
+D:\Projects\CurrentProjects\CautoProjects\PSS48\src\NotifyerControl.cpp
+      1          //-----------------------------------------------------------------------------------------------------
+      2          //  Source      : FileName.cpp
+      3          //  Created     : 01.06.2022
+      4          //  Author      : Alexandr Volvenkin
+      5          //  email       : aav-36@mail.ru
+      6          //  GitHub      : https://github.com/AlexandrVolvenkin
+      7          //-----------------------------------------------------------------------------------------------------
+      8          #include "NotifyerControl.h"
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+   \                     ??NORMAL_SIGNAL_ON_TIME:
+   \   00000000   ED00               LDI     R16, 208
+   \   00000002   E017               LDI     R17, 7
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+   \                     ??NORMAL_SIGNAL_OFF_TIME:
+   \   00000000   ED00               LDI     R16, 208
+   \   00000002   E017               LDI     R17, 7
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::WARNING_SIGNAL_ON_TIME()
+   \                     ??WARNING_SIGNAL_ON_TIME:
+   \   00000000   E200               LDI     R16, 32
+   \   00000002   E013               LDI     R17, 3
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+   \                     ??WARNING_SIGNAL_OFF_TIME:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ALARM_SIGNAL_ON_TIME()
+   \                     ??ALARM_SIGNAL_ON_TIME:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+   \                     ??ALARM_SIGNAL_OFF_TIME:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+   \                     ??ERROR_SIGNAL_ON_TIME:
+   \   00000000   E906               LDI     R16, 150
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+   \                     ??ERROR_SIGNAL_OFF_TIME:
+   \   00000000   E906               LDI     R16, 150
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
+   \                     ??ERROR_SIGNAL_PAUSE_TIME:
+   \   00000000   EC02               LDI     R16, 194
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CNotifyerControl::BEEP_SIGNAL_ON_TIME()
+   \                     ??BEEP_SIGNAL_ON_TIME:
+   \   00000000   E302               LDI     R16, 50
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+   \                     ??NORMAL_SIGNAL_ON_TIME_1:
+   \   00000000   ED00               LDI     R16, 208
+   \   00000002   E017               LDI     R17, 7
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+   \                     ??NORMAL_SIGNAL_OFF_TIME_1:
+   \   00000000   ED00               LDI     R16, 208
+   \   00000002   E017               LDI     R17, 7
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
+   \                     ??WARNING_SIGNAL_ON_TIME_1:
+   \   00000000   E200               LDI     R16, 32
+   \   00000002   E013               LDI     R17, 3
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+   \                     ??WARNING_SIGNAL_OFF_TIME_1:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
+   \                     ??ALARM_SIGNAL_ON_TIME_1:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+   \                     ??ALARM_SIGNAL_OFF_TIME_1:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+   \                     ??NORMAL_SIGNAL_ON_TIME_2:
+   \   00000000   ED00               LDI     R16, 208
+   \   00000002   E017               LDI     R17, 7
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+   \                     ??NORMAL_SIGNAL_OFF_TIME_2:
+   \   00000000   ED00               LDI     R16, 208
+   \   00000002   E017               LDI     R17, 7
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
+   \                     ??WARNING_SIGNAL_ON_TIME_2:
+   \   00000000   E200               LDI     R16, 32
+   \   00000002   E013               LDI     R17, 3
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+   \                     ??WARNING_SIGNAL_OFF_TIME_2:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
+   \                     ??ALARM_SIGNAL_ON_TIME_2:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+   \                     ??ALARM_SIGNAL_OFF_TIME_2:
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   E011               LDI     R17, 1
+   \   00000004   9508               RET
+      9          #include "Platform.h"
+
+   \                                 In  segment ABSOLUTE, at 0x9d, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9b, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x99, root
+   \   union <unnamed> volatile __io _A_UBRR1L
+   \                     _A_UBRR1L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_UBRR1H
+   \                     _A_UBRR1H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x95, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_UBRR0H
+   \                     _A_UBRR0H:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8b, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x7d, root
+   \   union <unnamed> volatile __io _A_ETIMSK
+   \                     _A_ETIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ETIFR
+   \                     _A_ETIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x73, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x72, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6d, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6c, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x68, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x65, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x64, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x63, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x62, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5c, root
+   \   union <unnamed> volatile __io _A_XDIV
+   \                     _A_XDIV:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x59, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x58, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x56, root
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUCSR
+   \                     _A_MCUCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x52, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCR0
+   \                     _A_OCR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4f, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x48, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x45, root
+   \   union <unnamed> volatile __io _A_TCCR2
+   \                     _A_TCCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_OCR2
+   \                     _A_OCR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x42, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_SFIOR
+   \                     _A_SFIOR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3b, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3a, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x39, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_UBRR0L
+   \                     _A_UBRR0L:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+      static __flash TDataBase CFlash::xMainDataBase;
+                               ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Platform.h",366  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+
+      static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
+                                                ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Platform.h",367  Warning[Pe427]: 
+          qualified name is not allowed in member declaration
+     10          #include "Pss21.h"
+
+      virtual bool IsSolved(void) {};
+                                   ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",20  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CTaskInterface::IsSolved"
+
+      virtual bool IsSourceStateActive(void) {};
+                                              ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",23  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CTaskInterface::IsSourceStateActive"
+
+      bool IsSolved(void) {};
+                           ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",58  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::IsSolved"
+
+      virtual bool IsSourceStateActive(void) {};
+                                              ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",61  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::IsSourceStateActive"
+
+      virtual uint16_t KEY_PRESSED_TIME(void) {};
+                                               ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48\include\Task.h",63  Warning[Pe940]: 
+          missing return statement at end of non-void function
+          "CIsRegularButtonPressedInterface::KEY_PRESSED_TIME"
+     11          #include "Buzzer.h"
+     12          
+     13          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     14          CNotifyerControl::CNotifyerControl()
+   \                     ??CNotifyerControl:
+   \   00000000   ....               RCALL   ?Subroutine18
+     15          {
+   \                     ??CrossCallReturnLabel_22:
+   \   00000002   ........           CALL    ??CDfa
+   \   00000006   ....               RCALL   ?Subroutine3
+   \                     ??CrossCallReturnLabel_30:
+   \   00000008   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_25:
+   \   0000000A   ........           CALL    ??CTimer
+     16              SetFsmState(STOP);
+   \   0000000E   E205               LDI     R16, 37
+   \   00000010   930C               ST      X, R16
+     17              SetSavedFsmState(STOP);
+   \   00000012   01FD               MOVW    R31:R30, R27:R26
+   \   00000014   ....               RJMP    ?Subroutine22
+     18          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine22:
+   \   00000000   8303               STD     Z+3, R16
+   \   00000002   018D               MOVW    R17:R16, R27:R26
+   \   00000004                      REQUIRE ?Subroutine29
+   \   00000004                      ;               // Fall through to label ?Subroutine29
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine29:
+   \   00000000   91A9               LD      R26, Y+
+   \   00000002   91B9               LD      R27, Y+
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine18:
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine19:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002   5F0A               SUBI    R16, 250
+   \   00000004   4F1F               SBCI    R17, 255
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine3:
+   \   00000000   ....               LDI     R16, LOW(??__vtbl)
+   \   00000002   ....               LDI     R17, (??__vtbl) >> 8
+   \   00000004                      REQUIRE ?Subroutine20
+   \   00000004                      ;               // Fall through to label ?Subroutine20
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine20:
+   \   00000000   01FD               MOVW    R31:R30, R27:R26
+   \   00000002   8301               STD     Z+1, R16
+   \   00000004   8312               STD     Z+2, R17
+   \   00000006   9508               RET
+     19          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     20          CNotifyerControl::~CNotifyerControl()
+   \                     `?~CNotifyerControl`:
+     21          {
+   \   00000000   ....               RCALL   ?Subroutine23
+   \                     ??CrossCallReturnLabel_39:
+   \   00000002   2B0B               OR      R16, R27
+   \   00000004   F061               BREQ    ??CrossCallReturnLabel_37
+   \   00000006   ....               RCALL   ?Subroutine3
+     22          
+     23          }
+   \                     ??CrossCallReturnLabel_31:
+   \   00000008   E022               LDI     R18, 2
+   \   0000000A   E030               LDI     R19, 0
+   \   0000000C   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_26:
+   \   0000000E   ........           CALL    `?~CTimer`
+   \   00000012   E020               LDI     R18, 0
+   \   00000014   E030               LDI     R19, 0
+   \   00000016   018D               MOVW    R17:R16, R27:R26
+   \   00000018   ........           CALL    `?~CDfa`
+   \   0000001C   ....               RCALL   ?Subroutine21
+   \                     ??CrossCallReturnLabel_37:
+   \   0000001E   E0E4               LDI     R30, 4
+   \   00000020   ....               RJMP    ??Subroutine38_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine38_0:
+   \   00000000   ........           JMP     ?EPILOGUE_B4_L09
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine23:
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   2F82               MOV     R24, R18
+   \   00000008   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine21:
+   \   00000000   FB80               BST     R24, 0
+   \   00000002   F41E               BRTC    ??Subroutine21_0
+   \   00000004   018D               MOVW    R17:R16, R27:R26
+   \   00000006   ........           CALL    `??operator delete`
+   \                     ??Subroutine21_0:
+   \   0000000A   9508               RET
+     24          
+     25          ////-----------------------------------------------------------------------------------------------------
+     26          //void CNotifyerControl::Init(CAlarmWindow* pxAlarmWindowControl)
+     27          //{
+     28          ////    m_pxAlarmWindowControl = pxAlarmWindowControl;
+     29          //    SetFsmState(CNotifyerControl::STOP);
+     30          //}
+     31          
+     32          ////-----------------------------------------------------------------------------------------------------
+     33          //void CNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+     34          //{
+     35          ////    SetSavedFsmState(GetFsmState());
+     36          ////    m_uiAlarmType = uiAlarmType;
+     37          ////    switch (m_uiAlarmType)
+     38          //    switch (uiAlarmType)
+     39          //    {
+     40          //    case NORMAL:
+     41          //        SetFsmState(STOP);
+     42          //        break;
+     43          //
+     44          //    case NORMAL:
+     45          //        SetFsmState(NORMAL_SIGNAL_START);
+     46          //        break;
+     47          //
+     48          //    case INDICATION:
+     49          //        SetFsmState(INDICATION_SIGNAL_START);
+     50          //        break;
+     51          //
+     52          //    case PREVENTIVE:
+     53          //        SetFsmState(WARNING_SIGNAL_START);
+     54          //        break;
+     55          //
+     56          //    case EMERGENCY:
+     57          //        SetFsmState(ALARM_SIGNAL_START);
+     58          //        break;
+     59          //
+     60          //    case IND_PREVENTIVE:
+     61          //        break;
+     62          //
+     63          //    case IND_EMERGENCY:
+     64          //        break;
+     65          //
+     66          //    default:
+     67          //        break;
+     68          //    }
+     69          //}
+     70          
+     71          //class Base
+     72          //{
+     73          //    const int k;
+     74          //public:
+     75          //    Base(const int i) :
+     76          //        k(i)
+     77          //    {
+     78          //    }
+     79          //    virtual void print() const
+     80          //    {
+     81          //        std::cout << k << std::endl;
+     82          //    }
+     83          //};
+     84          //class D1 : public Base
+     85          //{
+     86          //public:
+     87          //    D1(const int j) :
+     88          //        Base(j)
+     89          //    {
+     90          //    }
+     91          //};
+     92          
+     93          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     94          void CNotifyerControl::Fsm(void)
+   \                     ??Fsm:
+     95          {
+   \   00000000   ....               RCALL   ?Subroutine18
+     96              switch (GetFsmState())
+   \                     ??CrossCallReturnLabel_23:
+   \   00000002   910C               LD      R16, X
+   \   00000004   ....               LDI     R30, LOW(`?<Jumptable for Fsm>_0`)
+   \   00000006   ....               LDI     R31, (`?<Jumptable for Fsm>_0`) >> 16
+   \   00000008   BFFB               OUT     0x3B, R31
+   \   0000000A   ....               LDI     R31, HIGH(`?<Jumptable for Fsm>_0`)
+   \   0000000C   ........           JMP     ?CV_SWITCH_L06
+     97              {
+     98              case IDDLE:
+     99                  break;
+    100          
+    101              case NORMAL_SIGNAL_START:
+    102                  m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+    103                  NotifyerNormalOn();
+    104                  SetFsmState(NORMAL_SIGNAL_ON);
+    105                  break;
+    106          
+    107              case NORMAL_SIGNAL_ON:
+    108                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_1:
+   \   00000010   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_0:
+   \   00000012   F409               BRNE    $+2+2
+   \   00000014   C058               RJMP    ??Fsm_2
+    109                  {
+    110                      m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
+   \   00000016   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_59:
+   \   00000018   9672               ADIW    R31:R30, 18
+   \   0000001A   ....               RCALL   ?Subroutine4
+    111                      NotifyerOff();
+    112                      SetFsmState(NORMAL_SIGNAL_OFF);
+   \                     ??CrossCallReturnLabel_50:
+   \   0000001C   E10A               LDI     R16, 26
+   \   0000001E   C052               RJMP    ??Fsm_3
+    113                  }
+    114                  break;
+    115          
+    116              case NORMAL_SIGNAL_OFF:
+    117                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_4:
+   \   00000020   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_1:
+   \   00000022   F409               BRNE    $+2+2
+   \   00000024   C050               RJMP    ??Fsm_2
+    118                  {
+    119                      m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+   \                     ??Fsm_5:
+   \   00000026   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_60:
+   \   00000028   9670               ADIW    R31:R30, 16
+   \   0000002A   ....               RCALL   ?Subroutine8
+   \                     ??CrossCallReturnLabel_12:
+   \   0000002C   9634               ADIW    R31:R30, 4
+   \   0000002E   ....               RCALL   ?Subroutine25
+    120                      NotifyerNormalOn();
+    121                      SetFsmState(NORMAL_SIGNAL_ON);
+   \                     ??CrossCallReturnLabel_56:
+   \   00000030   E109               LDI     R16, 25
+   \   00000032   C048               RJMP    ??Fsm_3
+    122                  }
+    123                  break;
+    124          
+    125              case INDICATION_SIGNAL_START:
+    126          //        m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+    127                  NotifyerIndicationOn();
+   \                     ??Fsm_6:
+   \   00000034   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_71:
+   \   00000036   9636               ADIW    R31:R30, 6
+   \   00000038   ....               RCALL   ?Subroutine25
+    128          //        SetFsmState(INDICATION_SIGNAL_ON);
+    129                  break;
+   \                     ??CrossCallReturnLabel_57:
+   \   0000003A   C045               RJMP    ??Fsm_2
+    130          
+    131          //    case INDICATION_SIGNAL_ON:
+    132          ////        if (m_xTimer.IsOverflow())
+    133          ////        {
+    134          ////            m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
+    135          //////            NotifyerOff();
+    136          ////            SetFsmState(INDICATION_SIGNAL_OFF);
+    137          ////        }
+    138          //        break;
+    139          //
+    140          //    case INDICATION_SIGNAL_OFF:
+    141          ////        if (m_xTimer.IsOverflow())
+    142          ////        {
+    143          ////            m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+    144          ////            NotifyerIndicationOn();
+    145          ////            SetFsmState(INDICATION_SIGNAL_ON);
+    146          ////        }
+    147          //        break;
+    148          
+    149              case WARNING_SIGNAL_START:
+    150                  m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
+    151                  NotifyerPreventiveOn();
+    152                  SetFsmState(WARNING_SIGNAL_ON);
+    153                  break;
+    154          
+    155              case WARNING_SIGNAL_ON:
+    156                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_7:
+   \   0000003C   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_2:
+   \   0000003E   F409               BRNE    $+2+2
+   \   00000040   C042               RJMP    ??Fsm_2
+    157                  {
+    158                      m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+   \   00000042   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_61:
+   \   00000044   9676               ADIW    R31:R30, 22
+   \   00000046   ....               RCALL   ?Subroutine4
+    159                      NotifyerOff();
+    160                      SetFsmState(WARNING_SIGNAL_OFF);
+   \                     ??CrossCallReturnLabel_51:
+   \   00000048   E009               LDI     R16, 9
+   \   0000004A   C03C               RJMP    ??Fsm_3
+    161                  }
+    162                  break;
+    163          
+    164              case WARNING_SIGNAL_OFF:
+    165                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_8:
+   \   0000004C   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_3:
+   \   0000004E   F1D9               BREQ    ??Fsm_2
+    166                  {
+    167                      m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
+   \                     ??Fsm_9:
+   \   00000050   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_62:
+   \   00000052   9674               ADIW    R31:R30, 20
+   \   00000054   ....               RCALL   ?Subroutine8
+    168                      NotifyerPreventiveOn();
+   \                     ??CrossCallReturnLabel_11:
+   \   00000056   9638               ADIW    R31:R30, 8
+   \   00000058   ....               RCALL   ?Subroutine25
+    169                      SetFsmState(WARNING_SIGNAL_ON);
+   \                     ??CrossCallReturnLabel_58:
+   \   0000005A   E008               LDI     R16, 8
+   \   0000005C   C033               RJMP    ??Fsm_3
+    170                  }
+    171                  break;
+    172          
+    173              case ALARM_SIGNAL_START:
+    174                  m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+    175                  NotifyerEmergencyOn();
+    176                  SetFsmState(ALARM_SIGNAL_ON);
+    177                  break;
+    178          
+    179              case ALARM_SIGNAL_ON:
+    180                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_10:
+   \   0000005E   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_4:
+   \   00000060   F191               BREQ    ??Fsm_2
+    181                  {
+    182                      m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+   \   00000062   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_63:
+   \   00000064   967A               ADIW    R31:R30, 26
+   \   00000066   ....               RCALL   ?Subroutine4
+    183                      NotifyerOff();
+    184                      SetFsmState(ALARM_SIGNAL_OFF);
+   \                     ??CrossCallReturnLabel_52:
+   \   00000068   E00F               LDI     R16, 15
+   \   0000006A   C02C               RJMP    ??Fsm_3
+    185                  }
+    186                  break;
+    187          
+    188              case ALARM_SIGNAL_OFF:
+    189                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_11:
+   \   0000006C   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_5:
+   \   0000006E   F159               BREQ    ??Fsm_2
+    190                  {
+    191                      m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+   \                     ??Fsm_12:
+   \   00000070   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_64:
+   \   00000072   9678               ADIW    R31:R30, 24
+   \   00000074   ....               RCALL   ??Subroutine36_0
+    192                      NotifyerEmergencyOn();
+    193                      SetFsmState(ALARM_SIGNAL_ON);
+   \                     ??CrossCallReturnLabel_41:
+   \   00000076   E00E               LDI     R16, 14
+   \   00000078   C025               RJMP    ??Fsm_3
+    194                  }
+    195                  break;
+    196          
+    197              case ERROR_SIGNAL_START:
+    198                  m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
+    199                  NotifyerEmergencyOn();
+    200                  SetFsmState(ERROR_SIGNAL_ON);
+    201                  break;
+    202          
+    203              case ERROR_SIGNAL_ON:
+    204                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_13:
+   \   0000007A   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_6:
+   \   0000007C   F121               BREQ    ??Fsm_2
+    205                  {
+    206                      m_xTimer.Set(ERROR_SIGNAL_OFF_TIME());
+   \   0000007E   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_65:
+   \   00000080   967E               ADIW    R31:R30, 30
+   \   00000082   ....               RCALL   ?Subroutine4
+    207                      NotifyerOff();
+    208                      SetFsmState(ERROR_SIGNAL_OFF);
+   \                     ??CrossCallReturnLabel_53:
+   \   00000084   E105               LDI     R16, 21
+   \   00000086   C01E               RJMP    ??Fsm_3
+    209                  }
+    210                  break;
+    211          
+    212              case ERROR_SIGNAL_OFF:
+    213                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_14:
+   \   00000088   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_7:
+   \   0000008A   F0E9               BREQ    ??Fsm_2
+    214                  {
+    215                      m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
+   \   0000008C   ....               RCALL   ?Subroutine6
+    216                      NotifyerEmergencyOn();
+    217                      SetFsmState(ERROR_SIGNAL_ON_2);
+   \                     ??CrossCallReturnLabel_43:
+   \   0000008E   E106               LDI     R16, 22
+   \   00000090   C019               RJMP    ??Fsm_3
+    218                  }
+    219                  break;
+    220          
+    221              case ERROR_SIGNAL_ON_2:
+    222                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_15:
+   \   00000092   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_8:
+   \   00000094   F0C1               BREQ    ??Fsm_2
+    223                  {
+    224                      m_xTimer.Set(ERROR_SIGNAL_PAUSE_TIME());
+   \   00000096   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_66:
+   \   00000098   96B0               ADIW    R31:R30, 32
+   \   0000009A   ....               RCALL   ?Subroutine4
+    225                      NotifyerOff();
+    226                      SetFsmState(ERROR_SIGNAL_OFF_2);
+   \                     ??CrossCallReturnLabel_54:
+   \   0000009C   E107               LDI     R16, 23
+   \   0000009E   C012               RJMP    ??Fsm_3
+    227                  }
+    228                  break;
+    229          
+    230              case ERROR_SIGNAL_OFF_2:
+    231                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_16:
+   \   000000A0   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_9:
+   \   000000A2   F089               BREQ    ??Fsm_2
+    232                  {
+    233                      m_xTimer.Set(ERROR_SIGNAL_ON_TIME());
+   \                     ??Fsm_17:
+   \   000000A4   ....               RCALL   ?Subroutine6
+    234                      NotifyerEmergencyOn();
+    235                      SetFsmState(ERROR_SIGNAL_ON);
+   \                     ??CrossCallReturnLabel_44:
+   \   000000A6   E104               LDI     R16, 20
+   \   000000A8   C00D               RJMP    ??Fsm_3
+    236                  }
+    237                  break;
+    238          
+    239              case BEEP_SIGNAL_START:
+    240                  m_xTimer.Set(BEEP_SIGNAL_ON_TIME());
+   \                     ??Fsm_18:
+   \   000000AA   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_67:
+   \   000000AC   96B2               ADIW    R31:R30, 34
+   \   000000AE   ....               RCALL   ??Subroutine36_0
+    241                  NotifyerEmergencyOn();
+    242                  SetFsmState(BEEP_SIGNAL_ON);
+   \                     ??CrossCallReturnLabel_42:
+   \   000000B0   E10F               LDI     R16, 31
+   \   000000B2   C008               RJMP    ??Fsm_3
+    243                  break;
+    244          
+    245              case BEEP_SIGNAL_ON:
+    246                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_19:
+   \   000000B4   ....               RCALL   ?Subroutine5
+   \                     ??CrossCallReturnLabel_10:
+   \   000000B6   F039               BREQ    ??Fsm_2
+    247                  {
+    248                      NotifyerOff();
+   \   000000B8   ....               RCALL   ?Subroutine15
+    249                      // Восстановим предыдущее состояние автомата.
+    250                      SetFsmState(GetSavedFsmState());
+   \                     ??CrossCallReturnLabel_48:
+   \   000000BA   01FD               MOVW    R31:R30, R27:R26
+   \   000000BC   8103               LDD     R16, Z+3
+   \   000000BE   C002               RJMP    ??Fsm_3
+    251          //            SetFsmState(STOP);
+    252                  }
+    253                  break;
+    254          
+    255              case STOP:
+    256                  NotifyerOff();
+   \                     ??Fsm_20:
+   \   000000C0   ....               RCALL   ?Subroutine15
+    257                  SetFsmState(IDDLE);
+   \                     ??CrossCallReturnLabel_49:
+   \   000000C2   E000               LDI     R16, 0
+   \                     ??Fsm_3:
+   \   000000C4   930C               ST      X, R16
+    258                  break;
+    259          
+    260              default:
+    261                  break;
+    262              };
+    263          }
+   \                     ??Fsm_2:
+   \   000000C6   ....               RJMP    ?Subroutine29
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine8:
+   \   00000000   ....               RCALL   ?Subroutine16
+   \                     ??CrossCallReturnLabel_47:
+   \   00000002                      REQUIRE ?Subroutine26
+   \   00000002                      ;               // Fall through to label ?Subroutine26
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine26:
+   \   00000000   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_72:
+   \   00000002   9712               SBIW    R27:R26, 2
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine27:
+   \   00000000   018D               MOVW    R17:R16, R27:R26
+   \   00000002   9611               ADIW    R27:R26, 1
+   \   00000004   91ED               LD      R30, X+
+   \   00000006   91FC               LD      R31, X
+   \   00000008   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine6:
+   \   00000000   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_68:
+   \   00000002   967C               ADIW    R31:R30, 28
+   \   00000004                      REQUIRE ??Subroutine36_0
+   \   00000004                      ;               // Fall through to label ??Subroutine36_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine36_0:
+   \   00000000   ....               RCALL   ?Subroutine16
+   \                     ??CrossCallReturnLabel_46:
+   \   00000002   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_70:
+   \   00000004   963A               ADIW    R31:R30, 10
+   \   00000006   ....               RJMP    ?Subroutine25
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine16:
+   \   00000000   ....               RCALL   ?Subroutine25
+   \                     ??CrossCallReturnLabel_55:
+   \   00000002   0198               MOVW    R19:R18, R17:R16
+   \   00000004   018D               MOVW    R17:R16, R27:R26
+   \   00000006   5F0A               SUBI    R16, 250
+   \   00000008   4F1F               SBCI    R17, 255
+   \   0000000A   ........           JMP     ??Set
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine5:
+   \   00000000   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_27:
+   \   00000002   ........           CALL    ??IsOverflow
+   \   00000006   2300               TST     R16
+   \   00000008   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine4:
+   \   00000000   ....               RCALL   ?Subroutine16
+   \                     ??CrossCallReturnLabel_45:
+   \   00000002                      REQUIRE ?Subroutine15
+   \   00000002                      ;               // Fall through to label ?Subroutine15
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine15:
+   \   00000000   ....               RCALL   ?Subroutine26
+   \                     ??CrossCallReturnLabel_69:
+   \   00000002   963C               ADIW    R31:R30, 12
+   \   00000004                      REQUIRE ?Subroutine25
+   \   00000004                      ;               // Fall through to label ?Subroutine25
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine25:
+   \   00000000   9125               LPM     R18, Z+
+   \   00000002   91F4               LPM     R31, Z
+   \   00000004   2FE2               MOV     R30, R18
+   \   00000006   9409               IJMP
+    264          //-----------------------------------------------------------------------------------------------------
+    265          
+    266          
+    267          
+    268          
+    269          
+    270          
+    271          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    272          CPreventiveAlarmWindowNotifyerControl::CPreventiveAlarmWindowNotifyerControl()
+   \                     ??CPreventiveAlarmWindowNotifyerControl:
+   \   00000000   ....               RCALL   ?Subroutine2
+    273          {
+   \                     ??CrossCallReturnLabel_35:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_1)
+   \   00000004   ....               LDI     R17, (??__vtbl_1) >> 8
+   \   00000006   ....               RJMP    ?Subroutine1
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine1:
+   \   00000000   ....               RCALL   ?Subroutine20
+    274              SetFsmState(STOP);
+   \                     ??CrossCallReturnLabel_29:
+   \   00000002   E205               LDI     R16, 37
+   \   00000004                      REQUIRE ?Subroutine35
+   \   00000004                      ;               // Fall through to label ?Subroutine35
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine35:
+   \   00000000   930C               ST      X, R16
+    275              SetSavedFsmState(STOP);
+   \   00000002   ....               RJMP    ?Subroutine22
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine2:
+   \   00000000   ....               RCALL   ?Subroutine18
+   \                     ??CrossCallReturnLabel_24:
+   \   00000002                      REQUIRE ?Subroutine28
+   \   00000002                      ;               // Fall through to label ?Subroutine28
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine28:
+   \   00000000   ....               RJMP    ??CNotifyerControl
+    276          }
+    277          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    278          CPreventiveAlarmWindowNotifyerControl::~CPreventiveAlarmWindowNotifyerControl()
+   \                     `?~CPreventiveAlarmWindowNotifyerControl`:
+   \   00000000   ....               RJMP    ?Subroutine31
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine31:
+    279          {
+   \   00000000   ....               RCALL   ?Subroutine0
+    280              SetFsmState(STOP);
+    281          }
+   \                     ??CrossCallReturnLabel_36:
+   \   00000002                      REQUIRE ??Subroutine38_0
+   \   00000002                      ;               // Fall through to label ??Subroutine38_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   ....               RCALL   ?Subroutine23
+   \                     ??CrossCallReturnLabel_40:
+   \   00000002   2B01               OR      R16, R17
+   \   00000004   F039               BREQ    ??CrossCallReturnLabel_38
+   \   00000006   E205               LDI     R16, 37
+   \   00000008   930C               ST      X, R16
+   \   0000000A   E020               LDI     R18, 0
+   \   0000000C   E030               LDI     R19, 0
+   \   0000000E   2F0A               MOV     R16, R26
+   \   00000010   ....               RCALL   `?~CNotifyerControl`
+   \   00000012   ....               RCALL   ?Subroutine21
+   \                     ??CrossCallReturnLabel_38:
+   \   00000014   E0E4               LDI     R30, 4
+   \   00000016   9508               RET
+    282          
+    283          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    284          void CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+   \                     ??AlarmSet:
+    285          {
+    286              // Сохраним текущее состояние автомата.
+    287              SetSavedFsmState(GetFsmState());
+   \   00000000   ....               RCALL   ?Subroutine13
+    288              switch (uiAlarmType)
+   \                     ??CrossCallReturnLabel_18:
+   \   00000002   F039               BREQ    ??AlarmSet_4
+   \   00000004   952A               DEC     R18
+   \   00000006   F039               BREQ    ??AlarmSet_5
+   \   00000008   952A               DEC     R18
+   \   0000000A   F039               BREQ    ??AlarmSet_6
+   \   0000000C   952A               DEC     R18
+   \   0000000E   F029               BREQ    ??AlarmSet_6
+   \   00000010   9508               RET
+    289              {
+    290              case NORMAL:
+    291                  SetFsmState(STOP);
+   \                     ??AlarmSet_4:
+   \   00000012   E205               LDI     R16, 37
+   \   00000014   C003               RJMP    ??AlarmSet_7
+    292                  break;
+    293          
+    294              case INDICATION:
+    295                  SetFsmState(INDICATION_SIGNAL_START);
+   \                     ??AlarmSet_5:
+   \   00000016   E001               LDI     R16, 1
+   \   00000018   C001               RJMP    ??AlarmSet_7
+    296                  break;
+    297          
+    298              case PREVENTIVE:
+    299                  SetFsmState(WARNING_SIGNAL_START);
+    300                  break;
+    301          
+    302              case EMERGENCY:
+    303                  SetFsmState(WARNING_SIGNAL_START);
+   \                     ??AlarmSet_6:
+   \   0000001A   E007               LDI     R16, 7
+    304                  break;
+    305          
+    306              case IND_PREVENTIVE:
+    307                  break;
+    308          
+    309              case IND_EMERGENCY:
+    310                  break;
+    311          
+    312              case ERROR:
+    313                  break;
+    314          
+    315              case BEEP_SIGNAL:
+    316                  break;
+    317          
+    318              default:
+    319                  break;
+    320              }
+   \                     ??AlarmSet_7:
+   \   0000001C                      REQUIRE ?Subroutine30
+   \   0000001C                      ;               // Fall through to label ?Subroutine30
+    321          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine30:
+   \   00000000   8300               ST      Z, R16
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine13:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8130               LD      R19, Z
+   \   00000004   8333               STD     Z+3, R19
+   \   00000006   2322               TST     R18
+   \   00000008   9508               RET
+    322          
+    323          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    324          void CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn(void)
+   \                     ??NotifyerNormalOn:
+    325          {
+    326          
+    327          }
+   \   00000000   9508               RET
+    328          
+    329          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    330          void CPreventiveAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
+   \                     ??NotifyerIndicationOn:
+    331          {
+    332              CPss21::ActiveAlarmWindowOn(INDICATION);
+   \   00000000   ....               RJMP    ?Subroutine32
+    333          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine32:
+   \   00000000   E001               LDI     R16, 1
+   \   00000002                      REQUIRE ??Subroutine37_0
+   \   00000002                      ;               // Fall through to label ??Subroutine37_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine37_0:
+   \   00000000   ........           JMP     ??ActiveAlarmWindowOn
+    334          
+    335          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    336          void CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
+   \                     ??NotifyerPreventiveOn:
+    337          {
+    338              CPss21::ActiveAlarmWindowOn(PREVENTIVE);
+   \   00000000   E002               LDI     R16, 2
+   \   00000002   ....               RJMP    ??Subroutine37_0
+    339          }
+    340          
+    341          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    342          void CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
+   \                     ??NotifyerEmergencyOn:
+    343          {
+    344          
+    345          }
+   \   00000000   9508               RET
+    346          
+    347          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    348          void CPreventiveAlarmWindowNotifyerControl::NotifyerOff(void)
+   \                     ??NotifyerOff:
+    349          {
+    350              CPss21::ActiveAlarmWindowOff(PREVENTIVE);
+   \   00000000   E002               LDI     R16, 2
+   \   00000002   ....               RJMP    ?Subroutine33
+    351              CPss21::BoardWindowsUpdate();
+    352          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine33:
+   \   00000000   ........           CALL    ??ActiveAlarmWindowOff
+   \   00000004                      REQUIRE ??Subroutine39_0
+   \   00000004                      ;               // Fall through to label ??Subroutine39_0
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ??Subroutine39_0:
+   \   00000000   ........           JMP     ??BoardWindowsUpdate
+    353          //-----------------------------------------------------------------------------------------------------
+    354          
+    355          
+    356          
+    357          
+    358          
+    359          
+    360          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    361          CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+   \                     ??CEmergencyAlarmWindowNotifyerControl:
+   \   00000000   ....               RCALL   ?Subroutine2
+    362          {
+   \                     ??CrossCallReturnLabel_34:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_2)
+   \   00000004   ....               LDI     R17, (??__vtbl_2) >> 8
+   \   00000006                      REQUIRE ?Subroutine1
+   \   00000006                      ;               // Fall through to label ?Subroutine1
+    363              SetFsmState(STOP);
+    364              SetSavedFsmState(STOP);
+    365          }
+    366          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    367          CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
+   \                     `?~CEmergencyAlarmWindowNotifyerControl`:
+   \   00000000   ....               RJMP    ?Subroutine31
+    368          {
+    369              SetFsmState(STOP);
+    370          }
+    371          
+    372          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    373          void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+   \                     ??AlarmSet_1:
+    374          {
+    375              // Сохраним текущее состояние автомата.
+    376              SetSavedFsmState(GetFsmState());
+   \   00000000   ....               RCALL   ?Subroutine13
+    377              switch (uiAlarmType)
+   \                     ??CrossCallReturnLabel_19:
+   \   00000002   F049               BREQ    ??AlarmSet_8
+   \   00000004   952A               DEC     R18
+   \   00000006   F029               BREQ    ??AlarmSet_9
+   \   00000008   952A               DEC     R18
+   \   0000000A   F029               BREQ    ??AlarmSet_8
+   \   0000000C   952A               DEC     R18
+   \   0000000E   F029               BREQ    ??AlarmSet_10
+   \   00000010   9508               RET
+    378              {
+    379              case NORMAL:
+    380                  SetFsmState(STOP);
+    381                  break;
+    382          
+    383              case INDICATION:
+    384                  SetFsmState(INDICATION_SIGNAL_START);
+   \                     ??AlarmSet_9:
+   \   00000012   E001               LDI     R16, 1
+   \   00000014   C001               RJMP    ??AlarmSet_11
+    385                  break;
+    386          
+    387              case PREVENTIVE:
+    388                  SetFsmState(STOP);
+   \                     ??AlarmSet_8:
+   \   00000016   E205               LDI     R16, 37
+   \                     ??AlarmSet_11:
+   \   00000018   ....               RJMP    ?Subroutine30
+    389                  break;
+    390          
+    391              case EMERGENCY:
+    392                  SetFsmState(ALARM_SIGNAL_START);
+   \                     ??AlarmSet_10:
+   \   0000001A   E00D               LDI     R16, 13
+   \   0000001C   CFFD               RJMP    ??AlarmSet_11
+    393                  break;
+    394          
+    395              case IND_PREVENTIVE:
+    396                  break;
+    397          
+    398              case IND_EMERGENCY:
+    399                  break;
+    400          
+    401              case ERROR:
+    402                  break;
+    403          
+    404              case BEEP_SIGNAL:
+    405                  break;
+    406          
+    407              default:
+    408                  break;
+    409              }
+    410          }
+    411          
+    412          
+    413          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    414          void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
+   \                     ??NotifyerNormalOn_1:
+    415          {
+    416          
+    417          }
+   \   00000000   9508               RET
+    418          
+    419          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    420          void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
+   \                     ??NotifyerIndicationOn_1:
+    421          {
+    422              CPss21::ActiveAlarmWindowOn(INDICATION);
+   \   00000000   ....               RJMP    ?Subroutine32
+    423          }
+    424          
+    425          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    426          void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
+   \                     ??NotifyerPreventiveOn_1:
+    427          {
+    428          
+    429          }
+   \   00000000   9508               RET
+    430          
+    431          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    432          void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
+   \                     ??NotifyerEmergencyOn_1:
+    433          {
+    434              CPss21::ActiveAlarmWindowOn(EMERGENCY);
+   \   00000000   E003               LDI     R16, 3
+   \   00000002   ....               RJMP    ??Subroutine37_0
+    435          }
+    436          
+    437          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    438          void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
+   \                     ??NotifyerOff_1:
+    439          {
+    440              CPss21::ActiveAlarmWindowOff(EMERGENCY);
+   \   00000000   E003               LDI     R16, 3
+   \   00000002   ....               RJMP    ?Subroutine33
+    441              CPss21::BoardWindowsUpdate();
+    442          }
+    443          //-----------------------------------------------------------------------------------------------------
+    444          
+    445          
+    446          
+    447          
+    448          
+    449          
+    450          
+    451          
+    452          
+    453          //-----------------------------------------------------------------------------------------------------
+    454          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    455          CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+   \                     ??CStatusLedNotifyerControl:
+   \   00000000   ....               RCALL   ?Subroutine2
+    456          {
+   \                     ??CrossCallReturnLabel_33:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_6)
+   \   00000004   ....               LDI     R17, (??__vtbl_6) >> 8
+   \   00000006   ....               RCALL   ?Subroutine20
+    457              SetFsmState(NORMAL_SIGNAL_START);
+   \                     ??CrossCallReturnLabel_28:
+   \   00000008   E108               LDI     R16, 24
+   \   0000000A   ....               RJMP    ?Subroutine35
+    458              SetSavedFsmState(NORMAL_SIGNAL_START);
+    459          }
+    460          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    461          CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+   \                     `?~CStatusLedNotifyerControl`:
+   \   00000000                      REQUIRE ?Subroutine31
+   \   00000000                      ;               // Fall through to label ?Subroutine31
+    462          {
+    463              SetFsmState(STOP);
+    464          }
+    465          
+    466          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    467          void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+   \                     ??AlarmSet_2:
+    468          {
+    469              // Сохраним текущее состояние автомата.
+    470              SetSavedFsmState(GetFsmState());
+   \   00000000   ....               RCALL   ?Subroutine13
+    471              switch (uiAlarmType)
+   \                     ??CrossCallReturnLabel_20:
+   \   00000002   F049               BREQ    ??AlarmSet_12
+   \   00000004   952A               DEC     R18
+   \   00000006   F039               BREQ    ??AlarmSet_12
+   \   00000008   952A               DEC     R18
+   \   0000000A   F039               BREQ    ??AlarmSet_13
+   \   0000000C   952A               DEC     R18
+   \   0000000E   F039               BREQ    ??AlarmSet_14
+   \   00000010   5023               SUBI    R18, 3
+   \   00000012   F039               BREQ    ??AlarmSet_15
+   \   00000014   9508               RET
+    472              {
+    473              case NORMAL:
+    474                  SetFsmState(NORMAL_SIGNAL_START);
+    475                  break;
+    476          
+    477              case INDICATION:
+    478                  SetFsmState(NORMAL_SIGNAL_START);
+   \                     ??AlarmSet_12:
+   \   00000016   E108               LDI     R16, 24
+   \                     ??AlarmSet_16:
+   \   00000018   ....               RJMP    ?Subroutine30
+    479                  break;
+    480          
+    481              case PREVENTIVE:
+    482                  SetFsmState(WARNING_SIGNAL_START);
+   \                     ??AlarmSet_13:
+   \   0000001A   E007               LDI     R16, 7
+   \   0000001C   CFFD               RJMP    ??AlarmSet_16
+    483                  break;
+    484          
+    485              case EMERGENCY:
+    486                  SetFsmState(ALARM_SIGNAL_START);
+   \                     ??AlarmSet_14:
+   \   0000001E   E00D               LDI     R16, 13
+   \   00000020   CFFB               RJMP    ??AlarmSet_16
+    487                  break;
+    488          
+    489              case IND_PREVENTIVE:
+    490                  break;
+    491          
+    492              case IND_EMERGENCY:
+    493                  break;
+    494          
+    495              case ERROR:
+    496                  SetFsmState(ERROR_SIGNAL_START);
+   \                     ??AlarmSet_15:
+   \   00000022   E103               LDI     R16, 19
+   \   00000024   CFF9               RJMP    ??AlarmSet_16
+    497                  break;
+    498          
+    499              case BEEP_SIGNAL:
+    500                  break;
+    501          
+    502              default:
+    503                  break;
+    504              }
+    505          }
+    506          
+    507          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    508          void CStatusLedNotifyerControl::NotifyerNormalOn(void)
+   \                     ??NotifyerNormalOn_2:
+    509          {
+    510              CPlatform::StatusLedOn();
+   \   00000000   ....               RJMP    ?Subroutine14
+   \   00000002                      REQUIRE _A_PORTF
+    511          }
+    512          
+    513          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    514          void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
+   \                     ??NotifyerIndicationOn_2:
+    515          {
+    516          
+    517          }
+   \   00000000   9508               RET
+    518          
+    519          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    520          void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
+   \                     ??NotifyerPreventiveOn_2:
+    521          {
+    522              CPlatform::StatusLedOn();
+   \   00000000                      REQUIRE ?Subroutine14
+   \   00000000                      REQUIRE _A_PORTF
+   \   00000000                      ;               // Fall through to label ?Subroutine14
+    523          }
+    524          
+    525          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    526          void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
+   \                     ??NotifyerEmergencyOn_2:
+    527          {
+    528              CPlatform::StatusLedOn();
+   \   00000000   ....               RJMP    ?Subroutine14
+   \   00000002                      REQUIRE _A_PORTF
+    529          }
+    530          
+    531          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    532          void CStatusLedNotifyerControl::NotifyerOff(void)
+   \                     ??NotifyerOff_2:
+    533          {
+    534              CPlatform::StatusLedOff();
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6800               ORI     R16, 0x80
+   \   00000006   93000062           STS     98, R16
+    535              CPss21::BoardWindowsUpdate();
+   \   0000000A   ....               RJMP    ??Subroutine39_0
+   \   0000000C                      REQUIRE _A_PORTF
+    536          }
+    537          //-----------------------------------------------------------------------------------------------------
+    538          
+    539          
+    540          
+    541          
+    542          
+    543          
+    544          //-----------------------------------------------------------------------------------------------------
+    545          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    546          CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+   \                     ??CBuzzerNotifyerControl:
+   \   00000000   ....               RCALL   ?Subroutine2
+    547          {
+   \                     ??CrossCallReturnLabel_32:
+   \   00000002   ....               LDI     R16, LOW(??__vtbl_7)
+   \   00000004   ....               LDI     R17, (??__vtbl_7) >> 8
+   \   00000006   ....               RJMP    ?Subroutine1
+    548              SetFsmState(STOP);
+    549              SetSavedFsmState(STOP);
+    550          }
+    551          
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    552          CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
+   \                     `?~CBuzzerNotifyerControl`:
+   \   00000000   ....               RJMP    ?Subroutine31
+    553          {
+    554              SetFsmState(STOP);
+    555          }
+    556          
+    557          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    558          void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+   \                     ??AlarmSet_3:
+    559          {
+    560              // Сохраним текущее состояние автомата.
+    561              SetSavedFsmState(GetFsmState());
+   \   00000000   ....               RCALL   ?Subroutine13
+    562              switch (uiAlarmType)
+   \                     ??CrossCallReturnLabel_21:
+   \   00000002   F059               BREQ    ??AlarmSet_17
+   \   00000004   952A               DEC     R18
+   \   00000006   F049               BREQ    ??AlarmSet_17
+   \   00000008   952A               DEC     R18
+   \   0000000A   F049               BREQ    ??AlarmSet_18
+   \   0000000C   952A               DEC     R18
+   \   0000000E   F049               BREQ    ??AlarmSet_19
+   \   00000010   5023               SUBI    R18, 3
+   \   00000012   F049               BREQ    ??AlarmSet_20
+   \   00000014   952A               DEC     R18
+   \   00000016   F049               BREQ    ??AlarmSet_21
+   \   00000018   9508               RET
+    563              {
+    564              case NORMAL:
+    565                  SetFsmState(STOP);
+    566                  break;
+    567          
+    568              case INDICATION:
+    569                  SetFsmState(STOP);
+   \                     ??AlarmSet_17:
+   \   0000001A   E205               LDI     R16, 37
+   \                     ??AlarmSet_22:
+   \   0000001C   ....               RJMP    ?Subroutine30
+    570                  break;
+    571          
+    572              case PREVENTIVE:
+    573                  SetFsmState(WARNING_SIGNAL_START);
+   \                     ??AlarmSet_18:
+   \   0000001E   E007               LDI     R16, 7
+   \   00000020   CFFD               RJMP    ??AlarmSet_22
+    574                  break;
+    575          
+    576              case EMERGENCY:
+    577                  SetFsmState(ALARM_SIGNAL_START);
+   \                     ??AlarmSet_19:
+   \   00000022   E00D               LDI     R16, 13
+   \   00000024   CFFB               RJMP    ??AlarmSet_22
+    578                  break;
+    579          
+    580              case IND_PREVENTIVE:
+    581                  break;
+    582          
+    583              case IND_EMERGENCY:
+    584                  break;
+    585          
+    586              case ERROR:
+    587                  SetFsmState(ERROR_SIGNAL_START);
+   \                     ??AlarmSet_20:
+   \   00000026   E103               LDI     R16, 19
+   \   00000028   CFF9               RJMP    ??AlarmSet_22
+    588                  break;
+    589          
+    590              case BEEP_SIGNAL:
+    591                  SetFsmState(BEEP_SIGNAL_START);
+   \                     ??AlarmSet_21:
+   \   0000002A   E10E               LDI     R16, 30
+   \   0000002C   CFF7               RJMP    ??AlarmSet_22
+    592                  break;
+    593          
+    594              default:
+    595                  break;
+    596              }
+    597          }
+    598          
+    599          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    600          void CBuzzerNotifyerControl::NotifyerNormalOn(void)
+   \                     ??NotifyerNormalOn_3:
+    601          {
+    602              CBuzzer::Off();
+   \   00000000                      REQUIRE ?Subroutine34
+   \   00000000                      ;               // Fall through to label ?Subroutine34
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine34:
+   \   00000000   ........           JMP     ??Off
+    603          }
+    604          
+    605          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    606          void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
+   \                     ??NotifyerIndicationOn_3:
+    607          {
+    608              CBuzzer::Off();
+   \   00000000   ....               RJMP    ?Subroutine34
+    609          }
+    610          
+    611          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    612          void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
+   \                     ??NotifyerPreventiveOn_3:
+    613          {
+    614              CBuzzer::LowOn();
+   \   00000000   ........           JMP     ??LowOn
+    615          }
+    616          
+    617          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    618          void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
+   \                     ??NotifyerEmergencyOn_3:
+    619          {
+    620              CBuzzer::HighOn();
+   \   00000000   ........           JMP     ??HighOn
+    621          }
+    622          
+    623          //-----------------------------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    624          void CBuzzerNotifyerControl::NotifyerOff(void)
+   \                     ??NotifyerOff_3:
+    625          {
+    626              CBuzzer::Off();
+   \   00000000   ........           CALL    ??Off
+    627              CPss21::BoardWindowsUpdate();
+   \   00000004   ....               RJMP    ??Subroutine39_0
+    628          }
+
+   \                                 In  segment SWITCH, align 2, keep-with-next
+   \                     `?<Jumptable for Fsm>_0`:
+   \   00000000   01                 DB      1
+   \   00000001   01                 DB      1
+   \   00000002   ....               DW      (??Fsm_2) /2
+   \   00000004   ....               DW      (??Fsm_6) /2
+   \   00000006   06                 DB      0x6
+   \   00000007   ....               DW      (??Fsm_9) /2
+   \   00000009   01                 DB      0x1
+   \   0000000A   ....               DW      (??Fsm_7) /2
+   \   0000000C   01                 DB      0x1
+   \   0000000D   ....               DW      (??Fsm_8) /2
+   \   0000000F   04                 DB      0x4
+   \   00000010   ....               DW      (??Fsm_12) /2
+   \   00000012   01                 DB      0x1
+   \   00000013   ....               DW      (??Fsm_10) /2
+   \   00000015   01                 DB      0x1
+   \   00000016   ....               DW      (??Fsm_11) /2
+   \   00000018   04                 DB      0x4
+   \   00000019   ....               DW      (??Fsm_17) /2
+   \   0000001B   01                 DB      0x1
+   \   0000001C   ....               DW      (??Fsm_13) /2
+   \   0000001E   01                 DB      0x1
+   \   0000001F   ....               DW      (??Fsm_14) /2
+   \   00000021   01                 DB      0x1
+   \   00000022   ....               DW      (??Fsm_15) /2
+   \   00000024   01                 DB      0x1
+   \   00000025   ....               DW      (??Fsm_16) /2
+   \   00000027   01                 DB      0x1
+   \   00000028   ....               DW      (??Fsm_5) /2
+   \   0000002A   01                 DB      0x1
+   \   0000002B   ....               DW      (??Fsm_1) /2
+   \   0000002D   01                 DB      0x1
+   \   0000002E   ....               DW      (??Fsm_4) /2
+   \   00000030   04                 DB      0x4
+   \   00000031   ....               DW      (??Fsm_18) /2
+   \   00000033   01                 DB      0x1
+   \   00000034   ....               DW      (??Fsm_19) /2
+   \   00000036   06                 DB      0x6
+   \   00000037   ....               DW      (??Fsm_20) /2
+   \   00000039   FB                 DB      251
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CNotifyerControl &CNotifyerControl::new CNotifyerControl()
+   \                     `??new CNotifyerControl`:
+   \   00000000   ....               RCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_13:
+   \   00000002   F009               BREQ    `??new CNotifyerControl_1`
+   \   00000004   ....               RJMP    ?Subroutine28
+   \                     `??new CNotifyerControl_1`:
+   \   00000006   ....               RJMP    ?Subroutine10
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CPreventiveAlarmWindowNotifyerControl &CPreventiveAlarmWindowNotifyerControl::new CPreventiveAlarmWindowNotifyerControl()
+   \                     `??new CPreventiveAlarmWindowNotifyerControl`:
+   \   00000000   ....               RCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_14:
+   \   00000002   F009               BREQ    `??new CPreventiveAlarmWindowNotifyerControl_1`
+   \   00000004   ....               RJMP    ??CPreventiveAlarmWindowNotifyerControl
+   \                     `??new CPreventiveAlarmWindowNotifyerControl_1`:
+   \   00000006   ....               RJMP    ?Subroutine10
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CEmergencyAlarmWindowNotifyerControl &CEmergencyAlarmWindowNotifyerControl::new CEmergencyAlarmWindowNotifyerControl()
+   \                     `??new CEmergencyAlarmWindowNotifyerControl`:
+   \   00000000   ....               RCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_15:
+   \   00000002   F009               BREQ    `??new CEmergencyAlarmWindowNotifyerControl_1`
+   \   00000004   ....               RJMP    ??CEmergencyAlarmWindowNotifyerControl
+   \                     `??new CEmergencyAlarmWindowNotifyerControl_1`:
+   \   00000006                      REQUIRE ?Subroutine10
+   \   00000006                      ;               // Fall through to label ?Subroutine10
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine10:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine9:
+   \   00000000   E00C               LDI     R16, 12
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   ........           CALL    `??operator new`
+   \   00000008   2F20               MOV     R18, R16
+   \   0000000A   2B21               OR      R18, R17
+   \   0000000C   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CStatusLedNotifyerControl &CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
+   \                     `??new CStatusLedNotifyerControl`:
+   \   00000000   ....               RCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_16:
+   \   00000002   F009               BREQ    `??new CStatusLedNotifyerControl_1`
+   \   00000004   ....               RJMP    ??CStatusLedNotifyerControl
+   \                     `??new CStatusLedNotifyerControl_1`:
+   \   00000006   ....               RJMP    ?Subroutine10
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 CBuzzerNotifyerControl &CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
+   \                     `??new CBuzzerNotifyerControl`:
+   \   00000000   ....               RCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_17:
+   \   00000002   F009               BREQ    `??new CBuzzerNotifyerControl_1`
+   \   00000004   ....               RJMP    ??CBuzzerNotifyerControl
+   \                     `??new CBuzzerNotifyerControl_1`:
+   \   00000006   ....               RJMP    ?Subroutine10
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine14:
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   770F               ANDI    R16, 0x7F
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+    629          
+    630          
+    631          
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CBuzzerNotifyerControl::AlarmSet(uint8_t)
+      2      2   CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+        2      2   -> CNotifyerControl::CNotifyerControl()
+      0      2   CBuzzerNotifyerControl::NotifyerEmergencyOn()
+        0      2   -> CBuzzer::HighOn()
+      0      2   CBuzzerNotifyerControl::NotifyerIndicationOn()
+        0      2   -> CBuzzer::Off()
+      0      0   CBuzzerNotifyerControl::NotifyerNormalOn()
+        0      2   -> CBuzzer::Off()
+      0      2   CBuzzerNotifyerControl::NotifyerOff()
+        0      2   -> CBuzzer::Off()
+        0      2   -> CPss21::BoardWindowsUpdate()
+      0      2   CBuzzerNotifyerControl::NotifyerPreventiveOn()
+        0      2   -> CBuzzer::LowOn()
+      0      2   CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
+        0      2   -> CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+        0      4   -> operator new(unsigned int)
+      0      2   CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
+        4      4   -> CNotifyerControl::~CNotifyerControl()
+        4      6   -> operator delete(void *)
+      0      2   CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+      0      2   CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
+      0      2   CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t)
+      2      2   CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+        2      2   -> CNotifyerControl::CNotifyerControl()
+      0      2   CEmergencyAlarmWindowNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+      0      2   CEmergencyAlarmWindowNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+      0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn()
+        0      2   -> CPss21::ActiveAlarmWindowOn(uint8_t)
+      0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn()
+        0      2   -> CPss21::ActiveAlarmWindowOn(uint8_t)
+      0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn()
+      0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerOff()
+        0      2   -> CPss21::ActiveAlarmWindowOff(uint8_t)
+        0      2   -> CPss21::BoardWindowsUpdate()
+      0      2   CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn()
+      0      2   CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+      0      2   CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
+      0      2   CEmergencyAlarmWindowNotifyerControl::new CEmergencyAlarmWindowNotifyerControl()
+        0      2   -> CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+        0      4   -> operator new(unsigned int)
+      0      2   CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
+        4      4   -> CNotifyerControl::~CNotifyerControl()
+        4      6   -> operator delete(void *)
+      0      2   CNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+      0      2   CNotifyerControl::ALARM_SIGNAL_ON_TIME()
+      0      2   CNotifyerControl::BEEP_SIGNAL_ON_TIME()
+      2      2   CNotifyerControl::CNotifyerControl()
+        2      2   -> CDfa::CDfa()
+        2      2   -> CTimer::CTimer()
+      0      2   CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+      0      2   CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+      0      2   CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
+      2      2   CNotifyerControl::Fsm()
+        2      2   -- Indirect call
+        2      6   -- Indirect call
+        2      4   -> CTimer::IsOverflow()
+        2      4   -> CTimer::Set(uint16_t)
+        2      2 ?CV_SWITCH_L06
+      0      2   CNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+      0      2   CNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+      0      2   CNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+      0      2   CNotifyerControl::WARNING_SIGNAL_ON_TIME()
+      0      2   CNotifyerControl::new CNotifyerControl()
+        0      2   -> CNotifyerControl::CNotifyerControl()
+        0      4   -> operator new(unsigned int)
+      4      2   CNotifyerControl::~CNotifyerControl()
+        4      2   -> CDfa::~CDfa()
+        4      2   -> CTimer::~CTimer()
+        4      4   -> operator delete(void *)
+      0      2   CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+      0      2   CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
+      0      2   CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t)
+      2      2   CPreventiveAlarmWindowNotifyerControl::CPreventiveAlarmWindowNotifyerControl()
+        2      2   -> CNotifyerControl::CNotifyerControl()
+      0      2   CPreventiveAlarmWindowNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+      0      2   CPreventiveAlarmWindowNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+      0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn()
+      0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerIndicationOn()
+        0      2   -> CPss21::ActiveAlarmWindowOn(uint8_t)
+      0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn()
+      0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerOff()
+        0      2   -> CPss21::ActiveAlarmWindowOff(uint8_t)
+        0      2   -> CPss21::BoardWindowsUpdate()
+      0      2   CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn()
+        0      2   -> CPss21::ActiveAlarmWindowOn(uint8_t)
+      0      2   CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+      0      2   CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
+      0      2   CPreventiveAlarmWindowNotifyerControl::new CPreventiveAlarmWindowNotifyerControl()
+        0      2   -> CPreventiveAlarmWindowNotifyerControl::CPreventiveAlarmWindowNotifyerControl()
+        0      4   -> operator new(unsigned int)
+      0      2   CPreventiveAlarmWindowNotifyerControl::~CPreventiveAlarmWindowNotifyerControl()
+        4      4   -> CNotifyerControl::~CNotifyerControl()
+        4      6   -> operator delete(void *)
+      0      2   CStatusLedNotifyerControl::AlarmSet(uint8_t)
+      2      2   CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+        2      2   -> CNotifyerControl::CNotifyerControl()
+      0      2   CStatusLedNotifyerControl::NotifyerEmergencyOn()
+      0      2   CStatusLedNotifyerControl::NotifyerIndicationOn()
+      0      2   CStatusLedNotifyerControl::NotifyerNormalOn()
+      0      2   CStatusLedNotifyerControl::NotifyerOff()
+        0      2   -> CPss21::BoardWindowsUpdate()
+      0      0   CStatusLedNotifyerControl::NotifyerPreventiveOn()
+      0      2   CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
+        0      2   -> CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+        0      4   -> operator new(unsigned int)
+      0      0   CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+        4      4   -> CNotifyerControl::~CNotifyerControl()
+        4      6   -> operator delete(void *)
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      58  ?<Jumptable for Fsm>_0
+       8  ??Subroutine36_0
+       4  ??Subroutine37_0
+       4  ??Subroutine38_0
+       4  ??Subroutine39_0
+      24  ?Subroutine0
+       4  ?Subroutine1
+       6  ?Subroutine10
+      10  ?Subroutine13
+      12  ?Subroutine14
+       4  ?Subroutine15
+      14  ?Subroutine16
+       8  ?Subroutine18
+       8  ?Subroutine19
+       2  ?Subroutine2
+       8  ?Subroutine20
+      12  ?Subroutine21
+       4  ?Subroutine22
+      10  ?Subroutine23
+       8  ?Subroutine25
+       6  ?Subroutine26
+      10  ?Subroutine27
+       2  ?Subroutine28
+       6  ?Subroutine29
+       4  ?Subroutine3
+       4  ?Subroutine30
+       2  ?Subroutine31
+       2  ?Subroutine32
+       4  ?Subroutine33
+       4  ?Subroutine34
+       4  ?Subroutine35
+       2  ?Subroutine4
+      10  ?Subroutine5
+       4  ?Subroutine6
+       2  ?Subroutine8
+      14  ?Subroutine9
+      46  CBuzzerNotifyerControl::AlarmSet(uint8_t)
+       8  CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+       4  CBuzzerNotifyerControl::NotifyerEmergencyOn()
+       2  CBuzzerNotifyerControl::NotifyerIndicationOn()
+       0  CBuzzerNotifyerControl::NotifyerNormalOn()
+       6  CBuzzerNotifyerControl::NotifyerOff()
+       4  CBuzzerNotifyerControl::NotifyerPreventiveOn()
+       8  CBuzzerNotifyerControl::new CBuzzerNotifyerControl()
+       2  CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
+       6  CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+       6  CEmergencyAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
+      30  CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t)
+       6  CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+       6  CEmergencyAlarmWindowNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+       6  CEmergencyAlarmWindowNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+       4  CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn()
+       2  CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn()
+       2  CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn()
+       4  CEmergencyAlarmWindowNotifyerControl::NotifyerOff()
+       2  CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn()
+       6  CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+       6  CEmergencyAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
+       6  CEmergencyAlarmWindowNotifyerControl::new CEmergencyAlarmWindowNotifyerControl()
+       2  CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
+       6  CNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+       6  CNotifyerControl::ALARM_SIGNAL_ON_TIME()
+       6  CNotifyerControl::BEEP_SIGNAL_ON_TIME()
+      22  CNotifyerControl::CNotifyerControl()
+       6  CNotifyerControl::ERROR_SIGNAL_OFF_TIME()
+       6  CNotifyerControl::ERROR_SIGNAL_ON_TIME()
+       6  CNotifyerControl::ERROR_SIGNAL_PAUSE_TIME()
+     200  CNotifyerControl::Fsm()
+       6  CNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+       6  CNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+       6  CNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+       6  CNotifyerControl::WARNING_SIGNAL_ON_TIME()
+       8  CNotifyerControl::new CNotifyerControl()
+      34  CNotifyerControl::~CNotifyerControl()
+       6  CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+       6  CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
+      28  CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t)
+       8  CPreventiveAlarmWindowNotifyerControl::CPreventiveAlarmWindowNotifyerControl()
+       6  CPreventiveAlarmWindowNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+       6  CPreventiveAlarmWindowNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+       2  CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn()
+       2  CPreventiveAlarmWindowNotifyerControl::NotifyerIndicationOn()
+       2  CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn()
+       4  CPreventiveAlarmWindowNotifyerControl::NotifyerOff()
+       4  CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn()
+       6  CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+       6  CPreventiveAlarmWindowNotifyerControl::WARNING_SIGNAL_ON_TIME()
+       8  CPreventiveAlarmWindowNotifyerControl::new CPreventiveAlarmWindowNotifyerControl()
+       2  CPreventiveAlarmWindowNotifyerControl::~CPreventiveAlarmWindowNotifyerControl()
+      38  CStatusLedNotifyerControl::AlarmSet(uint8_t)
+      12  CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+       2  CStatusLedNotifyerControl::NotifyerEmergencyOn()
+       2  CStatusLedNotifyerControl::NotifyerIndicationOn()
+       2  CStatusLedNotifyerControl::NotifyerNormalOn()
+      12  CStatusLedNotifyerControl::NotifyerOff()
+       0  CStatusLedNotifyerControl::NotifyerPreventiveOn()
+       8  CStatusLedNotifyerControl::new CStatusLedNotifyerControl()
+       0  CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_ETIFR
+       1  _A_ETIMSK
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUCSR
+       1  _A_OCDR
+       1  _A_OCR0
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SFIOR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR
+       1  _A_TIMSK
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       1  _A_UBRR0H
+       1  _A_UBRR0L
+       1  _A_UBRR1H
+       1  _A_UBRR1L
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XDIV
+       1  _A_XMCRA
+       1  _A_XMCRB
+     202  -- Other
+
+ 
+ 105 bytes in segment ABSOLUTE
+ 904 bytes in segment CODE
+ 202 bytes in segment NEAR_F
+  58 bytes in segment SWITCH
+ 
+ 852 bytes of CODE memory (+ 312 bytes shared)
+   0 bytes of DATA memory (+ 105 bytes shared)
+
+Errors: none
+Warnings: 7
